@@ -1,0 +1,2 @@
+// ??redisson????????????
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.iohao.game.domain.config.DistributedLockAutoConfiguration

@@ -1,0 +1,12 @@
+server:
+  port: 8098
+
+spring:
+  task:
+    execution:
+      pool:
+        max-size: 16
+        core-size: 8
+  redis:
+    redisson:
+      file: classpath:redisson-config.yml
