@@ -7,7 +7,7 @@
 
     <groupId>com.iohao.game</groupId>
     <artifactId>iogame-example</artifactId>
-    <version>1.4.0</version>
+    <version>17.0.0</version>
     <name>ioGame-example</name>
     <description>ioGame网络游戏服务器框架 - 示例</description>
 

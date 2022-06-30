@@ -17,7 +17,9 @@
 package com.iohao.game.example.one;
 
 import com.iohao.game.action.skeleton.core.flow.codec.ProtoDataCodec;
+import com.iohao.game.example.common.kit.ClientKit;
 import com.iohao.game.example.common.msg.HelloReq;
+import com.iohao.game.example.common.msg.login.DemoLoginVerify;
 import com.iohao.game.example.one.action.DemoCmd;
 import com.iohao.game.common.kit.ProtoKit;
 import com.iohao.game.bolt.broker.client.external.bootstrap.message.ExternalMessage;
@@ -47,28 +49,25 @@ public class DemoWebsocketClient {
         WebSocketClient webSocketClient = new WebSocketClient(new URI(wsUrl), new Draft_6455()) {
             @Override
             public void onOpen(ServerHandshake serverHandshake) {
-                // 建立连接后 发送一条消息给游戏服务器
-                HelloReq helloReq = new HelloReq();
-                helloReq.setName("塔姆");
-
                 // 路由, 对应服务端逻辑服的业务类路由地址
                 int cmd = DemoCmd.cmd;
-                int subCmd = DemoCmd.here;
 //                subCmd = DemoCmd.jackson;
 
-                // 游戏框架内置的协议， 与游戏前端相互通讯的协议
-                ExternalMessage externalMessage = new ExternalMessage();
-                // 请求命令类型: 0 心跳，1 业务
-                externalMessage.setCmdCode(ExternalMessageCmdCode.biz);
-                // 路由
-                externalMessage.setCmdMerge(cmd, subCmd);
-                // 业务数据
-                byte[] data = ProtoDataCodec.me().encode(helloReq);
-                // 业务数据
-                externalMessage.setData(data);
+                Object dataPb = null;
+
+                HelloReq helloReq = new HelloReq();
+                helloReq.setName("塔姆");
+                int subCmd = DemoCmd.here;
+                dataPb = helloReq;
+
+                DemoLoginVerify loginVerify = new DemoLoginVerify();
+                loginVerify.jwt = "abc";
+//                subCmd = DemoCmd.loginVerify;
+//                dataPb = loginVerify;
+
 
                 // 转为字节
-                byte[] bytes = ProtoKit.toBytes(externalMessage);
+                byte[] bytes = ClientKit.createExternalMessageBytes(cmd, subCmd, dataPb);
                 // 发送数据到游戏服务器
                 this.send(bytes);
             }
@@ -81,8 +80,8 @@ public class DemoWebsocketClient {
                 log.info("收到消息 ExternalMessage ========== \n{}", message);
                 byte[] data = message.getData();
                 if (data != null) {
-                    HelloReq helloReq = ProtoKit.parseProtoByte(data, HelloReq.class);
-                    log.info("helloReq ========== \n{}", helloReq);
+//                    HelloReq helloReq = ProtoKit.parseProtoByte(data, HelloReq.class);
+//                    log.info("helloReq ========== \n{}", helloReq);
                 }
             }
 

@@ -5,7 +5,7 @@
     <parent>
         <artifactId>iogame-example</artifactId>
         <groupId>com.iohao.game</groupId>
-        <version>1.4.0</version>
+        <version>17.0.0</version>
         <relativePath>../../pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
@@ -26,13 +26,13 @@
         <dependency>
             <groupId>com.iohao.game</groupId>
             <artifactId>broker-client-ext-monitor</artifactId>
-            <version>${project.parent.version}</version>
+            <version>${ioGame.version}</version>
         </dependency>
 
         <dependency>
             <groupId>com.iohao.game</groupId>
             <artifactId>broker-starter-monitor-logic</artifactId>
-            <version>${project.parent.version}</version>
+            <version>${ioGame.version}</version>
         </dependency>
 
     </dependencies>

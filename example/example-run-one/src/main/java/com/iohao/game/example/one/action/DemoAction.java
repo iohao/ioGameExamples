@@ -16,11 +16,16 @@
  */
 package com.iohao.game.example.one.action;
 
+import com.iohao.game.action.skeleton.core.flow.FlowContext;
+import com.iohao.game.bolt.broker.client.kit.UserIdSettingKit;
+import com.iohao.game.example.common.msg.login.DemoLoginVerify;
+import com.iohao.game.example.common.msg.login.DemoUserInfo;
 import com.iohao.game.example.one.code.DemoCodeEnum;
 import com.iohao.game.example.common.msg.HelloReq;
 import com.iohao.game.action.skeleton.annotation.ActionController;
 import com.iohao.game.action.skeleton.annotation.ActionMethod;
 import com.iohao.game.action.skeleton.core.exception.MsgException;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * 示例action
@@ -28,6 +33,7 @@ import com.iohao.game.action.skeleton.core.exception.MsgException;
  * @author 渔民小镇
  * @date 2022-02-24
  */
+@Slf4j
 @ActionController(DemoCmd.cmd)
 public class DemoAction {
     /**
@@ -59,5 +65,34 @@ public class DemoAction {
         helloReq.name = helloReq.name + ", hello, jackson !";
 
         return helloReq;
+    }
+
+
+    /**
+     * 登录
+     *
+     * @param loginVerify 登录请求
+     * @param flowContext flowContext
+     * @return 玩家数据
+     */
+    @ActionMethod(DemoCmd.loginVerify)
+    public DemoUserInfo loginVerify(DemoLoginVerify loginVerify, FlowContext flowContext) {
+        // 登录验证请求
+        // 为了方便，这里登录用户的id 写个自身传入 jwt 的 hash
+        int newUserId = loginVerify.jwt.hashCode();
+
+        // 登录的关键代码
+        // 具体可参考 https://www.yuque.com/iohao/game/tywkqv
+        boolean success = UserIdSettingKit.settingUserId(flowContext, newUserId);
+
+        if (!success) {
+            log.error("登录错误");
+        }
+
+        DemoUserInfo userInfo = new DemoUserInfo();
+        userInfo.id = newUserId;
+        userInfo.name = loginVerify.jwt;
+
+        return userInfo;
     }
 }

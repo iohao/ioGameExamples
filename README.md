@@ -55,7 +55,7 @@
 <br>
 
 ## 源码目录介绍
-```css
+```text
 .
 ├── example （示例）
 │   ├── example-broadcast （广播示例）

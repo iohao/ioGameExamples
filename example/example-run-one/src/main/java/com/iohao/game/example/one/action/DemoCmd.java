@@ -30,4 +30,6 @@ public interface DemoCmd {
     int here = 0;
     /** 示例 异常机制演示 */
     int jackson = 1;
+    /** 示例 登录 */
+    int loginVerify = 2;
 }
