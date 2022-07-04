@@ -16,7 +16,8 @@
  */
 package com.iohao.game.example.ext.monitor;
 
-import com.iohao.game.bolt.broker.boot.monitor.server.MonitorExtServer;
+//import com.iohao.game.bolt.broker.boot.monitor.server.MonitorExtServer;
+import com.iohao.game.bolt.broker.client.AbstractBrokerClientStartup;
 import com.iohao.game.bolt.broker.client.external.config.ExternalGlobalConfig;
 import com.iohao.game.example.ext.monitor.server.DemoExtLogicServer;
 import com.iohao.game.simple.SimpleHelper;
@@ -33,11 +34,12 @@ public class DemoExtApplication {
         // 注意，这个是临时测试用的，设置为 false 表示不用登录就可以访问逻辑服的方法
         ExternalGlobalConfig.verifyIdentity = false;
 
-        var logicServerList = List.of(
+        List<AbstractBrokerClientStartup> logicServerList = List.of(
                 // 逻辑服 demo
-                new DemoExtLogicServer(),
+                new DemoExtLogicServer()
                 // 监控逻辑服
-                new MonitorExtServer());
+//                , new MonitorExtServer()
+        );
 
         // 游戏对外服端口
         int port = 10100;

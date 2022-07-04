@@ -4,8 +4,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>iogame-example</artifactId>
-        <groupId>com.iohao.game</groupId>
-        <version>17.0.0</version>
+        <groupId>com.iohao.example</groupId>
+        <version>2.2.2</version>
         <relativePath>../../pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
@@ -27,6 +27,30 @@
 
         <dependency>
             <groupId>com.iohao.game</groupId>
+            <artifactId>light-profile</artifactId>
+            <version>${ioGame.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.iohao.game</groupId>
+            <artifactId>light-timer-task</artifactId>
+            <version>${ioGame.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.iohao.game</groupId>
+            <artifactId>light-domain-event</artifactId>
+            <version>${ioGame.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.iohao.game</groupId>
+            <artifactId>light-jprotobuf</artifactId>
+            <version>${ioGame.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.iohao.example</groupId>
             <artifactId>game-common-proto</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
@@ -45,33 +69,62 @@
             <version>${spring.version}</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.hibernate.validator/hibernate-validator -->
+        <dependency>
+            <groupId>org.hibernate.validator</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>${hibernate-validator.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>jakarta.validation</groupId>
+                    <artifactId>jakarta.validation-api</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.glassfish/jakarta.el -->
+        <!-- EL实现。在Java SE环境中，您必须将实现作为依赖项添加到POM文件中-->
+        <dependency>
+            <groupId>org.glassfish</groupId>
+            <artifactId>jakarta.el</artifactId>
+            <version>${jakarta.el.version}</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/jakarta.validation/jakarta.validation-api -->
+        <!-- 验证器Maven依赖项 -->
+        <dependency>
+            <groupId>jakarta.validation</groupId>
+            <artifactId>jakarta.validation-api</artifactId>
+            <version>${jakarta.validation-api.version}</version>
+        </dependency>
+
     </dependencies>
 
-<!--    <build>-->
-<!--        <plugins>-->
-<!--            &lt;!&ndash;-->
-<!--            mvn jprotobuf:precompile-->
-<!--            or-->
-<!--            mvn package-->
-<!--            &ndash;&gt;-->
-<!--            <plugin>-->
-<!--                <groupId>com.baidu</groupId>-->
-<!--                <artifactId>jprotobuf-precompile-plugin</artifactId>-->
-<!--                <version>2.2.6</version>-->
-<!--                <configuration>-->
-<!--                    <filterClassPackage>com.iohao.game.collect</filterClassPackage>-->
-<!--                    <generateProtoFile>true</generateProtoFile>-->
-<!--                    <compileDependencies>true</compileDependencies>-->
-<!--                </configuration>-->
-<!--                <executions>-->
-<!--                    <execution>-->
-<!--                        <phase>compile</phase>-->
-<!--                        <goals>-->
-<!--                            <goal>precompile</goal>-->
-<!--                        </goals>-->
-<!--                    </execution>-->
-<!--                </executions>-->
-<!--            </plugin>-->
-<!--        </plugins>-->
-<!--    </build>-->
+        <build>
+            <plugins>
+                <!--
+                mvn jprotobuf:precompile
+                or
+                mvn package
+                -->
+                <plugin>
+                    <groupId>com.baidu</groupId>
+                    <artifactId>jprotobuf-precompile-plugin</artifactId>
+                    <version>2.2.6</version>
+                    <configuration>
+                        <filterClassPackage>com.iohao.game.collect</filterClassPackage>
+                        <generateProtoFile>true</generateProtoFile>
+                        <compileDependencies>true</compileDependencies>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <phase>compile</phase>
+                            <goals>
+                                <goal>precompile</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+            </plugins>
+        </build>
 </project>

@@ -5,14 +5,14 @@
     <modelVersion>4.0.0</modelVersion>
     <packaging>pom</packaging>
 
-    <groupId>com.iohao.game</groupId>
+    <groupId>com.iohao.example</groupId>
     <artifactId>iogame-example</artifactId>
-    <version>17.0.0</version>
+    <version>2.2.2</version>
     <name>ioGame-example</name>
     <description>ioGame网络游戏服务器框架 - 示例</description>
 
     <modules>
-        <!-- 示例  -->
+        <!-- 示例 -->
         <module>example/example-parent</module>
         <module>example/example-run-one</module>
         <module>example/example-for-spring</module>
@@ -46,7 +46,7 @@
     <!--统一管理版本 的一个父 pom-->
     <properties>
         <!-- 项目版本 -->
-        <ioGame.version>1.4.0</ioGame.version>
+        <ioGame.version>17.1.0</ioGame.version>
         <!-- jdk 版本 -->
         <java.version>17</java.version>
         <maven.compiler.source>17</maven.compiler.source>
