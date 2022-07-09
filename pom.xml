@@ -20,8 +20,10 @@
         <module>example/example-interaction-same</module>
         <module>example/example-endpoint</module>
         <module>example/example-for-tcp-socket</module>
+
 <!--        <module>example/example-redisson-lock-spring-boot-starter</module>-->
-        <module>example/example-redisson-lock</module>
+<!--        <module>example/example-redisson-lock</module>-->
+
         <module>example/example-cluster-run-one</module>
         <module>example/example-broadcast</module>
         <module>example/example-hook</module>
@@ -41,12 +43,20 @@
         <module>example-game-collect/game-one</module>
         <!-- java 坦克游戏 fxgl -->
         <module>example-game-collect/fxgl-tank</module>
+        <module>example-springboot/spring-game-logic-school</module>
+        <module>example-springboot/spring-game-external</module>
+        <module>example-springboot/spring-game-broker</module>
+        <module>example-springboot/spring-websocket-client</module>
+        <module>example-springboot/spring-common-pb</module>
+        <module>example-springboot/spring-z-one-game</module>
+
+
     </modules>
 
     <!--统一管理版本 的一个父 pom-->
     <properties>
         <!-- 项目版本 -->
-        <ioGame.version>17.1.0</ioGame.version>
+        <ioGame.version>17.1.1</ioGame.version>
         <!-- jdk 版本 -->
         <java.version>17</java.version>
         <maven.compiler.source>17</maven.compiler.source>
@@ -238,48 +248,6 @@
                         <goals>
                             <goal>jar</goal>
                         </goals>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <!--
-                重复依赖检测，并解决冲突jar
-                mvnd enforcer:display-info
-                https://maven.apache.org/enforcer/maven-enforcer-plugin/index.html
-            -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-enforcer-plugin</artifactId>
-                <version>3.0.0</version>
-                <executions>
-                    <execution>
-                        <id>enforce-versions</id>
-                        <goals>
-                            <goal>enforce</goal>
-                        </goals>
-                        <configuration>
-                            <rules>
-                                <bannedPlugins>
-                                    <!-- will only display a warning but does not fail the build. -->
-                                    <level>WARN</level>
-                                    <excludes>
-                                        <exclude>org.apache.maven.plugins:maven-verifier-plugin</exclude>
-                                    </excludes>
-                                    <message>Please consider using the maven-invoker-plugin
-                                        (http://maven.apache.org/plugins/maven-invoker-plugin/)!
-                                    </message>
-                                </bannedPlugins>
-                                <requireMavenVersion>
-                                    <version>2.0.6</version>
-                                </requireMavenVersion>
-                                <requireJavaVersion>
-                                    <version>1.5</version>
-                                </requireJavaVersion>
-                                <requireOS>
-                                    <family>unix</family>
-                                </requireOS>
-                            </rules>
-                        </configuration>
                     </execution>
                 </executions>
             </plugin>

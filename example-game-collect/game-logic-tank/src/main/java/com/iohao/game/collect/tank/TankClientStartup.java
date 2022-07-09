@@ -33,12 +33,15 @@ import com.iohao.game.bolt.broker.core.client.BrokerClientBuilder;
 import com.iohao.game.common.kit.NetworkKit;
 
 /**
+ * 坦克游戏逻辑服
+ *
  * @author 渔民小镇
  * @date 2022-01-14
  */
 public class TankClientStartup extends AbstractBrokerClientStartup {
 
     public static void main(String[] args) {
+        // 启动坦克游戏逻辑服
         BrokerClientApplication.start(new TankClientStartup());
     }
 
