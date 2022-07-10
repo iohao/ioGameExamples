@@ -52,6 +52,8 @@
         <module>example-springboot/spring-common-pb</module>
         <module>example-springboot/spring-z-one-game</module>
         <module>example-springboot/spring-game-logic-classes</module>
+        <module>example-springboot/spring-game-logic-school-starter</module>
+        <module>example-springboot/spring-game-logic-classes-starter</module>
     </modules>
 
     <!--统一管理版本 的一个父 pom-->

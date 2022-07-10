@@ -165,13 +165,13 @@ public class SpringWebsocketClient {
         IntPb intPb = new IntPb();
         intPb.intValue = 10;
 
-//        ExternalMessage externalMessageIntPbWrapper = ClientCommandKit.createExternalMessage(
-//                SpringCmdModule.SchoolCmd.cmd,
-//                SpringCmdModule.SchoolCmd.intPbWrapper,
-//                intPb
-//        );
+        ExternalMessage externalMessageIntPbWrapper = ClientCommandKit.createExternalMessage(
+                SpringCmdModule.SchoolCmd.cmd,
+                SpringCmdModule.SchoolCmd.intPbWrapper,
+                intPb
+        );
 
-//        ClientCommandKit.createClientCommand(externalMessageIntPbWrapper, IntPb.class);
+        ClientCommandKit.createClientCommand(externalMessageIntPbWrapper, IntPb.class);
 
         // 逻辑服间的相互通信
         communicationClientCommands();

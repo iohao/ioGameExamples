@@ -31,6 +31,7 @@ import org.springframework.context.annotation.Bean;
 @SpringBootApplication
 public class GameLogicSchoolApplication {
     public static void main(String[] args) {
+
         // 启动 spring boot
         SpringApplication.run(GameLogicSchoolApplication.class, args);
 

@@ -24,7 +24,6 @@ import com.iohao.game.bolt.broker.server.BrokerServer;
 import com.iohao.game.simple.SimpleRunOne;
 import com.iohao.game.spring.broker.GameBrokerBoot;
 import com.iohao.game.spring.external.GameExternal;
-import com.iohao.game.spring.logic.classes.GameLogicClassesApplication;
 import com.iohao.game.spring.logic.classes.GameLogicClassesClient;
 import com.iohao.game.spring.logic.school.GameLogicSchoolClient;
 import org.springframework.boot.SpringApplication;
@@ -35,38 +34,36 @@ import java.util.List;
 
 /**
  * 综合示例一键启动类
+ * <p>
+ * 示例涉及如下知识点
+ * <pre>
+ * JSR380
+ * 断言 + 异常机制 = 清晰简洁的代码
+ *
+ * 请求、无响应
+ * 请求、响应
+ *
+ * 广播指定玩家
+ * 广播全服玩家
+ *
+ * 单个逻辑服与单个逻辑服通信请求 - 有返回值（可跨进程）
+ * 单个逻辑服与单个逻辑服通信请求 - 无返回值（可跨进程）
+ * 单个逻辑服与同类型多个逻辑服通信请求（可跨进程）
+ *
+ * 游戏文档生成
+ * 业务.proto文件的生成
+ * </pre>
  *
  * @author 渔民小镇
  * @date 2022-07-09
  */
-@SpringBootApplication(scanBasePackages = "com.iohao.game.spring.logic")
+@SpringBootApplication
 public class SpringGameOneApplication {
-    /**
-     * 示例涉及如下知识点
-     * <pre>
-     * JSR380
-     * 断言 + 异常机制 = 清晰简洁的代码
-     *
-     * 请求、无响应
-     * 请求、响应
-     *
-     * 广播指定玩家
-     * 广播全服玩家
-     *
-     * 单个逻辑服与单个逻辑服通信请求 - 有返回值（可跨进程）
-     * 单个逻辑服与单个逻辑服通信请求 - 无返回值（可跨进程）
-     * 单个逻辑服与同类型多个逻辑服通信请求（可跨进程）
-     *
-     * 游戏文档生成
-     * 业务.proto文件的生成
-     * </pre>
-     *
-     * @param args args
-     */
+
     public static void main(String[] args) {
 
         // 启动 spring boot
-        SpringApplication.run(GameLogicClassesApplication.class, args);
+        SpringApplication.run(SpringGameOneApplication.class, args);
 
         // 注意，这个是临时测试用的，设置为 false 表示不用登录就可以访问逻辑服的方法
         ExternalGlobalConfig.verifyIdentity = false;
