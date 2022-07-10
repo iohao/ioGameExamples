@@ -14,14 +14,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package com.iohao.game.spring.common;
+
+import com.iohao.game.action.skeleton.annotation.DocActionSend;
+import com.iohao.game.action.skeleton.annotation.DocActionSends;
+import com.iohao.game.spring.common.pb.SpringBroadcastMessagePb;
+
 /**
- * .proto 文件生成
- * <pre>
- *     相关文档
- *     https://www.yuque.com/iohao/game/irth38
- * </pre>
- *
  * @author 渔民小镇
  * @date 2022-07-10
  */
-package com.iohao.game.spring.common.file;
+@DocActionSends({
+        @DocActionSend(cmd = SpringCmdModule.SchoolCmd.cmd,
+                subCmd = SpringCmdModule.SchoolCmd.broadcastData,
+                dataClass = SpringBroadcastMessagePb.class),
+})
+public class SendDoc {
+}

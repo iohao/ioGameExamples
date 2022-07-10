@@ -115,10 +115,10 @@
     </appender>
 
     <!-- 为某个包下的所有类的指定Appender 这里也可以指定类名称例如：com.aa.bb.ClassName -->
-    <logger name="com.lin" additivity="false">
+    <logger name="com.iohao.game" additivity="false">
         <level value="${log.root.level}"/>
         <appender-ref ref="stdout"/>
-        <appender-ref ref="file.async"/><!-- 即com.lin包下级别为 ${log.root.level}的才会使用file.async来打印 -->
+        <appender-ref ref="file.async"/><!-- 即com.iohao.game包下级别为 ${log.root.level}的才会使用file.async来打印 -->
         <appender-ref ref="file.error"/>
     </logger>
 

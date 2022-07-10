@@ -27,10 +27,13 @@ import com.iohao.game.action.skeleton.protocol.ResponseMessage;
 import com.iohao.game.action.skeleton.protocol.collect.ResponseCollectItemMessage;
 import com.iohao.game.action.skeleton.protocol.collect.ResponseCollectMessage;
 import com.iohao.game.bolt.broker.core.client.BrokerClientHelper;
-import com.iohao.game.spring.common.cmd.SpringCmdModule;
+import com.iohao.game.spring.common.SpringCmdModule;
 import com.iohao.game.spring.common.pb.*;
 import com.iohao.game.spring.logic.school.common.SpringGameCodeEnum;
+import com.iohao.game.spring.logic.school.service.SchoolService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,25 +45,12 @@ import java.util.List;
  * @date 2022-07-09
  */
 @Slf4j
+@Component
 @ActionController(SpringCmdModule.SchoolCmd.cmd)
 public class SchoolAction {
-    /*
-     * JSR303
-     * 断言 + 异常机制 = 清晰简洁的代码
-     *
-     * 请求、无响应
-     * 请求、响应
-     *
-     * 广播指定玩家
-     * 广播全服玩家
-     *
-     * 单个逻辑服与单个逻辑服通信请求 - 有返回值（可跨进程）
-     * 单个逻辑服与单个逻辑服通信请求 - 无返回值（可跨进程）
-     * 单个逻辑服与同类型多个逻辑服通信请求（可跨进程）
-     *
-     * 游戏文档生成
-     * 业务.proto文件的生成
-     */
+
+    @Autowired
+    SchoolService schoolService;
 
     /**
      * 请求、响应
@@ -70,6 +60,9 @@ public class SchoolAction {
      */
     @ActionMethod(SpringCmdModule.SchoolCmd.here)
     public LogicRequestPb here(LogicRequestPb logicRequestPb) {
+
+        schoolService.helloSpring();
+
         // 相关文档 https://www.yuque.com/iohao/game/nelwuz#UAUE4
 
         log.info("请求、响应 : {}", logicRequestPb);
@@ -93,11 +86,11 @@ public class SchoolAction {
     }
 
     /**
-     * 更新学校信息，jsr303
+     * 更新学校信息，jsr380
      *
      * @param schoolPb schoolPb
      */
-    @ActionMethod(SpringCmdModule.SchoolCmd.jsr303)
+    @ActionMethod(SpringCmdModule.SchoolCmd.jsr380)
     public void updateSchool(SchoolPb schoolPb) {
         /*
          * 进入业务方法需要满足这么几个条件
@@ -108,7 +101,7 @@ public class SchoolAction {
          * 相关文档 https://www.yuque.com/iohao/game/ghng6g
          */
 
-        log.info("jsr303 : {}", schoolPb);
+        log.info("jsr380 : {}", schoolPb);
     }
 
     /**
@@ -240,7 +233,6 @@ public class SchoolAction {
         /*
          * 3.3 单个逻辑服与同类型多个逻辑服通信请求（可跨进程）
          * 相关文档 https://www.yuque.com/iohao/game/nelwuz#gSdya
-         *
          */
 
         // 通信路由
@@ -252,6 +244,7 @@ public class SchoolAction {
         ResponseCollectMessage responseCollectMessage = invokeModuleContext.invokeModuleCollectMessage(cmdInfo);
         // 每个逻辑服返回的数据集合
         List<ResponseCollectItemMessage> messageList = responseCollectMessage.getMessageList();
+
         // 打印
         for (ResponseCollectItemMessage responseCollectItemMessage : messageList) {
             ResponseMessage responseMessage = responseCollectItemMessage.getResponseMessage();
@@ -262,5 +255,18 @@ public class SchoolAction {
 
     }
 
-
+    /**
+     * 业务参数自动装箱、拆箱基础类型，解决碎片协议问题
+     *
+     * @param level 等级
+     * @return level
+     */
+    @ActionMethod(SpringCmdModule.SchoolCmd.intPbWrapper)
+    public int intPbWrapper(int level) {
+        log.info("碎片协议 {}", level);
+        /*
+         * 相关文档 https://www.yuque.com/iohao/game/ieimzn
+         */
+        return level + 2;
+    }
 }

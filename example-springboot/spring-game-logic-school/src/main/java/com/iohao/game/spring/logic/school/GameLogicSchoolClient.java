@@ -23,7 +23,7 @@ import com.iohao.game.action.skeleton.core.flow.interal.DebugInOut;
 import com.iohao.game.bolt.broker.client.AbstractBrokerClientStartup;
 import com.iohao.game.bolt.broker.core.client.BrokerClient;
 import com.iohao.game.bolt.broker.core.client.BrokerClientBuilder;
-import com.iohao.game.spring.common.doc.SendDoc;
+import com.iohao.game.spring.common.SendDoc;
 import com.iohao.game.spring.logic.school.action.SchoolAction;
 import com.iohao.game.spring.logic.school.common.SpringGameCodeEnum;
 import lombok.AccessLevel;
@@ -32,6 +32,8 @@ import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
 /**
+ * 学校游戏逻辑服
+ *
  * @author 渔民小镇
  * @date 2022-07-09
  */
@@ -47,13 +49,14 @@ public class GameLogicSchoolClient extends AbstractBrokerClientStartup {
                 .addActionController(SchoolAction.class)
                 // 开启广播日志
                 .setBroadcastLog(true)
-                // 异常码
+                // 异常码文档生成
                 .addErrorCode(SpringGameCodeEnum.values())
+                // 推送(广播)文档生成
                 .addActionSend(SendDoc.class);
 
         // 业务框架构建器
         BarSkeletonBuilder builder = config.createBuilder();
-        // 开启 jsr 303 验证
+        // 开启 jsr380 验证
         builder.getSetting().setValidator(true);
 
         // 添加控制台输出插件

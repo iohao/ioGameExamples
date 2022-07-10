@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.iohao.game.spring.common.cmd;
+package com.iohao.game.spring.common;
 
 /**
  * @author 渔民小镇
@@ -30,8 +30,8 @@ public interface SpringCmdModule {
         /** 请求、无响应 */
         int hereVoid = 2;
 
-        /** JSR303 */
-        int jsr303 = 3;
+        /** JSR380 */
+        int jsr380 = 3;
 
         /** 断言 + 异常机制 = 清晰简洁的代码 */
         int assertWithException = 4;
@@ -47,6 +47,8 @@ public interface SpringCmdModule {
         int communication32 = 8;
         /** 3.3 单个逻辑服与同类型多个逻辑服通信请求（可跨进程） */
         int communication33 = 9;
+        /** 业务参数自动装箱、拆箱基础类型 */
+        int intPbWrapper = 10;
 
 
     }

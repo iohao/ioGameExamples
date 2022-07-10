@@ -14,21 +14,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.iohao.game.spring.common.doc;
+package com.iohao.game.spring.logic.school.service;
 
-import com.iohao.game.action.skeleton.annotation.DocActionSend;
-import com.iohao.game.action.skeleton.annotation.DocActionSends;
-import com.iohao.game.spring.common.cmd.SpringCmdModule;
-import com.iohao.game.spring.common.pb.SpringBroadcastMessagePb;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
 
 /**
  * @author 渔民小镇
  * @date 2022-07-10
  */
-@DocActionSends({
-        @DocActionSend(cmd = SpringCmdModule.SchoolCmd.cmd,
-                subCmd = SpringCmdModule.SchoolCmd.broadcastData,
-                dataClass = SpringBroadcastMessagePb.class),
-})
-public class SendDoc {
+@Slf4j
+@Service
+public class SchoolService {
+    public void helloSpring() {
+        log.info("hello spring School");
+    }
 }

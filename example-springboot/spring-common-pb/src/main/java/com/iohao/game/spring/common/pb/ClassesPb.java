@@ -18,6 +18,8 @@ package com.iohao.game.spring.common.pb;
 
 import com.baidu.bjf.remoting.protobuf.annotation.EnableZigZap;
 import com.baidu.bjf.remoting.protobuf.annotation.ProtobufClass;
+import com.iohao.game.spring.common.SpringGameProtoFile;
+import com.iohao.game.widget.light.protobuf.ProtoFileMerge;
 import lombok.AccessLevel;
 import lombok.ToString;
 import lombok.experimental.FieldDefaults;
@@ -32,6 +34,7 @@ import lombok.experimental.FieldDefaults;
 @EnableZigZap
 @ProtobufClass
 @FieldDefaults(level = AccessLevel.PUBLIC)
+@ProtoFileMerge(fileName = SpringGameProtoFile.COMMON_FILE_NAME, filePackage = SpringGameProtoFile.COMMON_FILE_PACKAGE)
 public class ClassesPb {
     /** 班级学生数量 */
     int studentNum;

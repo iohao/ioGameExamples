@@ -30,6 +30,8 @@ import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
 /**
+ * 班级游戏逻辑服
+ *
  * @author 渔民小镇
  * @date 2022-07-10
  */
@@ -41,14 +43,14 @@ public class GameLogicClassesClient extends AbstractBrokerClientStartup {
     public BarSkeleton createBarSkeleton() {
         // 业务框架构建器 配置
         BarSkeletonBuilderParamConfig config = new BarSkeletonBuilderParamConfig()
-                // 扫描 SchoolAction.class 所在包
+                // 扫描 ClassesAction.class 所在包
                 .addActionController(ClassesAction.class)
                 // 开启广播日志
                 .setBroadcastLog(true);
 
         // 业务框架构建器
         BarSkeletonBuilder builder = config.createBuilder();
-        // 开启 jsr 303 验证
+        // 开启 jsr380 验证
         builder.getSetting().setValidator(true);
 
         // 添加控制台输出插件

@@ -7,7 +7,7 @@
 
     <groupId>com.iohao.example</groupId>
     <artifactId>iogame-example</artifactId>
-    <version>2.2.22</version>
+    <version>3.0.0.io</version>
     <name>ioGame-example</name>
     <description>ioGame网络游戏服务器框架 - 示例</description>
 
@@ -21,8 +21,8 @@
         <module>example/example-endpoint</module>
         <module>example/example-for-tcp-socket</module>
 
-<!--        <module>example/example-redisson-lock-spring-boot-starter</module>-->
-<!--        <module>example/example-redisson-lock</module>-->
+        <!--        <module>example/example-redisson-lock-spring-boot-starter</module>-->
+        <!--        <module>example/example-redisson-lock</module>-->
 
         <module>example/example-cluster-run-one</module>
         <module>example/example-broadcast</module>
@@ -43,6 +43,8 @@
         <module>example-game-collect/game-one</module>
         <!-- java 坦克游戏 fxgl -->
         <module>example-game-collect/fxgl-tank</module>
+
+        <!-- springboot 集成示例 -->
         <module>example-springboot/spring-game-logic-school</module>
         <module>example-springboot/spring-game-external</module>
         <module>example-springboot/spring-game-broker</module>
@@ -50,8 +52,6 @@
         <module>example-springboot/spring-common-pb</module>
         <module>example-springboot/spring-z-one-game</module>
         <module>example-springboot/spring-game-logic-classes</module>
-
-
     </modules>
 
     <!--统一管理版本 的一个父 pom-->
@@ -73,11 +73,11 @@
         <!-- redis internal : https://www.oschina.net/p/redisson https://mvnrepository.com/artifact/org.redisson/redisson -->
         <redisson.version>3.17.3</redisson.version>
 
-        <!-- JSR-303、JSR 349 bean 验证框架 https://mvnrepository.com/artifact/org.hibernate.validator/hibernate-validator -->
+        <!-- JSR380 bean 验证框架 https://mvnrepository.com/artifact/org.hibernate.validator/hibernate-validator -->
         <hibernate-validator.version>7.0.4.Final</hibernate-validator.version>
-        <!-- JSR-303、JSR 349 https://mvnrepository.com/artifact/jakarta.validation/jakarta.validation-api -->
+        <!-- JSR380 https://mvnrepository.com/artifact/jakarta.validation/jakarta.validation-api -->
         <jakarta.validation-api.version>3.0.2</jakarta.validation-api.version>
-        <!-- JSR-303、JSR 349 https://mvnrepository.com/artifact/org.glassfish/jakarta.el -->
+        <!-- JSR380 https://mvnrepository.com/artifact/org.glassfish/jakarta.el -->
         <jakarta.el.version>4.0.2</jakarta.el.version>
 
         <!-- Java 实体映射工具 https://mvnrepository.com/artifact/org.mapstruct/mapstruct https://mapstruct.org/documentation/reference-guide/ -->
@@ -107,12 +107,6 @@
 
     <dependencies>
 
-        <!-- 单体应用启动 -->
-        <dependency>
-            <groupId>com.iohao.game</groupId>
-            <artifactId>bolt-run-one</artifactId>
-            <version>${ioGame.version}</version>
-        </dependency>
 
         <!-- lombok 简化 java 代码 -->
         <dependency>

@@ -14,15 +14,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.iohao.game.spring.common;
+package com.iohao.game.spring.common.kit;
 
-import lombok.experimental.UtilityClass;
+import com.iohao.game.bolt.broker.client.external.bootstrap.message.ExternalMessage;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.experimental.FieldDefaults;
 
 /**
  * @author 渔民小镇
  * @date 2022-07-09
  */
-@UtilityClass
-public class SpringBarSkeleton {
+@Getter
+@FieldDefaults(level = AccessLevel.PUBLIC)
+public class ClientCommand {
+    ExternalMessage externalMessage;
 
+    Class<?> resultClass;
+
+    ClientCommand() {
+    }
 }

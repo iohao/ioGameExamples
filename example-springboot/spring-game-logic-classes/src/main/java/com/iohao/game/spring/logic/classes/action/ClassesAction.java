@@ -18,9 +18,12 @@ package com.iohao.game.spring.logic.classes.action;
 
 import com.iohao.game.action.skeleton.annotation.ActionController;
 import com.iohao.game.action.skeleton.annotation.ActionMethod;
-import com.iohao.game.spring.common.cmd.SpringCmdModule;
+import com.iohao.game.spring.common.SpringCmdModule;
 import com.iohao.game.spring.common.pb.ClassesPb;
+import com.iohao.game.spring.logic.classes.service.ClassesService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -31,8 +34,11 @@ import java.util.concurrent.ThreadLocalRandom;
  * @date 2022-07-10
  */
 @Slf4j
+@Component
 @ActionController(SpringCmdModule.ClassesCmd.cmd)
 public class ClassesAction {
+    @Autowired
+    ClassesService classesService;
 
     /**
      * 得到班级信息；请求、响应
@@ -41,6 +47,8 @@ public class ClassesAction {
      */
     @ActionMethod(SpringCmdModule.ClassesCmd.getClasses)
     public ClassesPb getClasses() {
+
+        classesService.helloSpring();
 
         log.info("得到班级信息；请求、响应");
 
@@ -57,7 +65,7 @@ public class ClassesAction {
      */
     @ActionMethod(SpringCmdModule.ClassesCmd.classesHereVoid)
     public void classesHereVoid(ClassesPb classesPb) {
-        
+
         log.info("班级方法；请求、无响应 : {}", classesPb);
     }
 }

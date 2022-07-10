@@ -14,13 +14,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.iohao.game.spring.common.file;
+package com.iohao.game.spring.common;
 
 /**
  * @author 渔民小镇
  * @date 2022-07-10
  */
-public class SpringGameProtoFile {
+public interface SpringGameProtoFile {
     String COMMON_FILE_NAME = "common.proto";
     String COMMON_FILE_PACKAGE = "pb.common";
 }

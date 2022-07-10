@@ -5,7 +5,7 @@
     <parent>
         <artifactId>iogame-example</artifactId>
         <groupId>com.iohao.example</groupId>
-        <version>2.2.22</version>
+        <version>3.0.0.io</version>
         <relativePath>../../pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
@@ -19,6 +19,13 @@
 
 
     <dependencies>
+
+        <!-- https://www.yuque.com/iohao/game/ea6geg#jMDuc -->
+        <dependency>
+            <groupId>com.iohao.game</groupId>
+            <artifactId>bolt-external</artifactId>
+            <version>${ioGame.version}</version>
+        </dependency>
 
         <dependency>
             <groupId>com.iohao.game</groupId>

@@ -16,9 +16,12 @@
  */
 package com.iohao.game.spring.client;
 
+import com.iohao.game.action.skeleton.core.CmdKit;
+import com.iohao.game.action.skeleton.protocol.wrapper.IntPb;
 import com.iohao.game.bolt.broker.client.external.bootstrap.message.ExternalMessage;
-import com.iohao.game.spring.common.ClientCommandKit;
-import com.iohao.game.spring.common.cmd.SpringCmdModule;
+import com.iohao.game.common.kit.ProtoKit;
+import com.iohao.game.spring.common.kit.ClientCommandKit;
+import com.iohao.game.spring.common.SpringCmdModule;
 import com.iohao.game.spring.common.pb.LogicRequestPb;
 import com.iohao.game.spring.common.pb.SchoolLevelPb;
 import com.iohao.game.spring.common.pb.SchoolPb;
@@ -32,6 +35,8 @@ import java.net.URI;
 import java.nio.ByteBuffer;
 
 /**
+ * 游戏客户端模拟启动类
+ *
  * @author 渔民小镇
  * @date 2022-07-09
  */
@@ -39,9 +44,8 @@ import java.nio.ByteBuffer;
 public class SpringWebsocketClient {
 
     public static void main(String[] args) throws Exception {
-
+        // 请求构建
         initClientCommands();
-        // 这里模拟游戏客户端
 
         // 连接游戏服务器的地址
         String wsUrl = "ws://127.0.0.1:10100/websocket";
@@ -49,9 +53,18 @@ public class SpringWebsocketClient {
         WebSocketClient webSocketClient = new WebSocketClient(new URI(wsUrl), new Draft_6455()) {
             @Override
             public void onOpen(ServerHandshake handshakedata) {
-                ClientCommandKit
-                        .listRequestClientCommand()
-                        .forEach(this::send);
+                // 连续多次发送请求命令到游戏服务器
+                ClientCommandKit.listRequestExternalMessage().forEach(externalMessage -> {
+                    int cmdMerge = externalMessage.getCmdMerge();
+                    int cmd = CmdKit.getCmd(cmdMerge);
+                    int subCmd = CmdKit.getSubCmd(cmdMerge);
+
+                    byte[] bytes = ProtoKit.toBytes(externalMessage);
+                    this.send(bytes);
+
+                    log.info("发送请求 {}-{}", cmd, subCmd);
+                })
+                ;
             }
 
             @Override
@@ -104,19 +117,19 @@ public class SpringWebsocketClient {
         ClientCommandKit.createClientCommand(externalMessageHereVoid, LogicRequestPb.class);
 
 
-        // 更新学校信息，jsr303
+        // 更新学校信息，jsr380
         SchoolPb schoolPb = new SchoolPb();
         schoolPb.email = "ioGame@game.com";
         schoolPb.classCapacity = 99;
         schoolPb.teacherNum = 40;
 
-        ExternalMessage externalMessageJSR303 = ClientCommandKit.createExternalMessage(
+        ExternalMessage externalMessageJSR380 = ClientCommandKit.createExternalMessage(
                 SpringCmdModule.SchoolCmd.cmd,
-                SpringCmdModule.SchoolCmd.jsr303,
+                SpringCmdModule.SchoolCmd.jsr380,
                 schoolPb
         );
 
-        ClientCommandKit.createClientCommand(externalMessageJSR303);
+        ClientCommandKit.createClientCommand(externalMessageJSR380);
 
 
         //断言 + 异常机制 = 清晰简洁的代码
@@ -147,6 +160,18 @@ public class SpringWebsocketClient {
                 SpringCmdModule.SchoolCmd.broadcastData,
                 SpringBroadcastMessagePb.class
         );
+
+        // 业务参数自动装箱、拆箱基础类型，解决碎片协议问题
+        IntPb intPb = new IntPb();
+        intPb.intValue = 10;
+
+//        ExternalMessage externalMessageIntPbWrapper = ClientCommandKit.createExternalMessage(
+//                SpringCmdModule.SchoolCmd.cmd,
+//                SpringCmdModule.SchoolCmd.intPbWrapper,
+//                intPb
+//        );
+
+//        ClientCommandKit.createClientCommand(externalMessageIntPbWrapper, IntPb.class);
 
         // 逻辑服间的相互通信
         communicationClientCommands();

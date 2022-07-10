@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.iohao.game.spring.common;
+package com.iohao.game.spring.common.kit;
 
 import com.iohao.game.action.skeleton.core.CmdKit;
 import com.iohao.game.action.skeleton.core.flow.codec.ProtoDataCodec;
@@ -40,7 +40,7 @@ public class ClientCommandKit {
 
     Map<Integer, ClientCommand> clientCommandMap = new TreeMap<>();
 
-    public List<byte[]> listRequestClientCommand() {
+    public List<ExternalMessage> listRequestExternalMessage() {
         return clientCommandMap
                 .values()
                 .stream()
@@ -48,7 +48,6 @@ public class ClientCommandKit {
                 .map(ClientCommand::getExternalMessage)
                 .filter(Objects::nonNull)
                 // 将对外服交互协议转成 byte[]
-                .map(ProtoKit::toBytes)
                 .toList();
     }
 
@@ -100,17 +99,17 @@ public class ClientCommandKit {
         System.out.println();
         // 接收服务器返回的消息
         byte[] dataContent = byteBuffer.array();
-        ExternalMessage message = ProtoKit.parseProtoByte(dataContent, ExternalMessage.class);
-        int cmdMerge = message.getCmdMerge();
+        ExternalMessage externalMessage = ProtoKit.parseProtoByte(dataContent, ExternalMessage.class);
+        int cmdMerge = externalMessage.getCmdMerge();
         int cmd = CmdKit.getCmd(cmdMerge);
         int subCmd = CmdKit.getSubCmd(cmdMerge);
 
-        log.info("收到消息 ExternalMessage ========== cmdMerge [{}-{}] \n{}", cmd, subCmd, message);
+        log.info("收到消息 ExternalMessage ========== cmdMerge [{}-{}] \n{}", cmd, subCmd, externalMessage);
 
-        if (message.getResponseStatus() == 0) {
-            printNormal(message);
+        if (externalMessage.getResponseStatus() == 0) {
+            printNormal(externalMessage);
         } else {
-            printError(message);
+            printError(externalMessage);
         }
     }
 

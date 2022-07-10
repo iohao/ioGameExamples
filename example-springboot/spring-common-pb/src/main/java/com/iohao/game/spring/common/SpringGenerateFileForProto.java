@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.iohao.game.spring.common.file;
+package com.iohao.game.spring.common;
 
 import cn.hutool.core.util.ArrayUtil;
 import cn.hutool.system.SystemUtil;
@@ -29,6 +29,13 @@ import java.util.regex.Matcher;
  */
 public class SpringGenerateFileForProto {
     public static void main(String[] args) {
+
+        /*
+         * .proto 文件生成
+         * 相关文档 https://www.yuque.com/iohao/game/vpe2t6
+         *
+         * 运行该类，会在当前项目 target/proto 目录下生成 .proto 文件
+         */
 
         // 需要扫描的包名
         String protoPackagePath = SpringGenerateFileForProto.class.getPackageName();

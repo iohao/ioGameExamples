@@ -19,6 +19,8 @@ package com.iohao.game.spring.broker;
 import com.iohao.game.bolt.broker.server.BrokerServer;
 
 /**
+ * 单独启动类：游戏网关
+ *
  * @author 渔民小镇
  * @date 2022-07-09
  */

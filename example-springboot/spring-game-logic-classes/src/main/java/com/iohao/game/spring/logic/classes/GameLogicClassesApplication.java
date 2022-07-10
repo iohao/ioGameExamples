@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.iohao.game.spring.logic.school;
+package com.iohao.game.spring.logic.classes;
 
 import com.iohao.game.action.skeleton.ext.spring.ActionFactoryBeanForSpring;
 import com.iohao.game.bolt.broker.client.BrokerClientApplication;
@@ -23,19 +23,19 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 /**
- * 单独启动类：游戏逻辑服 - 学校
- *
+ * 单独启动类：游戏逻辑服 - 班级
  * @author 渔民小镇
- * @date 2022-07-09
+ * @date 2022-07-10
  */
 @SpringBootApplication
-public class GameLogicSchoolApplication {
+public class GameLogicClassesApplication {
     public static void main(String[] args) {
-        // 启动 spring boot
-        SpringApplication.run(GameLogicSchoolApplication.class, args);
 
-        // 启动学校逻辑服
-        GameLogicSchoolClient gameLogicClient = new GameLogicSchoolClient();
+        // 启动 spring boot
+        SpringApplication.run(GameLogicClassesApplication.class, args);
+
+        // 启动班级逻辑服
+        GameLogicClassesClient gameLogicClient = new GameLogicClassesClient();
         BrokerClientApplication.start(gameLogicClient);
     }
 

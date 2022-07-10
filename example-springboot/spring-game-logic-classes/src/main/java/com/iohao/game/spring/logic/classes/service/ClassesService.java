@@ -14,24 +14,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.iohao.game.spring.common;
+package com.iohao.game.spring.logic.classes.service;
 
-import com.iohao.game.bolt.broker.client.external.bootstrap.message.ExternalMessage;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.experimental.FieldDefaults;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
 
 /**
  * @author 渔民小镇
- * @date 2022-07-09
+ * @date 2022-07-10
  */
-@Getter
-@FieldDefaults(level = AccessLevel.PUBLIC)
-public class ClientCommand {
-    ExternalMessage externalMessage;
-
-    Class<?> resultClass;
-
-    ClientCommand() {
+@Slf4j
+@Service
+public class ClassesService {
+    public void helloSpring() {
+        log.info("hello spring Classes");
     }
 }
