@@ -19,26 +19,48 @@ package com.iohao.game.spring.logic.school.action;
 import com.iohao.game.action.skeleton.annotation.ActionController;
 import com.iohao.game.action.skeleton.annotation.ActionMethod;
 import com.iohao.game.action.skeleton.core.CmdInfo;
+import com.iohao.game.action.skeleton.core.DataCodecKit;
 import com.iohao.game.action.skeleton.core.commumication.BroadcastContext;
+import com.iohao.game.action.skeleton.core.commumication.InvokeModuleContext;
 import com.iohao.game.action.skeleton.core.exception.MsgException;
+import com.iohao.game.action.skeleton.protocol.ResponseMessage;
+import com.iohao.game.action.skeleton.protocol.collect.ResponseCollectItemMessage;
+import com.iohao.game.action.skeleton.protocol.collect.ResponseCollectMessage;
 import com.iohao.game.bolt.broker.core.client.BrokerClientHelper;
 import com.iohao.game.spring.common.cmd.SpringCmdModule;
-import com.iohao.game.spring.common.pb.LogicRequestPb;
-import com.iohao.game.spring.common.pb.SchoolLevelPb;
-import com.iohao.game.spring.common.pb.SchoolPb;
-import com.iohao.game.spring.common.pb.SpringBroadcastMessage;
+import com.iohao.game.spring.common.pb.*;
 import com.iohao.game.spring.logic.school.common.SpringGameCodeEnum;
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * 学校相关 action
+ *
  * @author 渔民小镇
  * @date 2022-07-09
  */
 @Slf4j
 @ActionController(SpringCmdModule.SchoolCmd.cmd)
 public class SchoolAction {
+    /*
+     * JSR303
+     * 断言 + 异常机制 = 清晰简洁的代码
+     *
+     * 请求、无响应
+     * 请求、响应
+     *
+     * 广播指定玩家
+     * 广播全服玩家
+     *
+     * 单个逻辑服与单个逻辑服通信请求 - 有返回值（可跨进程）
+     * 单个逻辑服与单个逻辑服通信请求 - 无返回值（可跨进程）
+     * 单个逻辑服与同类型多个逻辑服通信请求（可跨进程）
+     *
+     * 游戏文档生成
+     * 业务.proto文件的生成
+     */
 
     /**
      * 请求、响应
@@ -109,44 +131,136 @@ public class SchoolAction {
     }
 
     /**
-     * 触发广播
+     * 2. 推送 触发广播
      */
     @ActionMethod(SpringCmdModule.SchoolCmd.broadcast)
     public void broadcast() {
-        // 相关文档 https://www.yuque.com/iohao/game/qv4qfo
+        /*
+         * 相关文档
+         * https://www.yuque.com/iohao/game/nelwuz#vqvGQ
+         * https://www.yuque.com/iohao/game/qv4qfo
+         */
 
         // 广播上下文
         BroadcastContext broadcastContext = BrokerClientHelper.me().getBroadcastContext();
         // 业务数据
-        SpringBroadcastMessage broadcastMessage = new SpringBroadcastMessage();
+        SpringBroadcastMessagePb broadcastMessage = new SpringBroadcastMessagePb();
 
         // 广播消息的路由
         CmdInfo cmdInfo = CmdInfo.getCmdInfo(SpringCmdModule.SchoolCmd.cmd, SpringCmdModule.SchoolCmd.broadcastData);
 
         // 广播给指定玩家列表
         broadcastMessage.msg = "广播业务数据 - 1";
-        broadcastContext.broadcast(cmdInfo, broadcastMessage, List.of(1L, 2L, 3L));
+
+        List<Long> userIdList = new ArrayList<>();
+        userIdList.add(1L);
+        userIdList.add(2L);
+
+        broadcastContext.broadcast(cmdInfo, broadcastMessage, userIdList);
 
         // 全服广播
         broadcastMessage.msg = "广播业务数据 - 2";
         broadcastContext.broadcast(cmdInfo, broadcastMessage);
     }
 
-    /*
-     * JSR303
-     * 断言 + 异常机制 = 清晰简洁的代码
-     *
-     * 请求、无响应
-     * 请求、响应
-     *
-     * 广播指定玩家
-     * 广播全服玩家
-     *
-     * 单个逻辑服与单个逻辑服通信请求 - 有返回值（可跨进程）
-     * 单个逻辑服与单个逻辑服通信请求 - 无返回值（可跨进程）
-     * 单个逻辑服与同类型多个逻辑服通信请求（可跨进程）
-     *
-     * 游戏文档生成
-     * 业务.proto文件的生成
+    /**
+     * 3.1 单个逻辑服与单个逻辑服通信请求 - 有返回值（可跨进程）
      */
+    @ActionMethod(SpringCmdModule.SchoolCmd.communication31)
+    public void communication31() {
+        log.info("communication31 - 3.1 单个逻辑服与单个逻辑服通信请求 - 有返回值（可跨进程）");
+
+        /*
+         * 3.1 单个逻辑服与单个逻辑服通信请求 - 有返回值（可跨进程）
+         * 相关文档 https://www.yuque.com/iohao/game/nelwuz#L9TAJ
+         *
+         * 这里演示的是无参的业务请求，invokeModuleMessage 方法是有业务参数重载的
+         */
+
+        // 通信路由
+        CmdInfo cmdInfo = CmdInfo.getCmdInfo(SpringCmdModule.ClassesCmd.cmd, SpringCmdModule.ClassesCmd.getClasses);
+        // 内部模块通讯上下文，内部模块指的是游戏逻辑服
+        InvokeModuleContext invokeModuleContext = BrokerClientHelper.me().getInvokeModuleContext();
+
+        /*
+         * 第一种使用方式
+         */
+        ResponseMessage responseMessage = invokeModuleContext.invokeModuleMessage(cmdInfo);
+        // 表示没有错误
+        if (responseMessage.getResponseStatus() == 0) {
+            // 将字节解析成对象
+            byte[] dataContent = responseMessage.getData();
+            ClassesPb classesPb = DataCodecKit.decode(dataContent, ClassesPb.class);
+            log.info("3.1 单个逻辑服与单个逻辑服通信请求 - 有返回值 classesPb : {}", classesPb);
+        }
+
+        // ------------------ 分割线 ------------------
+
+        /*
+         * 第二种使用方式
+         * 当然，如果有对业务方法有自信确定不会有错误的，可以大胆的使用简化版本的请求
+         * 这个请求得到的结果与上面是等价的
+         */
+        ClassesPb classesPb = invokeModuleContext.invokeModuleMessageData(cmdInfo, ClassesPb.class);
+        log.info("3.1 简化版本的请求 - 单个逻辑服与单个逻辑服通信请求 - 有返回值- classesPb : {}", classesPb);
+
+    }
+
+    /**
+     * 3.2 单个逻辑服与单个逻辑服通信请求 - 无返回值（可跨进程）
+     */
+    @ActionMethod(SpringCmdModule.SchoolCmd.communication32)
+    public void communication32() {
+        log.info("communication32 - 3.2 单个逻辑服与单个逻辑服通信请求 - 无返回值（可跨进程）");
+        /*
+         * 3.2 单个逻辑服与单个逻辑服通信请求 - 无返回值（可跨进程）
+         * 相关文档 https://www.yuque.com/iohao/game/nelwuz#gtdrv
+         *
+         * 这里演示的是有参的业务请求，invokeModuleVoidMessage 方法还有无业务参数重载的
+         */
+
+        // 通信路由
+        CmdInfo cmdInfo = CmdInfo.getCmdInfo(SpringCmdModule.ClassesCmd.cmd, SpringCmdModule.ClassesCmd.classesHereVoid);
+        // 内部模块通讯上下文，内部模块指的是游戏逻辑服
+        InvokeModuleContext invokeModuleContext = BrokerClientHelper.me().getInvokeModuleContext();
+
+        // 业务参数
+        ClassesPb classesPb = new ClassesPb();
+        classesPb.studentNum = 999;
+
+        invokeModuleContext.invokeModuleVoidMessage(cmdInfo, classesPb);
+    }
+
+    /**
+     * 3.3 单个逻辑服与同类型多个逻辑服通信请求（可跨进程）
+     */
+    @ActionMethod(SpringCmdModule.SchoolCmd.communication33)
+    public void communication33() {
+        log.info("communication33 - 3.3 单个逻辑服与同类型多个逻辑服通信请求（可跨进程）");
+        /*
+         * 3.3 单个逻辑服与同类型多个逻辑服通信请求（可跨进程）
+         * 相关文档 https://www.yuque.com/iohao/game/nelwuz#gSdya
+         *
+         */
+
+        // 通信路由
+        CmdInfo cmdInfo = CmdInfo.getCmdInfo(SpringCmdModule.ClassesCmd.cmd, SpringCmdModule.ClassesCmd.getClasses);
+        // 内部模块通讯上下文，内部模块指的是游戏逻辑服
+        InvokeModuleContext invokeModuleContext = BrokerClientHelper.me().getInvokeModuleContext();
+
+        // 根据路由信息来请求其他【同类型】的多个子服务器（其他逻辑服）数据
+        ResponseCollectMessage responseCollectMessage = invokeModuleContext.invokeModuleCollectMessage(cmdInfo);
+        // 每个逻辑服返回的数据集合
+        List<ResponseCollectItemMessage> messageList = responseCollectMessage.getMessageList();
+        // 打印
+        for (ResponseCollectItemMessage responseCollectItemMessage : messageList) {
+            ResponseMessage responseMessage = responseCollectItemMessage.getResponseMessage();
+            // 得到房间逻辑服返回的业务数据
+            ClassesPb classesPb = DataCodecKit.decode(responseMessage.getData(), ClassesPb.class);
+            log.info("3.3 同类型多个逻辑服通信请求 : {} - {} ", messageList.size(), classesPb);
+        }
+
+    }
+
+
 }

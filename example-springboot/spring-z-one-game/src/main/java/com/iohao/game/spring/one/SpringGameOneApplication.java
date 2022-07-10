@@ -18,10 +18,12 @@ package com.iohao.game.spring.one;
 
 import com.iohao.game.bolt.broker.client.AbstractBrokerClientStartup;
 import com.iohao.game.bolt.broker.client.external.ExternalServer;
+import com.iohao.game.bolt.broker.client.external.config.ExternalGlobalConfig;
 import com.iohao.game.bolt.broker.server.BrokerServer;
 import com.iohao.game.simple.SimpleRunOne;
 import com.iohao.game.spring.broker.GameBrokerBoot;
 import com.iohao.game.spring.external.GameExternal;
+import com.iohao.game.spring.logic.classes.GameLogicClassesClient;
 import com.iohao.game.spring.logic.school.GameLogicSchoolClient;
 
 import java.util.List;
@@ -32,6 +34,9 @@ import java.util.List;
  */
 public class SpringGameOneApplication {
     public static void main(String[] args) {
+
+        ExternalGlobalConfig.verifyIdentity = false;
+
         // 对外开放的端口
         int externalPort = 10100;
 
@@ -39,7 +44,12 @@ public class SpringGameOneApplication {
         ExternalServer externalServer = new GameExternal().createExternalServer(externalPort);
 
         // 游戏逻辑服列表
-        List<AbstractBrokerClientStartup> logicList = List.of(new GameLogicSchoolClient());
+        List<AbstractBrokerClientStartup> logicList = List.of(
+                // 学校逻辑服
+                new GameLogicSchoolClient(),
+                // 班级逻辑服
+                new GameLogicClassesClient()
+        );
 
         // broker （游戏网关）
         BrokerServer brokerServer = new GameBrokerBoot().createBrokerServer();

@@ -14,22 +14,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.iohao.game.spring.common.pb;
-
-import com.baidu.bjf.remoting.protobuf.annotation.ProtobufClass;
-import lombok.AccessLevel;
-import lombok.ToString;
-import lombok.experimental.FieldDefaults;
+package com.iohao.game.spring.common.file;
 
 /**
- * 逻辑请求 PB
- *
  * @author 渔民小镇
- * @date 2022-07-09
+ * @date 2022-07-10
  */
-@ToString
-@ProtobufClass
-@FieldDefaults(level = AccessLevel.PUBLIC)
-public class LogicRequestPb {
-    String name;
+public class SpringGameProtoFile {
+    String COMMON_FILE_NAME = "common.proto";
+    String COMMON_FILE_PACKAGE = "pb.common";
 }

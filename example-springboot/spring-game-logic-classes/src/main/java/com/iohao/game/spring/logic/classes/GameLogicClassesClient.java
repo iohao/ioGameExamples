@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.iohao.game.spring.logic.school;
+package com.iohao.game.spring.logic.classes;
 
 import com.iohao.game.action.skeleton.core.BarSkeleton;
 import com.iohao.game.action.skeleton.core.BarSkeletonBuilder;
@@ -23,9 +23,7 @@ import com.iohao.game.action.skeleton.core.flow.interal.DebugInOut;
 import com.iohao.game.bolt.broker.client.AbstractBrokerClientStartup;
 import com.iohao.game.bolt.broker.core.client.BrokerClient;
 import com.iohao.game.bolt.broker.core.client.BrokerClientBuilder;
-import com.iohao.game.spring.common.doc.SendDoc;
-import com.iohao.game.spring.logic.school.action.SchoolAction;
-import com.iohao.game.spring.logic.school.common.SpringGameCodeEnum;
+import com.iohao.game.spring.logic.classes.action.ClassesAction;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -33,23 +31,20 @@ import lombok.experimental.FieldDefaults;
 
 /**
  * @author 渔民小镇
- * @date 2022-07-09
+ * @date 2022-07-10
  */
 @Getter
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class GameLogicSchoolClient extends AbstractBrokerClientStartup {
+public class GameLogicClassesClient extends AbstractBrokerClientStartup {
     @Override
     public BarSkeleton createBarSkeleton() {
         // 业务框架构建器 配置
         BarSkeletonBuilderParamConfig config = new BarSkeletonBuilderParamConfig()
                 // 扫描 SchoolAction.class 所在包
-                .addActionController(SchoolAction.class)
+                .addActionController(ClassesAction.class)
                 // 开启广播日志
-                .setBroadcastLog(true)
-                // 异常码
-                .addErrorCode(SpringGameCodeEnum.values())
-                .addActionSend(SendDoc.class);
+                .setBroadcastLog(true);
 
         // 业务框架构建器
         BarSkeletonBuilder builder = config.createBuilder();
@@ -65,7 +60,7 @@ public class GameLogicSchoolClient extends AbstractBrokerClientStartup {
     @Override
     public BrokerClientBuilder createBrokerClientBuilder() {
         BrokerClientBuilder builder = BrokerClient.newBuilder();
-        builder.appName("spring school 学校游戏逻辑服");
+        builder.appName("spring classes 班级游戏逻辑服");
         return builder;
     }
 }

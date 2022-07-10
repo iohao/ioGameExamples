@@ -1,6 +1,5 @@
 package com.iohao.game.tank.net.onmessage;
 
-import com.iohao.game.collect.hall.HallCmd;
 import com.iohao.game.collect.proto.common.UserInfo;
 import com.iohao.game.collect.proto.tank.TankEnterRoom;
 import com.iohao.game.tank.net.TankOnMessage;

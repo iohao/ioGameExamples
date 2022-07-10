@@ -7,7 +7,7 @@
 
     <groupId>com.iohao.example</groupId>
     <artifactId>iogame-example</artifactId>
-    <version>2.2.2</version>
+    <version>2.2.22</version>
     <name>ioGame-example</name>
     <description>ioGame网络游戏服务器框架 - 示例</description>
 
@@ -49,6 +49,7 @@
         <module>example-springboot/spring-websocket-client</module>
         <module>example-springboot/spring-common-pb</module>
         <module>example-springboot/spring-z-one-game</module>
+        <module>example-springboot/spring-game-logic-classes</module>
 
 
     </modules>
@@ -56,7 +57,7 @@
     <!--统一管理版本 的一个父 pom-->
     <properties>
         <!-- 项目版本 -->
-        <ioGame.version>17.1.1</ioGame.version>
+        <ioGame.version>17.1.2</ioGame.version>
         <!-- jdk 版本 -->
         <java.version>17</java.version>
         <maven.compiler.source>17</maven.compiler.source>
@@ -75,7 +76,7 @@
         <!-- JSR-303、JSR 349 bean 验证框架 https://mvnrepository.com/artifact/org.hibernate.validator/hibernate-validator -->
         <hibernate-validator.version>7.0.4.Final</hibernate-validator.version>
         <!-- JSR-303、JSR 349 https://mvnrepository.com/artifact/jakarta.validation/jakarta.validation-api -->
-        <jakarta.validation-api.version>3.0.1</jakarta.validation-api.version>
+        <jakarta.validation-api.version>3.0.2</jakarta.validation-api.version>
         <!-- JSR-303、JSR 349 https://mvnrepository.com/artifact/org.glassfish/jakarta.el -->
         <jakarta.el.version>4.0.2</jakarta.el.version>
 

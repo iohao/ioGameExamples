@@ -97,31 +97,48 @@ public class ClientCommandKit {
     }
 
     public void printOnMessage(ByteBuffer byteBuffer) {
+        System.out.println();
         // 接收服务器返回的消息
         byte[] dataContent = byteBuffer.array();
         ExternalMessage message = ProtoKit.parseProtoByte(dataContent, ExternalMessage.class);
-
-        log.info("收到消息 ExternalMessage ========== \n{}", message);
-
         int cmdMerge = message.getCmdMerge();
         int cmd = CmdKit.getCmd(cmdMerge);
         int subCmd = CmdKit.getSubCmd(cmdMerge);
+
+        log.info("收到消息 ExternalMessage ========== cmdMerge [{}-{}] \n{}", cmd, subCmd, message);
+
+        if (message.getResponseStatus() == 0) {
+            printNormal(message);
+        } else {
+            printError(message);
+        }
+    }
+
+    private void printError(ExternalMessage message) {
+        int responseStatus = message.getResponseStatus();
+        String validMsg = message.getValidMsg();
+
+        log.info("错误码：{} 错误消息 : {}", responseStatus, validMsg);
+    }
+
+    private void printNormal(ExternalMessage message) {
+        int cmdMerge = message.getCmdMerge();
+
         ClientCommand clientCommand = clientCommandMap.get(cmdMerge);
 
         if (clientCommand == null) {
-            log.info("{} - {} : 没有对应的处理类", cmd, subCmd);
+            log.info("没有对应的处理类");
             return;
         }
 
         if (clientCommand.resultClass == null) {
-            log.info("{} - {} : 没有对应的处理类来反序列化结果, resultClass is null", cmd, subCmd);
+            log.info("没有对应的处理类来反序列化结果, resultClass is null");
             return;
         }
 
         byte[] data = message.getData();
         Object o = ProtoKit.parseProtoByte(data, clientCommand.resultClass);
 
-        log.info("{} - {} : {}", cmd, subCmd, o);
-
+        log.info(" {}", o);
     }
 }

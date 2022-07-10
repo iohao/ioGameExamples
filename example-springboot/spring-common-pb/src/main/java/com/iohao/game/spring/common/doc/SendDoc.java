@@ -14,22 +14,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.iohao.game.spring.common.pb;
+package com.iohao.game.spring.common.doc;
 
-import com.baidu.bjf.remoting.protobuf.annotation.ProtobufClass;
-import lombok.AccessLevel;
-import lombok.ToString;
-import lombok.experimental.FieldDefaults;
+import com.iohao.game.action.skeleton.annotation.DocActionSend;
+import com.iohao.game.action.skeleton.annotation.DocActionSends;
+import com.iohao.game.spring.common.cmd.SpringCmdModule;
+import com.iohao.game.spring.common.pb.SpringBroadcastMessagePb;
 
 /**
- * 逻辑请求 PB
- *
  * @author 渔民小镇
- * @date 2022-07-09
+ * @date 2022-07-10
  */
-@ToString
-@ProtobufClass
-@FieldDefaults(level = AccessLevel.PUBLIC)
-public class LogicRequestPb {
-    String name;
+@DocActionSends({
+        @DocActionSend(cmd = SpringCmdModule.SchoolCmd.cmd,
+                subCmd = SpringCmdModule.SchoolCmd.broadcastData,
+                dataClass = SpringBroadcastMessagePb.class),
+})
+public class SendDoc {
 }

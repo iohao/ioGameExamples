@@ -16,16 +16,13 @@
  */
 package com.iohao.game.spring.client;
 
-import com.alibaba.fastjson2.JSON;
-import com.iohao.game.action.skeleton.core.flow.codec.ProtoDataCodec;
 import com.iohao.game.bolt.broker.client.external.bootstrap.message.ExternalMessage;
-import com.iohao.game.common.kit.ProtoKit;
 import com.iohao.game.spring.common.ClientCommandKit;
 import com.iohao.game.spring.common.cmd.SpringCmdModule;
 import com.iohao.game.spring.common.pb.LogicRequestPb;
 import com.iohao.game.spring.common.pb.SchoolLevelPb;
 import com.iohao.game.spring.common.pb.SchoolPb;
-import com.iohao.game.spring.common.pb.SpringBroadcastMessage;
+import com.iohao.game.spring.common.pb.SpringBroadcastMessagePb;
 import lombok.extern.slf4j.Slf4j;
 import org.java_websocket.client.WebSocketClient;
 import org.java_websocket.drafts.Draft_6455;
@@ -47,34 +44,14 @@ public class SpringWebsocketClient {
         // 这里模拟游戏客户端
 
         // 连接游戏服务器的地址
-        String wsUrl = "ws://127.0.0.1:10088/websocket";
+        String wsUrl = "ws://127.0.0.1:10100/websocket";
 
         WebSocketClient webSocketClient = new WebSocketClient(new URI(wsUrl), new Draft_6455()) {
             @Override
             public void onOpen(ServerHandshake handshakedata) {
-                // 建立连接后 发送一条消息给游戏服务器
-                LogicRequestPb helloReq = new LogicRequestPb();
-                helloReq.name = "222";
-
-                // 路由, 对应服务端逻辑服的业务类路由地址
-                int cmd = SpringCmdModule.SchoolCmd.cmd;
-                int subCmd = SpringCmdModule.SchoolCmd.here;
-
-                // 游戏框架内置的协议， 与游戏前端相互通信的协议
-                ExternalMessage externalMessage = new ExternalMessage();
-                // 请求命令类型: 0 心跳，1 业务
-                externalMessage.setCmdCode(1);
-                // 路由
-                externalMessage.setCmdMerge(cmd, subCmd);
-                // 业务数据
-                byte[] data = ProtoDataCodec.me().encode(helloReq);
-                externalMessage.setData(data);
-                log.info("消息体：{}", JSON.toJSONString(externalMessage));
-
-                // 转为 pb 字节
-                byte[] bytes = ProtoKit.toBytes(externalMessage);
-                // 发送数据到游戏服务器
-                this.send(bytes);
+                ClientCommandKit
+                        .listRequestClientCommand()
+                        .forEach(this::send);
             }
 
             @Override
@@ -95,14 +72,7 @@ public class SpringWebsocketClient {
             @Override
             public void onMessage(ByteBuffer byteBuffer) {
                 // 接收服务器返回的消息
-                byte[] dataContent = byteBuffer.array();
-                ExternalMessage message = ProtoKit.parseProtoByte(dataContent, ExternalMessage.class);
-                log.info("收到消息 ExternalMessage ========== \n{}", message);
-                byte[] data = message.getData();
-                if (data != null) {
-                    LogicRequestPb helloReq = ProtoKit.parseProtoByte(data, LogicRequestPb.class);
-                    log.info("helloReq ========== \n{}", helloReq);
-                }
+                ClientCommandKit.printOnMessage(byteBuffer);
             }
         };
 
@@ -175,8 +145,39 @@ public class SpringWebsocketClient {
         ClientCommandKit.addParseResult(
                 SpringCmdModule.SchoolCmd.cmd,
                 SpringCmdModule.SchoolCmd.broadcastData,
-                SpringBroadcastMessage.class
+                SpringBroadcastMessagePb.class
         );
+
+        // 逻辑服间的相互通信
+        communicationClientCommands();
+    }
+
+    private static void communicationClientCommands() {
+        // 3.1 单个逻辑服与单个逻辑服通信请求 - 有返回值（可跨进程）
+        ExternalMessage externalMessageCommunication31 = ClientCommandKit.createExternalMessage(
+                SpringCmdModule.SchoolCmd.cmd,
+                SpringCmdModule.SchoolCmd.communication31
+        );
+
+        ClientCommandKit.createClientCommand(externalMessageCommunication31);
+
+
+        // 3.2 单个逻辑服与单个逻辑服通信请求 - 无返回值（可跨进程）
+        ExternalMessage externalMessageCommunication32 = ClientCommandKit.createExternalMessage(
+                SpringCmdModule.SchoolCmd.cmd,
+                SpringCmdModule.SchoolCmd.communication32
+        );
+
+        ClientCommandKit.createClientCommand(externalMessageCommunication32);
+
+
+        // 3.3 单个逻辑服与同类型多个逻辑服通信请求（可跨进程）
+        ExternalMessage externalMessageCommunication33 = ClientCommandKit.createExternalMessage(
+                SpringCmdModule.SchoolCmd.cmd,
+                SpringCmdModule.SchoolCmd.communication33
+        );
+
+        ClientCommandKit.createClientCommand(externalMessageCommunication33);
 
     }
 }

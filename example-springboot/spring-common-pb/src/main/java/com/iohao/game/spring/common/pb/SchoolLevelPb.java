@@ -22,6 +22,8 @@ import lombok.ToString;
 import lombok.experimental.FieldDefaults;
 
 /**
+ * 学校等级信息
+ *
  * @author 渔民小镇
  * @date 2022-07-09
  */

@@ -16,18 +16,23 @@
  */
 package com.iohao.game.spring.common.pb;
 
+import com.baidu.bjf.remoting.protobuf.annotation.EnableZigZap;
 import com.baidu.bjf.remoting.protobuf.annotation.ProtobufClass;
 import lombok.AccessLevel;
 import lombok.ToString;
 import lombok.experimental.FieldDefaults;
 
 /**
+ * 班级信息
+ *
  * @author 渔民小镇
- * @date 2022-07-09
+ * @date 2022-07-10
  */
 @ToString
+@EnableZigZap
 @ProtobufClass
 @FieldDefaults(level = AccessLevel.PUBLIC)
-public class SpringBroadcastMessage {
-    String msg;
+public class ClassesPb {
+    /** 班级学生数量 */
+    int studentNum;
 }

@@ -27,6 +27,8 @@ import lombok.experimental.FieldDefaults;
 
 
 /**
+ * 学校信息
+ *
  * @author 渔民小镇
  * @date 2022-07-09
  */
@@ -34,6 +36,8 @@ import lombok.experimental.FieldDefaults;
 @ProtobufClass
 @FieldDefaults(level = AccessLevel.PUBLIC)
 public class SchoolPb {
+
+    /** 学校的 email */
     @NotNull
     @Email
     String email;
@@ -42,6 +46,7 @@ public class SchoolPb {
     @Max(value = 100, message = "学校最大教室容量不能超过 100 个")
     int classCapacity;
 
+    /** 学校老师数量 */
     @Min(value = 60, message = "学校老师数量不能少于 60 个")
     int teacherNum;
 

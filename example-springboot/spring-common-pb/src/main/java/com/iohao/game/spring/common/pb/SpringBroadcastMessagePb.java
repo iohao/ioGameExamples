@@ -22,7 +22,7 @@ import lombok.ToString;
 import lombok.experimental.FieldDefaults;
 
 /**
- * 逻辑请求 PB
+ * 广播消息PB
  *
  * @author 渔民小镇
  * @date 2022-07-09
@@ -30,6 +30,7 @@ import lombok.experimental.FieldDefaults;
 @ToString
 @ProtobufClass
 @FieldDefaults(level = AccessLevel.PUBLIC)
-public class LogicRequestPb {
-    String name;
+public class SpringBroadcastMessagePb {
+    /** 具体的广播消息内容 */
+    String msg;
 }

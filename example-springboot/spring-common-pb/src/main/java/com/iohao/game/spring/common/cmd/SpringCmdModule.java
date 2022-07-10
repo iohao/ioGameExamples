@@ -38,10 +38,23 @@ public interface SpringCmdModule {
         /** 广播相关 */
         int broadcast = 5;
 
-
+        /** 广播业务数据 */
         int broadcastData = 6;
 
+        /** 3.1 单个逻辑服与单个逻辑服通信请求 - 有返回值（可跨进程） */
+        int communication31 = 7;
+        /** 3.2 单个逻辑服与单个逻辑服通信请求 - 无返回值（可跨进程） */
+        int communication32 = 8;
+        /** 3.3 单个逻辑服与同类型多个逻辑服通信请求（可跨进程） */
+        int communication33 = 9;
 
+
+    }
+
+    interface ClassesCmd {
+        int cmd = 2;
+        int getClasses = 0;
+        int classesHereVoid = 1;
     }
 
 }
