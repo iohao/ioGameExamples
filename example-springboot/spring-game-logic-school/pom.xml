@@ -18,6 +18,7 @@
     </properties>
 
     <dependencies>
+        <!-- 引入业务PB -->
         <dependency>
             <groupId>com.iohao.example</groupId>
             <artifactId>spring-common-pb</artifactId>
