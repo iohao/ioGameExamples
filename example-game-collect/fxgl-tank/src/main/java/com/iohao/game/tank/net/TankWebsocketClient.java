@@ -10,6 +10,7 @@ import com.iohao.game.common.kit.StrKit;
 import com.iohao.game.tank.net.onmessage.TankEnterRoomOnMessage;
 import com.iohao.game.tank.net.onmessage.TankLoginVerifyOnMessage;
 import com.iohao.game.tank.net.onmessage.TankShootOnMessage;
+import com.iohao.game.tank.net.onmessage.TankTestShootOnMessage;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.java_websocket.client.WebSocketClient;
@@ -40,6 +41,7 @@ public class TankWebsocketClient {
         put(TankEnterRoomOnMessage.me());
         put(TankLoginVerifyOnMessage.me());
         put(TankShootOnMessage.me());
+        put(TankTestShootOnMessage.me());
     }
 
     private void put(TankOnMessage onMessage) {
@@ -84,11 +86,16 @@ public class TankWebsocketClient {
 
             @Override
             public void onMessage(ByteBuffer byteBuffer) {
+                System.out.println();
+
                 // 接收消息
                 byte[] dataContent = byteBuffer.array();
 
                 ExternalMessage message = ProtoKit.parseProtoByte(dataContent, ExternalMessage.class);
                 int cmdMerge = message.getCmdMerge();
+                int cmd = CmdKit.getCmd(cmdMerge);
+                int subCmd = CmdKit.getSubCmd(cmdMerge);
+
                 byte[] data = message.getData();
 
                 TankOnMessage onMessage = onMessageMap.get(cmdMerge);
@@ -99,10 +106,9 @@ public class TankWebsocketClient {
                         runnable.run();
                     } else {
                         Object bizData = onMessage.response(message, data);
-                        int cmd = CmdKit.getCmd(cmdMerge);
-                        int subCmd = CmdKit.getSubCmd(cmdMerge);
+
                         String onMessageName = onMessage.getClass().getSimpleName();
-                        log.info("client 收到消息{}\n {}-{} {}  {}", message, cmd, subCmd, onMessageName, bizData);
+                        log.info("client 收到消息{}-{} {}  \n{}", cmd, subCmd, onMessageName, bizData);
                     }
                 } else {
                     log.info("不存在处理类 onMessage: ");

@@ -43,5 +43,5 @@ public class TankBullet {
     /** 所属玩家 */
     long playerId;
     /** 测试字段 */
-    int amount;
+    long amount;
 }

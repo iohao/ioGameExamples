@@ -18,7 +18,11 @@ package com.iohao.game.collect.tank.action;
 
 import com.iohao.game.action.skeleton.annotation.ActionController;
 import com.iohao.game.action.skeleton.annotation.ActionMethod;
+import com.iohao.game.action.skeleton.core.CmdInfo;
+import com.iohao.game.action.skeleton.core.commumication.BroadcastContext;
 import com.iohao.game.action.skeleton.core.flow.FlowContext;
+import com.iohao.game.bolt.broker.core.client.BrokerClient;
+import com.iohao.game.bolt.broker.core.client.BrokerClientHelper;
 import com.iohao.game.collect.proto.tank.TankBullet;
 import com.iohao.game.collect.proto.tank.TankEnterRoom;
 import com.iohao.game.collect.proto.tank.TankLocation;
@@ -33,6 +37,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.util.Collection;
 import java.util.Objects;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.LongAdder;
 
 /**
@@ -99,6 +104,24 @@ public class TankAction {
     public void testShooting(FlowContext flowContext, TankBullet tankBullet) {
         shootAdder.increment();
         log.info("------------ shootAdder : {} ", shootAdder);
+
+
+        // 广播 N 次
+        BroadcastContext broadcastContext = BrokerClientHelper.me().getBroadcastContext();
+
+        CmdInfo cmdInfo = CmdInfo.getCmdInfo(TankCmd.cmd, TankCmd.testShooting);
+
+        long userId = flowContext.getUserId();
+        for (int i = 0; i < 10; i++) {
+            tankBullet.amount = i;
+            try {
+                TimeUnit.MILLISECONDS.sleep(1);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            broadcastContext.broadcast(cmdInfo, tankBullet, userId);
+        }
+
     }
 
     /**
