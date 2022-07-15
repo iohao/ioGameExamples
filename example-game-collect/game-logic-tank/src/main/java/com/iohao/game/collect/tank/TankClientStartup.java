@@ -54,7 +54,9 @@ public class TankClientStartup extends AbstractBrokerClientStartup {
                 // 推送消息-用于文档的生成
                 .addActionSend(TankSend.class)
                 // 错误码-用于文档的生成
-                .addErrorCode(GameCodeEnum.values());
+                .addErrorCode(GameCodeEnum.values())
+                // 开启广播日志
+                .setBroadcastLog(true);
 
         BarSkeletonBuilder builder = GameBarSkeletonConfig.createBuilder(config);
 

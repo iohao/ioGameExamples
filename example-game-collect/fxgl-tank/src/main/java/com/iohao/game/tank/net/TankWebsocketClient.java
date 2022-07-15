@@ -1,16 +1,13 @@
 package com.iohao.game.tank.net;
 
-import cn.hutool.core.util.RandomUtil;
 import com.iohao.game.action.skeleton.core.CmdKit;
 import com.iohao.game.bolt.broker.client.external.bootstrap.message.ExternalMessage;
 import com.iohao.game.collect.common.GameConfig;
 import com.iohao.game.collect.proto.common.LoginVerify;
 import com.iohao.game.common.kit.ProtoKit;
+import com.iohao.game.common.kit.RandomKit;
 import com.iohao.game.common.kit.StrKit;
-import com.iohao.game.tank.net.onmessage.TankEnterRoomOnMessage;
-import com.iohao.game.tank.net.onmessage.TankLoginVerifyOnMessage;
-import com.iohao.game.tank.net.onmessage.TankShootOnMessage;
-import com.iohao.game.tank.net.onmessage.TankTestShootOnMessage;
+import com.iohao.game.tank.net.onmessage.*;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.java_websocket.client.WebSocketClient;
@@ -42,6 +39,7 @@ public class TankWebsocketClient {
         put(TankLoginVerifyOnMessage.me());
         put(TankShootOnMessage.me());
         put(TankTestShootOnMessage.me());
+        put(TankTestShootOrderOnMessage.me());
     }
 
     private void put(TankOnMessage onMessage) {
@@ -79,7 +77,7 @@ public class TankWebsocketClient {
             @Override
             public void onOpen(ServerHandshake handshakedata) {
                 LoginVerify loginVerify = new LoginVerify();
-                loginVerify.jwt = "jwt-" + RandomUtil.randomInt(10000);
+                loginVerify.jwt = "jwt-" + RandomKit.randomInt(10000);
 
                 TankLoginVerifyOnMessage.me().request(loginVerify);
             }
@@ -108,7 +106,7 @@ public class TankWebsocketClient {
                         Object bizData = onMessage.response(message, data);
 
                         String onMessageName = onMessage.getClass().getSimpleName();
-                        log.info("client 收到消息{}-{} {}  \n{}", cmd, subCmd, onMessageName, bizData);
+                        log.info("client 收到消息{}-{}-{} {}  \n{}", cmd, subCmd, cmdMerge, onMessageName, bizData);
                     }
                 } else {
                     log.info("不存在处理类 onMessage: ");

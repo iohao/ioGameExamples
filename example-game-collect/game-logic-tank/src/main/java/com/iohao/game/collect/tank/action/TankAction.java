@@ -20,8 +20,9 @@ import com.iohao.game.action.skeleton.annotation.ActionController;
 import com.iohao.game.action.skeleton.annotation.ActionMethod;
 import com.iohao.game.action.skeleton.core.CmdInfo;
 import com.iohao.game.action.skeleton.core.commumication.BroadcastContext;
+import com.iohao.game.action.skeleton.core.commumication.BroadcastOrderContext;
 import com.iohao.game.action.skeleton.core.flow.FlowContext;
-import com.iohao.game.bolt.broker.core.client.BrokerClient;
+import com.iohao.game.action.skeleton.protocol.temp.BarHelloPb;
 import com.iohao.game.bolt.broker.core.client.BrokerClientHelper;
 import com.iohao.game.collect.proto.tank.TankBullet;
 import com.iohao.game.collect.proto.tank.TankEnterRoom;
@@ -37,7 +38,6 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.util.Collection;
 import java.util.Objects;
-import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.LongAdder;
 
 /**
@@ -95,33 +95,49 @@ public class TankAction {
     }
 
     /**
-     * 测试
+     * 测试连续广播
      *
      * @param flowContext flowContext
-     * @param tankBullet  tankBullet
      */
     @ActionMethod(TankCmd.testShooting)
-    public void testShooting(FlowContext flowContext, TankBullet tankBullet) {
+    public void testShooting(FlowContext flowContext) {
         shootAdder.increment();
-        log.info("------------ shootAdder : {} ", shootAdder);
 
-
-        // 广播 N 次
+        // 默认的广播上下文
         BroadcastContext broadcastContext = BrokerClientHelper.me().getBroadcastContext();
 
         CmdInfo cmdInfo = CmdInfo.getCmdInfo(TankCmd.cmd, TankCmd.testShooting);
 
         long userId = flowContext.getUserId();
         for (int i = 0; i < 10; i++) {
-            tankBullet.amount = i;
-            try {
-                TimeUnit.MILLISECONDS.sleep(1);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            broadcastContext.broadcast(cmdInfo, tankBullet, userId);
-        }
+            BarHelloPb helloPb = new BarHelloPb();
+            helloPb.amount = i;
 
+            broadcastContext.broadcast(cmdInfo, helloPb, userId);
+        }
+    }
+
+    /**
+     * 测试连续广播 - 顺序的
+     *
+     * @param flowContext flowContext
+     */
+    @ActionMethod(TankCmd.testShootingOrder)
+    public void testShootingOrder(FlowContext flowContext) {
+        shootAdder.increment();
+
+        // 严格顺序的 广播上下文
+        BroadcastOrderContext broadcastContext = BrokerClientHelper.me().getBroadcastOrderContext();
+
+        CmdInfo cmdInfo = CmdInfo.getCmdInfo(TankCmd.cmd, TankCmd.testShootingOrder);
+
+        long userId = flowContext.getUserId();
+        for (int i = 0; i < 10; i++) {
+            BarHelloPb helloPb = new BarHelloPb();
+            helloPb.amount = i;
+
+            broadcastContext.broadcastOrder(cmdInfo, helloPb, userId);
+        }
     }
 
     /**

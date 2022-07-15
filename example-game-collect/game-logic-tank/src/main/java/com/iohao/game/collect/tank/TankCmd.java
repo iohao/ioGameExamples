@@ -39,6 +39,7 @@ public interface TankCmd extends ActionModuleCmd.Info {
     /** 坦克射击(发射子弹) */
     int shooting = 6;
     int testShooting = 7;
+    int testShootingOrder = 8;
 
     int testUserInfo = 11;
     int testBroadcasts = 12;
