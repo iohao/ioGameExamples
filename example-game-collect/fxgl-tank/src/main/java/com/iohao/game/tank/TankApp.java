@@ -166,9 +166,16 @@ public class TankApp extends GameApplication {
         input.addAction(new UserAction("Shoot O") {
             @Override
             protected void onAction() {
-                playerView.testShoot(1);
+                playerView.testShootOrder(1);
             }
         }, KeyCode.O);
+
+        input.addAction(new UserAction("Shoot P") {
+            @Override
+            protected void onAction() {
+                playerView.testShoot(1);
+            }
+        }, KeyCode.P);
     }
 
     @Override

@@ -18,6 +18,7 @@ import com.iohao.game.collect.proto.tank.TankLocation;
 import com.iohao.game.tank.Config;
 import com.iohao.game.tank.net.onmessage.TankShootOnMessage;
 import com.iohao.game.tank.net.onmessage.TankTestShootOnMessage;
+import com.iohao.game.tank.net.onmessage.TankTestShootOrderOnMessage;
 import javafx.geometry.Point2D;
 import javafx.util.Duration;
 
@@ -194,6 +195,23 @@ public class PlayerViewComponent extends Component {
         shootTimer.capture();
     }
 
+    public void testShootOrder(int amount) {
+        if (!shootTimer.elapsed(Config.PLAYER_SHOOT_DELAY)) {
+            return;
+        }
+
+        for (int i = 0; i < amount; i++) {
+            // 发射子弹 to server
+            TankTestShootOrderOnMessage.me().request(null);
+        }
+
+        spawn("bullet", new SpawnData(getEntity().getCenter().getX() - 4, getEntity().getCenter().getY() - 4.5)
+                .put("direction", angleToVector())
+                .put("owner", entity));
+
+        shootTimer.capture();
+    }
+
     public void testShoot(int amount) {
         if (!shootTimer.elapsed(Config.PLAYER_SHOOT_DELAY)) {
             return;
@@ -201,11 +219,7 @@ public class PlayerViewComponent extends Component {
 
         for (int i = 0; i < amount; i++) {
             // 发射子弹 to server
-            TankLocation tankLocation = new TankLocation();
-            TankBullet tankBullet = new TankBullet();
-            tankBullet.tankLocation = tankLocation;
-
-            TankTestShootOnMessage.me().request(tankBullet);
+            TankTestShootOnMessage.me().request(null);
         }
 
         spawn("bullet", new SpawnData(getEntity().getCenter().getX() - 4, getEntity().getCenter().getY() - 4.5)

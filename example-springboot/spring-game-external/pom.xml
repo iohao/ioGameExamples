@@ -19,6 +19,14 @@
             <artifactId>bolt-external</artifactId>
             <version>${ioGame.version}</version>
         </dependency>
+
+        <!-- 这个不是必须的， 这里使用了 springboot 的控制台色彩相关日志 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+            <version>${springboot.version}</version>
+        </dependency>
+
     </dependencies>
 
 </project>

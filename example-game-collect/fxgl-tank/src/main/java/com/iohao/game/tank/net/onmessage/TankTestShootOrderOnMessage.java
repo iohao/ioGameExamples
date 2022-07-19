@@ -24,13 +24,13 @@ import com.iohao.game.tank.net.TankOnMessage;
 
 /**
  * @author 渔民小镇
- * @date 2022-04-30
+ * @date 2022-07-14
  */
-public class TankTestShootOnMessage implements TankOnMessage {
+public class TankTestShootOrderOnMessage implements TankOnMessage {
 
     @Override
     public int getCmdMerge() {
-        return CmdKit.merge(TankCmd.cmd, TankCmd.testShooting);
+        return CmdKit.merge(TankCmd.cmd, TankCmd.testShootingOrder);
     }
 
     @Override
@@ -38,16 +38,16 @@ public class TankTestShootOnMessage implements TankOnMessage {
         return ProtoKit.parseProtoByte(data, BarHelloPb.class);
     }
 
-    private TankTestShootOnMessage() {
+    private TankTestShootOrderOnMessage() {
 
     }
 
-    public static TankTestShootOnMessage me() {
+    public static TankTestShootOrderOnMessage me() {
         return Holder.ME;
     }
 
     /** 通过 JVM 的类加载机制, 保证只加载一次 (singleton) */
     private static class Holder {
-        static final TankTestShootOnMessage ME = new TankTestShootOnMessage();
+        static final TankTestShootOrderOnMessage ME = new TankTestShootOrderOnMessage();
     }
 }
