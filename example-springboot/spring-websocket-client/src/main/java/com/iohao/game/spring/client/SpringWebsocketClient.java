@@ -45,7 +45,22 @@ public class SpringWebsocketClient {
 
     public static void main(String[] args) throws Exception {
         // 请求构建
-        initClientCommands();
+//        initClientCommands();
+        // 更新学校信息，jsr380
+        SchoolPb schoolPb = new SchoolPb();
+        schoolPb.email = "ioGame@game.com";
+        schoolPb.classCapacity = 99;
+        schoolPb.teacherNum = 40;
+
+        ExternalMessage externalMessageJSR380 = ClientCommandKit.createExternalMessage(
+//                SpringCmdModule.ClassesCmd.cmd,
+//                SpringCmdModule.ClassesCmd.jsr380,
+                SpringCmdModule.SchoolCmd.cmd,
+                SpringCmdModule.SchoolCmd.jsr380,
+                schoolPb
+        );
+
+        ClientCommandKit.createClientCommand(externalMessageJSR380);
 
         // 连接游戏服务器的地址
         String wsUrl = "ws://127.0.0.1:10100/websocket";

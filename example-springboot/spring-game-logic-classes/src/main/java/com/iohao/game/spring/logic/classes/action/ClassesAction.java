@@ -20,6 +20,7 @@ import com.iohao.game.action.skeleton.annotation.ActionController;
 import com.iohao.game.action.skeleton.annotation.ActionMethod;
 import com.iohao.game.spring.common.SpringCmdModule;
 import com.iohao.game.spring.common.pb.ClassesPb;
+import com.iohao.game.spring.common.pb.SchoolPb;
 import com.iohao.game.spring.logic.classes.service.ClassesService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,5 +68,24 @@ public class ClassesAction {
     public void classesHereVoid(ClassesPb classesPb) {
 
         log.info("班级方法；请求、无响应 : {}", classesPb);
+    }
+
+    /**
+     * 更新学校信息，jsr380Class
+     *
+     * @param schoolPb schoolPb
+     */
+    @ActionMethod(SpringCmdModule.ClassesCmd.jsr380)
+    public void updateSchool(SchoolPb schoolPb) {
+        /*
+         * 进入业务方法需要满足这么几个条件
+         * 1. SchoolPb.email 不能为 null ，并且是合法的电子邮件地址
+         * 2. SchoolPb.classCapacity 学校最大教室容量不能超过 100 个
+         * 3. SchoolPb.teacherNum 学校老师数量不能少于 60 个
+         *
+         * 相关文档 https://www.yuque.com/iohao/game/ghng6g
+         */
+
+        log.info("jsr380Class : {}", schoolPb);
     }
 }

@@ -57,6 +57,7 @@ public interface SpringCmdModule {
         int cmd = 2;
         int getClasses = 0;
         int classesHereVoid = 1;
+        int jsr380 = 2;
     }
 
 }

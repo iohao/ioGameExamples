@@ -51,7 +51,7 @@ public class GameLogicClassesClient extends AbstractBrokerClientStartup {
         // 业务框架构建器
         BarSkeletonBuilder builder = config.createBuilder();
         // 开启 jsr380 验证
-        builder.getSetting().setValidator(true);
+//        builder.getSetting().setValidator(true);
 
         // 添加控制台输出插件
         builder.addInOut(new DebugInOut());
