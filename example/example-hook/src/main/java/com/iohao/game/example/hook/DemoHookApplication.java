@@ -19,7 +19,9 @@ package com.iohao.game.example.hook;
 import com.iohao.game.bolt.broker.client.AbstractBrokerClientStartup;
 import com.iohao.game.bolt.broker.client.external.ExternalServer;
 import com.iohao.game.bolt.broker.client.external.bootstrap.heart.IdleProcessSetting;
+import com.iohao.game.bolt.broker.client.external.config.ExternalGlobalConfig;
 import com.iohao.game.bolt.broker.client.external.session.UserSessions;
+import com.iohao.game.example.hook.action.DemoCmdForHookRoom;
 import com.iohao.game.example.hook.custom.DemoIdleHook;
 import com.iohao.game.example.hook.custom.DemoUserHook;
 import com.iohao.game.example.hook.server.DemoHookRoomServer;
@@ -33,6 +35,13 @@ import java.util.List;
  */
 public class DemoHookApplication {
     public static void main(String[] args) {
+
+        var accessAuthenticationHook = ExternalGlobalConfig.accessAuthenticationHook;
+        // 表示登录才能访问业务方法
+        accessAuthenticationHook.setVerifyIdentity(true);
+        // 添加不需要登录也能访问的业务方法 (action)
+        accessAuthenticationHook.addIgnoreAuthenticationCmd(DemoCmdForHookRoom.cmd, DemoCmdForHookRoom.loginVerify);
+
         // 设置 自定义 用户上线、下线的钩子
         UserSessions.me().setUserHook(new DemoUserHook());
 

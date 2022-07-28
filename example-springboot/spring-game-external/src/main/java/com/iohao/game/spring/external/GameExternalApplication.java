@@ -17,7 +17,6 @@
 package com.iohao.game.spring.external;
 
 import com.iohao.game.bolt.broker.client.external.ExternalServer;
-import com.iohao.game.bolt.broker.client.external.config.ExternalGlobalConfig;
 
 /**
  * 单独启动类：游戏对外服
@@ -27,8 +26,6 @@ import com.iohao.game.bolt.broker.client.external.config.ExternalGlobalConfig;
  */
 public class GameExternalApplication {
     public static void main(String[] args) {
-        // 注意，这个是临时测试用的，设置为 false 表示不用登录就可以访问逻辑服的方法
-        ExternalGlobalConfig.verifyIdentity = false;
 
         // 对外开放的端口
         int externalPort = 10100;

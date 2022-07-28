@@ -25,27 +25,38 @@
             <version>${ioGame.version}</version>
         </dependency>
 
+        <!-- 游戏对外服 -->
         <dependency>
             <groupId>com.iohao.example</groupId>
             <artifactId>spring-game-external</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
 
+        <!-- Broker（游戏网关） -->
         <dependency>
             <groupId>com.iohao.example</groupId>
             <artifactId>spring-game-broker</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
 
+        <!-- 学校逻辑服 -->
         <dependency>
             <groupId>com.iohao.example</groupId>
             <artifactId>spring-game-logic-school</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
 
+        <!-- 班级逻辑服 -->
         <dependency>
             <groupId>com.iohao.example</groupId>
             <artifactId>spring-game-logic-classes</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+
+        <!-- 大厅逻辑服 -->
+        <dependency>
+            <groupId>com.iohao.example</groupId>
+            <artifactId>spring-game-logic-hall</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
 

@@ -60,4 +60,10 @@ public interface SpringCmdModule {
         int jsr380 = 2;
     }
 
+    interface HallCmd {
+        int cmd = 3;
+        /** 登录 */
+        int loginVerify = 1;
+    }
+
 }

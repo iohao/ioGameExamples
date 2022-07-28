@@ -16,7 +16,7 @@
  */
 package com.iohao.game.collect.hall.action;
 
-import com.iohao.game.collect.hall.HallCmd;
+import com.iohao.game.collect.common.HallCmd;
 import com.iohao.game.collect.proto.common.LoginVerify;
 import com.iohao.game.collect.proto.common.UserInfo;
 import com.iohao.game.action.skeleton.annotation.ActionController;
@@ -38,7 +38,7 @@ import java.util.concurrent.atomic.LongAdder;
  */
 @Slf4j
 @ActionController(HallCmd.cmd)
-public class LoginAction {
+public class TankLoginAction {
 
     final Map<String, Long> userMap = new NonBlockingHashMap<>();
 

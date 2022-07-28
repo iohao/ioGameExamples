@@ -24,12 +24,6 @@
             <version>${project.parent.version}</version>
         </dependency>
 
-        <dependency>
-            <groupId>org.java-websocket</groupId>
-            <artifactId>Java-WebSocket</artifactId>
-            <version>1.5.2</version>
-        </dependency>
-
         <!-- 这个不是必须的， 这里使用了 springboot 的控制台色彩相关日志 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>

@@ -16,9 +16,8 @@
  */
 package com.iohao.game.example.spring;
 
-import com.iohao.game.example.spring.server.DemoSpringLogicServer;
 import com.iohao.game.action.skeleton.ext.spring.ActionFactoryBeanForSpring;
-import com.iohao.game.bolt.broker.client.external.config.ExternalGlobalConfig;
+import com.iohao.game.example.spring.server.DemoSpringLogicServer;
 import com.iohao.game.simple.SimpleHelper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -45,9 +44,6 @@ public class DemoSpringApplication {
     public static void main(String[] args) {
         // 启动 spring boot
         SpringApplication.run(DemoSpringApplication.class, args);
-
-        // 注意，这个是临时测试用的，设置为 false 表示不用登录就可以访问逻辑服的方法
-        ExternalGlobalConfig.verifyIdentity = false;
 
         // 游戏对外服端口
         int port = 10100;

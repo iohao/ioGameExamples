@@ -16,7 +16,6 @@
  */
 package com.iohao.game.example.wrapper;
 
-import com.iohao.game.bolt.broker.client.external.config.ExternalGlobalConfig;
 import com.iohao.game.example.wrapper.server.WrapperLogicServer;
 import com.iohao.game.simple.SimpleHelper;
 
@@ -28,8 +27,6 @@ import java.util.List;
  */
 public class WrapperApplication {
     public static void main(String[] args) {
-        // 注意，这个是临时测试用的，设置为 false 表示不用登录就可以访问逻辑服的方法
-        ExternalGlobalConfig.verifyIdentity = false;
 
         // 游戏对外服端口
         int port = 10100;

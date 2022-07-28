@@ -90,9 +90,20 @@ public class TankWebsocketClient {
                 byte[] dataContent = byteBuffer.array();
 
                 ExternalMessage message = ProtoKit.parseProtoByte(dataContent, ExternalMessage.class);
+
                 int cmdMerge = message.getCmdMerge();
                 int cmd = CmdKit.getCmd(cmdMerge);
                 int subCmd = CmdKit.getSubCmd(cmdMerge);
+
+                if (message.getResponseStatus() != 0) {
+                    log.error("错误：cmd[{}-{}] - [{}] [{}]",
+                            cmd,
+                            subCmd,
+                            message.getResponseStatus(),
+                            message.getValidMsg());
+                    return;
+                }
+
 
                 byte[] data = message.getData();
 

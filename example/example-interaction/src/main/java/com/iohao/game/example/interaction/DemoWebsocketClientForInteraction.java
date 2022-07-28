@@ -18,8 +18,11 @@ package com.iohao.game.example.interaction;
 
 import com.iohao.game.bolt.broker.client.external.bootstrap.message.ExternalMessage;
 import com.iohao.game.bolt.broker.client.external.bootstrap.message.ExternalMessageCmdCode;
+import com.iohao.game.command.ClientCommandKit;
+import com.iohao.game.command.WebsocketClientKit;
 import com.iohao.game.common.kit.ProtoKit;
 import com.iohao.game.example.interaction.fight.action.DemoCmdForFight;
+import com.iohao.game.example.interaction.msg.MatchMsg;
 import lombok.extern.slf4j.Slf4j;
 import org.java_websocket.client.WebSocketClient;
 import org.java_websocket.drafts.Draft_6455;
@@ -38,9 +41,27 @@ import java.nio.ByteBuffer;
 @Slf4j
 public class DemoWebsocketClientForInteraction {
 
-    public static void main(String[] args) throws URISyntaxException {
-        DemoWebsocketClientForInteraction websocketClient = new DemoWebsocketClientForInteraction();
-        websocketClient.init();
+    public static void main(String[] args) throws Exception {
+//        DemoWebsocketClientForInteraction websocketClient = new DemoWebsocketClientForInteraction();
+//        websocketClient.init();
+
+        initClientCommands();
+
+        // 启动客户端
+        WebsocketClientKit.runClient();
+    }
+
+
+    private static void initClientCommands() {
+        // 请求、响应
+        ExternalMessage externalMessageHere = ClientCommandKit.createExternalMessage(
+                DemoCmdForFight.cmd,
+                DemoCmdForFight.testMatch
+        );
+
+        ClientCommandKit.createClientCommand(externalMessageHere);
+
+        ClientCommandKit.addParseResult(4, 1, MatchMsg.class);
     }
 
     private void init() throws URISyntaxException {

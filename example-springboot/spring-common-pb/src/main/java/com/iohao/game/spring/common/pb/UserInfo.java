@@ -14,33 +14,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.iohao.game.spring.logic.school.common;
+package com.iohao.game.spring.common.pb;
 
-import com.iohao.game.action.skeleton.core.exception.MsgExceptionInfo;
+import com.baidu.bjf.remoting.protobuf.annotation.EnableZigZap;
+import com.baidu.bjf.remoting.protobuf.annotation.ProtobufClass;
+import com.iohao.game.spring.common.SpringGameProtoFile;
+import com.iohao.game.widget.light.protobuf.ProtoFileMerge;
 import lombok.AccessLevel;
-import lombok.Getter;
+import lombok.ToString;
 import lombok.experimental.FieldDefaults;
 
 /**
  * @author 渔民小镇
- * @date 2022-07-09
+ * @date 2022-07-27
  */
-@Getter
-@FieldDefaults(level = AccessLevel.PRIVATE)
-public enum SpringGameCodeEnum implements MsgExceptionInfo {
-    /** 学校最大等级 */
-    levelMax(101, "学校等级超出"),
-    /** 等级不够 */
-    vipLevelEnough(102, "VIP 等级不够"),
-    ;
-
-    /** 消息码 */
-    final int code;
-    /** 消息模板 */
-    final String msg;
-
-    SpringGameCodeEnum(int code, String msg) {
-        this.code = code;
-        this.msg = msg;
-    }
+@ToString
+@EnableZigZap
+@ProtobufClass
+@FieldDefaults(level = AccessLevel.PUBLIC)
+@ProtoFileMerge(fileName = SpringGameProtoFile.COMMON_FILE_NAME, filePackage = SpringGameProtoFile.COMMON_FILE_PACKAGE)
+public class UserInfo {
+    /** id */
+    long id;
+    /** 用户名 */
+    String name;
 }

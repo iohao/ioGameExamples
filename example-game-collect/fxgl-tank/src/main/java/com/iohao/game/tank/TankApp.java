@@ -69,8 +69,6 @@ public class TankApp extends GameApplication {
         log.info("externalPort:{}", FxlgTankConfig.externalPort);
         // 启动游戏
         launch(args);
-
-
     }
 
     @Override

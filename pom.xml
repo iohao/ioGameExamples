@@ -54,12 +54,14 @@
         <module>example-springboot/spring-game-logic-classes</module>
         <module>example-springboot/spring-game-logic-school-starter</module>
         <module>example-springboot/spring-game-logic-classes-starter</module>
+        <module>example-springboot/spring-game-logic-hall</module>
+        <module>client-command</module>
     </modules>
 
     <!--统一管理版本 的一个父 pom-->
     <properties>
         <!-- 项目版本 -->
-        <ioGame.version>17.1.3</ioGame.version>
+        <ioGame.version>17.1.4</ioGame.version>
         <!-- jdk 版本 -->
         <java.version>17</java.version>
         <maven.compiler.source>17</maven.compiler.source>

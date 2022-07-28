@@ -16,10 +16,12 @@
  */
 package com.iohao.game.collect.external;
 
-import com.iohao.game.collect.common.GameConfig;
 import com.iohao.game.bolt.broker.client.external.ExternalServer;
 import com.iohao.game.bolt.broker.client.external.ExternalServerBuilder;
 import com.iohao.game.bolt.broker.client.external.bootstrap.ExternalJoinEnum;
+import com.iohao.game.bolt.broker.client.external.config.ExternalGlobalConfig;
+import com.iohao.game.collect.common.GameConfig;
+import com.iohao.game.collect.common.HallCmd;
 
 /**
  * 游戏对外服
@@ -30,6 +32,12 @@ import com.iohao.game.bolt.broker.client.external.bootstrap.ExternalJoinEnum;
 public class GameExternalBoot {
 
     public ExternalServer createExternalServer(int externalPort) {
+        var accessAuthenticationHook = ExternalGlobalConfig.accessAuthenticationHook;
+        // 表示登录才能访问业务方法
+        accessAuthenticationHook.setVerifyIdentity(true);
+        // 添加不需要登录也能访问的业务方法 (action)
+        accessAuthenticationHook.addIgnoreAuthenticationCmd(HallCmd.cmd, HallCmd.loginVerify);
+
         // 端口
         int port = externalPort;
         // 游戏对外服 - 构建器

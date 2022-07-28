@@ -19,12 +19,12 @@ package com.iohao.game.spring;
 import com.iohao.game.action.skeleton.ext.spring.ActionFactoryBeanForSpring;
 import com.iohao.game.bolt.broker.client.AbstractBrokerClientStartup;
 import com.iohao.game.bolt.broker.client.external.ExternalServer;
-import com.iohao.game.bolt.broker.client.external.config.ExternalGlobalConfig;
 import com.iohao.game.bolt.broker.server.BrokerServer;
 import com.iohao.game.simple.SimpleRunOne;
 import com.iohao.game.spring.broker.GameBrokerBoot;
 import com.iohao.game.spring.external.GameExternal;
 import com.iohao.game.spring.logic.classes.GameLogicClassesClient;
+import com.iohao.game.spring.logic.hall.GameLogicHallClient;
 import com.iohao.game.spring.logic.school.GameLogicSchoolClient;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -52,6 +52,8 @@ import java.util.List;
  *
  * 游戏文档生成
  * 业务.proto文件的生成
+ *
+ * 登录：重复登录、顶号登录
  * </pre>
  *
  * @author 渔民小镇
@@ -65,15 +67,14 @@ public class SpringGameOneApplication {
         // 启动 spring boot
         SpringApplication.run(SpringGameOneApplication.class, args);
 
-        // 注意，这个是临时测试用的，设置为 false 表示不用登录就可以访问逻辑服的方法
-        ExternalGlobalConfig.verifyIdentity = false;
-
         // 游戏逻辑服列表
         List<AbstractBrokerClientStartup> logicList = List.of(
                 // 学校逻辑服
                 new GameLogicSchoolClient(),
                 // 班级逻辑服
-                new GameLogicClassesClient()
+                new GameLogicClassesClient(),
+                // 大厅逻辑服 - 有登录
+                new GameLogicHallClient()
         );
 
         // 对外开放的端口

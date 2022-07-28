@@ -16,7 +16,6 @@
  */
 package com.iohao.game.spring.external.limit;
 
-import com.google.common.util.concurrent.RateLimiter;
 import com.iohao.game.bolt.broker.client.external.bootstrap.message.ExternalMessage;
 import lombok.AccessLevel;
 import lombok.Setter;
@@ -47,7 +46,7 @@ public class ExternalRateLimiterBuilder {
          *
          */
 
-        RateLimiter rateLimiter = RateLimiter.create(permitsPerSecond);
+//        RateLimiter rateLimiter = RateLimiter.create(permitsPerSecond);
 
     }
 

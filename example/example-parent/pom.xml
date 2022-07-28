@@ -18,6 +18,12 @@
     </properties>
     <dependencies>
 
+        <dependency>
+            <groupId>com.iohao.example</groupId>
+            <artifactId>client-command</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+
         <!-- 单体应用启动 -->
         <dependency>
             <groupId>com.iohao.game</groupId>
@@ -31,12 +37,9 @@
             <version>${ioGame.version}</version>
         </dependency>
 
-        <!-- 模拟客户端 https://mvnrepository.com/artifact/org.java-websocket/Java-WebSocket -->
-        <dependency>
-            <groupId>org.java-websocket</groupId>
-            <artifactId>Java-WebSocket</artifactId>
-            <version>${java-websocket.version}</version>
-        </dependency>
+
+
+
 
         <!-- 这个不是必须的， 这里使用了 springboot 的控制台色彩相关日志 -->
         <dependency>

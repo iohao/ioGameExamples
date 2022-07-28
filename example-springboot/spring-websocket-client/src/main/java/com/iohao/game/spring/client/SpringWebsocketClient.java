@@ -16,23 +16,13 @@
  */
 package com.iohao.game.spring.client;
 
-import com.iohao.game.action.skeleton.core.CmdKit;
 import com.iohao.game.action.skeleton.protocol.wrapper.IntPb;
 import com.iohao.game.bolt.broker.client.external.bootstrap.message.ExternalMessage;
-import com.iohao.game.common.kit.ProtoKit;
-import com.iohao.game.spring.common.kit.ClientCommandKit;
+import com.iohao.game.command.WebsocketClientKit;
 import com.iohao.game.spring.common.SpringCmdModule;
-import com.iohao.game.spring.common.pb.LogicRequestPb;
-import com.iohao.game.spring.common.pb.SchoolLevelPb;
-import com.iohao.game.spring.common.pb.SchoolPb;
-import com.iohao.game.spring.common.pb.SpringBroadcastMessagePb;
+import com.iohao.game.command.ClientCommandKit;
+import com.iohao.game.spring.common.pb.*;
 import lombok.extern.slf4j.Slf4j;
-import org.java_websocket.client.WebSocketClient;
-import org.java_websocket.drafts.Draft_6455;
-import org.java_websocket.handshake.ServerHandshake;
-
-import java.net.URI;
-import java.nio.ByteBuffer;
 
 /**
  * 游戏客户端模拟启动类
@@ -44,68 +34,34 @@ import java.nio.ByteBuffer;
 public class SpringWebsocketClient {
 
     public static void main(String[] args) throws Exception {
-        // 请求构建
-//        initClientCommands();
-        // 更新学校信息，jsr380
-        SchoolPb schoolPb = new SchoolPb();
-        schoolPb.email = "ioGame@game.com";
-        schoolPb.classCapacity = 99;
-        schoolPb.teacherNum = 40;
 
-        ExternalMessage externalMessageJSR380 = ClientCommandKit.createExternalMessage(
-//                SpringCmdModule.ClassesCmd.cmd,
-//                SpringCmdModule.ClassesCmd.jsr380,
-                SpringCmdModule.SchoolCmd.cmd,
-                SpringCmdModule.SchoolCmd.jsr380,
-                schoolPb
+        // 请求构建 - 登录相关
+        initLoginCommand();
+
+        // 请求构建
+        initClientCommands();
+
+        // 启动客户端
+        WebsocketClientKit.runClient();
+    }
+
+    private static void initLoginCommand() {
+        ClientCommandKit.login = true;
+        // （0 or 1）， 具体的作用可以查看 LoginVerify.loginBizCode 的注释
+        int loginBizCode = 1;
+
+        // 登录请求
+        LoginVerify loginVerify = new LoginVerify();
+        loginVerify.jwt = "luoyi";
+        loginVerify.loginBizCode = loginBizCode;
+
+        ExternalMessage externalMessageLogin = ClientCommandKit.createExternalMessage(
+                SpringCmdModule.HallCmd.cmd,
+                SpringCmdModule.HallCmd.loginVerify,
+                loginVerify
         );
 
-        ClientCommandKit.createClientCommand(externalMessageJSR380);
-
-        // 连接游戏服务器的地址
-        String wsUrl = "ws://127.0.0.1:10100/websocket";
-
-        WebSocketClient webSocketClient = new WebSocketClient(new URI(wsUrl), new Draft_6455()) {
-            @Override
-            public void onOpen(ServerHandshake handshakedata) {
-                // 连续多次发送请求命令到游戏服务器
-                ClientCommandKit.listRequestExternalMessage().forEach(externalMessage -> {
-                    int cmdMerge = externalMessage.getCmdMerge();
-                    int cmd = CmdKit.getCmd(cmdMerge);
-                    int subCmd = CmdKit.getSubCmd(cmdMerge);
-
-                    byte[] bytes = ProtoKit.toBytes(externalMessage);
-                    this.send(bytes);
-
-                    log.info("发送请求 {}-{}", cmd, subCmd);
-                })
-                ;
-            }
-
-            @Override
-            public void onMessage(String s) {
-
-            }
-
-            @Override
-            public void onClose(int i, String s, boolean b) {
-
-            }
-
-            @Override
-            public void onError(Exception e) {
-
-            }
-
-            @Override
-            public void onMessage(ByteBuffer byteBuffer) {
-                // 接收服务器返回的消息
-                ClientCommandKit.printOnMessage(byteBuffer);
-            }
-        };
-
-        // 开始连接服务器
-        webSocketClient.connect();
+        ClientCommandKit.createClientCommand(externalMessageLogin, UserInfo.class);
     }
 
     private static void initClientCommands() {

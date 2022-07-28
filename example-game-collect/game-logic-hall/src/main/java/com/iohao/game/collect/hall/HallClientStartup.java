@@ -19,12 +19,12 @@ package com.iohao.game.collect.hall;
 import com.iohao.game.action.skeleton.core.BarSkeleton;
 import com.iohao.game.action.skeleton.core.BarSkeletonBuilder;
 import com.iohao.game.action.skeleton.core.BarSkeletonBuilderParamConfig;
+import com.iohao.game.bolt.broker.client.AbstractBrokerClientStartup;
 import com.iohao.game.bolt.broker.client.BrokerClientApplication;
 import com.iohao.game.bolt.broker.core.client.BrokerClient;
-import com.iohao.game.collect.common.GameBarSkeletonConfig;
-import com.iohao.game.collect.hall.action.LoginAction;
-import com.iohao.game.bolt.broker.client.AbstractBrokerClientStartup;
 import com.iohao.game.bolt.broker.core.client.BrokerClientBuilder;
+import com.iohao.game.collect.common.GameBarSkeletonConfig;
+import com.iohao.game.collect.hall.action.TankLoginAction;
 
 /**
  * @author 渔民小镇
@@ -40,7 +40,7 @@ public class HallClientStartup extends AbstractBrokerClientStartup {
     public BarSkeleton createBarSkeleton() {
         BarSkeletonBuilderParamConfig config = new BarSkeletonBuilderParamConfig()
                 // 扫描 LoginAction.class 所在包
-                .addActionController(LoginAction.class);
+                .addActionController(TankLoginAction.class);
 
         BarSkeletonBuilder builder = GameBarSkeletonConfig.createBuilder(config);
 

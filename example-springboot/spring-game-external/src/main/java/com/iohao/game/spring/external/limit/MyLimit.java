@@ -16,7 +16,6 @@
  */
 package com.iohao.game.spring.external.limit;
 
-import com.google.common.util.concurrent.RateLimiter;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -25,14 +24,14 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 public class MyLimit {
-    private static final RateLimiter rateLimiter = RateLimiter.create(1);
-
-    public static void main(String[] args) {
-        while (true) {
-            boolean b = rateLimiter.tryAcquire();
-            if (b) {
-                log.info("b : {}", b);
-            }
-        }
-    }
+//    private static final RateLimiter rateLimiter = RateLimiter.create(1);
+//
+//    public static void main(String[] args) {
+//        while (true) {
+//            boolean b = rateLimiter.tryAcquire();
+//            if (b) {
+//                log.info("b : {}", b);
+//            }
+//        }
+//    }
 }

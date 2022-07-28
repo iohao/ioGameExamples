@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.iohao.game.spring.common.kit;
+package com.iohao.game.command;
 
 import com.iohao.game.action.skeleton.core.CmdKit;
 import com.iohao.game.action.skeleton.core.flow.codec.ProtoDataCodec;
@@ -25,10 +25,7 @@ import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
 
 import java.nio.ByteBuffer;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.TreeMap;
+import java.util.*;
 
 /**
  * @author 渔民小镇
@@ -38,7 +35,9 @@ import java.util.TreeMap;
 @UtilityClass
 public class ClientCommandKit {
 
-    Map<Integer, ClientCommand> clientCommandMap = new TreeMap<>();
+    Map<Integer, ClientCommand> clientCommandMap = new LinkedHashMap<>();
+
+    public boolean login;
 
     public List<ExternalMessage> listRequestExternalMessage() {
         return clientCommandMap

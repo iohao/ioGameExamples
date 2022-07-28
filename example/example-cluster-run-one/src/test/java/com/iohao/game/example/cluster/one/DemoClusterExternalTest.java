@@ -15,8 +15,6 @@ import java.util.concurrent.TimeUnit;
  */
 public class DemoClusterExternalTest {
     public static void main(String[] args) throws InterruptedException {
-        // 注意，这个是临时测试用的，设置为 false 表示不用登录就可以访问逻辑服的方法
-        ExternalGlobalConfig.verifyIdentity = false;
 
         // 游戏对外服端口
         int port = 10100;

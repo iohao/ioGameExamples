@@ -29,7 +29,7 @@ import com.iohao.game.action.skeleton.protocol.collect.ResponseCollectMessage;
 import com.iohao.game.bolt.broker.core.client.BrokerClientHelper;
 import com.iohao.game.spring.common.SpringCmdModule;
 import com.iohao.game.spring.common.pb.*;
-import com.iohao.game.spring.logic.school.common.SpringGameCodeEnum;
+import com.iohao.game.spring.common.SpringGameCodeEnum;
 import com.iohao.game.spring.logic.school.service.SchoolService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

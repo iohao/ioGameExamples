@@ -25,7 +25,7 @@ import com.iohao.game.bolt.broker.core.client.BrokerClient;
 import com.iohao.game.bolt.broker.core.client.BrokerClientBuilder;
 import com.iohao.game.spring.common.SendDoc;
 import com.iohao.game.spring.logic.school.action.SchoolAction;
-import com.iohao.game.spring.logic.school.common.SpringGameCodeEnum;
+import com.iohao.game.spring.common.SpringGameCodeEnum;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;

@@ -17,7 +17,6 @@
 package com.iohao.game.example.interaction.same;
 
 import com.iohao.game.bolt.broker.client.AbstractBrokerClientStartup;
-import com.iohao.game.bolt.broker.client.external.config.ExternalGlobalConfig;
 import com.iohao.game.bolt.broker.core.client.BrokerClient;
 import com.iohao.game.bolt.broker.core.client.BrokerClientBuilder;
 import com.iohao.game.bolt.broker.core.common.BrokerGlobalConfig;
@@ -36,8 +35,6 @@ import java.util.List;
 public class DemoClusterInteractionSameApplication {
     public static void main(String[] args) {
         BrokerGlobalConfig.requestResponseLog = true;
-        // 注意，这个是临时测试用的，设置为 false 表示不用登录就可以访问逻辑服的方法
-        ExternalGlobalConfig.verifyIdentity = false;
 
         // 游戏对外服端口
         int port = 10100;

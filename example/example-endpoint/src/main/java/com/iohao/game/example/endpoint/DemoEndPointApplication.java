@@ -17,9 +17,11 @@
 package com.iohao.game.example.endpoint;
 
 import com.iohao.game.bolt.broker.client.AbstractBrokerClientStartup;
+import com.iohao.game.bolt.broker.client.external.config.ExternalGlobalConfig;
 import com.iohao.game.bolt.broker.core.client.BrokerClient;
 import com.iohao.game.bolt.broker.core.client.BrokerClientBuilder;
 import com.iohao.game.example.endpoint.match.DemoEndPointMatchServer;
+import com.iohao.game.example.endpoint.match.action.DemoCmdForEndPointMatch;
 import com.iohao.game.example.endpoint.room.DemoEndPointRoomServer;
 import com.iohao.game.simple.SimpleHelper;
 
@@ -33,6 +35,12 @@ import java.util.List;
  */
 public class DemoEndPointApplication {
     public static void main(String[] args) {
+
+        var accessAuthenticationHook =  ExternalGlobalConfig.accessAuthenticationHook;
+        // 表示登录才能访问业务方法
+        accessAuthenticationHook.setVerifyIdentity(true);
+        // 添加不需要登录也能访问的业务方法 (action)
+        accessAuthenticationHook.addIgnoreAuthenticationCmd(DemoCmdForEndPointMatch.cmd, DemoCmdForEndPointMatch.loginVerify);
 
         // 创建 2 个房间逻辑服
         DemoEndPointRoomServer roomServer1 = createRoomServer(1);
