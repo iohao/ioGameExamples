@@ -39,7 +39,10 @@ public class SpringWebsocketClient {
         initLoginCommand();
 
         // 请求构建
-        initClientCommands();
+//        initClientCommands();
+
+        // 逻辑服间的相互通信
+        communicationClientCommands();
 
         // 启动客户端
         WebsocketClientKit.runClient();
@@ -144,8 +147,7 @@ public class SpringWebsocketClient {
 
         ClientCommandKit.createClientCommand(externalMessageIntPbWrapper, IntPb.class);
 
-        // 逻辑服间的相互通信
-        communicationClientCommands();
+
     }
 
     private static void communicationClientCommands() {
@@ -155,7 +157,7 @@ public class SpringWebsocketClient {
                 SpringCmdModule.SchoolCmd.communication31
         );
 
-        ClientCommandKit.createClientCommand(externalMessageCommunication31);
+//        ClientCommandKit.createClientCommand(externalMessageCommunication31);
 
 
         // 3.2 单个逻辑服与单个逻辑服通信请求 - 无返回值（可跨进程）
@@ -164,10 +166,10 @@ public class SpringWebsocketClient {
                 SpringCmdModule.SchoolCmd.communication32
         );
 
-        ClientCommandKit.createClientCommand(externalMessageCommunication32);
-
+//        ClientCommandKit.createClientCommand(externalMessageCommunication32);
 
         // 3.3 单个逻辑服与同类型多个逻辑服通信请求（可跨进程）
+
         ExternalMessage externalMessageCommunication33 = ClientCommandKit.createExternalMessage(
                 SpringCmdModule.SchoolCmd.cmd,
                 SpringCmdModule.SchoolCmd.communication33

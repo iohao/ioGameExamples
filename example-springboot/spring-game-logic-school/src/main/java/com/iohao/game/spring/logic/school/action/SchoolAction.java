@@ -28,8 +28,8 @@ import com.iohao.game.action.skeleton.protocol.collect.ResponseCollectItemMessag
 import com.iohao.game.action.skeleton.protocol.collect.ResponseCollectMessage;
 import com.iohao.game.bolt.broker.core.client.BrokerClientHelper;
 import com.iohao.game.spring.common.SpringCmdModule;
-import com.iohao.game.spring.common.pb.*;
 import com.iohao.game.spring.common.SpringGameCodeEnum;
+import com.iohao.game.spring.common.pb.*;
 import com.iohao.game.spring.logic.school.service.SchoolService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -229,28 +229,29 @@ public class SchoolAction {
      */
     @ActionMethod(SpringCmdModule.SchoolCmd.communication33)
     public void communication33() {
-        log.info("communication33 - 3.3 单个逻辑服与同类型多个逻辑服通信请求（可跨进程）");
+        log.info("communication33 - 3.3 单个逻辑服与同类型多个逻辑服通信请求（可跨进程） - 统计房间");
+
         /*
+         * 这个方法调用的 spring-game-logic-room-interaction-same （房间的游戏逻辑服）里的 action
+         * 房间的游戏逻辑服是启动了多个的。
+         *
          * 3.3 单个逻辑服与同类型多个逻辑服通信请求（可跨进程）
          * 相关文档 https://www.yuque.com/iohao/game/nelwuz#gSdya
          */
 
-        // 通信路由
-        CmdInfo cmdInfo = CmdInfo.getCmdInfo(SpringCmdModule.ClassesCmd.cmd, SpringCmdModule.ClassesCmd.getClasses);
-        // 内部模块通讯上下文，内部模块指的是游戏逻辑服
+        // 路由：这个路由是将要访问逻辑服的路由（表示你将要去的地方）
+        CmdInfo cmdInfo = CmdInfo.getCmdInfo(SpringCmdModule.RoomCmd.cmd, SpringCmdModule.RoomCmd.countRoom);
         InvokeModuleContext invokeModuleContext = BrokerClientHelper.me().getInvokeModuleContext();
-
         // 根据路由信息来请求其他【同类型】的多个子服务器（其他逻辑服）数据
         ResponseCollectMessage responseCollectMessage = invokeModuleContext.invokeModuleCollectMessage(cmdInfo);
         // 每个逻辑服返回的数据集合
         List<ResponseCollectItemMessage> messageList = responseCollectMessage.getMessageList();
 
-        // 打印
         for (ResponseCollectItemMessage responseCollectItemMessage : messageList) {
             ResponseMessage responseMessage = responseCollectItemMessage.getResponseMessage();
-            // 得到房间逻辑服返回的业务数据
-            ClassesPb classesPb = DataCodecKit.decode(responseMessage.getData(), ClassesPb.class);
-            log.info("3.3 同类型多个逻辑服通信请求 : {} - {} ", messageList.size(), classesPb);
+            // 得到房间的逻辑服返回的业务数据
+            RoomNumPb decode = DataCodecKit.decode(responseMessage.getData(), RoomNumPb.class);
+            log.info("3.3 responseCollectItemMessage : {} ", decode);
         }
 
     }

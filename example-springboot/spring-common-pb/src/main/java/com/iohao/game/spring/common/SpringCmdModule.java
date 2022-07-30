@@ -45,12 +45,10 @@ public interface SpringCmdModule {
         int communication31 = 7;
         /** 3.2 单个逻辑服与单个逻辑服通信请求 - 无返回值（可跨进程） */
         int communication32 = 8;
-        /** 3.3 单个逻辑服与同类型多个逻辑服通信请求（可跨进程） */
+        /** 3.3 单个逻辑服与同类型多个逻辑服通信请求（可跨进程） - 统计房间 */
         int communication33 = 9;
         /** 业务参数自动装箱、拆箱基础类型 */
         int intPbWrapper = 10;
-
-
     }
 
     interface ClassesCmd {
@@ -66,4 +64,8 @@ public interface SpringCmdModule {
         int loginVerify = 1;
     }
 
+    interface RoomCmd {
+        int cmd = 4;
+        int countRoom = 1;
+    }
 }

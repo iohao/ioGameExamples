@@ -18,6 +18,7 @@ package com.iohao.game.collect.common;
 
 import com.iohao.game.action.skeleton.core.BarSkeletonBuilder;
 import com.iohao.game.action.skeleton.core.BarSkeletonBuilderParamConfig;
+import com.iohao.game.action.skeleton.core.flow.interal.DebugInOut;
 import lombok.experimental.UtilityClass;
 
 /**
@@ -34,7 +35,7 @@ public class GameBarSkeletonConfig {
         BarSkeletonBuilder builder = config.createBuilder();
 
         // 添加控制台输出插件
-//        builder.addInOut(new DebugInOut());
+        builder.addInOut(new DebugInOut());
 
         return builder;
     }

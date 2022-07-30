@@ -60,6 +60,13 @@
             <version>${project.parent.version}</version>
         </dependency>
 
+        <!-- 房间的逻辑服 -->
+        <dependency>
+            <groupId>com.iohao.example</groupId>
+            <artifactId>spring-game-logic-room-interaction-same</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+
         <!-- https://mvnrepository.com/artifact/org.hibernate.validator/hibernate-validator -->
         <dependency>
             <groupId>org.hibernate.validator</groupId>
@@ -85,5 +92,41 @@
         </dependency>
 
     </dependencies>
-
+    <build>
+        <plugins>
+            <!--
+            java 打包成 jar，https://gitee.com/iohao/iogame/issues/I5CXDU#note_11037550
+            mvnd package
+            如果没安装 mvnd 请使用
+            mvn package
+            来打包
+            -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>3.3.0</version>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        <!-- 绑定到package生命周期 -->
+                        <phase>package</phase>
+                        <goals>
+                            <!-- 只运行一次 -->
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                    <archive>
+                        <manifest>
+                            <mainClass>com.iohao.game.spring.SpringGameOneApplication</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>iogame-example</artifactId>
+        <groupId>com.iohao.example</groupId>
+        <version>3.0.0.io</version>
+        <relativePath>../../pom.xml</relativePath>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>spring-game-logic-room-interaction-same</artifactId>
+
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+    </properties>
+    <dependencies>
+        <dependency>
+            <groupId>com.iohao.example</groupId>
+            <artifactId>spring-common-pb</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+
+        <!-- 游戏逻辑服 https://www.yuque.com/iohao/game/ensevx#jMDuc -->
+        <dependency>
+            <groupId>com.iohao.game</groupId>
+            <artifactId>bolt-client</artifactId>
+            <version>${ioGame.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+            <version>${springboot.version}</version>
+        </dependency>
+
+    </dependencies>
+</project>

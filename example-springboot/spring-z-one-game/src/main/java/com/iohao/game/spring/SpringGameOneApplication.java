@@ -19,12 +19,15 @@ package com.iohao.game.spring;
 import com.iohao.game.action.skeleton.ext.spring.ActionFactoryBeanForSpring;
 import com.iohao.game.bolt.broker.client.AbstractBrokerClientStartup;
 import com.iohao.game.bolt.broker.client.external.ExternalServer;
+import com.iohao.game.bolt.broker.core.client.BrokerClient;
+import com.iohao.game.bolt.broker.core.client.BrokerClientBuilder;
 import com.iohao.game.bolt.broker.server.BrokerServer;
 import com.iohao.game.simple.SimpleRunOne;
 import com.iohao.game.spring.broker.GameBrokerBoot;
 import com.iohao.game.spring.external.GameExternal;
 import com.iohao.game.spring.logic.classes.GameLogicClassesClient;
 import com.iohao.game.spring.logic.hall.GameLogicHallClient;
+import com.iohao.game.spring.logic.interaction.same.room.SameRoomLogicClient;
 import com.iohao.game.spring.logic.school.GameLogicSchoolClient;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -74,7 +77,16 @@ public class SpringGameOneApplication {
                 // 班级逻辑服
                 new GameLogicClassesClient(),
                 // 大厅逻辑服 - 有登录
-                new GameLogicHallClient()
+                new GameLogicHallClient(),
+                /*
+                 * 启动多个同类型的游戏逻辑服
+                 *
+                 * 启动 2 个房间的游戏逻辑服
+                 * 方便测试 请求同类型多个逻辑服通信结果
+                 * https://www.yuque.com/iohao/game/rf9rb9
+                 */
+                createRoomLogicClient(1),
+                createRoomLogicClient(2)
         );
 
         // 对外开放的端口
@@ -103,5 +115,22 @@ public class SpringGameOneApplication {
     public ActionFactoryBeanForSpring actionFactoryBean() {
         // 将业务框架交给 spring 管理
         return ActionFactoryBeanForSpring.me();
+    }
+
+    private static SameRoomLogicClient createRoomLogicClient(int id) {
+        // BrokerClient 构建器，房间逻辑服的信息
+        BrokerClientBuilder brokerClientBuilder = BrokerClient.newBuilder()
+                // 逻辑服的唯一 id
+                .id(String.valueOf(id))
+                // 逻辑服名字
+                .appName("spring 房间的游戏逻辑服-" + id)
+                // 同类型标签
+                .tag("roomLogic");
+
+        // 创建房间逻辑服
+        SameRoomLogicClient sameRoomLogicClient = new SameRoomLogicClient();
+        // 如果字段赋值了，就不会使用 BrokerClientStartup.createBrokerClientBuilder() 接口的值
+        sameRoomLogicClient.setBrokerClientBuilder(brokerClientBuilder);
+        return sameRoomLogicClient;
     }
 }

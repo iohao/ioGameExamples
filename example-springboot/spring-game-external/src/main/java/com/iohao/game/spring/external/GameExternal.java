@@ -45,9 +45,8 @@ public class GameExternal {
 
     private void extractedIgnore() {
         /*
-         * 注意，这个配置这里是错误的，实际上是需要配置在对外服的，因为是对外服在控制访问验证
-         * 但为了方便演示，就配置在这里了；
-         * 因为这个综合示例登录与
+         * 注意，权限相关验证配置在游戏对外服是正确的，因为是游戏对外服在控制访问验证
+         * see https://www.yuque.com/iohao/game/tywkqv#qEvtB
          */
         var accessAuthenticationHook = ExternalGlobalConfig.accessAuthenticationHook;
         // 表示登录才能访问业务方法
@@ -55,8 +54,10 @@ public class GameExternal {
         /*
          * 由于 accessAuthenticationHook.verifyIdentity = true; 时，需要玩家登录才可以访问业务方法 （action）
          *
-         * 这里可以配置一些忽略访问限制的路由
+         * 在这可以配置一些忽略访问限制的路由。
          * 这里配置的路由，表示不登录也可以进行访问
+         * 现在忽略的 3-1，是登录 action 的路由，所以当我们访问 3-1 路由时，可以不登录。
+         * 忽略的路由可以添加多个。
          */
         // see SpringCmdModule.HallCmd.cmd，SpringCmdModule.HallCmd.loginVerify
         accessAuthenticationHook.addIgnoreAuthenticationCmd(3, 1);

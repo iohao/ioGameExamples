@@ -43,6 +43,7 @@
         <module>example-game-collect/game-one</module>
         <!-- java 坦克游戏 fxgl -->
         <module>example-game-collect/fxgl-tank</module>
+        <module>client-command</module>
 
         <!-- springboot 集成示例 -->
         <module>example-springboot/spring-game-logic-school</module>
@@ -55,7 +56,7 @@
         <module>example-springboot/spring-game-logic-school-starter</module>
         <module>example-springboot/spring-game-logic-classes-starter</module>
         <module>example-springboot/spring-game-logic-hall</module>
-        <module>client-command</module>
+        <module>example-springboot/spring-game-logic-room-interaction-same</module>
     </modules>
 
     <!--统一管理版本 的一个父 pom-->
