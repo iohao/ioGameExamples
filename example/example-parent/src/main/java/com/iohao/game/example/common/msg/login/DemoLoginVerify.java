@@ -16,7 +16,6 @@
  */
 package com.iohao.game.example.common.msg.login;
 
-import com.baidu.bjf.remoting.protobuf.annotation.EnableZigZap;
 import com.baidu.bjf.remoting.protobuf.annotation.ProtobufClass;
 import lombok.AccessLevel;
 import lombok.Setter;
@@ -28,10 +27,9 @@ import lombok.experimental.FieldDefaults;
  * @date 2022-05-28
  */
 @Setter
-@ProtobufClass
-@EnableZigZap
-@FieldDefaults(level = AccessLevel.PUBLIC)
 @ToString
+@ProtobufClass
+@FieldDefaults(level = AccessLevel.PUBLIC)
 public class DemoLoginVerify {
     /** jwt */
     String jwt;

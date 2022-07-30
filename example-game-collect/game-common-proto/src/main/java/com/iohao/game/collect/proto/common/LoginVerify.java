@@ -16,7 +16,6 @@
  */
 package com.iohao.game.collect.proto.common;
 
-import com.baidu.bjf.remoting.protobuf.annotation.EnableZigZap;
 import com.baidu.bjf.remoting.protobuf.annotation.ProtobufClass;
 import com.iohao.game.collect.proto.GameProtoFile;
 import com.iohao.game.widget.light.protobuf.ProtoFileMerge;
@@ -32,10 +31,9 @@ import lombok.experimental.FieldDefaults;
  * @date 2022-01-11
  */
 @Setter
-@ProtobufClass
-@EnableZigZap
-@FieldDefaults(level = AccessLevel.PUBLIC)
 @ToString
+@ProtobufClass
+@FieldDefaults(level = AccessLevel.PUBLIC)
 @ProtoFileMerge(fileName = GameProtoFile.COMMON_FILE_NAME, filePackage = GameProtoFile.COMMON_FILE_PACKAGE)
 public class LoginVerify {
     /** jwt */

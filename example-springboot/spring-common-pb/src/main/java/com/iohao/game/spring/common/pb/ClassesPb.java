@@ -16,7 +16,6 @@
  */
 package com.iohao.game.spring.common.pb;
 
-import com.baidu.bjf.remoting.protobuf.annotation.EnableZigZap;
 import com.baidu.bjf.remoting.protobuf.annotation.ProtobufClass;
 import com.iohao.game.spring.common.SpringGameProtoFile;
 import com.iohao.game.widget.light.protobuf.ProtoFileMerge;
@@ -31,7 +30,6 @@ import lombok.experimental.FieldDefaults;
  * @date 2022-07-10
  */
 @ToString
-@EnableZigZap
 @ProtobufClass
 @FieldDefaults(level = AccessLevel.PUBLIC)
 @ProtoFileMerge(fileName = SpringGameProtoFile.COMMON_FILE_NAME, filePackage = SpringGameProtoFile.COMMON_FILE_PACKAGE)

@@ -16,7 +16,6 @@
  */
 package com.iohao.game.example.common.msg;
 
-import com.baidu.bjf.remoting.protobuf.annotation.EnableZigZap;
 import com.baidu.bjf.remoting.protobuf.annotation.ProtobufClass;
 import com.iohao.game.widget.light.protobuf.ProtoFileMerge;
 import lombok.AccessLevel;
@@ -29,10 +28,9 @@ import lombok.experimental.FieldDefaults;
  * @date 2022-02-24
  */
 @Setter
-@ProtobufClass
-@EnableZigZap
-@FieldDefaults(level = AccessLevel.PUBLIC)
 @ToString
+@ProtobufClass
+@FieldDefaults(level = AccessLevel.PUBLIC)
 @ProtoFileMerge(fileName = "socket.proto", filePackage = "pb.socket")
 public class HelloReq {
     String name;

@@ -16,7 +16,6 @@
  */
 package com.iohao.game.collect.proto.tank;
 
-import com.baidu.bjf.remoting.protobuf.annotation.EnableZigZap;
 import com.baidu.bjf.remoting.protobuf.annotation.ProtobufClass;
 import com.iohao.game.collect.proto.GameProtoFile;
 import com.iohao.game.widget.light.protobuf.ProtoFileMerge;
@@ -33,11 +32,9 @@ import java.util.Map;
  * @author 渔民小镇
  * @date 2022-01-15
  */
-@Setter
-@ProtobufClass
-@EnableZigZap
-@FieldDefaults(level = AccessLevel.PUBLIC)
 @ToString
+@ProtobufClass
+@FieldDefaults(level = AccessLevel.PUBLIC)
 @ProtoFileMerge(fileName = GameProtoFile.TANK_FILE_NAME, filePackage = GameProtoFile.TANK_FILE_PACKAGE)
 public class TankPlayer {
     /** 玩家id */

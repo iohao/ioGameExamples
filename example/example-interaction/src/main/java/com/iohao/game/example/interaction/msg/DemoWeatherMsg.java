@@ -16,10 +16,8 @@
  */
 package com.iohao.game.example.interaction.msg;
 
-import com.baidu.bjf.remoting.protobuf.annotation.EnableZigZap;
 import com.baidu.bjf.remoting.protobuf.annotation.ProtobufClass;
 import lombok.AccessLevel;
-import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.FieldDefaults;
 
@@ -29,11 +27,9 @@ import lombok.experimental.FieldDefaults;
  * @author 渔民小镇
  * @date 2022-03-24
  */
-@Setter
-@ProtobufClass
-@EnableZigZap
-@FieldDefaults(level = AccessLevel.PUBLIC)
 @ToString
+@ProtobufClass
+@FieldDefaults(level = AccessLevel.PUBLIC)
 public class DemoWeatherMsg {
     /** id */
     int attack;

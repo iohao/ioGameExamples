@@ -33,11 +33,9 @@ import java.util.List;
  * @author 渔民小镇
  * @date 2022-01-15
  */
-@Setter
-@ProtobufClass
-@EnableZigZap
-@FieldDefaults(level = AccessLevel.PUBLIC)
 @ToString
+@ProtobufClass
+@FieldDefaults(level = AccessLevel.PUBLIC)
 @ProtoFileMerge(fileName = GameProtoFile.TANK_FILE_NAME, filePackage = GameProtoFile.TANK_FILE_PACKAGE)
 public class TankEnterRoom {
     /** 房间id */

@@ -16,7 +16,6 @@
  */
 package com.iohao.game.example.common.msg;
 
-import com.baidu.bjf.remoting.protobuf.annotation.EnableZigZap;
 import com.baidu.bjf.remoting.protobuf.annotation.ProtobufClass;
 import lombok.AccessLevel;
 import lombok.ToString;
@@ -28,10 +27,9 @@ import lombok.experimental.FieldDefaults;
  * @author 渔民小镇
  * @date 2022-05-28
  */
-@ProtobufClass
-@EnableZigZap
-@FieldDefaults(level = AccessLevel.PUBLIC)
 @ToString
+@ProtobufClass
+@FieldDefaults(level = AccessLevel.PUBLIC)
 public class MatchResponse {
     /** true 匹配成功 */
     boolean matchSuccess;

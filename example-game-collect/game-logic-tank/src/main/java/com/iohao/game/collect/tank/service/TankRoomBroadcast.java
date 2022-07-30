@@ -53,7 +53,7 @@ public class TankRoomBroadcast {
             counter.increment();
 
             TankBroadcastMessage broadcastMessage = new TankBroadcastMessage();
-            broadcastMessage.setMsg(msg);
+            broadcastMessage.msg = msg;
 
             log.info("广播： {}", broadcastMessage);
 
