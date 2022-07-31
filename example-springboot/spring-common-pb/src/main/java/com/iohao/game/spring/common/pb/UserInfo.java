@@ -36,4 +36,6 @@ public class UserInfo {
     long id;
     /** 用户名 */
     String name;
+
+    int tempInt;
 }

@@ -127,10 +127,14 @@ public class SpringGameOneApplication {
                 // 同类型标签
                 .tag("roomLogic");
 
-        // 创建房间逻辑服
+        // 创建房间的逻辑服
         SameRoomLogicClient sameRoomLogicClient = new SameRoomLogicClient();
         // 如果字段赋值了，就不会使用 BrokerClientStartup.createBrokerClientBuilder() 接口的值
         sameRoomLogicClient.setBrokerClientBuilder(brokerClientBuilder);
         return sameRoomLogicClient;
+    }
+
+    private static void check() {
+
     }
 }

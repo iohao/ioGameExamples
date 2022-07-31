@@ -99,7 +99,7 @@ public class LoginAction {
         UserInfo userInfo = new UserInfo();
         userInfo.id = userId;
         userInfo.name = faker.name().firstName();
-
+        userInfo.tempInt = 273676;
         log.info("userInfo : {}", userInfo);
 
         return userInfo;
