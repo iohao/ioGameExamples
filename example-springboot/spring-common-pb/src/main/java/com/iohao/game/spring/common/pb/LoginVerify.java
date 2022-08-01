@@ -34,24 +34,24 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PUBLIC)
 @ProtoFileMerge(fileName = SpringGameProtoFile.COMMON_FILE_NAME, filePackage = SpringGameProtoFile.COMMON_FILE_PACKAGE)
 public class LoginVerify {
+    /** age 测试用的 */
+    int age;
     /** jwt */
     String jwt;
 
-    /**
-     * 登录业务码
-     * <pre>
-     *     注意，这个业务码放这里只是为了方便测试多种情况
-     *     交由测试请求端来控制
+    /*
+     *       注意，这个业务码放这里只是为了方便测试多种情况
+     *       交由测试请求端来控制
      *
-     *     ------------业务码说明------------------
+     *       ------------业务码说明------------------
      *
-     *     当业务码为 【0】时 (相当于号已经在线上了，不能重复登录)
-     *     如果游戏对外服已经有该玩家的连接了，就抛异常，告诉请求端玩家已经在线。
-     *     否则就正常登录成功
+     *       当业务码为 【0】时 (相当于号已经在线上了，不能重复登录)
+     *       如果游戏对外服已经有该玩家的连接了，就抛异常，告诉请求端玩家已经在线。
+     *       否则就正常登录成功
      *
-     *     当业务码为 【1】时 （相当于顶号）
-     *     强制断开之前的客户端连接，并让本次登录成功。
-     * </pre>
+     *       当业务码为 【1】时 （相当于顶号）
+     *       强制断开之前的客户端连接，并让本次登录成功。
      */
+    /** 登录业务码 */
     int loginBizCode;
 }
