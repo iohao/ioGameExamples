@@ -17,27 +17,37 @@
 package com.iohao.game.spring.common.pb;
 
 import com.baidu.bjf.remoting.protobuf.annotation.ProtobufClass;
-import com.iohao.game.spring.common.SpringGameProtoFile;
-import com.iohao.game.widget.light.protobuf.ProtoFileMerge;
 import lombok.AccessLevel;
 import lombok.ToString;
 import lombok.experimental.FieldDefaults;
 
 /**
- * 用户信息
- *
  * @author 渔民小镇
- * @date 2022-07-27
+ * @date 2022-08-03
  */
 @ToString
 @ProtobufClass
+//@EnableZigZap
 @FieldDefaults(level = AccessLevel.PUBLIC)
-@ProtoFileMerge(fileName = SpringGameProtoFile.COMMON_FILE_NAME, filePackage = SpringGameProtoFile.COMMON_FILE_PACKAGE)
-public class UserInfo {
-    /** id */
-    long id;
-    /** 用户名 */
-    String name;
+public class CatMessage {
+    /** 请求命令类型: 0 心跳，1 业务 */
+//    @Protobuf(fieldType = FieldType.INT32, order = 1)
+    int cmdCode;
+    /** 协议开关，用于一些协议级别的开关控制，比如 安全加密校验等。 : 0 不校验 */
+//    @Protobuf(fieldType = FieldType.INT32, order = 2)
 
-    int tempInt;
+    int protocolSwitch;
+    /** 业务路由（高16为主, 低16为子） */
+//    @Protobuf(fieldType = FieldType.INT32, order = 3)
+    int cmdMerge;
+
+
+//    @Protobuf(fieldType = FieldType.SINT32, order = 4)
+//    int responseStatus;
+//    /** 验证信息 */
+//    @Protobuf(fieldType = FieldType.STRING, order = 5)
+//    String validMsg;
+//    @Protobuf(fieldType = FieldType.BYTES, order = 6)
+//    byte[] data;
+
 }

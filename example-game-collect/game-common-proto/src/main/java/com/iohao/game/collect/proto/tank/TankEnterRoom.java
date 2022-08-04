@@ -16,12 +16,10 @@
  */
 package com.iohao.game.collect.proto.tank;
 
-import com.baidu.bjf.remoting.protobuf.annotation.EnableZigZap;
 import com.baidu.bjf.remoting.protobuf.annotation.ProtobufClass;
 import com.iohao.game.collect.proto.GameProtoFile;
 import com.iohao.game.widget.light.protobuf.ProtoFileMerge;
 import lombok.AccessLevel;
-import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.FieldDefaults;
 

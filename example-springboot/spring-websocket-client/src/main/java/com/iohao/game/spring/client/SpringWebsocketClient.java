@@ -42,7 +42,7 @@ public class SpringWebsocketClient {
 //        initClientCommands();
 
         // 逻辑服间的相互通信
-        communicationClientCommands();
+//        communicationClientCommands();
 
         // 启动客户端
         WebsocketClientKit.runClient();
@@ -67,6 +67,7 @@ public class SpringWebsocketClient {
 
         // 登录请求
         LoginVerify loginVerify = new LoginVerify();
+        loginVerify.age = 273676;
         loginVerify.jwt = "luoyi";
         loginVerify.loginBizCode = loginBizCode;
 

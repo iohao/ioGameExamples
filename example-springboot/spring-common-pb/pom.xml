@@ -47,4 +47,35 @@
             <version>${jakarta.validation-api.version}</version>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <!--
+            https://github.com/jhunters/jprotobuf/blob/master/Document.md
+
+            mvn jprotobuf:precompile
+            or
+            mvn package
+             -->
+            <plugin>
+                <groupId>com.baidu</groupId>
+                <artifactId>jprotobuf-precompile-plugin</artifactId>
+                <version>2.2.6</version>
+                <configuration>
+                    <filterClassPackage>com.iohao.game.spring.common.pb</filterClassPackage>
+                    <generateProtoFile>true</generateProtoFile>
+                    <compileDependencies>true</compileDependencies>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>precompile</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+        </plugins>
+    </build>
 </project>

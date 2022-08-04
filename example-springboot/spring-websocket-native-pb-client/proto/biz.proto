@@ -1,0 +1,24 @@
+syntax = "proto3";
+package com.iohao.message;
+option java_outer_classname = "BizProto";
+
+// 登录信息
+message LoginVerify {
+  // age
+  int32 age = 1;
+  // jwt
+  string jwt = 2;
+  // 登录业务码
+  int32 loginBizCode = 3;
+
+}
+
+// 用户信息
+message UserInfo {
+  // id
+  sint64 id = 1;
+  // 用户名
+  string name = 2;
+  sint32 tempInt = 3;
+
+}

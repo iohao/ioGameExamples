@@ -109,6 +109,8 @@ public class SpringGameOneApplication {
                 .startup();
 
         // spring 集成 https://www.yuque.com/iohao/game/evkgnz
+
+        // 客户端模拟类 SpringWebsocketClient.java
     }
 
     @Bean
