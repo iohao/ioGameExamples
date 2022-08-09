@@ -30,7 +30,7 @@
         <module>example/example-ext-logic-server</module>
         <module>example/example-wrapper-base-type</module>
 
-        <!-- 实践案例 - 通用部份  -->
+        <!-- 实践案例 - 通用部分  -->
         <module>example-game-collect/game-common-proto</module>
         <module>example-game-collect/game-common</module>
         <!-- 对外服 -->
@@ -63,7 +63,7 @@
     <!--统一管理版本 的一个父 pom-->
     <properties>
         <!-- 项目版本 -->
-        <ioGame.version>17.1.8</ioGame.version>
+        <ioGame.version>17.1.9</ioGame.version>
         <!-- jdk 版本 -->
         <java.version>17</java.version>
         <maven.compiler.source>17</maven.compiler.source>
