@@ -14,23 +14,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.iohao.game.spring.common;
+package com.iohao.game.spring.my;
 
-import com.iohao.game.action.skeleton.annotation.DocActionSend;
-import com.iohao.game.action.skeleton.annotation.DocActionSends;
-import com.iohao.game.spring.common.cmd.SchoolCmdModule;
-import com.iohao.game.spring.common.pb.SpringBroadcastMessagePb;
+import com.iohao.game.action.skeleton.core.commumication.InvokeModuleContext;
+import com.iohao.game.action.skeleton.core.flow.FlowContext;
+import lombok.experimental.UtilityClass;
 
 /**
- * 广播（推送）文档生成标记
- *
  * @author 渔民小镇
- * @date 2022-07-10
+ * @date 2022-08-11
  */
-@DocActionSends({
-        @DocActionSend(cmd = SchoolCmdModule.cmd,
-                subCmd = SchoolCmdModule.broadcastData,
-                dataClass = SpringBroadcastMessagePb.class),
-})
-public class SendDoc {
+@UtilityClass
+public class MyBrokerClientHelper {
+
+    /**
+     * 游戏逻辑服与游戏逻辑服之间的通讯上下文
+     *
+     * @return InvokeModuleContext
+     */
+    public InvokeModuleContext getInvokeModuleContext(FlowContext flowContext) {
+        return MyInvokeModuleContext.of(flowContext);
+    }
 }

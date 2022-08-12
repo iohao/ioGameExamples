@@ -27,8 +27,10 @@ import com.iohao.game.action.skeleton.protocol.ResponseMessage;
 import com.iohao.game.action.skeleton.protocol.collect.ResponseCollectItemMessage;
 import com.iohao.game.action.skeleton.protocol.collect.ResponseCollectMessage;
 import com.iohao.game.bolt.broker.core.client.BrokerClientHelper;
-import com.iohao.game.spring.common.SpringCmdModule;
 import com.iohao.game.spring.common.SpringGameCodeEnum;
+import com.iohao.game.spring.common.cmd.ClassesCmdModule;
+import com.iohao.game.spring.common.cmd.RoomCmdModule;
+import com.iohao.game.spring.common.cmd.SchoolCmdModule;
 import com.iohao.game.spring.common.pb.*;
 import com.iohao.game.spring.logic.school.service.SchoolService;
 import lombok.extern.slf4j.Slf4j;
@@ -46,7 +48,7 @@ import java.util.List;
  */
 @Slf4j
 @Component
-@ActionController(SpringCmdModule.SchoolCmd.cmd)
+@ActionController(SchoolCmdModule.cmd)
 public class SchoolAction {
 
     @Autowired
@@ -58,7 +60,7 @@ public class SchoolAction {
      * @param logicRequestPb logicRequestPb
      * @return LogicRequestPb
      */
-    @ActionMethod(SpringCmdModule.SchoolCmd.here)
+    @ActionMethod(SchoolCmdModule.here)
     public LogicRequestPb here(LogicRequestPb logicRequestPb) {
 
         schoolService.helloSpring();
@@ -78,7 +80,7 @@ public class SchoolAction {
      *
      * @param logicRequestPb logicRequestPb
      */
-    @ActionMethod(SpringCmdModule.SchoolCmd.hereVoid)
+    @ActionMethod(SchoolCmdModule.hereVoid)
     public void hereVoid(LogicRequestPb logicRequestPb) {
         // 相关文档 https://www.yuque.com/iohao/game/nelwuz#qs7yJ
 
@@ -90,7 +92,7 @@ public class SchoolAction {
      *
      * @param schoolPb schoolPb
      */
-    @ActionMethod(SpringCmdModule.SchoolCmd.jsr380)
+    @ActionMethod(SchoolCmdModule.jsr380)
     public void updateSchool(SchoolPb schoolPb) {
         /*
          * 进入业务方法需要满足这么几个条件
@@ -110,7 +112,7 @@ public class SchoolAction {
      * @param schoolLevelPb schoolLevelPbe
      * @throws MsgException e
      */
-    @ActionMethod(SpringCmdModule.SchoolCmd.assertWithException)
+    @ActionMethod(SchoolCmdModule.assertWithException)
     public void assertWithException(SchoolLevelPb schoolLevelPb) throws MsgException {
         // 断言必须是 true, 否则抛出异常
         SpringGameCodeEnum.levelMax.assertTrue(schoolLevelPb.level > 10);
@@ -126,7 +128,7 @@ public class SchoolAction {
     /**
      * 2. 推送 触发广播
      */
-    @ActionMethod(SpringCmdModule.SchoolCmd.broadcast)
+    @ActionMethod(SchoolCmdModule.broadcast)
     public void broadcast() {
         /*
          * 相关文档
@@ -140,7 +142,7 @@ public class SchoolAction {
         SpringBroadcastMessagePb broadcastMessage = new SpringBroadcastMessagePb();
 
         // 广播消息的路由
-        CmdInfo cmdInfo = CmdInfo.getCmdInfo(SpringCmdModule.SchoolCmd.cmd, SpringCmdModule.SchoolCmd.broadcastData);
+        CmdInfo cmdInfo = CmdInfo.getCmdInfo(SchoolCmdModule.cmd, SchoolCmdModule.broadcastData);
 
         // 广播给指定玩家列表
         broadcastMessage.msg = "广播业务数据 - 1";
@@ -159,7 +161,7 @@ public class SchoolAction {
     /**
      * 3.1 单个逻辑服与单个逻辑服通信请求 - 有返回值（可跨进程）
      */
-    @ActionMethod(SpringCmdModule.SchoolCmd.communication31)
+    @ActionMethod(SchoolCmdModule.communication31)
     public void communication31() {
         log.info("communication31 - 3.1 单个逻辑服与单个逻辑服通信请求 - 有返回值（可跨进程）");
 
@@ -171,7 +173,7 @@ public class SchoolAction {
          */
 
         // 通信路由
-        CmdInfo cmdInfo = CmdInfo.getCmdInfo(SpringCmdModule.ClassesCmd.cmd, SpringCmdModule.ClassesCmd.getClasses);
+        CmdInfo cmdInfo = CmdInfo.getCmdInfo(ClassesCmdModule.cmd, ClassesCmdModule.getClasses);
         // 内部模块通讯上下文，内部模块指的是游戏逻辑服
         InvokeModuleContext invokeModuleContext = BrokerClientHelper.me().getInvokeModuleContext();
 
@@ -202,7 +204,7 @@ public class SchoolAction {
     /**
      * 3.2 单个逻辑服与单个逻辑服通信请求 - 无返回值（可跨进程）
      */
-    @ActionMethod(SpringCmdModule.SchoolCmd.communication32)
+    @ActionMethod(SchoolCmdModule.communication32)
     public void communication32() {
         log.info("communication32 - 3.2 单个逻辑服与单个逻辑服通信请求 - 无返回值（可跨进程）");
         /*
@@ -213,7 +215,7 @@ public class SchoolAction {
          */
 
         // 通信路由
-        CmdInfo cmdInfo = CmdInfo.getCmdInfo(SpringCmdModule.ClassesCmd.cmd, SpringCmdModule.ClassesCmd.classesHereVoid);
+        CmdInfo cmdInfo = CmdInfo.getCmdInfo(ClassesCmdModule.cmd, ClassesCmdModule.classesHereVoid);
         // 内部模块通讯上下文，内部模块指的是游戏逻辑服
         InvokeModuleContext invokeModuleContext = BrokerClientHelper.me().getInvokeModuleContext();
 
@@ -227,7 +229,7 @@ public class SchoolAction {
     /**
      * 3.3 单个逻辑服与同类型多个逻辑服通信请求（可跨进程）
      */
-    @ActionMethod(SpringCmdModule.SchoolCmd.communication33)
+    @ActionMethod(SchoolCmdModule.communication33)
     public void communication33() {
         log.info("communication33 - 3.3 单个逻辑服与同类型多个逻辑服通信请求（可跨进程） - 统计房间");
 
@@ -240,7 +242,7 @@ public class SchoolAction {
          */
 
         // 路由：这个路由是将要访问逻辑服的路由（表示你将要去的地方）
-        CmdInfo cmdInfo = CmdInfo.getCmdInfo(SpringCmdModule.RoomCmd.cmd, SpringCmdModule.RoomCmd.countRoom);
+        CmdInfo cmdInfo = CmdInfo.getCmdInfo(RoomCmdModule.cmd, RoomCmdModule.countRoom);
         InvokeModuleContext invokeModuleContext = BrokerClientHelper.me().getInvokeModuleContext();
         // 根据路由信息来请求其他【同类型】的多个子服务器（其他逻辑服）数据
         ResponseCollectMessage responseCollectMessage = invokeModuleContext.invokeModuleCollectMessage(cmdInfo);
@@ -262,7 +264,7 @@ public class SchoolAction {
      * @param level 等级
      * @return level
      */
-    @ActionMethod(SpringCmdModule.SchoolCmd.intPbWrapper)
+    @ActionMethod(SchoolCmdModule.intPbWrapper)
     public int intPbWrapper(int level) {
         log.info("碎片协议 {}", level);
         /*

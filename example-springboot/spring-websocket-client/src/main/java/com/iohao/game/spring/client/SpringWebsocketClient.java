@@ -18,9 +18,10 @@ package com.iohao.game.spring.client;
 
 import com.iohao.game.action.skeleton.protocol.wrapper.IntPb;
 import com.iohao.game.bolt.broker.client.external.bootstrap.message.ExternalMessage;
-import com.iohao.game.command.WebsocketClientKit;
-import com.iohao.game.spring.common.SpringCmdModule;
 import com.iohao.game.command.ClientCommandKit;
+import com.iohao.game.command.WebsocketClientKit;
+import com.iohao.game.spring.common.cmd.HallCmdModule;
+import com.iohao.game.spring.common.cmd.SchoolCmdModule;
 import com.iohao.game.spring.common.pb.*;
 import lombok.extern.slf4j.Slf4j;
 
@@ -72,8 +73,8 @@ public class SpringWebsocketClient {
         loginVerify.loginBizCode = loginBizCode;
 
         ExternalMessage externalMessageLogin = ClientCommandKit.createExternalMessage(
-                SpringCmdModule.HallCmd.cmd,
-                SpringCmdModule.HallCmd.loginVerify,
+                HallCmdModule.cmd,
+                HallCmdModule.loginVerify,
                 loginVerify
         );
 
@@ -86,8 +87,8 @@ public class SpringWebsocketClient {
 
         // 请求、响应
         ExternalMessage externalMessageHere = ClientCommandKit.createExternalMessage(
-                SpringCmdModule.SchoolCmd.cmd,
-                SpringCmdModule.SchoolCmd.here,
+                SchoolCmdModule.cmd,
+                SchoolCmdModule.here,
                 logicRequestPb
         );
 
@@ -96,8 +97,8 @@ public class SpringWebsocketClient {
 
         // 请求、无响应
         ExternalMessage externalMessageHereVoid = ClientCommandKit.createExternalMessage(
-                SpringCmdModule.SchoolCmd.cmd,
-                SpringCmdModule.SchoolCmd.hereVoid,
+                SchoolCmdModule.cmd,
+                SchoolCmdModule.hereVoid,
                 logicRequestPb
         );
 
@@ -111,8 +112,8 @@ public class SpringWebsocketClient {
         schoolPb.teacherNum = 40;
 
         ExternalMessage externalMessageJSR380 = ClientCommandKit.createExternalMessage(
-                SpringCmdModule.SchoolCmd.cmd,
-                SpringCmdModule.SchoolCmd.jsr380,
+                SchoolCmdModule.cmd,
+                SchoolCmdModule.jsr380,
                 schoolPb
         );
 
@@ -125,8 +126,8 @@ public class SpringWebsocketClient {
         schoolLevelPb.vipLevel = 10;
 
         ExternalMessage externalMessageAssert = ClientCommandKit.createExternalMessage(
-                SpringCmdModule.SchoolCmd.cmd,
-                SpringCmdModule.SchoolCmd.assertWithException,
+                SchoolCmdModule.cmd,
+                SchoolCmdModule.assertWithException,
                 schoolLevelPb
         );
 
@@ -135,16 +136,16 @@ public class SpringWebsocketClient {
 
         // 广播相关
         ExternalMessage externalMessageBroadcast = ClientCommandKit.createExternalMessage(
-                SpringCmdModule.SchoolCmd.cmd,
-                SpringCmdModule.SchoolCmd.broadcast
+                SchoolCmdModule.cmd,
+                SchoolCmdModule.broadcast
         );
 
         ClientCommandKit.createClientCommand(externalMessageBroadcast);
 
         // 添加接收广播的解析
         ClientCommandKit.addParseResult(
-                SpringCmdModule.SchoolCmd.cmd,
-                SpringCmdModule.SchoolCmd.broadcastData,
+                SchoolCmdModule.cmd,
+                SchoolCmdModule.broadcastData,
                 SpringBroadcastMessagePb.class
         );
 
@@ -153,8 +154,8 @@ public class SpringWebsocketClient {
         intPb.intValue = 10;
 
         ExternalMessage externalMessageIntPbWrapper = ClientCommandKit.createExternalMessage(
-                SpringCmdModule.SchoolCmd.cmd,
-                SpringCmdModule.SchoolCmd.intPbWrapper,
+                SchoolCmdModule.cmd,
+                SchoolCmdModule.intPbWrapper,
                 intPb
         );
 
@@ -166,8 +167,8 @@ public class SpringWebsocketClient {
     private static void communicationClientCommands() {
         // 3.1 单个逻辑服与单个逻辑服通信请求 - 有返回值（可跨进程）
         ExternalMessage externalMessageCommunication31 = ClientCommandKit.createExternalMessage(
-                SpringCmdModule.SchoolCmd.cmd,
-                SpringCmdModule.SchoolCmd.communication31
+                SchoolCmdModule.cmd,
+                SchoolCmdModule.communication31
         );
 
 //        ClientCommandKit.createClientCommand(externalMessageCommunication31);
@@ -175,8 +176,8 @@ public class SpringWebsocketClient {
 
         // 3.2 单个逻辑服与单个逻辑服通信请求 - 无返回值（可跨进程）
         ExternalMessage externalMessageCommunication32 = ClientCommandKit.createExternalMessage(
-                SpringCmdModule.SchoolCmd.cmd,
-                SpringCmdModule.SchoolCmd.communication32
+                SchoolCmdModule.cmd,
+                SchoolCmdModule.communication32
         );
 
 //        ClientCommandKit.createClientCommand(externalMessageCommunication32);
@@ -184,8 +185,8 @@ public class SpringWebsocketClient {
         // 3.3 单个逻辑服与同类型多个逻辑服通信请求（可跨进程）
 
         ExternalMessage externalMessageCommunication33 = ClientCommandKit.createExternalMessage(
-                SpringCmdModule.SchoolCmd.cmd,
-                SpringCmdModule.SchoolCmd.communication33
+                SchoolCmdModule.cmd,
+                SchoolCmdModule.communication33
         );
 
         ClientCommandKit.createClientCommand(externalMessageCommunication33);

@@ -18,7 +18,7 @@ package com.iohao.game.spring.logic.classes.action;
 
 import com.iohao.game.action.skeleton.annotation.ActionController;
 import com.iohao.game.action.skeleton.annotation.ActionMethod;
-import com.iohao.game.spring.common.SpringCmdModule;
+import com.iohao.game.spring.common.cmd.ClassesCmdModule;
 import com.iohao.game.spring.common.pb.ClassesPb;
 import com.iohao.game.spring.common.pb.SchoolPb;
 import com.iohao.game.spring.logic.classes.service.ClassesService;
@@ -36,7 +36,7 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 @Slf4j
 @Component
-@ActionController(SpringCmdModule.ClassesCmd.cmd)
+@ActionController(ClassesCmdModule.cmd)
 public class ClassesAction {
     @Autowired
     ClassesService classesService;
@@ -46,7 +46,7 @@ public class ClassesAction {
      *
      * @return ClassesPb
      */
-    @ActionMethod(SpringCmdModule.ClassesCmd.getClasses)
+    @ActionMethod(ClassesCmdModule.getClasses)
     public ClassesPb getClasses() {
 
         classesService.helloSpring();
@@ -64,7 +64,7 @@ public class ClassesAction {
      *
      * @param classesPb classesPb
      */
-    @ActionMethod(SpringCmdModule.ClassesCmd.classesHereVoid)
+    @ActionMethod(ClassesCmdModule.classesHereVoid)
     public void classesHereVoid(ClassesPb classesPb) {
 
         log.info("班级方法；请求、无响应 : {}", classesPb);
@@ -75,7 +75,7 @@ public class ClassesAction {
      *
      * @param schoolPb schoolPb
      */
-    @ActionMethod(SpringCmdModule.ClassesCmd.jsr380)
+    @ActionMethod(ClassesCmdModule.jsr380)
     public void updateSchool(SchoolPb schoolPb) {
         /*
          * 进入业务方法需要满足这么几个条件

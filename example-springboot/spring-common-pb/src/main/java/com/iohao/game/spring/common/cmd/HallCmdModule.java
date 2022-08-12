@@ -14,23 +14,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.iohao.game.spring.common;
-
-import com.iohao.game.action.skeleton.annotation.DocActionSend;
-import com.iohao.game.action.skeleton.annotation.DocActionSends;
-import com.iohao.game.spring.common.cmd.SchoolCmdModule;
-import com.iohao.game.spring.common.pb.SpringBroadcastMessagePb;
+package com.iohao.game.spring.common.cmd;
 
 /**
- * 广播（推送）文档生成标记
+ * 大厅模块
  *
  * @author 渔民小镇
- * @date 2022-07-10
+ * @date 2022-08-12
  */
-@DocActionSends({
-        @DocActionSend(cmd = SchoolCmdModule.cmd,
-                subCmd = SchoolCmdModule.broadcastData,
-                dataClass = SpringBroadcastMessagePb.class),
-})
-public class SendDoc {
+public interface HallCmdModule {
+    int cmd = SpringCmdModule.hallCmd;
+    /** 登录 */
+    int loginVerify = 1;
 }

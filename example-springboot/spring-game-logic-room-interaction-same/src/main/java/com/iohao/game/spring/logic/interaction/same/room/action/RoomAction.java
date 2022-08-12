@@ -18,7 +18,7 @@ package com.iohao.game.spring.logic.interaction.same.room.action;
 
 import com.iohao.game.action.skeleton.annotation.ActionController;
 import com.iohao.game.action.skeleton.annotation.ActionMethod;
-import com.iohao.game.spring.common.SpringCmdModule;
+import com.iohao.game.spring.common.cmd.RoomCmdModule;
 import com.iohao.game.spring.common.pb.RoomNumPb;
 
 import java.util.concurrent.ThreadLocalRandom;
@@ -27,9 +27,9 @@ import java.util.concurrent.ThreadLocalRandom;
  * @author 渔民小镇
  * @date 2022-07-30
  */
-@ActionController(SpringCmdModule.RoomCmd.cmd)
+@ActionController(RoomCmdModule.cmd)
 public class RoomAction {
-    @ActionMethod(SpringCmdModule.RoomCmd.countRoom)
+    @ActionMethod(RoomCmdModule.countRoom)
     public RoomNumPb countRoom() {
 
         // 得到 1 ~ 100 的随机数。

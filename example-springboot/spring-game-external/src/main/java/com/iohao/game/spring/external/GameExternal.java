@@ -59,7 +59,7 @@ public class GameExternal {
          * 现在忽略的 3-1，是登录 action 的路由，所以当我们访问 3-1 路由时，可以不登录。
          * 忽略的路由可以添加多个。
          */
-        // see SpringCmdModule.HallCmd.cmd，SpringCmdModule.HallCmd.loginVerify
+        // see HallCmdModule.cmd，HallCmdModule.loginVerify
         accessAuthenticationHook.addIgnoreAuthenticationCmd(3, 1);
     }
 }

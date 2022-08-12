@@ -23,8 +23,8 @@ import com.iohao.game.action.skeleton.core.exception.MsgException;
 import com.iohao.game.action.skeleton.core.flow.FlowContext;
 import com.iohao.game.bolt.broker.client.kit.ExternalCommunicationKit;
 import com.iohao.game.bolt.broker.client.kit.UserIdSettingKit;
-import com.iohao.game.spring.common.SpringCmdModule;
 import com.iohao.game.spring.common.SpringGameCodeEnum;
+import com.iohao.game.spring.common.cmd.HallCmdModule;
 import com.iohao.game.spring.common.pb.LoginVerify;
 import com.iohao.game.spring.common.pb.UserInfo;
 import lombok.extern.slf4j.Slf4j;
@@ -44,7 +44,7 @@ import java.util.Locale;
  * </pre>
  */
 @Slf4j
-@ActionController(SpringCmdModule.HallCmd.cmd)
+@ActionController(HallCmdModule.cmd)
 public class LoginAction {
     /** 测试神器，假数据 */
     static Faker faker = new Faker(Locale.CHINA);
@@ -57,7 +57,7 @@ public class LoginAction {
      * @return UserInfo
      * @throws MsgException e
      */
-    @ActionMethod(SpringCmdModule.HallCmd.loginVerify)
+    @ActionMethod(HallCmdModule.loginVerify)
     public UserInfo loginVerify(LoginVerify loginVerify, FlowContext flowContext) throws MsgException {
         // 登录业务码
         int loginBizCode = loginVerify.loginBizCode;
