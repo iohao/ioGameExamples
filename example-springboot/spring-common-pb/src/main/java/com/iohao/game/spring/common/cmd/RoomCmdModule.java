@@ -24,5 +24,6 @@ package com.iohao.game.spring.common.cmd;
  */
 public interface RoomCmdModule {
     int cmd = SpringCmdModule.roomCmd;
+    /** 统计房间的数量 */
     int countRoom = 1;
 }
