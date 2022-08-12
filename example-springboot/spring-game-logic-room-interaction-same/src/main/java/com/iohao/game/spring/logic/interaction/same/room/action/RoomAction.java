@@ -24,11 +24,18 @@ import com.iohao.game.spring.common.pb.RoomNumPb;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
+ * 房间相关
+ *
  * @author 渔民小镇
  * @date 2022-07-30
  */
 @ActionController(RoomCmdModule.cmd)
 public class RoomAction {
+    /**
+     * 统计房间的数量
+     *
+     * @return 房间的数量
+     */
     @ActionMethod(RoomCmdModule.countRoom)
     public RoomNumPb countRoom() {
 
