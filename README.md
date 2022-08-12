@@ -82,7 +82,24 @@ https://www.yuque.com/iohao/game/ruaqza
 13. [业务参数自动装箱、拆箱基础类型（解决协议碎片问题）](https://www.yuque.com/iohao/game/ieimzn)
 14. [游戏文档生成](https://www.yuque.com/iohao/game/irth38)
 15. [业务协议文件 .proto 的生成](https://www.yuque.com/iohao/game/vpe2t6#R5w5m)
+16. [登录相关：包含重复登录、顶号相关的业务](https://www.yuque.com/iohao/game/tywkqv)
+17. 启动多个同类型的游戏逻辑服
+18. 将项目打成 jar 包
+19. 启动 jar 包
+20. docker 运行综合示例
+21. 纯原生 proto 数据的模拟客户端模块
+22. CocosCreator 与综合示例联调
+23. 模块的整理与建议（路由相关）
 
+
+
+还有更多，将在后续添加 ... ...
+
+
+
+## 阅读前的建议
+
+阅读综合示例这部分时，建议先看[简单介绍](https://www.yuque.com/iohao/game/wwvg7z)、[快速从零编写服务器完整示例](https://www.yuque.com/iohao/game/zm6qg2)这两部分；
 
 
 
