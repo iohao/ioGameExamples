@@ -37,9 +37,13 @@ public class DemoClusterWebsocketClient {
 
         HelloReq helloReq = new HelloReq();
         helloReq.setName("塔姆");
+
+        // 创建对外服协议
         ExternalMessage externalMessageHere = ClientCommandKit.createExternalMessage(
+                // 设置路由
                 DemoClusterCmd.cmd,
                 DemoClusterCmd.here,
+                // 设置请求参数
                 helloReq
         );
 

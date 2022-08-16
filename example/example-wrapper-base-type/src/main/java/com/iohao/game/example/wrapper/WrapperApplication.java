@@ -36,7 +36,7 @@ public class WrapperApplication {
 
         /*
          * 该示例文档地址
-         * https://www.yuque.com/iohao/game/zm6qg2
+         * https://www.yuque.com/iohao/game/eixd6x
          */
     }
 }
