@@ -62,7 +62,8 @@
                 <artifactId>jprotobuf-precompile-plugin</artifactId>
                 <version>2.2.6</version>
                 <configuration>
-                    <filterClassPackage>com.iohao.game.spring.common.pb</filterClassPackage>
+                    <!-- 注意，这里配置了两个包名 -->
+                    <filterClassPackage>com.iohao.game,com.iohao.game.spring.common.pb</filterClassPackage>
                     <generateProtoFile>true</generateProtoFile>
                     <compileDependencies>true</compileDependencies>
                 </configuration>

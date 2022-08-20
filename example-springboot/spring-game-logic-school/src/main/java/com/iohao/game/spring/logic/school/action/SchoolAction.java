@@ -23,6 +23,7 @@ import com.iohao.game.action.skeleton.core.DataCodecKit;
 import com.iohao.game.action.skeleton.core.commumication.BroadcastContext;
 import com.iohao.game.action.skeleton.core.commumication.InvokeModuleContext;
 import com.iohao.game.action.skeleton.core.exception.MsgException;
+import com.iohao.game.action.skeleton.core.flow.MyFlowContext;
 import com.iohao.game.action.skeleton.protocol.ResponseMessage;
 import com.iohao.game.action.skeleton.protocol.collect.ResponseCollectItemMessage;
 import com.iohao.game.action.skeleton.protocol.collect.ResponseCollectMessage;
@@ -61,13 +62,16 @@ public class SchoolAction {
      * @return LogicRequestPb
      */
     @ActionMethod(SchoolCmdModule.here)
-    public LogicRequestPb here(LogicRequestPb logicRequestPb) {
+    public LogicRequestPb here(LogicRequestPb logicRequestPb, MyFlowContext myFlowContext) {
 
         schoolService.helloSpring();
 
         // 相关文档 https://www.yuque.com/iohao/game/nelwuz#UAUE4
 
         log.info("请求、响应 : {}", logicRequestPb);
+
+        log.info("my flowContext : {}", myFlowContext.getClass());
+        myFlowContext.hello();
 
         LogicRequestPb newLogicRequestPb = new LogicRequestPb();
         newLogicRequestPb.name = logicRequestPb.name + ", I'm here ";

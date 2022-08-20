@@ -21,6 +21,7 @@ import com.iohao.game.action.skeleton.annotation.ActionMethod;
 import com.iohao.game.example.common.msg.RoomNumMsg;
 
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.concurrent.TimeUnit;
 
 /**
  * 房间相关
@@ -40,6 +41,12 @@ public class DemoRoomAction {
         RoomNumMsg roomNumMsg = new RoomNumMsg();
         // 随机数来表示房间的数量
         roomNumMsg.roomCount = anInt;
+
+        try {
+            TimeUnit.SECONDS.sleep(2);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         return roomNumMsg;
     }

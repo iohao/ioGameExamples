@@ -16,16 +16,15 @@
  */
 package com.iohao.game.example.interaction.fight.action;
 
+import com.iohao.game.action.skeleton.annotation.ActionController;
+import com.iohao.game.action.skeleton.annotation.ActionMethod;
+import com.iohao.game.action.skeleton.core.CmdInfo;
 import com.iohao.game.action.skeleton.core.commumication.InvokeModuleContext;
 import com.iohao.game.bolt.broker.core.client.BrokerClientHelper;
 import com.iohao.game.example.interaction.msg.DemoFightMsg;
 import com.iohao.game.example.interaction.msg.DemoWeatherMsg;
 import com.iohao.game.example.interaction.msg.MatchMsg;
 import com.iohao.game.example.interaction.weather.action.DemoCmdForWeather;
-import com.iohao.game.action.skeleton.annotation.ActionController;
-import com.iohao.game.action.skeleton.annotation.ActionMethod;
-import com.iohao.game.action.skeleton.core.CmdInfo;
-import com.iohao.game.action.skeleton.core.flow.FlowContext;
 
 /**
  * 战斗 action
@@ -43,7 +42,7 @@ public class DemoFightAction {
      * @return current demoFightReq
      */
     @ActionMethod(DemoCmdForFight.fight)
-    public DemoFightMsg fight(FlowContext flowContext) {
+    public DemoFightMsg fight() {
         /*
          * 单个逻辑服与单个逻辑服通信请求 - 有返回值（可跨进程）
          * https://www.yuque.com/iohao/game/nelwuz#L9TAJ
@@ -51,8 +50,9 @@ public class DemoFightAction {
 
         // 路由：这个路由是将要访问逻辑服的路由（表示你将要去的地方）
         CmdInfo todayWeatherCmd = CmdInfo.getCmdInfo(DemoCmdForWeather.cmd, DemoCmdForWeather.todayWeather);
+        InvokeModuleContext invokeModuleContext = BrokerClientHelper.me().getInvokeModuleContext();
         // 根据路由信息来请求其他子服务器（其他逻辑服）的数据
-        DemoWeatherMsg demoWeatherMsg = flowContext.invokeModuleMessageData(todayWeatherCmd, DemoWeatherMsg.class);
+        DemoWeatherMsg demoWeatherMsg = invokeModuleContext.invokeModuleMessageData(todayWeatherCmd, DemoWeatherMsg.class);
 
         DemoFightMsg demoFightMsg = new DemoFightMsg();
         // 把天气预报逻辑服的数据 增强给自己

@@ -19,9 +19,9 @@ package com.iohao.game.spring.logic.interaction.same.room;
 import com.iohao.game.action.skeleton.core.BarSkeleton;
 import com.iohao.game.action.skeleton.core.BarSkeletonBuilder;
 import com.iohao.game.action.skeleton.core.BarSkeletonBuilderParamConfig;
-import com.iohao.game.action.skeleton.core.flow.interal.DebugInOut;
 import com.iohao.game.bolt.broker.client.AbstractBrokerClientStartup;
 import com.iohao.game.bolt.broker.core.client.BrokerClientBuilder;
+import com.iohao.game.spring.logic.core.MyBarSkeletonConfig;
 import com.iohao.game.spring.logic.interaction.same.room.action.RoomAction;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -41,17 +41,12 @@ public class SameRoomLogicClient extends AbstractBrokerClientStartup {
     @Override
     public BarSkeleton createBarSkeleton() {
         // 业务框架构建器 配置
-        BarSkeletonBuilderParamConfig config = new BarSkeletonBuilderParamConfig()
-                // 扫描 SchoolAction.class 所在包
-                .addActionController(RoomAction.class)
-                // 开启广播日志
-                .setBroadcastLog(true);
+        BarSkeletonBuilderParamConfig config = MyBarSkeletonConfig.createBarSkeletonBuilderParamConfig()
+                // 扫描 RoomAction.class 所在包
+                .addActionController(RoomAction.class);
 
         // 业务框架构建器
-        BarSkeletonBuilder builder = config.createBuilder();
-
-        // 添加控制台输出插件
-        builder.addInOut(new DebugInOut());
+        BarSkeletonBuilder builder = MyBarSkeletonConfig.createBarSkeletonBuilder(config);
 
         return builder.build();
     }

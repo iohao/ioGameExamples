@@ -17,20 +17,11 @@
 package com.iohao.game.example.interaction;
 
 import com.iohao.game.bolt.broker.client.external.bootstrap.message.ExternalMessage;
-import com.iohao.game.bolt.broker.client.external.bootstrap.message.ExternalMessageCmdCode;
 import com.iohao.game.command.ClientCommandKit;
 import com.iohao.game.command.WebsocketClientKit;
-import com.iohao.game.common.kit.ProtoKit;
 import com.iohao.game.example.interaction.fight.action.DemoCmdForFight;
-import com.iohao.game.example.interaction.msg.MatchMsg;
+import com.iohao.game.example.interaction.msg.DemoFightMsg;
 import lombok.extern.slf4j.Slf4j;
-import org.java_websocket.client.WebSocketClient;
-import org.java_websocket.drafts.Draft_6455;
-import org.java_websocket.handshake.ServerHandshake;
-
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.nio.ByteBuffer;
 
 /**
  * 模拟游戏客户端
@@ -42,8 +33,6 @@ import java.nio.ByteBuffer;
 public class DemoWebsocketClientForInteraction {
 
     public static void main(String[] args) throws Exception {
-//        DemoWebsocketClientForInteraction websocketClient = new DemoWebsocketClientForInteraction();
-//        websocketClient.init();
 
         initClientCommands();
 
@@ -56,70 +45,11 @@ public class DemoWebsocketClientForInteraction {
         // 请求、响应
         ExternalMessage externalMessageHere = ClientCommandKit.createExternalMessage(
                 DemoCmdForFight.cmd,
-                DemoCmdForFight.testMatch
+                DemoCmdForFight.fight
         );
 
-        ClientCommandKit.createClientCommand(externalMessageHere);
+        ClientCommandKit.createClientCommand(externalMessageHere, DemoFightMsg.class);
 
-        ClientCommandKit.addParseResult(4, 1, MatchMsg.class);
     }
 
-    private void init() throws URISyntaxException {
-        // 这里模拟游戏客户端
-        // 连接游戏服务器的地址
-        var wsUrl = "ws://127.0.0.1:10100/websocket";
-
-        WebSocketClient webSocketClient = new WebSocketClient(new URI(wsUrl), new Draft_6455()) {
-            @Override
-            public void onOpen(ServerHandshake serverHandshake) {
-
-                // 路由, 对应服务端逻辑服的业务类路由地址
-                int cmd = DemoCmdForFight.cmd;
-                int subCmd = DemoCmdForFight.testMatch;
-
-                // 游戏框架内置的协议， 与游戏前端相互通讯的协议
-                ExternalMessage externalMessage = new ExternalMessage();
-                // 请求命令类型: 0 心跳，1 业务
-                externalMessage.setCmdCode(ExternalMessageCmdCode.biz);
-                // 路由
-                externalMessage.setCmdMerge(cmd, subCmd);
-
-                // 转为字节
-                byte[] bytes = ProtoKit.toBytes(externalMessage);
-                // 发送数据到游戏服务器
-                this.send(bytes);
-            }
-
-            @Override
-            public void onMessage(ByteBuffer byteBuffer) {
-                // 接收服务器返回的消息
-                byte[] dataContent = byteBuffer.array();
-                ExternalMessage message = ProtoKit.parseProtoByte(dataContent, ExternalMessage.class);
-                log.info("收到消息 ExternalMessage ========== \n{}", message);
-//                byte[] data = message.getData();
-//                if (data != null) {
-//                    DemoFightMsg demoFightMsg = ProtoKit.parseProtoByte(data, DemoFightMsg.class);
-//                    log.info("DemoFightRes ========== \n{}", demoFightMsg);
-//                }
-            }
-
-            @Override
-            public void onMessage(String message) {
-
-            }
-
-            @Override
-            public void onClose(int code, String reason, boolean remote) {
-
-            }
-
-            @Override
-            public void onError(Exception ex) {
-
-            }
-        };
-
-        // 开始连接服务器
-        webSocketClient.connect();
-    }
 }

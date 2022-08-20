@@ -19,11 +19,10 @@ package com.iohao.game.spring.logic.hall;
 import com.iohao.game.action.skeleton.core.BarSkeleton;
 import com.iohao.game.action.skeleton.core.BarSkeletonBuilder;
 import com.iohao.game.action.skeleton.core.BarSkeletonBuilderParamConfig;
-import com.iohao.game.action.skeleton.core.flow.interal.DebugInOut;
 import com.iohao.game.bolt.broker.client.AbstractBrokerClientStartup;
 import com.iohao.game.bolt.broker.core.client.BrokerClient;
 import com.iohao.game.bolt.broker.core.client.BrokerClientBuilder;
-import com.iohao.game.spring.common.SpringGameCodeEnum;
+import com.iohao.game.spring.logic.core.MyBarSkeletonConfig;
 import com.iohao.game.spring.logic.hall.action.LoginAction;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -42,28 +41,18 @@ import lombok.experimental.FieldDefaults;
 public class GameLogicHallClient extends AbstractBrokerClientStartup {
     @Override
     public BarSkeleton createBarSkeleton() {
-
         // 业务框架构建器 配置
-        BarSkeletonBuilderParamConfig config = new BarSkeletonBuilderParamConfig()
-                // 扫描 ClassesAction.class 所在包
-                .addActionController(LoginAction.class)
-                // 开启广播日志
-                .setBroadcastLog(true)
-                // 对接文档相关 - 错误码
-                .addErrorCode(SpringGameCodeEnum.values());
+        BarSkeletonBuilderParamConfig config = MyBarSkeletonConfig.createBarSkeletonBuilderParamConfig()
+                // 扫描 LoginAction.class 所在包
+                .addActionController(LoginAction.class);
 
         // 业务框架构建器
-        BarSkeletonBuilder builder = config.createBuilder();
+        BarSkeletonBuilder builder = MyBarSkeletonConfig.createBarSkeletonBuilder(config);
         // 开启 jsr380 验证
         builder.getSetting().setValidator(true);
 
-        // 添加控制台输出插件
-        builder.addInOut(new DebugInOut());
-
         return builder.build();
     }
-
-
 
     @Override
     public BrokerClientBuilder createBrokerClientBuilder() {

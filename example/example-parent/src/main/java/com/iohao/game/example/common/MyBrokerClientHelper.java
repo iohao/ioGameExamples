@@ -14,21 +14,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.iohao.game.example.interaction.same.hall.action;
+package com.iohao.game.example.common;
 
-import com.iohao.game.example.common.DemoModuleCmd;
+import com.iohao.game.action.skeleton.core.commumication.InvokeModuleContext;
+import com.iohao.game.action.skeleton.core.flow.FlowContext;
+import lombok.experimental.UtilityClass;
 
 /**
- * 战斗服的 cmd
- *
  * @author 渔民小镇
- * @date 2022-05-22
+ * @date 2022-08-20
  */
-public interface DemoCmdForHall {
-    /** 模块 - 主 cmd : 8 */
-    int cmd = DemoModuleCmd.demoModule_8_hall_cmd;
+@UtilityClass
+public class MyBrokerClientHelper {
 
-    /** 示例 count 方法 */
-    int count = 0;
-    int testCount = 1;
+    /**
+     * 游戏逻辑服与游戏逻辑服之间的通讯上下文
+     *
+     * @return InvokeModuleContext
+     */
+    public InvokeModuleContext getInvokeModuleContext(FlowContext flowContext) {
+        return MyInvokeModuleContext.of(flowContext);
+    }
 }

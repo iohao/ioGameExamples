@@ -19,6 +19,7 @@ package com.iohao.game.example.interaction.same;
 import com.iohao.game.bolt.broker.client.AbstractBrokerClientStartup;
 import com.iohao.game.bolt.broker.core.client.BrokerClient;
 import com.iohao.game.bolt.broker.core.client.BrokerClientBuilder;
+import com.iohao.game.bolt.broker.core.common.BrokerGlobalConfig;
 import com.iohao.game.example.interaction.same.hall.DemoSameHallLogicServer;
 import com.iohao.game.example.interaction.same.room.DemoSameRoomLogicServer;
 import com.iohao.game.simple.SimpleHelper;
@@ -31,6 +32,8 @@ import java.util.List;
  */
 public class DemoInteractionSameApplication {
     public static void main(String[] args) {
+
+        BrokerGlobalConfig.timeoutMillis = 15 * 1000;
 
         // 创建 3 个房间逻辑服
         DemoSameRoomLogicServer roomServer1 = createRoomServer(1);

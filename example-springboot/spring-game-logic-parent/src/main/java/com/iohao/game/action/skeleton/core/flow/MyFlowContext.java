@@ -14,21 +14,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.iohao.game.example.interaction.same.hall.action;
-
-import com.iohao.game.example.common.DemoModuleCmd;
+package com.iohao.game.action.skeleton.core.flow;
 
 /**
- * 战斗服的 cmd
- *
  * @author 渔民小镇
- * @date 2022-05-22
+ * @date 2022-08-20
  */
-public interface DemoCmdForHall {
-    /** 模块 - 主 cmd : 8 */
-    int cmd = DemoModuleCmd.demoModule_8_hall_cmd;
-
-    /** 示例 count 方法 */
-    int count = 0;
-    int testCount = 1;
+public class MyFlowContext extends FlowContext {
+    public String hello() {
+        return "MyFlowContext hello";
+    }
 }

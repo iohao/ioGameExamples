@@ -18,13 +18,17 @@ package com.iohao.game.example.interaction.weather.action;
 
 import com.iohao.game.action.skeleton.core.CmdInfo;
 import com.iohao.game.action.skeleton.core.commumication.BroadcastContext;
+import com.iohao.game.action.skeleton.core.flow.FlowContext;
+import com.iohao.game.action.skeleton.protocol.RequestMessage;
 import com.iohao.game.bolt.broker.core.client.BrokerClientHelper;
 import com.iohao.game.example.interaction.msg.DemoWeatherMsg;
 import com.iohao.game.action.skeleton.annotation.ActionController;
 import com.iohao.game.action.skeleton.annotation.ActionMethod;
 import com.iohao.game.example.interaction.msg.MatchMsg;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.Calendar;
+import java.util.concurrent.TimeUnit;
 
 /**
  * 天气 action
@@ -32,6 +36,7 @@ import java.util.Calendar;
  * @author 渔民小镇
  * @date 2022-03-24
  */
+@Slf4j
 @ActionController(DemoCmdForWeather.cmd)
 public class DemoWeatherAction {
     /**
@@ -40,7 +45,16 @@ public class DemoWeatherAction {
      * @return 天气响应
      */
     @ActionMethod(DemoCmdForWeather.todayWeather)
-    public DemoWeatherMsg todayWeather() {
+    public DemoWeatherMsg todayWeather(FlowContext flowContext) {
+        RequestMessage request = flowContext.getRequest();
+        log.info("request : {}", request.getClass());
+
+        try {
+            TimeUnit.SECONDS.sleep(2);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
         // 当前时间分钟
         int minute = Calendar.getInstance().get(Calendar.MINUTE);
 

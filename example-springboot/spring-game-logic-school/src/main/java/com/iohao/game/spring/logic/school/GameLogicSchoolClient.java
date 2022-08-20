@@ -19,13 +19,11 @@ package com.iohao.game.spring.logic.school;
 import com.iohao.game.action.skeleton.core.BarSkeleton;
 import com.iohao.game.action.skeleton.core.BarSkeletonBuilder;
 import com.iohao.game.action.skeleton.core.BarSkeletonBuilderParamConfig;
-import com.iohao.game.action.skeleton.core.flow.interal.DebugInOut;
 import com.iohao.game.bolt.broker.client.AbstractBrokerClientStartup;
 import com.iohao.game.bolt.broker.core.client.BrokerClient;
 import com.iohao.game.bolt.broker.core.client.BrokerClientBuilder;
-import com.iohao.game.spring.common.SendDoc;
+import com.iohao.game.spring.logic.core.MyBarSkeletonConfig;
 import com.iohao.game.spring.logic.school.action.SchoolAction;
-import com.iohao.game.spring.common.SpringGameCodeEnum;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -44,23 +42,14 @@ public class GameLogicSchoolClient extends AbstractBrokerClientStartup {
     @Override
     public BarSkeleton createBarSkeleton() {
         // 业务框架构建器 配置
-        BarSkeletonBuilderParamConfig config = new BarSkeletonBuilderParamConfig()
+        BarSkeletonBuilderParamConfig config = MyBarSkeletonConfig.createBarSkeletonBuilderParamConfig()
                 // 扫描 SchoolAction.class 所在包
-                .addActionController(SchoolAction.class)
-                // 开启广播日志
-                .setBroadcastLog(true)
-                // 异常码文档生成
-                .addErrorCode(SpringGameCodeEnum.values())
-                // 推送(广播)文档生成
-                .addActionSend(SendDoc.class);
+                .addActionController(SchoolAction.class);
 
         // 业务框架构建器
-        BarSkeletonBuilder builder = config.createBuilder();
+        BarSkeletonBuilder builder = MyBarSkeletonConfig.createBarSkeletonBuilder(config);
         // 开启 jsr380 验证
         builder.getSetting().setValidator(true);
-
-        // 添加控制台输出插件
-        builder.addInOut(new DebugInOut());
 
         return builder.build();
     }

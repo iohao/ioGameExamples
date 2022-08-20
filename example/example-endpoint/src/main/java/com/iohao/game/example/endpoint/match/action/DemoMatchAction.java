@@ -19,6 +19,7 @@ package com.iohao.game.example.endpoint.match.action;
 import com.iohao.game.action.skeleton.annotation.ActionController;
 import com.iohao.game.action.skeleton.annotation.ActionMethod;
 import com.iohao.game.action.skeleton.core.CmdInfo;
+import com.iohao.game.action.skeleton.core.commumication.InvokeModuleContext;
 import com.iohao.game.action.skeleton.core.commumication.ProcessorContext;
 import com.iohao.game.action.skeleton.core.flow.FlowContext;
 import com.iohao.game.action.skeleton.protocol.collect.ResponseCollectItemMessage;
@@ -84,8 +85,10 @@ public class DemoMatchAction {
         // 匹配请求
         // 路由：这个路由是将要访问逻辑服的路由（表示你将要去的地方）
         CmdInfo cmdInfo = CmdInfo.getCmdInfo(DemoCmdForEndPointRoom.cmd, DemoCmdForEndPointRoom.countRoom);
+        InvokeModuleContext invokeModuleContext = BrokerClientHelper.me().getInvokeModuleContext();
+
         // 根据路由信息来请求其他【同类型】的多个子服务器（其他逻辑服）数据
-        ResponseCollectMessage responseCollectMessage = flowContext.invokeModuleCollectMessage(cmdInfo);
+        ResponseCollectMessage responseCollectMessage = invokeModuleContext.invokeModuleCollectMessage(cmdInfo);
 
         // 选出房间数最少的房间逻辑服
         ResponseCollectItemMessage minItemMessage = getMinItemMessage(responseCollectMessage);

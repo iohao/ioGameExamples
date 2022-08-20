@@ -18,24 +18,10 @@
     </properties>
 
     <dependencies>
-        <!-- 引入业务PB -->
         <dependency>
             <groupId>com.iohao.example</groupId>
-            <artifactId>spring-common-pb</artifactId>
+            <artifactId>spring-game-logic-parent</artifactId>
             <version>${project.parent.version}</version>
-        </dependency>
-
-        <!-- 游戏逻辑服 https://www.yuque.com/iohao/game/ensevx#jMDuc -->
-        <dependency>
-            <groupId>com.iohao.game</groupId>
-            <artifactId>bolt-client</artifactId>
-            <version>${ioGame.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter</artifactId>
-            <version>${springboot.version}</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.hibernate.validator/hibernate-validator -->

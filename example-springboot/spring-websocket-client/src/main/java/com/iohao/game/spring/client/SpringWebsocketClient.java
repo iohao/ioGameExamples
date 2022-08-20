@@ -40,10 +40,10 @@ public class SpringWebsocketClient {
         initLoginCommand();
 
         // 请求构建
-//        initClientCommands();
+        initClientCommands();
 
         // 逻辑服间的相互通信
-//        communicationClientCommands();
+        communicationClientCommands();
 
         // 启动客户端
         WebsocketClientKit.runClient();

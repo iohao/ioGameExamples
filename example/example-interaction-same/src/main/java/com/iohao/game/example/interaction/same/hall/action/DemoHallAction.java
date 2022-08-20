@@ -20,15 +20,17 @@ import com.iohao.game.action.skeleton.annotation.ActionController;
 import com.iohao.game.action.skeleton.annotation.ActionMethod;
 import com.iohao.game.action.skeleton.core.CmdInfo;
 import com.iohao.game.action.skeleton.core.DataCodecKit;
-import com.iohao.game.action.skeleton.core.flow.FlowContext;
+import com.iohao.game.action.skeleton.core.commumication.InvokeModuleContext;
 import com.iohao.game.action.skeleton.protocol.ResponseMessage;
 import com.iohao.game.action.skeleton.protocol.collect.ResponseCollectItemMessage;
 import com.iohao.game.action.skeleton.protocol.collect.ResponseCollectMessage;
+import com.iohao.game.bolt.broker.core.client.BrokerClientHelper;
 import com.iohao.game.example.common.msg.RoomNumMsg;
 import com.iohao.game.example.interaction.same.room.action.DemoCmdForRoom;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author 渔民小镇
@@ -38,11 +40,16 @@ import java.util.List;
 @ActionController(DemoCmdForHall.cmd)
 public class DemoHallAction {
     @ActionMethod(DemoCmdForHall.count)
-    public void count(FlowContext flowContext) {
+    public void count() {
         // 路由：这个路由是将要访问逻辑服的路由（表示你将要去的地方）
         CmdInfo cmdInfo = CmdInfo.getCmdInfo(DemoCmdForRoom.cmd, DemoCmdForRoom.countRoom);
+        log.info("responseCollectMessage : before");
+
+        InvokeModuleContext invokeModuleContext = BrokerClientHelper.me().getInvokeModuleContext();
         // 根据路由信息来请求其他【同类型】的多个子服务器（其他逻辑服）数据
-        ResponseCollectMessage responseCollectMessage = flowContext.invokeModuleCollectMessage(cmdInfo);
+        ResponseCollectMessage responseCollectMessage = invokeModuleContext.invokeModuleCollectMessage(cmdInfo);
+        log.info("responseCollectMessage : {}", responseCollectMessage);
+
         // 每个逻辑服返回的数据集合
         List<ResponseCollectItemMessage> messageList = responseCollectMessage.getMessageList();
 
@@ -52,5 +59,16 @@ public class DemoHallAction {
             RoomNumMsg decode = DataCodecKit.decode(responseMessage.getData(), RoomNumMsg.class);
             log.info("responseCollectItemMessage : {} ", decode);
         }
+    }
+
+    @ActionMethod(DemoCmdForHall.testCount)
+    public int testCount() {
+        try {
+            TimeUnit.SECONDS.sleep(2);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
+        return 1;
     }
 }
