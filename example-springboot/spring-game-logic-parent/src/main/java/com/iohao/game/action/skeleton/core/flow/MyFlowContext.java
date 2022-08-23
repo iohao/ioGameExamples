@@ -22,6 +22,7 @@ package com.iohao.game.action.skeleton.core.flow;
  */
 public class MyFlowContext extends FlowContext {
     public String hello() {
+        // 在 MyFlowContext 中，扩展的方法
         return "MyFlowContext hello";
     }
 }
