@@ -17,7 +17,6 @@
 package com.iohao.game.command;
 
 import com.iohao.game.action.skeleton.core.CmdKit;
-import com.iohao.game.action.skeleton.core.flow.codec.ProtoDataCodec;
 import com.iohao.game.bolt.broker.client.external.bootstrap.message.ExternalMessage;
 import com.iohao.game.bolt.broker.client.external.bootstrap.message.ExternalMessageCmdCode;
 import com.iohao.game.common.kit.ProtoKit;
@@ -25,7 +24,10 @@ import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
 
 import java.nio.ByteBuffer;
-import java.util.*;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 /**
  * @author 渔民小镇
@@ -76,10 +78,9 @@ public class ClientCommandKit {
         // 路由
         externalMessage.setCmdMerge(cmd, subCmd);
 
+        // 业务数据
         if (object != null) {
-            // 业务数据
-            byte[] data = ProtoDataCodec.me().encode(object);
-            // 业务数据
+            byte[] data = ProtoKit.toBytes(object);
             externalMessage.setData(data);
         }
 
