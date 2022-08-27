@@ -16,12 +16,11 @@
  */
 package com.iohao.game.example.one.tcp;
 
-import com.iohao.game.action.skeleton.core.flow.codec.ProtoDataCodec;
-import com.iohao.game.example.common.msg.HelloReq;
-import com.iohao.game.common.kit.ProtoKit;
+import com.iohao.game.bolt.broker.client.external.bootstrap.ExternalKit;
 import com.iohao.game.bolt.broker.client.external.bootstrap.handler.codec.ExternalCodecSocket;
 import com.iohao.game.bolt.broker.client.external.bootstrap.message.ExternalMessage;
-import com.iohao.game.bolt.broker.client.external.bootstrap.message.ExternalMessageCmdCode;
+import com.iohao.game.common.kit.ProtoKit;
+import com.iohao.game.example.common.msg.HelloReq;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
@@ -99,22 +98,14 @@ public class DemoSocketClient {
     }
 
     private static ExternalMessage getExternalMessage() {
-        ExternalMessage request = new ExternalMessage();
-        request.setCmdCode(ExternalMessageCmdCode.biz);
-
         // 路由
         int cmd = 1;
         int subCmd = 0;
-        request.setCmdMerge(cmd, subCmd);
 
         // 业务数据
         HelloReq helloReq = new HelloReq();
         helloReq.name = "abc12";
 
-        byte[] data = ProtoDataCodec.me().encode(helloReq);
-        // 业务数据
-        request.setData(data);
-
-        return request;
+        return ExternalKit.createExternalMessage(cmd, subCmd, helloReq);
     }
 }

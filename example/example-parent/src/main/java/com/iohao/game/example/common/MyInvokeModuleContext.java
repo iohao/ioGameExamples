@@ -18,6 +18,7 @@ package com.iohao.game.example.common;
 
 import com.iohao.game.action.skeleton.core.commumication.InvokeModuleContext;
 import com.iohao.game.action.skeleton.core.flow.FlowContext;
+import com.iohao.game.action.skeleton.protocol.HeadMetadata;
 import com.iohao.game.action.skeleton.protocol.RequestMessage;
 import com.iohao.game.action.skeleton.protocol.ResponseMessage;
 import com.iohao.game.action.skeleton.protocol.collect.ResponseCollectMessage;
@@ -71,10 +72,12 @@ public class MyInvokeModuleContext implements InvokeModuleContext {
 
     private void employ(RequestMessage requestMessage) {
         // RequestMessage 把userId、headMetadata 添加上
-        byte[] attachmentData = flowContext.getRequest().getHeadMetadata().getAttachmentData();
+        HeadMetadata headMetadata = flowContext.getRequest().getHeadMetadata();
         requestMessage.getHeadMetadata()
                 .setUserId(flowContext.getUserId())
-                .setAttachmentData(attachmentData);
+                .setAttachmentData(headMetadata.getAttachmentData())
+                .setChannelId(headMetadata.getChannelId())
+        ;
     }
 
     private MyInvokeModuleContext(FlowContext flowContext) {

@@ -18,7 +18,7 @@
   <br>
 	<strong>对webMVC开发者友好</strong>
   <br>
-	<strong>部署多样性</strong>
+	<strong>可跨进程通信</strong>
 </p>
 <p align="center">
 	<a href="https://www.yuque.com/iohao/game">https://www.yuque.com/iohao/game</a>
@@ -56,12 +56,26 @@
 
 <br>
 
-# 这个仓库用于存放 ioGame 相关的使用示例
+## maven 配置指南 - 阿里云公共仓库配置
+https://developer.aliyun.com/mvn/guide
 
+```xml
+<!-- 
+打开 maven 的配置文件（ windows 机器一般在 maven 安装目录的 conf/settings.xml ），在<mirrors></mirrors>标签中添加 mirror 子节点:
+-->
+<mirror>
+  <id>aliyunmaven</id>
+  <mirrorOf>*</mirrorOf>
+  <name>阿里云公共仓库</name>
+  <url>https://maven.aliyun.com/repository/public</url>
+</mirror>
+```
 
 
 
 ## 综合示例请看
+
+这个仓库用于存放 ioGame 相关的使用示例
 
 https://www.yuque.com/iohao/game/ruaqza
 

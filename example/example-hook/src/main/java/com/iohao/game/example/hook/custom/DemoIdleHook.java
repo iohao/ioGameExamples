@@ -17,6 +17,7 @@
 package com.iohao.game.example.hook.custom;
 
 import com.iohao.game.action.skeleton.core.exception.ActionErrorEnum;
+import com.iohao.game.bolt.broker.client.external.bootstrap.ExternalKit;
 import com.iohao.game.bolt.broker.client.external.bootstrap.heart.IdleHook;
 import com.iohao.game.bolt.broker.client.external.bootstrap.message.ExternalMessage;
 import com.iohao.game.bolt.broker.client.external.bootstrap.message.ExternalMessageCmdCode;
@@ -59,7 +60,7 @@ public class DemoIdleHook implements IdleHook {
     }
 
     private void extractedExternalMessage(ChannelHandlerContext ctx, IdleState state) {
-        ExternalMessage externalMessage = new ExternalMessage();
+        ExternalMessage externalMessage = ExternalKit.createExternalMessage();
         externalMessage.setCmdCode(ExternalMessageCmdCode.idle);
         // 错误码
         externalMessage.setResponseStatus(ActionErrorEnum.idleErrorCode.getCode());

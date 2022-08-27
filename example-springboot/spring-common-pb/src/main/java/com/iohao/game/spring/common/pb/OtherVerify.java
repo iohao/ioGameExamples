@@ -14,24 +14,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.iohao.game.spring.common.cmd;
+package com.iohao.game.spring.common.pb;
+
+import com.baidu.bjf.remoting.protobuf.annotation.ProtobufClass;
+import com.iohao.game.spring.common.SpringGameProtoFile;
+import com.iohao.game.widget.light.protobuf.ProtoFileMerge;
+import jakarta.validation.constraints.NotBlank;
+import lombok.AccessLevel;
+import lombok.ToString;
+import lombok.experimental.FieldDefaults;
 
 /**
- * 这里存放所有的模块主 cmd
- *
  * @author 渔民小镇
- * @date 2022-07-09
+ * @date 2022-08-26
  */
-public interface SpringCmdModule {
-    /** 学校模块 */
-    int schoolCmd = 1;
-    /** 班级模块 */
-    int classesCmd = 2;
-    /** 大厅模块 */
-    int hallCmd = 3;
-    /** 房间的模块 */
-    int roomCmd = 4;
-    /** 其他测试 */
-    int otherSchoolCmd = 5;
-
+@ToString
+@ProtobufClass
+@FieldDefaults(level = AccessLevel.PUBLIC)
+@ProtoFileMerge(fileName = SpringGameProtoFile.COMMON_FILE_NAME, filePackage = SpringGameProtoFile.COMMON_FILE_PACKAGE)
+public class OtherVerify {
+    /** jwt */
+    @NotBlank
+    String jwt;
 }

@@ -16,6 +16,7 @@
  */
 package com.iohao.game.spring.external.limit;
 
+import com.iohao.game.bolt.broker.client.external.bootstrap.ExternalKit;
 import com.iohao.game.bolt.broker.client.external.bootstrap.message.ExternalMessage;
 import lombok.AccessLevel;
 import lombok.Setter;
@@ -38,7 +39,7 @@ public class ExternalRateLimiterBuilder {
 
     public void build() {
 
-        ExternalMessage externalMessage = new ExternalMessage();
+        ExternalMessage externalMessage = ExternalKit.createExternalMessage();
 
 
         /*

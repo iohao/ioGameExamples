@@ -21,6 +21,7 @@ import com.iohao.game.bolt.broker.client.external.bootstrap.message.ExternalMess
 import com.iohao.game.command.ClientCommandKit;
 import com.iohao.game.command.WebsocketClientKit;
 import com.iohao.game.spring.common.cmd.HallCmdModule;
+import com.iohao.game.spring.common.cmd.OtherSchoolCmdModule;
 import com.iohao.game.spring.common.cmd.SchoolCmdModule;
 import com.iohao.game.spring.common.pb.*;
 import lombok.extern.slf4j.Slf4j;
@@ -36,6 +37,7 @@ public class SpringWebsocketClient {
 
     public static void main(String[] args) throws Exception {
 
+
         // 请求构建 - 登录相关
         initLoginCommand();
 
@@ -45,8 +47,25 @@ public class SpringWebsocketClient {
         // 逻辑服间的相互通信
         communicationClientCommands();
 
+        // 其他
+        otherCommand();
+
         // 启动客户端
         WebsocketClientKit.runClient();
+    }
+
+    private static void otherCommand() {
+        OtherVerify otherVerify = new OtherVerify();
+        otherVerify.jwt = "j";
+
+        // 请求、响应
+        ExternalMessage externalMessageHere = ClientCommandKit.createExternalMessage(
+                OtherSchoolCmdModule.cmd,
+                OtherSchoolCmdModule.jsr380,
+                otherVerify
+        );
+
+        ClientCommandKit.createClientCommand(externalMessageHere);
     }
 
     private static void initLoginCommand() {
@@ -110,6 +129,7 @@ public class SpringWebsocketClient {
         schoolPb.email = "ioGame@game.com";
         schoolPb.classCapacity = 99;
         schoolPb.teacherNum = 40;
+        schoolPb.teacherNum = 70;
 
         ExternalMessage externalMessageJSR380 = ClientCommandKit.createExternalMessage(
                 SchoolCmdModule.cmd,

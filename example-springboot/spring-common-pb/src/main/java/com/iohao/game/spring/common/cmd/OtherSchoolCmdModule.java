@@ -17,21 +17,11 @@
 package com.iohao.game.spring.common.cmd;
 
 /**
- * 这里存放所有的模块主 cmd
- *
  * @author 渔民小镇
- * @date 2022-07-09
+ * @date 2022-08-26
  */
-public interface SpringCmdModule {
-    /** 学校模块 */
-    int schoolCmd = 1;
-    /** 班级模块 */
-    int classesCmd = 2;
-    /** 大厅模块 */
-    int hallCmd = 3;
-    /** 房间的模块 */
-    int roomCmd = 4;
-    /** 其他测试 */
-    int otherSchoolCmd = 5;
+public interface OtherSchoolCmdModule {
+    int cmd = SpringCmdModule.otherSchoolCmd;
 
+    int jsr380 = 1;
 }

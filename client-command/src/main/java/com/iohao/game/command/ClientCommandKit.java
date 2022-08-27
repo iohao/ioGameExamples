@@ -17,8 +17,8 @@
 package com.iohao.game.command;
 
 import com.iohao.game.action.skeleton.core.CmdKit;
+import com.iohao.game.bolt.broker.client.external.bootstrap.ExternalKit;
 import com.iohao.game.bolt.broker.client.external.bootstrap.message.ExternalMessage;
-import com.iohao.game.bolt.broker.client.external.bootstrap.message.ExternalMessageCmdCode;
 import com.iohao.game.common.kit.ProtoKit;
 import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
@@ -72,19 +72,7 @@ public class ClientCommandKit {
 
     public ExternalMessage createExternalMessage(int cmd, int subCmd, Object object) {
         // 游戏框架内置的协议， 与游戏前端相互通讯的协议
-        ExternalMessage externalMessage = new ExternalMessage();
-        // 请求命令类型: 0 心跳，1 业务
-        externalMessage.setCmdCode(ExternalMessageCmdCode.biz);
-        // 路由
-        externalMessage.setCmdMerge(cmd, subCmd);
-
-        // 业务数据
-        if (object != null) {
-            byte[] data = ProtoKit.toBytes(object);
-            externalMessage.setData(data);
-        }
-
-        return externalMessage;
+        return ExternalKit.createExternalMessage(cmd, subCmd, object);
     }
 
     public void addParseResult(int cmd, int subCmd, Class<?> resultClass) {

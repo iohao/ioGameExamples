@@ -3,6 +3,7 @@ package com.iohao.game.tank.net;
 import com.iohao.game.action.skeleton.core.flow.codec.ProtoDataCodec;
 import com.iohao.game.bolt.broker.client.external.bootstrap.message.ExternalMessage;
 import com.iohao.game.bolt.broker.client.external.bootstrap.message.ExternalMessageCmdCode;
+import com.iohao.game.bolt.broker.client.external.config.ExternalGlobalConfig;
 
 /**
  * @author 渔民小镇
@@ -37,7 +38,8 @@ public interface TankOnMessage {
 
         ExternalMessage request = new ExternalMessage();
         request.setCmdCode(ExternalMessageCmdCode.biz);
-        request.setProtocolSwitch(0);
+        // 协议开关，用于一些协议级别的开关控制，比如 安全加密校验等。 : 0 不校验
+        request.setProtocolSwitch(ExternalGlobalConfig.protocolSwitch);
 
         request.setCmdMerge(this.getCmdMerge());
 

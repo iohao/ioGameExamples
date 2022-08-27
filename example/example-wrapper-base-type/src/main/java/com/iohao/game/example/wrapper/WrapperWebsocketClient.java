@@ -17,13 +17,12 @@
 package com.iohao.game.example.wrapper;
 
 import com.iohao.game.action.skeleton.core.CmdKit;
-import com.iohao.game.action.skeleton.core.flow.codec.ProtoDataCodec;
 import com.iohao.game.action.skeleton.protocol.wrapper.IntListPb;
 import com.iohao.game.action.skeleton.protocol.wrapper.IntPb;
 import com.iohao.game.action.skeleton.protocol.wrapper.LongListPb;
 import com.iohao.game.action.skeleton.protocol.wrapper.LongPb;
+import com.iohao.game.bolt.broker.client.external.bootstrap.ExternalKit;
 import com.iohao.game.bolt.broker.client.external.bootstrap.message.ExternalMessage;
-import com.iohao.game.bolt.broker.client.external.bootstrap.message.ExternalMessageCmdCode;
 import com.iohao.game.common.kit.ProtoKit;
 import com.iohao.game.example.wrapper.action.WrapperCmd;
 import lombok.extern.slf4j.Slf4j;
@@ -220,18 +219,7 @@ public class WrapperWebsocketClient {
         int cmd = WrapperCmd.cmd;
 
         // 游戏框架内置的协议， 与游戏前端相互通讯的协议
-        ExternalMessage externalMessage = new ExternalMessage();
-        // 请求命令类型: 0 心跳，1 业务
-        externalMessage.setCmdCode(ExternalMessageCmdCode.biz);
-        // 路由
-        externalMessage.setCmdMerge(cmd, subCmd);
-
-        // 业务数据
-        byte[] data = ProtoDataCodec.me().encode(object);
-        // 业务数据
-        externalMessage.setData(data);
-
-        return externalMessage;
+        return ExternalKit.createExternalMessage(cmd, subCmd, object);
     }
 
     class TheCommand {

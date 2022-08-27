@@ -16,11 +16,10 @@
  */
 package com.iohao.game.example.one.tcp.other;
 
-import com.iohao.game.action.skeleton.core.flow.codec.ProtoDataCodec;
-import com.iohao.game.example.common.msg.HelloReq;
+import com.iohao.game.bolt.broker.client.external.bootstrap.ExternalKit;
 import com.iohao.game.bolt.broker.client.external.bootstrap.handler.codec.ExternalCodecSocket;
 import com.iohao.game.bolt.broker.client.external.bootstrap.message.ExternalMessage;
-import com.iohao.game.bolt.broker.client.external.bootstrap.message.ExternalMessageCmdCode;
+import com.iohao.game.example.common.msg.HelloReq;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.embedded.EmbeddedChannel;
 import io.netty.handler.logging.LogLevel;
@@ -50,23 +49,17 @@ public class TestExternalCodec {
     }
 
     private static ExternalMessage getExternalMessage() {
-        ExternalMessage request = new ExternalMessage();
-        request.setCmdCode(ExternalMessageCmdCode.biz);
-
         // 路由
         int cmd = 1;
         int subCmd = 1;
-        request.setCmdMerge(cmd, subCmd);
-
         // 业务数据
         HelloReq helloReq = new HelloReq();
         helloReq.name = "abc1";
 
-        byte[] data = ProtoDataCodec.me().encode(helloReq);
-        // 业务数据
-        request.setData(data);
+        ExternalMessage request = ExternalKit.createExternalMessage(cmd, subCmd, helloReq);
 
         log.info("{}", request);
+
         return request;
     }
 
