@@ -38,6 +38,8 @@ import java.util.List;
 /**
  * 综合示例一键启动类
  * <p>
+ * 文档： https://www.yuque.com/iohao/game/ruaqza
+ * <p>
  * 示例涉及如下知识点
  * <pre>
  * JSR380
@@ -134,9 +136,5 @@ public class SpringGameOneApplication {
         // 如果字段赋值了，就不会使用 BrokerClientStartup.createBrokerClientBuilder() 接口的值
         sameRoomLogicClient.setBrokerClientBuilder(brokerClientBuilder);
         return sameRoomLogicClient;
-    }
-
-    private static void check() {
-
     }
 }
