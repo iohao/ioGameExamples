@@ -14,26 +14,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.iohao.game.collect.proto.tank;
+package com.iohao.game.spring.logic.interaction.same.room.multi.server;
 
-import com.baidu.bjf.remoting.protobuf.annotation.ProtobufClass;
-import com.iohao.game.collect.proto.GameProtoFile;
-import com.iohao.game.widget.light.protobuf.ProtoFileMerge;
+import com.iohao.game.bolt.broker.client.BrokerClientApplication;
+import com.iohao.game.spring.logic.interaction.same.room.SameRoomLogicClient;
+import com.iohao.game.spring.logic.interaction.same.room.SameRoomLogicClientApplication;
 import lombok.AccessLevel;
-import lombok.ToString;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.experimental.FieldDefaults;
-
-import java.util.List;
 
 /**
  * @author 渔民小镇
- * @date 2022-07-13
+ * @date 2022-09-05
  */
-@ProtobufClass
-@ToString
-@FieldDefaults(level = AccessLevel.PUBLIC)
-@ProtoFileMerge(fileName = GameProtoFile.TANK_FILE_NAME, filePackage = GameProtoFile.TANK_FILE_PACKAGE)
-public class TheHelloMessage {
-    int amount;
-    List<Long> userIds;
+public class SameRoomLogicClient1 {
+    public static void main(String[] args) {
+        Thread.currentThread().setName("abccc java");
+        SameRoomLogicClient roomLogicClient = SameRoomLogicClientApplication.createRoomLogicClient(1);
+
+        BrokerClientApplication.start(roomLogicClient);
+    }
 }

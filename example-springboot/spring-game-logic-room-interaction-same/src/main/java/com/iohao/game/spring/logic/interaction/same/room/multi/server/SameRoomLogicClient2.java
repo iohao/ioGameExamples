@@ -14,17 +14,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.iohao.game.spring.common.cmd;
+package com.iohao.game.spring.logic.interaction.same.room.multi.server;
+
+import com.iohao.game.bolt.broker.client.BrokerClientApplication;
+import com.iohao.game.spring.logic.interaction.same.room.SameRoomLogicClient;
+import com.iohao.game.spring.logic.interaction.same.room.SameRoomLogicClientApplication;
 
 /**
- * 房间的模块
- *
  * @author 渔民小镇
- * @date 2022-08-12
+ * @date 2022-09-05
  */
-public interface RoomCmdModule {
-    int cmd = SpringCmdModule.roomCmd;
-    /** 统计房间的数量 */
-    int countRoom = 1;
-    int helloRoom = 2;
+public class SameRoomLogicClient2 {
+    public static void main(String[] args) {
+        SameRoomLogicClient roomLogicClient = SameRoomLogicClientApplication.createRoomLogicClient(2);
+
+        BrokerClientApplication.start(roomLogicClient);
+    }
 }

@@ -18,8 +18,14 @@ package com.iohao.game.spring.logic.interaction.same.room.action;
 
 import com.iohao.game.action.skeleton.annotation.ActionController;
 import com.iohao.game.action.skeleton.annotation.ActionMethod;
+import com.iohao.game.action.skeleton.core.commumication.BrokerClientContext;
+import com.iohao.game.action.skeleton.core.flow.FlowContext;
+import com.iohao.game.action.skeleton.core.flow.attr.FlowAttr;
+import com.iohao.game.bolt.broker.core.client.BrokerClient;
 import com.iohao.game.spring.common.cmd.RoomCmdModule;
+import com.iohao.game.spring.common.pb.OtherVerify;
 import com.iohao.game.spring.common.pb.RoomNumPb;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -29,6 +35,7 @@ import java.util.concurrent.ThreadLocalRandom;
  * @author 渔民小镇
  * @date 2022-07-30
  */
+@Slf4j
 @ActionController(RoomCmdModule.cmd)
 public class RoomAction {
     /**
@@ -48,5 +55,18 @@ public class RoomAction {
         roomNumMsg.roomCount = anInt;
 
         return roomNumMsg;
+    }
+
+    @ActionMethod(RoomCmdModule.helloRoom)
+    public OtherVerify helloRoom(FlowContext flowContext) {
+        BrokerClient brokerClient = (BrokerClient) flowContext.option(FlowAttr.brokerClientContext);
+        String id = brokerClient.getId();
+        log.info("id : {}", id);
+
+        // 随意测试的方法
+        OtherVerify otherVerify = new OtherVerify();
+        otherVerify.jwt = id;
+
+        return otherVerify;
     }
 }

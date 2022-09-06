@@ -33,7 +33,7 @@ public class SameRoomLogicClientApplication {
         BrokerClientApplication.start(roomLogicClient2);
     }
 
-    private static SameRoomLogicClient createRoomLogicClient(int id) {
+    public static SameRoomLogicClient createRoomLogicClient(int id) {
         // BrokerClient 构建器，房间逻辑服的信息
         BrokerClientBuilder brokerClientBuilder = BrokerClient.newBuilder()
                 // 逻辑服的唯一 id

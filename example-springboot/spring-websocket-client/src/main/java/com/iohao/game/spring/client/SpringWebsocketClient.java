@@ -22,6 +22,7 @@ import com.iohao.game.command.ClientCommandKit;
 import com.iohao.game.command.WebsocketClientKit;
 import com.iohao.game.spring.common.cmd.HallCmdModule;
 import com.iohao.game.spring.common.cmd.OtherSchoolCmdModule;
+import com.iohao.game.spring.common.cmd.RoomCmdModule;
 import com.iohao.game.spring.common.cmd.SchoolCmdModule;
 import com.iohao.game.spring.common.pb.*;
 import lombok.extern.slf4j.Slf4j;
@@ -39,13 +40,13 @@ public class SpringWebsocketClient {
 
 
         // 请求构建 - 登录相关
-        initLoginCommand();
+//        initLoginCommand();
 
         // 请求构建
-        initClientCommands();
-
-        // 逻辑服间的相互通信
-        communicationClientCommands();
+//        initClientCommands();
+//
+//        // 逻辑服间的相互通信
+//        communicationClientCommands();
 
         // 其他
         otherCommand();
@@ -55,17 +56,14 @@ public class SpringWebsocketClient {
     }
 
     private static void otherCommand() {
-        OtherVerify otherVerify = new OtherVerify();
-        otherVerify.jwt = "j";
 
         // 请求、响应
-        ExternalMessage externalMessageHere = ClientCommandKit.createExternalMessage(
-                OtherSchoolCmdModule.cmd,
-                OtherSchoolCmdModule.jsr380,
-                otherVerify
+        ExternalMessage externalMessageHelloRoom = ClientCommandKit.createExternalMessage(
+                RoomCmdModule.cmd,
+                RoomCmdModule.helloRoom
         );
 
-        ClientCommandKit.createClientCommand(externalMessageHere);
+        ClientCommandKit.createClientCommand(externalMessageHelloRoom, OtherVerify.class);
     }
 
     private static void initLoginCommand() {
@@ -75,7 +73,6 @@ public class SpringWebsocketClient {
          *       交由测试请求端来控制
          *
          *       ------------业务码说明------------------
-         *
          *       当业务码为 【0】时 (相当于号已经在线上了，不能重复登录)
          *       如果游戏对外服已经有该玩家的连接了，就抛异常，告诉请求端玩家已经在线。
          *       否则就正常登录成功
@@ -182,6 +179,17 @@ public class SpringWebsocketClient {
         ClientCommandKit.createClientCommand(externalMessageIntPbWrapper, IntPb.class);
 
 
+        OtherVerify otherVerify = new OtherVerify();
+        otherVerify.jwt = "j";
+
+        // 请求、响应
+        ExternalMessage externalMessageJsr380 = ClientCommandKit.createExternalMessage(
+                OtherSchoolCmdModule.cmd,
+                OtherSchoolCmdModule.jsr380,
+                otherVerify
+        );
+
+        ClientCommandKit.createClientCommand(externalMessageJsr380);
     }
 
     private static void communicationClientCommands() {
