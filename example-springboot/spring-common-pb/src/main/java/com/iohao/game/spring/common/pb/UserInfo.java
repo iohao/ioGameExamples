@@ -39,6 +39,7 @@ public class UserInfo {
     /** 用户名 */
     String name;
 
-    int tempInt;
-    long time;
+    Integer tempInt;
+    /** userInfo Long */
+    Long time;
 }

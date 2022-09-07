@@ -20,7 +20,7 @@ public final class BizProto {
 
     /**
      * <pre>
-     * age 测试用的
+     * age 测试用的,Integer
      * </pre>
      *
      * <code>int32 age = 1;</code>
@@ -29,6 +29,10 @@ public final class BizProto {
     int getAge();
 
     /**
+     * <pre>
+     * Long
+     * </pre>
+     *
      * <code>int64 time = 2;</code>
      * @return The time.
      */
@@ -171,7 +175,7 @@ public final class BizProto {
     private int age_;
     /**
      * <pre>
-     * age 测试用的
+     * age 测试用的,Integer
      * </pre>
      *
      * <code>int32 age = 1;</code>
@@ -185,6 +189,10 @@ public final class BizProto {
     public static final int TIME_FIELD_NUMBER = 2;
     private long time_;
     /**
+     * <pre>
+     * Long
+     * </pre>
+     *
      * <code>int64 time = 2;</code>
      * @return The time.
      */
@@ -615,7 +623,7 @@ public final class BizProto {
       private int age_ ;
       /**
        * <pre>
-       * age 测试用的
+       * age 测试用的,Integer
        * </pre>
        *
        * <code>int32 age = 1;</code>
@@ -627,7 +635,7 @@ public final class BizProto {
       }
       /**
        * <pre>
-       * age 测试用的
+       * age 测试用的,Integer
        * </pre>
        *
        * <code>int32 age = 1;</code>
@@ -642,7 +650,7 @@ public final class BizProto {
       }
       /**
        * <pre>
-       * age 测试用的
+       * age 测试用的,Integer
        * </pre>
        *
        * <code>int32 age = 1;</code>
@@ -657,6 +665,10 @@ public final class BizProto {
 
       private long time_ ;
       /**
+       * <pre>
+       * Long
+       * </pre>
+       *
        * <code>int64 time = 2;</code>
        * @return The time.
        */
@@ -665,6 +677,10 @@ public final class BizProto {
         return time_;
       }
       /**
+       * <pre>
+       * Long
+       * </pre>
+       *
        * <code>int64 time = 2;</code>
        * @param value The time to set.
        * @return This builder for chaining.
@@ -676,6 +692,10 @@ public final class BizProto {
         return this;
       }
       /**
+       * <pre>
+       * Long
+       * </pre>
+       *
        * <code>int64 time = 2;</code>
        * @return This builder for chaining.
        */
@@ -918,6 +938,10 @@ public final class BizProto {
     int getTempInt();
 
     /**
+     * <pre>
+     * userInfo Long
+     * </pre>
+     *
      * <code>int64 time = 4;</code>
      * @return The time.
      */
@@ -1101,6 +1125,10 @@ public final class BizProto {
     public static final int TIME_FIELD_NUMBER = 4;
     private long time_;
     /**
+     * <pre>
+     * userInfo Long
+     * </pre>
+     *
      * <code>int64 time = 4;</code>
      * @return The time.
      */
@@ -1640,6 +1668,10 @@ public final class BizProto {
 
       private long time_ ;
       /**
+       * <pre>
+       * userInfo Long
+       * </pre>
+       *
        * <code>int64 time = 4;</code>
        * @return The time.
        */
@@ -1648,6 +1680,10 @@ public final class BizProto {
         return time_;
       }
       /**
+       * <pre>
+       * userInfo Long
+       * </pre>
+       *
        * <code>int64 time = 4;</code>
        * @param value The time to set.
        * @return This builder for chaining.
@@ -1659,6 +1695,10 @@ public final class BizProto {
         return this;
       }
       /**
+       * <pre>
+       * userInfo Long
+       * </pre>
+       *
        * <code>int64 time = 4;</code>
        * @return This builder for chaining.
        */

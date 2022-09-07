@@ -34,9 +34,10 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PUBLIC)
 @ProtoFileMerge(fileName = SpringGameProtoFile.COMMON_FILE_NAME, filePackage = SpringGameProtoFile.COMMON_FILE_PACKAGE)
 public class LoginVerify {
-    /** age 测试用的 */
-    int age;
-    long time;
+    /** age 测试用的,Integer */
+    Integer age;
+    /** Long */
+    Long time;
     /** jwt */
     String jwt;
 
