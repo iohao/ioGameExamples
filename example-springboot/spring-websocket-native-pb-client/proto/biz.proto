@@ -23,39 +23,16 @@ option java_outer_classname = "BizProto";
 //
 //}
 
-//// 登录信息
-//message LoginVerify {
-//  // age 测试用的
-//  int32 age = 1;
-//  int64 time = 2;
-//  // jwt
-//  string jwt = 3;
-//  // 登录业务码
-//  int32 loginBizCode = 4;
-//
-//}
-//
-//// 用户信息
-//message UserInfo {
-//  // id
-//  int64 id = 1;
-//  // 用户名
-//  string name = 2;
-//  int32 tempInt = 3;
-//  int64 time = 4;
-//
-//}
-
 // 登录信息
 message LoginVerify {
   // age 测试用的,Integer
   int32 age = 1;
-  // Long
-  int64 time = 2;
   // jwt
-  string jwt = 3;
+  string jwt = 2;
   // 登录业务码
-  int32 loginBizCode = 4;
+  int32 loginBizCode = 3;
+  // Long
+  int64 time = 4;
 
 }
 
@@ -70,3 +47,4 @@ message UserInfo {
   int64 time = 4;
 
 }
+
