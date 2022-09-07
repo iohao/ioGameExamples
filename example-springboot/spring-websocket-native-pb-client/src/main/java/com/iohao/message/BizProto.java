@@ -20,7 +20,7 @@ public final class BizProto {
 
     /**
      * <pre>
-     * age
+     * age 测试用的
      * </pre>
      *
      * <code>int32 age = 1;</code>
@@ -29,11 +29,17 @@ public final class BizProto {
     int getAge();
 
     /**
+     * <code>int64 time = 2;</code>
+     * @return The time.
+     */
+    long getTime();
+
+    /**
      * <pre>
      * jwt
      * </pre>
      *
-     * <code>string jwt = 2;</code>
+     * <code>string jwt = 3;</code>
      * @return The jwt.
      */
     java.lang.String getJwt();
@@ -42,7 +48,7 @@ public final class BizProto {
      * jwt
      * </pre>
      *
-     * <code>string jwt = 2;</code>
+     * <code>string jwt = 3;</code>
      * @return The bytes for jwt.
      */
     com.google.protobuf.ByteString
@@ -53,7 +59,7 @@ public final class BizProto {
      * 登录业务码
      * </pre>
      *
-     * <code>int32 loginBizCode = 3;</code>
+     * <code>int32 loginBizCode = 4;</code>
      * @return The loginBizCode.
      */
     int getLoginBizCode();
@@ -113,13 +119,18 @@ public final class BizProto {
               age_ = input.readInt32();
               break;
             }
-            case 18: {
+            case 16: {
+
+              time_ = input.readInt64();
+              break;
+            }
+            case 26: {
               java.lang.String s = input.readStringRequireUtf8();
 
               jwt_ = s;
               break;
             }
-            case 24: {
+            case 32: {
 
               loginBizCode_ = input.readInt32();
               break;
@@ -160,7 +171,7 @@ public final class BizProto {
     private int age_;
     /**
      * <pre>
-     * age
+     * age 测试用的
      * </pre>
      *
      * <code>int32 age = 1;</code>
@@ -171,14 +182,25 @@ public final class BizProto {
       return age_;
     }
 
-    public static final int JWT_FIELD_NUMBER = 2;
+    public static final int TIME_FIELD_NUMBER = 2;
+    private long time_;
+    /**
+     * <code>int64 time = 2;</code>
+     * @return The time.
+     */
+    @java.lang.Override
+    public long getTime() {
+      return time_;
+    }
+
+    public static final int JWT_FIELD_NUMBER = 3;
     private volatile java.lang.Object jwt_;
     /**
      * <pre>
      * jwt
      * </pre>
      *
-     * <code>string jwt = 2;</code>
+     * <code>string jwt = 3;</code>
      * @return The jwt.
      */
     @java.lang.Override
@@ -199,7 +221,7 @@ public final class BizProto {
      * jwt
      * </pre>
      *
-     * <code>string jwt = 2;</code>
+     * <code>string jwt = 3;</code>
      * @return The bytes for jwt.
      */
     @java.lang.Override
@@ -217,14 +239,14 @@ public final class BizProto {
       }
     }
 
-    public static final int LOGINBIZCODE_FIELD_NUMBER = 3;
+    public static final int LOGINBIZCODE_FIELD_NUMBER = 4;
     private int loginBizCode_;
     /**
      * <pre>
      * 登录业务码
      * </pre>
      *
-     * <code>int32 loginBizCode = 3;</code>
+     * <code>int32 loginBizCode = 4;</code>
      * @return The loginBizCode.
      */
     @java.lang.Override
@@ -249,11 +271,14 @@ public final class BizProto {
       if (age_ != 0) {
         output.writeInt32(1, age_);
       }
+      if (time_ != 0L) {
+        output.writeInt64(2, time_);
+      }
       if (!getJwtBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, jwt_);
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, jwt_);
       }
       if (loginBizCode_ != 0) {
-        output.writeInt32(3, loginBizCode_);
+        output.writeInt32(4, loginBizCode_);
       }
       unknownFields.writeTo(output);
     }
@@ -268,12 +293,16 @@ public final class BizProto {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(1, age_);
       }
+      if (time_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(2, time_);
+      }
       if (!getJwtBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, jwt_);
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, jwt_);
       }
       if (loginBizCode_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(3, loginBizCode_);
+          .computeInt32Size(4, loginBizCode_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -292,6 +321,8 @@ public final class BizProto {
 
       if (getAge()
           != other.getAge()) return false;
+      if (getTime()
+          != other.getTime()) return false;
       if (!getJwt()
           .equals(other.getJwt())) return false;
       if (getLoginBizCode()
@@ -309,6 +340,9 @@ public final class BizProto {
       hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + AGE_FIELD_NUMBER;
       hash = (53 * hash) + getAge();
+      hash = (37 * hash) + TIME_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getTime());
       hash = (37 * hash) + JWT_FIELD_NUMBER;
       hash = (53 * hash) + getJwt().hashCode();
       hash = (37 * hash) + LOGINBIZCODE_FIELD_NUMBER;
@@ -452,6 +486,8 @@ public final class BizProto {
         super.clear();
         age_ = 0;
 
+        time_ = 0L;
+
         jwt_ = "";
 
         loginBizCode_ = 0;
@@ -483,6 +519,7 @@ public final class BizProto {
       public com.iohao.message.BizProto.LoginVerify buildPartial() {
         com.iohao.message.BizProto.LoginVerify result = new com.iohao.message.BizProto.LoginVerify(this);
         result.age_ = age_;
+        result.time_ = time_;
         result.jwt_ = jwt_;
         result.loginBizCode_ = loginBizCode_;
         onBuilt();
@@ -536,6 +573,9 @@ public final class BizProto {
         if (other.getAge() != 0) {
           setAge(other.getAge());
         }
+        if (other.getTime() != 0L) {
+          setTime(other.getTime());
+        }
         if (!other.getJwt().isEmpty()) {
           jwt_ = other.jwt_;
           onChanged();
@@ -575,7 +615,7 @@ public final class BizProto {
       private int age_ ;
       /**
        * <pre>
-       * age
+       * age 测试用的
        * </pre>
        *
        * <code>int32 age = 1;</code>
@@ -587,7 +627,7 @@ public final class BizProto {
       }
       /**
        * <pre>
-       * age
+       * age 测试用的
        * </pre>
        *
        * <code>int32 age = 1;</code>
@@ -602,7 +642,7 @@ public final class BizProto {
       }
       /**
        * <pre>
-       * age
+       * age 测试用的
        * </pre>
        *
        * <code>int32 age = 1;</code>
@@ -615,13 +655,44 @@ public final class BizProto {
         return this;
       }
 
+      private long time_ ;
+      /**
+       * <code>int64 time = 2;</code>
+       * @return The time.
+       */
+      @java.lang.Override
+      public long getTime() {
+        return time_;
+      }
+      /**
+       * <code>int64 time = 2;</code>
+       * @param value The time to set.
+       * @return This builder for chaining.
+       */
+      public Builder setTime(long value) {
+        
+        time_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int64 time = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearTime() {
+        
+        time_ = 0L;
+        onChanged();
+        return this;
+      }
+
       private java.lang.Object jwt_ = "";
       /**
        * <pre>
        * jwt
        * </pre>
        *
-       * <code>string jwt = 2;</code>
+       * <code>string jwt = 3;</code>
        * @return The jwt.
        */
       public java.lang.String getJwt() {
@@ -641,7 +712,7 @@ public final class BizProto {
        * jwt
        * </pre>
        *
-       * <code>string jwt = 2;</code>
+       * <code>string jwt = 3;</code>
        * @return The bytes for jwt.
        */
       public com.google.protobuf.ByteString
@@ -662,7 +733,7 @@ public final class BizProto {
        * jwt
        * </pre>
        *
-       * <code>string jwt = 2;</code>
+       * <code>string jwt = 3;</code>
        * @param value The jwt to set.
        * @return This builder for chaining.
        */
@@ -681,7 +752,7 @@ public final class BizProto {
        * jwt
        * </pre>
        *
-       * <code>string jwt = 2;</code>
+       * <code>string jwt = 3;</code>
        * @return This builder for chaining.
        */
       public Builder clearJwt() {
@@ -695,7 +766,7 @@ public final class BizProto {
        * jwt
        * </pre>
        *
-       * <code>string jwt = 2;</code>
+       * <code>string jwt = 3;</code>
        * @param value The bytes for jwt to set.
        * @return This builder for chaining.
        */
@@ -717,7 +788,7 @@ public final class BizProto {
        * 登录业务码
        * </pre>
        *
-       * <code>int32 loginBizCode = 3;</code>
+       * <code>int32 loginBizCode = 4;</code>
        * @return The loginBizCode.
        */
       @java.lang.Override
@@ -729,7 +800,7 @@ public final class BizProto {
        * 登录业务码
        * </pre>
        *
-       * <code>int32 loginBizCode = 3;</code>
+       * <code>int32 loginBizCode = 4;</code>
        * @param value The loginBizCode to set.
        * @return This builder for chaining.
        */
@@ -744,7 +815,7 @@ public final class BizProto {
        * 登录业务码
        * </pre>
        *
-       * <code>int32 loginBizCode = 3;</code>
+       * <code>int32 loginBizCode = 4;</code>
        * @return This builder for chaining.
        */
       public Builder clearLoginBizCode() {
@@ -815,7 +886,7 @@ public final class BizProto {
      * id
      * </pre>
      *
-     * <code>sint64 id = 1;</code>
+     * <code>int64 id = 1;</code>
      * @return The id.
      */
     long getId();
@@ -841,10 +912,16 @@ public final class BizProto {
         getNameBytes();
 
     /**
-     * <code>sint32 tempInt = 3;</code>
+     * <code>int32 tempInt = 3;</code>
      * @return The tempInt.
      */
     int getTempInt();
+
+    /**
+     * <code>int64 time = 4;</code>
+     * @return The time.
+     */
+    long getTime();
   }
   /**
    * <pre>
@@ -898,7 +975,7 @@ public final class BizProto {
               break;
             case 8: {
 
-              id_ = input.readSInt64();
+              id_ = input.readInt64();
               break;
             }
             case 18: {
@@ -909,7 +986,12 @@ public final class BizProto {
             }
             case 24: {
 
-              tempInt_ = input.readSInt32();
+              tempInt_ = input.readInt32();
+              break;
+            }
+            case 32: {
+
+              time_ = input.readInt64();
               break;
             }
             default: {
@@ -951,7 +1033,7 @@ public final class BizProto {
      * id
      * </pre>
      *
-     * <code>sint64 id = 1;</code>
+     * <code>int64 id = 1;</code>
      * @return The id.
      */
     @java.lang.Override
@@ -1008,12 +1090,23 @@ public final class BizProto {
     public static final int TEMPINT_FIELD_NUMBER = 3;
     private int tempInt_;
     /**
-     * <code>sint32 tempInt = 3;</code>
+     * <code>int32 tempInt = 3;</code>
      * @return The tempInt.
      */
     @java.lang.Override
     public int getTempInt() {
       return tempInt_;
+    }
+
+    public static final int TIME_FIELD_NUMBER = 4;
+    private long time_;
+    /**
+     * <code>int64 time = 4;</code>
+     * @return The time.
+     */
+    @java.lang.Override
+    public long getTime() {
+      return time_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -1031,13 +1124,16 @@ public final class BizProto {
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (id_ != 0L) {
-        output.writeSInt64(1, id_);
+        output.writeInt64(1, id_);
       }
       if (!getNameBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, name_);
       }
       if (tempInt_ != 0) {
-        output.writeSInt32(3, tempInt_);
+        output.writeInt32(3, tempInt_);
+      }
+      if (time_ != 0L) {
+        output.writeInt64(4, time_);
       }
       unknownFields.writeTo(output);
     }
@@ -1050,14 +1146,18 @@ public final class BizProto {
       size = 0;
       if (id_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
-          .computeSInt64Size(1, id_);
+          .computeInt64Size(1, id_);
       }
       if (!getNameBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, name_);
       }
       if (tempInt_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeSInt32Size(3, tempInt_);
+          .computeInt32Size(3, tempInt_);
+      }
+      if (time_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(4, time_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -1080,6 +1180,8 @@ public final class BizProto {
           .equals(other.getName())) return false;
       if (getTempInt()
           != other.getTempInt()) return false;
+      if (getTime()
+          != other.getTime()) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
@@ -1098,6 +1200,9 @@ public final class BizProto {
       hash = (53 * hash) + getName().hashCode();
       hash = (37 * hash) + TEMPINT_FIELD_NUMBER;
       hash = (53 * hash) + getTempInt();
+      hash = (37 * hash) + TIME_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getTime());
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -1241,6 +1346,8 @@ public final class BizProto {
 
         tempInt_ = 0;
 
+        time_ = 0L;
+
         return this;
       }
 
@@ -1270,6 +1377,7 @@ public final class BizProto {
         result.id_ = id_;
         result.name_ = name_;
         result.tempInt_ = tempInt_;
+        result.time_ = time_;
         onBuilt();
         return result;
       }
@@ -1328,6 +1436,9 @@ public final class BizProto {
         if (other.getTempInt() != 0) {
           setTempInt(other.getTempInt());
         }
+        if (other.getTime() != 0L) {
+          setTime(other.getTime());
+        }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
         return this;
@@ -1363,7 +1474,7 @@ public final class BizProto {
        * id
        * </pre>
        *
-       * <code>sint64 id = 1;</code>
+       * <code>int64 id = 1;</code>
        * @return The id.
        */
       @java.lang.Override
@@ -1375,7 +1486,7 @@ public final class BizProto {
        * id
        * </pre>
        *
-       * <code>sint64 id = 1;</code>
+       * <code>int64 id = 1;</code>
        * @param value The id to set.
        * @return This builder for chaining.
        */
@@ -1390,7 +1501,7 @@ public final class BizProto {
        * id
        * </pre>
        *
-       * <code>sint64 id = 1;</code>
+       * <code>int64 id = 1;</code>
        * @return This builder for chaining.
        */
       public Builder clearId() {
@@ -1498,7 +1609,7 @@ public final class BizProto {
 
       private int tempInt_ ;
       /**
-       * <code>sint32 tempInt = 3;</code>
+       * <code>int32 tempInt = 3;</code>
        * @return The tempInt.
        */
       @java.lang.Override
@@ -1506,7 +1617,7 @@ public final class BizProto {
         return tempInt_;
       }
       /**
-       * <code>sint32 tempInt = 3;</code>
+       * <code>int32 tempInt = 3;</code>
        * @param value The tempInt to set.
        * @return This builder for chaining.
        */
@@ -1517,12 +1628,43 @@ public final class BizProto {
         return this;
       }
       /**
-       * <code>sint32 tempInt = 3;</code>
+       * <code>int32 tempInt = 3;</code>
        * @return This builder for chaining.
        */
       public Builder clearTempInt() {
         
         tempInt_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private long time_ ;
+      /**
+       * <code>int64 time = 4;</code>
+       * @return The time.
+       */
+      @java.lang.Override
+      public long getTime() {
+        return time_;
+      }
+      /**
+       * <code>int64 time = 4;</code>
+       * @param value The time to set.
+       * @return This builder for chaining.
+       */
+      public Builder setTime(long value) {
+        
+        time_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int64 time = 4;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearTime() {
+        
+        time_ = 0L;
         onChanged();
         return this;
       }
@@ -1598,11 +1740,12 @@ public final class BizProto {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\017proto/biz.proto\022\021com.iohao.message\"=\n\013" +
-      "LoginVerify\022\013\n\003age\030\001 \001(\005\022\013\n\003jwt\030\002 \001(\t\022\024\n" +
-      "\014loginBizCode\030\003 \001(\005\"5\n\010UserInfo\022\n\n\002id\030\001 " +
-      "\001(\022\022\014\n\004name\030\002 \001(\t\022\017\n\007tempInt\030\003 \001(\021B\nB\010Bi" +
-      "zProtob\006proto3"
+      "\n\017proto/biz.proto\022\021com.iohao.message\"K\n\013" +
+      "LoginVerify\022\013\n\003age\030\001 \001(\005\022\014\n\004time\030\002 \001(\003\022\013" +
+      "\n\003jwt\030\003 \001(\t\022\024\n\014loginBizCode\030\004 \001(\005\"C\n\010Use" +
+      "rInfo\022\n\n\002id\030\001 \001(\003\022\014\n\004name\030\002 \001(\t\022\017\n\007tempI" +
+      "nt\030\003 \001(\005\022\014\n\004time\030\004 \001(\003B\nB\010BizProtob\006prot" +
+      "o3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -1613,13 +1756,13 @@ public final class BizProto {
     internal_static_com_iohao_message_LoginVerify_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_com_iohao_message_LoginVerify_descriptor,
-        new java.lang.String[] { "Age", "Jwt", "LoginBizCode", });
+        new java.lang.String[] { "Age", "Time", "Jwt", "LoginBizCode", });
     internal_static_com_iohao_message_UserInfo_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_com_iohao_message_UserInfo_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_com_iohao_message_UserInfo_descriptor,
-        new java.lang.String[] { "Id", "Name", "TempInt", });
+        new java.lang.String[] { "Id", "Name", "TempInt", "Time", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

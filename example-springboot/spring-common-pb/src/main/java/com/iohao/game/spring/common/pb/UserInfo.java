@@ -40,4 +40,5 @@ public class UserInfo {
     String name;
 
     int tempInt;
+    long time;
 }

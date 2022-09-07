@@ -64,6 +64,9 @@ public class LoginAction {
 
         // 通过 jwt，得到用户（玩家）数据
         UserInfo userInfo = getUserInfoByJwt(loginVerify.jwt);
+        userInfo.tempInt = loginVerify.age;
+        userInfo.time = loginVerify.time;
+
         long userId = userInfo.id;
 
         if (loginBizCode == 0) {

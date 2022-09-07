@@ -36,6 +36,7 @@ import lombok.experimental.FieldDefaults;
 public class LoginVerify {
     /** age 测试用的 */
     int age;
+    long time;
     /** jwt */
     String jwt;
 

@@ -44,9 +44,13 @@ public class WebsocketNativeProtoClientKit {
         WebSocketClient webSocketClient = new WebSocketClient(new URI(wsUrl), new Draft_6455()) {
             @Override
             public void onOpen(ServerHandshake handshakedata) {
+                long maxValue = Long.MAX_VALUE - 1;
+                log.info("Long.MAX_VALUE-1 : {}",maxValue);
 
                 BizProto.LoginVerify loginVerify = BizProto.LoginVerify.newBuilder()
-                        .setAge(273676)
+//                        .setAge(273676)
+                        .setAge(9120)
+                        .setTime(maxValue)
                         .setJwt("abcd")
                         .setLoginBizCode(1)
                         .build();
