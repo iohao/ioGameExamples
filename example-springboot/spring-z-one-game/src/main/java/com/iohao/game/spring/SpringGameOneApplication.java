@@ -19,6 +19,7 @@ package com.iohao.game.spring;
 import com.iohao.game.action.skeleton.ext.spring.ActionFactoryBeanForSpring;
 import com.iohao.game.bolt.broker.client.AbstractBrokerClientStartup;
 import com.iohao.game.bolt.broker.client.external.ExternalServer;
+import com.iohao.game.bolt.broker.client.external.config.ExternalGlobalConfig;
 import com.iohao.game.bolt.broker.core.client.BrokerClient;
 import com.iohao.game.bolt.broker.core.client.BrokerClientBuilder;
 import com.iohao.game.bolt.broker.server.BrokerServer;
@@ -113,6 +114,8 @@ public class SpringGameOneApplication {
         // spring 集成 https://www.yuque.com/iohao/game/evkgnz
 
         // 客户端模拟类 SpringWebsocketClient.java
+
+        ExternalGlobalConfig.accessAuthenticationHook.setVerifyIdentity(false);
     }
 
     @Bean

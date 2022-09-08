@@ -18,7 +18,9 @@ package com.iohao.game.spring.logic.school.action;
 
 import com.iohao.game.action.skeleton.annotation.ActionController;
 import com.iohao.game.action.skeleton.annotation.ActionMethod;
+import com.iohao.game.action.skeleton.protocol.wrapper.LongPb;
 import com.iohao.game.spring.common.cmd.OtherSchoolCmdModule;
+import com.iohao.game.spring.common.cmd.SchoolCmdModule;
 import com.iohao.game.spring.common.pb.OtherVerify;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -40,5 +42,42 @@ public class OtherSchoolAction {
     @ActionMethod(OtherSchoolCmdModule.jsr380)
     public void otherVerify(OtherVerify otherVerify) {
         log.info("jsr380 : {}", otherVerify);
+    }
+
+
+    /**
+     * 业务参数自动装箱、拆箱基础类型，解决碎片协议问题
+     *
+     * @param levelLong 等级
+     * @return level
+     */
+    @ActionMethod(OtherSchoolCmdModule.longPbWrapper)
+    public long longPbWrapper(long levelLong) {
+        log.info("levelLong 碎片协议 {}", levelLong);
+        return levelLong + 2;
+    }
+
+    /**
+     * 业务参数自动装箱、拆箱基础类型，解决碎片协议问题
+     *
+     * @param levelLong 等级
+     * @return level
+     */
+    @ActionMethod(OtherSchoolCmdModule.longPbWrapperLonger)
+    public long longPbWrapperLonger(Long levelLong) {
+        log.info("levelLong 碎片协议 {}", levelLong);
+        return levelLong + 2;
+    }
+
+    /**
+     * 业务参数自动装箱、拆箱基础类型，解决碎片协议问题
+     *
+     * @param levelLong 等级
+     * @return level
+     */
+    @ActionMethod(OtherSchoolCmdModule.longPbWrapperLongPb)
+    public long longPbWrapperLongPb(LongPb levelLong) {
+        log.info("levelLong 碎片协议 {}", levelLong);
+        return levelLong.longValue + 2;
     }
 }

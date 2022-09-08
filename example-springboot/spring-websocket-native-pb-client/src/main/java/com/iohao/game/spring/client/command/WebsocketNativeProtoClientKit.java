@@ -37,6 +37,8 @@ import java.util.Objects;
 @Slf4j
 @UtilityClass
 public class WebsocketNativeProtoClientKit {
+
+
     public void runClient() throws Exception {
         // 连接游戏服务器的地址
         String wsUrl = "ws://127.0.0.1:10100/websocket";
@@ -45,20 +47,38 @@ public class WebsocketNativeProtoClientKit {
             @Override
             public void onOpen(ServerHandshake handshakedata) {
                 long maxValue = Long.MAX_VALUE - 1;
-                log.info("Long.MAX_VALUE-1 : {}",maxValue);
+                log.info("Long.MAX_VALUE-1 : {}", maxValue);
 
-                BizProto.LoginVerify loginVerify = BizProto.LoginVerify.newBuilder()
+
+                Proto.LongPb longPb = Proto.LongPb.newBuilder()
+                        .setLongValue(9120)
+                        .build();
+
+                ByteString value = longPb.toByteString();
+//                        externalMessage(3, 1, value);
+                Proto.ExternalMessage externalMessage = null;
+
+                externalMessage = externalMessage(5, 2, value);
+                send(externalMessage.toByteArray());
+
+                externalMessage = externalMessage(5, 3, value);
+                send(externalMessage.toByteArray());
+
+                externalMessage = externalMessage(5, 4, value);
+                send(externalMessage.toByteArray());
+
+            }
+
+            private ByteString getLoginVerify(long maxValue) {
+                return BizProto.LoginVerify.newBuilder()
 //                        .setAge(273676)
                         .setAge(9120)
                         .setTime(maxValue)
                         .setJwt("abcd")
                         .setLoginBizCode(1)
-                        .build();
-
-                Proto.ExternalMessage externalMessage = externalMessage(3, 1, loginVerify.toByteString());
-
-                send(externalMessage.toByteArray());
-
+                        .build()
+                        .toByteString()
+                        ;
             }
 
             @Override
