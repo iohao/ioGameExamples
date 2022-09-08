@@ -50,35 +50,44 @@ public class WebsocketNativeProtoClientKit {
                 log.info("Long.MAX_VALUE-1 : {}", maxValue);
 
 
-                Proto.LongPb longPb = Proto.LongPb.newBuilder()
-                        .setLongValue(9120)
-                        .build();
+//                extractedLoginVerify(maxValue);
 
-                ByteString value = longPb.toByteString();
-//                        externalMessage(3, 1, value);
-                Proto.ExternalMessage externalMessage = null;
-
-                externalMessage = externalMessage(5, 2, value);
-                send(externalMessage.toByteArray());
-
-                externalMessage = externalMessage(5, 3, value);
-                send(externalMessage.toByteArray());
-
-                externalMessage = externalMessage(5, 4, value);
-                send(externalMessage.toByteArray());
+                extractedLongPb();
 
             }
 
-            private ByteString getLoginVerify(long maxValue) {
-                return BizProto.LoginVerify.newBuilder()
+            private void extractedLongPb() {
+
+                ByteString value = Proto.LongPb.newBuilder()
+                        .setLongValue(9120)
+                        .build()
+                        .toByteString();
+
+                this.sendMsg(5, 2, value);
+                this.sendMsg(5, 3, value);
+                this.sendMsg(5, 4, value);
+            }
+
+            private void extractedLoginVerify(long maxValue) {
+                ByteString value = BizProto.LoginVerify.newBuilder()
 //                        .setAge(273676)
                         .setAge(9120)
                         .setTime(maxValue)
                         .setJwt("abcd")
                         .setLoginBizCode(1)
                         .build()
-                        .toByteString()
-                        ;
+                        .toByteString();
+
+                this.sendMsg(3, 1, value);
+            }
+
+            private void sendMsg(int cmd, int subCmd, ByteString value) {
+                Proto.ExternalMessage externalMessage = createExternalMessage(cmd, subCmd, value);
+                this.send(externalMessage.toByteArray());
+            }
+
+            private void sendMsg(int cmd, int subCmd, com.google.protobuf.GeneratedMessageV3 messageV3) {
+                this.sendMsg(cmd, subCmd, messageV3.toByteString());
             }
 
             @Override
@@ -103,7 +112,7 @@ public class WebsocketNativeProtoClientKit {
         webSocketClient.connect();
     }
 
-    public Proto.ExternalMessage externalMessage(int cmd, int subCmd, ByteString data) {
+    public Proto.ExternalMessage createExternalMessage(int cmd, int subCmd, ByteString data) {
 
         Proto.ExternalMessage.Builder builder = Proto.ExternalMessage.newBuilder()
                 // 请求命令类型: 0 心跳，1 业务

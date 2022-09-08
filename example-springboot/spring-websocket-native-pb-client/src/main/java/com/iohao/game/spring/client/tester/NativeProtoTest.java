@@ -119,7 +119,7 @@ public class NativeProtoTest {
                 .build();
 
         Proto.ExternalMessage externalMessage = WebsocketNativeProtoClientKit
-                .externalMessage(1, 1, intPb.toByteString());
+                .createExternalMessage(1, 1, intPb.toByteString());
 
         ExternalMessage convert = convert(externalMessage);
 
@@ -141,7 +141,7 @@ public class NativeProtoTest {
                 .build();
 
         externalMessage = WebsocketNativeProtoClientKit
-                .externalMessage(1, 2, intListPb.toByteString());
+                .createExternalMessage(1, 2, intListPb.toByteString());
 
         convert = convert(externalMessage);
         data = convert.getData();
