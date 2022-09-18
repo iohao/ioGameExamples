@@ -54,6 +54,9 @@ public class LoginVerify {
      */
     /** 登录业务码 */
     int loginBizCode;
-    /** Long */
+    /** Long value */
     Long time;
+
+    /** long value */
+    long time2;
 }

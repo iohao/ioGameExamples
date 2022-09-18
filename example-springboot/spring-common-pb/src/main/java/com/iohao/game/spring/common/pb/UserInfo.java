@@ -40,6 +40,9 @@ public class UserInfo {
     String name;
 
     Integer tempInt;
-    /** userInfo Long */
+    /** Long value */
     Long time;
+
+    /** long value */
+    long time2;
 }
