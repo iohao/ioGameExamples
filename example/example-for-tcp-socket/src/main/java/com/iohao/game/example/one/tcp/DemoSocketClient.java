@@ -57,11 +57,12 @@ public class DemoSocketClient {
                         pipeline.addLast(new LengthFieldBasedFrameDecoder(PACKAGE_MAX_SIZE,
                                 // 长度字段的偏移量， 从 0 开始
                                 0,
-                                // 长度字段的长度, 使用的是 short ，占用2位；（消息头用的 byteBuf.writeShort 来记录长度的）
+                                // 字段的长度, 如果使用的是 short ，占用2位；（消息头用的 byteBuf.writeShort 来记录长度的）
+                                // 字段的长度, 如果使用的是 int   ，占用4位；（消息头用的 byteBuf.writeInt   来记录长度的）
                                 4,
                                 // 要添加到长度字段值的补偿值：长度调整值 = 内容字段偏移量 - 长度字段偏移量 - 长度字段的字节数
                                 0,
-                                // 跳过的初始字节数： 跳过2位; (跳过消息头的 2 位长度)
+                                // 跳过的初始字节数： 跳过0位; (跳过消息头的 0 位长度)
                                 0));
 
                         // 编解码
