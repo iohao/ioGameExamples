@@ -18,11 +18,9 @@ package com.iohao.game.spring.common.pb;
 
 import com.baidu.bjf.remoting.protobuf.annotation.ProtobufClass;
 import com.iohao.game.spring.common.SpringGameProtoFile;
+import com.iohao.game.spring.common.Update;
 import com.iohao.game.widget.light.protobuf.ProtoFileMerge;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.*;
 import lombok.AccessLevel;
 import lombok.ToString;
 import lombok.experimental.FieldDefaults;
@@ -52,5 +50,9 @@ public class SchoolPb {
     /** 学校老师数量 */
     @Min(value = 60, message = "学校老师数量不能少于 60 个")
     int teacherNum;
+
+    /** 学校名 */
+    @NotBlank(groups = Update.class)
+    String name;
 
 }

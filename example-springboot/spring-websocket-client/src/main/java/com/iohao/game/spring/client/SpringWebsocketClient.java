@@ -136,6 +136,15 @@ public class SpringWebsocketClient {
 
         ClientCommandKit.createClientCommand(externalMessageJSR380);
 
+        //SchoolPb name=null 在加入分组校验时 该用例会返回校验失败: name不能为null
+        ExternalMessage externalMessageGroup = ClientCommandKit.createExternalMessage(
+                SchoolCmdModule.cmd,
+                SchoolCmdModule.group,
+                schoolPb
+        );
+
+        ClientCommandKit.createClientCommand(externalMessageGroup);
+
 
         //断言 + 异常机制 = 清晰简洁的代码
         SchoolLevelPb schoolLevelPb = new SchoolLevelPb();

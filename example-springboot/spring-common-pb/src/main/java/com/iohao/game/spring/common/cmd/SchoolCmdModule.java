@@ -49,4 +49,7 @@ public interface SchoolCmdModule {
     int communication33 = 9;
     /** 业务参数自动装箱、拆箱基础类型 */
     int intPbWrapper = 10;
+
+    /** 分组校验 */
+    int group = 11;
 }

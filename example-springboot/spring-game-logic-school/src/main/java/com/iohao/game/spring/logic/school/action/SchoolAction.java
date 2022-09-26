@@ -18,6 +18,7 @@ package com.iohao.game.spring.logic.school.action;
 
 import com.iohao.game.action.skeleton.annotation.ActionController;
 import com.iohao.game.action.skeleton.annotation.ActionMethod;
+import com.iohao.game.action.skeleton.annotation.ValidatedGroup;
 import com.iohao.game.action.skeleton.core.CmdInfo;
 import com.iohao.game.action.skeleton.core.DataCodecKit;
 import com.iohao.game.action.skeleton.core.commumication.BroadcastContext;
@@ -29,6 +30,7 @@ import com.iohao.game.action.skeleton.protocol.collect.ResponseCollectItemMessag
 import com.iohao.game.action.skeleton.protocol.collect.ResponseCollectMessage;
 import com.iohao.game.bolt.broker.core.client.BrokerClientHelper;
 import com.iohao.game.spring.common.SpringGameCodeEnum;
+import com.iohao.game.spring.common.Update;
 import com.iohao.game.spring.common.cmd.ClassesCmdModule;
 import com.iohao.game.spring.common.cmd.RoomCmdModule;
 import com.iohao.game.spring.common.cmd.SchoolCmdModule;
@@ -37,6 +39,7 @@ import com.iohao.game.spring.logic.school.service.SchoolService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.validation.annotation.Validated;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -108,6 +111,25 @@ public class SchoolAction {
          */
 
         log.info("jsr380 : {}", schoolPb);
+    }
+
+    /**
+     * 更新学校信息，支持分组校验
+     *
+     * @param schoolPb schoolPb
+     */
+    @ActionMethod(SchoolCmdModule.group)
+    public void updateSchoolGroup(@ValidatedGroup(value = Update.class) SchoolPb schoolPb) {
+        /*
+         * 进入业务方法需要满足这么几个条件
+         * 1. SchoolPb.email 不能为 null ，并且是合法的电子邮件地址
+         * 2. SchoolPb.classCapacity 学校最大教室容量不能超过 100 个
+         * 3. SchoolPb.teacherNum 学校老师数量不能少于 60 个
+         * 4. SchoolPb.name 在使用@Validated(value = Update.class) 注解的对象后会验证非null 否则不验证
+         * 相关文档 https://www.yuque.com/iohao/game/ghng6g
+         */
+
+        log.info("支持分组校验", schoolPb);
     }
 
     /**
