@@ -41,14 +41,12 @@ import java.util.concurrent.TimeUnit;
 public class DemoHallAction {
     @ActionMethod(DemoCmdForHall.count)
     public void count() {
+        // 模块通讯上下文
+        InvokeModuleContext invokeModuleContext = BrokerClientHelper.me().getInvokeModuleContext();
         // 路由：这个路由是将要访问逻辑服的路由（表示你将要去的地方）
         CmdInfo cmdInfo = CmdInfo.getCmdInfo(DemoCmdForRoom.cmd, DemoCmdForRoom.countRoom);
-        log.info("responseCollectMessage : before");
-
-        InvokeModuleContext invokeModuleContext = BrokerClientHelper.me().getInvokeModuleContext();
         // 根据路由信息来请求其他【同类型】的多个子服务器（其他逻辑服）数据
         ResponseCollectMessage responseCollectMessage = invokeModuleContext.invokeModuleCollectMessage(cmdInfo);
-        log.info("responseCollectMessage : {}", responseCollectMessage);
 
         // 每个逻辑服返回的数据集合
         List<ResponseCollectItemMessage> messageList = responseCollectMessage.getMessageList();

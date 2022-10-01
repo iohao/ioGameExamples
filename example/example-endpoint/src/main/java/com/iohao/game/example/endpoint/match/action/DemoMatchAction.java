@@ -82,11 +82,10 @@ public class DemoMatchAction {
      */
     @ActionMethod(DemoCmdForEndPointMatch.matching)
     public MatchResponse matching(FlowContext flowContext) {
-        // 匹配请求
+        // 模块通讯上下文
+        InvokeModuleContext invokeModuleContext = BrokerClientHelper.me().getInvokeModuleContext();
         // 路由：这个路由是将要访问逻辑服的路由（表示你将要去的地方）
         CmdInfo cmdInfo = CmdInfo.getCmdInfo(DemoCmdForEndPointRoom.cmd, DemoCmdForEndPointRoom.countRoom);
-        InvokeModuleContext invokeModuleContext = BrokerClientHelper.me().getInvokeModuleContext();
-
         // 根据路由信息来请求其他【同类型】的多个子服务器（其他逻辑服）数据
         ResponseCollectMessage responseCollectMessage = invokeModuleContext.invokeModuleCollectMessage(cmdInfo);
 
