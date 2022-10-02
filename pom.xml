@@ -59,6 +59,7 @@
         <module>example-springboot/spring-game-logic-room-interaction-same</module>
         <module>example-springboot/spring-websocket-native-pb-client</module>
         <module>example-springboot/spring-game-logic-parent</module>
+        <module>example/example-meter</module>
     </modules>
 
     <!--统一管理版本 的一个父 pom-->

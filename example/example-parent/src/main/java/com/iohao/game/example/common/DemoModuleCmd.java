@@ -59,4 +59,7 @@ public interface DemoModuleCmd {
     int demoModule_13_ext_cmd = 13;
     /** 基础类型包装类 */
     int demoModule_14_wrapper_cmd = 14;
+
+    /** meter */
+    int meter_cmd = 15;
 }
