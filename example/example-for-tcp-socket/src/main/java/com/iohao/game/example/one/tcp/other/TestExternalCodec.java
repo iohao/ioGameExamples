@@ -51,21 +51,7 @@ public class TestExternalCodec {
                 0x0a, 0x04, 0x61, 0x62, 0x63, 0x31
         }));
 
-        byte[] bytes = ProtoKit.toBytes(externalMessage);
-
-        ByteBuf buffer = new PooledByteBufAllocator(true).buffer();
-        // 消息长度
-        buffer.writeInt(bytes.length)
-                // 消息
-                .writeBytes(bytes);
-
-        System.out.println();
-        int length = bytes.length + 4;
-        // 消息
-        byte[] msgBytes = new byte[length];
-        buffer.readBytes(msgBytes);
-
-        String s = HexUtil.encodeHexStr(msgBytes);
+        String s = toHex(externalMessage);
         /*
          * jmeter
          * org.apache.jmeter.protocol.tcp.sampler.BinaryTCPClientImpl
@@ -73,7 +59,6 @@ public class TestExternalCodec {
          * 00000012080110001881803c200032060a0461626331
          */
         log.info("十六进制报文 : {}", s);
-
     }
 
     private static ExternalMessage getExternalMessage() {
@@ -89,6 +74,26 @@ public class TestExternalCodec {
         log.info("{}", request);
 
         return request;
+    }
+
+    private static String toHex(ExternalMessage externalMessage) {
+        // 下面是将游戏对外服协议转为十六进制
+        byte[] bytes = ProtoKit.toBytes(externalMessage);
+
+        ByteBuf buffer = new PooledByteBufAllocator(true).buffer();
+        // 消息长度
+        buffer.writeInt(bytes.length)
+                // 消息
+                .writeBytes(bytes);
+
+        System.out.println();
+        int length = bytes.length + 4;
+        // 消息
+        byte[] msgBytes = new byte[length];
+        buffer.readBytes(msgBytes);
+
+        String s = HexUtil.encodeHexStr(msgBytes);
+        return s;
     }
 
 }

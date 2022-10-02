@@ -27,5 +27,5 @@
 
 > MeterTcpSocketApplication.java
 
-
+> TestExternalCodec.java 生成十六进制参考类
 
