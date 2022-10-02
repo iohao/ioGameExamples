@@ -44,7 +44,7 @@ public class MeterAction {
         longAdder.increment();
 
         HelloReq newHelloReq = new HelloReq();
-        newHelloReq.name = helloReq.name + ", I'm here ";
+        newHelloReq.name =  "meter，I'm here";
         return newHelloReq;
     }
 }
