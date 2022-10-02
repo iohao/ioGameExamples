@@ -23,7 +23,7 @@
 
 
 
-### 启动为类
+### 启动类
 
 > MeterTcpSocketApplication.java
 
