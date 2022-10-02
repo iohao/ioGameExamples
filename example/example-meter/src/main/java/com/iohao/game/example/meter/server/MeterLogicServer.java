@@ -24,7 +24,6 @@ import com.iohao.game.bolt.broker.core.client.BrokerClient;
 import com.iohao.game.bolt.broker.core.client.BrokerClientBuilder;
 import com.iohao.game.bolt.broker.core.common.BrokerGlobalConfig;
 import com.iohao.game.common.kit.NetworkKit;
-import com.iohao.game.example.meter.action.MeterAction;
 import lombok.extern.slf4j.Slf4j;
 
 /**

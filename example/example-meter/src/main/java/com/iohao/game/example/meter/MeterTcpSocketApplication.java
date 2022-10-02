@@ -22,7 +22,7 @@ import com.iohao.game.bolt.broker.client.external.bootstrap.ExternalJoinEnum;
 import com.iohao.game.bolt.broker.client.external.config.ExternalGlobalConfig;
 import com.iohao.game.bolt.broker.client.external.session.UserSessions;
 import com.iohao.game.common.kit.ExecutorKit;
-import com.iohao.game.example.meter.action.MeterAction;
+import com.iohao.game.example.meter.server.MeterAction;
 import com.iohao.game.example.meter.server.MeterLogicServer;
 import com.iohao.game.example.meter.server.MeterExternalBizHandler;
 import com.iohao.game.simple.SimpleRunOne;
@@ -50,6 +50,10 @@ public class MeterTcpSocketApplication {
                 // 启动 游戏对外服、游戏网关服、游戏逻辑服
                 .startup();
 
+        scheduled();
+    }
+
+    private static void scheduled() {
         ExecutorKit.newSingleScheduled("meter")
                 .scheduleAtFixedRate(() -> {
                     System.out.println();
