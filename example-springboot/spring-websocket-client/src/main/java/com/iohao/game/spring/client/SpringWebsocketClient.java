@@ -22,7 +22,6 @@ import com.iohao.game.command.ClientCommandKit;
 import com.iohao.game.command.WebsocketClientKit;
 import com.iohao.game.spring.common.cmd.HallCmdModule;
 import com.iohao.game.spring.common.cmd.OtherSchoolCmdModule;
-import com.iohao.game.spring.common.cmd.RoomCmdModule;
 import com.iohao.game.spring.common.cmd.SchoolCmdModule;
 import com.iohao.game.spring.common.pb.*;
 import lombok.extern.slf4j.Slf4j;
@@ -58,12 +57,22 @@ public class SpringWebsocketClient {
     private static void otherCommand() {
 
         // 请求、响应
+//        ExternalMessage externalMessageHelloRoom = ClientCommandKit.createExternalMessage(
+//                RoomCmdModule.cmd,
+//                RoomCmdModule.helloRoom
+//        );
+//
+//        ClientCommandKit.createClientCommand(externalMessageHelloRoom, OtherVerify.class);
+
+
         ExternalMessage externalMessageHelloRoom = ClientCommandKit.createExternalMessage(
-                RoomCmdModule.cmd,
-                RoomCmdModule.helloRoom
+                OtherSchoolCmdModule.cmd,
+                OtherSchoolCmdModule.longPbWithBroadcast
         );
 
-        ClientCommandKit.createClientCommand(externalMessageHelloRoom, OtherVerify.class);
+        ClientCommandKit.createClientCommand(externalMessageHelloRoom, UserInfo.class);
+
+        ClientCommandKit.addParseResult(OtherSchoolCmdModule.cmd, OtherSchoolCmdModule.longPbWithBroadcastData, SchoolPb.class);
     }
 
     private static void initLoginCommand() {

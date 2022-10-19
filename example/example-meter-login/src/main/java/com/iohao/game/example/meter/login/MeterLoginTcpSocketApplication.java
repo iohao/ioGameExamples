@@ -14,17 +14,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.iohao.game.example.meter;
+package com.iohao.game.example.meter.login;
 
 import com.iohao.game.bolt.broker.client.external.ExternalServer;
 import com.iohao.game.bolt.broker.client.external.ExternalServerBuilder;
 import com.iohao.game.bolt.broker.client.external.bootstrap.ExternalJoinEnum;
 import com.iohao.game.bolt.broker.client.external.config.ExternalGlobalConfig;
 import com.iohao.game.bolt.broker.client.external.session.UserSessions;
+import com.iohao.game.bolt.broker.core.common.BrokerGlobalConfig;
 import com.iohao.game.common.kit.ExecutorKit;
-import com.iohao.game.example.meter.server.MeterAction;
-import com.iohao.game.example.meter.server.MeterLogicServer;
-import com.iohao.game.example.meter.server.MeterExternalBizHandler;
+import com.iohao.game.example.common.cmd.MeterLoginCmd;
+import com.iohao.game.example.meter.login.server.MeterLoginAction;
+import com.iohao.game.example.meter.login.server.MeterLoginLogicServer;
 import com.iohao.game.simple.SimpleRunOne;
 import lombok.extern.slf4j.Slf4j;
 
@@ -33,11 +34,12 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * @author 渔民小镇
- * @date 2022-10-02
+ * @date 2022-10-08
  */
 @Slf4j
-public class MeterTcpSocketApplication {
+public class MeterLoginTcpSocketApplication {
     public static void main(String[] args) {
+        BrokerGlobalConfig.timeoutMillis = 5 * 1000;
 
         ExternalServer externalServer = getExternalServer();
 
@@ -46,7 +48,7 @@ public class MeterTcpSocketApplication {
                 // 游戏对外服
                 .setExternalServer(externalServer)
                 // 游戏逻辑服列表
-                .setLogicServerList(List.of(new MeterLogicServer()))
+                .setLogicServerList(List.of(new MeterLoginLogicServer()))
                 // 启动 游戏对外服、游戏网关服、游戏逻辑服
                 .startup();
 
@@ -54,11 +56,11 @@ public class MeterTcpSocketApplication {
     }
 
     private static void scheduled() {
-        ExecutorKit.newSingleScheduled("meter")
+        ExecutorKit.newSingleScheduled("meter login")
                 .scheduleAtFixedRate(() -> {
                     System.out.println();
-                    log.info("MeterAction.longAdder : {}", MeterAction.longAdder);
-                    log.info("MyExternalBizHandler.userIdAdder : {}", MeterExternalBizHandler.userIdAdder);
+                    log.info("MeterLoginAction.longAdder : {}", MeterLoginAction.longAdder);
+                    log.info("MeterLoginAction.loginLongAdder : {}", MeterLoginAction.loginLongAdder);
 
                     long countOnline = UserSessions.me().countOnline();
                     log.info("countOnline : {}", countOnline);
@@ -69,12 +71,13 @@ public class MeterTcpSocketApplication {
         // 游戏对外服端口
         int port = 10100;
 
-        // 需要登录才能访问业务方法
         ExternalGlobalConfig.accessAuthenticationHook.setVerifyIdentity(true);
+
+        ExternalGlobalConfig.accessAuthenticationHook.addIgnoreAuthenticationCmd(MeterLoginCmd.cmd,MeterLoginCmd.login);
 
         ExternalServerBuilder externalServerBuilder = ExternalServer.newBuilder(port)
                 .externalJoinEnum(ExternalJoinEnum.TCP)
-                .registerChannelHandler("MyExternalBizHandler", new MeterExternalBizHandler());
+                ;
 
         return externalServerBuilder.build();
     }

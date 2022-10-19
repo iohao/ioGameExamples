@@ -18,10 +18,14 @@ package com.iohao.game.spring.logic.school.action;
 
 import com.iohao.game.action.skeleton.annotation.ActionController;
 import com.iohao.game.action.skeleton.annotation.ActionMethod;
+import com.iohao.game.action.skeleton.core.CmdInfo;
+import com.iohao.game.action.skeleton.core.commumication.BroadcastContext;
 import com.iohao.game.action.skeleton.protocol.wrapper.LongPb;
+import com.iohao.game.bolt.broker.core.client.BrokerClientHelper;
 import com.iohao.game.spring.common.cmd.OtherSchoolCmdModule;
-import com.iohao.game.spring.common.cmd.SchoolCmdModule;
 import com.iohao.game.spring.common.pb.OtherVerify;
+import com.iohao.game.spring.common.pb.SchoolPb;
+import com.iohao.game.spring.common.pb.UserInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
@@ -79,5 +83,21 @@ public class OtherSchoolAction {
     public long longPbWrapperLongPb(LongPb levelLong) {
         log.info("levelLong 碎片协议 {}", levelLong);
         return levelLong.longValue + 2;
+    }
+
+    @ActionMethod(OtherSchoolCmdModule.longPbWithBroadcast)
+    public UserInfo longPbWithBroadcast() {
+
+        SchoolPb schoolPb = new SchoolPb();
+        schoolPb.email = "hello";
+
+        CmdInfo cmdInfo = CmdInfo.getCmdInfo(OtherSchoolCmdModule.cmd, OtherSchoolCmdModule.longPbWithBroadcastData);
+
+        BroadcastContext broadcastContext = BrokerClientHelper.me().getBroadcastContext();
+        broadcastContext.broadcast(cmdInfo, schoolPb);
+
+        UserInfo userInfo = new UserInfo();
+        userInfo.id = 800;
+        return userInfo;
     }
 }

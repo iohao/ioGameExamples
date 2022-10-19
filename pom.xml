@@ -60,12 +60,13 @@
         <module>example-springboot/spring-websocket-native-pb-client</module>
         <module>example-springboot/spring-game-logic-parent</module>
         <module>example/example-meter</module>
+        <module>example/example-meter-login</module>
     </modules>
 
     <!--统一管理版本 的一个父 pom-->
     <properties>
         <!-- 项目版本 -->
-        <ioGame.version>17.1.20</ioGame.version>
+        <ioGame.version>17.1.21</ioGame.version>
         <!-- jdk 版本 -->
         <java.version>17</java.version>
         <maven.compiler.source>17</maven.compiler.source>
@@ -89,7 +90,7 @@
         <jakarta.el.version>4.0.2</jakarta.el.version>
 
         <!-- Java 实体映射工具 https://mvnrepository.com/artifact/org.mapstruct/mapstruct https://mapstruct.org/documentation/reference-guide/ -->
-        <org.mapstruct.version>1.4.2.Final</org.mapstruct.version>
+        <org.mapstruct.version>1.5.2.Final</org.mapstruct.version>
 
         <!-- temp spring boot https://mvnrepository.com/artifact/org.springframework/spring-core -->
         <spring.version>5.3.20</spring.version>

@@ -14,28 +14,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.iohao.game.spring.common.cmd;
+package com.iohao.game.example.common.cmd;
+
+import com.iohao.game.example.common.DemoModuleCmd;
 
 /**
  * @author 渔民小镇
- * @date 2022-08-26
+ * @date 2022-10-08
  */
-public interface OtherSchoolCmdModule {
-    int cmd = SpringCmdModule.otherSchoolCmd;
-
-    int jsr380 = 1;
-
-    /** 业务参数自动装箱、拆箱基础类型 long */
-    int longPbWrapper = 2;
-    int longPbWrapperLonger = 3;
-    int longPbWrapperLongPb = 4;
-
-    /** 业务参数自动装箱、拆箱基础类型 int */
-    int intPbWrapper = 5;
-
-    int longPbWithBroadcast = 6;
-
-    int longPbWithBroadcastData = 7;
-
-
+public interface MeterLoginCmd {
+    int cmd = DemoModuleCmd.meter_login_cmd;
+    int login = 1;
 }

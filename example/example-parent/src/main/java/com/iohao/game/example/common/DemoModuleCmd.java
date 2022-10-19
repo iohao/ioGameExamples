@@ -62,4 +62,6 @@ public interface DemoModuleCmd {
 
     /** meter */
     int meter_cmd = 15;
+    /** meter login */
+    int meter_login_cmd = 16;
 }
