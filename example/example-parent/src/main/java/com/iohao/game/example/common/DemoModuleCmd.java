@@ -64,4 +64,7 @@ public interface DemoModuleCmd {
     int meter_cmd = 15;
     /** meter login */
     int meter_login_cmd = 16;
+
+    /** jsr 相关 */
+    int jsr_17_cmd = 17;
 }

@@ -10,7 +10,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>game-common-proto</artifactId>
+    <artifactId>example-jsr-javax</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -20,17 +20,9 @@
     <dependencies>
 
         <dependency>
-            <groupId>com.iohao.game</groupId>
-            <artifactId>light-jprotobuf</artifactId>
-            <version>${ioGame.version}</version>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/org.glassfish/jakarta.el -->
-        <!-- EL实现。在Java SE环境中，您必须将实现作为依赖项添加到POM文件中-->
-        <dependency>
-            <groupId>org.glassfish</groupId>
-            <artifactId>jakarta.el</artifactId>
-            <version>${jakarta.el.version}</version>
+            <groupId>com.iohao.example</groupId>
+            <artifactId>example-parent</artifactId>
+            <version>${project.parent.version}</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/jakarta.validation/jakarta.validation-api -->
@@ -41,37 +33,22 @@
             <version>${jakarta.validation-api.version}</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.glassfish/jakarta.el -->
+        <!-- EL实现。在Java SE环境中，您必须将实现作为依赖项添加到POM文件中-->
+        <dependency>
+            <groupId>org.glassfish</groupId>
+            <artifactId>jakarta.el</artifactId>
+            <version>4.0.2</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/jakarta.validation/jakarta.validation-api -->
+        <!-- 验证器Maven依赖项 -->
+        <dependency>
+            <groupId>jakarta.validation</groupId>
+            <artifactId>jakarta.validation-api</artifactId>
+            <version>3.0.2</version>
+        </dependency>
 
     </dependencies>
 
-    <build>
-        <plugins>
-            <!--
-            mvn jprotobuf:precompile
-            or
-            mvn package
-
-            https://mvnrepository.com/artifact/com.baidu/jprotobuf-precompile-plugin
-            -->
-            <plugin>
-                <groupId>com.baidu</groupId>
-                <artifactId>jprotobuf-precompile-plugin</artifactId>
-                <version>2.2.8</version>
-                <configuration>
-                    <filterClassPackage>com.iohao</filterClassPackage>
-                    <generateProtoFile>true</generateProtoFile>
-                    <compileDependencies>true</compileDependencies>
-                </configuration>
-                <executions>
-                    <execution>
-                        <phase>compile</phase>
-                        <goals>
-                            <goal>precompile</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-
-        </plugins>
-    </build>
 </project>
