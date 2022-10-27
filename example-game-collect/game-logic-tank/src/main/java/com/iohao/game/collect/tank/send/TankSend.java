@@ -49,6 +49,15 @@ public class TankSend extends AbstractFlowContextSend {
 
     @Override
     public void send() {
+        /*
+         * 注意，这样重写方法是同步的方式推送消息，
+         * 并没有发挥出 light-domain-event 领域事件的能力
+         *
+         * 如果想发挥出领域事件的能力，可参考文档中的示例
+         * https://www.yuque.com/iohao/game/gmfy1k
+         *
+         * 
+         */
         this.execute();
     }
 }
