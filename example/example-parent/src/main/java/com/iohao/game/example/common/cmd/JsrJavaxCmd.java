@@ -14,27 +14,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.iohao.example.jsr.pb;
+package com.iohao.game.example.common.cmd;
 
-import com.baidu.bjf.remoting.protobuf.annotation.ProtobufClass;
-import lombok.AccessLevel;
-import lombok.ToString;
-import lombok.experimental.FieldDefaults;
-import jakarta.validation.constraints.*;
+import com.iohao.game.example.common.DemoModuleCmd;
 
 /**
  * @author 渔民小镇
- * @date 2022-10-26
+ * @date 2022-10-28
  */
-@ToString
-@ProtobufClass
-@FieldDefaults(level = AccessLevel.PUBLIC)
-public class JsrJakartaPb {
-    /** id */
-    int id;
+public interface JsrJavaxCmd {
+    int cmd = DemoModuleCmd.jsr_javax_18_cmd;
 
-    /** 学校的 email */
-    @NotNull
-    @Email
-    String email;
+    int jsr_javax = 1;
 }

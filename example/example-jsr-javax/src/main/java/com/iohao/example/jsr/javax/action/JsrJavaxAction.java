@@ -14,18 +14,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.iohao.example.jsr.action;
+package com.iohao.example.jsr.javax.action;
 
-import lombok.AccessLevel;
-import lombok.Setter;
-import lombok.experimental.FieldDefaults;
+import com.iohao.example.jsr.javax.pb.JsrJavaxPb;
+import com.iohao.game.action.skeleton.annotation.ActionController;
+import com.iohao.game.action.skeleton.annotation.ActionMethod;
+import com.iohao.game.example.common.cmd.JsrJavaxCmd;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * @author 渔民小镇
- * @date 2022-10-26
+ * @date 2022-10-28
  */
-
-@Setter
-@FieldDefaults(level = AccessLevel.PRIVATE)
+@Slf4j
+@ActionController(JsrJavaxCmd.cmd)
 public class JsrJavaxAction {
+
+    @ActionMethod(JsrJavaxCmd.jsr_javax)
+    public JsrJavaxPb jsrJakarta(JsrJavaxPb jsrJavaxPb) {
+        log.info("jsrJavaxPb : {}", jsrJavaxPb);
+        return jsrJavaxPb;
+    }
 }

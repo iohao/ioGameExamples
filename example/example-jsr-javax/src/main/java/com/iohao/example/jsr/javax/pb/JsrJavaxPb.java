@@ -14,25 +14,29 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.iohao.example.jsr.action;
+package com.iohao.example.jsr.javax.pb;
 
-import com.iohao.example.jsr.pb.JsrJakartaPb;
-import com.iohao.game.action.skeleton.annotation.ActionController;
-import com.iohao.game.action.skeleton.annotation.ActionMethod;
-import com.iohao.game.example.common.cmd.JsrCmd;
-import lombok.extern.slf4j.Slf4j;
+import com.baidu.bjf.remoting.protobuf.annotation.ProtobufClass;
+import lombok.AccessLevel;
+import lombok.ToString;
+import lombok.experimental.FieldDefaults;
+
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
 
 /**
  * @author 渔民小镇
- * @date 2022-10-26
+ * @date 2022-10-28
  */
-@Slf4j
-@ActionController(JsrCmd.cmd)
-public class JsrJakartaAction {
+@ToString
+@ProtobufClass
+@FieldDefaults(level = AccessLevel.PUBLIC)
+public class JsrJavaxPb {
+    /** id */
+    int id;
 
-    @ActionMethod(JsrCmd.jsr_jakarta)
-    public void jsrJakarta(JsrJakartaPb jsrJakartaPb) {
-        log.info("jsrJakartaPb : {}", jsrJakartaPb);
-        
-    }
+    /** email */
+    @NotNull
+    @Email
+    String email;
 }

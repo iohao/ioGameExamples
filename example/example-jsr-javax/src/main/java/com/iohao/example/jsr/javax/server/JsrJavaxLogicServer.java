@@ -14,9 +14,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.iohao.example.jsr.server;
+package com.iohao.example.jsr.javax.server;
 
-import com.iohao.example.jsr.action.JsrJakartaAction;
+import com.iohao.example.jsr.javax.action.JsrJavaxAction;
 import com.iohao.game.action.skeleton.core.BarSkeleton;
 import com.iohao.game.action.skeleton.core.BarSkeletonBuilderParamConfig;
 import com.iohao.game.action.skeleton.core.flow.interal.DebugInOut;
@@ -30,18 +30,18 @@ import lombok.experimental.FieldDefaults;
 
 /**
  * @author 渔民小镇
- * @date 2022-10-26
+ * @date 2022-10-28
  */
 @Getter
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class JsrLogicServer extends AbstractBrokerClientStartup {
+public class JsrJavaxLogicServer extends AbstractBrokerClientStartup {
     @Override
     public BarSkeleton createBarSkeleton() {
         // 业务框架构建器 配置
         var config = new BarSkeletonBuilderParamConfig()
                 // 扫描 JsrJakartaAction.class 所在包
-                .addActionController(JsrJakartaAction.class);
+                .addActionController(JsrJavaxAction.class);
 
         // 业务框架构建器
         var builder = config.createBuilder();

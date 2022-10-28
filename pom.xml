@@ -64,6 +64,7 @@
 
         <module>example/example-meter</module>
         <module>example/example-meter-login</module>
+        <module>example/example-jsr-jakarta</module>
 
 
     </modules>

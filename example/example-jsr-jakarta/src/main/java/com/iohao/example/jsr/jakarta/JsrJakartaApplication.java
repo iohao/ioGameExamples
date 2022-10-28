@@ -14,16 +14,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.iohao.game.example.common.cmd;
+package com.iohao.example.jsr.jakarta;
 
-import com.iohao.game.example.common.DemoModuleCmd;
+import com.iohao.example.jsr.jakarta.server.JsrJakartaLogicServer;
+import com.iohao.game.simple.SimpleHelper;
+import lombok.extern.slf4j.Slf4j;
+
+import java.util.List;
 
 /**
  * @author 渔民小镇
  * @date 2022-10-26
  */
-public interface JsrCmd {
-    int cmd = DemoModuleCmd.jsr_17_cmd;
+@Slf4j
+public class JsrJakartaApplication {
+    public static void main(String[] args) {
+        // 游戏对外服端口
+        int port = 10100;
 
-    int jsr_jakarta = 1;
+        // 启动 对外服、网关服、逻辑服; 并生成游戏业务文档
+        SimpleHelper.run(port, List.of(new JsrJakartaLogicServer()));
+    }
 }
