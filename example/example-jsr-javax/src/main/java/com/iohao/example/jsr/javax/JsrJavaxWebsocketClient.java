@@ -32,7 +32,7 @@ public class JsrJavaxWebsocketClient {
     public static void main(String[] args) throws Exception {
         // 登录请求
         JsrJavaxPb jsrJakartaPb = new JsrJavaxPb();
-        jsrJakartaPb.email = "shenjk@javax.com";
+        jsrJakartaPb.email = "shenjkjavax.com";
 
         log.info("JsrJavaxPb : {}", jsrJakartaPb);
 

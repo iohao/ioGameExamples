@@ -21,7 +21,6 @@ import lombok.AccessLevel;
 import lombok.ToString;
 import lombok.experimental.FieldDefaults;
 
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -35,8 +34,13 @@ public class JsrJavaxPb {
     /** id */
     int id;
 
-    /** email */
+    /**
+     * email
+     * <pre>
+     *     注意，使用 javax 验证时，不能使用 javax 的 email;
+     * </pre>
+     */
     @NotNull
-    @Email
+    @org.hibernate.validator.constraints.Email
     String email;
 }
