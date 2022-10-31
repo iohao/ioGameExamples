@@ -10,45 +10,44 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>example-parent</artifactId>
+    <artifactId>example-jsr-jakarta</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+
     <dependencies>
 
         <dependency>
             <groupId>com.iohao.example</groupId>
-            <artifactId>client-command</artifactId>
+            <artifactId>example-parent</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
 
-        <!-- 单体应用启动 -->
+        <!-- https://mvnrepository.com/artifact/jakarta.validation/jakarta.validation-api -->
+        <!-- 验证器Maven依赖项 -->
         <dependency>
-            <groupId>com.iohao.game</groupId>
-            <artifactId>bolt-run-one</artifactId>
-            <version>${ioGame.version}</version>
+            <groupId>jakarta.validation</groupId>
+            <artifactId>jakarta.validation-api</artifactId>
+            <version>${jakarta.validation-api.version}</version>
         </dependency>
 
         <dependency>
-            <groupId>com.iohao.game</groupId>
-            <artifactId>light-jprotobuf</artifactId>
-            <version>${ioGame.version}</version>
+            <groupId>org.hibernate.validator</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>${hibernate-validator.version}</version>
         </dependency>
 
-
-        <!-- 这个不是必须的， 这里使用了 springboot 的控制台色彩相关日志 -->
+        <!-- https://mvnrepository.com/artifact/org.glassfish/jakarta.el -->
+        <!-- EL实现。在Java SE环境中，您必须将实现作为依赖项添加到POM文件中-->
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter</artifactId>
-            <version>${springboot.version}</version>
+            <groupId>org.glassfish</groupId>
+            <artifactId>jakarta.el</artifactId>
+            <version>${jakarta.el.version}</version>
         </dependency>
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-            <version>${springboot.version}</version>
-        </dependency>
     </dependencies>
+
 </project>
