@@ -1,0 +1,19 @@
+# Spring
+spring:
+  application:
+    # 应用名称
+    name: game-broker
+  profiles:
+    # 环境配置
+    active: dev
+  cloud:
+    nacos:
+      discovery:
+        # 服务注册地址 如果nacos也部署在k8s里  此处可以填serverName:8848
+        server-addr: 192.168.102.221:8848
+      config:
+        # 配置中心地址 如果nacos也部署在k8s里  此处可以填serverName:8848
+        server-addr: 192.168.102.221:8848
+        # 配置文件格式
+        file-extension: yml
+
