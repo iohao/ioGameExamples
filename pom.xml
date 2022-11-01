@@ -20,7 +20,6 @@
         <module>example/example-interaction-same</module>
         <module>example/example-endpoint</module>
         <module>example/example-for-tcp-socket</module>
-        <module>example/example-cluster-broker-nacos</module>
 
         <!--        <module>example/example-redisson-lock-spring-boot-starter</module>-->
         <!--        <module>example/example-redisson-lock</module>-->
@@ -119,8 +118,7 @@
         <hutool.version>5.8.5</hutool.version>
         <!-- Hazelcast提供弹性可扩展的分布式内存计算 https://mvnrepository.com/artifact/com.hazelcast/hazelcast -->
         <hazelcast.version>5.1.1</hazelcast.version>
-        <spring-cloud.version>2021.0.4</spring-cloud.version>
-        <spring-cloud-alibaba.version>2021.0.4.0</spring-cloud-alibaba.version>
+
     </properties>
 
     <dependencies>
@@ -180,24 +178,6 @@
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-api</artifactId>
                 <version>${slf4j-api.version}</version>
-            </dependency>
-
-            <!-- SpringCloud 微服务 -->
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-dependencies</artifactId>
-                <version>${spring-cloud.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-
-            <!-- SpringCloud Alibaba 微服务 -->
-            <dependency>
-                <groupId>com.alibaba.cloud</groupId>
-                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
-                <version>${spring-cloud-alibaba.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
             </dependency>
 
         </dependencies>
