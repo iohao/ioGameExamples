@@ -19,9 +19,11 @@ package com.iohao.game.example.interaction;
 import com.iohao.game.bolt.broker.client.external.bootstrap.message.ExternalMessage;
 import com.iohao.game.command.ClientCommandKit;
 import com.iohao.game.command.WebsocketClientKit;
+import com.iohao.game.common.kit.ProtoKit;
 import com.iohao.game.example.interaction.fight.action.DemoCmdForFight;
 import com.iohao.game.example.interaction.msg.DemoFightMsg;
 import lombok.extern.slf4j.Slf4j;
+import org.java_websocket.client.WebSocketClient;
 
 /**
  * 模拟游戏客户端
@@ -34,10 +36,21 @@ public class DemoWebsocketClientForInteraction {
 
     public static void main(String[] args) throws Exception {
 
-        initClientCommands();
+//        initClientCommands();
 
         // 启动客户端
-        WebsocketClientKit.runClient();
+        WebSocketClient webSocketClient = WebsocketClientKit.runClient();
+
+        ExternalMessage externalMessage = ClientCommandKit.createExternalMessage(
+                DemoCmdForFight.cmd,
+                DemoCmdForFight.fight
+        );
+
+        byte[] bytes = ProtoKit.toBytes(externalMessage);
+        for (int i = 0; i < 50; i++) {
+            webSocketClient.send(bytes);
+        }
+
     }
 
 

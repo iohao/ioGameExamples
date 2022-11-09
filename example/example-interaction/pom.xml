@@ -17,11 +17,19 @@
         <maven.compiler.target>17</maven.compiler.target>
     </properties>
     <dependencies>
+        <dependency>
+            <groupId>com.iohao.client</groupId>
+            <artifactId>ioGame-client</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
         <!-- 示例代码 parent -->
         <dependency>
             <groupId>com.iohao.example</groupId>
             <artifactId>example-parent</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
+
+
     </dependencies>
 </project>

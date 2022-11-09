@@ -17,11 +17,16 @@
 package com.iohao.game.example.interaction;
 
 import com.iohao.game.bolt.broker.client.AbstractBrokerClientStartup;
+import com.iohao.game.common.kit.ExecutorKit;
 import com.iohao.game.example.interaction.fight.DemoFightLogicServer;
 import com.iohao.game.example.interaction.weather.DemoWeatherLogicServer;
+import com.iohao.game.example.interaction.weather.action.DemoWeatherAction;
 import com.iohao.game.simple.SimpleHelper;
+import com.iohao.game.simulation.client.ClientSimulation;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * 逻辑服之间相互调用的示例启动类
@@ -29,6 +34,7 @@ import java.util.List;
  * @author 渔民小镇
  * @date 2022-03-24
  */
+@Slf4j
 public class DemoInteractionApplication {
     public static void main(String[] args) {
 
@@ -49,5 +55,11 @@ public class DemoInteractionApplication {
          * 该示例文档地址
          * https://www.yuque.com/iohao/game/anguu6
          */
+
+        ClientSimulation.start();
+
+        ExecutorKit.newSingleScheduled("abc").scheduleAtFixedRate(() -> {
+            log.info("count: {}", DemoWeatherAction.longAdder.longValue());
+        }, 1, 5, TimeUnit.SECONDS);
     }
 }

@@ -43,7 +43,7 @@ public class DemoWeatherLogicServer extends AbstractBrokerClientStartup {
         // 业务框架构建器
         var builder = config.createBuilder();
         // 添加控制台输出插件
-        builder.addInOut(new DebugInOut());
+//        builder.addInOut(new DebugInOut());
         return builder.build();
     }
 

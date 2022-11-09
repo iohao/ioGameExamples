@@ -29,6 +29,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.util.Calendar;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.LongAdder;
 
 /**
  * 天气 action
@@ -39,6 +40,7 @@ import java.util.concurrent.TimeUnit;
 @Slf4j
 @ActionController(DemoCmdForWeather.cmd)
 public class DemoWeatherAction {
+    public static LongAdder longAdder = new LongAdder();
     /**
      * 今天天气情况
      *
@@ -46,17 +48,17 @@ public class DemoWeatherAction {
      */
     @ActionMethod(DemoCmdForWeather.todayWeather)
     public DemoWeatherMsg todayWeather(FlowContext flowContext) {
-        RequestMessage request = flowContext.getRequest();
-        log.info("request : {}", request.getClass());
-
-        try {
-            TimeUnit.SECONDS.sleep(2);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+//        RequestMessage request = flowContext.getRequest();
+//        log.info("request : {}", request.getClass());
+        longAdder.increment();
+//        try {
+//            TimeUnit.SECONDS.sleep(2);
+//        } catch (InterruptedException e) {
+//            throw new RuntimeException(e);
+//        }
 
         // 当前时间分钟
-        int minute = Calendar.getInstance().get(Calendar.MINUTE);
+        int minute = Calendar.getInstance().get(Calendar.SECOND);
 
         DemoWeatherMsg demoWeatherMsg = new DemoWeatherMsg();
         // 根据当前时间来增加战斗力

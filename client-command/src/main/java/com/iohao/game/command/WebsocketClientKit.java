@@ -35,7 +35,7 @@ import java.util.concurrent.TimeUnit;
 @Slf4j
 @UtilityClass
 public class WebsocketClientKit {
-    public void runClient() throws Exception {
+    public WebSocketClient runClient() throws Exception {
         // 连接游戏服务器的地址
         String wsUrl = "ws://127.0.0.1:10100/websocket";
 
@@ -89,5 +89,7 @@ public class WebsocketClientKit {
 
         // 开始连接服务器
         webSocketClient.connect();
+
+        return webSocketClient;
     }
 }

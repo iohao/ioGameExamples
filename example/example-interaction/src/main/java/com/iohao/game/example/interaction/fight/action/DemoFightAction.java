@@ -38,7 +38,6 @@ public class DemoFightAction {
     /**
      * 战斗
      *
-     * @param flowContext flowContext
      * @return current demoFightReq
      */
     @ActionMethod(DemoCmdForFight.fight)
