@@ -24,7 +24,7 @@ import com.iohao.game.action.skeleton.core.flow.interal.DebugInOut;
 import com.iohao.game.bolt.broker.client.AbstractBrokerClientStartup;
 import com.iohao.game.bolt.broker.core.client.BrokerAddress;
 import com.iohao.game.bolt.broker.core.client.BrokerClientBuilder;
-import com.iohao.game.bolt.broker.core.common.BrokerGlobalConfig;
+import com.iohao.game.bolt.broker.core.common.IoGameGlobalConfig;
 import com.iohao.game.common.kit.NetworkKit;
 
 /**
@@ -53,7 +53,7 @@ public class DemoClusterLogicServer extends AbstractBrokerClientStartup {
     @Override
     public BrokerAddress createBrokerAddress() {
         String localIp = NetworkKit.LOCAL_IP;
-        int brokerPort = BrokerGlobalConfig.brokerPort;
+        int brokerPort = IoGameGlobalConfig.brokerPort;
         return new BrokerAddress(localIp, brokerPort);
     }
 

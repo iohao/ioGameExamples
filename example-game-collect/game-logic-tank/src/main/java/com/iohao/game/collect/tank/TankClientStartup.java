@@ -21,7 +21,7 @@ import com.iohao.game.action.skeleton.core.BarSkeletonBuilder;
 import com.iohao.game.action.skeleton.core.BarSkeletonBuilderParamConfig;
 import com.iohao.game.bolt.broker.client.BrokerClientApplication;
 import com.iohao.game.bolt.broker.core.client.BrokerAddress;
-import com.iohao.game.bolt.broker.core.common.BrokerGlobalConfig;
+import com.iohao.game.bolt.broker.core.common.IoGameGlobalConfig;
 import com.iohao.game.collect.common.GameBarSkeletonConfig;
 import com.iohao.game.collect.common.GameCodeEnum;
 import com.iohao.game.collect.tank.action.TankAction;
@@ -75,7 +75,7 @@ public class TankClientStartup extends AbstractBrokerClientStartup {
         // 类似 127.0.0.1 ，但这里是本机的 ip
         String localIp = NetworkKit.LOCAL_IP;
         // broker （游戏网关）默认端口
-        int brokerPort = BrokerGlobalConfig.brokerPort;
+        int brokerPort = IoGameGlobalConfig.brokerPort;
         return new BrokerAddress(localIp, brokerPort);
     }
 

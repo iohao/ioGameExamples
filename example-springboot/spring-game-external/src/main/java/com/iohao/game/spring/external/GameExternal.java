@@ -21,7 +21,7 @@ import com.iohao.game.bolt.broker.client.external.ExternalServerBuilder;
 import com.iohao.game.bolt.broker.client.external.bootstrap.ExternalJoinEnum;
 import com.iohao.game.bolt.broker.client.external.config.ExternalGlobalConfig;
 import com.iohao.game.bolt.broker.core.client.BrokerAddress;
-import com.iohao.game.bolt.broker.core.common.BrokerGlobalConfig;
+import com.iohao.game.bolt.broker.core.common.IoGameGlobalConfig;
 
 /**
  * @author 渔民小镇
@@ -37,7 +37,7 @@ public class GameExternal {
                 // websocket 方式连接
                 .externalJoinEnum(ExternalJoinEnum.WEBSOCKET)
                 // Broker （游戏网关）的连接地址；如果不设置，默认也是这个配置
-                .brokerAddress(new BrokerAddress("127.0.0.1", BrokerGlobalConfig.brokerPort));
+                .brokerAddress(new BrokerAddress("127.0.0.1", IoGameGlobalConfig.brokerPort));
 
         // 构建游戏对外服
         return builder.build();

@@ -22,7 +22,6 @@ import com.iohao.game.example.interaction.fight.DemoFightLogicServer;
 import com.iohao.game.example.interaction.weather.DemoWeatherLogicServer;
 import com.iohao.game.example.interaction.weather.action.DemoWeatherAction;
 import com.iohao.game.simple.SimpleHelper;
-import com.iohao.game.simulation.client.ClientSimulation;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
@@ -55,8 +54,6 @@ public class DemoInteractionApplication {
          * 该示例文档地址
          * https://www.yuque.com/iohao/game/anguu6
          */
-
-        ClientSimulation.start();
 
         ExecutorKit.newSingleScheduled("abc").scheduleAtFixedRate(() -> {
             log.info("count: {}", DemoWeatherAction.longAdder.longValue());

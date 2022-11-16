@@ -19,7 +19,7 @@ package com.iohao.game.example.interaction.same;
 import com.iohao.game.bolt.broker.client.AbstractBrokerClientStartup;
 import com.iohao.game.bolt.broker.core.client.BrokerClient;
 import com.iohao.game.bolt.broker.core.client.BrokerClientBuilder;
-import com.iohao.game.bolt.broker.core.common.BrokerGlobalConfig;
+import com.iohao.game.bolt.broker.core.common.IoGameGlobalConfig;
 import com.iohao.game.example.interaction.same.hall.DemoSameHallLogicServer;
 import com.iohao.game.example.interaction.same.room.DemoSameRoomLogicServer;
 import com.iohao.game.simple.cluster.ClusterSimpleHelper;
@@ -34,7 +34,7 @@ import java.util.List;
  */
 public class DemoClusterInteractionSameApplication {
     public static void main(String[] args) {
-        BrokerGlobalConfig.requestResponseLog = true;
+        IoGameGlobalConfig.requestResponseLog = true;
 
         // 游戏对外服端口
         int port = 10100;

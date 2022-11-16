@@ -16,7 +16,7 @@
  */
 package com.iohao.game.example.cluster.one;
 
-import com.iohao.game.bolt.broker.core.common.BrokerGlobalConfig;
+import com.iohao.game.bolt.broker.core.common.IoGameGlobalConfig;
 import com.iohao.game.example.cluster.one.server.DemoClusterLogicServer;
 import com.iohao.game.simple.cluster.ClusterSimpleHelper;
 
@@ -30,7 +30,7 @@ import java.util.List;
  */
 public class DemoClusterApplication {
     public static void main(String[] args) {
-        BrokerGlobalConfig.requestResponseLog = false;
+        IoGameGlobalConfig.requestResponseLog = false;
 
         // 游戏对外服端口
         int port = 10100;

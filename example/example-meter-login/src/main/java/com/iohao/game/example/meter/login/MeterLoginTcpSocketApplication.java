@@ -21,7 +21,7 @@ import com.iohao.game.bolt.broker.client.external.ExternalServerBuilder;
 import com.iohao.game.bolt.broker.client.external.bootstrap.ExternalJoinEnum;
 import com.iohao.game.bolt.broker.client.external.config.ExternalGlobalConfig;
 import com.iohao.game.bolt.broker.client.external.session.UserSessions;
-import com.iohao.game.bolt.broker.core.common.BrokerGlobalConfig;
+import com.iohao.game.bolt.broker.core.common.IoGameGlobalConfig;
 import com.iohao.game.common.kit.ExecutorKit;
 import com.iohao.game.example.common.cmd.MeterLoginCmd;
 import com.iohao.game.example.meter.login.server.MeterLoginAction;
@@ -39,7 +39,7 @@ import java.util.concurrent.TimeUnit;
 @Slf4j
 public class MeterLoginTcpSocketApplication {
     public static void main(String[] args) {
-        BrokerGlobalConfig.timeoutMillis = 5 * 1000;
+        IoGameGlobalConfig.timeoutMillis = 5 * 1000;
 
         ExternalServer externalServer = getExternalServer();
 
