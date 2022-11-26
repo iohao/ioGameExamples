@@ -35,8 +35,8 @@ public class DemoEndPointRoomServer extends AbstractBrokerClientStartup {
     public BarSkeleton createBarSkeleton() {
         // 业务框架构建器 配置
         var config = new BarSkeletonBuilderParamConfig()
-                // 扫描 DemoEndPointRoomAction.class 所在包
-                .addActionController(DemoEndPointRoomAction.class);
+                // 扫描 action 类所在包
+                .scanActionPackage(DemoEndPointRoomAction.class);
 
         // 业务框架构建器
         var builder = config.createBuilder();

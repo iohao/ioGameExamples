@@ -17,9 +17,9 @@
 package com.iohao.game.command;
 
 import com.iohao.game.action.skeleton.core.CmdKit;
+import com.iohao.game.action.skeleton.core.DataCodecKit;
 import com.iohao.game.bolt.broker.client.external.bootstrap.ExternalKit;
 import com.iohao.game.bolt.broker.client.external.bootstrap.message.ExternalMessage;
-import com.iohao.game.common.kit.ProtoKit;
 import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
 
@@ -87,7 +87,7 @@ public class ClientCommandKit {
         System.out.println();
         // 接收服务器返回的消息
         byte[] dataContent = byteBuffer.array();
-        ExternalMessage externalMessage = ProtoKit.parseProtoByte(dataContent, ExternalMessage.class);
+        ExternalMessage externalMessage = DataCodecKit.decode(dataContent, ExternalMessage.class);
         int cmdMerge = externalMessage.getCmdMerge();
         int cmd = CmdKit.getCmd(cmdMerge);
         int subCmd = CmdKit.getSubCmd(cmdMerge);
@@ -124,7 +124,7 @@ public class ClientCommandKit {
         }
 
         byte[] data = message.getData();
-        Object o = ProtoKit.parseProtoByte(data, clientCommand.resultClass);
+        Object o = DataCodecKit.decode(data, clientCommand.resultClass);
 
         log.info(" {}", o);
     }

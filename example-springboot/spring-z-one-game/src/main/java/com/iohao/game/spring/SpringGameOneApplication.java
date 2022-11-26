@@ -24,7 +24,6 @@ import com.iohao.game.bolt.broker.core.client.BrokerClient;
 import com.iohao.game.bolt.broker.core.client.BrokerClientBuilder;
 import com.iohao.game.bolt.broker.server.BrokerServer;
 import com.iohao.game.simple.SimpleRunOne;
-import com.iohao.game.simulation.client.ClientSimulation;
 import com.iohao.game.spring.broker.GameBrokerBoot;
 import com.iohao.game.spring.external.GameExternal;
 import com.iohao.game.spring.logic.classes.GameLogicClassesClient;
@@ -115,7 +114,7 @@ public class SpringGameOneApplication {
         // spring 集成 https://www.yuque.com/iohao/game/evkgnz
 
         // 启动模拟客户端服务器 - action调试工具
-        ClientSimulation.start();
+//        ClientSimulation.start();
     }
 
     @Bean

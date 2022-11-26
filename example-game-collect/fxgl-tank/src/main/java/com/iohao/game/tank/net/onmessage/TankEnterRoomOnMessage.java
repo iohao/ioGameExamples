@@ -1,10 +1,10 @@
 package com.iohao.game.tank.net.onmessage;
 
+import com.iohao.game.action.skeleton.core.CmdKit;
+import com.iohao.game.action.skeleton.core.DataCodecKit;
+import com.iohao.game.bolt.broker.client.external.bootstrap.message.ExternalMessage;
 import com.iohao.game.collect.proto.tank.TankEnterRoom;
 import com.iohao.game.tank.net.TankOnMessage;
-import com.iohao.game.action.skeleton.core.CmdKit;
-import com.iohao.game.common.kit.ProtoKit;
-import com.iohao.game.bolt.broker.client.external.bootstrap.message.ExternalMessage;
 
 /**
  * @author 渔民小镇
@@ -18,7 +18,7 @@ public class TankEnterRoomOnMessage implements TankOnMessage {
 
     @Override
     public Object response(ExternalMessage externalMessage, byte[] data) {
-        TankEnterRoom tankEnterRoom = ProtoKit.parseProtoByte(data, TankEnterRoom.class);
+        TankEnterRoom tankEnterRoom = DataCodecKit.decode(data, TankEnterRoom.class);
         return tankEnterRoom;
     }
 

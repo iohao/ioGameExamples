@@ -36,8 +36,8 @@ public class DemoSameRoomLogicServer extends AbstractBrokerClientStartup {
     public BarSkeleton createBarSkeleton() {
         // 业务框架构建器 配置
         var config = new BarSkeletonBuilderParamConfig()
-                // 扫描 DemoRoomAction.class 所在包
-                .addActionController(DemoRoomAction.class);
+                // 扫描 action 类所在包
+                .scanActionPackage(DemoRoomAction.class);
         // 业务框架构建器
         var builder = config.createBuilder();
         // 添加控制台输出插件

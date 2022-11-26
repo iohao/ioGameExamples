@@ -17,7 +17,7 @@
 package com.iohao.game.command;
 
 import com.iohao.game.action.skeleton.core.CmdKit;
-import com.iohao.game.common.kit.ProtoKit;
+import com.iohao.game.action.skeleton.core.DataCodecKit;
 import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
 import org.java_websocket.client.WebSocketClient;
@@ -50,7 +50,7 @@ public class WebsocketClientKit {
                     int cmd = CmdKit.getCmd(cmdMerge);
                     int subCmd = CmdKit.getSubCmd(cmdMerge);
 
-                    byte[] bytes = ProtoKit.toBytes(externalMessage);
+                    byte[] bytes = DataCodecKit.encode(externalMessage);
                     this.send(bytes);
 
                     log.info("发送请求 {}-{}", cmd, subCmd);

@@ -16,8 +16,8 @@
  */
 package com.iohao.game.example.broadcast;
 
+import com.iohao.game.action.skeleton.core.DataCodecKit;
 import com.iohao.game.bolt.broker.client.external.bootstrap.message.ExternalMessage;
-import com.iohao.game.common.kit.ProtoKit;
 import com.iohao.game.example.common.msg.DemoBroadcastMessage;
 import lombok.extern.slf4j.Slf4j;
 import org.java_websocket.client.WebSocketClient;
@@ -50,11 +50,11 @@ public class DemoBroadcastWebsocketClient {
             public void onMessage(ByteBuffer byteBuffer) {
                 // 接收服务器返回的消息
                 byte[] dataContent = byteBuffer.array();
-                ExternalMessage message = ProtoKit.parseProtoByte(dataContent, ExternalMessage.class);
+                ExternalMessage message = DataCodecKit.decode(dataContent, ExternalMessage.class);
                 log.info("收到消息 ExternalMessage ========== \n{}", message);
                 byte[] data = message.getData();
                 if (data != null) {
-                    DemoBroadcastMessage broadcastMessage = ProtoKit.parseProtoByte(data, DemoBroadcastMessage.class);
+                    DemoBroadcastMessage broadcastMessage = DataCodecKit.decode(data, DemoBroadcastMessage.class);
                     log.info("broadcastMessage ========== \n{}", broadcastMessage);
                 }
             }

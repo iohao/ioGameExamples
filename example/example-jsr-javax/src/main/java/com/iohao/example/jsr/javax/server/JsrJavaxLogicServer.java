@@ -40,8 +40,8 @@ public class JsrJavaxLogicServer extends AbstractBrokerClientStartup {
     public BarSkeleton createBarSkeleton() {
         // 业务框架构建器 配置
         var config = new BarSkeletonBuilderParamConfig()
-                // 扫描 JsrJakartaAction.class 所在包
-                .addActionController(JsrJavaxAction.class);
+                // 扫描 action 类所在包
+                .scanActionPackage(JsrJavaxAction.class);
 
         // 业务框架构建器
         var builder = config.createBuilder();

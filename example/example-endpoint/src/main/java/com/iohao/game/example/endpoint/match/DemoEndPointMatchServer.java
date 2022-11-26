@@ -36,8 +36,8 @@ public class DemoEndPointMatchServer extends AbstractBrokerClientStartup {
     public BarSkeleton createBarSkeleton() {
         // 业务框架构建器 配置
         var config = new BarSkeletonBuilderParamConfig()
-                // 扫描 DemoMatchAction.class 所在包
-                .addActionController(DemoMatchAction.class);
+                // 扫描 action 类所在包
+                .scanActionPackage(DemoMatchAction.class);
 
         // 业务框架构建器
         var builder = config.createBuilder();

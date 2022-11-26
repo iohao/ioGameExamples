@@ -17,13 +17,13 @@
 package com.iohao.game.example.wrapper;
 
 import com.iohao.game.action.skeleton.core.CmdKit;
+import com.iohao.game.action.skeleton.core.DataCodecKit;
 import com.iohao.game.action.skeleton.protocol.wrapper.IntListPb;
 import com.iohao.game.action.skeleton.protocol.wrapper.IntPb;
 import com.iohao.game.action.skeleton.protocol.wrapper.LongListPb;
 import com.iohao.game.action.skeleton.protocol.wrapper.LongPb;
 import com.iohao.game.bolt.broker.client.external.bootstrap.ExternalKit;
 import com.iohao.game.bolt.broker.client.external.bootstrap.message.ExternalMessage;
-import com.iohao.game.common.kit.ProtoKit;
 import com.iohao.game.example.wrapper.action.WrapperCmd;
 import lombok.extern.slf4j.Slf4j;
 import org.java_websocket.client.WebSocketClient;
@@ -61,7 +61,7 @@ public class WrapperWebsocketClient {
                 values.forEach(theCommand -> {
                     ExternalMessage externalMessage = theCommand.externalMessage;
                     // 转为字节
-                    byte[] bytes = ProtoKit.toBytes(externalMessage);
+                    byte[] bytes = DataCodecKit.encode(externalMessage);
                     // 发送数据到游戏服务器
                     this.send(bytes);
                 });
@@ -71,14 +71,14 @@ public class WrapperWebsocketClient {
             public void onMessage(ByteBuffer byteBuffer) {
                 // 接收服务器返回的消息
                 byte[] dataContent = byteBuffer.array();
-                ExternalMessage message = ProtoKit.parseProtoByte(dataContent, ExternalMessage.class);
+                ExternalMessage message = DataCodecKit.decode(dataContent, ExternalMessage.class);
                 log.info("收到消息 ExternalMessage ========== \n{}", message);
                 byte[] data = message.getData();
                 int cmdMerge = message.getCmdMerge();
 
                 TheCommand theCommand = theCommandMap.get(cmdMerge);
                 if (theCommand != null) {
-                    Object o = ProtoKit.parseProtoByte(data, theCommand.resultClass);
+                    Object o = DataCodecKit.decode(data, theCommand.resultClass);
                     int cmd = CmdKit.getCmd(cmdMerge);
                     int subCmd = CmdKit.getSubCmd(cmdMerge);
 

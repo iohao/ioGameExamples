@@ -16,9 +16,9 @@
  */
 package com.iohao.game.collect.one;
 
+import com.iohao.game.action.skeleton.core.DataCodecKit;
 import com.iohao.game.bolt.broker.client.external.bootstrap.message.ExternalMessage;
 import com.iohao.game.collect.proto.tank.TankBroadcastMessage;
-import com.iohao.game.common.kit.ProtoKit;
 import lombok.extern.slf4j.Slf4j;
 import org.java_websocket.client.WebSocketClient;
 import org.java_websocket.drafts.Draft_6455;
@@ -73,11 +73,11 @@ public class GameOneBroadcastWebsocketClient {
             public void onMessage(ByteBuffer byteBuffer) {
                 // 接收服务器返回的消息
                 byte[] dataContent = byteBuffer.array();
-                ExternalMessage message = ProtoKit.parseProtoByte(dataContent, ExternalMessage.class);
+                ExternalMessage message = DataCodecKit.decode(dataContent, ExternalMessage.class);
                 log.info("收到消息 ExternalMessage ========== \n{}", message);
                 byte[] data = message.getData();
                 if (data != null) {
-                    TankBroadcastMessage broadcast = ProtoKit.parseProtoByte(data, TankBroadcastMessage.class);
+                    TankBroadcastMessage broadcast = DataCodecKit.decode(data, TankBroadcastMessage.class);
                     log.info("helloReq ========== \n{}", broadcast);
                 }
             }

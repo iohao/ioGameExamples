@@ -14,50 +14,40 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.iohao.game.spring.logic.classes;
+package com.iohao.example.codec;
 
 import com.iohao.game.action.skeleton.core.BarSkeleton;
-import com.iohao.game.action.skeleton.core.BarSkeletonBuilder;
 import com.iohao.game.action.skeleton.core.BarSkeletonBuilderParamConfig;
+import com.iohao.game.action.skeleton.core.flow.interal.DebugInOut;
 import com.iohao.game.bolt.broker.client.AbstractBrokerClientStartup;
 import com.iohao.game.bolt.broker.core.client.BrokerClient;
 import com.iohao.game.bolt.broker.core.client.BrokerClientBuilder;
-import com.iohao.game.spring.logic.classes.action.ClassesAction;
-import com.iohao.game.spring.logic.core.MyBarSkeletonConfig;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.experimental.FieldDefaults;
 
 /**
- * 班级游戏逻辑服
- *
  * @author 渔民小镇
- * @date 2022-07-10
+ * @date 2022-11-24
  */
-@Getter
-@Setter
-@FieldDefaults(level = AccessLevel.PRIVATE)
-public class GameLogicClassesClient extends AbstractBrokerClientStartup {
+public class JsonLogicServer extends AbstractBrokerClientStartup {
     @Override
     public BarSkeleton createBarSkeleton() {
         // 业务框架构建器 配置
-        BarSkeletonBuilderParamConfig config = MyBarSkeletonConfig.createBarSkeletonBuilderParamConfig()
+        var config = new BarSkeletonBuilderParamConfig()
                 // 扫描 action 类所在包
-                .scanActionPackage(ClassesAction.class);
+                .scanActionPackage(JsonAction.class);
 
         // 业务框架构建器
-        BarSkeletonBuilder builder = MyBarSkeletonConfig.createBarSkeletonBuilder(config);
-        // 开启 jsr380 验证
-        builder.getSetting().setValidator(true);
+        var builder = config.createBuilder();
+
+        // 添加控制台输出插件
+        builder.addInOut(new DebugInOut());
 
         return builder.build();
     }
 
     @Override
     public BrokerClientBuilder createBrokerClientBuilder() {
-        BrokerClientBuilder builder = BrokerClient.newBuilder();
-        builder.appName("spring classes 班级游戏逻辑服");
-        return builder;
+        return BrokerClient
+                .newBuilder()
+                .appName("json 游戏逻辑服");
     }
 }

@@ -17,10 +17,10 @@
 package com.iohao.game.example.endpoint;
 
 import com.iohao.game.action.skeleton.core.CmdKit;
+import com.iohao.game.action.skeleton.core.DataCodecKit;
 import com.iohao.game.bolt.broker.client.external.bootstrap.ExternalKit;
 import com.iohao.game.bolt.broker.client.external.bootstrap.message.ExternalMessage;
 import com.iohao.game.common.kit.ExecutorKit;
-import com.iohao.game.common.kit.ProtoKit;
 import com.iohao.game.example.common.msg.DemoOperation;
 import com.iohao.game.example.common.msg.login.DemoLoginVerify;
 import com.iohao.game.example.endpoint.match.action.DemoCmdForEndPointMatch;
@@ -59,7 +59,7 @@ public class DemoWebsocketClientForEndPoint {
         ExternalMessage externalMessage = ExternalKit.createExternalMessage(cmd, subCmd, data);
 
         // 转为字节
-        return ProtoKit.toBytes(externalMessage);
+        return DataCodecKit.encode(externalMessage);
     }
 
     private void init() throws URISyntaxException {
@@ -124,14 +124,14 @@ public class DemoWebsocketClientForEndPoint {
             public void onMessage(ByteBuffer byteBuffer) {
                 // 接收服务器返回的消息
                 byte[] dataContent = byteBuffer.array();
-                ExternalMessage message = ProtoKit.parseProtoByte(dataContent, ExternalMessage.class);
+                ExternalMessage message = DataCodecKit.decode(dataContent, ExternalMessage.class);
                 String mergeToString = CmdKit.mergeToString(message.getCmdMerge());
                 log.info("收到消息 ExternalMessage ========== \n{} {}", mergeToString, message);
                 byte[] data = message.getData();
 
                 int merge = CmdKit.merge(DemoCmdForEndPointRoom.cmd, DemoCmdForEndPointRoom.operation);
                 if (data != null && merge == message.getCmdMerge()) {
-                    DemoOperation demoOperation = ProtoKit.parseProtoByte(data, DemoOperation.class);
+                    DemoOperation demoOperation = DataCodecKit.decode(data, DemoOperation.class);
                     log.info("demoOperation ========== \n{}", demoOperation);
                 }
             }

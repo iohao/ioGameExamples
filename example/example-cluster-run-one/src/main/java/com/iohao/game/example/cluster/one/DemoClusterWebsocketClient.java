@@ -36,7 +36,7 @@ public class DemoClusterWebsocketClient {
     public static void main(String[] args) throws Exception {
 
         HelloReq helloReq = new HelloReq();
-        helloReq.setName("塔姆");
+        helloReq.name = "塔姆";
 
         // 创建对外服协议
         ExternalMessage externalMessageHere = ClientCommandKit.createExternalMessage(

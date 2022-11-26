@@ -34,8 +34,8 @@ public class MeterLogicServer extends AbstractBrokerClientStartup {
     public BarSkeleton createBarSkeleton() {
         // 业务框架构建器 配置
         var config = new BarSkeletonBuilderParamConfig()
-                // 扫描 DemoAction.class 所在包
-                .addActionController(MeterAction.class);
+                // 扫描 action 类所在包
+                .scanActionPackage(MeterAction.class);
 
         // 业务框架构建器
         var builder = config.createBuilder();

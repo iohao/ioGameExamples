@@ -1,10 +1,10 @@
 package com.iohao.game.tank.net;
 
 import com.iohao.game.action.skeleton.core.CmdKit;
+import com.iohao.game.action.skeleton.core.DataCodecKit;
 import com.iohao.game.bolt.broker.client.external.bootstrap.message.ExternalMessage;
 import com.iohao.game.collect.common.GameConfig;
 import com.iohao.game.collect.proto.common.LoginVerify;
-import com.iohao.game.common.kit.ProtoKit;
 import com.iohao.game.common.kit.RandomKit;
 import com.iohao.game.common.kit.StrKit;
 import com.iohao.game.tank.net.onmessage.*;
@@ -47,7 +47,7 @@ public class TankWebsocketClient {
     }
 
     public void request(ExternalMessage externalMessage) {
-        byte[] bytes = ProtoKit.toBytes(externalMessage);
+        byte[] bytes = DataCodecKit.encode(externalMessage);
 
         webSocketClient.send(bytes);
     }
@@ -89,7 +89,7 @@ public class TankWebsocketClient {
                 // 接收消息
                 byte[] dataContent = byteBuffer.array();
 
-                ExternalMessage message = ProtoKit.parseProtoByte(dataContent, ExternalMessage.class);
+                ExternalMessage message = DataCodecKit.decode(dataContent, ExternalMessage.class);
 
                 int cmdMerge = message.getCmdMerge();
                 int cmd = CmdKit.getCmd(cmdMerge);

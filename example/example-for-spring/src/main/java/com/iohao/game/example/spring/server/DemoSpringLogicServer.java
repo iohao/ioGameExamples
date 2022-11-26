@@ -39,8 +39,8 @@ public class DemoSpringLogicServer extends AbstractBrokerClientStartup {
     public BarSkeleton createBarSkeleton() {
         // 业务框架构建器 配置
         var config = new BarSkeletonBuilderParamConfig()
-                // 扫描 DemoSpringAction.class 所在包
-                .addActionController(DemoSpringAction.class);
+                // 扫描 action 类所在包
+                .scanActionPackage(DemoSpringAction.class);
         // 业务框架构建器
         var builder = config.createBuilder();
         // 添加控制台输出插件

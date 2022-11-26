@@ -1,6 +1,6 @@
 package com.iohao.game.tank.net;
 
-import com.iohao.game.action.skeleton.core.flow.codec.ProtoDataCodec;
+import com.iohao.game.action.skeleton.core.DataCodecKit;
 import com.iohao.game.bolt.broker.client.external.bootstrap.message.ExternalMessage;
 import com.iohao.game.bolt.broker.client.external.bootstrap.message.ExternalMessageCmdCode;
 import com.iohao.game.bolt.broker.client.external.config.ExternalGlobalConfig;
@@ -22,7 +22,7 @@ public interface TankOnMessage {
     default void request(Object data, Runnable runnable) {
         ExternalMessage externalMessage = this.createExternalMessage();
 
-        byte[] bytes = ProtoDataCodec.me().encode(data);
+        byte[] bytes = DataCodecKit.encode(data);
         // 业务数据
         externalMessage.setData(bytes);
 

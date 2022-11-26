@@ -17,9 +17,9 @@
 package com.iohao.game.tank.net.onmessage;
 
 import com.iohao.game.action.skeleton.core.CmdKit;
+import com.iohao.game.action.skeleton.core.DataCodecKit;
 import com.iohao.game.action.skeleton.protocol.temp.BarHelloPb;
 import com.iohao.game.bolt.broker.client.external.bootstrap.message.ExternalMessage;
-import com.iohao.game.common.kit.ProtoKit;
 import com.iohao.game.tank.net.TankOnMessage;
 
 /**
@@ -35,7 +35,7 @@ public class TankTestShootOnMessage implements TankOnMessage {
 
     @Override
     public Object response(ExternalMessage externalMessage, byte[] data) {
-        return ProtoKit.parseProtoByte(data, BarHelloPb.class);
+        return DataCodecKit.decode(data, BarHelloPb.class);
     }
 
     private TankTestShootOnMessage() {

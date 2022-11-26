@@ -6,38 +6,39 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
- * limitations under the License..
+ * limitations under the License.
  */
-package com.iohao.game.example.one;
+package com.iohao.example.codec;
 
+import com.iohao.game.action.skeleton.core.IoGameGlobalSetting;
+import com.iohao.game.action.skeleton.core.codec.JsonDataCodec;
 import com.iohao.game.bolt.broker.client.external.bootstrap.message.ExternalMessage;
 import com.iohao.game.command.ClientCommandKit;
 import com.iohao.game.command.WebsocketClientKit;
+import com.iohao.game.example.common.cmd.JsonCmd;
 import com.iohao.game.example.common.msg.HelloReq;
-import com.iohao.game.example.common.msg.login.DemoLoginVerify;
-import com.iohao.game.example.common.msg.login.DemoUserInfo;
-import com.iohao.game.example.one.action.DemoCmd;
-import lombok.extern.slf4j.Slf4j;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.experimental.FieldDefaults;
 
 /**
- * 模拟游戏客户端 websocket
- *
  * @author 渔民小镇
- * @date 2022-02-24
+ * @date 2022-11-24
  */
-@Slf4j
-public class DemoWebsocketClient {
-
+@Getter
+@Setter
+@FieldDefaults(level = AccessLevel.PRIVATE)
+public class JsonWebsocketClient {
     public static void main(String[] args) throws Exception {
-
-        // 请求构建 - 登录相关
-        initLoginCommand();
+        // 使用 json 编解码
+        IoGameGlobalSetting.me().setDataCodec(new JsonDataCodec());
 
         // 请求构建
         initClientCommands();
@@ -46,24 +47,8 @@ public class DemoWebsocketClient {
         WebsocketClientKit.runClient();
     }
 
-    private static void initLoginCommand() {
-        ClientCommandKit.login = true;
-
-        // 登录请求
-        DemoLoginVerify loginVerify = new DemoLoginVerify();
-        loginVerify.jwt = "abc";
-
-        ExternalMessage externalMessageLogin = ClientCommandKit.createExternalMessage(
-                DemoCmd.cmd,
-                DemoCmd.loginVerify,
-                loginVerify
-        );
-
-        ClientCommandKit.createClientCommand(externalMessageLogin, DemoUserInfo.class);
-    }
-
     private static void initClientCommands() {
-        int cmd = DemoCmd.cmd;
+        int cmd = JsonCmd.cmd;
 
         HelloReq helloReq = new HelloReq();
         helloReq.name = "塔姆";
@@ -71,19 +56,10 @@ public class DemoWebsocketClient {
         // 请求、响应
         ExternalMessage externalMessageHere = ClientCommandKit.createExternalMessage(
                 cmd,
-                DemoCmd.here,
+                JsonCmd.hello,
                 helloReq
         );
 
         ClientCommandKit.createClientCommand(externalMessageHere, HelloReq.class);
-
-        ExternalMessage externalMessageJackson = ClientCommandKit.createExternalMessage(
-                cmd,
-                DemoCmd.jackson,
-                helloReq
-        );
-
-        ClientCommandKit.createClientCommand(externalMessageJackson, HelloReq.class);
     }
-
 }

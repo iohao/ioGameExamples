@@ -16,7 +16,7 @@
  */
 package com.iohao.game.spring.common;
 
-import com.iohao.game.common.kit.ProtoKit;
+import com.iohao.game.action.skeleton.core.DataCodecKit;
 import com.iohao.game.spring.common.pb.LoginVerify;
 import lombok.extern.slf4j.Slf4j;
 
@@ -48,7 +48,7 @@ public class SpringTest {
         loginVerify.loginBizCode = 1;
 
 
-        byte[] bytes = ProtoKit.toBytes(loginVerify);
+        byte[] bytes = DataCodecKit.encode(loginVerify);
 
         for (int i = 0; i < bytes.length; i++) {
             log.info("i : {} {}", i, bytes[i]);

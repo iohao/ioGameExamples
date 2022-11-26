@@ -16,10 +16,10 @@
  */
 package com.iohao.game.example.meter.login;
 
+import com.iohao.game.action.skeleton.core.DataCodecKit;
 import com.iohao.game.bolt.broker.client.external.bootstrap.ExternalKit;
 import com.iohao.game.bolt.broker.client.external.bootstrap.handler.codec.ExternalCodecSocket;
 import com.iohao.game.bolt.broker.client.external.bootstrap.message.ExternalMessage;
-import com.iohao.game.common.kit.ProtoKit;
 import com.iohao.game.example.common.cmd.MeterLoginCmd;
 import com.iohao.game.example.common.msg.HelloReq;
 import io.netty.bootstrap.Bootstrap;
@@ -57,7 +57,7 @@ public class MeterLoginTcpClient {
 
     private Channel getChannel() {
 
-        /** 数据包最大1MB */
+        /* 数据包最大1MB */
         int packageMaxSize = 1024 * 1024;
 
         EventLoopGroup group = new NioEventLoopGroup();
@@ -119,7 +119,7 @@ public class MeterLoginTcpClient {
 
             byte[] dataContent = msg.getData();
 
-            HelloReq helloReq = ProtoKit.parseProtoByte(dataContent, HelloReq.class);
+            HelloReq helloReq = DataCodecKit.decode(dataContent, HelloReq.class);
 
             log.info("data: {}", helloReq);
         }

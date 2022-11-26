@@ -44,7 +44,7 @@ public class MyBarSkeletonConfig {
                 // 异常码文档生成
                 .addErrorCode(SpringGameCodeEnum.values())
                 // 推送(广播)文档生成
-                .addActionSend(SendDoc.class);
+                .scanActionSendPackage(SendDoc.class);
     }
 
     /**

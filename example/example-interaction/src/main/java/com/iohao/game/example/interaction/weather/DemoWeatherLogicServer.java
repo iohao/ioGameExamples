@@ -16,16 +16,16 @@
  */
 package com.iohao.game.example.interaction.weather;
 
-import com.iohao.game.bolt.broker.core.client.BrokerAddress;
-import com.iohao.game.bolt.broker.core.client.BrokerClient;
-import com.iohao.game.bolt.broker.core.common.IoGameGlobalConfig;
-import com.iohao.game.common.kit.NetworkKit;
-import com.iohao.game.example.interaction.weather.action.DemoWeatherAction;
 import com.iohao.game.action.skeleton.core.BarSkeleton;
 import com.iohao.game.action.skeleton.core.BarSkeletonBuilderParamConfig;
 import com.iohao.game.action.skeleton.core.flow.interal.DebugInOut;
-import com.iohao.game.bolt.broker.core.client.BrokerClientBuilder;
 import com.iohao.game.bolt.broker.client.AbstractBrokerClientStartup;
+import com.iohao.game.bolt.broker.core.client.BrokerAddress;
+import com.iohao.game.bolt.broker.core.client.BrokerClient;
+import com.iohao.game.bolt.broker.core.client.BrokerClientBuilder;
+import com.iohao.game.bolt.broker.core.common.IoGameGlobalConfig;
+import com.iohao.game.common.kit.NetworkKit;
+import com.iohao.game.example.interaction.weather.action.DemoWeatherAction;
 
 /**
  * 天气预报逻辑服
@@ -38,12 +38,12 @@ public class DemoWeatherLogicServer extends AbstractBrokerClientStartup {
     public BarSkeleton createBarSkeleton() {
         // 业务框架构建器 配置
         var config = new BarSkeletonBuilderParamConfig()
-                // 扫描 DemoWeatherAction.class 所在包
-                .addActionController(DemoWeatherAction.class);
+                // 扫描 action 类所在包
+                .scanActionPackage(DemoWeatherAction.class);
         // 业务框架构建器
         var builder = config.createBuilder();
         // 添加控制台输出插件
-//        builder.addInOut(new DebugInOut());
+        builder.addInOut(new DebugInOut());
         return builder.build();
     }
 

@@ -17,10 +17,10 @@
 package com.iohao.game.example.one.tcp.other;
 
 import cn.hutool.core.util.HexUtil;
+import com.iohao.game.action.skeleton.core.DataCodecKit;
 import com.iohao.game.bolt.broker.client.external.bootstrap.ExternalKit;
 import com.iohao.game.bolt.broker.client.external.bootstrap.handler.codec.ExternalCodecSocket;
 import com.iohao.game.bolt.broker.client.external.bootstrap.message.ExternalMessage;
-import com.iohao.game.common.kit.ProtoKit;
 import com.iohao.game.example.common.msg.HelloReq;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.PooledByteBufAllocator;
@@ -78,7 +78,7 @@ public class TestExternalCodec {
 
     private static String toHex(ExternalMessage externalMessage) {
         // 下面是将游戏对外服协议转为十六进制
-        byte[] bytes = ProtoKit.toBytes(externalMessage);
+        byte[] bytes = DataCodecKit.encode(externalMessage);
 
         ByteBuf buffer = new PooledByteBufAllocator(true).buffer();
         // 消息长度

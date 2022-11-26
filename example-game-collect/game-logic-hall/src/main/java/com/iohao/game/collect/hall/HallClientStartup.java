@@ -39,8 +39,8 @@ public class HallClientStartup extends AbstractBrokerClientStartup {
     @Override
     public BarSkeleton createBarSkeleton() {
         BarSkeletonBuilderParamConfig config = new BarSkeletonBuilderParamConfig()
-                // 扫描 LoginAction.class 所在包
-                .addActionController(TankLoginAction.class);
+                // 扫描 action 类所在包
+                .scanActionPackage(TankLoginAction.class);
 
         BarSkeletonBuilder builder = GameBarSkeletonConfig.createBuilder(config);
 

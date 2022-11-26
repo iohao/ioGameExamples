@@ -19,10 +19,10 @@ package com.iohao.game.spring.client.tester;
 import com.google.protobuf.ByteString;
 import com.google.protobuf.InvalidProtocolBufferException;
 import com.iohao.game.action.skeleton.core.CmdKit;
+import com.iohao.game.action.skeleton.core.DataCodecKit;
 import com.iohao.game.action.skeleton.protocol.wrapper.IntListPb;
 import com.iohao.game.action.skeleton.protocol.wrapper.IntPb;
 import com.iohao.game.bolt.broker.client.external.bootstrap.message.ExternalMessage;
-import com.iohao.game.common.kit.ProtoKit;
 import com.iohao.game.spring.client.command.WebsocketNativeProtoClientKit;
 import com.iohao.message.BizProto;
 import com.iohao.message.Proto;
@@ -64,7 +64,7 @@ public class NativeProtoTest {
 
         // ================ 原生 proto convert2 jprotobuf ================
 
-        ExternalMessage externalMessage = ProtoKit.parseProtoByte(bytes, ExternalMessage.class);
+        ExternalMessage externalMessage = DataCodecKit.decode(bytes, ExternalMessage.class);
 
         Assert.assertTrue(externalMessage.getCmdCode() == 1);
         Assert.assertTrue(externalMessage.getProtocolSwitch() == 0);
@@ -77,7 +77,7 @@ public class NativeProtoTest {
         log.info("catMessage1 : {}", externalMessage);
 
         byte[] loginData = externalMessage.getData();
-        LoginVerify loginVerify1 = ProtoKit.parseProtoByte(loginData, LoginVerify.class);
+        LoginVerify loginVerify1 = DataCodecKit.decode(loginData, LoginVerify.class);
         log.info("loginVerify1 : {}", loginVerify1);
         Assert.assertTrue(loginVerify1.age == 273676);
         Assert.assertEquals(loginVerify1.jwt, "abcd");
@@ -85,7 +85,7 @@ public class NativeProtoTest {
 
         System.out.println();
 
-        byte[] bytes1 = ProtoKit.toBytes(externalMessage);
+        byte[] bytes1 = DataCodecKit.encode(externalMessage);
 
         Proto.ExternalMessage externalMessageNative2 = Proto.ExternalMessage.parseFrom(bytes1);
         System.out.println();
@@ -124,7 +124,7 @@ public class NativeProtoTest {
         ExternalMessage convert = convert(externalMessage);
 
         byte[] data = convert.getData();
-        IntPb intPb1 = ProtoKit.parseProtoByte(data, IntPb.class);
+        IntPb intPb1 = DataCodecKit.decode(data, IntPb.class);
         log.info("intPb1 : {}", intPb1);
 
         Assert.assertTrue(intPb.getIntValue() == intPb1.intValue);
@@ -145,7 +145,7 @@ public class NativeProtoTest {
 
         convert = convert(externalMessage);
         data = convert.getData();
-        IntListPb intListPb1 = ProtoKit.parseProtoByte(data, IntListPb.class);
+        IntListPb intListPb1 = DataCodecKit.decode(data, IntListPb.class);
         log.info("intListPb1 : {}", intListPb1);
 
         System.out.println();
@@ -160,7 +160,7 @@ public class NativeProtoTest {
     private static ExternalMessage convert(Proto.ExternalMessage externalMessage) {
         byte[] bytes = externalMessage.toByteArray();
 
-        ExternalMessage externalMessage1 = ProtoKit.parseProtoByte(bytes, ExternalMessage.class);
+        ExternalMessage externalMessage1 = DataCodecKit.decode(bytes, ExternalMessage.class);
         log.info("convert externalMessage : {}", externalMessage1);
 
         return externalMessage1;

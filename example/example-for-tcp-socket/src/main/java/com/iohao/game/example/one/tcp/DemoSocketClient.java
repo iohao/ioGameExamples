@@ -16,10 +16,10 @@
  */
 package com.iohao.game.example.one.tcp;
 
+import com.iohao.game.action.skeleton.core.DataCodecKit;
 import com.iohao.game.bolt.broker.client.external.bootstrap.ExternalKit;
 import com.iohao.game.bolt.broker.client.external.bootstrap.handler.codec.ExternalCodecSocket;
 import com.iohao.game.bolt.broker.client.external.bootstrap.message.ExternalMessage;
-import com.iohao.game.common.kit.ProtoKit;
 import com.iohao.game.example.common.msg.HelloReq;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.*;
@@ -40,7 +40,7 @@ public class DemoSocketClient {
     /** 数据包最大1MB */
     static int PACKAGE_MAX_SIZE = 1024 * 1024;
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) {
         EventLoopGroup group = new NioEventLoopGroup();
 
         var bootstrap = new Bootstrap();
@@ -92,7 +92,7 @@ public class DemoSocketClient {
 
             byte[] dataContent = msg.getData();
 
-            HelloReq helloReq = ProtoKit.parseProtoByte(dataContent, HelloReq.class);
+            HelloReq helloReq = DataCodecKit.decode(dataContent, HelloReq.class);
 
             log.info("data: {}", helloReq);
         }

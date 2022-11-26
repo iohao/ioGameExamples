@@ -49,10 +49,10 @@ public class TankClientStartup extends AbstractBrokerClientStartup {
     public BarSkeleton createBarSkeleton() {
 
         BarSkeletonBuilderParamConfig config = new BarSkeletonBuilderParamConfig()
-                // 扫描 TankAction.class 所在包
-                .addActionController(TankAction.class)
+                // 扫描 action 类所在包
+                .scanActionPackage(TankAction.class)
                 // 推送消息-用于文档的生成
-                .addActionSend(TankSend.class)
+                .scanActionSendPackage(TankSend.class)
                 // 错误码-用于文档的生成
                 .addErrorCode(GameCodeEnum.values())
                 // 开启广播日志

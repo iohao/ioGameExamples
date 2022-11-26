@@ -39,8 +39,8 @@ public class DemoLogicServer extends AbstractBrokerClientStartup {
     public BarSkeleton createBarSkeleton() {
         // 业务框架构建器 配置
         var config = new BarSkeletonBuilderParamConfig()
-                // 扫描 DemoAction.class 所在包
-                .addActionController(DemoAction.class)
+                // 扫描 action 类所在包
+                .scanActionPackage(DemoAction.class)
                 // 错误码-用于文档的生成
                 .addErrorCode(DemoCodeEnum.values());
 

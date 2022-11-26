@@ -69,4 +69,6 @@ public interface DemoModuleCmd {
     int jsr_jakarta_17_cmd = 17;
     /** jsr 相关 - javax */
     int jsr_javax_18_cmd = 18;
+    /** 编解码 - json 相关 */
+    int json_cmd = 19;
 }

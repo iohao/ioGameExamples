@@ -43,8 +43,8 @@ public class GameLogicHallClient extends AbstractBrokerClientStartup {
     public BarSkeleton createBarSkeleton() {
         // 业务框架构建器 配置
         BarSkeletonBuilderParamConfig config = MyBarSkeletonConfig.createBarSkeletonBuilderParamConfig()
-                // 扫描 LoginAction.class 所在包
-                .addActionController(LoginAction.class);
+                // 扫描 action 类所在包
+                .scanActionPackage(LoginAction.class);
 
         // 业务框架构建器
         BarSkeletonBuilder builder = MyBarSkeletonConfig.createBarSkeletonBuilder(config);
