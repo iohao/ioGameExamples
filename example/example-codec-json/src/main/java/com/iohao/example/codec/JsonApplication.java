@@ -29,7 +29,7 @@ import java.util.List;
  */
 public class JsonApplication {
     public static void main(String[] args) {
-        // 设置 json 编解码，
+        // 设置 json 编解码。如果不设置，默认为 jprotobuf
         IoGameGlobalSetting.me().setDataCodec(new JsonDataCodec());
 
         IoGameGlobalConfig.openLog = false;
