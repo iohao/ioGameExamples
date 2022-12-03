@@ -29,7 +29,7 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public enum DemoCodeEnum implements MsgExceptionInfo {
     /** jsr330 */
-    jackson_error(100, "异常机制测试，name 必需是 jackson !");;
+    jackson_error(100, "异常机制测试，name 必须是 jackson !");
     /** 消息码 */
     final int code;
     /** 消息模板 */
