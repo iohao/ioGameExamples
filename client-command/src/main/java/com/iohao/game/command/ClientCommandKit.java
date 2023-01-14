@@ -27,7 +27,6 @@ import java.nio.ByteBuffer;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 /**
  * @author 渔民小镇
@@ -39,27 +38,30 @@ public class ClientCommandKit {
 
     Map<Integer, ClientCommand> clientCommandMap = new LinkedHashMap<>();
 
-    public boolean login;
-
-    public List<ExternalMessage> listRequestExternalMessage() {
+    public List<ClientCommand> listClientCommand() {
         return clientCommandMap
                 .values()
                 .stream()
-                // 得到与游戏对外服交互的协议
-                .map(ClientCommand::getExternalMessage)
-                .filter(Objects::nonNull)
-                // 将对外服交互协议转成 byte[]
                 .toList();
     }
 
-    public ClientCommand createClientCommand(ExternalMessage externalMessage, Class<?> resultClass) {
+    public ClientCommand createClientCommand(ExternalMessage externalMessage, Class<?> resultClass, long sleepMilliseconds) {
         ClientCommand clientCommand = new ClientCommand();
         clientCommand.externalMessage = externalMessage;
         clientCommand.resultClass = resultClass;
+        clientCommand.sleepMilliseconds = sleepMilliseconds;
 
         clientCommandMap.put(externalMessage.getCmdMerge(), clientCommand);
 
         return clientCommand;
+    }
+
+    public ClientCommand createClientCommand(ExternalMessage externalMessage, Class<?> resultClass) {
+        return createClientCommand(externalMessage, resultClass, 0);
+    }
+
+    public ClientCommand createClientCommand(ExternalMessage externalMessage, long sleepMilliseconds) {
+        return createClientCommand(externalMessage, null, sleepMilliseconds);
     }
 
     public ClientCommand createClientCommand(ExternalMessage externalMessage) {

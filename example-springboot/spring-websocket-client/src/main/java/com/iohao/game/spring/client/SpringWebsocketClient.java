@@ -24,8 +24,11 @@ import com.iohao.game.spring.common.cmd.HallCmdModule;
 import com.iohao.game.spring.common.cmd.OtherSchoolCmdModule;
 import com.iohao.game.spring.common.cmd.RoomCmdModule;
 import com.iohao.game.spring.common.cmd.SchoolCmdModule;
+import com.iohao.game.spring.common.data.MyAttachment;
 import com.iohao.game.spring.common.pb.*;
 import lombok.extern.slf4j.Slf4j;
+
+import java.util.concurrent.TimeUnit;
 
 /**
  * 游戏客户端模拟启动类
@@ -42,17 +45,41 @@ public class SpringWebsocketClient {
         // 请求构建 - 登录相关
         initLoginCommand();
 
-        // 请求构建
-        initClientCommands();
+        // 元信息相关
+        attachmentCommands();
 
-        // 逻辑服间的相互通信
-        communicationClientCommands();
+        TimeUnit.MILLISECONDS.sleep(1);
 
-        // 其他
-        otherCommand();
+//        // 请求构建
+//        initClientCommands();
+//
+//        // 逻辑服间的相互通信
+//        communicationClientCommands();
+//
+//        // 其他
+//        otherCommand();
 
         // 启动客户端
         WebsocketClientKit.runClient();
+    }
+
+    private static void attachmentCommands() {
+        // 请求 设置元信息
+        ExternalMessage externalMessage = ClientCommandKit.createExternalMessage(
+                HallCmdModule.cmd,
+                HallCmdModule.attachment
+        );
+
+        ClientCommandKit.createClientCommand(externalMessage, 1000);
+
+        // 请求 打印元信息
+        externalMessage = ClientCommandKit.createExternalMessage(
+                HallCmdModule.cmd,
+                HallCmdModule.attachmentPrint
+        );
+
+        ClientCommandKit.createClientCommand(externalMessage, MyAttachment.class);
+
     }
 
     private static void otherCommand() {
@@ -76,7 +103,6 @@ public class SpringWebsocketClient {
     }
 
     private static void initLoginCommand() {
-        ClientCommandKit.login = true;
         /*
          *       注意，这个业务码放这里只是为了方便测试多种情况
          *       交由测试请求端来控制
@@ -103,7 +129,7 @@ public class SpringWebsocketClient {
                 loginVerify
         );
 
-        ClientCommandKit.createClientCommand(externalMessageLogin, UserInfo.class);
+        ClientCommandKit.createClientCommand(externalMessageLogin, UserInfo.class, 1500);
     }
 
     private static void initClientCommands() {

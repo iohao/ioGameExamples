@@ -14,20 +14,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.iohao.game.spring.common.cmd;
+package com.iohao.game.spring.common.data;
+
+import com.baidu.bjf.remoting.protobuf.annotation.ProtobufClass;
+import com.iohao.game.core.common.client.Attachment;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.ToString;
+import lombok.experimental.FieldDefaults;
 
 /**
- * 大厅模块
+ * 自定义一个元信息类，实现 Attachment 元附加信息接口
  *
  * @author 渔民小镇
- * @date 2022-08-12
+ * @date 2023-01-14
  */
-public interface HallCmdModule {
-    int cmd = SpringCmdModule.hallCmd;
-    /** 登录 */
-    int loginVerify = 1;
-    /** 元信息 */
-    int attachment = 2;
-    /** 打印元信息 */
-    int attachmentPrint = 3;
+@ToString
+@ProtobufClass
+@FieldDefaults(level = AccessLevel.PUBLIC)
+public class MyAttachment implements Attachment {
+    @Getter
+    long userId;
+    String nickname;
 }

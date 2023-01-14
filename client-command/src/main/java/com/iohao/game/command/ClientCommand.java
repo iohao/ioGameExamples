@@ -31,6 +31,8 @@ public class ClientCommand {
     ExternalMessage externalMessage;
 
     Class<?> resultClass;
+    /** 执行完请求后，进行睡眠的时间 */
+    long sleepMilliseconds;
 
     ClientCommand() {
     }

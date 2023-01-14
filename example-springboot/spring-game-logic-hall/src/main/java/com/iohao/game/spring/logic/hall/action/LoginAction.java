@@ -25,6 +25,7 @@ import com.iohao.game.bolt.broker.client.kit.ExternalCommunicationKit;
 import com.iohao.game.bolt.broker.client.kit.UserIdSettingKit;
 import com.iohao.game.spring.common.SpringGameCodeEnum;
 import com.iohao.game.spring.common.cmd.HallCmdModule;
+import com.iohao.game.spring.common.data.MyAttachment;
 import com.iohao.game.spring.common.pb.LoginVerify;
 import com.iohao.game.spring.common.pb.UserInfo;
 import lombok.extern.slf4j.Slf4j;
@@ -93,6 +94,26 @@ public class LoginAction {
         SpringGameCodeEnum.loginError.assertTrue(success);
 
         return userInfo;
+    }
+
+    @ActionMethod(HallCmdModule.attachment)
+    public void attachment(FlowContext flowContext) {
+        // 创建自定义的元附加信息对象
+        MyAttachment myAttachment = new MyAttachment();
+        myAttachment.userId = flowContext.getUserId();
+        myAttachment.nickname = "英雄无敌3";
+
+        // 设置元信息 ----- 关键代码
+        ExternalCommunicationKit.setAttachment(myAttachment);
+        log.info("设置元信息 : {}", myAttachment);
+    }
+
+    @ActionMethod(HallCmdModule.attachmentPrint)
+    public MyAttachment printAttachment(FlowContext flowContext) {
+        // 得到元信息，这个是在上面的方法中设置的元信息对象
+        var attachment = flowContext.getAttachment(MyAttachment.class);
+        log.info("打印元信息 attachment : {}", attachment);
+        return attachment;
     }
 
     private UserInfo getUserInfoByJwt(String jwt) {

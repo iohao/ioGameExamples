@@ -47,7 +47,6 @@ public class DemoWebsocketClient {
     }
 
     private static void initLoginCommand() {
-        ClientCommandKit.login = true;
 
         // 登录请求
         DemoLoginVerify loginVerify = new DemoLoginVerify();
@@ -59,7 +58,7 @@ public class DemoWebsocketClient {
                 loginVerify
         );
 
-        ClientCommandKit.createClientCommand(externalMessageLogin, DemoUserInfo.class);
+        ClientCommandKit.createClientCommand(externalMessageLogin, DemoUserInfo.class, 1500);
     }
 
     private static void initClientCommands() {
