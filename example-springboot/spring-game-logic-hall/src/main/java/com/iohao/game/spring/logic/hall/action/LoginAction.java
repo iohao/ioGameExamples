@@ -106,6 +106,8 @@ public class LoginAction {
         // 设置元信息 ----- 关键代码
         ExternalCommunicationKit.setAttachment(myAttachment);
         log.info("设置元信息 : {}", myAttachment);
+
+        // 文档 https://www.yuque.com/iohao/game/sw1y8u
     }
 
     @ActionMethod(HallCmdModule.attachmentPrint)
@@ -113,6 +115,9 @@ public class LoginAction {
         // 得到元信息，这个是在上面的方法中设置的元信息对象
         var attachment = flowContext.getAttachment(MyAttachment.class);
         log.info("打印元信息 attachment : {}", attachment);
+
+        // 文档 https://www.yuque.com/iohao/game/sw1y8u
+
         return attachment;
     }
 
