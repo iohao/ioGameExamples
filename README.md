@@ -97,6 +97,8 @@ https://www.yuque.com/iohao/game/ruaqza
 21. 纯原生 proto 数据的模拟客户端模块
 22. CocosCreator 与综合示例联调
 23. 模块的整理与建议（路由相关）
+24. k8s
+25. 元信息
 
 
 
