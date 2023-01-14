@@ -25,5 +25,5 @@ import com.iohao.game.example.common.DemoModuleCmd;
 public interface JsrJavaxCmd {
     int cmd = DemoModuleCmd.jsr_javax_18_cmd;
 
-    int jsr_javax = 1;
+    int jsrJavax = 1;
 }

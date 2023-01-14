@@ -14,18 +14,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.iohao.game.example.ext.monitor.action;
+package com.iohao.message;
 
-import com.iohao.game.example.common.DemoModuleCmd;
+import com.baidu.bjf.remoting.protobuf.annotation.ProtobufClass;
+import lombok.AccessLevel;
+import lombok.ToString;
+import lombok.experimental.FieldDefaults;
 
 /**
  * @author 渔民小镇
- * @date 2022-06-04
+ * @date 2023-01-04
  */
-public interface DemoExtCmd {
-    /** 模块 - 主 cmd : 13 */
-    int cmd = DemoModuleCmd.demoModule_13_ext_cmd;
+@ToString
+@ProtobufClass
+@FieldDefaults(level = AccessLevel.PUBLIC)
+public class MyTempUserInfo {
+    /** id */
+    long id;
 
-    /** 示例 here 方法 */
-    int here = 0;
+    String name;
 }

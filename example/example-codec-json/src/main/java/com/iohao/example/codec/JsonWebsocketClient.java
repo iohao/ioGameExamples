@@ -61,5 +61,17 @@ public class JsonWebsocketClient {
         );
 
         ClientCommandKit.createClientCommand(externalMessageHere, HelloReq.class);
+
+
+        JsonMsg jsonMsg = new JsonMsg();
+        // 请求、响应
+        externalMessageHere = ClientCommandKit.createExternalMessage(
+                cmd,
+                JsonCmd.jsonMsg,
+                jsonMsg
+        );
+
+        ClientCommandKit.createClientCommand(externalMessageHere, JsonMsg.class);
+
     }
 }

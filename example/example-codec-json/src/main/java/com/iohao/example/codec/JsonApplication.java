@@ -32,7 +32,8 @@ public class JsonApplication {
         // 设置 json 编解码。如果不设置，默认为 jprotobuf
         IoGameGlobalSetting.me().setDataCodec(new JsonDataCodec());
 
-        IoGameGlobalConfig.openLog = false;
+//        IoGameGlobalConfig.openLog = false;
+        IoGameGlobalConfig.externalLog = false;
 
         // 游戏对外服端口
         int port = 10100;

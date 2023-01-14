@@ -14,25 +14,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.iohao.example.jsr.javax.action;
+package com.iohao.example.codec;
 
-import com.iohao.example.jsr.javax.pb.JsrJavaxPb;
-import com.iohao.game.action.skeleton.annotation.ActionController;
-import com.iohao.game.action.skeleton.annotation.ActionMethod;
-import com.iohao.game.example.common.cmd.JsrJavaxCmd;
-import lombok.extern.slf4j.Slf4j;
+import com.baidu.bjf.remoting.protobuf.annotation.ProtobufClass;
+import lombok.AccessLevel;
+import lombok.ToString;
+import lombok.experimental.FieldDefaults;
 
 /**
  * @author 渔民小镇
- * @date 2022-10-28
+ * @date 2022-12-04
  */
-@Slf4j
-@ActionController(JsrJavaxCmd.cmd)
-public class JsrJavaxAction {
-
-    @ActionMethod(JsrJavaxCmd.jsrJavax)
-    public JsrJavaxPb jsrJakarta(JsrJavaxPb jsrJavaxPb) {
-        log.info("jsrJavaxPb : {}", jsrJavaxPb);
-        return jsrJavaxPb;
-    }
+@ToString
+@ProtobufClass
+@FieldDefaults(level = AccessLevel.PUBLIC)
+public class JsonMsg {
+    String name;
 }

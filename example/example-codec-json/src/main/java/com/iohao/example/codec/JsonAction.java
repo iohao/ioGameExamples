@@ -32,4 +32,10 @@ public class JsonAction {
         helloReq.name = helloReq.name + "，hello json";
         return helloReq;
     }
+
+    @ActionMethod(JsonCmd.jsonMsg)
+    public JsonMsg json(JsonMsg jsonMsg) {
+        jsonMsg.name = jsonMsg.name + "，hello json msg";
+        return jsonMsg;
+    }
 }

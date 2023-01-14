@@ -38,7 +38,7 @@ public class JsrJavaxWebsocketClient {
 
         ExternalMessage externalMessage = ClientCommandKit.createExternalMessage(
                 JsrJavaxCmd.cmd,
-                JsrJavaxCmd.jsr_javax,
+                JsrJavaxCmd.jsrJavax,
                 jsrJakartaPb
         );
 

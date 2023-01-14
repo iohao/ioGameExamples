@@ -37,7 +37,7 @@ public class JsrJakartaWebsocketClient {
 
         ExternalMessage externalMessage = ClientCommandKit.createExternalMessage(
                 JsrJakartaCmd.cmd,
-                JsrJakartaCmd.jsr_jakarta,
+                JsrJakartaCmd.jsrJakarta,
                 jsrJakartaPb
         );
 

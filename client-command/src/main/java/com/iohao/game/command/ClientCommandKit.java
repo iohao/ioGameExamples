@@ -92,7 +92,7 @@ public class ClientCommandKit {
         int cmd = CmdKit.getCmd(cmdMerge);
         int subCmd = CmdKit.getSubCmd(cmdMerge);
 
-        log.info("收到消息 ExternalMessage ========== cmdMerge [{}-{}] \n{}", cmd, subCmd, externalMessage);
+        log.info("收到消息 ExternalMessage ========== \n{} \ncmdMerge [{}-{}] ", externalMessage, cmd, subCmd);
 
         if (externalMessage.getResponseStatus() == 0) {
             printNormal(externalMessage);
@@ -126,6 +126,6 @@ public class ClientCommandKit {
         byte[] data = message.getData();
         Object o = DataCodecKit.decode(data, clientCommand.resultClass);
 
-        log.info(" {}", o);
+        log.info("\n{}", o);
     }
 }

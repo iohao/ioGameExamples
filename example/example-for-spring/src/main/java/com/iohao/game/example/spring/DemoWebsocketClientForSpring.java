@@ -48,6 +48,7 @@ public class DemoWebsocketClientForSpring {
         ExternalMessage externalMessageHere = ClientCommandKit.createExternalMessage(
                 DemoCmdForSpring.cmd,
                 DemoCmdForSpring.here,
+//                1,
                 helloReq
         );
 

@@ -25,4 +25,5 @@ import com.iohao.game.example.common.DemoModuleCmd;
 public interface JsonCmd {
     int cmd = DemoModuleCmd.json_cmd;
     int hello = 1;
+    int jsonMsg = 2;
 }

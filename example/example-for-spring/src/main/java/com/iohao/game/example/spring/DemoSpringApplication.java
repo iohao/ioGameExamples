@@ -38,7 +38,7 @@ import java.util.List;
  */
 @SpringBootApplication
 @ComponentScans(value = {
-        @ComponentScan(basePackages = "com.iohao.game.example")
+        @ComponentScan(basePackages = "com.iohao.game.example.spring")
 })
 public class DemoSpringApplication {
     public static void main(String[] args) {

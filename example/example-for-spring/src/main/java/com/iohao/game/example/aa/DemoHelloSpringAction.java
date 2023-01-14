@@ -6,37 +6,42 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
- * limitations under the License..
+ * limitations under the License.
  */
-package com.iohao.game.example.ext.monitor.action;
+package com.iohao.game.example.aa;
 
 import com.iohao.game.action.skeleton.annotation.ActionController;
 import com.iohao.game.action.skeleton.annotation.ActionMethod;
-import com.iohao.game.example.common.msg.HelloReq;
+import com.iohao.game.example.common.msg.HelloSpringMsg;
+import com.iohao.game.example.spring.action.DemoCmdForSpring;
+import com.iohao.game.example.spring.service.DemoSpringService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 /**
  * @author 渔民小镇
- * @date 2022-06-04
+ * @date 2022-12-28
  */
-@ActionController(DemoExtCmd.cmd)
-public class DemoExtAction {
+@Component
+@ActionController(DemoCmdForSpring.cmd)
+public class DemoHelloSpringAction {
+    @Autowired
+    DemoSpringService demoSpringService;
     /**
-     * 示例 here 方法
+     * spring 示例方法
      *
      * @param helloReq helloReq
      * @return HelloReq
      */
-    @ActionMethod(DemoExtCmd.here)
-    public HelloReq here(HelloReq helloReq) {
-        HelloReq newHelloReq = new HelloReq();
-        newHelloReq.name = helloReq.name + ", I'm here ";
-        return newHelloReq;
+    @ActionMethod(1)
+    public HelloSpringMsg here(HelloSpringMsg helloReq) {
+        return helloReq;
     }
 
 }

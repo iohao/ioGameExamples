@@ -48,3 +48,9 @@ message UserInfo {
 
 }
 
+message TempUserInfo {
+  // id
+  int64 id = 1;
+  // 用户名
+  string name = 2;
+}

@@ -30,7 +30,7 @@ import lombok.extern.slf4j.Slf4j;
 @ActionController(JsrJakartaCmd.cmd)
 public class JsrJakartaAction {
 
-    @ActionMethod(JsrJakartaCmd.jsr_jakarta)
+    @ActionMethod(JsrJakartaCmd.jsrJakarta)
     public JsrJakartaPb jsrJakarta(JsrJakartaPb jsrJakartaPb) {
         log.info("jsrJakartaPb : {}", jsrJakartaPb);
         return jsrJakartaPb;

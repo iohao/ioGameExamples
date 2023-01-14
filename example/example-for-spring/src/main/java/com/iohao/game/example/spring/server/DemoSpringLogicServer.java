@@ -20,6 +20,7 @@ import com.iohao.game.bolt.broker.core.client.BrokerAddress;
 import com.iohao.game.bolt.broker.core.client.BrokerClient;
 import com.iohao.game.bolt.broker.core.common.IoGameGlobalConfig;
 import com.iohao.game.common.kit.NetworkKit;
+import com.iohao.game.example.aa.DemoHelloSpringAction;
 import com.iohao.game.example.spring.action.DemoSpringAction;
 import com.iohao.game.action.skeleton.core.BarSkeleton;
 import com.iohao.game.action.skeleton.core.BarSkeletonBuilderParamConfig;
@@ -40,7 +41,9 @@ public class DemoSpringLogicServer extends AbstractBrokerClientStartup {
         // 业务框架构建器 配置
         var config = new BarSkeletonBuilderParamConfig()
                 // 扫描 action 类所在包
-                .scanActionPackage(DemoSpringAction.class);
+                .scanActionPackage(DemoSpringAction.class)
+                .scanActionPackage(DemoHelloSpringAction.class);
+
         // 业务框架构建器
         var builder = config.createBuilder();
         // 添加控制台输出插件
