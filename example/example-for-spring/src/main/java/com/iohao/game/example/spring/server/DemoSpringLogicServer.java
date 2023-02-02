@@ -1,6 +1,6 @@
 /*
  * # iohao.com . 渔民小镇
- * Copyright (C) 2021 - 2022 double joker （262610965@qq.com） . All Rights Reserved.
+ * Copyright (C) 2021 - 2023 double joker （262610965@qq.com） . All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,17 +16,16 @@
  */
 package com.iohao.game.example.spring.server;
 
-import com.iohao.game.bolt.broker.core.client.BrokerAddress;
-import com.iohao.game.bolt.broker.core.client.BrokerClient;
-import com.iohao.game.bolt.broker.core.common.IoGameGlobalConfig;
-import com.iohao.game.common.kit.NetworkKit;
-import com.iohao.game.example.aa.DemoHelloSpringAction;
-import com.iohao.game.example.spring.action.DemoSpringAction;
 import com.iohao.game.action.skeleton.core.BarSkeleton;
 import com.iohao.game.action.skeleton.core.BarSkeletonBuilderParamConfig;
 import com.iohao.game.action.skeleton.core.flow.interal.DebugInOut;
-import com.iohao.game.bolt.broker.core.client.BrokerClientBuilder;
 import com.iohao.game.bolt.broker.client.AbstractBrokerClientStartup;
+import com.iohao.game.bolt.broker.core.client.BrokerAddress;
+import com.iohao.game.bolt.broker.core.client.BrokerClient;
+import com.iohao.game.bolt.broker.core.client.BrokerClientBuilder;
+import com.iohao.game.bolt.broker.core.common.IoGameGlobalConfig;
+import com.iohao.game.common.kit.NetworkKit;
+import com.iohao.game.example.spring.action.DemoSpringAction;
 
 /**
  * spring 逻辑服
@@ -41,8 +40,7 @@ public class DemoSpringLogicServer extends AbstractBrokerClientStartup {
         // 业务框架构建器 配置
         var config = new BarSkeletonBuilderParamConfig()
                 // 扫描 action 类所在包
-                .scanActionPackage(DemoSpringAction.class)
-                .scanActionPackage(DemoHelloSpringAction.class);
+                .scanActionPackage(DemoSpringAction.class);
 
         // 业务框架构建器
         var builder = config.createBuilder();

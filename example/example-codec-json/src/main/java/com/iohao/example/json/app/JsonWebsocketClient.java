@@ -1,6 +1,6 @@
 /*
  * # iohao.com . 渔民小镇
- * Copyright (C) 2021 - 2022 double joker （262610965@qq.com） . All Rights Reserved.
+ * Copyright (C) 2021 - 2023 double joker （262610965@qq.com） . All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.iohao.example.codec;
+package com.iohao.example.json.app;
 
 import com.iohao.game.action.skeleton.core.IoGameGlobalSetting;
 import com.iohao.game.action.skeleton.core.codec.JsonDataCodec;

@@ -19,16 +19,17 @@
 
     <dependencies>
 
+        <!-- https://mvnrepository.com/artifact/ch.qos.logback/logback-classic -->
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${logback.version}</version>
+        </dependency>
+
         <dependency>
             <groupId>com.iohao.game</groupId>
             <artifactId>light-jprotobuf</artifactId>
             <version>${ioGame.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>cn.hutool</groupId>
-            <artifactId>hutool-system</artifactId>
-            <version>${hutool.version}</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.glassfish/jakarta.el -->
@@ -64,7 +65,7 @@
                 <artifactId>jprotobuf-precompile-plugin</artifactId>
                 <version>2.2.8</version>
                 <configuration>
-                    <filterClassPackage>com.iohao</filterClassPackage>
+                    <filterClassPackage>com.iohao.game.collect</filterClassPackage>
                     <generateProtoFile>true</generateProtoFile>
                     <compileDependencies>true</compileDependencies>
                 </configuration>

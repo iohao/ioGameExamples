@@ -46,6 +46,14 @@
             <artifactId>jakarta.validation-api</artifactId>
             <version>${jakarta.validation-api.version}</version>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/cn.hutool/hutool-all -->
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>${hutool.version}</version>
+        </dependency>
+
     </dependencies>
 
     <build>

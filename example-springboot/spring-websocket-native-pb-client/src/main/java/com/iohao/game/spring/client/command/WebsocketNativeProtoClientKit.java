@@ -1,6 +1,6 @@
 /*
  * # iohao.com . 渔民小镇
- * Copyright (C) 2021 - 2022 double joker （262610965@qq.com） . All Rights Reserved.
+ * Copyright (C) 2021 - 2023 double joker （262610965@qq.com） . All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,6 +20,7 @@ import com.google.protobuf.ByteString;
 import com.iohao.game.action.skeleton.core.CmdKit;
 import com.iohao.message.BizProto;
 import com.iohao.message.Proto;
+import lombok.SneakyThrows;
 import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
 import org.java_websocket.client.WebSocketClient;
@@ -38,6 +39,10 @@ import java.util.Objects;
 @UtilityClass
 public class WebsocketNativeProtoClientKit {
 
+    public static void main(String[] args) throws Exception {
+
+        WebsocketNativeProtoClientKit.runClient();
+    }
 
     public void runClient() throws Exception {
         // 连接游戏服务器的地址
@@ -52,12 +57,13 @@ public class WebsocketNativeProtoClientKit {
 
 //                extractedLoginVerify(maxValue);
 
-                extractedLongPb();
+//                extractedLongPb();
 
+                intPb();
+//                intListPb();
             }
 
             private void extractedLongPb() {
-
                 ByteString value = Proto.LongPb.newBuilder()
                         .setLongValue(9120)
                         .build()
@@ -66,6 +72,27 @@ public class WebsocketNativeProtoClientKit {
                 this.sendMsg(5, 2, value);
                 this.sendMsg(5, 3, value);
                 this.sendMsg(5, 4, value);
+
+            }
+
+            private void intPb() {
+                log.info("intPb");
+                ByteString value = Proto.IntPb.newBuilder()
+                        .setIntValue(0)
+                        .build()
+                        .toByteString();
+
+                this.sendMsg(3, 5, value);
+                this.sendMsg(3, 4, value);
+            }
+
+            private void intListPb() {
+                log.info("intListPb");
+                ByteString value = Proto.IntListPb.newBuilder()
+                        .build()
+                        .toByteString();
+
+                this.sendMsg(3, 6, value);
             }
 
             private void extractedLoginVerify(long maxValue) {
@@ -74,7 +101,7 @@ public class WebsocketNativeProtoClientKit {
                         .setAge(9120)
                         .setTime(maxValue)
                         .setJwt("abcd")
-                        .setLoginBizCode(1)
+                        .setLoginBizCode(0)
                         .build()
                         .toByteString();
 
@@ -102,9 +129,25 @@ public class WebsocketNativeProtoClientKit {
             public void onError(Exception e) {
             }
 
+            @SneakyThrows
             @Override
             public void onMessage(ByteBuffer byteBuffer) {
                 // 接收服务器返回的消息
+                var externalMessage = Proto.ExternalMessage.parseFrom(byteBuffer);
+                int cmdMerge = externalMessage.getCmdMerge();
+
+                log.info("externalMessage : {}", externalMessage);
+                log.info("cmd : {}-{}", CmdKit.getCmd(cmdMerge), CmdKit.getSubCmd(cmdMerge));
+
+                ByteString data = externalMessage.getData();
+
+                if (cmdMerge == CmdKit.merge(3, 5) || cmdMerge == CmdKit.merge(3, 4)) {
+                    byte[] bytes = data.toByteArray();
+                    log.info("bytes : {}", bytes);
+                    Proto.IntPb intPb = Proto.IntPb.parseFrom(data);
+                    log.info("intPb : {}", intPb.getIntValue());
+                }
+
             }
         };
 

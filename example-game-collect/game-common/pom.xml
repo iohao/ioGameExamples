@@ -62,11 +62,11 @@
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/com.hazelcast/hazelcast -->
-        <dependency>
-            <groupId>com.hazelcast</groupId>
-            <artifactId>hazelcast</artifactId>
-            <version>${hazelcast.version}</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.hazelcast</groupId>-->
+<!--            <artifactId>hazelcast</artifactId>-->
+<!--            <version>${hazelcast.version}</version>-->
+<!--        </dependency>-->
 
         <!-- https://mvnrepository.com/artifact/org.springframework/spring-context -->
 <!--        <dependency>-->

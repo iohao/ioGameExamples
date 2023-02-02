@@ -16,6 +16,9 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <solon.version>1.10.10</solon.version>
+
     </properties>
 
     <dependencies>
@@ -24,6 +27,19 @@
             <artifactId>example-parent</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.noear</groupId>
+            <artifactId>solon-web</artifactId>
+            <version>${solon.version}</version>
+        </dependency>
+
+<!--        <dependency>-->
+<!--            <groupId>org.noear</groupId>-->
+<!--            <artifactId>solon.boot.smarthttp</artifactId>-->
+<!--            <version>${solon.version}</version>-->
+<!--        </dependency>-->
+
     </dependencies>
 
 </project>

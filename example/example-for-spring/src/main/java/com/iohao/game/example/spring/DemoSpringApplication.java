@@ -1,6 +1,6 @@
 /*
  * # iohao.com . 渔民小镇
- * Copyright (C) 2021 - 2022 double joker （262610965@qq.com） . All Rights Reserved.
+ * Copyright (C) 2021 - 2023 double joker （262610965@qq.com） . All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,7 +22,6 @@ import com.iohao.game.simple.SimpleHelper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.ComponentScans;
 
 import java.util.List;
@@ -38,7 +37,6 @@ import java.util.List;
  */
 @SpringBootApplication
 @ComponentScans(value = {
-        @ComponentScan(basePackages = "com.iohao.game.example.spring")
 })
 public class DemoSpringApplication {
     public static void main(String[] args) {

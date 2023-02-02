@@ -73,7 +73,7 @@
     <!--统一管理版本 的一个父 pom-->
     <properties>
         <!-- 项目版本 -->
-        <ioGame.version>17.1.29</ioGame.version>
+        <ioGame.version>17.1.31</ioGame.version>
         <!-- jdk 版本 -->
         <java.version>17</java.version>
         <maven.compiler.source>17</maven.compiler.source>
@@ -139,17 +139,31 @@
             <version>${org.mapstruct.version}</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/com.alibaba.fastjson2/fastjson2 -->
+        <dependency>
+            <groupId>com.alibaba.fastjson2</groupId>
+            <artifactId>fastjson2</artifactId>
+            <version>2.0.23</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/cn.hutool/hutool-all -->
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>5.8.11</version>
+        </dependency>
+
         <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
+            <version>${slf4j-api.version}</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/ch.qos.logback/logback-classic -->
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
             <version>${logback.version}</version>
-            <scope>compile</scope>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/junit/junit -->

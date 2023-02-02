@@ -1,6 +1,6 @@
 /*
  * # iohao.com . 渔民小镇
- * Copyright (C) 2021 - 2022 double joker （262610965@qq.com） . All Rights Reserved.
+ * Copyright (C) 2021 - 2023 double joker （262610965@qq.com） . All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,6 +30,7 @@ import com.iohao.game.spring.logic.classes.GameLogicClassesClient;
 import com.iohao.game.spring.logic.hall.GameLogicHallClient;
 import com.iohao.game.spring.logic.interaction.same.room.SameRoomLogicClient;
 import com.iohao.game.spring.logic.school.GameLogicSchoolClient;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -39,7 +40,7 @@ import java.util.List;
 /**
  * 综合示例一键启动类
  * <p>
- * 文档： https://www.yuque.com/iohao/game/ruaqza
+ * 文档： <a href="https://www.yuque.com/iohao/game/ruaqza">...</a>
  * <p>
  * 示例涉及如下知识点
  * <pre>
@@ -65,13 +66,14 @@ import java.util.List;
  * @author 渔民小镇
  * @date 2022-07-09
  */
+@Slf4j
 @SpringBootApplication
 public class SpringGameOneApplication {
 
     public static void main(String[] args) {
+
         // 启动 spring boot
         SpringApplication.run(SpringGameOneApplication.class, args);
-        ExternalGlobalConfig.accessAuthenticationHook.setVerifyIdentity(false);
 
         // 游戏逻辑服列表
         List<AbstractBrokerClientStartup> logicList = List.of(
@@ -96,6 +98,7 @@ public class SpringGameOneApplication {
         int externalPort = 10100;
         // 游戏对外服
         ExternalServer externalServer = new GameExternal().createExternalServer(externalPort);
+        ExternalGlobalConfig.accessAuthenticationHook.setVerifyIdentity(false);
 
         // broker （游戏网关）
         BrokerServer brokerServer = new GameBrokerBoot().createBrokerServer();

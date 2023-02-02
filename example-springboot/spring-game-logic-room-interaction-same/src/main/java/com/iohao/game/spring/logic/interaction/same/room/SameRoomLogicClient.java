@@ -1,6 +1,6 @@
 /*
  * # iohao.com . 渔民小镇
- * Copyright (C) 2021 - 2022 double joker （262610965@qq.com） . All Rights Reserved.
+ * Copyright (C) 2021 - 2023 double joker （262610965@qq.com） . All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,10 +23,6 @@ import com.iohao.game.bolt.broker.client.AbstractBrokerClientStartup;
 import com.iohao.game.bolt.broker.core.client.BrokerClientBuilder;
 import com.iohao.game.spring.logic.core.MyBarSkeletonConfig;
 import com.iohao.game.spring.logic.interaction.same.room.action.RoomAction;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.experimental.FieldDefaults;
 
 /**
  * 房间的游戏逻辑服
@@ -34,9 +30,6 @@ import lombok.experimental.FieldDefaults;
  * @author 渔民小镇
  * @date 2022-07-30
  */
-@Getter
-@Setter
-@FieldDefaults(level = AccessLevel.PRIVATE)
 public class SameRoomLogicClient extends AbstractBrokerClientStartup {
     @Override
     public BarSkeleton createBarSkeleton() {
