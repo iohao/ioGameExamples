@@ -55,11 +55,11 @@ public class WebsocketNativeProtoClientKit {
                 log.info("Long.MAX_VALUE-1 : {}", maxValue);
 
 
-//                extractedLoginVerify(maxValue);
+                extractedLoginVerify(maxValue);
 
 //                extractedLongPb();
 
-                intPb();
+//                intPb();
 //                intListPb();
             }
 
