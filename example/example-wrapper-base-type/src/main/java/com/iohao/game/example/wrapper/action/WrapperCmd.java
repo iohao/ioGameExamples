@@ -45,4 +45,13 @@ public interface WrapperCmd {
 
     int longListPb2longList = 24;
     int longList2longListPb = 25;
+
+    int string2string = 30;
+    int stringPb2stringPb = 31;
+
+    int string2stringList = 32;
+    int string2stringListPb = 33;
+
+    int stringListPb2stringList = 34;
+    int stringList2stringListPb = 35;
 }

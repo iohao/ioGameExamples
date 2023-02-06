@@ -18,10 +18,7 @@ package com.iohao.game.example.wrapper;
 
 import com.iohao.game.action.skeleton.core.CmdKit;
 import com.iohao.game.action.skeleton.core.DataCodecKit;
-import com.iohao.game.action.skeleton.protocol.wrapper.IntListPb;
-import com.iohao.game.action.skeleton.protocol.wrapper.IntPb;
-import com.iohao.game.action.skeleton.protocol.wrapper.LongListPb;
-import com.iohao.game.action.skeleton.protocol.wrapper.LongPb;
+import com.iohao.game.action.skeleton.protocol.wrapper.*;
 import com.iohao.game.bolt.broker.client.external.bootstrap.ExternalKit;
 import com.iohao.game.bolt.broker.client.external.bootstrap.message.ExternalMessage;
 import com.iohao.game.example.wrapper.action.WrapperCmd;
@@ -82,9 +79,8 @@ public class WrapperWebsocketClient {
                     int cmd = CmdKit.getCmd(cmdMerge);
                     int subCmd = CmdKit.getSubCmd(cmdMerge);
 
-                    log.info("{} - {} : {}", cmd, subCmd, o);
+                    log.info("{} - {} : \n{}", cmd, subCmd, o);
                 }
-
             }
 
             @Override
@@ -112,8 +108,24 @@ public class WrapperWebsocketClient {
 
     private void initTheCommands() {
 
-        extractedLong();
+        extractedString();
+//        extractedLong();
 //        extractedInt();
+    }
+
+    private void extractedString() {
+        createTheCommandStringPb(WrapperCmd.string2string);
+        createTheCommandStringPb(WrapperCmd.stringPb2stringPb);
+
+        TheCommand theCommandLongPb = createTheCommandStringPb(WrapperCmd.string2stringList);
+        theCommandLongPb.resultClass = StringListPb.class;
+
+        theCommandLongPb = createTheCommandStringPb(WrapperCmd.string2stringListPb);
+        theCommandLongPb.resultClass = StringListPb.class;
+
+        createTheCommandStringListPb(WrapperCmd.stringListPb2stringList);
+        createTheCommandStringListPb(WrapperCmd.stringList2stringListPb);
+
     }
 
     private void extractedLong() {
@@ -180,6 +192,21 @@ public class WrapperWebsocketClient {
         return theCommand;
     }
 
+    private TheCommand createTheCommandStringPb(int subCmd) {
+        StringPb stringPb = new StringPb();
+        stringPb.stringValue = "100";
+
+        ExternalMessage externalMessage = extractedExternalMessage(subCmd, stringPb);
+
+        TheCommand theCommand = new TheCommand();
+        theCommand.externalMessage = externalMessage;
+        theCommand.resultClass = StringPb.class;
+
+        theCommandMap.put(externalMessage.getCmdMerge(), theCommand);
+
+        return theCommand;
+    }
+
     private TheCommand createTheCommandLongPb(int subCmd) {
         LongPb intPb = new LongPb();
         intPb.longValue = 100;
@@ -189,6 +216,25 @@ public class WrapperWebsocketClient {
         TheCommand theCommand = new TheCommand();
         theCommand.externalMessage = externalMessage;
         theCommand.resultClass = LongPb.class;
+
+        theCommandMap.put(externalMessage.getCmdMerge(), theCommand);
+
+        return theCommand;
+    }
+
+    private TheCommand createTheCommandStringListPb(int subCmd) {
+        List<String> list = new ArrayList<>();
+        list.add(1100L + "");
+        list.add(2200L + "");
+
+        StringListPb stringListPb = new StringListPb();
+        stringListPb.stringValues = list;
+
+        ExternalMessage externalMessage = extractedExternalMessage(subCmd, stringListPb);
+
+        TheCommand theCommand = new TheCommand();
+        theCommand.externalMessage = externalMessage;
+        theCommand.resultClass = StringListPb.class;
 
         theCommandMap.put(externalMessage.getCmdMerge(), theCommand);
 

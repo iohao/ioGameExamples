@@ -18,8 +18,8 @@ package com.iohao.game.tank.net.onmessage;
 
 import com.iohao.game.action.skeleton.core.CmdKit;
 import com.iohao.game.action.skeleton.core.DataCodecKit;
-import com.iohao.game.action.skeleton.protocol.temp.BarHelloPb;
 import com.iohao.game.bolt.broker.client.external.bootstrap.message.ExternalMessage;
+import com.iohao.game.collect.proto.common.BarHelloPb;
 import com.iohao.game.tank.net.TankOnMessage;
 
 /**
