@@ -21,6 +21,7 @@ import com.iohao.game.action.skeleton.annotation.ActionMethod;
 import com.iohao.game.action.skeleton.protocol.wrapper.IntListPb;
 import com.iohao.game.action.skeleton.protocol.wrapper.IntPb;
 import com.iohao.game.spring.common.cmd.HallCmdModule;
+import com.iohao.game.spring.common.pb.UserInfo;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -48,4 +49,10 @@ public class IntPbAction {
         return value;
     }
 
+    @ActionMethod(HallCmdModule.defaultValue)
+    public UserInfo defaultValue() {
+        UserInfo userInfo = new UserInfo();
+
+        return userInfo;
+    }
 }

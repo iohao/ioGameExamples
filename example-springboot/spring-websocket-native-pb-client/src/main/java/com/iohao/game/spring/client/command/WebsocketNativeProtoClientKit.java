@@ -17,6 +17,7 @@
 package com.iohao.game.spring.client.command;
 
 import com.google.protobuf.ByteString;
+import com.google.protobuf.InvalidProtocolBufferException;
 import com.iohao.game.action.skeleton.core.CmdKit;
 import com.iohao.message.BizProto;
 import com.iohao.message.Proto;
@@ -29,7 +30,10 @@ import org.java_websocket.handshake.ServerHandshake;
 
 import java.net.URI;
 import java.nio.ByteBuffer;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
+import java.util.function.Consumer;
 
 /**
  * @author 渔民小镇
@@ -55,67 +59,15 @@ public class WebsocketNativeProtoClientKit {
                 log.info("Long.MAX_VALUE-1 : {}", maxValue);
 
 
-                extractedLoginVerify(maxValue);
+//                extractedLoginVerify(maxValue);
 
+                defaultValuePb();
 //                extractedLongPb();
 
 //                intPb();
 //                intListPb();
             }
 
-            private void extractedLongPb() {
-                ByteString value = Proto.LongPb.newBuilder()
-                        .setLongValue(9120)
-                        .build()
-                        .toByteString();
-
-                this.sendMsg(5, 2, value);
-                this.sendMsg(5, 3, value);
-                this.sendMsg(5, 4, value);
-
-            }
-
-            private void intPb() {
-                log.info("intPb");
-                ByteString value = Proto.IntPb.newBuilder()
-                        .setIntValue(0)
-                        .build()
-                        .toByteString();
-
-                this.sendMsg(3, 5, value);
-                this.sendMsg(3, 4, value);
-            }
-
-            private void intListPb() {
-                log.info("intListPb");
-                ByteString value = Proto.IntListPb.newBuilder()
-                        .build()
-                        .toByteString();
-
-                this.sendMsg(3, 6, value);
-            }
-
-            private void extractedLoginVerify(long maxValue) {
-                ByteString value = BizProto.LoginVerify.newBuilder()
-//                        .setAge(273676)
-                        .setAge(9120)
-                        .setTime(maxValue)
-                        .setJwt("abcd")
-                        .setLoginBizCode(0)
-                        .build()
-                        .toByteString();
-
-                this.sendMsg(3, 1, value);
-            }
-
-            private void sendMsg(int cmd, int subCmd, ByteString value) {
-                Proto.ExternalMessage externalMessage = createExternalMessage(cmd, subCmd, value);
-                this.send(externalMessage.toByteArray());
-            }
-
-            private void sendMsg(int cmd, int subCmd, com.google.protobuf.GeneratedMessageV3 messageV3) {
-                this.sendMsg(cmd, subCmd, messageV3.toByteString());
-            }
 
             @Override
             public void onMessage(String s) {
@@ -141,14 +93,112 @@ public class WebsocketNativeProtoClientKit {
 
                 ByteString data = externalMessage.getData();
 
-                if (cmdMerge == CmdKit.merge(3, 5) || cmdMerge == CmdKit.merge(3, 4)) {
-                    byte[] bytes = data.toByteArray();
-                    log.info("bytes : {}", bytes);
-                    Proto.IntPb intPb = Proto.IntPb.parseFrom(data);
-                    log.info("intPb : {}", intPb.getIntValue());
+                var unaryOperator = consumerCallbackMap.get(cmdMerge);
+                if (Objects.nonNull(unaryOperator)) {
+                    unaryOperator.accept(data.toByteArray());
                 }
 
             }
+
+
+            private void extractedLongPb() {
+                ByteString value = Proto.LongPb.newBuilder()
+                        .setLongValue(9120)
+                        .build()
+                        .toByteString();
+
+                this.sendMsg(5, 2, value);
+                this.sendMsg(5, 3, value);
+                this.sendMsg(5, 4, value);
+
+            }
+
+            private void intPb() {
+                Consumer<byte[]> consumer = bytes -> {
+                    try {
+                        Proto.IntPb intPb = Proto.IntPb.parseFrom(bytes);
+                        log.info("bytes : {}", bytes);
+                        log.info("intPb : {}", intPb.getIntValue());
+                    } catch (InvalidProtocolBufferException e) {
+                        throw new RuntimeException(e);
+                    }
+                };
+
+                log.info("intPb");
+                ByteString value = Proto.IntPb.newBuilder()
+                        .setIntValue(0)
+                        .build()
+                        .toByteString();
+
+                this.sendMsg(3, 5, value, consumer);
+                this.sendMsg(3, 4, value, consumer);
+            }
+
+            private void intListPb() {
+                log.info("intListPb");
+                ByteString value = Proto.IntListPb.newBuilder()
+                        .build()
+                        .toByteString();
+
+                this.sendMsg(3, 6, value);
+            }
+
+            private void defaultValuePb() {
+
+                Consumer<byte[]> consumer = bytes -> {
+                    try {
+                        var userInfo = BizProto.UserInfo.parseFrom(bytes);
+                        log.info("userInfo : {}", userInfo);
+                    } catch (InvalidProtocolBufferException e) {
+                        throw new RuntimeException(e);
+                    }
+                };
+
+                log.info("defaultValuePb");
+                ByteString value = Proto.IntListPb.newBuilder()
+                        .build()
+                        .toByteString();
+
+                this.sendMsg(3, 7, value, consumer);
+            }
+
+
+            private void extractedLoginVerify(long maxValue) {
+                Consumer<byte[]> consumer = bytes -> {
+                    try {
+                        var userInfo = BizProto.UserInfo.parseFrom(bytes);
+                        log.info("userInfo : {}", userInfo);
+                    } catch (InvalidProtocolBufferException e) {
+                        throw new RuntimeException(e);
+                    }
+                };
+
+                ByteString value = BizProto.LoginVerify.newBuilder()
+//                        .setAge(273676)
+                        .setAge(9120)
+                        .setTime(maxValue)
+                        .setJwt("abcd")
+                        .setLoginBizCode(0)
+                        .build()
+                        .toByteString();
+
+                this.sendMsg(3, 1, value, consumer);
+            }
+
+            private void sendMsg(int cmd, int subCmd, ByteString value) {
+                Proto.ExternalMessage externalMessage = createExternalMessage(cmd, subCmd, value);
+                this.send(externalMessage.toByteArray());
+            }
+
+            private void sendMsg(int cmd, int subCmd, com.google.protobuf.GeneratedMessageV3 messageV3) {
+                this.sendMsg(cmd, subCmd, messageV3.toByteString());
+            }
+
+            private void sendMsg(int cmd, int subCmd, ByteString value, Consumer<byte[]> consumerCallback) {
+                onMessageCallback(cmd, subCmd, consumerCallback);
+                this.sendMsg(cmd, subCmd, value);
+            }
+
         };
 
         // 开始连接服务器
@@ -170,5 +220,12 @@ public class WebsocketNativeProtoClientKit {
         }
 
         return builder.build();
+    }
+
+
+    Map<Integer, Consumer<byte[]>> consumerCallbackMap = new HashMap<>();
+
+    void onMessageCallback(int cmd, int subCmd, Consumer<byte[]> consumerCallback) {
+        consumerCallbackMap.put(CmdKit.merge(cmd, subCmd), consumerCallback);
     }
 }
