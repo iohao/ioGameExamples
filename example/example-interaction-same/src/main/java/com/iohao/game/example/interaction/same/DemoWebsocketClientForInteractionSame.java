@@ -48,16 +48,6 @@ public class DemoWebsocketClientForInteractionSame {
         );
 
         ClientCommandKit.createClientCommand(externalMessageHere);
-
-
-        // 请求、响应
-//        ExternalMessage externalMessageTest = ClientCommandKit.createExternalMessage(
-//                DemoCmdForHall.cmd,
-//                DemoCmdForHall.testCount
-//        );
-
-//        log.info("externalMessageTest : ");
-//
-//        ClientCommandKit.createClientCommand(externalMessageTest, IntPb.class);
+        
     }
 }

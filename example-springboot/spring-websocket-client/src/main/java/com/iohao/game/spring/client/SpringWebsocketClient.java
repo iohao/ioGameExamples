@@ -16,7 +16,7 @@
  */
 package com.iohao.game.spring.client;
 
-import com.iohao.game.action.skeleton.protocol.wrapper.IntPb;
+import com.iohao.game.action.skeleton.protocol.wrapper.IntValue;
 import com.iohao.game.bolt.broker.client.external.bootstrap.message.ExternalMessage;
 import com.iohao.game.command.ClientCommandKit;
 import com.iohao.game.command.WebsocketClientKit;
@@ -211,16 +211,16 @@ public class SpringWebsocketClient {
         );
 
         // 业务参数自动装箱、拆箱基础类型，解决碎片协议问题
-        IntPb intPb = new IntPb();
-        intPb.intValue = 10;
+        IntValue intValue = new IntValue();
+        intValue.value = 10;
 
-        ExternalMessage externalMessageIntPbWrapper = ClientCommandKit.createExternalMessage(
+        ExternalMessage externalMessageIntValueWrapper = ClientCommandKit.createExternalMessage(
                 SchoolCmdModule.cmd,
-                SchoolCmdModule.intPbWrapper,
-                intPb
+                SchoolCmdModule.intValueWrapper,
+                intValue
         );
 
-        ClientCommandKit.createClientCommand(externalMessageIntPbWrapper, IntPb.class);
+        ClientCommandKit.createClientCommand(externalMessageIntValueWrapper, IntValue.class);
 
 
         OtherVerify otherVerify = new OtherVerify();

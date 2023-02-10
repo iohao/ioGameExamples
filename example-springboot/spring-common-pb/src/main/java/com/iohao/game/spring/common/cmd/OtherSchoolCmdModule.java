@@ -30,12 +30,7 @@ public interface OtherSchoolCmdModule {
     int longPbWrapperLonger = 3;
     int longPbWrapperLongPb = 4;
 
-    /** 业务参数自动装箱、拆箱基础类型 int */
-    int intPbWrapper = 5;
-
     int longPbWithBroadcast = 6;
 
     int longPbWithBroadcastData = 7;
-
-
 }

@@ -48,7 +48,7 @@ public interface SchoolCmdModule {
     /** 3.3 单个逻辑服与同类型多个逻辑服通信请求（可跨进程） - 统计房间 */
     int communication33 = 9;
     /** 业务参数自动装箱、拆箱基础类型 */
-    int intPbWrapper = 10;
+    int intValueWrapper = 10;
 
     /** 分组校验 */
     int group = 11;

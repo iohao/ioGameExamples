@@ -30,7 +30,7 @@ public interface HallCmdModule {
     int attachment = 2;
     /** 打印元信息 */
     int attachmentPrint = 3;
-    int intPb = 4;
-    int intPb1 = 5;
-    int intListPb1 = 6;
+    int intValue = 4;
+    int intValue1 = 5;
+    int intValueList = 6;
 }

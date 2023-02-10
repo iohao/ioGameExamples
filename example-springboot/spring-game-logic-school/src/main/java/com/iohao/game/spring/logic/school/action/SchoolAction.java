@@ -289,8 +289,8 @@ public class SchoolAction {
      * @param level 等级
      * @return level
      */
-    @ActionMethod(SchoolCmdModule.intPbWrapper)
-    public int intPbWrapper(int level) {
+    @ActionMethod(SchoolCmdModule.intValueWrapper)
+    public int intValueWrapper(int level) {
         log.info("碎片协议 {}", level);
         /*
          * 相关文档 https://www.yuque.com/iohao/game/ieimzn

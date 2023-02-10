@@ -18,8 +18,8 @@ package com.iohao.game.spring.logic.hall.action;
 
 import com.iohao.game.action.skeleton.annotation.ActionController;
 import com.iohao.game.action.skeleton.annotation.ActionMethod;
-import com.iohao.game.action.skeleton.protocol.wrapper.IntListPb;
-import com.iohao.game.action.skeleton.protocol.wrapper.IntPb;
+import com.iohao.game.action.skeleton.protocol.wrapper.IntValueList;
+import com.iohao.game.action.skeleton.protocol.wrapper.IntValue;
 import com.iohao.game.spring.common.cmd.HallCmdModule;
 import lombok.extern.slf4j.Slf4j;
 
@@ -29,22 +29,20 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 @ActionController(HallCmdModule.cmd)
-public class IntPbAction {
+public class IntAction {
 
-    @ActionMethod(HallCmdModule.intPb)
-    public int intPb(int value) {
-//        return value.intValue + 10;
+    @ActionMethod(HallCmdModule.intValue)
+    public int intValue(int value) {
         return value + 10;
     }
 
-    @ActionMethod(HallCmdModule.intPb1)
-    public int intPb1(IntPb value) {
-        return value.intValue + 10;
-//        return 0;
+    @ActionMethod(HallCmdModule.intValue1)
+    public int intValue1(IntValue value) {
+        return value.value + 10;
     }
 
-    @ActionMethod(HallCmdModule.intListPb1)
-    public IntListPb intListPb(IntListPb value) {
+    @ActionMethod(HallCmdModule.intValueList)
+    public IntValueList intValueList(IntValueList value) {
         return value;
     }
 

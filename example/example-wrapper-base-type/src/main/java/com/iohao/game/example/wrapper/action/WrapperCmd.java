@@ -54,4 +54,13 @@ public interface WrapperCmd {
 
     int stringValueList2stringList = 34;
     int stringList2stringValueList = 35;
+
+    int bool2bool = 40;
+    int boolValue2boolValue = 41;
+
+    int bool2boolList = 42;
+    int bool2boolValueList = 43;
+
+    int boolValueList2boolList = 44;
+    int boolList2boolValueList = 45;
 }
