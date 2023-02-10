@@ -18,8 +18,8 @@ package com.iohao.game.example.wrapper.action;
 
 import com.iohao.game.action.skeleton.annotation.ActionController;
 import com.iohao.game.action.skeleton.annotation.ActionMethod;
-import com.iohao.game.action.skeleton.protocol.wrapper.IntListPb;
-import com.iohao.game.action.skeleton.protocol.wrapper.IntPb;
+import com.iohao.game.action.skeleton.protocol.wrapper.IntValueList;
+import com.iohao.game.action.skeleton.protocol.wrapper.IntValue;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,55 +31,55 @@ import java.util.List;
 @ActionController(WrapperCmd.cmd)
 public class IntAction {
     @ActionMethod(WrapperCmd.int2int)
-    public int int2int(int intValue) {
-        return intValue + 1;
+    public int int2int(int value) {
+        return value + 1;
     }
 
-    @ActionMethod(WrapperCmd.intPb2intPb)
-    public IntPb intPb2intPb(IntPb intPb) {
-        IntPb newIntPb = new IntPb();
-        newIntPb.intValue = intPb.intValue + 2;
-        return newIntPb;
+    @ActionMethod(WrapperCmd.intValue2intValue)
+    public IntValue intValue2intValue(IntValue intValue) {
+        IntValue newIntValue = new IntValue();
+        newIntValue.value = intValue.value + 2;
+        return newIntValue;
     }
 
     @ActionMethod(WrapperCmd.int2intList)
-    public List<Integer> int2intList(int intValue) {
+    public List<Integer> int2intList(int value) {
         List<Integer> list = new ArrayList<>();
-        list.add(intValue);
-        list.add(intValue + 1);
+        list.add(value);
+        list.add(value + 1);
         return list;
     }
 
-    @ActionMethod(WrapperCmd.int2intListPb)
-    public IntListPb int2intListPb(int intValue) {
+    @ActionMethod(WrapperCmd.int2intValueList)
+    public IntValueList int2intValueList(int value) {
         List<Integer> list = new ArrayList<>();
-        list.add(intValue);
-        list.add(intValue + 1);
+        list.add(value);
+        list.add(value + 1);
 
-        IntListPb intListPb = new IntListPb();
-        intListPb.intValues = list;
+        IntValueList intValueList = new IntValueList();
+        intValueList.values = list;
 
-        return intListPb;
+        return intValueList;
     }
 
-    @ActionMethod(WrapperCmd.intListPb2intList)
-    public List<Integer> intListPb2IntList(IntListPb intListPb) {
+    @ActionMethod(WrapperCmd.intValueList2intList)
+    public List<Integer> intValueList2intList(IntValueList intValueList) {
         List<Integer> list = new ArrayList<>();
         list.add(1);
         list.add(2);
         return list;
     }
 
-    @ActionMethod(WrapperCmd.intList2intListPb)
-    public IntListPb intList2IntListPb(List<Integer> intList) {
+    @ActionMethod(WrapperCmd.intList2intValueList)
+    public IntValueList intList2intValueList(List<Integer> intList) {
         List<Integer> list = new ArrayList<>();
         list.add(1);
         list.add(2);
 
-        IntListPb intListPb = new IntListPb();
-        intListPb.intValues = list;
+        IntValueList intValueList = new IntValueList();
+        intValueList.values = list;
 
-        return intListPb;
+        return intValueList;
     }
 
 }

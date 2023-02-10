@@ -28,21 +28,21 @@ public interface WrapperCmd {
     int cmd = DemoModuleCmd.demoModule_14_wrapper_cmd;
 
     int int2int = 10;
-    int intPb2intPb = 11;
+    int intValue2intValue = 11;
 
     int int2intList = 12;
-    int int2intListPb = 13;
+    int int2intValueList = 13;
 
-    int intListPb2intList = 14;
-    int intList2intListPb = 15;
+    int intValueList2intList = 14;
+    int intList2intValueList = 15;
 
 
     int long2long = 20;
-    int longPb2longPb = 21;
+    int longValue2longValue = 21;
 
     int long2longList = 22;
-    int long2longListPb = 23;
+    int long2longValueList = 23;
 
-    int longListPb2longList = 24;
-    int longList2longListPb = 25;
+    int longValueList2longList = 24;
+    int longList2longValueList = 25;
 }

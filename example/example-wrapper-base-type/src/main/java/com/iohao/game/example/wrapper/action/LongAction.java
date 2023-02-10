@@ -18,8 +18,8 @@ package com.iohao.game.example.wrapper.action;
 
 import com.iohao.game.action.skeleton.annotation.ActionController;
 import com.iohao.game.action.skeleton.annotation.ActionMethod;
-import com.iohao.game.action.skeleton.protocol.wrapper.LongPb;
-import com.iohao.game.action.skeleton.protocol.wrapper.LongListPb;
+import com.iohao.game.action.skeleton.protocol.wrapper.LongValue;
+import com.iohao.game.action.skeleton.protocol.wrapper.LongValueList;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,55 +31,55 @@ import java.util.List;
 @ActionController(WrapperCmd.cmd)
 public class LongAction {
     @ActionMethod(WrapperCmd.long2long)
-    public long long2long(long longValue) {
-        return longValue + 1;
+    public long long2long(long value) {
+        return value + 1;
     }
 
-    @ActionMethod(WrapperCmd.longPb2longPb)
-    public LongPb longPb2longPb(LongPb longPb) {
-        LongPb newLongPb = new LongPb();
-        newLongPb.longValue = longPb.longValue + 2;
-        return newLongPb;
+    @ActionMethod(WrapperCmd.longValue2longValue)
+    public LongValue longValue2longValue(LongValue longValue) {
+        LongValue newLongValue = new LongValue();
+        newLongValue.value = longValue.value + 2;
+        return newLongValue;
     }
 
     @ActionMethod(WrapperCmd.long2longList)
-    public List<Long> long2longList(long longValue) {
+    public List<Long> long2longList(long value) {
         List<Long> list = new ArrayList<>();
-        list.add(longValue);
-        list.add(longValue + 1);
+        list.add(value);
+        list.add(value + 1);
         return list;
     }
 
-    @ActionMethod(WrapperCmd.long2longListPb)
-    public LongListPb long2longListPb(long longValue) {
+    @ActionMethod(WrapperCmd.long2longValueList)
+    public LongValueList long2longValueList(long value) {
         List<Long> list = new ArrayList<>();
-        list.add(longValue);
-        list.add(longValue + 1);
+        list.add(value);
+        list.add(value + 1);
 
-        LongListPb longListPb = new LongListPb();
-        longListPb.longValues = list;
+        LongValueList longValueList = new LongValueList();
+        longValueList.values = list;
 
-        return longListPb;
+        return longValueList;
     }
 
-    @ActionMethod(WrapperCmd.longListPb2longList)
-    public List<Long> longListPb2longList(LongListPb longListPb) {
+    @ActionMethod(WrapperCmd.longValueList2longList)
+    public List<Long> longValueList2longList(LongValueList longValueList) {
         List<Long> list = new ArrayList<>();
         list.add(11L);
         list.add(22L);
         return list;
     }
 
-    @ActionMethod(WrapperCmd.longList2longListPb)
-    public LongListPb longList2longListPb(List<Long> longList) {
+    @ActionMethod(WrapperCmd.longList2longValueList)
+    public LongValueList longList2longValueList(List<Long> longList) {
         List<Long> list = new ArrayList<>();
         list.add(11L);
         list.add(22L);
 
-        LongListPb longListPb = new LongListPb();
-        longListPb.longValues = list;
+        LongValueList longValueList = new LongValueList();
+        longValueList.values = list;
 
-        return longListPb;
+        return longValueList;
     }
 
 }

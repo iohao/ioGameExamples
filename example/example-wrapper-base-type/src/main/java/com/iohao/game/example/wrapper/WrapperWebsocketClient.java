@@ -18,10 +18,10 @@ package com.iohao.game.example.wrapper;
 
 import com.iohao.game.action.skeleton.core.CmdKit;
 import com.iohao.game.action.skeleton.core.DataCodecKit;
-import com.iohao.game.action.skeleton.protocol.wrapper.IntListPb;
-import com.iohao.game.action.skeleton.protocol.wrapper.IntPb;
-import com.iohao.game.action.skeleton.protocol.wrapper.LongListPb;
-import com.iohao.game.action.skeleton.protocol.wrapper.LongPb;
+import com.iohao.game.action.skeleton.protocol.wrapper.IntValueList;
+import com.iohao.game.action.skeleton.protocol.wrapper.IntValue;
+import com.iohao.game.action.skeleton.protocol.wrapper.LongValueList;
+import com.iohao.game.action.skeleton.protocol.wrapper.LongValue;
 import com.iohao.game.bolt.broker.client.external.bootstrap.ExternalKit;
 import com.iohao.game.bolt.broker.client.external.bootstrap.message.ExternalMessage;
 import com.iohao.game.example.wrapper.action.WrapperCmd;
@@ -117,46 +117,46 @@ public class WrapperWebsocketClient {
     }
 
     private void extractedLong() {
-        createTheCommandLongPb(WrapperCmd.long2long);
-        createTheCommandLongPb(WrapperCmd.longPb2longPb);
+        createTheCommandLongValue(WrapperCmd.long2long);
+        createTheCommandLongValue(WrapperCmd.longValue2longValue);
 
-        TheCommand theCommandLongPb = createTheCommandLongPb(WrapperCmd.long2longList);
-        theCommandLongPb.resultClass = LongListPb.class;
+        TheCommand theCommandLongValue = createTheCommandLongValue(WrapperCmd.long2longList);
+        theCommandLongValue.resultClass = LongValueList.class;
 
-        theCommandLongPb = createTheCommandLongPb(WrapperCmd.long2longListPb);
-        theCommandLongPb.resultClass = LongListPb.class;
+        theCommandLongValue = createTheCommandLongValue(WrapperCmd.long2longValueList);
+        theCommandLongValue.resultClass = LongValueList.class;
 
-        createTheCommandLongListPb(WrapperCmd.longListPb2longList);
-        createTheCommandLongListPb(WrapperCmd.longList2longListPb);
+        createTheCommandLongValueList(WrapperCmd.longValueList2longList);
+        createTheCommandLongValueList(WrapperCmd.longList2longValueList);
     }
 
     private void extractedInt() {
-        createTheCommandIntPb(WrapperCmd.int2int);
-        createTheCommandIntPb(WrapperCmd.intPb2intPb);
+        createTheCommandIntValue(WrapperCmd.int2int);
+        createTheCommandIntValue(WrapperCmd.intValue2intValue);
 
-        TheCommand theCommandIntPb = createTheCommandIntPb(WrapperCmd.int2intList);
-        theCommandIntPb.resultClass = IntListPb.class;
+        TheCommand theCommandIntValue = createTheCommandIntValue(WrapperCmd.int2intList);
+        theCommandIntValue.resultClass = IntValueList.class;
 
-        theCommandIntPb = createTheCommandIntPb(WrapperCmd.int2intListPb);
-        theCommandIntPb.resultClass = IntListPb.class;
+        theCommandIntValue = createTheCommandIntValue(WrapperCmd.int2intValueList);
+        theCommandIntValue.resultClass = IntValueList.class;
 
-        createTheCommandIntListPb(WrapperCmd.intListPb2intList);
-        createTheCommandIntListPb(WrapperCmd.intList2intListPb);
+        createTheCommandIntValueList(WrapperCmd.intValueList2intList);
+        createTheCommandIntValueList(WrapperCmd.intList2intValueList);
     }
 
-    private TheCommand createTheCommandIntListPb(int subCmd) {
+    private TheCommand createTheCommandIntValueList(int subCmd) {
         List<Integer> list = new ArrayList<>();
         list.add(100);
         list.add(200);
 
-        IntListPb intListPb = new IntListPb();
-        intListPb.intValues = list;
+        IntValueList intValueList = new IntValueList();
+        intValueList.values = list;
 
-        ExternalMessage externalMessage = extractedExternalMessage(subCmd, intListPb);
+        ExternalMessage externalMessage = extractedExternalMessage(subCmd, intValueList);
 
         TheCommand theCommand = new TheCommand();
         theCommand.externalMessage = externalMessage;
-        theCommand.resultClass = IntListPb.class;
+        theCommand.resultClass = IntValueList.class;
 
 
         theCommandMap.put(externalMessage.getCmdMerge(), theCommand);
@@ -164,50 +164,50 @@ public class WrapperWebsocketClient {
         return theCommand;
     }
 
-    private TheCommand createTheCommandIntPb(int subCmd) {
-        int intValue = 100;
-        IntPb intPb = new IntPb();
-        intPb.intValue = intValue;
+    private TheCommand createTheCommandIntValue(int subCmd) {
+        int value = 100;
+        IntValue intValue = new IntValue();
+        intValue.value = value;
 
-        ExternalMessage externalMessage = extractedExternalMessage(subCmd, intPb);
+        ExternalMessage externalMessage = extractedExternalMessage(subCmd, intValue);
 
         TheCommand theCommand = new TheCommand();
         theCommand.externalMessage = externalMessage;
-        theCommand.resultClass = IntPb.class;
+        theCommand.resultClass = IntValue.class;
 
         theCommandMap.put(externalMessage.getCmdMerge(), theCommand);
 
         return theCommand;
     }
 
-    private TheCommand createTheCommandLongPb(int subCmd) {
-        LongPb intPb = new LongPb();
-        intPb.longValue = 100;
+    private TheCommand createTheCommandLongValue(int subCmd) {
+        LongValue longValue = new LongValue();
+        longValue.value = 100;
 
-        ExternalMessage externalMessage = extractedExternalMessage(subCmd, intPb);
+        ExternalMessage externalMessage = extractedExternalMessage(subCmd, longValue);
 
         TheCommand theCommand = new TheCommand();
         theCommand.externalMessage = externalMessage;
-        theCommand.resultClass = LongPb.class;
+        theCommand.resultClass = LongValue.class;
 
         theCommandMap.put(externalMessage.getCmdMerge(), theCommand);
 
         return theCommand;
     }
 
-    private TheCommand createTheCommandLongListPb(int subCmd) {
+    private TheCommand createTheCommandLongValueList(int subCmd) {
         List<Long> list = new ArrayList<>();
         list.add(1100L);
         list.add(2200L);
 
-        LongListPb intListPb = new LongListPb();
-        intListPb.longValues = list;
+        LongValueList longValueList = new LongValueList();
+        longValueList.values = list;
 
-        ExternalMessage externalMessage = extractedExternalMessage(subCmd, intListPb);
+        ExternalMessage externalMessage = extractedExternalMessage(subCmd, longValueList);
 
         TheCommand theCommand = new TheCommand();
         theCommand.externalMessage = externalMessage;
-        theCommand.resultClass = LongListPb.class;
+        theCommand.resultClass = LongValueList.class;
 
 
         theCommandMap.put(externalMessage.getCmdMerge(), theCommand);
