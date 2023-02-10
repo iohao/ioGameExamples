@@ -100,33 +100,61 @@
             如果没安装 mvnd 请使用
             mvn package
             来打包
+
+            会在 target 目录下生成 spring-z-one-game-3.0.0.io.jar
+            执行命令启动
+            java -jar target/spring-z-one-game-3.0.0.io.jar
             -->
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-assembly-plugin</artifactId>
-                <version>3.3.0</version>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${springboot.version}</version>
+                <configuration>
+                    <mainClass>com.iohao.game.spring.SpringGameOneApplication</mainClass>
+                    <layout>JAR</layout>
+                </configuration>
                 <executions>
                     <execution>
-                        <id>make-assembly</id>
-                        <!-- 绑定到package生命周期 -->
-                        <phase>package</phase>
                         <goals>
-                            <!-- 只运行一次 -->
-                            <goal>single</goal>
+                            <goal>repackage</goal>
                         </goals>
                     </execution>
                 </executions>
-                <configuration>
-                    <descriptorRefs>
-                        <descriptorRef>jar-with-dependencies</descriptorRef>
-                    </descriptorRefs>
-                    <archive>
-                        <manifest>
-                            <mainClass>com.iohao.game.spring.SpringGameOneApplication</mainClass>
-                        </manifest>
-                    </archive>
-                </configuration>
             </plugin>
+
+            <!--
+            java 打包成 jar，https://gitee.com/iohao/iogame/issues/I5CXDU#note_11037550
+            mvnd package
+            如果没安装 mvnd 请使用
+            mvn package
+            来打包
+            -->
+<!--            <plugin>-->
+<!--                <groupId>org.apache.maven.plugins</groupId>-->
+<!--                <artifactId>maven-assembly-plugin</artifactId>-->
+<!--                <version>3.3.0</version>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <id>make-assembly</id>-->
+<!--                        &lt;!&ndash; 绑定到package生命周期 &ndash;&gt;-->
+<!--                        <phase>package</phase>-->
+<!--                        <goals>-->
+<!--                            &lt;!&ndash; 只运行一次 &ndash;&gt;-->
+<!--                            <goal>single</goal>-->
+<!--                        </goals>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--                <configuration>-->
+<!--                    <descriptorRefs>-->
+<!--                        <descriptorRef>jar-with-dependencies</descriptorRef>-->
+<!--                    </descriptorRefs>-->
+<!--                    <archive>-->
+<!--                        <manifest>-->
+<!--                            <mainClass>com.iohao.game.spring.SpringGameOneApplication</mainClass>-->
+<!--                        </manifest>-->
+<!--                    </archive>-->
+<!--                </configuration>-->
+<!--            </plugin>-->
         </plugins>
     </build>
 </project>
