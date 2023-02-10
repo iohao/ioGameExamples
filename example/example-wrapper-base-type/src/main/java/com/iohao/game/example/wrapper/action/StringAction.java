@@ -18,8 +18,8 @@ package com.iohao.game.example.wrapper.action;
 
 import com.iohao.game.action.skeleton.annotation.ActionController;
 import com.iohao.game.action.skeleton.annotation.ActionMethod;
-import com.iohao.game.action.skeleton.protocol.wrapper.StringListPb;
-import com.iohao.game.action.skeleton.protocol.wrapper.StringPb;
+import com.iohao.game.action.skeleton.protocol.wrapper.StringValueList;
+import com.iohao.game.action.skeleton.protocol.wrapper.StringValue;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,11 +35,11 @@ public class StringAction {
         return s + 1;
     }
 
-    @ActionMethod(WrapperCmd.stringPb2stringPb)
-    public StringPb stringPb2stringPb(StringPb stringPb) {
-        StringPb newStringPb = new StringPb();
-        newStringPb.stringValue = stringPb.stringValue + 2;
-        return newStringPb;
+    @ActionMethod(WrapperCmd.stringValue2stringValue)
+    public StringValue stringValue2stringValue(StringValue stringValue) {
+        StringValue newStringValue = new StringValue();
+        newStringValue.value = stringValue.value + 2;
+        return newStringValue;
     }
 
     @ActionMethod(WrapperCmd.string2stringList)
@@ -50,20 +50,20 @@ public class StringAction {
         return list;
     }
 
-    @ActionMethod(WrapperCmd.string2stringListPb)
-    public StringListPb string2stringListPb(String s) {
+    @ActionMethod(WrapperCmd.string2stringValueList)
+    public StringValueList string2stringValueList(String s) {
         List<String> list = new ArrayList<>();
         list.add(s);
         list.add(s + 1);
 
-        StringListPb stringListPb = new StringListPb();
-        stringListPb.stringValues = list;
+        StringValueList stringValueList = new StringValueList();
+        stringValueList.values = list;
 
-        return stringListPb;
+        return stringValueList;
     }
 
-    @ActionMethod(WrapperCmd.stringListPb2stringList)
-    public List<String> stringListPb2stringList(StringListPb stringListPb) {
+    @ActionMethod(WrapperCmd.stringValueList2stringList)
+    public List<String> stringValueList2stringList(StringValueList stringValueList) {
         List<String> list = new ArrayList<>();
         list.add(11L + "");
         list.add(22L + "");
@@ -71,16 +71,16 @@ public class StringAction {
         return list;
     }
 
-    @ActionMethod(WrapperCmd.stringList2stringListPb)
-    public StringListPb stringList2stringListPb(List<String> stringList) {
+    @ActionMethod(WrapperCmd.stringList2stringValueList)
+    public StringValueList stringList2stringValueList(List<String> stringList) {
         List<String> list = new ArrayList<>();
         list.add(11L + "");
         list.add(22L + "");
 
-        StringListPb stringListPb = new StringListPb();
-        stringListPb.stringValues = list;
+        StringValueList stringValueList = new StringValueList();
+        stringValueList.values = list;
 
-        return stringListPb;
+        return stringValueList;
     }
 
 }

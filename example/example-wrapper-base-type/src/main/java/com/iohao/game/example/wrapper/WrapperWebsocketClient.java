@@ -18,10 +18,7 @@ package com.iohao.game.example.wrapper;
 
 import com.iohao.game.action.skeleton.core.CmdKit;
 import com.iohao.game.action.skeleton.core.DataCodecKit;
-import com.iohao.game.action.skeleton.protocol.wrapper.IntValueList;
-import com.iohao.game.action.skeleton.protocol.wrapper.IntValue;
-import com.iohao.game.action.skeleton.protocol.wrapper.LongValueList;
-import com.iohao.game.action.skeleton.protocol.wrapper.LongValue;
+import com.iohao.game.action.skeleton.protocol.wrapper.*;
 import com.iohao.game.bolt.broker.client.external.bootstrap.ExternalKit;
 import com.iohao.game.bolt.broker.client.external.bootstrap.message.ExternalMessage;
 import com.iohao.game.example.wrapper.action.WrapperCmd;
@@ -112,7 +109,8 @@ public class WrapperWebsocketClient {
 
     private void initTheCommands() {
 
-        extractedLong();
+        extractedString();
+//        extractedLong();
 //        extractedInt();
     }
 
@@ -209,6 +207,55 @@ public class WrapperWebsocketClient {
         theCommand.externalMessage = externalMessage;
         theCommand.resultClass = LongValueList.class;
 
+
+        theCommandMap.put(externalMessage.getCmdMerge(), theCommand);
+
+        return theCommand;
+    }
+
+    private void extractedString() {
+        createTheCommandStringValue(WrapperCmd.string2string);
+        createTheCommandStringValue(WrapperCmd.stringValue2stringValue);
+
+        TheCommand theCommandStringValue = createTheCommandStringValue(WrapperCmd.string2stringList);
+        theCommandStringValue.resultClass = StringValueList.class;
+
+        theCommandStringValue = createTheCommandStringValue(WrapperCmd.string2stringValueList);
+        theCommandStringValue.resultClass = StringValueList.class;
+
+        createTheCommandStringValueList(WrapperCmd.stringValueList2stringList);
+        createTheCommandStringValueList(WrapperCmd.stringList2stringValueList);
+    }
+
+    private TheCommand createTheCommandStringValue(int subCmd) {
+        StringValue stringValue = new StringValue();
+        stringValue.value = "100";
+
+        ExternalMessage externalMessage = extractedExternalMessage(subCmd, stringValue);
+
+        TheCommand theCommand = new TheCommand();
+        theCommand.externalMessage = externalMessage;
+        theCommand.resultClass = StringValue.class;
+
+        theCommandMap.put(externalMessage.getCmdMerge(), theCommand);
+
+        return theCommand;
+    }
+
+
+    private TheCommand createTheCommandStringValueList(int subCmd) {
+        List<String> list = new ArrayList<>();
+        list.add(1100L + "");
+        list.add(2200L + "");
+
+        StringValueList stringValueList = new StringValueList();
+        stringValueList.values = list;
+
+        ExternalMessage externalMessage = extractedExternalMessage(subCmd, stringValueList);
+
+        TheCommand theCommand = new TheCommand();
+        theCommand.externalMessage = externalMessage;
+        theCommand.resultClass = StringValueList.class;
 
         theCommandMap.put(externalMessage.getCmdMerge(), theCommand);
 
