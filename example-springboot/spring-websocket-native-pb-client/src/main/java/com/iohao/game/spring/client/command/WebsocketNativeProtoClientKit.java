@@ -30,9 +30,7 @@ import org.java_websocket.handshake.ServerHandshake;
 
 import java.net.URI;
 import java.nio.ByteBuffer;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 import java.util.function.Consumer;
 
 /**
@@ -61,7 +59,8 @@ public class WebsocketNativeProtoClientKit {
 
 //                extractedLoginVerify(maxValue);
 
-                defaultValuePb();
+//                defaultValuePb();
+                booleanPb();
 //                extractedLongPb();
 
 //                intPb();
@@ -111,6 +110,47 @@ public class WebsocketNativeProtoClientKit {
                 this.sendMsg(5, 3, value);
                 this.sendMsg(5, 4, value);
 
+            }
+
+            private void booleanPb() {
+                Consumer<byte[]> consumer = bytes -> {
+                    try {
+                        Proto.BooleanPb pb = Proto.BooleanPb.parseFrom(bytes);
+                        log.info("bytes : {}", bytes);
+                        log.info("BooleanPb : {}", pb.getBooleanValue());
+                    } catch (InvalidProtocolBufferException e) {
+                        throw new RuntimeException(e);
+                    }
+                };
+
+                log.info("booleanPb");
+                ByteString value = Proto.BooleanPb.newBuilder()
+                        .setBooleanValue(true)
+                        .build()
+                        .toByteString();
+
+                this.sendMsg(3, 8, value, consumer);
+
+                value = Proto.BooleanPb.newBuilder()
+                        .build()
+                        .toByteString();
+                this.sendMsg(3, 9, value, consumer);
+
+
+                var list = Proto.BooleanListPb.newBuilder()
+                        .addBooleanValues(true)
+                        .build()
+                        .toByteString();
+
+                this.sendMsg(3, 10, list, bytes -> {
+                    try {
+                        Proto.BooleanListPb listPb = Proto.BooleanListPb.parseFrom(bytes);
+                        log.info("bytes : {}", bytes);
+                        log.info("BooleanListPb : {}", listPb.getBooleanValuesList());
+                    } catch (InvalidProtocolBufferException e) {
+                        throw new RuntimeException(e);
+                    }
+                });
             }
 
             private void intPb() {

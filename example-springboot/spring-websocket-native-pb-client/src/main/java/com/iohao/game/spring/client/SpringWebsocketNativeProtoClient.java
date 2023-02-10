@@ -16,6 +16,7 @@
  */
 package com.iohao.game.spring.client;
 
+import com.google.protobuf.Message;
 import com.iohao.game.spring.client.command.WebsocketNativeProtoClientKit;
 import lombok.extern.slf4j.Slf4j;
 
@@ -26,7 +27,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class SpringWebsocketNativeProtoClient {
     public static void main(String[] args) throws Exception {
-
+        Message message;
         WebsocketNativeProtoClientKit.runClient();
     }
 }

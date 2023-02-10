@@ -18,11 +18,15 @@ package com.iohao.game.spring.logic.hall.action;
 
 import com.iohao.game.action.skeleton.annotation.ActionController;
 import com.iohao.game.action.skeleton.annotation.ActionMethod;
+import com.iohao.game.action.skeleton.protocol.wrapper.BooleanPb;
 import com.iohao.game.action.skeleton.protocol.wrapper.IntListPb;
 import com.iohao.game.action.skeleton.protocol.wrapper.IntPb;
 import com.iohao.game.spring.common.cmd.HallCmdModule;
 import com.iohao.game.spring.common.pb.UserInfo;
 import lombok.extern.slf4j.Slf4j;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author 渔民小镇
@@ -55,4 +59,23 @@ public class IntPbAction {
 
         return userInfo;
     }
+
+
+    @ActionMethod(HallCmdModule.booleanPb)
+    public boolean booleanPb(boolean value) {
+        return value;
+    }
+
+    @ActionMethod(HallCmdModule.booleanPb1)
+    public boolean booleanPb1(BooleanPb value) {
+        return value.booleanValue;
+    }
+
+    @ActionMethod(HallCmdModule.booleanListPb1)
+    public List<Boolean> booleanListPb(List<Boolean> list) {
+        List<Boolean> newList = new ArrayList<>();
+        newList.add(false);
+        return newList;
+    }
+
 }
