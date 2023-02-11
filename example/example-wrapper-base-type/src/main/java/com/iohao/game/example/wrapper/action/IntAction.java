@@ -38,48 +38,27 @@ public class IntAction {
     @ActionMethod(WrapperCmd.intValue2intValue)
     public IntValue intValue2intValue(IntValue intValue) {
         IntValue newIntValue = new IntValue();
-        newIntValue.value = intValue.value + 2;
+        newIntValue.value = intValue.value + 1;
         return newIntValue;
     }
 
-    @ActionMethod(WrapperCmd.int2intList)
-    public List<Integer> int2intList(int value) {
-        List<Integer> list = new ArrayList<>();
-        list.add(value);
-        list.add(value + 1);
-        return list;
-    }
-
-    @ActionMethod(WrapperCmd.int2intValueList)
-    public IntValueList int2intValueList(int value) {
-        List<Integer> list = new ArrayList<>();
-        list.add(value);
-        list.add(value + 1);
-
-        IntValueList intValueList = new IntValueList();
-        intValueList.values = list;
-
-        return intValueList;
-    }
-
-    @ActionMethod(WrapperCmd.intValueList2intList)
-    public List<Integer> intValueList2intList(IntValueList intValueList) {
+    @ActionMethod(WrapperCmd.intList2intList)
+    public List<Integer> intList2intList(List<Integer> intList) {
         List<Integer> list = new ArrayList<>();
         list.add(1);
         list.add(2);
         return list;
     }
 
-    @ActionMethod(WrapperCmd.intList2intValueList)
-    public IntValueList intList2intValueList(List<Integer> intList) {
+    @ActionMethod(WrapperCmd.intValueList2intValueList)
+    public IntValueList intValueList2intValueList(IntValueList intValueList) {
         List<Integer> list = new ArrayList<>();
         list.add(1);
         list.add(2);
 
-        IntValueList intValueList = new IntValueList();
-        intValueList.values = list;
+        IntValueList newIntValueList = new IntValueList();
+        newIntValueList.values = list;
 
-        return intValueList;
+        return newIntValueList;
     }
-
 }

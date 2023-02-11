@@ -42,44 +42,24 @@ public class BoolAction {
         return newBoolValue;
     }
 
-    @ActionMethod(WrapperCmd.bool2boolList)
-    public List<Boolean> bool2boolList(boolean value) {
+    @ActionMethod(WrapperCmd.boolList2boolList)
+    public List<Boolean> boolList2boolList(List<Boolean> booleanList) {
         List<Boolean> list = new ArrayList<>();
-        list.add(value);
-        list.add(!value);
-        return list;
-    }
-
-    @ActionMethod(WrapperCmd.bool2boolValueList)
-    public BoolValueList bool2boolValueList(boolean value) {
-        List<Boolean> list = new ArrayList<>();
-        list.add(value);
-        list.add(!value);
-
-        BoolValueList boolValueList = new BoolValueList();
-        boolValueList.values = list;
-
-        return boolValueList;
-    }
-
-    @ActionMethod(WrapperCmd.boolValueList2boolList)
-    public List<Boolean> boolValueList2boolList(BoolValueList boolValueList) {
-        List<Boolean> list = new ArrayList<>();
-        list.add(false);
+        list.add(true);
         list.add(false);
         return list;
     }
 
-    @ActionMethod(WrapperCmd.boolList2boolValueList)
-    public BoolValueList boolList2boolValueList(List<Boolean> booleanList) {
+    @ActionMethod(WrapperCmd.boolValueList2boolValueList)
+    public BoolValueList boolValueList2boolValueList(BoolValueList boolValueList) {
         List<Boolean> list = new ArrayList<>();
         list.add(true);
         list.add(false);
 
-        BoolValueList boolValueList = new BoolValueList();
-        boolValueList.values = list;
+        BoolValueList newBoolValueList = new BoolValueList();
+        newBoolValueList.values = list;
 
-        return boolValueList;
+        return newBoolValueList;
     }
 
 }

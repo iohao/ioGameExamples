@@ -33,4 +33,9 @@ public interface HallCmdModule {
     int intValue = 4;
     int intValue1 = 5;
     int intValueList = 6;
+    int defaultValue = 7;
+
+    int booleanPb = 8;
+    int booleanPb1 = 9;
+    int booleanListPb1 = 10;
 }

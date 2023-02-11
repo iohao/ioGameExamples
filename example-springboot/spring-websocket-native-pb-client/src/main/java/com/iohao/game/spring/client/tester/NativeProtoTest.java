@@ -20,8 +20,8 @@ import com.google.protobuf.ByteString;
 import com.google.protobuf.InvalidProtocolBufferException;
 import com.iohao.game.action.skeleton.core.CmdKit;
 import com.iohao.game.action.skeleton.core.DataCodecKit;
-import com.iohao.game.action.skeleton.protocol.wrapper.IntListPb;
-import com.iohao.game.action.skeleton.protocol.wrapper.IntPb;
+import com.iohao.game.action.skeleton.protocol.wrapper.IntValueList;
+import com.iohao.game.action.skeleton.protocol.wrapper.IntValue;
 import com.iohao.game.bolt.broker.client.external.bootstrap.message.ExternalMessage;
 import com.iohao.game.spring.client.command.WebsocketNativeProtoClientKit;
 import com.iohao.message.BizProto;
@@ -112,49 +112,49 @@ public class NativeProtoTest {
     }
 
     private static void extractedIntLong() throws InvalidProtocolBufferException {
-        // ================ 原生 proto IntPb convert2 iohao ================
+        // ================ 原生 proto IntValue convert2 iohao ================
 
-        Proto.IntPb intPb = Proto.IntPb.newBuilder()
-                .setIntValue(-273676)
+        Proto.IntValue intValue = Proto.IntValue.newBuilder()
+                .setValue(-273676)
                 .build();
 
         Proto.ExternalMessage externalMessage = WebsocketNativeProtoClientKit
-                .createExternalMessage(1, 1, intPb.toByteString());
+                .createExternalMessage(1, 1, intValue.toByteString());
 
         ExternalMessage convert = convert(externalMessage);
 
         byte[] data = convert.getData();
-        IntPb intPb1 = DataCodecKit.decode(data, IntPb.class);
-        log.info("intPb1 : {}", intPb1);
+        IntValue intValue1 = DataCodecKit.decode(data, IntValue.class);
+        log.info("intValue1 : {}", intValue1);
 
-        Assert.assertTrue(intPb.getIntValue() == intPb1.intValue);
+        Assert.assertTrue(intValue.getValue() == intValue1.value);
 
         System.out.println();
 
-        // ================ 原生 proto IntListPb convert2 iohao ================
+        // ================ 原生 proto IntValueList convert2 iohao ================
 
-        Proto.IntListPb intListPb = Proto.IntListPb.newBuilder()
-                .addIntValues(1)
-                .addIntValues(100)
-                .addIntValues(1000)
-                .addIntValues(-10000)
+        Proto.IntValueList intValueList = Proto.IntValueList.newBuilder()
+                .addValues(1)
+                .addValues(100)
+                .addValues(1000)
+                .addValues(-10000)
                 .build();
 
         externalMessage = WebsocketNativeProtoClientKit
-                .createExternalMessage(1, 2, intListPb.toByteString());
+                .createExternalMessage(1, 2, intValueList.toByteString());
 
         convert = convert(externalMessage);
         data = convert.getData();
-        IntListPb intListPb1 = DataCodecKit.decode(data, IntListPb.class);
-        log.info("intListPb1 : {}", intListPb1);
+        IntValueList intValueList1 = DataCodecKit.decode(data, IntValueList.class);
+        log.info("intValueList1 : {}", intValueList1);
 
         System.out.println();
 
         byte[] bytes = externalMessage.toByteArray();
         Proto.ExternalMessage externalMessage1 = Proto.ExternalMessage.parseFrom(bytes);
-        Proto.IntListPb intListPb2 = Proto.IntListPb.parseFrom(externalMessage1.getData());
+        Proto.IntValueList intValueList2 = Proto.IntValueList.parseFrom(externalMessage1.getData());
         log.info("externalMessage1 : {}", externalMessage1);
-        log.info("intListPb2 : {}", intListPb2);
+        log.info("intValueList2 : {}", intValueList2);
     }
 
     private static ExternalMessage convert(Proto.ExternalMessage externalMessage) {

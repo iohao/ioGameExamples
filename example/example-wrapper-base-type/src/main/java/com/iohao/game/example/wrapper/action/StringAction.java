@@ -38,49 +38,29 @@ public class StringAction {
     @ActionMethod(WrapperCmd.stringValue2stringValue)
     public StringValue stringValue2stringValue(StringValue stringValue) {
         StringValue newStringValue = new StringValue();
-        newStringValue.value = stringValue.value + 2;
+        newStringValue.value = stringValue.value + 1;
         return newStringValue;
     }
 
-    @ActionMethod(WrapperCmd.string2stringList)
-    public List<String> string2stringList(String s) {
+    @ActionMethod(WrapperCmd.stringList2stringList)
+    public List<String> stringList2stringList(List<String> stringList) {
         List<String> list = new ArrayList<>();
-        list.add(s);
-        list.add(s + 1);
+        list.add(11L + "");
+        list.add(22L + "");
         return list;
     }
 
-    @ActionMethod(WrapperCmd.string2stringValueList)
-    public StringValueList string2stringValueList(String s) {
-        List<String> list = new ArrayList<>();
-        list.add(s);
-        list.add(s + 1);
-
-        StringValueList stringValueList = new StringValueList();
-        stringValueList.values = list;
-
-        return stringValueList;
-    }
-
-    @ActionMethod(WrapperCmd.stringValueList2stringList)
-    public List<String> stringValueList2stringList(StringValueList stringValueList) {
+    @ActionMethod(WrapperCmd.stringValueList2stringValueList)
+    public StringValueList stringValueList2stringValueList(StringValueList stringValueList) {
         List<String> list = new ArrayList<>();
         list.add(11L + "");
         list.add(22L + "");
 
-        return list;
+        StringValueList newStringValueList = new StringValueList();
+        newStringValueList.values = list;
+
+        return newStringValueList;
     }
 
-    @ActionMethod(WrapperCmd.stringList2stringValueList)
-    public StringValueList stringList2stringValueList(List<String> stringList) {
-        List<String> list = new ArrayList<>();
-        list.add(11L + "");
-        list.add(22L + "");
-
-        StringValueList stringValueList = new StringValueList();
-        stringValueList.values = list;
-
-        return stringValueList;
-    }
 
 }

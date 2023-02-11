@@ -18,9 +18,10 @@ package com.iohao.game.spring.logic.hall.action;
 
 import com.iohao.game.action.skeleton.annotation.ActionController;
 import com.iohao.game.action.skeleton.annotation.ActionMethod;
-import com.iohao.game.action.skeleton.protocol.wrapper.IntValueList;
 import com.iohao.game.action.skeleton.protocol.wrapper.IntValue;
+import com.iohao.game.action.skeleton.protocol.wrapper.IntValueList;
 import com.iohao.game.spring.common.cmd.HallCmdModule;
+import com.iohao.game.spring.common.pb.UserInfo;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -29,7 +30,7 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 @ActionController(HallCmdModule.cmd)
-public class IntAction {
+public class SpringIntAction {
 
     @ActionMethod(HallCmdModule.intValue)
     public int intValue(int value) {
@@ -46,4 +47,10 @@ public class IntAction {
         return value;
     }
 
+    @ActionMethod(HallCmdModule.defaultValue)
+    public UserInfo defaultValue() {
+        UserInfo userInfo = new UserInfo();
+
+        return userInfo;
+    }
 }

@@ -38,48 +38,29 @@ public class LongAction {
     @ActionMethod(WrapperCmd.longValue2longValue)
     public LongValue longValue2longValue(LongValue longValue) {
         LongValue newLongValue = new LongValue();
-        newLongValue.value = longValue.value + 2;
+        newLongValue.value = longValue.value + 1;
         return newLongValue;
     }
 
-    @ActionMethod(WrapperCmd.long2longList)
-    public List<Long> long2longList(long value) {
+    @ActionMethod(WrapperCmd.longList2longList)
+    public List<Long> longList2longList(List<Long> longList) {
         List<Long> list = new ArrayList<>();
-        list.add(value);
-        list.add(value + 1);
+        list.add(1L);
+        list.add(2L);
         return list;
     }
 
-    @ActionMethod(WrapperCmd.long2longValueList)
-    public LongValueList long2longValueList(long value) {
+    @ActionMethod(WrapperCmd.longValueList2longValueList)
+    public LongValueList LongValueList2longValueList(LongValueList longValueList) {
         List<Long> list = new ArrayList<>();
-        list.add(value);
-        list.add(value + 1);
+        list.add(1L);
+        list.add(2L);
 
-        LongValueList longValueList = new LongValueList();
-        longValueList.values = list;
+        LongValueList newLongValueList = new LongValueList();
+        newLongValueList.values = list;
 
-        return longValueList;
+        return newLongValueList;
     }
 
-    @ActionMethod(WrapperCmd.longValueList2longList)
-    public List<Long> longValueList2longList(LongValueList longValueList) {
-        List<Long> list = new ArrayList<>();
-        list.add(11L);
-        list.add(22L);
-        return list;
-    }
-
-    @ActionMethod(WrapperCmd.longList2longValueList)
-    public LongValueList longList2longValueList(List<Long> longList) {
-        List<Long> list = new ArrayList<>();
-        list.add(11L);
-        list.add(22L);
-
-        LongValueList longValueList = new LongValueList();
-        longValueList.values = list;
-
-        return longValueList;
-    }
 
 }

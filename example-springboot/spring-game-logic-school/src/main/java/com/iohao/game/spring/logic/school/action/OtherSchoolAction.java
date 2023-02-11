@@ -20,7 +20,7 @@ import com.iohao.game.action.skeleton.annotation.ActionController;
 import com.iohao.game.action.skeleton.annotation.ActionMethod;
 import com.iohao.game.action.skeleton.core.CmdInfo;
 import com.iohao.game.action.skeleton.core.commumication.BroadcastContext;
-import com.iohao.game.action.skeleton.protocol.wrapper.LongPb;
+import com.iohao.game.action.skeleton.protocol.wrapper.LongValue;
 import com.iohao.game.bolt.broker.core.client.BrokerClientHelper;
 import com.iohao.game.spring.common.cmd.OtherSchoolCmdModule;
 import com.iohao.game.spring.common.pb.OtherVerify;
@@ -55,8 +55,8 @@ public class OtherSchoolAction {
      * @param levelLong 等级
      * @return level
      */
-    @ActionMethod(OtherSchoolCmdModule.longPbWrapper)
-    public long longPbWrapper(long levelLong) {
+    @ActionMethod(OtherSchoolCmdModule.longValueWrapper)
+    public long longValueWrapper(long levelLong) {
         log.info("levelLong 碎片协议 {}", levelLong);
         return levelLong + 2;
     }
@@ -67,8 +67,8 @@ public class OtherSchoolAction {
      * @param levelLong 等级
      * @return level
      */
-    @ActionMethod(OtherSchoolCmdModule.longPbWrapperLonger)
-    public long longPbWrapperLonger(Long levelLong) {
+    @ActionMethod(OtherSchoolCmdModule.longValueWrapperLonger)
+    public long longValueWrapperLonger(Long levelLong) {
         log.info("levelLong 碎片协议 {}", levelLong);
         return levelLong + 2;
     }
@@ -79,19 +79,19 @@ public class OtherSchoolAction {
      * @param levelLong 等级
      * @return level
      */
-    @ActionMethod(OtherSchoolCmdModule.longPbWrapperLongPb)
-    public long longPbWrapperLongPb(LongPb levelLong) {
+    @ActionMethod(OtherSchoolCmdModule.longValueWrapperLongValue)
+    public long longValueWrapperLongValue(LongValue levelLong) {
         log.info("levelLong 碎片协议 {}", levelLong);
-        return levelLong.longValue + 2;
+        return levelLong.value + 2;
     }
 
-    @ActionMethod(OtherSchoolCmdModule.longPbWithBroadcast)
-    public UserInfo longPbWithBroadcast() {
+    @ActionMethod(OtherSchoolCmdModule.longValueWithBroadcast)
+    public UserInfo longValueWithBroadcast() {
 
         SchoolPb schoolPb = new SchoolPb();
         schoolPb.email = "hello";
 
-        CmdInfo cmdInfo = CmdInfo.getCmdInfo(OtherSchoolCmdModule.cmd, OtherSchoolCmdModule.longPbWithBroadcastData);
+        CmdInfo cmdInfo = CmdInfo.getCmdInfo(OtherSchoolCmdModule.cmd, OtherSchoolCmdModule.longValueWithBroadcastData);
 
         BroadcastContext broadcastContext = BrokerClientHelper.me().getBroadcastContext();
         broadcastContext.broadcast(cmdInfo, schoolPb);

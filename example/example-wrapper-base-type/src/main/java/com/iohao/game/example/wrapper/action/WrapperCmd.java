@@ -30,37 +30,25 @@ public interface WrapperCmd {
     int int2int = 10;
     int intValue2intValue = 11;
 
-    int int2intList = 12;
-    int int2intValueList = 13;
-
-    int intValueList2intList = 14;
-    int intList2intValueList = 15;
-
+    int intList2intList = 12;
+    int intValueList2intValueList = 13;
 
     int long2long = 20;
     int longValue2longValue = 21;
 
-    int long2longList = 22;
-    int long2longValueList = 23;
-
-    int longValueList2longList = 24;
-    int longList2longValueList = 25;
+    int longList2longList = 22;
+    int longValueList2longValueList = 23;
 
     int string2string = 30;
     int stringValue2stringValue = 31;
 
-    int string2stringList = 32;
-    int string2stringValueList = 33;
-
-    int stringValueList2stringList = 34;
-    int stringList2stringValueList = 35;
+    int stringList2stringList = 32;
+    int stringValueList2stringValueList = 33;
 
     int bool2bool = 40;
     int boolValue2boolValue = 41;
 
-    int bool2boolList = 42;
-    int bool2boolValueList = 43;
+    int boolList2boolList = 42;
+    int boolValueList2boolValueList = 43;
 
-    int boolValueList2boolList = 44;
-    int boolList2boolValueList = 45;
 }

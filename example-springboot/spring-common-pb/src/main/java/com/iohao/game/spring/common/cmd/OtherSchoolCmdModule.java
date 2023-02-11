@@ -26,11 +26,11 @@ public interface OtherSchoolCmdModule {
     int jsr380 = 1;
 
     /** 业务参数自动装箱、拆箱基础类型 long */
-    int longPbWrapper = 2;
-    int longPbWrapperLonger = 3;
-    int longPbWrapperLongPb = 4;
+    int longValueWrapper = 2;
+    int longValueWrapperLonger = 3;
+    int longValueWrapperLongValue = 4;
 
-    int longPbWithBroadcast = 6;
+    int longValueWithBroadcast = 6;
 
-    int longPbWithBroadcastData = 7;
+    int longValueWithBroadcastData = 7;
 }

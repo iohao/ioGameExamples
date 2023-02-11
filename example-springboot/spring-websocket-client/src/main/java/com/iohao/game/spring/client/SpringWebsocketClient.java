@@ -93,13 +93,13 @@ public class SpringWebsocketClient {
         ClientCommandKit.createClientCommand(externalMessageHelloRoom, OtherVerify.class);
 
 
-        ExternalMessage externalMessageLongPbWithBroadcast = ClientCommandKit.createExternalMessage(
+        ExternalMessage externalMessageLongValueWithBroadcast = ClientCommandKit.createExternalMessage(
                 OtherSchoolCmdModule.cmd,
-                OtherSchoolCmdModule.longPbWithBroadcast
+                OtherSchoolCmdModule.longValueWithBroadcast
         );
 
-        ClientCommandKit.createClientCommand(externalMessageLongPbWithBroadcast, UserInfo.class);
-        ClientCommandKit.addParseResult(OtherSchoolCmdModule.cmd, OtherSchoolCmdModule.longPbWithBroadcastData, SchoolPb.class);
+        ClientCommandKit.createClientCommand(externalMessageLongValueWithBroadcast, UserInfo.class);
+        ClientCommandKit.addParseResult(OtherSchoolCmdModule.cmd, OtherSchoolCmdModule.longValueWithBroadcastData, SchoolPb.class);
     }
 
     private static void initLoginCommand() {

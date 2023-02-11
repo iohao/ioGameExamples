@@ -60,7 +60,7 @@ public final class Proto {
 
     /**
      * <pre>
-     * 验证信息: 当 responseStatus == -1001 时， 会有值
+     * 验证信息（错误消息、异常消息），通常情况下 responseStatus == -1001 时， 会有值
      * </pre>
      *
      * <code>string validMsg = 5;</code>
@@ -69,7 +69,7 @@ public final class Proto {
     java.lang.String getValidMsg();
     /**
      * <pre>
-     * 验证信息: 当 responseStatus == -1001 时， 会有值
+     * 验证信息（错误消息、异常消息），通常情况下 responseStatus == -1001 时， 会有值
      * </pre>
      *
      * <code>string validMsg = 5;</code>
@@ -90,7 +90,7 @@ public final class Proto {
   }
   /**
    * <pre>
-   *对外数据协议
+   * 对外服数据协议
    * </pre>
    *
    * Protobuf type {@code com.iohao.message.ExternalMessage}
@@ -266,7 +266,7 @@ public final class Proto {
     private volatile java.lang.Object validMsg_;
     /**
      * <pre>
-     * 验证信息: 当 responseStatus == -1001 时， 会有值
+     * 验证信息（错误消息、异常消息），通常情况下 responseStatus == -1001 时， 会有值
      * </pre>
      *
      * <code>string validMsg = 5;</code>
@@ -287,7 +287,7 @@ public final class Proto {
     }
     /**
      * <pre>
-     * 验证信息: 当 responseStatus == -1001 时， 会有值
+     * 验证信息（错误消息、异常消息），通常情况下 responseStatus == -1001 时， 会有值
      * </pre>
      *
      * <code>string validMsg = 5;</code>
@@ -534,7 +534,7 @@ public final class Proto {
     }
     /**
      * <pre>
-     *对外数据协议
+     * 对外服数据协议
      * </pre>
      *
      * Protobuf type {@code com.iohao.message.ExternalMessage}
@@ -889,7 +889,7 @@ public final class Proto {
       private java.lang.Object validMsg_ = "";
       /**
        * <pre>
-       * 验证信息: 当 responseStatus == -1001 时， 会有值
+       * 验证信息（错误消息、异常消息），通常情况下 responseStatus == -1001 时， 会有值
        * </pre>
        *
        * <code>string validMsg = 5;</code>
@@ -909,7 +909,7 @@ public final class Proto {
       }
       /**
        * <pre>
-       * 验证信息: 当 responseStatus == -1001 时， 会有值
+       * 验证信息（错误消息、异常消息），通常情况下 responseStatus == -1001 时， 会有值
        * </pre>
        *
        * <code>string validMsg = 5;</code>
@@ -930,7 +930,7 @@ public final class Proto {
       }
       /**
        * <pre>
-       * 验证信息: 当 responseStatus == -1001 时， 会有值
+       * 验证信息（错误消息、异常消息），通常情况下 responseStatus == -1001 时， 会有值
        * </pre>
        *
        * <code>string validMsg = 5;</code>
@@ -949,7 +949,7 @@ public final class Proto {
       }
       /**
        * <pre>
-       * 验证信息: 当 responseStatus == -1001 时， 会有值
+       * 验证信息（错误消息、异常消息），通常情况下 responseStatus == -1001 时， 会有值
        * </pre>
        *
        * <code>string validMsg = 5;</code>
@@ -963,7 +963,7 @@ public final class Proto {
       }
       /**
        * <pre>
-       * 验证信息: 当 responseStatus == -1001 时， 会有值
+       * 验证信息（错误消息、异常消息），通常情况下 responseStatus == -1001 时， 会有值
        * </pre>
        *
        * <code>string validMsg = 5;</code>
@@ -1080,8 +1080,8 @@ public final class Proto {
 
   }
 
-  public interface IntPbOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:com.iohao.message.IntPb)
+  public interface IntValueOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:com.iohao.message.IntValue)
       com.google.protobuf.MessageOrBuilder {
 
     /**
@@ -1089,35 +1089,35 @@ public final class Proto {
      * int 值
      * </pre>
      *
-     * <code>sint32 intValue = 1;</code>
-     * @return The intValue.
+     * <code>sint32 value = 1;</code>
+     * @return The value.
      */
-    int getIntValue();
+    int getValue();
   }
   /**
    * <pre>
    * int 包装类
    * </pre>
    *
-   * Protobuf type {@code com.iohao.message.IntPb}
+   * Protobuf type {@code com.iohao.message.IntValue}
    */
-  public static final class IntPb extends
+  public static final class IntValue extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:com.iohao.message.IntPb)
-      IntPbOrBuilder {
+      // @@protoc_insertion_point(message_implements:com.iohao.message.IntValue)
+      IntValueOrBuilder {
   private static final long serialVersionUID = 0L;
-    // Use IntPb.newBuilder() to construct.
-    private IntPb(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    // Use IntValue.newBuilder() to construct.
+    private IntValue(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-    private IntPb() {
+    private IntValue() {
     }
 
     @java.lang.Override
     @SuppressWarnings({"unused"})
     protected java.lang.Object newInstance(
         UnusedPrivateParameter unused) {
-      return new IntPb();
+      return new IntValue();
     }
 
     @java.lang.Override
@@ -1125,7 +1125,7 @@ public final class Proto {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private IntPb(
+    private IntValue(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -1145,7 +1145,7 @@ public final class Proto {
               break;
             case 8: {
 
-              intValue_ = input.readSInt32();
+              value_ = input.readSInt32();
               break;
             }
             default: {
@@ -1169,30 +1169,30 @@ public final class Proto {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.iohao.message.Proto.internal_static_com_iohao_message_IntPb_descriptor;
+      return com.iohao.message.Proto.internal_static_com_iohao_message_IntValue_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.iohao.message.Proto.internal_static_com_iohao_message_IntPb_fieldAccessorTable
+      return com.iohao.message.Proto.internal_static_com_iohao_message_IntValue_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.iohao.message.Proto.IntPb.class, com.iohao.message.Proto.IntPb.Builder.class);
+              com.iohao.message.Proto.IntValue.class, com.iohao.message.Proto.IntValue.Builder.class);
     }
 
-    public static final int INTVALUE_FIELD_NUMBER = 1;
-    private int intValue_;
+    public static final int VALUE_FIELD_NUMBER = 1;
+    private int value_;
     /**
      * <pre>
      * int 值
      * </pre>
      *
-     * <code>sint32 intValue = 1;</code>
-     * @return The intValue.
+     * <code>sint32 value = 1;</code>
+     * @return The value.
      */
     @java.lang.Override
-    public int getIntValue() {
-      return intValue_;
+    public int getValue() {
+      return value_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -1209,8 +1209,8 @@ public final class Proto {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (intValue_ != 0) {
-        output.writeSInt32(1, intValue_);
+      if (value_ != 0) {
+        output.writeSInt32(1, value_);
       }
       unknownFields.writeTo(output);
     }
@@ -1221,9 +1221,9 @@ public final class Proto {
       if (size != -1) return size;
 
       size = 0;
-      if (intValue_ != 0) {
+      if (value_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeSInt32Size(1, intValue_);
+          .computeSInt32Size(1, value_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -1235,13 +1235,13 @@ public final class Proto {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof com.iohao.message.Proto.IntPb)) {
+      if (!(obj instanceof com.iohao.message.Proto.IntValue)) {
         return super.equals(obj);
       }
-      com.iohao.message.Proto.IntPb other = (com.iohao.message.Proto.IntPb) obj;
+      com.iohao.message.Proto.IntValue other = (com.iohao.message.Proto.IntValue) obj;
 
-      if (getIntValue()
-          != other.getIntValue()) return false;
+      if (getValue()
+          != other.getValue()) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
@@ -1253,76 +1253,76 @@ public final class Proto {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + INTVALUE_FIELD_NUMBER;
-      hash = (53 * hash) + getIntValue();
+      hash = (37 * hash) + VALUE_FIELD_NUMBER;
+      hash = (53 * hash) + getValue();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
     }
 
-    public static com.iohao.message.Proto.IntPb parseFrom(
+    public static com.iohao.message.Proto.IntValue parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.iohao.message.Proto.IntPb parseFrom(
+    public static com.iohao.message.Proto.IntValue parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.iohao.message.Proto.IntPb parseFrom(
+    public static com.iohao.message.Proto.IntValue parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.iohao.message.Proto.IntPb parseFrom(
+    public static com.iohao.message.Proto.IntValue parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.iohao.message.Proto.IntPb parseFrom(byte[] data)
+    public static com.iohao.message.Proto.IntValue parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.iohao.message.Proto.IntPb parseFrom(
+    public static com.iohao.message.Proto.IntValue parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.iohao.message.Proto.IntPb parseFrom(java.io.InputStream input)
+    public static com.iohao.message.Proto.IntValue parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.iohao.message.Proto.IntPb parseFrom(
+    public static com.iohao.message.Proto.IntValue parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.iohao.message.Proto.IntPb parseDelimitedFrom(java.io.InputStream input)
+    public static com.iohao.message.Proto.IntValue parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static com.iohao.message.Proto.IntPb parseDelimitedFrom(
+    public static com.iohao.message.Proto.IntValue parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.iohao.message.Proto.IntPb parseFrom(
+    public static com.iohao.message.Proto.IntValue parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.iohao.message.Proto.IntPb parseFrom(
+    public static com.iohao.message.Proto.IntValue parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -1335,7 +1335,7 @@ public final class Proto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.iohao.message.Proto.IntPb prototype) {
+    public static Builder newBuilder(com.iohao.message.Proto.IntValue prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     @java.lang.Override
@@ -1355,26 +1355,26 @@ public final class Proto {
      * int 包装类
      * </pre>
      *
-     * Protobuf type {@code com.iohao.message.IntPb}
+     * Protobuf type {@code com.iohao.message.IntValue}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:com.iohao.message.IntPb)
-        com.iohao.message.Proto.IntPbOrBuilder {
+        // @@protoc_insertion_point(builder_implements:com.iohao.message.IntValue)
+        com.iohao.message.Proto.IntValueOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.iohao.message.Proto.internal_static_com_iohao_message_IntPb_descriptor;
+        return com.iohao.message.Proto.internal_static_com_iohao_message_IntValue_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.iohao.message.Proto.internal_static_com_iohao_message_IntPb_fieldAccessorTable
+        return com.iohao.message.Proto.internal_static_com_iohao_message_IntValue_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                com.iohao.message.Proto.IntPb.class, com.iohao.message.Proto.IntPb.Builder.class);
+                com.iohao.message.Proto.IntValue.class, com.iohao.message.Proto.IntValue.Builder.class);
       }
 
-      // Construct using com.iohao.message.Proto.IntPb.newBuilder()
+      // Construct using com.iohao.message.Proto.IntValue.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -1392,7 +1392,7 @@ public final class Proto {
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        intValue_ = 0;
+        value_ = 0;
 
         return this;
       }
@@ -1400,17 +1400,17 @@ public final class Proto {
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.iohao.message.Proto.internal_static_com_iohao_message_IntPb_descriptor;
+        return com.iohao.message.Proto.internal_static_com_iohao_message_IntValue_descriptor;
       }
 
       @java.lang.Override
-      public com.iohao.message.Proto.IntPb getDefaultInstanceForType() {
-        return com.iohao.message.Proto.IntPb.getDefaultInstance();
+      public com.iohao.message.Proto.IntValue getDefaultInstanceForType() {
+        return com.iohao.message.Proto.IntValue.getDefaultInstance();
       }
 
       @java.lang.Override
-      public com.iohao.message.Proto.IntPb build() {
-        com.iohao.message.Proto.IntPb result = buildPartial();
+      public com.iohao.message.Proto.IntValue build() {
+        com.iohao.message.Proto.IntValue result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
@@ -1418,9 +1418,9 @@ public final class Proto {
       }
 
       @java.lang.Override
-      public com.iohao.message.Proto.IntPb buildPartial() {
-        com.iohao.message.Proto.IntPb result = new com.iohao.message.Proto.IntPb(this);
-        result.intValue_ = intValue_;
+      public com.iohao.message.Proto.IntValue buildPartial() {
+        com.iohao.message.Proto.IntValue result = new com.iohao.message.Proto.IntValue(this);
+        result.value_ = value_;
         onBuilt();
         return result;
       }
@@ -1459,18 +1459,18 @@ public final class Proto {
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.iohao.message.Proto.IntPb) {
-          return mergeFrom((com.iohao.message.Proto.IntPb)other);
+        if (other instanceof com.iohao.message.Proto.IntValue) {
+          return mergeFrom((com.iohao.message.Proto.IntValue)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(com.iohao.message.Proto.IntPb other) {
-        if (other == com.iohao.message.Proto.IntPb.getDefaultInstance()) return this;
-        if (other.getIntValue() != 0) {
-          setIntValue(other.getIntValue());
+      public Builder mergeFrom(com.iohao.message.Proto.IntValue other) {
+        if (other == com.iohao.message.Proto.IntValue.getDefaultInstance()) return this;
+        if (other.getValue() != 0) {
+          setValue(other.getValue());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -1487,11 +1487,11 @@ public final class Proto {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.iohao.message.Proto.IntPb parsedMessage = null;
+        com.iohao.message.Proto.IntValue parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.iohao.message.Proto.IntPb) e.getUnfinishedMessage();
+          parsedMessage = (com.iohao.message.Proto.IntValue) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -1501,31 +1501,31 @@ public final class Proto {
         return this;
       }
 
-      private int intValue_ ;
+      private int value_ ;
       /**
        * <pre>
        * int 值
        * </pre>
        *
-       * <code>sint32 intValue = 1;</code>
-       * @return The intValue.
+       * <code>sint32 value = 1;</code>
+       * @return The value.
        */
       @java.lang.Override
-      public int getIntValue() {
-        return intValue_;
+      public int getValue() {
+        return value_;
       }
       /**
        * <pre>
        * int 值
        * </pre>
        *
-       * <code>sint32 intValue = 1;</code>
-       * @param value The intValue to set.
+       * <code>sint32 value = 1;</code>
+       * @param value The value to set.
        * @return This builder for chaining.
        */
-      public Builder setIntValue(int value) {
+      public Builder setValue(int value) {
         
-        intValue_ = value;
+        value_ = value;
         onChanged();
         return this;
       }
@@ -1534,12 +1534,12 @@ public final class Proto {
        * int 值
        * </pre>
        *
-       * <code>sint32 intValue = 1;</code>
+       * <code>sint32 value = 1;</code>
        * @return This builder for chaining.
        */
-      public Builder clearIntValue() {
+      public Builder clearValue() {
         
-        intValue_ = 0;
+        value_ = 0;
         onChanged();
         return this;
       }
@@ -1556,104 +1556,104 @@ public final class Proto {
       }
 
 
-      // @@protoc_insertion_point(builder_scope:com.iohao.message.IntPb)
+      // @@protoc_insertion_point(builder_scope:com.iohao.message.IntValue)
     }
 
-    // @@protoc_insertion_point(class_scope:com.iohao.message.IntPb)
-    private static final com.iohao.message.Proto.IntPb DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:com.iohao.message.IntValue)
+    private static final com.iohao.message.Proto.IntValue DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new com.iohao.message.Proto.IntPb();
+      DEFAULT_INSTANCE = new com.iohao.message.Proto.IntValue();
     }
 
-    public static com.iohao.message.Proto.IntPb getDefaultInstance() {
+    public static com.iohao.message.Proto.IntValue getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static final com.google.protobuf.Parser<IntPb>
-        PARSER = new com.google.protobuf.AbstractParser<IntPb>() {
+    private static final com.google.protobuf.Parser<IntValue>
+        PARSER = new com.google.protobuf.AbstractParser<IntValue>() {
       @java.lang.Override
-      public IntPb parsePartialFrom(
+      public IntValue parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new IntPb(input, extensionRegistry);
+        return new IntValue(input, extensionRegistry);
       }
     };
 
-    public static com.google.protobuf.Parser<IntPb> parser() {
+    public static com.google.protobuf.Parser<IntValue> parser() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.google.protobuf.Parser<IntPb> getParserForType() {
+    public com.google.protobuf.Parser<IntValue> getParserForType() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.iohao.message.Proto.IntPb getDefaultInstanceForType() {
+    public com.iohao.message.Proto.IntValue getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
   }
 
-  public interface IntListPbOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:com.iohao.message.IntListPb)
+  public interface IntValueListOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:com.iohao.message.IntValueList)
       com.google.protobuf.MessageOrBuilder {
 
     /**
      * <pre>
-     * intList
+     * intList、intArray
      * </pre>
      *
-     * <code>repeated sint32 intValues = 1;</code>
-     * @return A list containing the intValues.
+     * <code>repeated sint32 values = 1;</code>
+     * @return A list containing the values.
      */
-    java.util.List<java.lang.Integer> getIntValuesList();
+    java.util.List<java.lang.Integer> getValuesList();
     /**
      * <pre>
-     * intList
+     * intList、intArray
      * </pre>
      *
-     * <code>repeated sint32 intValues = 1;</code>
-     * @return The count of intValues.
+     * <code>repeated sint32 values = 1;</code>
+     * @return The count of values.
      */
-    int getIntValuesCount();
+    int getValuesCount();
     /**
      * <pre>
-     * intList
+     * intList、intArray
      * </pre>
      *
-     * <code>repeated sint32 intValues = 1;</code>
+     * <code>repeated sint32 values = 1;</code>
      * @param index The index of the element to return.
-     * @return The intValues at the given index.
+     * @return The values at the given index.
      */
-    int getIntValues(int index);
+    int getValues(int index);
   }
   /**
    * <pre>
    * int list 包装类
    * </pre>
    *
-   * Protobuf type {@code com.iohao.message.IntListPb}
+   * Protobuf type {@code com.iohao.message.IntValueList}
    */
-  public static final class IntListPb extends
+  public static final class IntValueList extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:com.iohao.message.IntListPb)
-      IntListPbOrBuilder {
+      // @@protoc_insertion_point(message_implements:com.iohao.message.IntValueList)
+      IntValueListOrBuilder {
   private static final long serialVersionUID = 0L;
-    // Use IntListPb.newBuilder() to construct.
-    private IntListPb(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    // Use IntValueList.newBuilder() to construct.
+    private IntValueList(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-    private IntListPb() {
-      intValues_ = emptyIntList();
+    private IntValueList() {
+      values_ = emptyIntList();
     }
 
     @java.lang.Override
     @SuppressWarnings({"unused"})
     protected java.lang.Object newInstance(
         UnusedPrivateParameter unused) {
-      return new IntListPb();
+      return new IntValueList();
     }
 
     @java.lang.Override
@@ -1661,7 +1661,7 @@ public final class Proto {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private IntListPb(
+    private IntValueList(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -1682,21 +1682,21 @@ public final class Proto {
               break;
             case 8: {
               if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                intValues_ = newIntList();
+                values_ = newIntList();
                 mutable_bitField0_ |= 0x00000001;
               }
-              intValues_.addInt(input.readSInt32());
+              values_.addInt(input.readSInt32());
               break;
             }
             case 10: {
               int length = input.readRawVarint32();
               int limit = input.pushLimit(length);
               if (!((mutable_bitField0_ & 0x00000001) != 0) && input.getBytesUntilLimit() > 0) {
-                intValues_ = newIntList();
+                values_ = newIntList();
                 mutable_bitField0_ |= 0x00000001;
               }
               while (input.getBytesUntilLimit() > 0) {
-                intValues_.addInt(input.readSInt32());
+                values_.addInt(input.readSInt32());
               }
               input.popLimit(limit);
               break;
@@ -1717,7 +1717,7 @@ public final class Proto {
             e).setUnfinishedMessage(this);
       } finally {
         if (((mutable_bitField0_ & 0x00000001) != 0)) {
-          intValues_.makeImmutable(); // C
+          values_.makeImmutable(); // C
         }
         this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
@@ -1725,56 +1725,56 @@ public final class Proto {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.iohao.message.Proto.internal_static_com_iohao_message_IntListPb_descriptor;
+      return com.iohao.message.Proto.internal_static_com_iohao_message_IntValueList_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.iohao.message.Proto.internal_static_com_iohao_message_IntListPb_fieldAccessorTable
+      return com.iohao.message.Proto.internal_static_com_iohao_message_IntValueList_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.iohao.message.Proto.IntListPb.class, com.iohao.message.Proto.IntListPb.Builder.class);
+              com.iohao.message.Proto.IntValueList.class, com.iohao.message.Proto.IntValueList.Builder.class);
     }
 
-    public static final int INTVALUES_FIELD_NUMBER = 1;
-    private com.google.protobuf.Internal.IntList intValues_;
+    public static final int VALUES_FIELD_NUMBER = 1;
+    private com.google.protobuf.Internal.IntList values_;
     /**
      * <pre>
-     * intList
+     * intList、intArray
      * </pre>
      *
-     * <code>repeated sint32 intValues = 1;</code>
-     * @return A list containing the intValues.
+     * <code>repeated sint32 values = 1;</code>
+     * @return A list containing the values.
      */
     @java.lang.Override
     public java.util.List<java.lang.Integer>
-        getIntValuesList() {
-      return intValues_;
+        getValuesList() {
+      return values_;
     }
     /**
      * <pre>
-     * intList
+     * intList、intArray
      * </pre>
      *
-     * <code>repeated sint32 intValues = 1;</code>
-     * @return The count of intValues.
+     * <code>repeated sint32 values = 1;</code>
+     * @return The count of values.
      */
-    public int getIntValuesCount() {
-      return intValues_.size();
+    public int getValuesCount() {
+      return values_.size();
     }
     /**
      * <pre>
-     * intList
+     * intList、intArray
      * </pre>
      *
-     * <code>repeated sint32 intValues = 1;</code>
+     * <code>repeated sint32 values = 1;</code>
      * @param index The index of the element to return.
-     * @return The intValues at the given index.
+     * @return The values at the given index.
      */
-    public int getIntValues(int index) {
-      return intValues_.getInt(index);
+    public int getValues(int index) {
+      return values_.getInt(index);
     }
-    private int intValuesMemoizedSerializedSize = -1;
+    private int valuesMemoizedSerializedSize = -1;
 
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
@@ -1791,12 +1791,12 @@ public final class Proto {
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       getSerializedSize();
-      if (getIntValuesList().size() > 0) {
+      if (getValuesList().size() > 0) {
         output.writeUInt32NoTag(10);
-        output.writeUInt32NoTag(intValuesMemoizedSerializedSize);
+        output.writeUInt32NoTag(valuesMemoizedSerializedSize);
       }
-      for (int i = 0; i < intValues_.size(); i++) {
-        output.writeSInt32NoTag(intValues_.getInt(i));
+      for (int i = 0; i < values_.size(); i++) {
+        output.writeSInt32NoTag(values_.getInt(i));
       }
       unknownFields.writeTo(output);
     }
@@ -1809,17 +1809,17 @@ public final class Proto {
       size = 0;
       {
         int dataSize = 0;
-        for (int i = 0; i < intValues_.size(); i++) {
+        for (int i = 0; i < values_.size(); i++) {
           dataSize += com.google.protobuf.CodedOutputStream
-            .computeSInt32SizeNoTag(intValues_.getInt(i));
+            .computeSInt32SizeNoTag(values_.getInt(i));
         }
         size += dataSize;
-        if (!getIntValuesList().isEmpty()) {
+        if (!getValuesList().isEmpty()) {
           size += 1;
           size += com.google.protobuf.CodedOutputStream
               .computeInt32SizeNoTag(dataSize);
         }
-        intValuesMemoizedSerializedSize = dataSize;
+        valuesMemoizedSerializedSize = dataSize;
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -1831,13 +1831,13 @@ public final class Proto {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof com.iohao.message.Proto.IntListPb)) {
+      if (!(obj instanceof com.iohao.message.Proto.IntValueList)) {
         return super.equals(obj);
       }
-      com.iohao.message.Proto.IntListPb other = (com.iohao.message.Proto.IntListPb) obj;
+      com.iohao.message.Proto.IntValueList other = (com.iohao.message.Proto.IntValueList) obj;
 
-      if (!getIntValuesList()
-          .equals(other.getIntValuesList())) return false;
+      if (!getValuesList()
+          .equals(other.getValuesList())) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
@@ -1849,78 +1849,78 @@ public final class Proto {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      if (getIntValuesCount() > 0) {
-        hash = (37 * hash) + INTVALUES_FIELD_NUMBER;
-        hash = (53 * hash) + getIntValuesList().hashCode();
+      if (getValuesCount() > 0) {
+        hash = (37 * hash) + VALUES_FIELD_NUMBER;
+        hash = (53 * hash) + getValuesList().hashCode();
       }
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
     }
 
-    public static com.iohao.message.Proto.IntListPb parseFrom(
+    public static com.iohao.message.Proto.IntValueList parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.iohao.message.Proto.IntListPb parseFrom(
+    public static com.iohao.message.Proto.IntValueList parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.iohao.message.Proto.IntListPb parseFrom(
+    public static com.iohao.message.Proto.IntValueList parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.iohao.message.Proto.IntListPb parseFrom(
+    public static com.iohao.message.Proto.IntValueList parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.iohao.message.Proto.IntListPb parseFrom(byte[] data)
+    public static com.iohao.message.Proto.IntValueList parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.iohao.message.Proto.IntListPb parseFrom(
+    public static com.iohao.message.Proto.IntValueList parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.iohao.message.Proto.IntListPb parseFrom(java.io.InputStream input)
+    public static com.iohao.message.Proto.IntValueList parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.iohao.message.Proto.IntListPb parseFrom(
+    public static com.iohao.message.Proto.IntValueList parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.iohao.message.Proto.IntListPb parseDelimitedFrom(java.io.InputStream input)
+    public static com.iohao.message.Proto.IntValueList parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static com.iohao.message.Proto.IntListPb parseDelimitedFrom(
+    public static com.iohao.message.Proto.IntValueList parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.iohao.message.Proto.IntListPb parseFrom(
+    public static com.iohao.message.Proto.IntValueList parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.iohao.message.Proto.IntListPb parseFrom(
+    public static com.iohao.message.Proto.IntValueList parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -1933,7 +1933,7 @@ public final class Proto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.iohao.message.Proto.IntListPb prototype) {
+    public static Builder newBuilder(com.iohao.message.Proto.IntValueList prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     @java.lang.Override
@@ -1953,26 +1953,26 @@ public final class Proto {
      * int list 包装类
      * </pre>
      *
-     * Protobuf type {@code com.iohao.message.IntListPb}
+     * Protobuf type {@code com.iohao.message.IntValueList}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:com.iohao.message.IntListPb)
-        com.iohao.message.Proto.IntListPbOrBuilder {
+        // @@protoc_insertion_point(builder_implements:com.iohao.message.IntValueList)
+        com.iohao.message.Proto.IntValueListOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.iohao.message.Proto.internal_static_com_iohao_message_IntListPb_descriptor;
+        return com.iohao.message.Proto.internal_static_com_iohao_message_IntValueList_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.iohao.message.Proto.internal_static_com_iohao_message_IntListPb_fieldAccessorTable
+        return com.iohao.message.Proto.internal_static_com_iohao_message_IntValueList_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                com.iohao.message.Proto.IntListPb.class, com.iohao.message.Proto.IntListPb.Builder.class);
+                com.iohao.message.Proto.IntValueList.class, com.iohao.message.Proto.IntValueList.Builder.class);
       }
 
-      // Construct using com.iohao.message.Proto.IntListPb.newBuilder()
+      // Construct using com.iohao.message.Proto.IntValueList.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -1990,7 +1990,7 @@ public final class Proto {
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        intValues_ = emptyIntList();
+        values_ = emptyIntList();
         bitField0_ = (bitField0_ & ~0x00000001);
         return this;
       }
@@ -1998,17 +1998,17 @@ public final class Proto {
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.iohao.message.Proto.internal_static_com_iohao_message_IntListPb_descriptor;
+        return com.iohao.message.Proto.internal_static_com_iohao_message_IntValueList_descriptor;
       }
 
       @java.lang.Override
-      public com.iohao.message.Proto.IntListPb getDefaultInstanceForType() {
-        return com.iohao.message.Proto.IntListPb.getDefaultInstance();
+      public com.iohao.message.Proto.IntValueList getDefaultInstanceForType() {
+        return com.iohao.message.Proto.IntValueList.getDefaultInstance();
       }
 
       @java.lang.Override
-      public com.iohao.message.Proto.IntListPb build() {
-        com.iohao.message.Proto.IntListPb result = buildPartial();
+      public com.iohao.message.Proto.IntValueList build() {
+        com.iohao.message.Proto.IntValueList result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
@@ -2016,14 +2016,14 @@ public final class Proto {
       }
 
       @java.lang.Override
-      public com.iohao.message.Proto.IntListPb buildPartial() {
-        com.iohao.message.Proto.IntListPb result = new com.iohao.message.Proto.IntListPb(this);
+      public com.iohao.message.Proto.IntValueList buildPartial() {
+        com.iohao.message.Proto.IntValueList result = new com.iohao.message.Proto.IntValueList(this);
         int from_bitField0_ = bitField0_;
         if (((bitField0_ & 0x00000001) != 0)) {
-          intValues_.makeImmutable();
+          values_.makeImmutable();
           bitField0_ = (bitField0_ & ~0x00000001);
         }
-        result.intValues_ = intValues_;
+        result.values_ = values_;
         onBuilt();
         return result;
       }
@@ -2062,23 +2062,23 @@ public final class Proto {
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.iohao.message.Proto.IntListPb) {
-          return mergeFrom((com.iohao.message.Proto.IntListPb)other);
+        if (other instanceof com.iohao.message.Proto.IntValueList) {
+          return mergeFrom((com.iohao.message.Proto.IntValueList)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(com.iohao.message.Proto.IntListPb other) {
-        if (other == com.iohao.message.Proto.IntListPb.getDefaultInstance()) return this;
-        if (!other.intValues_.isEmpty()) {
-          if (intValues_.isEmpty()) {
-            intValues_ = other.intValues_;
+      public Builder mergeFrom(com.iohao.message.Proto.IntValueList other) {
+        if (other == com.iohao.message.Proto.IntValueList.getDefaultInstance()) return this;
+        if (!other.values_.isEmpty()) {
+          if (values_.isEmpty()) {
+            values_ = other.values_;
             bitField0_ = (bitField0_ & ~0x00000001);
           } else {
-            ensureIntValuesIsMutable();
-            intValues_.addAll(other.intValues_);
+            ensureValuesIsMutable();
+            values_.addAll(other.values_);
           }
           onChanged();
         }
@@ -2097,11 +2097,11 @@ public final class Proto {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.iohao.message.Proto.IntListPb parsedMessage = null;
+        com.iohao.message.Proto.IntValueList parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.iohao.message.Proto.IntListPb) e.getUnfinishedMessage();
+          parsedMessage = (com.iohao.message.Proto.IntValueList) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -2112,108 +2112,108 @@ public final class Proto {
       }
       private int bitField0_;
 
-      private com.google.protobuf.Internal.IntList intValues_ = emptyIntList();
-      private void ensureIntValuesIsMutable() {
+      private com.google.protobuf.Internal.IntList values_ = emptyIntList();
+      private void ensureValuesIsMutable() {
         if (!((bitField0_ & 0x00000001) != 0)) {
-          intValues_ = mutableCopy(intValues_);
+          values_ = mutableCopy(values_);
           bitField0_ |= 0x00000001;
          }
       }
       /**
        * <pre>
-       * intList
+       * intList、intArray
        * </pre>
        *
-       * <code>repeated sint32 intValues = 1;</code>
-       * @return A list containing the intValues.
+       * <code>repeated sint32 values = 1;</code>
+       * @return A list containing the values.
        */
       public java.util.List<java.lang.Integer>
-          getIntValuesList() {
+          getValuesList() {
         return ((bitField0_ & 0x00000001) != 0) ?
-                 java.util.Collections.unmodifiableList(intValues_) : intValues_;
+                 java.util.Collections.unmodifiableList(values_) : values_;
       }
       /**
        * <pre>
-       * intList
+       * intList、intArray
        * </pre>
        *
-       * <code>repeated sint32 intValues = 1;</code>
-       * @return The count of intValues.
+       * <code>repeated sint32 values = 1;</code>
+       * @return The count of values.
        */
-      public int getIntValuesCount() {
-        return intValues_.size();
+      public int getValuesCount() {
+        return values_.size();
       }
       /**
        * <pre>
-       * intList
+       * intList、intArray
        * </pre>
        *
-       * <code>repeated sint32 intValues = 1;</code>
+       * <code>repeated sint32 values = 1;</code>
        * @param index The index of the element to return.
-       * @return The intValues at the given index.
+       * @return The values at the given index.
        */
-      public int getIntValues(int index) {
-        return intValues_.getInt(index);
+      public int getValues(int index) {
+        return values_.getInt(index);
       }
       /**
        * <pre>
-       * intList
+       * intList、intArray
        * </pre>
        *
-       * <code>repeated sint32 intValues = 1;</code>
+       * <code>repeated sint32 values = 1;</code>
        * @param index The index to set the value at.
-       * @param value The intValues to set.
+       * @param value The values to set.
        * @return This builder for chaining.
        */
-      public Builder setIntValues(
+      public Builder setValues(
           int index, int value) {
-        ensureIntValuesIsMutable();
-        intValues_.setInt(index, value);
+        ensureValuesIsMutable();
+        values_.setInt(index, value);
         onChanged();
         return this;
       }
       /**
        * <pre>
-       * intList
+       * intList、intArray
        * </pre>
        *
-       * <code>repeated sint32 intValues = 1;</code>
-       * @param value The intValues to add.
+       * <code>repeated sint32 values = 1;</code>
+       * @param value The values to add.
        * @return This builder for chaining.
        */
-      public Builder addIntValues(int value) {
-        ensureIntValuesIsMutable();
-        intValues_.addInt(value);
+      public Builder addValues(int value) {
+        ensureValuesIsMutable();
+        values_.addInt(value);
         onChanged();
         return this;
       }
       /**
        * <pre>
-       * intList
+       * intList、intArray
        * </pre>
        *
-       * <code>repeated sint32 intValues = 1;</code>
-       * @param values The intValues to add.
+       * <code>repeated sint32 values = 1;</code>
+       * @param values The values to add.
        * @return This builder for chaining.
        */
-      public Builder addAllIntValues(
+      public Builder addAllValues(
           java.lang.Iterable<? extends java.lang.Integer> values) {
-        ensureIntValuesIsMutable();
+        ensureValuesIsMutable();
         com.google.protobuf.AbstractMessageLite.Builder.addAll(
-            values, intValues_);
+            values, values_);
         onChanged();
         return this;
       }
       /**
        * <pre>
-       * intList
+       * intList、intArray
        * </pre>
        *
-       * <code>repeated sint32 intValues = 1;</code>
+       * <code>repeated sint32 values = 1;</code>
        * @return This builder for chaining.
        */
-      public Builder clearIntValues() {
-        intValues_ = emptyIntList();
+      public Builder clearValues() {
+        values_ = emptyIntList();
         bitField0_ = (bitField0_ & ~0x00000001);
         onChanged();
         return this;
@@ -2231,48 +2231,48 @@ public final class Proto {
       }
 
 
-      // @@protoc_insertion_point(builder_scope:com.iohao.message.IntListPb)
+      // @@protoc_insertion_point(builder_scope:com.iohao.message.IntValueList)
     }
 
-    // @@protoc_insertion_point(class_scope:com.iohao.message.IntListPb)
-    private static final com.iohao.message.Proto.IntListPb DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:com.iohao.message.IntValueList)
+    private static final com.iohao.message.Proto.IntValueList DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new com.iohao.message.Proto.IntListPb();
+      DEFAULT_INSTANCE = new com.iohao.message.Proto.IntValueList();
     }
 
-    public static com.iohao.message.Proto.IntListPb getDefaultInstance() {
+    public static com.iohao.message.Proto.IntValueList getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static final com.google.protobuf.Parser<IntListPb>
-        PARSER = new com.google.protobuf.AbstractParser<IntListPb>() {
+    private static final com.google.protobuf.Parser<IntValueList>
+        PARSER = new com.google.protobuf.AbstractParser<IntValueList>() {
       @java.lang.Override
-      public IntListPb parsePartialFrom(
+      public IntValueList parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new IntListPb(input, extensionRegistry);
+        return new IntValueList(input, extensionRegistry);
       }
     };
 
-    public static com.google.protobuf.Parser<IntListPb> parser() {
+    public static com.google.protobuf.Parser<IntValueList> parser() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.google.protobuf.Parser<IntListPb> getParserForType() {
+    public com.google.protobuf.Parser<IntValueList> getParserForType() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.iohao.message.Proto.IntListPb getDefaultInstanceForType() {
+    public com.iohao.message.Proto.IntValueList getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
   }
 
-  public interface LongPbOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:com.iohao.message.LongPb)
+  public interface LongValueOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:com.iohao.message.LongValue)
       com.google.protobuf.MessageOrBuilder {
 
     /**
@@ -2280,35 +2280,35 @@ public final class Proto {
      * long 值
      * </pre>
      *
-     * <code>sint64 longValue = 1;</code>
-     * @return The longValue.
+     * <code>sint64 value = 1;</code>
+     * @return The value.
      */
-    long getLongValue();
+    long getValue();
   }
   /**
    * <pre>
    * long 包装类
    * </pre>
    *
-   * Protobuf type {@code com.iohao.message.LongPb}
+   * Protobuf type {@code com.iohao.message.LongValue}
    */
-  public static final class LongPb extends
+  public static final class LongValue extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:com.iohao.message.LongPb)
-      LongPbOrBuilder {
+      // @@protoc_insertion_point(message_implements:com.iohao.message.LongValue)
+      LongValueOrBuilder {
   private static final long serialVersionUID = 0L;
-    // Use LongPb.newBuilder() to construct.
-    private LongPb(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    // Use LongValue.newBuilder() to construct.
+    private LongValue(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-    private LongPb() {
+    private LongValue() {
     }
 
     @java.lang.Override
     @SuppressWarnings({"unused"})
     protected java.lang.Object newInstance(
         UnusedPrivateParameter unused) {
-      return new LongPb();
+      return new LongValue();
     }
 
     @java.lang.Override
@@ -2316,7 +2316,7 @@ public final class Proto {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private LongPb(
+    private LongValue(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -2336,7 +2336,7 @@ public final class Proto {
               break;
             case 8: {
 
-              longValue_ = input.readSInt64();
+              value_ = input.readSInt64();
               break;
             }
             default: {
@@ -2360,30 +2360,30 @@ public final class Proto {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.iohao.message.Proto.internal_static_com_iohao_message_LongPb_descriptor;
+      return com.iohao.message.Proto.internal_static_com_iohao_message_LongValue_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.iohao.message.Proto.internal_static_com_iohao_message_LongPb_fieldAccessorTable
+      return com.iohao.message.Proto.internal_static_com_iohao_message_LongValue_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.iohao.message.Proto.LongPb.class, com.iohao.message.Proto.LongPb.Builder.class);
+              com.iohao.message.Proto.LongValue.class, com.iohao.message.Proto.LongValue.Builder.class);
     }
 
-    public static final int LONGVALUE_FIELD_NUMBER = 1;
-    private long longValue_;
+    public static final int VALUE_FIELD_NUMBER = 1;
+    private long value_;
     /**
      * <pre>
      * long 值
      * </pre>
      *
-     * <code>sint64 longValue = 1;</code>
-     * @return The longValue.
+     * <code>sint64 value = 1;</code>
+     * @return The value.
      */
     @java.lang.Override
-    public long getLongValue() {
-      return longValue_;
+    public long getValue() {
+      return value_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -2400,8 +2400,8 @@ public final class Proto {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (longValue_ != 0L) {
-        output.writeSInt64(1, longValue_);
+      if (value_ != 0L) {
+        output.writeSInt64(1, value_);
       }
       unknownFields.writeTo(output);
     }
@@ -2412,9 +2412,9 @@ public final class Proto {
       if (size != -1) return size;
 
       size = 0;
-      if (longValue_ != 0L) {
+      if (value_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
-          .computeSInt64Size(1, longValue_);
+          .computeSInt64Size(1, value_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -2426,13 +2426,13 @@ public final class Proto {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof com.iohao.message.Proto.LongPb)) {
+      if (!(obj instanceof com.iohao.message.Proto.LongValue)) {
         return super.equals(obj);
       }
-      com.iohao.message.Proto.LongPb other = (com.iohao.message.Proto.LongPb) obj;
+      com.iohao.message.Proto.LongValue other = (com.iohao.message.Proto.LongValue) obj;
 
-      if (getLongValue()
-          != other.getLongValue()) return false;
+      if (getValue()
+          != other.getValue()) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
@@ -2444,77 +2444,77 @@ public final class Proto {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + LONGVALUE_FIELD_NUMBER;
+      hash = (37 * hash) + VALUE_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-          getLongValue());
+          getValue());
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
     }
 
-    public static com.iohao.message.Proto.LongPb parseFrom(
+    public static com.iohao.message.Proto.LongValue parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.iohao.message.Proto.LongPb parseFrom(
+    public static com.iohao.message.Proto.LongValue parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.iohao.message.Proto.LongPb parseFrom(
+    public static com.iohao.message.Proto.LongValue parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.iohao.message.Proto.LongPb parseFrom(
+    public static com.iohao.message.Proto.LongValue parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.iohao.message.Proto.LongPb parseFrom(byte[] data)
+    public static com.iohao.message.Proto.LongValue parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.iohao.message.Proto.LongPb parseFrom(
+    public static com.iohao.message.Proto.LongValue parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.iohao.message.Proto.LongPb parseFrom(java.io.InputStream input)
+    public static com.iohao.message.Proto.LongValue parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.iohao.message.Proto.LongPb parseFrom(
+    public static com.iohao.message.Proto.LongValue parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.iohao.message.Proto.LongPb parseDelimitedFrom(java.io.InputStream input)
+    public static com.iohao.message.Proto.LongValue parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static com.iohao.message.Proto.LongPb parseDelimitedFrom(
+    public static com.iohao.message.Proto.LongValue parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.iohao.message.Proto.LongPb parseFrom(
+    public static com.iohao.message.Proto.LongValue parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.iohao.message.Proto.LongPb parseFrom(
+    public static com.iohao.message.Proto.LongValue parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -2527,7 +2527,7 @@ public final class Proto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.iohao.message.Proto.LongPb prototype) {
+    public static Builder newBuilder(com.iohao.message.Proto.LongValue prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     @java.lang.Override
@@ -2547,26 +2547,26 @@ public final class Proto {
      * long 包装类
      * </pre>
      *
-     * Protobuf type {@code com.iohao.message.LongPb}
+     * Protobuf type {@code com.iohao.message.LongValue}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:com.iohao.message.LongPb)
-        com.iohao.message.Proto.LongPbOrBuilder {
+        // @@protoc_insertion_point(builder_implements:com.iohao.message.LongValue)
+        com.iohao.message.Proto.LongValueOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.iohao.message.Proto.internal_static_com_iohao_message_LongPb_descriptor;
+        return com.iohao.message.Proto.internal_static_com_iohao_message_LongValue_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.iohao.message.Proto.internal_static_com_iohao_message_LongPb_fieldAccessorTable
+        return com.iohao.message.Proto.internal_static_com_iohao_message_LongValue_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                com.iohao.message.Proto.LongPb.class, com.iohao.message.Proto.LongPb.Builder.class);
+                com.iohao.message.Proto.LongValue.class, com.iohao.message.Proto.LongValue.Builder.class);
       }
 
-      // Construct using com.iohao.message.Proto.LongPb.newBuilder()
+      // Construct using com.iohao.message.Proto.LongValue.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -2584,7 +2584,7 @@ public final class Proto {
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        longValue_ = 0L;
+        value_ = 0L;
 
         return this;
       }
@@ -2592,17 +2592,17 @@ public final class Proto {
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.iohao.message.Proto.internal_static_com_iohao_message_LongPb_descriptor;
+        return com.iohao.message.Proto.internal_static_com_iohao_message_LongValue_descriptor;
       }
 
       @java.lang.Override
-      public com.iohao.message.Proto.LongPb getDefaultInstanceForType() {
-        return com.iohao.message.Proto.LongPb.getDefaultInstance();
+      public com.iohao.message.Proto.LongValue getDefaultInstanceForType() {
+        return com.iohao.message.Proto.LongValue.getDefaultInstance();
       }
 
       @java.lang.Override
-      public com.iohao.message.Proto.LongPb build() {
-        com.iohao.message.Proto.LongPb result = buildPartial();
+      public com.iohao.message.Proto.LongValue build() {
+        com.iohao.message.Proto.LongValue result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
@@ -2610,9 +2610,9 @@ public final class Proto {
       }
 
       @java.lang.Override
-      public com.iohao.message.Proto.LongPb buildPartial() {
-        com.iohao.message.Proto.LongPb result = new com.iohao.message.Proto.LongPb(this);
-        result.longValue_ = longValue_;
+      public com.iohao.message.Proto.LongValue buildPartial() {
+        com.iohao.message.Proto.LongValue result = new com.iohao.message.Proto.LongValue(this);
+        result.value_ = value_;
         onBuilt();
         return result;
       }
@@ -2651,18 +2651,18 @@ public final class Proto {
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.iohao.message.Proto.LongPb) {
-          return mergeFrom((com.iohao.message.Proto.LongPb)other);
+        if (other instanceof com.iohao.message.Proto.LongValue) {
+          return mergeFrom((com.iohao.message.Proto.LongValue)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(com.iohao.message.Proto.LongPb other) {
-        if (other == com.iohao.message.Proto.LongPb.getDefaultInstance()) return this;
-        if (other.getLongValue() != 0L) {
-          setLongValue(other.getLongValue());
+      public Builder mergeFrom(com.iohao.message.Proto.LongValue other) {
+        if (other == com.iohao.message.Proto.LongValue.getDefaultInstance()) return this;
+        if (other.getValue() != 0L) {
+          setValue(other.getValue());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -2679,11 +2679,11 @@ public final class Proto {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.iohao.message.Proto.LongPb parsedMessage = null;
+        com.iohao.message.Proto.LongValue parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.iohao.message.Proto.LongPb) e.getUnfinishedMessage();
+          parsedMessage = (com.iohao.message.Proto.LongValue) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -2693,31 +2693,31 @@ public final class Proto {
         return this;
       }
 
-      private long longValue_ ;
+      private long value_ ;
       /**
        * <pre>
        * long 值
        * </pre>
        *
-       * <code>sint64 longValue = 1;</code>
-       * @return The longValue.
+       * <code>sint64 value = 1;</code>
+       * @return The value.
        */
       @java.lang.Override
-      public long getLongValue() {
-        return longValue_;
+      public long getValue() {
+        return value_;
       }
       /**
        * <pre>
        * long 值
        * </pre>
        *
-       * <code>sint64 longValue = 1;</code>
-       * @param value The longValue to set.
+       * <code>sint64 value = 1;</code>
+       * @param value The value to set.
        * @return This builder for chaining.
        */
-      public Builder setLongValue(long value) {
+      public Builder setValue(long value) {
         
-        longValue_ = value;
+        value_ = value;
         onChanged();
         return this;
       }
@@ -2726,12 +2726,12 @@ public final class Proto {
        * long 值
        * </pre>
        *
-       * <code>sint64 longValue = 1;</code>
+       * <code>sint64 value = 1;</code>
        * @return This builder for chaining.
        */
-      public Builder clearLongValue() {
+      public Builder clearValue() {
         
-        longValue_ = 0L;
+        value_ = 0L;
         onChanged();
         return this;
       }
@@ -2748,104 +2748,104 @@ public final class Proto {
       }
 
 
-      // @@protoc_insertion_point(builder_scope:com.iohao.message.LongPb)
+      // @@protoc_insertion_point(builder_scope:com.iohao.message.LongValue)
     }
 
-    // @@protoc_insertion_point(class_scope:com.iohao.message.LongPb)
-    private static final com.iohao.message.Proto.LongPb DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:com.iohao.message.LongValue)
+    private static final com.iohao.message.Proto.LongValue DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new com.iohao.message.Proto.LongPb();
+      DEFAULT_INSTANCE = new com.iohao.message.Proto.LongValue();
     }
 
-    public static com.iohao.message.Proto.LongPb getDefaultInstance() {
+    public static com.iohao.message.Proto.LongValue getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static final com.google.protobuf.Parser<LongPb>
-        PARSER = new com.google.protobuf.AbstractParser<LongPb>() {
+    private static final com.google.protobuf.Parser<LongValue>
+        PARSER = new com.google.protobuf.AbstractParser<LongValue>() {
       @java.lang.Override
-      public LongPb parsePartialFrom(
+      public LongValue parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new LongPb(input, extensionRegistry);
+        return new LongValue(input, extensionRegistry);
       }
     };
 
-    public static com.google.protobuf.Parser<LongPb> parser() {
+    public static com.google.protobuf.Parser<LongValue> parser() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.google.protobuf.Parser<LongPb> getParserForType() {
+    public com.google.protobuf.Parser<LongValue> getParserForType() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.iohao.message.Proto.LongPb getDefaultInstanceForType() {
+    public com.iohao.message.Proto.LongValue getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
   }
 
-  public interface LongListPbOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:com.iohao.message.LongListPb)
+  public interface LongValueListOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:com.iohao.message.LongValueList)
       com.google.protobuf.MessageOrBuilder {
 
     /**
      * <pre>
-     * longList
+     * longList、longArray
      * </pre>
      *
-     * <code>repeated sint64 longValues = 1;</code>
-     * @return A list containing the longValues.
+     * <code>repeated sint64 values = 1;</code>
+     * @return A list containing the values.
      */
-    java.util.List<java.lang.Long> getLongValuesList();
+    java.util.List<java.lang.Long> getValuesList();
     /**
      * <pre>
-     * longList
+     * longList、longArray
      * </pre>
      *
-     * <code>repeated sint64 longValues = 1;</code>
-     * @return The count of longValues.
+     * <code>repeated sint64 values = 1;</code>
+     * @return The count of values.
      */
-    int getLongValuesCount();
+    int getValuesCount();
     /**
      * <pre>
-     * longList
+     * longList、longArray
      * </pre>
      *
-     * <code>repeated sint64 longValues = 1;</code>
+     * <code>repeated sint64 values = 1;</code>
      * @param index The index of the element to return.
-     * @return The longValues at the given index.
+     * @return The values at the given index.
      */
-    long getLongValues(int index);
+    long getValues(int index);
   }
   /**
    * <pre>
    * long list 包装类
    * </pre>
    *
-   * Protobuf type {@code com.iohao.message.LongListPb}
+   * Protobuf type {@code com.iohao.message.LongValueList}
    */
-  public static final class LongListPb extends
+  public static final class LongValueList extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:com.iohao.message.LongListPb)
-      LongListPbOrBuilder {
+      // @@protoc_insertion_point(message_implements:com.iohao.message.LongValueList)
+      LongValueListOrBuilder {
   private static final long serialVersionUID = 0L;
-    // Use LongListPb.newBuilder() to construct.
-    private LongListPb(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    // Use LongValueList.newBuilder() to construct.
+    private LongValueList(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-    private LongListPb() {
-      longValues_ = emptyLongList();
+    private LongValueList() {
+      values_ = emptyLongList();
     }
 
     @java.lang.Override
     @SuppressWarnings({"unused"})
     protected java.lang.Object newInstance(
         UnusedPrivateParameter unused) {
-      return new LongListPb();
+      return new LongValueList();
     }
 
     @java.lang.Override
@@ -2853,7 +2853,7 @@ public final class Proto {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private LongListPb(
+    private LongValueList(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -2874,21 +2874,21 @@ public final class Proto {
               break;
             case 8: {
               if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                longValues_ = newLongList();
+                values_ = newLongList();
                 mutable_bitField0_ |= 0x00000001;
               }
-              longValues_.addLong(input.readSInt64());
+              values_.addLong(input.readSInt64());
               break;
             }
             case 10: {
               int length = input.readRawVarint32();
               int limit = input.pushLimit(length);
               if (!((mutable_bitField0_ & 0x00000001) != 0) && input.getBytesUntilLimit() > 0) {
-                longValues_ = newLongList();
+                values_ = newLongList();
                 mutable_bitField0_ |= 0x00000001;
               }
               while (input.getBytesUntilLimit() > 0) {
-                longValues_.addLong(input.readSInt64());
+                values_.addLong(input.readSInt64());
               }
               input.popLimit(limit);
               break;
@@ -2909,7 +2909,7 @@ public final class Proto {
             e).setUnfinishedMessage(this);
       } finally {
         if (((mutable_bitField0_ & 0x00000001) != 0)) {
-          longValues_.makeImmutable(); // C
+          values_.makeImmutable(); // C
         }
         this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
@@ -2917,56 +2917,56 @@ public final class Proto {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.iohao.message.Proto.internal_static_com_iohao_message_LongListPb_descriptor;
+      return com.iohao.message.Proto.internal_static_com_iohao_message_LongValueList_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.iohao.message.Proto.internal_static_com_iohao_message_LongListPb_fieldAccessorTable
+      return com.iohao.message.Proto.internal_static_com_iohao_message_LongValueList_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.iohao.message.Proto.LongListPb.class, com.iohao.message.Proto.LongListPb.Builder.class);
+              com.iohao.message.Proto.LongValueList.class, com.iohao.message.Proto.LongValueList.Builder.class);
     }
 
-    public static final int LONGVALUES_FIELD_NUMBER = 1;
-    private com.google.protobuf.Internal.LongList longValues_;
+    public static final int VALUES_FIELD_NUMBER = 1;
+    private com.google.protobuf.Internal.LongList values_;
     /**
      * <pre>
-     * longList
+     * longList、longArray
      * </pre>
      *
-     * <code>repeated sint64 longValues = 1;</code>
-     * @return A list containing the longValues.
+     * <code>repeated sint64 values = 1;</code>
+     * @return A list containing the values.
      */
     @java.lang.Override
     public java.util.List<java.lang.Long>
-        getLongValuesList() {
-      return longValues_;
+        getValuesList() {
+      return values_;
     }
     /**
      * <pre>
-     * longList
+     * longList、longArray
      * </pre>
      *
-     * <code>repeated sint64 longValues = 1;</code>
-     * @return The count of longValues.
+     * <code>repeated sint64 values = 1;</code>
+     * @return The count of values.
      */
-    public int getLongValuesCount() {
-      return longValues_.size();
+    public int getValuesCount() {
+      return values_.size();
     }
     /**
      * <pre>
-     * longList
+     * longList、longArray
      * </pre>
      *
-     * <code>repeated sint64 longValues = 1;</code>
+     * <code>repeated sint64 values = 1;</code>
      * @param index The index of the element to return.
-     * @return The longValues at the given index.
+     * @return The values at the given index.
      */
-    public long getLongValues(int index) {
-      return longValues_.getLong(index);
+    public long getValues(int index) {
+      return values_.getLong(index);
     }
-    private int longValuesMemoizedSerializedSize = -1;
+    private int valuesMemoizedSerializedSize = -1;
 
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
@@ -2983,12 +2983,12 @@ public final class Proto {
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       getSerializedSize();
-      if (getLongValuesList().size() > 0) {
+      if (getValuesList().size() > 0) {
         output.writeUInt32NoTag(10);
-        output.writeUInt32NoTag(longValuesMemoizedSerializedSize);
+        output.writeUInt32NoTag(valuesMemoizedSerializedSize);
       }
-      for (int i = 0; i < longValues_.size(); i++) {
-        output.writeSInt64NoTag(longValues_.getLong(i));
+      for (int i = 0; i < values_.size(); i++) {
+        output.writeSInt64NoTag(values_.getLong(i));
       }
       unknownFields.writeTo(output);
     }
@@ -3001,17 +3001,17 @@ public final class Proto {
       size = 0;
       {
         int dataSize = 0;
-        for (int i = 0; i < longValues_.size(); i++) {
+        for (int i = 0; i < values_.size(); i++) {
           dataSize += com.google.protobuf.CodedOutputStream
-            .computeSInt64SizeNoTag(longValues_.getLong(i));
+            .computeSInt64SizeNoTag(values_.getLong(i));
         }
         size += dataSize;
-        if (!getLongValuesList().isEmpty()) {
+        if (!getValuesList().isEmpty()) {
           size += 1;
           size += com.google.protobuf.CodedOutputStream
               .computeInt32SizeNoTag(dataSize);
         }
-        longValuesMemoizedSerializedSize = dataSize;
+        valuesMemoizedSerializedSize = dataSize;
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -3023,13 +3023,13 @@ public final class Proto {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof com.iohao.message.Proto.LongListPb)) {
+      if (!(obj instanceof com.iohao.message.Proto.LongValueList)) {
         return super.equals(obj);
       }
-      com.iohao.message.Proto.LongListPb other = (com.iohao.message.Proto.LongListPb) obj;
+      com.iohao.message.Proto.LongValueList other = (com.iohao.message.Proto.LongValueList) obj;
 
-      if (!getLongValuesList()
-          .equals(other.getLongValuesList())) return false;
+      if (!getValuesList()
+          .equals(other.getValuesList())) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
@@ -3041,78 +3041,78 @@ public final class Proto {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      if (getLongValuesCount() > 0) {
-        hash = (37 * hash) + LONGVALUES_FIELD_NUMBER;
-        hash = (53 * hash) + getLongValuesList().hashCode();
+      if (getValuesCount() > 0) {
+        hash = (37 * hash) + VALUES_FIELD_NUMBER;
+        hash = (53 * hash) + getValuesList().hashCode();
       }
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
     }
 
-    public static com.iohao.message.Proto.LongListPb parseFrom(
+    public static com.iohao.message.Proto.LongValueList parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.iohao.message.Proto.LongListPb parseFrom(
+    public static com.iohao.message.Proto.LongValueList parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.iohao.message.Proto.LongListPb parseFrom(
+    public static com.iohao.message.Proto.LongValueList parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.iohao.message.Proto.LongListPb parseFrom(
+    public static com.iohao.message.Proto.LongValueList parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.iohao.message.Proto.LongListPb parseFrom(byte[] data)
+    public static com.iohao.message.Proto.LongValueList parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.iohao.message.Proto.LongListPb parseFrom(
+    public static com.iohao.message.Proto.LongValueList parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.iohao.message.Proto.LongListPb parseFrom(java.io.InputStream input)
+    public static com.iohao.message.Proto.LongValueList parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.iohao.message.Proto.LongListPb parseFrom(
+    public static com.iohao.message.Proto.LongValueList parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.iohao.message.Proto.LongListPb parseDelimitedFrom(java.io.InputStream input)
+    public static com.iohao.message.Proto.LongValueList parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static com.iohao.message.Proto.LongListPb parseDelimitedFrom(
+    public static com.iohao.message.Proto.LongValueList parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.iohao.message.Proto.LongListPb parseFrom(
+    public static com.iohao.message.Proto.LongValueList parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.iohao.message.Proto.LongListPb parseFrom(
+    public static com.iohao.message.Proto.LongValueList parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -3125,7 +3125,7 @@ public final class Proto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.iohao.message.Proto.LongListPb prototype) {
+    public static Builder newBuilder(com.iohao.message.Proto.LongValueList prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     @java.lang.Override
@@ -3145,26 +3145,26 @@ public final class Proto {
      * long list 包装类
      * </pre>
      *
-     * Protobuf type {@code com.iohao.message.LongListPb}
+     * Protobuf type {@code com.iohao.message.LongValueList}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:com.iohao.message.LongListPb)
-        com.iohao.message.Proto.LongListPbOrBuilder {
+        // @@protoc_insertion_point(builder_implements:com.iohao.message.LongValueList)
+        com.iohao.message.Proto.LongValueListOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.iohao.message.Proto.internal_static_com_iohao_message_LongListPb_descriptor;
+        return com.iohao.message.Proto.internal_static_com_iohao_message_LongValueList_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.iohao.message.Proto.internal_static_com_iohao_message_LongListPb_fieldAccessorTable
+        return com.iohao.message.Proto.internal_static_com_iohao_message_LongValueList_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                com.iohao.message.Proto.LongListPb.class, com.iohao.message.Proto.LongListPb.Builder.class);
+                com.iohao.message.Proto.LongValueList.class, com.iohao.message.Proto.LongValueList.Builder.class);
       }
 
-      // Construct using com.iohao.message.Proto.LongListPb.newBuilder()
+      // Construct using com.iohao.message.Proto.LongValueList.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -3182,7 +3182,7 @@ public final class Proto {
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        longValues_ = emptyLongList();
+        values_ = emptyLongList();
         bitField0_ = (bitField0_ & ~0x00000001);
         return this;
       }
@@ -3190,17 +3190,17 @@ public final class Proto {
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.iohao.message.Proto.internal_static_com_iohao_message_LongListPb_descriptor;
+        return com.iohao.message.Proto.internal_static_com_iohao_message_LongValueList_descriptor;
       }
 
       @java.lang.Override
-      public com.iohao.message.Proto.LongListPb getDefaultInstanceForType() {
-        return com.iohao.message.Proto.LongListPb.getDefaultInstance();
+      public com.iohao.message.Proto.LongValueList getDefaultInstanceForType() {
+        return com.iohao.message.Proto.LongValueList.getDefaultInstance();
       }
 
       @java.lang.Override
-      public com.iohao.message.Proto.LongListPb build() {
-        com.iohao.message.Proto.LongListPb result = buildPartial();
+      public com.iohao.message.Proto.LongValueList build() {
+        com.iohao.message.Proto.LongValueList result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
@@ -3208,14 +3208,14 @@ public final class Proto {
       }
 
       @java.lang.Override
-      public com.iohao.message.Proto.LongListPb buildPartial() {
-        com.iohao.message.Proto.LongListPb result = new com.iohao.message.Proto.LongListPb(this);
+      public com.iohao.message.Proto.LongValueList buildPartial() {
+        com.iohao.message.Proto.LongValueList result = new com.iohao.message.Proto.LongValueList(this);
         int from_bitField0_ = bitField0_;
         if (((bitField0_ & 0x00000001) != 0)) {
-          longValues_.makeImmutable();
+          values_.makeImmutable();
           bitField0_ = (bitField0_ & ~0x00000001);
         }
-        result.longValues_ = longValues_;
+        result.values_ = values_;
         onBuilt();
         return result;
       }
@@ -3254,23 +3254,23 @@ public final class Proto {
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.iohao.message.Proto.LongListPb) {
-          return mergeFrom((com.iohao.message.Proto.LongListPb)other);
+        if (other instanceof com.iohao.message.Proto.LongValueList) {
+          return mergeFrom((com.iohao.message.Proto.LongValueList)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(com.iohao.message.Proto.LongListPb other) {
-        if (other == com.iohao.message.Proto.LongListPb.getDefaultInstance()) return this;
-        if (!other.longValues_.isEmpty()) {
-          if (longValues_.isEmpty()) {
-            longValues_ = other.longValues_;
+      public Builder mergeFrom(com.iohao.message.Proto.LongValueList other) {
+        if (other == com.iohao.message.Proto.LongValueList.getDefaultInstance()) return this;
+        if (!other.values_.isEmpty()) {
+          if (values_.isEmpty()) {
+            values_ = other.values_;
             bitField0_ = (bitField0_ & ~0x00000001);
           } else {
-            ensureLongValuesIsMutable();
-            longValues_.addAll(other.longValues_);
+            ensureValuesIsMutable();
+            values_.addAll(other.values_);
           }
           onChanged();
         }
@@ -3289,11 +3289,11 @@ public final class Proto {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.iohao.message.Proto.LongListPb parsedMessage = null;
+        com.iohao.message.Proto.LongValueList parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.iohao.message.Proto.LongListPb) e.getUnfinishedMessage();
+          parsedMessage = (com.iohao.message.Proto.LongValueList) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -3304,108 +3304,108 @@ public final class Proto {
       }
       private int bitField0_;
 
-      private com.google.protobuf.Internal.LongList longValues_ = emptyLongList();
-      private void ensureLongValuesIsMutable() {
+      private com.google.protobuf.Internal.LongList values_ = emptyLongList();
+      private void ensureValuesIsMutable() {
         if (!((bitField0_ & 0x00000001) != 0)) {
-          longValues_ = mutableCopy(longValues_);
+          values_ = mutableCopy(values_);
           bitField0_ |= 0x00000001;
          }
       }
       /**
        * <pre>
-       * longList
+       * longList、longArray
        * </pre>
        *
-       * <code>repeated sint64 longValues = 1;</code>
-       * @return A list containing the longValues.
+       * <code>repeated sint64 values = 1;</code>
+       * @return A list containing the values.
        */
       public java.util.List<java.lang.Long>
-          getLongValuesList() {
+          getValuesList() {
         return ((bitField0_ & 0x00000001) != 0) ?
-                 java.util.Collections.unmodifiableList(longValues_) : longValues_;
+                 java.util.Collections.unmodifiableList(values_) : values_;
       }
       /**
        * <pre>
-       * longList
+       * longList、longArray
        * </pre>
        *
-       * <code>repeated sint64 longValues = 1;</code>
-       * @return The count of longValues.
+       * <code>repeated sint64 values = 1;</code>
+       * @return The count of values.
        */
-      public int getLongValuesCount() {
-        return longValues_.size();
+      public int getValuesCount() {
+        return values_.size();
       }
       /**
        * <pre>
-       * longList
+       * longList、longArray
        * </pre>
        *
-       * <code>repeated sint64 longValues = 1;</code>
+       * <code>repeated sint64 values = 1;</code>
        * @param index The index of the element to return.
-       * @return The longValues at the given index.
+       * @return The values at the given index.
        */
-      public long getLongValues(int index) {
-        return longValues_.getLong(index);
+      public long getValues(int index) {
+        return values_.getLong(index);
       }
       /**
        * <pre>
-       * longList
+       * longList、longArray
        * </pre>
        *
-       * <code>repeated sint64 longValues = 1;</code>
+       * <code>repeated sint64 values = 1;</code>
        * @param index The index to set the value at.
-       * @param value The longValues to set.
+       * @param value The values to set.
        * @return This builder for chaining.
        */
-      public Builder setLongValues(
+      public Builder setValues(
           int index, long value) {
-        ensureLongValuesIsMutable();
-        longValues_.setLong(index, value);
+        ensureValuesIsMutable();
+        values_.setLong(index, value);
         onChanged();
         return this;
       }
       /**
        * <pre>
-       * longList
+       * longList、longArray
        * </pre>
        *
-       * <code>repeated sint64 longValues = 1;</code>
-       * @param value The longValues to add.
+       * <code>repeated sint64 values = 1;</code>
+       * @param value The values to add.
        * @return This builder for chaining.
        */
-      public Builder addLongValues(long value) {
-        ensureLongValuesIsMutable();
-        longValues_.addLong(value);
+      public Builder addValues(long value) {
+        ensureValuesIsMutable();
+        values_.addLong(value);
         onChanged();
         return this;
       }
       /**
        * <pre>
-       * longList
+       * longList、longArray
        * </pre>
        *
-       * <code>repeated sint64 longValues = 1;</code>
-       * @param values The longValues to add.
+       * <code>repeated sint64 values = 1;</code>
+       * @param values The values to add.
        * @return This builder for chaining.
        */
-      public Builder addAllLongValues(
+      public Builder addAllValues(
           java.lang.Iterable<? extends java.lang.Long> values) {
-        ensureLongValuesIsMutable();
+        ensureValuesIsMutable();
         com.google.protobuf.AbstractMessageLite.Builder.addAll(
-            values, longValues_);
+            values, values_);
         onChanged();
         return this;
       }
       /**
        * <pre>
-       * longList
+       * longList、longArray
        * </pre>
        *
-       * <code>repeated sint64 longValues = 1;</code>
+       * <code>repeated sint64 values = 1;</code>
        * @return This builder for chaining.
        */
-      public Builder clearLongValues() {
-        longValues_ = emptyLongList();
+      public Builder clearValues() {
+        values_ = emptyLongList();
         bitField0_ = (bitField0_ & ~0x00000001);
         onChanged();
         return this;
@@ -3423,41 +3423,2556 @@ public final class Proto {
       }
 
 
-      // @@protoc_insertion_point(builder_scope:com.iohao.message.LongListPb)
+      // @@protoc_insertion_point(builder_scope:com.iohao.message.LongValueList)
     }
 
-    // @@protoc_insertion_point(class_scope:com.iohao.message.LongListPb)
-    private static final com.iohao.message.Proto.LongListPb DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:com.iohao.message.LongValueList)
+    private static final com.iohao.message.Proto.LongValueList DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new com.iohao.message.Proto.LongListPb();
+      DEFAULT_INSTANCE = new com.iohao.message.Proto.LongValueList();
     }
 
-    public static com.iohao.message.Proto.LongListPb getDefaultInstance() {
+    public static com.iohao.message.Proto.LongValueList getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static final com.google.protobuf.Parser<LongListPb>
-        PARSER = new com.google.protobuf.AbstractParser<LongListPb>() {
+    private static final com.google.protobuf.Parser<LongValueList>
+        PARSER = new com.google.protobuf.AbstractParser<LongValueList>() {
       @java.lang.Override
-      public LongListPb parsePartialFrom(
+      public LongValueList parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new LongListPb(input, extensionRegistry);
+        return new LongValueList(input, extensionRegistry);
       }
     };
 
-    public static com.google.protobuf.Parser<LongListPb> parser() {
+    public static com.google.protobuf.Parser<LongValueList> parser() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.google.protobuf.Parser<LongListPb> getParserForType() {
+    public com.google.protobuf.Parser<LongValueList> getParserForType() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.iohao.message.Proto.LongListPb getDefaultInstanceForType() {
+    public com.iohao.message.Proto.LongValueList getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface StringValueOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:com.iohao.message.StringValue)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <pre>
+     * string 值
+     * </pre>
+     *
+     * <code>string value = 1;</code>
+     * @return The value.
+     */
+    java.lang.String getValue();
+    /**
+     * <pre>
+     * string 值
+     * </pre>
+     *
+     * <code>string value = 1;</code>
+     * @return The bytes for value.
+     */
+    com.google.protobuf.ByteString
+        getValueBytes();
+  }
+  /**
+   * <pre>
+   * string 包装类
+   * </pre>
+   *
+   * Protobuf type {@code com.iohao.message.StringValue}
+   */
+  public static final class StringValue extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:com.iohao.message.StringValue)
+      StringValueOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use StringValue.newBuilder() to construct.
+    private StringValue(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private StringValue() {
+      value_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new StringValue();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private StringValue(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              value_ = s;
+              break;
+            }
+            default: {
+              if (!parseUnknownField(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.iohao.message.Proto.internal_static_com_iohao_message_StringValue_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.iohao.message.Proto.internal_static_com_iohao_message_StringValue_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.iohao.message.Proto.StringValue.class, com.iohao.message.Proto.StringValue.Builder.class);
+    }
+
+    public static final int VALUE_FIELD_NUMBER = 1;
+    private volatile java.lang.Object value_;
+    /**
+     * <pre>
+     * string 值
+     * </pre>
+     *
+     * <code>string value = 1;</code>
+     * @return The value.
+     */
+    @java.lang.Override
+    public java.lang.String getValue() {
+      java.lang.Object ref = value_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        value_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     * string 值
+     * </pre>
+     *
+     * <code>string value = 1;</code>
+     * @return The bytes for value.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getValueBytes() {
+      java.lang.Object ref = value_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        value_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!getValueBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, value_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!getValueBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, value_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.iohao.message.Proto.StringValue)) {
+        return super.equals(obj);
+      }
+      com.iohao.message.Proto.StringValue other = (com.iohao.message.Proto.StringValue) obj;
+
+      if (!getValue()
+          .equals(other.getValue())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + VALUE_FIELD_NUMBER;
+      hash = (53 * hash) + getValue().hashCode();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.iohao.message.Proto.StringValue parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.iohao.message.Proto.StringValue parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.iohao.message.Proto.StringValue parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.iohao.message.Proto.StringValue parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.iohao.message.Proto.StringValue parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.iohao.message.Proto.StringValue parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.iohao.message.Proto.StringValue parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.iohao.message.Proto.StringValue parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.iohao.message.Proto.StringValue parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.iohao.message.Proto.StringValue parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.iohao.message.Proto.StringValue parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.iohao.message.Proto.StringValue parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.iohao.message.Proto.StringValue prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * <pre>
+     * string 包装类
+     * </pre>
+     *
+     * Protobuf type {@code com.iohao.message.StringValue}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:com.iohao.message.StringValue)
+        com.iohao.message.Proto.StringValueOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.iohao.message.Proto.internal_static_com_iohao_message_StringValue_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.iohao.message.Proto.internal_static_com_iohao_message_StringValue_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.iohao.message.Proto.StringValue.class, com.iohao.message.Proto.StringValue.Builder.class);
+      }
+
+      // Construct using com.iohao.message.Proto.StringValue.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        value_ = "";
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.iohao.message.Proto.internal_static_com_iohao_message_StringValue_descriptor;
+      }
+
+      @java.lang.Override
+      public com.iohao.message.Proto.StringValue getDefaultInstanceForType() {
+        return com.iohao.message.Proto.StringValue.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.iohao.message.Proto.StringValue build() {
+        com.iohao.message.Proto.StringValue result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.iohao.message.Proto.StringValue buildPartial() {
+        com.iohao.message.Proto.StringValue result = new com.iohao.message.Proto.StringValue(this);
+        result.value_ = value_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.iohao.message.Proto.StringValue) {
+          return mergeFrom((com.iohao.message.Proto.StringValue)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.iohao.message.Proto.StringValue other) {
+        if (other == com.iohao.message.Proto.StringValue.getDefaultInstance()) return this;
+        if (!other.getValue().isEmpty()) {
+          value_ = other.value_;
+          onChanged();
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.iohao.message.Proto.StringValue parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.iohao.message.Proto.StringValue) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private java.lang.Object value_ = "";
+      /**
+       * <pre>
+       * string 值
+       * </pre>
+       *
+       * <code>string value = 1;</code>
+       * @return The value.
+       */
+      public java.lang.String getValue() {
+        java.lang.Object ref = value_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          value_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <pre>
+       * string 值
+       * </pre>
+       *
+       * <code>string value = 1;</code>
+       * @return The bytes for value.
+       */
+      public com.google.protobuf.ByteString
+          getValueBytes() {
+        java.lang.Object ref = value_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          value_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       * string 值
+       * </pre>
+       *
+       * <code>string value = 1;</code>
+       * @param value The value to set.
+       * @return This builder for chaining.
+       */
+      public Builder setValue(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        value_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * string 值
+       * </pre>
+       *
+       * <code>string value = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearValue() {
+        
+        value_ = getDefaultInstance().getValue();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * string 值
+       * </pre>
+       *
+       * <code>string value = 1;</code>
+       * @param value The bytes for value to set.
+       * @return This builder for chaining.
+       */
+      public Builder setValueBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        value_ = value;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:com.iohao.message.StringValue)
+    }
+
+    // @@protoc_insertion_point(class_scope:com.iohao.message.StringValue)
+    private static final com.iohao.message.Proto.StringValue DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.iohao.message.Proto.StringValue();
+    }
+
+    public static com.iohao.message.Proto.StringValue getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<StringValue>
+        PARSER = new com.google.protobuf.AbstractParser<StringValue>() {
+      @java.lang.Override
+      public StringValue parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new StringValue(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<StringValue> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<StringValue> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.iohao.message.Proto.StringValue getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface StringValueListOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:com.iohao.message.StringValueList)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <pre>
+     * stringList、stringArray
+     * </pre>
+     *
+     * <code>repeated string values = 1;</code>
+     * @return A list containing the values.
+     */
+    java.util.List<java.lang.String>
+        getValuesList();
+    /**
+     * <pre>
+     * stringList、stringArray
+     * </pre>
+     *
+     * <code>repeated string values = 1;</code>
+     * @return The count of values.
+     */
+    int getValuesCount();
+    /**
+     * <pre>
+     * stringList、stringArray
+     * </pre>
+     *
+     * <code>repeated string values = 1;</code>
+     * @param index The index of the element to return.
+     * @return The values at the given index.
+     */
+    java.lang.String getValues(int index);
+    /**
+     * <pre>
+     * stringList、stringArray
+     * </pre>
+     *
+     * <code>repeated string values = 1;</code>
+     * @param index The index of the value to return.
+     * @return The bytes of the values at the given index.
+     */
+    com.google.protobuf.ByteString
+        getValuesBytes(int index);
+  }
+  /**
+   * <pre>
+   * string list 包装类
+   * </pre>
+   *
+   * Protobuf type {@code com.iohao.message.StringValueList}
+   */
+  public static final class StringValueList extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:com.iohao.message.StringValueList)
+      StringValueListOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use StringValueList.newBuilder() to construct.
+    private StringValueList(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private StringValueList() {
+      values_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new StringValueList();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private StringValueList(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              java.lang.String s = input.readStringRequireUtf8();
+              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
+                values_ = new com.google.protobuf.LazyStringArrayList();
+                mutable_bitField0_ |= 0x00000001;
+              }
+              values_.add(s);
+              break;
+            }
+            default: {
+              if (!parseUnknownField(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        if (((mutable_bitField0_ & 0x00000001) != 0)) {
+          values_ = values_.getUnmodifiableView();
+        }
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.iohao.message.Proto.internal_static_com_iohao_message_StringValueList_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.iohao.message.Proto.internal_static_com_iohao_message_StringValueList_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.iohao.message.Proto.StringValueList.class, com.iohao.message.Proto.StringValueList.Builder.class);
+    }
+
+    public static final int VALUES_FIELD_NUMBER = 1;
+    private com.google.protobuf.LazyStringList values_;
+    /**
+     * <pre>
+     * stringList、stringArray
+     * </pre>
+     *
+     * <code>repeated string values = 1;</code>
+     * @return A list containing the values.
+     */
+    public com.google.protobuf.ProtocolStringList
+        getValuesList() {
+      return values_;
+    }
+    /**
+     * <pre>
+     * stringList、stringArray
+     * </pre>
+     *
+     * <code>repeated string values = 1;</code>
+     * @return The count of values.
+     */
+    public int getValuesCount() {
+      return values_.size();
+    }
+    /**
+     * <pre>
+     * stringList、stringArray
+     * </pre>
+     *
+     * <code>repeated string values = 1;</code>
+     * @param index The index of the element to return.
+     * @return The values at the given index.
+     */
+    public java.lang.String getValues(int index) {
+      return values_.get(index);
+    }
+    /**
+     * <pre>
+     * stringList、stringArray
+     * </pre>
+     *
+     * <code>repeated string values = 1;</code>
+     * @param index The index of the value to return.
+     * @return The bytes of the values at the given index.
+     */
+    public com.google.protobuf.ByteString
+        getValuesBytes(int index) {
+      return values_.getByteString(index);
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      for (int i = 0; i < values_.size(); i++) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, values_.getRaw(i));
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      {
+        int dataSize = 0;
+        for (int i = 0; i < values_.size(); i++) {
+          dataSize += computeStringSizeNoTag(values_.getRaw(i));
+        }
+        size += dataSize;
+        size += 1 * getValuesList().size();
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.iohao.message.Proto.StringValueList)) {
+        return super.equals(obj);
+      }
+      com.iohao.message.Proto.StringValueList other = (com.iohao.message.Proto.StringValueList) obj;
+
+      if (!getValuesList()
+          .equals(other.getValuesList())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      if (getValuesCount() > 0) {
+        hash = (37 * hash) + VALUES_FIELD_NUMBER;
+        hash = (53 * hash) + getValuesList().hashCode();
+      }
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.iohao.message.Proto.StringValueList parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.iohao.message.Proto.StringValueList parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.iohao.message.Proto.StringValueList parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.iohao.message.Proto.StringValueList parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.iohao.message.Proto.StringValueList parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.iohao.message.Proto.StringValueList parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.iohao.message.Proto.StringValueList parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.iohao.message.Proto.StringValueList parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.iohao.message.Proto.StringValueList parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.iohao.message.Proto.StringValueList parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.iohao.message.Proto.StringValueList parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.iohao.message.Proto.StringValueList parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.iohao.message.Proto.StringValueList prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * <pre>
+     * string list 包装类
+     * </pre>
+     *
+     * Protobuf type {@code com.iohao.message.StringValueList}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:com.iohao.message.StringValueList)
+        com.iohao.message.Proto.StringValueListOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.iohao.message.Proto.internal_static_com_iohao_message_StringValueList_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.iohao.message.Proto.internal_static_com_iohao_message_StringValueList_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.iohao.message.Proto.StringValueList.class, com.iohao.message.Proto.StringValueList.Builder.class);
+      }
+
+      // Construct using com.iohao.message.Proto.StringValueList.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        values_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.iohao.message.Proto.internal_static_com_iohao_message_StringValueList_descriptor;
+      }
+
+      @java.lang.Override
+      public com.iohao.message.Proto.StringValueList getDefaultInstanceForType() {
+        return com.iohao.message.Proto.StringValueList.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.iohao.message.Proto.StringValueList build() {
+        com.iohao.message.Proto.StringValueList result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.iohao.message.Proto.StringValueList buildPartial() {
+        com.iohao.message.Proto.StringValueList result = new com.iohao.message.Proto.StringValueList(this);
+        int from_bitField0_ = bitField0_;
+        if (((bitField0_ & 0x00000001) != 0)) {
+          values_ = values_.getUnmodifiableView();
+          bitField0_ = (bitField0_ & ~0x00000001);
+        }
+        result.values_ = values_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.iohao.message.Proto.StringValueList) {
+          return mergeFrom((com.iohao.message.Proto.StringValueList)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.iohao.message.Proto.StringValueList other) {
+        if (other == com.iohao.message.Proto.StringValueList.getDefaultInstance()) return this;
+        if (!other.values_.isEmpty()) {
+          if (values_.isEmpty()) {
+            values_ = other.values_;
+            bitField0_ = (bitField0_ & ~0x00000001);
+          } else {
+            ensureValuesIsMutable();
+            values_.addAll(other.values_);
+          }
+          onChanged();
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.iohao.message.Proto.StringValueList parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.iohao.message.Proto.StringValueList) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      private com.google.protobuf.LazyStringList values_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      private void ensureValuesIsMutable() {
+        if (!((bitField0_ & 0x00000001) != 0)) {
+          values_ = new com.google.protobuf.LazyStringArrayList(values_);
+          bitField0_ |= 0x00000001;
+         }
+      }
+      /**
+       * <pre>
+       * stringList、stringArray
+       * </pre>
+       *
+       * <code>repeated string values = 1;</code>
+       * @return A list containing the values.
+       */
+      public com.google.protobuf.ProtocolStringList
+          getValuesList() {
+        return values_.getUnmodifiableView();
+      }
+      /**
+       * <pre>
+       * stringList、stringArray
+       * </pre>
+       *
+       * <code>repeated string values = 1;</code>
+       * @return The count of values.
+       */
+      public int getValuesCount() {
+        return values_.size();
+      }
+      /**
+       * <pre>
+       * stringList、stringArray
+       * </pre>
+       *
+       * <code>repeated string values = 1;</code>
+       * @param index The index of the element to return.
+       * @return The values at the given index.
+       */
+      public java.lang.String getValues(int index) {
+        return values_.get(index);
+      }
+      /**
+       * <pre>
+       * stringList、stringArray
+       * </pre>
+       *
+       * <code>repeated string values = 1;</code>
+       * @param index The index of the value to return.
+       * @return The bytes of the values at the given index.
+       */
+      public com.google.protobuf.ByteString
+          getValuesBytes(int index) {
+        return values_.getByteString(index);
+      }
+      /**
+       * <pre>
+       * stringList、stringArray
+       * </pre>
+       *
+       * <code>repeated string values = 1;</code>
+       * @param index The index to set the value at.
+       * @param value The values to set.
+       * @return This builder for chaining.
+       */
+      public Builder setValues(
+          int index, java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureValuesIsMutable();
+        values_.set(index, value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * stringList、stringArray
+       * </pre>
+       *
+       * <code>repeated string values = 1;</code>
+       * @param value The values to add.
+       * @return This builder for chaining.
+       */
+      public Builder addValues(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureValuesIsMutable();
+        values_.add(value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * stringList、stringArray
+       * </pre>
+       *
+       * <code>repeated string values = 1;</code>
+       * @param values The values to add.
+       * @return This builder for chaining.
+       */
+      public Builder addAllValues(
+          java.lang.Iterable<java.lang.String> values) {
+        ensureValuesIsMutable();
+        com.google.protobuf.AbstractMessageLite.Builder.addAll(
+            values, values_);
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * stringList、stringArray
+       * </pre>
+       *
+       * <code>repeated string values = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearValues() {
+        values_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * stringList、stringArray
+       * </pre>
+       *
+       * <code>repeated string values = 1;</code>
+       * @param value The bytes of the values to add.
+       * @return This builder for chaining.
+       */
+      public Builder addValuesBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        ensureValuesIsMutable();
+        values_.add(value);
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:com.iohao.message.StringValueList)
+    }
+
+    // @@protoc_insertion_point(class_scope:com.iohao.message.StringValueList)
+    private static final com.iohao.message.Proto.StringValueList DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.iohao.message.Proto.StringValueList();
+    }
+
+    public static com.iohao.message.Proto.StringValueList getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<StringValueList>
+        PARSER = new com.google.protobuf.AbstractParser<StringValueList>() {
+      @java.lang.Override
+      public StringValueList parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new StringValueList(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<StringValueList> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<StringValueList> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.iohao.message.Proto.StringValueList getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface BoolValueOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:com.iohao.message.BoolValue)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <pre>
+     * bool 值
+     * </pre>
+     *
+     * <code>bool value = 1;</code>
+     * @return The value.
+     */
+    boolean getValue();
+  }
+  /**
+   * <pre>
+   * bool 包装类
+   * </pre>
+   *
+   * Protobuf type {@code com.iohao.message.BoolValue}
+   */
+  public static final class BoolValue extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:com.iohao.message.BoolValue)
+      BoolValueOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use BoolValue.newBuilder() to construct.
+    private BoolValue(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private BoolValue() {
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new BoolValue();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private BoolValue(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 8: {
+
+              value_ = input.readBool();
+              break;
+            }
+            default: {
+              if (!parseUnknownField(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.iohao.message.Proto.internal_static_com_iohao_message_BoolValue_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.iohao.message.Proto.internal_static_com_iohao_message_BoolValue_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.iohao.message.Proto.BoolValue.class, com.iohao.message.Proto.BoolValue.Builder.class);
+    }
+
+    public static final int VALUE_FIELD_NUMBER = 1;
+    private boolean value_;
+    /**
+     * <pre>
+     * bool 值
+     * </pre>
+     *
+     * <code>bool value = 1;</code>
+     * @return The value.
+     */
+    @java.lang.Override
+    public boolean getValue() {
+      return value_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (value_ != false) {
+        output.writeBool(1, value_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (value_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(1, value_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.iohao.message.Proto.BoolValue)) {
+        return super.equals(obj);
+      }
+      com.iohao.message.Proto.BoolValue other = (com.iohao.message.Proto.BoolValue) obj;
+
+      if (getValue()
+          != other.getValue()) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + VALUE_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+          getValue());
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.iohao.message.Proto.BoolValue parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.iohao.message.Proto.BoolValue parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.iohao.message.Proto.BoolValue parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.iohao.message.Proto.BoolValue parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.iohao.message.Proto.BoolValue parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.iohao.message.Proto.BoolValue parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.iohao.message.Proto.BoolValue parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.iohao.message.Proto.BoolValue parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.iohao.message.Proto.BoolValue parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.iohao.message.Proto.BoolValue parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.iohao.message.Proto.BoolValue parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.iohao.message.Proto.BoolValue parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.iohao.message.Proto.BoolValue prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * <pre>
+     * bool 包装类
+     * </pre>
+     *
+     * Protobuf type {@code com.iohao.message.BoolValue}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:com.iohao.message.BoolValue)
+        com.iohao.message.Proto.BoolValueOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.iohao.message.Proto.internal_static_com_iohao_message_BoolValue_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.iohao.message.Proto.internal_static_com_iohao_message_BoolValue_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.iohao.message.Proto.BoolValue.class, com.iohao.message.Proto.BoolValue.Builder.class);
+      }
+
+      // Construct using com.iohao.message.Proto.BoolValue.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        value_ = false;
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.iohao.message.Proto.internal_static_com_iohao_message_BoolValue_descriptor;
+      }
+
+      @java.lang.Override
+      public com.iohao.message.Proto.BoolValue getDefaultInstanceForType() {
+        return com.iohao.message.Proto.BoolValue.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.iohao.message.Proto.BoolValue build() {
+        com.iohao.message.Proto.BoolValue result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.iohao.message.Proto.BoolValue buildPartial() {
+        com.iohao.message.Proto.BoolValue result = new com.iohao.message.Proto.BoolValue(this);
+        result.value_ = value_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.iohao.message.Proto.BoolValue) {
+          return mergeFrom((com.iohao.message.Proto.BoolValue)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.iohao.message.Proto.BoolValue other) {
+        if (other == com.iohao.message.Proto.BoolValue.getDefaultInstance()) return this;
+        if (other.getValue() != false) {
+          setValue(other.getValue());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.iohao.message.Proto.BoolValue parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.iohao.message.Proto.BoolValue) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private boolean value_ ;
+      /**
+       * <pre>
+       * bool 值
+       * </pre>
+       *
+       * <code>bool value = 1;</code>
+       * @return The value.
+       */
+      @java.lang.Override
+      public boolean getValue() {
+        return value_;
+      }
+      /**
+       * <pre>
+       * bool 值
+       * </pre>
+       *
+       * <code>bool value = 1;</code>
+       * @param value The value to set.
+       * @return This builder for chaining.
+       */
+      public Builder setValue(boolean value) {
+        
+        value_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * bool 值
+       * </pre>
+       *
+       * <code>bool value = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearValue() {
+        
+        value_ = false;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:com.iohao.message.BoolValue)
+    }
+
+    // @@protoc_insertion_point(class_scope:com.iohao.message.BoolValue)
+    private static final com.iohao.message.Proto.BoolValue DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.iohao.message.Proto.BoolValue();
+    }
+
+    public static com.iohao.message.Proto.BoolValue getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<BoolValue>
+        PARSER = new com.google.protobuf.AbstractParser<BoolValue>() {
+      @java.lang.Override
+      public BoolValue parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new BoolValue(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<BoolValue> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<BoolValue> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.iohao.message.Proto.BoolValue getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface BoolValueListOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:com.iohao.message.BoolValueList)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <pre>
+     * boolList、boolArray
+     * </pre>
+     *
+     * <code>repeated bool values = 1;</code>
+     * @return A list containing the values.
+     */
+    java.util.List<java.lang.Boolean> getValuesList();
+    /**
+     * <pre>
+     * boolList、boolArray
+     * </pre>
+     *
+     * <code>repeated bool values = 1;</code>
+     * @return The count of values.
+     */
+    int getValuesCount();
+    /**
+     * <pre>
+     * boolList、boolArray
+     * </pre>
+     *
+     * <code>repeated bool values = 1;</code>
+     * @param index The index of the element to return.
+     * @return The values at the given index.
+     */
+    boolean getValues(int index);
+  }
+  /**
+   * <pre>
+   * bool list 包装类
+   * </pre>
+   *
+   * Protobuf type {@code com.iohao.message.BoolValueList}
+   */
+  public static final class BoolValueList extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:com.iohao.message.BoolValueList)
+      BoolValueListOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use BoolValueList.newBuilder() to construct.
+    private BoolValueList(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private BoolValueList() {
+      values_ = emptyBooleanList();
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new BoolValueList();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private BoolValueList(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 8: {
+              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
+                values_ = newBooleanList();
+                mutable_bitField0_ |= 0x00000001;
+              }
+              values_.addBoolean(input.readBool());
+              break;
+            }
+            case 10: {
+              int length = input.readRawVarint32();
+              int limit = input.pushLimit(length);
+              if (!((mutable_bitField0_ & 0x00000001) != 0) && input.getBytesUntilLimit() > 0) {
+                values_ = newBooleanList();
+                mutable_bitField0_ |= 0x00000001;
+              }
+              while (input.getBytesUntilLimit() > 0) {
+                values_.addBoolean(input.readBool());
+              }
+              input.popLimit(limit);
+              break;
+            }
+            default: {
+              if (!parseUnknownField(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        if (((mutable_bitField0_ & 0x00000001) != 0)) {
+          values_.makeImmutable(); // C
+        }
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.iohao.message.Proto.internal_static_com_iohao_message_BoolValueList_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.iohao.message.Proto.internal_static_com_iohao_message_BoolValueList_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.iohao.message.Proto.BoolValueList.class, com.iohao.message.Proto.BoolValueList.Builder.class);
+    }
+
+    public static final int VALUES_FIELD_NUMBER = 1;
+    private com.google.protobuf.Internal.BooleanList values_;
+    /**
+     * <pre>
+     * boolList、boolArray
+     * </pre>
+     *
+     * <code>repeated bool values = 1;</code>
+     * @return A list containing the values.
+     */
+    @java.lang.Override
+    public java.util.List<java.lang.Boolean>
+        getValuesList() {
+      return values_;
+    }
+    /**
+     * <pre>
+     * boolList、boolArray
+     * </pre>
+     *
+     * <code>repeated bool values = 1;</code>
+     * @return The count of values.
+     */
+    public int getValuesCount() {
+      return values_.size();
+    }
+    /**
+     * <pre>
+     * boolList、boolArray
+     * </pre>
+     *
+     * <code>repeated bool values = 1;</code>
+     * @param index The index of the element to return.
+     * @return The values at the given index.
+     */
+    public boolean getValues(int index) {
+      return values_.getBoolean(index);
+    }
+    private int valuesMemoizedSerializedSize = -1;
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (getValuesList().size() > 0) {
+        output.writeUInt32NoTag(10);
+        output.writeUInt32NoTag(valuesMemoizedSerializedSize);
+      }
+      for (int i = 0; i < values_.size(); i++) {
+        output.writeBoolNoTag(values_.getBoolean(i));
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      {
+        int dataSize = 0;
+        dataSize = 1 * getValuesList().size();
+        size += dataSize;
+        if (!getValuesList().isEmpty()) {
+          size += 1;
+          size += com.google.protobuf.CodedOutputStream
+              .computeInt32SizeNoTag(dataSize);
+        }
+        valuesMemoizedSerializedSize = dataSize;
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.iohao.message.Proto.BoolValueList)) {
+        return super.equals(obj);
+      }
+      com.iohao.message.Proto.BoolValueList other = (com.iohao.message.Proto.BoolValueList) obj;
+
+      if (!getValuesList()
+          .equals(other.getValuesList())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      if (getValuesCount() > 0) {
+        hash = (37 * hash) + VALUES_FIELD_NUMBER;
+        hash = (53 * hash) + getValuesList().hashCode();
+      }
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.iohao.message.Proto.BoolValueList parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.iohao.message.Proto.BoolValueList parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.iohao.message.Proto.BoolValueList parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.iohao.message.Proto.BoolValueList parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.iohao.message.Proto.BoolValueList parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.iohao.message.Proto.BoolValueList parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.iohao.message.Proto.BoolValueList parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.iohao.message.Proto.BoolValueList parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.iohao.message.Proto.BoolValueList parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.iohao.message.Proto.BoolValueList parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.iohao.message.Proto.BoolValueList parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.iohao.message.Proto.BoolValueList parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.iohao.message.Proto.BoolValueList prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * <pre>
+     * bool list 包装类
+     * </pre>
+     *
+     * Protobuf type {@code com.iohao.message.BoolValueList}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:com.iohao.message.BoolValueList)
+        com.iohao.message.Proto.BoolValueListOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.iohao.message.Proto.internal_static_com_iohao_message_BoolValueList_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.iohao.message.Proto.internal_static_com_iohao_message_BoolValueList_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.iohao.message.Proto.BoolValueList.class, com.iohao.message.Proto.BoolValueList.Builder.class);
+      }
+
+      // Construct using com.iohao.message.Proto.BoolValueList.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        values_ = emptyBooleanList();
+        bitField0_ = (bitField0_ & ~0x00000001);
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.iohao.message.Proto.internal_static_com_iohao_message_BoolValueList_descriptor;
+      }
+
+      @java.lang.Override
+      public com.iohao.message.Proto.BoolValueList getDefaultInstanceForType() {
+        return com.iohao.message.Proto.BoolValueList.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.iohao.message.Proto.BoolValueList build() {
+        com.iohao.message.Proto.BoolValueList result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.iohao.message.Proto.BoolValueList buildPartial() {
+        com.iohao.message.Proto.BoolValueList result = new com.iohao.message.Proto.BoolValueList(this);
+        int from_bitField0_ = bitField0_;
+        if (((bitField0_ & 0x00000001) != 0)) {
+          values_.makeImmutable();
+          bitField0_ = (bitField0_ & ~0x00000001);
+        }
+        result.values_ = values_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.iohao.message.Proto.BoolValueList) {
+          return mergeFrom((com.iohao.message.Proto.BoolValueList)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.iohao.message.Proto.BoolValueList other) {
+        if (other == com.iohao.message.Proto.BoolValueList.getDefaultInstance()) return this;
+        if (!other.values_.isEmpty()) {
+          if (values_.isEmpty()) {
+            values_ = other.values_;
+            bitField0_ = (bitField0_ & ~0x00000001);
+          } else {
+            ensureValuesIsMutable();
+            values_.addAll(other.values_);
+          }
+          onChanged();
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.iohao.message.Proto.BoolValueList parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.iohao.message.Proto.BoolValueList) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      private com.google.protobuf.Internal.BooleanList values_ = emptyBooleanList();
+      private void ensureValuesIsMutable() {
+        if (!((bitField0_ & 0x00000001) != 0)) {
+          values_ = mutableCopy(values_);
+          bitField0_ |= 0x00000001;
+         }
+      }
+      /**
+       * <pre>
+       * boolList、boolArray
+       * </pre>
+       *
+       * <code>repeated bool values = 1;</code>
+       * @return A list containing the values.
+       */
+      public java.util.List<java.lang.Boolean>
+          getValuesList() {
+        return ((bitField0_ & 0x00000001) != 0) ?
+                 java.util.Collections.unmodifiableList(values_) : values_;
+      }
+      /**
+       * <pre>
+       * boolList、boolArray
+       * </pre>
+       *
+       * <code>repeated bool values = 1;</code>
+       * @return The count of values.
+       */
+      public int getValuesCount() {
+        return values_.size();
+      }
+      /**
+       * <pre>
+       * boolList、boolArray
+       * </pre>
+       *
+       * <code>repeated bool values = 1;</code>
+       * @param index The index of the element to return.
+       * @return The values at the given index.
+       */
+      public boolean getValues(int index) {
+        return values_.getBoolean(index);
+      }
+      /**
+       * <pre>
+       * boolList、boolArray
+       * </pre>
+       *
+       * <code>repeated bool values = 1;</code>
+       * @param index The index to set the value at.
+       * @param value The values to set.
+       * @return This builder for chaining.
+       */
+      public Builder setValues(
+          int index, boolean value) {
+        ensureValuesIsMutable();
+        values_.setBoolean(index, value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * boolList、boolArray
+       * </pre>
+       *
+       * <code>repeated bool values = 1;</code>
+       * @param value The values to add.
+       * @return This builder for chaining.
+       */
+      public Builder addValues(boolean value) {
+        ensureValuesIsMutable();
+        values_.addBoolean(value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * boolList、boolArray
+       * </pre>
+       *
+       * <code>repeated bool values = 1;</code>
+       * @param values The values to add.
+       * @return This builder for chaining.
+       */
+      public Builder addAllValues(
+          java.lang.Iterable<? extends java.lang.Boolean> values) {
+        ensureValuesIsMutable();
+        com.google.protobuf.AbstractMessageLite.Builder.addAll(
+            values, values_);
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * boolList、boolArray
+       * </pre>
+       *
+       * <code>repeated bool values = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearValues() {
+        values_ = emptyBooleanList();
+        bitField0_ = (bitField0_ & ~0x00000001);
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:com.iohao.message.BoolValueList)
+    }
+
+    // @@protoc_insertion_point(class_scope:com.iohao.message.BoolValueList)
+    private static final com.iohao.message.Proto.BoolValueList DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.iohao.message.Proto.BoolValueList();
+    }
+
+    public static com.iohao.message.Proto.BoolValueList getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<BoolValueList>
+        PARSER = new com.google.protobuf.AbstractParser<BoolValueList>() {
+      @java.lang.Override
+      public BoolValueList parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new BoolValueList(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<BoolValueList> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<BoolValueList> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.iohao.message.Proto.BoolValueList getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -3469,25 +5984,45 @@ public final class Proto {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_com_iohao_message_ExternalMessage_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_com_iohao_message_IntPb_descriptor;
+    internal_static_com_iohao_message_IntValue_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_com_iohao_message_IntPb_fieldAccessorTable;
+      internal_static_com_iohao_message_IntValue_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_com_iohao_message_IntListPb_descriptor;
+    internal_static_com_iohao_message_IntValueList_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_com_iohao_message_IntListPb_fieldAccessorTable;
+      internal_static_com_iohao_message_IntValueList_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_com_iohao_message_LongPb_descriptor;
+    internal_static_com_iohao_message_LongValue_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_com_iohao_message_LongPb_fieldAccessorTable;
+      internal_static_com_iohao_message_LongValue_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_com_iohao_message_LongListPb_descriptor;
+    internal_static_com_iohao_message_LongValueList_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_com_iohao_message_LongListPb_fieldAccessorTable;
+      internal_static_com_iohao_message_LongValueList_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_com_iohao_message_StringValue_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_com_iohao_message_StringValue_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_com_iohao_message_StringValueList_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_com_iohao_message_StringValueList_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_com_iohao_message_BoolValue_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_com_iohao_message_BoolValue_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_com_iohao_message_BoolValueList_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_com_iohao_message_BoolValueList_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -3501,10 +6036,13 @@ public final class Proto {
       "\204\001\n\017ExternalMessage\022\017\n\007cmdCode\030\001 \001(\005\022\026\n\016" +
       "protocolSwitch\030\002 \001(\005\022\020\n\010cmdMerge\030\003 \001(\005\022\026" +
       "\n\016responseStatus\030\004 \001(\021\022\020\n\010validMsg\030\005 \001(\t" +
-      "\022\014\n\004data\030\006 \001(\014\"\031\n\005IntPb\022\020\n\010intValue\030\001 \001(" +
-      "\021\"\036\n\tIntListPb\022\021\n\tintValues\030\001 \003(\021\"\033\n\006Lon" +
-      "gPb\022\021\n\tlongValue\030\001 \001(\022\" \n\nLongListPb\022\022\n\n" +
-      "longValues\030\001 \003(\022B\007B\005Protob\006proto3"
+      "\022\014\n\004data\030\006 \001(\014\"\031\n\010IntValue\022\r\n\005value\030\001 \001(" +
+      "\021\"\036\n\014IntValueList\022\016\n\006values\030\001 \003(\021\"\032\n\tLon" +
+      "gValue\022\r\n\005value\030\001 \001(\022\"\037\n\rLongValueList\022\016" +
+      "\n\006values\030\001 \003(\022\"\034\n\013StringValue\022\r\n\005value\030\001" +
+      " \001(\t\"!\n\017StringValueList\022\016\n\006values\030\001 \003(\t\"" +
+      "\032\n\tBoolValue\022\r\n\005value\030\001 \001(\010\"\037\n\rBoolValue" +
+      "List\022\016\n\006values\030\001 \003(\010B\007B\005Protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -3516,30 +6054,54 @@ public final class Proto {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_com_iohao_message_ExternalMessage_descriptor,
         new java.lang.String[] { "CmdCode", "ProtocolSwitch", "CmdMerge", "ResponseStatus", "ValidMsg", "Data", });
-    internal_static_com_iohao_message_IntPb_descriptor =
+    internal_static_com_iohao_message_IntValue_descriptor =
       getDescriptor().getMessageTypes().get(1);
-    internal_static_com_iohao_message_IntPb_fieldAccessorTable = new
+    internal_static_com_iohao_message_IntValue_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_com_iohao_message_IntPb_descriptor,
-        new java.lang.String[] { "IntValue", });
-    internal_static_com_iohao_message_IntListPb_descriptor =
+        internal_static_com_iohao_message_IntValue_descriptor,
+        new java.lang.String[] { "Value", });
+    internal_static_com_iohao_message_IntValueList_descriptor =
       getDescriptor().getMessageTypes().get(2);
-    internal_static_com_iohao_message_IntListPb_fieldAccessorTable = new
+    internal_static_com_iohao_message_IntValueList_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_com_iohao_message_IntListPb_descriptor,
-        new java.lang.String[] { "IntValues", });
-    internal_static_com_iohao_message_LongPb_descriptor =
+        internal_static_com_iohao_message_IntValueList_descriptor,
+        new java.lang.String[] { "Values", });
+    internal_static_com_iohao_message_LongValue_descriptor =
       getDescriptor().getMessageTypes().get(3);
-    internal_static_com_iohao_message_LongPb_fieldAccessorTable = new
+    internal_static_com_iohao_message_LongValue_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_com_iohao_message_LongPb_descriptor,
-        new java.lang.String[] { "LongValue", });
-    internal_static_com_iohao_message_LongListPb_descriptor =
+        internal_static_com_iohao_message_LongValue_descriptor,
+        new java.lang.String[] { "Value", });
+    internal_static_com_iohao_message_LongValueList_descriptor =
       getDescriptor().getMessageTypes().get(4);
-    internal_static_com_iohao_message_LongListPb_fieldAccessorTable = new
+    internal_static_com_iohao_message_LongValueList_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_com_iohao_message_LongListPb_descriptor,
-        new java.lang.String[] { "LongValues", });
+        internal_static_com_iohao_message_LongValueList_descriptor,
+        new java.lang.String[] { "Values", });
+    internal_static_com_iohao_message_StringValue_descriptor =
+      getDescriptor().getMessageTypes().get(5);
+    internal_static_com_iohao_message_StringValue_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_com_iohao_message_StringValue_descriptor,
+        new java.lang.String[] { "Value", });
+    internal_static_com_iohao_message_StringValueList_descriptor =
+      getDescriptor().getMessageTypes().get(6);
+    internal_static_com_iohao_message_StringValueList_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_com_iohao_message_StringValueList_descriptor,
+        new java.lang.String[] { "Values", });
+    internal_static_com_iohao_message_BoolValue_descriptor =
+      getDescriptor().getMessageTypes().get(7);
+    internal_static_com_iohao_message_BoolValue_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_com_iohao_message_BoolValue_descriptor,
+        new java.lang.String[] { "Value", });
+    internal_static_com_iohao_message_BoolValueList_descriptor =
+      getDescriptor().getMessageTypes().get(8);
+    internal_static_com_iohao_message_BoolValueList_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_com_iohao_message_BoolValueList_descriptor,
+        new java.lang.String[] { "Values", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

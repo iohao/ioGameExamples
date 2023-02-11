@@ -109,37 +109,70 @@ public class WrapperWebsocketClient {
 
     private void initTheCommands() {
 
-        extractedString();
+//        extractedString();
 //        extractedLong();
 //        extractedInt();
+        extractedBoolean();
+
+    }
+
+    private void extractedBoolean() {
+        createTheCommandBoolValue(WrapperCmd.bool2bool);
+        createTheCommandBoolValue(WrapperCmd.boolValue2boolValue);
+
+        createTheCommandBoolValueList(WrapperCmd.boolList2boolList);
+        createTheCommandBoolValueList(WrapperCmd.boolValueList2boolValueList);
+    }
+
+    private TheCommand createTheCommandBoolValueList(int subCmd) {
+        List<Boolean> list = new ArrayList<>();
+        list.add(false);
+        list.add(true);
+
+        BoolValueList boolValueList = new BoolValueList();
+        boolValueList.values = list;
+
+        ExternalMessage externalMessage = extractedExternalMessage(subCmd, boolValueList);
+
+        TheCommand theCommand = new TheCommand();
+        theCommand.externalMessage = externalMessage;
+        theCommand.resultClass = BoolValueList.class;
+
+
+        theCommandMap.put(externalMessage.getCmdMerge(), theCommand);
+
+        return theCommand;
+    }
+
+    private TheCommand createTheCommandBoolValue(int subCmd) {
+        BoolValue boolValue = new BoolValue();
+        boolValue.value = false;
+
+        ExternalMessage externalMessage = extractedExternalMessage(subCmd, boolValue);
+
+        TheCommand theCommand = new TheCommand();
+        theCommand.externalMessage = externalMessage;
+        theCommand.resultClass = BoolValue.class;
+
+        theCommandMap.put(externalMessage.getCmdMerge(), theCommand);
+
+        return theCommand;
     }
 
     private void extractedLong() {
         createTheCommandLongValue(WrapperCmd.long2long);
         createTheCommandLongValue(WrapperCmd.longValue2longValue);
 
-        TheCommand theCommandLongValue = createTheCommandLongValue(WrapperCmd.long2longList);
-        theCommandLongValue.resultClass = LongValueList.class;
-
-        theCommandLongValue = createTheCommandLongValue(WrapperCmd.long2longValueList);
-        theCommandLongValue.resultClass = LongValueList.class;
-
-        createTheCommandLongValueList(WrapperCmd.longValueList2longList);
-        createTheCommandLongValueList(WrapperCmd.longList2longValueList);
+        createTheCommandLongValueList(WrapperCmd.longList2longList);
+        createTheCommandLongValueList(WrapperCmd.longValueList2longValueList);
     }
 
     private void extractedInt() {
         createTheCommandIntValue(WrapperCmd.int2int);
         createTheCommandIntValue(WrapperCmd.intValue2intValue);
 
-        TheCommand theCommandIntValue = createTheCommandIntValue(WrapperCmd.int2intList);
-        theCommandIntValue.resultClass = IntValueList.class;
-
-        theCommandIntValue = createTheCommandIntValue(WrapperCmd.int2intValueList);
-        theCommandIntValue.resultClass = IntValueList.class;
-
-        createTheCommandIntValueList(WrapperCmd.intValueList2intList);
-        createTheCommandIntValueList(WrapperCmd.intList2intValueList);
+        createTheCommandIntValueList(WrapperCmd.intList2intList);
+        createTheCommandIntValueList(WrapperCmd.intValueList2intValueList);
     }
 
     private TheCommand createTheCommandIntValueList(int subCmd) {
@@ -217,14 +250,8 @@ public class WrapperWebsocketClient {
         createTheCommandStringValue(WrapperCmd.string2string);
         createTheCommandStringValue(WrapperCmd.stringValue2stringValue);
 
-        TheCommand theCommandStringValue = createTheCommandStringValue(WrapperCmd.string2stringList);
-        theCommandStringValue.resultClass = StringValueList.class;
-
-        theCommandStringValue = createTheCommandStringValue(WrapperCmd.string2stringValueList);
-        theCommandStringValue.resultClass = StringValueList.class;
-
-        createTheCommandStringValueList(WrapperCmd.stringValueList2stringList);
-        createTheCommandStringValueList(WrapperCmd.stringList2stringValueList);
+        createTheCommandStringValueList(WrapperCmd.stringList2stringList);
+        createTheCommandStringValueList(WrapperCmd.stringValueList2stringValueList);
     }
 
     private TheCommand createTheCommandStringValue(int subCmd) {
