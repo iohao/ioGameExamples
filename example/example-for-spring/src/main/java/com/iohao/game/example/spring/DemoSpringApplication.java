@@ -22,7 +22,6 @@ import com.iohao.game.simple.SimpleHelper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScans;
 
 import java.util.List;
 
@@ -36,8 +35,6 @@ import java.util.List;
  * @date 2022-03-22
  */
 @SpringBootApplication
-@ComponentScans(value = {
-})
 public class DemoSpringApplication {
     public static void main(String[] args) {
         // 启动 spring boot
