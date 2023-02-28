@@ -28,6 +28,12 @@
 
         <dependency>
             <groupId>com.iohao.game</groupId>
+            <artifactId>common-core</artifactId>
+            <version>${ioGame.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.iohao.game</groupId>
             <artifactId>light-jprotobuf</artifactId>
             <version>${ioGame.version}</version>
         </dependency>
