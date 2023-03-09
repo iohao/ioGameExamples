@@ -45,8 +45,8 @@ import java.util.concurrent.atomic.LongAdder;
 @ActionController(TankCmd.cmd)
 public class TankAction {
     /** 游戏流程 */
-    static GameFlow gameFlow = GameFlow.me();
-    RoomService roomService = RoomService.me();
+    static GameFlow gameFlow = new GameFlow();
+    static RoomService roomService = new RoomService();
     /** 开发阶段，只用一个房间 */
     public static long tempRoomId = 10000;
     LongAdder shootAdder = new LongAdder();
