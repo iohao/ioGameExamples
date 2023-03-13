@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.iohao.game.example.broadcast.server;
+package com.iohao.game.example.broadcast;
 
 import com.iohao.game.action.skeleton.core.BarSkeleton;
 import com.iohao.game.action.skeleton.core.BarSkeletonBuilderParamConfig;
@@ -37,6 +37,7 @@ public class DemoBroadcastServer extends AbstractBrokerClientStartup {
     public BarSkeleton createBarSkeleton() {
         // 业务框架构建器 配置
         var config = new BarSkeletonBuilderParamConfig()
+                .scanActionPackage(BroadcastMessageAction.class)
                 // 开启广播日志，默认是关闭的
                 .setBroadcastLog(true);
 

@@ -20,7 +20,6 @@ import com.iohao.game.action.skeleton.core.CmdInfo;
 import com.iohao.game.action.skeleton.core.commumication.BroadcastContext;
 import com.iohao.game.bolt.broker.core.client.BrokerClientHelper;
 import com.iohao.game.common.kit.ExecutorKit;
-import com.iohao.game.example.broadcast.server.DemoBroadcastServer;
 import com.iohao.game.example.common.msg.DemoBroadcastMessage;
 import com.iohao.game.simple.SimpleHelper;
 
@@ -58,8 +57,7 @@ public class DemoBroadcastApplication {
     private static void broadcastScheduled() {
         LongAdder counter = new LongAdder();
 
-        ExecutorKit.newSingleScheduled("广播测试").scheduleAtFixedRate(() -> {
-
+        Runnable runnable = () -> {
             counter.increment();
 
             DemoBroadcastMessage broadcastMessage = new DemoBroadcastMessage();
@@ -73,7 +71,10 @@ public class DemoBroadcastApplication {
 
             // 广播
             broadcastContext.broadcast(cmdInfo, broadcastMessage);
+        };
 
-        }, 3, 5, TimeUnit.SECONDS);
+        ExecutorKit
+                .newSingleScheduled("广播测试")
+                .scheduleAtFixedRate(runnable, 3, 5, TimeUnit.SECONDS);
     }
 }

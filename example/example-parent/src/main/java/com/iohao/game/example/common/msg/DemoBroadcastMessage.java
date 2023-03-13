@@ -27,9 +27,9 @@ import lombok.experimental.FieldDefaults;
  * @author 渔民小镇
  * @date 2022-05-18
  */
+@ToString
 @ProtobufClass
 @FieldDefaults(level = AccessLevel.PUBLIC)
-@ToString
 public class DemoBroadcastMessage {
     String msg;
 }

@@ -28,4 +28,6 @@ public interface DemoBroadcastCmd {
 
     /** 广播一些消息 */
     int broadcastMsg = 0;
+
+    int helloBroadcast1 = 1;
 }
