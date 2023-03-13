@@ -4,36 +4,43 @@
   ioGame
 </h2>
 <p align="center">
-  <strong>国内首个基于蚂蚁金服 SOFABolt 的 java 网络游戏服务器框架；无锁异步化、事件驱动的架构设计</strong>
+  <strong>无锁异步化、事件驱动的架构设计；轻量级，无需依赖任何第三方中间件或数据库就能支持集群、分布式</strong>
   <br>
-  <strong>通过 ioGame 可以很容易的搭建出一个集群无中心节点、有状态多进程的分步式游戏服务器</strong>
+  <strong>通过 ioGame 可以很容易的搭建出一个集群无中心节点、集群自动化、多进程的分步式游戏服务器</strong>
   <br>
-  <strong>无中间件依赖、代码即文档、JSR380、断言 + 异常机制 = 更少的维护成本、开发成本</strong>
+  <strong>包体小、启动快、内存占用少、更加的节约、无需配置文件、提供了优雅的路由访问权限控制</strong>
   <br>
-  <strong>同样的一套业务代码无需变更，可以支持多种协议：protobuf、json，并且可扩展</strong>
+  <strong>让开发者用一套业务代码，无需任何改动，同时支持多种通信协议：WebSocket、TCP</strong>
   <br>
-  <strong>同样一套业务代码无需变更，可以支持多种通信协议：websocket、socket</strong>
+  <strong>让开发者用一套业务代码，能轻松切换和扩展不同的通信协议：Protobuf、JSON</strong>
   <br>
-  <strong>轻量级、启动快、更节约、简单、开箱即用、无配置文件、超高性能</strong>
+  <strong>近原生的性能；业务框架在单线程中平均每秒可以执行 1152 万次业务逻辑</strong>
   <br>
-  <strong>近原生的快、业务框架平均每秒可以执行 1152 万次业务逻辑</strong>
+  <strong>代码即联调文档、JSR380验证、断言 + 异常机制 = 更少的维护成本</strong>
   <br>
-  <strong>在业务开发中自带神级特性：业务代码访问定位与跳转</strong>
+  <strong>在业务开发中，提供了业务逻辑的执行信息、代码定位与跳转等</strong>
   <br>
-  <strong>架构部署多样性：即可相互独立，又可相互融合</strong>
+  <strong>架构部署灵活性与多样性：既可相互独立，又可相互融合</strong>
   <br>
-  <strong>各个逻辑服之间可以相互的进行跨进程通信</strong>
+  <strong>可同时与同类型的多个游戏逻辑服通信并得到数据</strong>
   <br>
-  <strong>可同时与同类型多个游戏逻辑服通信</strong>
+  <strong>逻辑服之间可相互跨进程、跨机器进行通信</strong>
   <br>
-  <strong>支持玩家动态绑定逻辑服节点</strong>
+  <strong>支持玩家对游戏逻辑服进行动态绑定</strong>
   <br>
-  <strong>对webMVC开发者友好</strong>
+  <strong>能与任何其他框架做融合共存</strong>
+  <br>
+  <strong>对 webMVC 开发者友好</strong>
   <br>
   <strong>无 spring 强依赖</strong>
+  <br>
+  <strong>零学习成本</strong>
 </p>
 
 
+<p align="center">
+	<a href="https://www.yuque.com/iohao/game">https://www.yuque.com/iohao/game</a>
+</p>
 <p align="center">
 	<a target="_blank" href="https://www.oracle.com/java/technologies/downloads/#java17">
 		<img src="https://img.shields.io/badge/JDK-17-green.svg" alt="JDK 17" />
@@ -49,6 +56,8 @@
 	<a target="_blank" href='https://github.com/iohao/iogame'>
 		<img src="https://img.shields.io/github/stars/iohao/iogame.svg?logo=github" alt="github star"/>
 	</a>
+  <br />
+  <a href="https://www.murphysec.com/dr/O8oMcWWWVoU9hV4M9z" alt="OSCS Status"><img src="https://www.oscs1024.com/platform/badge/iohao/iogame.git.svg?size=small"/></a>
 </p>
 <hr />
 
