@@ -83,7 +83,7 @@ public class DemoMatchAction {
     @ActionMethod(DemoCmdForEndPointMatch.matching)
     public MatchResponse matching(FlowContext flowContext) {
         // 模块通讯上下文
-        InvokeModuleContext invokeModuleContext = BrokerClientHelper.me().getInvokeModuleContext();
+        InvokeModuleContext invokeModuleContext = BrokerClientHelper.getInvokeModuleContext();
         // 路由：这个路由是将要访问逻辑服的路由（表示你将要去的地方）
         CmdInfo cmdInfo = CmdInfo.getCmdInfo(DemoCmdForEndPointRoom.cmd, DemoCmdForEndPointRoom.countRoom);
         // 根据路由信息来请求其他【同类型】的多个子服务器（其他逻辑服）数据
@@ -112,7 +112,7 @@ public class DemoMatchAction {
                 .setBinding(true);
 
         // 发送消息到网关
-        ProcessorContext processorContext = BrokerClientHelper.me().getProcessorContext();
+        ProcessorContext processorContext = BrokerClientHelper.getProcessorContext();
         processorContext.invokeOneway(endPointLogicServerMessage);
 
         // 将匹配结果发送给用户

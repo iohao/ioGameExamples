@@ -93,7 +93,7 @@ public class OtherSchoolAction {
 
         CmdInfo cmdInfo = CmdInfo.getCmdInfo(OtherSchoolCmdModule.cmd, OtherSchoolCmdModule.longValueWithBroadcastData);
 
-        BroadcastContext broadcastContext = BrokerClientHelper.me().getBroadcastContext();
+        BroadcastContext broadcastContext = BrokerClientHelper.getBroadcastContext();
         broadcastContext.broadcast(cmdInfo, schoolPb);
 
         UserInfo userInfo = new UserInfo();

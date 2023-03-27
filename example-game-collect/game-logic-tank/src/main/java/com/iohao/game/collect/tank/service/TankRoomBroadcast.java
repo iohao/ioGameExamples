@@ -59,7 +59,7 @@ public class TankRoomBroadcast {
 
             CmdInfo cmdInfo = CmdInfo.getCmdInfo(TankCmd.cmd, TankCmd.testBroadcasts);
 
-            BroadcastContext broadcastContext = BrokerClientHelper.me().getBroadcastContext();
+            BroadcastContext broadcastContext = BrokerClientHelper.getBroadcastContext();
 
             broadcastContext.broadcast(cmdInfo, broadcastMessage);
 

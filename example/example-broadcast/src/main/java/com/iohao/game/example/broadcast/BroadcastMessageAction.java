@@ -38,7 +38,7 @@ public class BroadcastMessageAction {
         CmdInfo cmdInfo = CmdInfo.getCmdInfo(DemoBroadcastCmd.cmd, DemoBroadcastCmd.broadcastMsg);
 
         // 广播上下文
-        BroadcastContext broadcastContext = BrokerClientHelper.me().getBroadcastContext();
+        BroadcastContext broadcastContext = BrokerClientHelper.getBroadcastContext();
 
         /*
          * 将方法声明为 void，使用推送（广播）的方式将消息给到请求端。

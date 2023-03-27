@@ -50,7 +50,7 @@ public class DemoFightAction {
         // 路由：这个路由是将要访问逻辑服的路由（表示你将要去的地方）
         CmdInfo todayWeatherCmd = CmdInfo.getCmdInfo(DemoCmdForWeather.cmd, DemoCmdForWeather.todayWeather);
         // 游戏逻辑服通讯上下文
-        InvokeModuleContext invokeModuleContext = BrokerClientHelper.me().getInvokeModuleContext();
+        InvokeModuleContext invokeModuleContext = BrokerClientHelper.getInvokeModuleContext();
         // 根据路由信息来请求其他子服务器（其他逻辑服）的数据
         DemoWeatherMsg demoWeatherMsg = invokeModuleContext.invokeModuleMessageData(todayWeatherCmd, DemoWeatherMsg.class);
 
@@ -84,7 +84,7 @@ public class DemoFightAction {
         matchMsg.description = "hello invokeModuleVoidMessage";
 
         CmdInfo createRoomCmd = CmdInfo.getCmdInfo(DemoCmdForWeather.cmd, DemoCmdForWeather.createRoom);
-        InvokeModuleContext invokeModuleContext = BrokerClientHelper.me().getInvokeModuleContext();
+        InvokeModuleContext invokeModuleContext = BrokerClientHelper.getInvokeModuleContext();
         // 路由、业务数据
         invokeModuleContext.invokeModuleVoidMessage(createRoomCmd, matchMsg);
     }

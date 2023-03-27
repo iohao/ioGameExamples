@@ -67,7 +67,7 @@ public class DemoBroadcastApplication {
             CmdInfo cmdInfo = CmdInfo.getCmdInfo(DemoBroadcastCmd.cmd, DemoBroadcastCmd.broadcastMsg);
 
             // 广播上下文
-            BroadcastContext broadcastContext = BrokerClientHelper.me().getBroadcastContext();
+            BroadcastContext broadcastContext = BrokerClientHelper.getBroadcastContext();
 
             // 广播
             broadcastContext.broadcast(cmdInfo, broadcastMessage);

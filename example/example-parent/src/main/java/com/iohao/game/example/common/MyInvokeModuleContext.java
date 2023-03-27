@@ -47,7 +47,7 @@ public class MyInvokeModuleContext implements InvokeModuleContext {
     public void invokeModuleVoidMessage(RequestMessage requestMessage) {
         employ(requestMessage);
 
-        BrokerClientHelper.me()
+        BrokerClientHelper
                 .getInvokeModuleContext()
                 .invokeModuleVoidMessage(requestMessage);
     }
@@ -56,7 +56,7 @@ public class MyInvokeModuleContext implements InvokeModuleContext {
     public ResponseMessage invokeModuleMessage(RequestMessage requestMessage) {
         employ(requestMessage);
 
-        return BrokerClientHelper.me()
+        return BrokerClientHelper
                 .getInvokeModuleContext()
                 .invokeModuleMessage(requestMessage);
     }
@@ -65,7 +65,7 @@ public class MyInvokeModuleContext implements InvokeModuleContext {
     public ResponseCollectMessage invokeModuleCollectMessage(RequestMessage requestMessage) {
         employ(requestMessage);
 
-        return BrokerClientHelper.me()
+        return BrokerClientHelper
                 .getInvokeModuleContext()
                 .invokeModuleCollectMessage(requestMessage);
     }

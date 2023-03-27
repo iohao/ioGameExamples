@@ -162,7 +162,7 @@ public class SchoolAction {
          */
 
         // 广播上下文
-        BroadcastContext broadcastContext = BrokerClientHelper.me().getBroadcastContext();
+        BroadcastContext broadcastContext = BrokerClientHelper.getBroadcastContext();
         // 业务数据
         SpringBroadcastMessagePb broadcastMessage = new SpringBroadcastMessagePb();
 
@@ -200,7 +200,7 @@ public class SchoolAction {
         // 通信路由
         CmdInfo cmdInfo = CmdInfo.getCmdInfo(ClassesCmdModule.cmd, ClassesCmdModule.getClasses);
         // 内部模块通讯上下文，内部模块指的是游戏逻辑服
-        InvokeModuleContext invokeModuleContext = BrokerClientHelper.me().getInvokeModuleContext();
+        InvokeModuleContext invokeModuleContext = BrokerClientHelper.getInvokeModuleContext();
 
         /*
          * 第一种使用方式
@@ -242,7 +242,7 @@ public class SchoolAction {
         // 通信路由
         CmdInfo cmdInfo = CmdInfo.getCmdInfo(ClassesCmdModule.cmd, ClassesCmdModule.classesHereVoid);
         // 内部模块通讯上下文，内部模块指的是游戏逻辑服
-        InvokeModuleContext invokeModuleContext = BrokerClientHelper.me().getInvokeModuleContext();
+        InvokeModuleContext invokeModuleContext = BrokerClientHelper.getInvokeModuleContext();
 
         // 业务参数
         ClassesPb classesPb = new ClassesPb();
@@ -268,7 +268,7 @@ public class SchoolAction {
 
         // 路由：这个路由是将要访问逻辑服的路由（表示你将要去的地方）
         CmdInfo cmdInfo = CmdInfo.getCmdInfo(RoomCmdModule.cmd, RoomCmdModule.countRoom);
-        InvokeModuleContext invokeModuleContext = BrokerClientHelper.me().getInvokeModuleContext();
+        InvokeModuleContext invokeModuleContext = BrokerClientHelper.getInvokeModuleContext();
         // 根据路由信息来请求其他【同类型】的多个子服务器（其他逻辑服）数据
         ResponseCollectMessage responseCollectMessage = invokeModuleContext.invokeModuleCollectMessage(cmdInfo);
         // 每个逻辑服返回的数据集合

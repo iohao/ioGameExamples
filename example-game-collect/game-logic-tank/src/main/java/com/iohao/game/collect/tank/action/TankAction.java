@@ -99,7 +99,7 @@ public class TankAction {
         shootAdder.increment();
 
 //        // 默认的广播上下文
-//        BroadcastContext broadcastContext = BrokerClientHelper.me().getBroadcastContext();
+//        BroadcastContext broadcastContext = BrokerClientHelper.getBroadcastContext();
 //
 //        CmdInfo cmdInfo = CmdInfo.getCmdInfo(TankCmd.cmd, TankCmd.testShooting);
 //
@@ -122,7 +122,7 @@ public class TankAction {
         shootAdder.increment();
 
 //        // 严格顺序的 广播上下文
-//        BroadcastOrderContext broadcastContext = BrokerClientHelper.me().getBroadcastOrderContext();
+//        BroadcastOrderContext broadcastContext = BrokerClientHelper.getBroadcastOrderContext();
 //
 //        CmdInfo cmdInfo = CmdInfo.getCmdInfo(TankCmd.cmd, TankCmd.testShootingOrder);
 //
