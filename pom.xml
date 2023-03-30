@@ -66,6 +66,12 @@
         <module>example/example-jsr-jakarta</module>
         <module>example/example-jsr-javax</module>
         <module>example/example-codec-json</module>
+        <module>example-multiple/the-weather-game-logic</module>
+        <module>example-multiple/the-common-data</module>
+        <module>example-multiple/the-common-external</module>
+        <module>example-multiple/the-common-broker</module>
+        <module>example-multiple/the-one-application</module>
+        <module>example-multiple/the-client</module>
 
 
     </modules>
