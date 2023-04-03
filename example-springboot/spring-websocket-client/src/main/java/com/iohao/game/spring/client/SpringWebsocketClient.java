@@ -50,8 +50,8 @@ public class SpringWebsocketClient {
 
         TimeUnit.MILLISECONDS.sleep(1);
 
-//        // 请求构建
-//        initClientCommands();
+        // 请求构建
+        initClientCommands();
 //
 //        // 逻辑服间的相互通信
 //        communicationClientCommands();
