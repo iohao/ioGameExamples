@@ -14,18 +14,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.iohao.game.example.multiple.common.cmd.internal;
+package com.iohao.game.example.multiple.common.data;
 
-import com.iohao.game.example.multiple.common.cmd.CmdModule;
+import com.baidu.bjf.remoting.protobuf.annotation.ProtobufClass;
+import lombok.AccessLevel;
+import lombok.ToString;
+import lombok.experimental.FieldDefaults;
 
 /**
  * @author 渔民小镇
- * @date 2023-03-30
+ * @date 2023-04-10
  */
-public interface WeatherCmd {
-    int cmd = CmdModule.weather;
-
-    int hello = 1;
-
-    int login = 2;
+@ToString
+@ProtobufClass
+@FieldDefaults(level = AccessLevel.PUBLIC)
+public class TheUserInfo {
+    long id;
+    String name;
 }

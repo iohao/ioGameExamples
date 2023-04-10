@@ -20,6 +20,8 @@ import com.iohao.game.bolt.broker.client.external.bootstrap.message.ExternalMess
 import com.iohao.game.command.ClientCommandKit;
 import com.iohao.game.command.WebsocketClientKit;
 import com.iohao.game.example.multiple.common.cmd.internal.WeatherCmd;
+import com.iohao.game.example.multiple.common.data.TheLogin;
+import com.iohao.game.example.multiple.common.data.TheUserInfo;
 import com.iohao.game.example.multiple.common.data.Weather;
 import lombok.extern.slf4j.Slf4j;
 
@@ -31,17 +33,31 @@ import lombok.extern.slf4j.Slf4j;
 public class MyOneWebsocketClient {
 
     public static void main(String[] args) throws Exception {
+
+        TheLogin login = new TheLogin();
+        login.jwt = "abc";
+
+        ExternalMessage externalMessage = ClientCommandKit.createExternalMessage(
+                // 路由, 对应服务端逻辑服的业务类路由地址
+                WeatherCmd.cmd,
+                WeatherCmd.login,
+                login
+        );
+
+        ClientCommandKit.createClientCommand(externalMessage, TheUserInfo.class, 1500);
+
+
         Weather weather = new Weather();
         weather.name = "阿德拉";
 
-        ExternalMessage externalMessage = ClientCommandKit.createExternalMessage(
+        externalMessage = ClientCommandKit.createExternalMessage(
                 // 路由, 对应服务端逻辑服的业务类路由地址
                 WeatherCmd.cmd,
                 WeatherCmd.hello,
                 weather
         );
 
-        ClientCommandKit.createClientCommand(externalMessage, Weather.class, 1500);
+        ClientCommandKit.createClientCommand(externalMessage, Weather.class);
 
         // 启动客户端
         WebsocketClientKit.runClient();
