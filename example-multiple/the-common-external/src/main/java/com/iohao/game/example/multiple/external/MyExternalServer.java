@@ -19,8 +19,10 @@ package com.iohao.game.example.multiple.external;
 import com.iohao.game.bolt.broker.client.external.ExternalServer;
 import com.iohao.game.bolt.broker.client.external.ExternalServerBuilder;
 import com.iohao.game.bolt.broker.client.external.bootstrap.ExternalJoinEnum;
+import com.iohao.game.bolt.broker.client.external.config.ExternalGlobalConfig;
 import com.iohao.game.bolt.broker.core.client.BrokerAddress;
 import com.iohao.game.bolt.broker.core.common.IoGameGlobalConfig;
+import com.iohao.game.example.multiple.common.cmd.internal.WeatherCmd;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -36,6 +38,7 @@ import lombok.experimental.FieldDefaults;
 public class MyExternalServer {
 
     public ExternalServer createExternalServer(int externalPort) {
+        extractedAccess();
 
         // 游戏对外服 - 构建器
         ExternalServerBuilder builder = ExternalServer.newBuilder(externalPort)
@@ -46,6 +49,14 @@ public class MyExternalServer {
 
         // 构建游戏对外服
         return builder.build();
+    }
+
+    private static void extractedAccess() {
+        var accessAuthenticationHook = ExternalGlobalConfig.accessAuthenticationHook;
+        // 表示登录才能访问业务方法
+        accessAuthenticationHook.setVerifyIdentity(true);
+        // 添加不需要登录（身份验证）也能访问的业务方法 (action)
+        accessAuthenticationHook.addIgnoreAuthenticationCmd(WeatherCmd.cmd, WeatherCmd.login);
     }
 
     public static void main(String[] args) {
