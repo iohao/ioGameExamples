@@ -30,7 +30,9 @@ import org.java_websocket.handshake.ServerHandshake;
 
 import java.net.URI;
 import java.nio.ByteBuffer;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 import java.util.function.Consumer;
 
 /**
@@ -56,11 +58,13 @@ public class WebsocketNativeProtoClientKit {
                 long maxValue = Long.MAX_VALUE - 1;
                 log.info("Long.MAX_VALUE-1 : {}", maxValue);
 
+//                extractedEnum();
+
+                extractedList();
 
 //                extractedLoginVerify(maxValue);
-
 //                defaultValuePb();
-                BoolValue();
+//                BoolValue();
 //                extractedLongValue();
 
 //                IntValue();
@@ -96,6 +100,57 @@ public class WebsocketNativeProtoClientKit {
                 if (Objects.nonNull(unaryOperator)) {
                     unaryOperator.accept(data.toByteArray());
                 }
+            }
+
+            private void extractedList() {
+                Proto.ByteValueList.Builder builder = Proto.ByteValueList.newBuilder();
+
+                for (int i = 0; i < 2; i++) {
+                    ByteString userInfo = BizProto.UserInfo.newBuilder()
+                            .setId(i)
+                            .setName("name:" + i)
+                            .build()
+                            .toByteString();
+
+                    builder.addValues(userInfo);
+                }
+
+
+                ByteString value = builder.build().toByteString();
+
+                sendMsg(3, 9, value, data -> {
+                    try {
+                        Proto.ByteValueList byteValueList = Proto.ByteValueList.parseFrom(data);
+                        byteValueList.getValuesList().stream().map(byteString -> {
+                            try {
+                                return BizProto.Animal.parseFrom(byteString);
+                            } catch (InvalidProtocolBufferException e) {
+                                throw new RuntimeException(e);
+                            }
+                        }).forEach(animal -> log.info("animal : {}-{}", animal.getId(), animal.getAnimalType()));
+
+                    } catch (InvalidProtocolBufferException e) {
+                        throw new RuntimeException(e);
+                    }
+                });
+            }
+
+            private void extractedEnum() {
+                ByteString value = BizProto.Animal.newBuilder()
+                        .setId(1)
+                        .setAnimalType(BizProto.AnimalType.BIRD)
+                        .build().toByteString();
+
+                sendMsg(3, 8, value, data -> {
+                    try {
+                        BizProto.Animal animal = BizProto.Animal.parseFrom(data);
+                        log.info("animal : {}", animal);
+                        BizProto.AnimalType animalType = animal.getAnimalType();
+                        log.info("animalType : {}", animalType);
+                    } catch (InvalidProtocolBufferException e) {
+                        throw new RuntimeException(e);
+                    }
+                });
             }
 
             private void extractedLongValue() {

@@ -31,4 +31,5 @@ public interface DemoCmdForFight {
     /** 示例 fight 方法 */
     int fight = 0;
     int testMatch = 1;
+    int async = 2;
 }

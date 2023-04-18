@@ -2,26 +2,32 @@ syntax = "proto3";
 package com.iohao.message;
 option java_outer_classname = "BizProto";
 
-//// 登录信息
-//message LoginVerify {
-//  // age
-//  int32 age = 1;
-//  // jwt
-//  string jwt = 2;
-//  // 登录业务码
-//  int32 loginBizCode = 3;
-//
-//}
+// 动物
+message Animal {
+  // id
+  int32 id = 1;
+  // 动物类型 - 枚举测试
+  AnimalType animalType = 2;
+}
 
-//// 用户信息
-//message UserInfo {
-//  // id
-//  sint64 id = 1;
-//  // 用户名
-//  string name = 2;
-//  sint32 tempInt = 3;
-//
-//}
+// 动物类型
+enum AnimalType {
+  // 鸟
+  BIRD = 0;
+  // 猫
+  CAT = 1;
+}
+
+// 班级信息
+message ClassesPb {
+  // 班级学生数量
+  int32 studentNum = 1;
+}
+
+// 逻辑请求 PB
+message LogicRequestPb {
+  string name = 1;
+}
 
 // 登录信息
 message LoginVerify {
@@ -31,9 +37,48 @@ message LoginVerify {
   string jwt = 2;
   // 登录业务码
   int32 loginBizCode = 3;
-  // Long
+  // Long value
   int64 time = 4;
+  // long value
+  int64 time2 = 5;
+}
 
+//
+message OtherVerify {
+  // jwt
+  string jwt = 1;
+}
+
+//
+message RoomNumPb {
+  // 房间的数量
+  int32 roomCount = 1;
+}
+
+// 学校等级信息
+message SchoolLevelPb {
+  // 学校等级 level
+  int32 level = 1;
+  // vip 等级
+  int32 vipLevel = 2;
+}
+
+// 学校信息
+message SchoolPb {
+  // 学校的 email
+  string email = 1;
+  // 学校最大教室容量
+  int32 classCapacity = 2;
+  // 学校老师数量
+  int32 teacherNum = 3;
+  // 学校名
+  string name = 4;
+}
+
+// 广播消息PB
+message SpringBroadcastMessagePb {
+  // 具体的广播消息内容
+  string msg = 1;
 }
 
 // 用户信息
@@ -43,9 +88,10 @@ message UserInfo {
   // 用户名
   string name = 2;
   int32 tempInt = 3;
-  // userInfo Long
+  // Long value
   int64 time = 4;
-
+  // long value
+  int64 time2 = 5;
 }
 
 message TempUserInfo {

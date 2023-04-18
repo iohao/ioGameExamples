@@ -43,11 +43,12 @@ public class DemoWebsocketClientForInteraction {
 
         ExternalMessage externalMessage = ClientCommandKit.createExternalMessage(
                 DemoCmdForFight.cmd,
-                DemoCmdForFight.fight
+//                DemoCmdForFight.fight
+                DemoCmdForFight.async
         );
 
         byte[] bytes = DataCodecKit.encode(externalMessage);
-        for (int i = 0; i < 50; i++) {
+        for (int i = 0; i < 2; i++) {
             webSocketClient.send(bytes);
         }
 

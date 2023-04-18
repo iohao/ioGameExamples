@@ -25,6 +25,9 @@ import com.iohao.game.example.interaction.msg.DemoFightMsg;
 import com.iohao.game.example.interaction.msg.DemoWeatherMsg;
 import com.iohao.game.example.interaction.msg.MatchMsg;
 import com.iohao.game.example.interaction.weather.action.DemoCmdForWeather;
+import lombok.extern.slf4j.Slf4j;
+
+import java.util.concurrent.CompletableFuture;
 
 /**
  * 战斗 action
@@ -32,6 +35,7 @@ import com.iohao.game.example.interaction.weather.action.DemoCmdForWeather;
  * @author 渔民小镇
  * @date 2022-03-24
  */
+@Slf4j
 @ActionController(DemoCmdForFight.cmd)
 public class DemoFightAction {
 
@@ -87,5 +91,35 @@ public class DemoFightAction {
         InvokeModuleContext invokeModuleContext = BrokerClientHelper.getInvokeModuleContext();
         // 路由、业务数据
         invokeModuleContext.invokeModuleVoidMessage(createRoomCmd, matchMsg);
+    }
+
+    @ActionMethod(DemoCmdForFight.async)
+    public DemoFightMsg async() {
+
+        CompletableFuture.supplyAsync(() -> {
+            // 路由：这个路由是将要访问逻辑服的路由（表示你将要去的地方）
+            CmdInfo todayWeatherCmd = CmdInfo.getCmdInfo(DemoCmdForWeather.cmd, DemoCmdForWeather.todayWeather);
+            // 游戏逻辑服通讯上下文
+            InvokeModuleContext invokeModuleContext = BrokerClientHelper.getInvokeModuleContext();
+            // 根据路由信息来请求其他子服务器（其他逻辑服）的数据
+            return invokeModuleContext.invokeModuleMessageData(todayWeatherCmd, DemoWeatherMsg.class);
+        }).thenAccept(demoWeatherMsg -> {
+            // 回调写法
+            log.info("demoWeatherMsg : {}", demoWeatherMsg);
+        });
+
+        DemoFightMsg demoFightMsg = new DemoFightMsg();
+        // 把天气预报逻辑服的数据 增强给自己
+        demoFightMsg.attack = 1;
+
+        // 加一点点描述，以 30 为描述的临界点
+        int criticalPoint = 30;
+        if (demoFightMsg.attack > criticalPoint) {
+            demoFightMsg.description = "英雄攻击得到了 极大的增强";
+        } else {
+            demoFightMsg.description = "英雄攻击得到了 小部分加成";
+        }
+
+        return demoFightMsg;
     }
 }

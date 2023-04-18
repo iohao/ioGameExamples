@@ -14,6 +14,1885 @@ public final class BizProto {
     registerAllExtensions(
         (com.google.protobuf.ExtensionRegistryLite) registry);
   }
+  /**
+   * <pre>
+   * 动物类型
+   * </pre>
+   *
+   * Protobuf enum {@code com.iohao.message.AnimalType}
+   */
+  public enum AnimalType
+      implements com.google.protobuf.ProtocolMessageEnum {
+    /**
+     * <pre>
+     * 鸟
+     * </pre>
+     *
+     * <code>BIRD = 0;</code>
+     */
+    BIRD(0),
+    /**
+     * <pre>
+     * 猫
+     * </pre>
+     *
+     * <code>CAT = 1;</code>
+     */
+    CAT(1),
+    UNRECOGNIZED(-1),
+    ;
+
+    /**
+     * <pre>
+     * 鸟
+     * </pre>
+     *
+     * <code>BIRD = 0;</code>
+     */
+    public static final int BIRD_VALUE = 0;
+    /**
+     * <pre>
+     * 猫
+     * </pre>
+     *
+     * <code>CAT = 1;</code>
+     */
+    public static final int CAT_VALUE = 1;
+
+
+    public final int getNumber() {
+      if (this == UNRECOGNIZED) {
+        throw new java.lang.IllegalArgumentException(
+            "Can't get the number of an unknown enum value.");
+      }
+      return value;
+    }
+
+    /**
+     * @param value The numeric wire value of the corresponding enum entry.
+     * @return The enum associated with the given numeric wire value.
+     * @deprecated Use {@link #forNumber(int)} instead.
+     */
+    @java.lang.Deprecated
+    public static AnimalType valueOf(int value) {
+      return forNumber(value);
+    }
+
+    /**
+     * @param value The numeric wire value of the corresponding enum entry.
+     * @return The enum associated with the given numeric wire value.
+     */
+    public static AnimalType forNumber(int value) {
+      switch (value) {
+        case 0: return BIRD;
+        case 1: return CAT;
+        default: return null;
+      }
+    }
+
+    public static com.google.protobuf.Internal.EnumLiteMap<AnimalType>
+        internalGetValueMap() {
+      return internalValueMap;
+    }
+    private static final com.google.protobuf.Internal.EnumLiteMap<
+        AnimalType> internalValueMap =
+          new com.google.protobuf.Internal.EnumLiteMap<AnimalType>() {
+            public AnimalType findValueByNumber(int number) {
+              return AnimalType.forNumber(number);
+            }
+          };
+
+    public final com.google.protobuf.Descriptors.EnumValueDescriptor
+        getValueDescriptor() {
+      if (this == UNRECOGNIZED) {
+        throw new java.lang.IllegalStateException(
+            "Can't get the descriptor of an unrecognized enum value.");
+      }
+      return getDescriptor().getValues().get(ordinal());
+    }
+    public final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptorForType() {
+      return getDescriptor();
+    }
+    public static final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptor() {
+      return com.iohao.message.BizProto.getDescriptor().getEnumTypes().get(0);
+    }
+
+    private static final AnimalType[] VALUES = values();
+
+    public static AnimalType valueOf(
+        com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+      if (desc.getType() != getDescriptor()) {
+        throw new java.lang.IllegalArgumentException(
+          "EnumValueDescriptor is not for this type.");
+      }
+      if (desc.getIndex() == -1) {
+        return UNRECOGNIZED;
+      }
+      return VALUES[desc.getIndex()];
+    }
+
+    private final int value;
+
+    private AnimalType(int value) {
+      this.value = value;
+    }
+
+    // @@protoc_insertion_point(enum_scope:com.iohao.message.AnimalType)
+  }
+
+  public interface AnimalOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:com.iohao.message.Animal)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <pre>
+     * id
+     * </pre>
+     *
+     * <code>int32 id = 1;</code>
+     * @return The id.
+     */
+    int getId();
+
+    /**
+     * <pre>
+     * 动物类型 - 枚举测试
+     * </pre>
+     *
+     * <code>.com.iohao.message.AnimalType animalType = 2;</code>
+     * @return The enum numeric value on the wire for animalType.
+     */
+    int getAnimalTypeValue();
+    /**
+     * <pre>
+     * 动物类型 - 枚举测试
+     * </pre>
+     *
+     * <code>.com.iohao.message.AnimalType animalType = 2;</code>
+     * @return The animalType.
+     */
+    com.iohao.message.BizProto.AnimalType getAnimalType();
+  }
+  /**
+   * <pre>
+   * 动物
+   * </pre>
+   *
+   * Protobuf type {@code com.iohao.message.Animal}
+   */
+  public static final class Animal extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:com.iohao.message.Animal)
+      AnimalOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use Animal.newBuilder() to construct.
+    private Animal(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private Animal() {
+      animalType_ = 0;
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new Animal();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private Animal(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 8: {
+
+              id_ = input.readInt32();
+              break;
+            }
+            case 16: {
+              int rawValue = input.readEnum();
+
+              animalType_ = rawValue;
+              break;
+            }
+            default: {
+              if (!parseUnknownField(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.iohao.message.BizProto.internal_static_com_iohao_message_Animal_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.iohao.message.BizProto.internal_static_com_iohao_message_Animal_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.iohao.message.BizProto.Animal.class, com.iohao.message.BizProto.Animal.Builder.class);
+    }
+
+    public static final int ID_FIELD_NUMBER = 1;
+    private int id_;
+    /**
+     * <pre>
+     * id
+     * </pre>
+     *
+     * <code>int32 id = 1;</code>
+     * @return The id.
+     */
+    @java.lang.Override
+    public int getId() {
+      return id_;
+    }
+
+    public static final int ANIMALTYPE_FIELD_NUMBER = 2;
+    private int animalType_;
+    /**
+     * <pre>
+     * 动物类型 - 枚举测试
+     * </pre>
+     *
+     * <code>.com.iohao.message.AnimalType animalType = 2;</code>
+     * @return The enum numeric value on the wire for animalType.
+     */
+    @java.lang.Override public int getAnimalTypeValue() {
+      return animalType_;
+    }
+    /**
+     * <pre>
+     * 动物类型 - 枚举测试
+     * </pre>
+     *
+     * <code>.com.iohao.message.AnimalType animalType = 2;</code>
+     * @return The animalType.
+     */
+    @java.lang.Override public com.iohao.message.BizProto.AnimalType getAnimalType() {
+      @SuppressWarnings("deprecation")
+      com.iohao.message.BizProto.AnimalType result = com.iohao.message.BizProto.AnimalType.valueOf(animalType_);
+      return result == null ? com.iohao.message.BizProto.AnimalType.UNRECOGNIZED : result;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (id_ != 0) {
+        output.writeInt32(1, id_);
+      }
+      if (animalType_ != com.iohao.message.BizProto.AnimalType.BIRD.getNumber()) {
+        output.writeEnum(2, animalType_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (id_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, id_);
+      }
+      if (animalType_ != com.iohao.message.BizProto.AnimalType.BIRD.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(2, animalType_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.iohao.message.BizProto.Animal)) {
+        return super.equals(obj);
+      }
+      com.iohao.message.BizProto.Animal other = (com.iohao.message.BizProto.Animal) obj;
+
+      if (getId()
+          != other.getId()) return false;
+      if (animalType_ != other.animalType_) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + ID_FIELD_NUMBER;
+      hash = (53 * hash) + getId();
+      hash = (37 * hash) + ANIMALTYPE_FIELD_NUMBER;
+      hash = (53 * hash) + animalType_;
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.iohao.message.BizProto.Animal parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.iohao.message.BizProto.Animal parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.iohao.message.BizProto.Animal parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.iohao.message.BizProto.Animal parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.iohao.message.BizProto.Animal parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.iohao.message.BizProto.Animal parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.iohao.message.BizProto.Animal parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.iohao.message.BizProto.Animal parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.iohao.message.BizProto.Animal parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.iohao.message.BizProto.Animal parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.iohao.message.BizProto.Animal parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.iohao.message.BizProto.Animal parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.iohao.message.BizProto.Animal prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * <pre>
+     * 动物
+     * </pre>
+     *
+     * Protobuf type {@code com.iohao.message.Animal}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:com.iohao.message.Animal)
+        com.iohao.message.BizProto.AnimalOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.iohao.message.BizProto.internal_static_com_iohao_message_Animal_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.iohao.message.BizProto.internal_static_com_iohao_message_Animal_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.iohao.message.BizProto.Animal.class, com.iohao.message.BizProto.Animal.Builder.class);
+      }
+
+      // Construct using com.iohao.message.BizProto.Animal.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        id_ = 0;
+
+        animalType_ = 0;
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.iohao.message.BizProto.internal_static_com_iohao_message_Animal_descriptor;
+      }
+
+      @java.lang.Override
+      public com.iohao.message.BizProto.Animal getDefaultInstanceForType() {
+        return com.iohao.message.BizProto.Animal.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.iohao.message.BizProto.Animal build() {
+        com.iohao.message.BizProto.Animal result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.iohao.message.BizProto.Animal buildPartial() {
+        com.iohao.message.BizProto.Animal result = new com.iohao.message.BizProto.Animal(this);
+        result.id_ = id_;
+        result.animalType_ = animalType_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.iohao.message.BizProto.Animal) {
+          return mergeFrom((com.iohao.message.BizProto.Animal)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.iohao.message.BizProto.Animal other) {
+        if (other == com.iohao.message.BizProto.Animal.getDefaultInstance()) return this;
+        if (other.getId() != 0) {
+          setId(other.getId());
+        }
+        if (other.animalType_ != 0) {
+          setAnimalTypeValue(other.getAnimalTypeValue());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.iohao.message.BizProto.Animal parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.iohao.message.BizProto.Animal) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private int id_ ;
+      /**
+       * <pre>
+       * id
+       * </pre>
+       *
+       * <code>int32 id = 1;</code>
+       * @return The id.
+       */
+      @java.lang.Override
+      public int getId() {
+        return id_;
+      }
+      /**
+       * <pre>
+       * id
+       * </pre>
+       *
+       * <code>int32 id = 1;</code>
+       * @param value The id to set.
+       * @return This builder for chaining.
+       */
+      public Builder setId(int value) {
+        
+        id_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * id
+       * </pre>
+       *
+       * <code>int32 id = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearId() {
+        
+        id_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int animalType_ = 0;
+      /**
+       * <pre>
+       * 动物类型 - 枚举测试
+       * </pre>
+       *
+       * <code>.com.iohao.message.AnimalType animalType = 2;</code>
+       * @return The enum numeric value on the wire for animalType.
+       */
+      @java.lang.Override public int getAnimalTypeValue() {
+        return animalType_;
+      }
+      /**
+       * <pre>
+       * 动物类型 - 枚举测试
+       * </pre>
+       *
+       * <code>.com.iohao.message.AnimalType animalType = 2;</code>
+       * @param value The enum numeric value on the wire for animalType to set.
+       * @return This builder for chaining.
+       */
+      public Builder setAnimalTypeValue(int value) {
+        
+        animalType_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 动物类型 - 枚举测试
+       * </pre>
+       *
+       * <code>.com.iohao.message.AnimalType animalType = 2;</code>
+       * @return The animalType.
+       */
+      @java.lang.Override
+      public com.iohao.message.BizProto.AnimalType getAnimalType() {
+        @SuppressWarnings("deprecation")
+        com.iohao.message.BizProto.AnimalType result = com.iohao.message.BizProto.AnimalType.valueOf(animalType_);
+        return result == null ? com.iohao.message.BizProto.AnimalType.UNRECOGNIZED : result;
+      }
+      /**
+       * <pre>
+       * 动物类型 - 枚举测试
+       * </pre>
+       *
+       * <code>.com.iohao.message.AnimalType animalType = 2;</code>
+       * @param value The animalType to set.
+       * @return This builder for chaining.
+       */
+      public Builder setAnimalType(com.iohao.message.BizProto.AnimalType value) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        
+        animalType_ = value.getNumber();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 动物类型 - 枚举测试
+       * </pre>
+       *
+       * <code>.com.iohao.message.AnimalType animalType = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearAnimalType() {
+        
+        animalType_ = 0;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:com.iohao.message.Animal)
+    }
+
+    // @@protoc_insertion_point(class_scope:com.iohao.message.Animal)
+    private static final com.iohao.message.BizProto.Animal DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.iohao.message.BizProto.Animal();
+    }
+
+    public static com.iohao.message.BizProto.Animal getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<Animal>
+        PARSER = new com.google.protobuf.AbstractParser<Animal>() {
+      @java.lang.Override
+      public Animal parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new Animal(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<Animal> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<Animal> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.iohao.message.BizProto.Animal getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface ClassesPbOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:com.iohao.message.ClassesPb)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <pre>
+     * 班级学生数量
+     * </pre>
+     *
+     * <code>int32 studentNum = 1;</code>
+     * @return The studentNum.
+     */
+    int getStudentNum();
+  }
+  /**
+   * <pre>
+   * 班级信息
+   * </pre>
+   *
+   * Protobuf type {@code com.iohao.message.ClassesPb}
+   */
+  public static final class ClassesPb extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:com.iohao.message.ClassesPb)
+      ClassesPbOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use ClassesPb.newBuilder() to construct.
+    private ClassesPb(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private ClassesPb() {
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new ClassesPb();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private ClassesPb(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 8: {
+
+              studentNum_ = input.readInt32();
+              break;
+            }
+            default: {
+              if (!parseUnknownField(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.iohao.message.BizProto.internal_static_com_iohao_message_ClassesPb_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.iohao.message.BizProto.internal_static_com_iohao_message_ClassesPb_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.iohao.message.BizProto.ClassesPb.class, com.iohao.message.BizProto.ClassesPb.Builder.class);
+    }
+
+    public static final int STUDENTNUM_FIELD_NUMBER = 1;
+    private int studentNum_;
+    /**
+     * <pre>
+     * 班级学生数量
+     * </pre>
+     *
+     * <code>int32 studentNum = 1;</code>
+     * @return The studentNum.
+     */
+    @java.lang.Override
+    public int getStudentNum() {
+      return studentNum_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (studentNum_ != 0) {
+        output.writeInt32(1, studentNum_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (studentNum_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, studentNum_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.iohao.message.BizProto.ClassesPb)) {
+        return super.equals(obj);
+      }
+      com.iohao.message.BizProto.ClassesPb other = (com.iohao.message.BizProto.ClassesPb) obj;
+
+      if (getStudentNum()
+          != other.getStudentNum()) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + STUDENTNUM_FIELD_NUMBER;
+      hash = (53 * hash) + getStudentNum();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.iohao.message.BizProto.ClassesPb parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.iohao.message.BizProto.ClassesPb parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.iohao.message.BizProto.ClassesPb parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.iohao.message.BizProto.ClassesPb parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.iohao.message.BizProto.ClassesPb parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.iohao.message.BizProto.ClassesPb parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.iohao.message.BizProto.ClassesPb parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.iohao.message.BizProto.ClassesPb parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.iohao.message.BizProto.ClassesPb parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.iohao.message.BizProto.ClassesPb parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.iohao.message.BizProto.ClassesPb parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.iohao.message.BizProto.ClassesPb parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.iohao.message.BizProto.ClassesPb prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * <pre>
+     * 班级信息
+     * </pre>
+     *
+     * Protobuf type {@code com.iohao.message.ClassesPb}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:com.iohao.message.ClassesPb)
+        com.iohao.message.BizProto.ClassesPbOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.iohao.message.BizProto.internal_static_com_iohao_message_ClassesPb_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.iohao.message.BizProto.internal_static_com_iohao_message_ClassesPb_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.iohao.message.BizProto.ClassesPb.class, com.iohao.message.BizProto.ClassesPb.Builder.class);
+      }
+
+      // Construct using com.iohao.message.BizProto.ClassesPb.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        studentNum_ = 0;
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.iohao.message.BizProto.internal_static_com_iohao_message_ClassesPb_descriptor;
+      }
+
+      @java.lang.Override
+      public com.iohao.message.BizProto.ClassesPb getDefaultInstanceForType() {
+        return com.iohao.message.BizProto.ClassesPb.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.iohao.message.BizProto.ClassesPb build() {
+        com.iohao.message.BizProto.ClassesPb result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.iohao.message.BizProto.ClassesPb buildPartial() {
+        com.iohao.message.BizProto.ClassesPb result = new com.iohao.message.BizProto.ClassesPb(this);
+        result.studentNum_ = studentNum_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.iohao.message.BizProto.ClassesPb) {
+          return mergeFrom((com.iohao.message.BizProto.ClassesPb)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.iohao.message.BizProto.ClassesPb other) {
+        if (other == com.iohao.message.BizProto.ClassesPb.getDefaultInstance()) return this;
+        if (other.getStudentNum() != 0) {
+          setStudentNum(other.getStudentNum());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.iohao.message.BizProto.ClassesPb parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.iohao.message.BizProto.ClassesPb) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private int studentNum_ ;
+      /**
+       * <pre>
+       * 班级学生数量
+       * </pre>
+       *
+       * <code>int32 studentNum = 1;</code>
+       * @return The studentNum.
+       */
+      @java.lang.Override
+      public int getStudentNum() {
+        return studentNum_;
+      }
+      /**
+       * <pre>
+       * 班级学生数量
+       * </pre>
+       *
+       * <code>int32 studentNum = 1;</code>
+       * @param value The studentNum to set.
+       * @return This builder for chaining.
+       */
+      public Builder setStudentNum(int value) {
+        
+        studentNum_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 班级学生数量
+       * </pre>
+       *
+       * <code>int32 studentNum = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearStudentNum() {
+        
+        studentNum_ = 0;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:com.iohao.message.ClassesPb)
+    }
+
+    // @@protoc_insertion_point(class_scope:com.iohao.message.ClassesPb)
+    private static final com.iohao.message.BizProto.ClassesPb DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.iohao.message.BizProto.ClassesPb();
+    }
+
+    public static com.iohao.message.BizProto.ClassesPb getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<ClassesPb>
+        PARSER = new com.google.protobuf.AbstractParser<ClassesPb>() {
+      @java.lang.Override
+      public ClassesPb parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new ClassesPb(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<ClassesPb> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<ClassesPb> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.iohao.message.BizProto.ClassesPb getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface LogicRequestPbOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:com.iohao.message.LogicRequestPb)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>string name = 1;</code>
+     * @return The name.
+     */
+    java.lang.String getName();
+    /**
+     * <code>string name = 1;</code>
+     * @return The bytes for name.
+     */
+    com.google.protobuf.ByteString
+        getNameBytes();
+  }
+  /**
+   * <pre>
+   * 逻辑请求 PB
+   * </pre>
+   *
+   * Protobuf type {@code com.iohao.message.LogicRequestPb}
+   */
+  public static final class LogicRequestPb extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:com.iohao.message.LogicRequestPb)
+      LogicRequestPbOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use LogicRequestPb.newBuilder() to construct.
+    private LogicRequestPb(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private LogicRequestPb() {
+      name_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new LogicRequestPb();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private LogicRequestPb(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              name_ = s;
+              break;
+            }
+            default: {
+              if (!parseUnknownField(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.iohao.message.BizProto.internal_static_com_iohao_message_LogicRequestPb_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.iohao.message.BizProto.internal_static_com_iohao_message_LogicRequestPb_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.iohao.message.BizProto.LogicRequestPb.class, com.iohao.message.BizProto.LogicRequestPb.Builder.class);
+    }
+
+    public static final int NAME_FIELD_NUMBER = 1;
+    private volatile java.lang.Object name_;
+    /**
+     * <code>string name = 1;</code>
+     * @return The name.
+     */
+    @java.lang.Override
+    public java.lang.String getName() {
+      java.lang.Object ref = name_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        name_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string name = 1;</code>
+     * @return The bytes for name.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getNameBytes() {
+      java.lang.Object ref = name_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        name_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!getNameBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, name_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!getNameBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, name_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.iohao.message.BizProto.LogicRequestPb)) {
+        return super.equals(obj);
+      }
+      com.iohao.message.BizProto.LogicRequestPb other = (com.iohao.message.BizProto.LogicRequestPb) obj;
+
+      if (!getName()
+          .equals(other.getName())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + NAME_FIELD_NUMBER;
+      hash = (53 * hash) + getName().hashCode();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.iohao.message.BizProto.LogicRequestPb parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.iohao.message.BizProto.LogicRequestPb parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.iohao.message.BizProto.LogicRequestPb parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.iohao.message.BizProto.LogicRequestPb parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.iohao.message.BizProto.LogicRequestPb parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.iohao.message.BizProto.LogicRequestPb parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.iohao.message.BizProto.LogicRequestPb parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.iohao.message.BizProto.LogicRequestPb parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.iohao.message.BizProto.LogicRequestPb parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.iohao.message.BizProto.LogicRequestPb parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.iohao.message.BizProto.LogicRequestPb parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.iohao.message.BizProto.LogicRequestPb parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.iohao.message.BizProto.LogicRequestPb prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * <pre>
+     * 逻辑请求 PB
+     * </pre>
+     *
+     * Protobuf type {@code com.iohao.message.LogicRequestPb}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:com.iohao.message.LogicRequestPb)
+        com.iohao.message.BizProto.LogicRequestPbOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.iohao.message.BizProto.internal_static_com_iohao_message_LogicRequestPb_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.iohao.message.BizProto.internal_static_com_iohao_message_LogicRequestPb_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.iohao.message.BizProto.LogicRequestPb.class, com.iohao.message.BizProto.LogicRequestPb.Builder.class);
+      }
+
+      // Construct using com.iohao.message.BizProto.LogicRequestPb.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        name_ = "";
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.iohao.message.BizProto.internal_static_com_iohao_message_LogicRequestPb_descriptor;
+      }
+
+      @java.lang.Override
+      public com.iohao.message.BizProto.LogicRequestPb getDefaultInstanceForType() {
+        return com.iohao.message.BizProto.LogicRequestPb.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.iohao.message.BizProto.LogicRequestPb build() {
+        com.iohao.message.BizProto.LogicRequestPb result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.iohao.message.BizProto.LogicRequestPb buildPartial() {
+        com.iohao.message.BizProto.LogicRequestPb result = new com.iohao.message.BizProto.LogicRequestPb(this);
+        result.name_ = name_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.iohao.message.BizProto.LogicRequestPb) {
+          return mergeFrom((com.iohao.message.BizProto.LogicRequestPb)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.iohao.message.BizProto.LogicRequestPb other) {
+        if (other == com.iohao.message.BizProto.LogicRequestPb.getDefaultInstance()) return this;
+        if (!other.getName().isEmpty()) {
+          name_ = other.name_;
+          onChanged();
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.iohao.message.BizProto.LogicRequestPb parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.iohao.message.BizProto.LogicRequestPb) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private java.lang.Object name_ = "";
+      /**
+       * <code>string name = 1;</code>
+       * @return The name.
+       */
+      public java.lang.String getName() {
+        java.lang.Object ref = name_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          name_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string name = 1;</code>
+       * @return The bytes for name.
+       */
+      public com.google.protobuf.ByteString
+          getNameBytes() {
+        java.lang.Object ref = name_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          name_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string name = 1;</code>
+       * @param value The name to set.
+       * @return This builder for chaining.
+       */
+      public Builder setName(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        name_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string name = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearName() {
+        
+        name_ = getDefaultInstance().getName();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string name = 1;</code>
+       * @param value The bytes for name to set.
+       * @return This builder for chaining.
+       */
+      public Builder setNameBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        name_ = value;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:com.iohao.message.LogicRequestPb)
+    }
+
+    // @@protoc_insertion_point(class_scope:com.iohao.message.LogicRequestPb)
+    private static final com.iohao.message.BizProto.LogicRequestPb DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.iohao.message.BizProto.LogicRequestPb();
+    }
+
+    public static com.iohao.message.BizProto.LogicRequestPb getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<LogicRequestPb>
+        PARSER = new com.google.protobuf.AbstractParser<LogicRequestPb>() {
+      @java.lang.Override
+      public LogicRequestPb parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new LogicRequestPb(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<LogicRequestPb> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<LogicRequestPb> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.iohao.message.BizProto.LogicRequestPb getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   public interface LoginVerifyOrBuilder extends
       // @@protoc_insertion_point(interface_extends:com.iohao.message.LoginVerify)
       com.google.protobuf.MessageOrBuilder {
@@ -60,13 +1939,23 @@ public final class BizProto {
 
     /**
      * <pre>
-     * Long
+     * Long value
      * </pre>
      *
      * <code>int64 time = 4;</code>
      * @return The time.
      */
     long getTime();
+
+    /**
+     * <pre>
+     * long value
+     * </pre>
+     *
+     * <code>int64 time2 = 5;</code>
+     * @return The time2.
+     */
+    long getTime2();
   }
   /**
    * <pre>
@@ -137,6 +2026,11 @@ public final class BizProto {
             case 32: {
 
               time_ = input.readInt64();
+              break;
+            }
+            case 40: {
+
+              time2_ = input.readInt64();
               break;
             }
             default: {
@@ -251,7 +2145,7 @@ public final class BizProto {
     private long time_;
     /**
      * <pre>
-     * Long
+     * Long value
      * </pre>
      *
      * <code>int64 time = 4;</code>
@@ -260,6 +2154,21 @@ public final class BizProto {
     @java.lang.Override
     public long getTime() {
       return time_;
+    }
+
+    public static final int TIME2_FIELD_NUMBER = 5;
+    private long time2_;
+    /**
+     * <pre>
+     * long value
+     * </pre>
+     *
+     * <code>int64 time2 = 5;</code>
+     * @return The time2.
+     */
+    @java.lang.Override
+    public long getTime2() {
+      return time2_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -288,6 +2197,9 @@ public final class BizProto {
       if (time_ != 0L) {
         output.writeInt64(4, time_);
       }
+      if (time2_ != 0L) {
+        output.writeInt64(5, time2_);
+      }
       unknownFields.writeTo(output);
     }
 
@@ -312,6 +2224,10 @@ public final class BizProto {
         size += com.google.protobuf.CodedOutputStream
           .computeInt64Size(4, time_);
       }
+      if (time2_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(5, time2_);
+      }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
@@ -335,6 +2251,8 @@ public final class BizProto {
           != other.getLoginBizCode()) return false;
       if (getTime()
           != other.getTime()) return false;
+      if (getTime2()
+          != other.getTime2()) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
@@ -355,6 +2273,9 @@ public final class BizProto {
       hash = (37 * hash) + TIME_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
           getTime());
+      hash = (37 * hash) + TIME2_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getTime2());
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -500,6 +2421,8 @@ public final class BizProto {
 
         time_ = 0L;
 
+        time2_ = 0L;
+
         return this;
       }
 
@@ -530,6 +2453,7 @@ public final class BizProto {
         result.jwt_ = jwt_;
         result.loginBizCode_ = loginBizCode_;
         result.time_ = time_;
+        result.time2_ = time2_;
         onBuilt();
         return result;
       }
@@ -590,6 +2514,9 @@ public final class BizProto {
         }
         if (other.getTime() != 0L) {
           setTime(other.getTime());
+        }
+        if (other.getTime2() != 0L) {
+          setTime2(other.getTime2());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -805,7 +2732,7 @@ public final class BizProto {
       private long time_ ;
       /**
        * <pre>
-       * Long
+       * Long value
        * </pre>
        *
        * <code>int64 time = 4;</code>
@@ -817,7 +2744,7 @@ public final class BizProto {
       }
       /**
        * <pre>
-       * Long
+       * Long value
        * </pre>
        *
        * <code>int64 time = 4;</code>
@@ -832,7 +2759,7 @@ public final class BizProto {
       }
       /**
        * <pre>
-       * Long
+       * Long value
        * </pre>
        *
        * <code>int64 time = 4;</code>
@@ -841,6 +2768,49 @@ public final class BizProto {
       public Builder clearTime() {
         
         time_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      private long time2_ ;
+      /**
+       * <pre>
+       * long value
+       * </pre>
+       *
+       * <code>int64 time2 = 5;</code>
+       * @return The time2.
+       */
+      @java.lang.Override
+      public long getTime2() {
+        return time2_;
+      }
+      /**
+       * <pre>
+       * long value
+       * </pre>
+       *
+       * <code>int64 time2 = 5;</code>
+       * @param value The time2 to set.
+       * @return This builder for chaining.
+       */
+      public Builder setTime2(long value) {
+        
+        time2_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * long value
+       * </pre>
+       *
+       * <code>int64 time2 = 5;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearTime2() {
+        
+        time2_ = 0L;
         onChanged();
         return this;
       }
@@ -897,6 +2867,3326 @@ public final class BizProto {
 
   }
 
+  public interface OtherVerifyOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:com.iohao.message.OtherVerify)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <pre>
+     * jwt
+     * </pre>
+     *
+     * <code>string jwt = 1;</code>
+     * @return The jwt.
+     */
+    java.lang.String getJwt();
+    /**
+     * <pre>
+     * jwt
+     * </pre>
+     *
+     * <code>string jwt = 1;</code>
+     * @return The bytes for jwt.
+     */
+    com.google.protobuf.ByteString
+        getJwtBytes();
+  }
+  /**
+   * <pre>
+   * </pre>
+   *
+   * Protobuf type {@code com.iohao.message.OtherVerify}
+   */
+  public static final class OtherVerify extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:com.iohao.message.OtherVerify)
+      OtherVerifyOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use OtherVerify.newBuilder() to construct.
+    private OtherVerify(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private OtherVerify() {
+      jwt_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new OtherVerify();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private OtherVerify(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              jwt_ = s;
+              break;
+            }
+            default: {
+              if (!parseUnknownField(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.iohao.message.BizProto.internal_static_com_iohao_message_OtherVerify_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.iohao.message.BizProto.internal_static_com_iohao_message_OtherVerify_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.iohao.message.BizProto.OtherVerify.class, com.iohao.message.BizProto.OtherVerify.Builder.class);
+    }
+
+    public static final int JWT_FIELD_NUMBER = 1;
+    private volatile java.lang.Object jwt_;
+    /**
+     * <pre>
+     * jwt
+     * </pre>
+     *
+     * <code>string jwt = 1;</code>
+     * @return The jwt.
+     */
+    @java.lang.Override
+    public java.lang.String getJwt() {
+      java.lang.Object ref = jwt_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        jwt_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     * jwt
+     * </pre>
+     *
+     * <code>string jwt = 1;</code>
+     * @return The bytes for jwt.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getJwtBytes() {
+      java.lang.Object ref = jwt_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        jwt_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!getJwtBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, jwt_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!getJwtBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, jwt_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.iohao.message.BizProto.OtherVerify)) {
+        return super.equals(obj);
+      }
+      com.iohao.message.BizProto.OtherVerify other = (com.iohao.message.BizProto.OtherVerify) obj;
+
+      if (!getJwt()
+          .equals(other.getJwt())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + JWT_FIELD_NUMBER;
+      hash = (53 * hash) + getJwt().hashCode();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.iohao.message.BizProto.OtherVerify parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.iohao.message.BizProto.OtherVerify parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.iohao.message.BizProto.OtherVerify parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.iohao.message.BizProto.OtherVerify parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.iohao.message.BizProto.OtherVerify parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.iohao.message.BizProto.OtherVerify parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.iohao.message.BizProto.OtherVerify parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.iohao.message.BizProto.OtherVerify parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.iohao.message.BizProto.OtherVerify parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.iohao.message.BizProto.OtherVerify parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.iohao.message.BizProto.OtherVerify parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.iohao.message.BizProto.OtherVerify parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.iohao.message.BizProto.OtherVerify prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * <pre>
+     * </pre>
+     *
+     * Protobuf type {@code com.iohao.message.OtherVerify}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:com.iohao.message.OtherVerify)
+        com.iohao.message.BizProto.OtherVerifyOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.iohao.message.BizProto.internal_static_com_iohao_message_OtherVerify_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.iohao.message.BizProto.internal_static_com_iohao_message_OtherVerify_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.iohao.message.BizProto.OtherVerify.class, com.iohao.message.BizProto.OtherVerify.Builder.class);
+      }
+
+      // Construct using com.iohao.message.BizProto.OtherVerify.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        jwt_ = "";
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.iohao.message.BizProto.internal_static_com_iohao_message_OtherVerify_descriptor;
+      }
+
+      @java.lang.Override
+      public com.iohao.message.BizProto.OtherVerify getDefaultInstanceForType() {
+        return com.iohao.message.BizProto.OtherVerify.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.iohao.message.BizProto.OtherVerify build() {
+        com.iohao.message.BizProto.OtherVerify result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.iohao.message.BizProto.OtherVerify buildPartial() {
+        com.iohao.message.BizProto.OtherVerify result = new com.iohao.message.BizProto.OtherVerify(this);
+        result.jwt_ = jwt_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.iohao.message.BizProto.OtherVerify) {
+          return mergeFrom((com.iohao.message.BizProto.OtherVerify)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.iohao.message.BizProto.OtherVerify other) {
+        if (other == com.iohao.message.BizProto.OtherVerify.getDefaultInstance()) return this;
+        if (!other.getJwt().isEmpty()) {
+          jwt_ = other.jwt_;
+          onChanged();
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.iohao.message.BizProto.OtherVerify parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.iohao.message.BizProto.OtherVerify) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private java.lang.Object jwt_ = "";
+      /**
+       * <pre>
+       * jwt
+       * </pre>
+       *
+       * <code>string jwt = 1;</code>
+       * @return The jwt.
+       */
+      public java.lang.String getJwt() {
+        java.lang.Object ref = jwt_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          jwt_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <pre>
+       * jwt
+       * </pre>
+       *
+       * <code>string jwt = 1;</code>
+       * @return The bytes for jwt.
+       */
+      public com.google.protobuf.ByteString
+          getJwtBytes() {
+        java.lang.Object ref = jwt_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          jwt_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       * jwt
+       * </pre>
+       *
+       * <code>string jwt = 1;</code>
+       * @param value The jwt to set.
+       * @return This builder for chaining.
+       */
+      public Builder setJwt(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        jwt_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * jwt
+       * </pre>
+       *
+       * <code>string jwt = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearJwt() {
+        
+        jwt_ = getDefaultInstance().getJwt();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * jwt
+       * </pre>
+       *
+       * <code>string jwt = 1;</code>
+       * @param value The bytes for jwt to set.
+       * @return This builder for chaining.
+       */
+      public Builder setJwtBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        jwt_ = value;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:com.iohao.message.OtherVerify)
+    }
+
+    // @@protoc_insertion_point(class_scope:com.iohao.message.OtherVerify)
+    private static final com.iohao.message.BizProto.OtherVerify DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.iohao.message.BizProto.OtherVerify();
+    }
+
+    public static com.iohao.message.BizProto.OtherVerify getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<OtherVerify>
+        PARSER = new com.google.protobuf.AbstractParser<OtherVerify>() {
+      @java.lang.Override
+      public OtherVerify parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new OtherVerify(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<OtherVerify> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<OtherVerify> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.iohao.message.BizProto.OtherVerify getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface RoomNumPbOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:com.iohao.message.RoomNumPb)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <pre>
+     * 房间的数量
+     * </pre>
+     *
+     * <code>int32 roomCount = 1;</code>
+     * @return The roomCount.
+     */
+    int getRoomCount();
+  }
+  /**
+   * <pre>
+   * </pre>
+   *
+   * Protobuf type {@code com.iohao.message.RoomNumPb}
+   */
+  public static final class RoomNumPb extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:com.iohao.message.RoomNumPb)
+      RoomNumPbOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use RoomNumPb.newBuilder() to construct.
+    private RoomNumPb(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private RoomNumPb() {
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new RoomNumPb();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private RoomNumPb(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 8: {
+
+              roomCount_ = input.readInt32();
+              break;
+            }
+            default: {
+              if (!parseUnknownField(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.iohao.message.BizProto.internal_static_com_iohao_message_RoomNumPb_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.iohao.message.BizProto.internal_static_com_iohao_message_RoomNumPb_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.iohao.message.BizProto.RoomNumPb.class, com.iohao.message.BizProto.RoomNumPb.Builder.class);
+    }
+
+    public static final int ROOMCOUNT_FIELD_NUMBER = 1;
+    private int roomCount_;
+    /**
+     * <pre>
+     * 房间的数量
+     * </pre>
+     *
+     * <code>int32 roomCount = 1;</code>
+     * @return The roomCount.
+     */
+    @java.lang.Override
+    public int getRoomCount() {
+      return roomCount_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (roomCount_ != 0) {
+        output.writeInt32(1, roomCount_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (roomCount_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, roomCount_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.iohao.message.BizProto.RoomNumPb)) {
+        return super.equals(obj);
+      }
+      com.iohao.message.BizProto.RoomNumPb other = (com.iohao.message.BizProto.RoomNumPb) obj;
+
+      if (getRoomCount()
+          != other.getRoomCount()) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + ROOMCOUNT_FIELD_NUMBER;
+      hash = (53 * hash) + getRoomCount();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.iohao.message.BizProto.RoomNumPb parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.iohao.message.BizProto.RoomNumPb parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.iohao.message.BizProto.RoomNumPb parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.iohao.message.BizProto.RoomNumPb parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.iohao.message.BizProto.RoomNumPb parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.iohao.message.BizProto.RoomNumPb parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.iohao.message.BizProto.RoomNumPb parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.iohao.message.BizProto.RoomNumPb parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.iohao.message.BizProto.RoomNumPb parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.iohao.message.BizProto.RoomNumPb parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.iohao.message.BizProto.RoomNumPb parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.iohao.message.BizProto.RoomNumPb parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.iohao.message.BizProto.RoomNumPb prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * <pre>
+     * </pre>
+     *
+     * Protobuf type {@code com.iohao.message.RoomNumPb}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:com.iohao.message.RoomNumPb)
+        com.iohao.message.BizProto.RoomNumPbOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.iohao.message.BizProto.internal_static_com_iohao_message_RoomNumPb_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.iohao.message.BizProto.internal_static_com_iohao_message_RoomNumPb_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.iohao.message.BizProto.RoomNumPb.class, com.iohao.message.BizProto.RoomNumPb.Builder.class);
+      }
+
+      // Construct using com.iohao.message.BizProto.RoomNumPb.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        roomCount_ = 0;
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.iohao.message.BizProto.internal_static_com_iohao_message_RoomNumPb_descriptor;
+      }
+
+      @java.lang.Override
+      public com.iohao.message.BizProto.RoomNumPb getDefaultInstanceForType() {
+        return com.iohao.message.BizProto.RoomNumPb.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.iohao.message.BizProto.RoomNumPb build() {
+        com.iohao.message.BizProto.RoomNumPb result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.iohao.message.BizProto.RoomNumPb buildPartial() {
+        com.iohao.message.BizProto.RoomNumPb result = new com.iohao.message.BizProto.RoomNumPb(this);
+        result.roomCount_ = roomCount_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.iohao.message.BizProto.RoomNumPb) {
+          return mergeFrom((com.iohao.message.BizProto.RoomNumPb)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.iohao.message.BizProto.RoomNumPb other) {
+        if (other == com.iohao.message.BizProto.RoomNumPb.getDefaultInstance()) return this;
+        if (other.getRoomCount() != 0) {
+          setRoomCount(other.getRoomCount());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.iohao.message.BizProto.RoomNumPb parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.iohao.message.BizProto.RoomNumPb) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private int roomCount_ ;
+      /**
+       * <pre>
+       * 房间的数量
+       * </pre>
+       *
+       * <code>int32 roomCount = 1;</code>
+       * @return The roomCount.
+       */
+      @java.lang.Override
+      public int getRoomCount() {
+        return roomCount_;
+      }
+      /**
+       * <pre>
+       * 房间的数量
+       * </pre>
+       *
+       * <code>int32 roomCount = 1;</code>
+       * @param value The roomCount to set.
+       * @return This builder for chaining.
+       */
+      public Builder setRoomCount(int value) {
+        
+        roomCount_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 房间的数量
+       * </pre>
+       *
+       * <code>int32 roomCount = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearRoomCount() {
+        
+        roomCount_ = 0;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:com.iohao.message.RoomNumPb)
+    }
+
+    // @@protoc_insertion_point(class_scope:com.iohao.message.RoomNumPb)
+    private static final com.iohao.message.BizProto.RoomNumPb DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.iohao.message.BizProto.RoomNumPb();
+    }
+
+    public static com.iohao.message.BizProto.RoomNumPb getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<RoomNumPb>
+        PARSER = new com.google.protobuf.AbstractParser<RoomNumPb>() {
+      @java.lang.Override
+      public RoomNumPb parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new RoomNumPb(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<RoomNumPb> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<RoomNumPb> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.iohao.message.BizProto.RoomNumPb getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface SchoolLevelPbOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:com.iohao.message.SchoolLevelPb)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <pre>
+     * 学校等级 level
+     * </pre>
+     *
+     * <code>int32 level = 1;</code>
+     * @return The level.
+     */
+    int getLevel();
+
+    /**
+     * <pre>
+     * vip 等级
+     * </pre>
+     *
+     * <code>int32 vipLevel = 2;</code>
+     * @return The vipLevel.
+     */
+    int getVipLevel();
+  }
+  /**
+   * <pre>
+   * 学校等级信息
+   * </pre>
+   *
+   * Protobuf type {@code com.iohao.message.SchoolLevelPb}
+   */
+  public static final class SchoolLevelPb extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:com.iohao.message.SchoolLevelPb)
+      SchoolLevelPbOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use SchoolLevelPb.newBuilder() to construct.
+    private SchoolLevelPb(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private SchoolLevelPb() {
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new SchoolLevelPb();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private SchoolLevelPb(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 8: {
+
+              level_ = input.readInt32();
+              break;
+            }
+            case 16: {
+
+              vipLevel_ = input.readInt32();
+              break;
+            }
+            default: {
+              if (!parseUnknownField(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.iohao.message.BizProto.internal_static_com_iohao_message_SchoolLevelPb_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.iohao.message.BizProto.internal_static_com_iohao_message_SchoolLevelPb_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.iohao.message.BizProto.SchoolLevelPb.class, com.iohao.message.BizProto.SchoolLevelPb.Builder.class);
+    }
+
+    public static final int LEVEL_FIELD_NUMBER = 1;
+    private int level_;
+    /**
+     * <pre>
+     * 学校等级 level
+     * </pre>
+     *
+     * <code>int32 level = 1;</code>
+     * @return The level.
+     */
+    @java.lang.Override
+    public int getLevel() {
+      return level_;
+    }
+
+    public static final int VIPLEVEL_FIELD_NUMBER = 2;
+    private int vipLevel_;
+    /**
+     * <pre>
+     * vip 等级
+     * </pre>
+     *
+     * <code>int32 vipLevel = 2;</code>
+     * @return The vipLevel.
+     */
+    @java.lang.Override
+    public int getVipLevel() {
+      return vipLevel_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (level_ != 0) {
+        output.writeInt32(1, level_);
+      }
+      if (vipLevel_ != 0) {
+        output.writeInt32(2, vipLevel_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (level_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, level_);
+      }
+      if (vipLevel_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(2, vipLevel_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.iohao.message.BizProto.SchoolLevelPb)) {
+        return super.equals(obj);
+      }
+      com.iohao.message.BizProto.SchoolLevelPb other = (com.iohao.message.BizProto.SchoolLevelPb) obj;
+
+      if (getLevel()
+          != other.getLevel()) return false;
+      if (getVipLevel()
+          != other.getVipLevel()) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + LEVEL_FIELD_NUMBER;
+      hash = (53 * hash) + getLevel();
+      hash = (37 * hash) + VIPLEVEL_FIELD_NUMBER;
+      hash = (53 * hash) + getVipLevel();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.iohao.message.BizProto.SchoolLevelPb parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.iohao.message.BizProto.SchoolLevelPb parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.iohao.message.BizProto.SchoolLevelPb parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.iohao.message.BizProto.SchoolLevelPb parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.iohao.message.BizProto.SchoolLevelPb parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.iohao.message.BizProto.SchoolLevelPb parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.iohao.message.BizProto.SchoolLevelPb parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.iohao.message.BizProto.SchoolLevelPb parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.iohao.message.BizProto.SchoolLevelPb parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.iohao.message.BizProto.SchoolLevelPb parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.iohao.message.BizProto.SchoolLevelPb parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.iohao.message.BizProto.SchoolLevelPb parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.iohao.message.BizProto.SchoolLevelPb prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * <pre>
+     * 学校等级信息
+     * </pre>
+     *
+     * Protobuf type {@code com.iohao.message.SchoolLevelPb}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:com.iohao.message.SchoolLevelPb)
+        com.iohao.message.BizProto.SchoolLevelPbOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.iohao.message.BizProto.internal_static_com_iohao_message_SchoolLevelPb_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.iohao.message.BizProto.internal_static_com_iohao_message_SchoolLevelPb_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.iohao.message.BizProto.SchoolLevelPb.class, com.iohao.message.BizProto.SchoolLevelPb.Builder.class);
+      }
+
+      // Construct using com.iohao.message.BizProto.SchoolLevelPb.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        level_ = 0;
+
+        vipLevel_ = 0;
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.iohao.message.BizProto.internal_static_com_iohao_message_SchoolLevelPb_descriptor;
+      }
+
+      @java.lang.Override
+      public com.iohao.message.BizProto.SchoolLevelPb getDefaultInstanceForType() {
+        return com.iohao.message.BizProto.SchoolLevelPb.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.iohao.message.BizProto.SchoolLevelPb build() {
+        com.iohao.message.BizProto.SchoolLevelPb result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.iohao.message.BizProto.SchoolLevelPb buildPartial() {
+        com.iohao.message.BizProto.SchoolLevelPb result = new com.iohao.message.BizProto.SchoolLevelPb(this);
+        result.level_ = level_;
+        result.vipLevel_ = vipLevel_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.iohao.message.BizProto.SchoolLevelPb) {
+          return mergeFrom((com.iohao.message.BizProto.SchoolLevelPb)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.iohao.message.BizProto.SchoolLevelPb other) {
+        if (other == com.iohao.message.BizProto.SchoolLevelPb.getDefaultInstance()) return this;
+        if (other.getLevel() != 0) {
+          setLevel(other.getLevel());
+        }
+        if (other.getVipLevel() != 0) {
+          setVipLevel(other.getVipLevel());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.iohao.message.BizProto.SchoolLevelPb parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.iohao.message.BizProto.SchoolLevelPb) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private int level_ ;
+      /**
+       * <pre>
+       * 学校等级 level
+       * </pre>
+       *
+       * <code>int32 level = 1;</code>
+       * @return The level.
+       */
+      @java.lang.Override
+      public int getLevel() {
+        return level_;
+      }
+      /**
+       * <pre>
+       * 学校等级 level
+       * </pre>
+       *
+       * <code>int32 level = 1;</code>
+       * @param value The level to set.
+       * @return This builder for chaining.
+       */
+      public Builder setLevel(int value) {
+        
+        level_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 学校等级 level
+       * </pre>
+       *
+       * <code>int32 level = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearLevel() {
+        
+        level_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int vipLevel_ ;
+      /**
+       * <pre>
+       * vip 等级
+       * </pre>
+       *
+       * <code>int32 vipLevel = 2;</code>
+       * @return The vipLevel.
+       */
+      @java.lang.Override
+      public int getVipLevel() {
+        return vipLevel_;
+      }
+      /**
+       * <pre>
+       * vip 等级
+       * </pre>
+       *
+       * <code>int32 vipLevel = 2;</code>
+       * @param value The vipLevel to set.
+       * @return This builder for chaining.
+       */
+      public Builder setVipLevel(int value) {
+        
+        vipLevel_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * vip 等级
+       * </pre>
+       *
+       * <code>int32 vipLevel = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearVipLevel() {
+        
+        vipLevel_ = 0;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:com.iohao.message.SchoolLevelPb)
+    }
+
+    // @@protoc_insertion_point(class_scope:com.iohao.message.SchoolLevelPb)
+    private static final com.iohao.message.BizProto.SchoolLevelPb DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.iohao.message.BizProto.SchoolLevelPb();
+    }
+
+    public static com.iohao.message.BizProto.SchoolLevelPb getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<SchoolLevelPb>
+        PARSER = new com.google.protobuf.AbstractParser<SchoolLevelPb>() {
+      @java.lang.Override
+      public SchoolLevelPb parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new SchoolLevelPb(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<SchoolLevelPb> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<SchoolLevelPb> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.iohao.message.BizProto.SchoolLevelPb getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface SchoolPbOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:com.iohao.message.SchoolPb)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <pre>
+     * 学校的 email
+     * </pre>
+     *
+     * <code>string email = 1;</code>
+     * @return The email.
+     */
+    java.lang.String getEmail();
+    /**
+     * <pre>
+     * 学校的 email
+     * </pre>
+     *
+     * <code>string email = 1;</code>
+     * @return The bytes for email.
+     */
+    com.google.protobuf.ByteString
+        getEmailBytes();
+
+    /**
+     * <pre>
+     * 学校最大教室容量
+     * </pre>
+     *
+     * <code>int32 classCapacity = 2;</code>
+     * @return The classCapacity.
+     */
+    int getClassCapacity();
+
+    /**
+     * <pre>
+     * 学校老师数量
+     * </pre>
+     *
+     * <code>int32 teacherNum = 3;</code>
+     * @return The teacherNum.
+     */
+    int getTeacherNum();
+
+    /**
+     * <pre>
+     * 学校名
+     * </pre>
+     *
+     * <code>string name = 4;</code>
+     * @return The name.
+     */
+    java.lang.String getName();
+    /**
+     * <pre>
+     * 学校名
+     * </pre>
+     *
+     * <code>string name = 4;</code>
+     * @return The bytes for name.
+     */
+    com.google.protobuf.ByteString
+        getNameBytes();
+  }
+  /**
+   * <pre>
+   * 学校信息
+   * </pre>
+   *
+   * Protobuf type {@code com.iohao.message.SchoolPb}
+   */
+  public static final class SchoolPb extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:com.iohao.message.SchoolPb)
+      SchoolPbOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use SchoolPb.newBuilder() to construct.
+    private SchoolPb(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private SchoolPb() {
+      email_ = "";
+      name_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new SchoolPb();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private SchoolPb(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              email_ = s;
+              break;
+            }
+            case 16: {
+
+              classCapacity_ = input.readInt32();
+              break;
+            }
+            case 24: {
+
+              teacherNum_ = input.readInt32();
+              break;
+            }
+            case 34: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              name_ = s;
+              break;
+            }
+            default: {
+              if (!parseUnknownField(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.iohao.message.BizProto.internal_static_com_iohao_message_SchoolPb_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.iohao.message.BizProto.internal_static_com_iohao_message_SchoolPb_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.iohao.message.BizProto.SchoolPb.class, com.iohao.message.BizProto.SchoolPb.Builder.class);
+    }
+
+    public static final int EMAIL_FIELD_NUMBER = 1;
+    private volatile java.lang.Object email_;
+    /**
+     * <pre>
+     * 学校的 email
+     * </pre>
+     *
+     * <code>string email = 1;</code>
+     * @return The email.
+     */
+    @java.lang.Override
+    public java.lang.String getEmail() {
+      java.lang.Object ref = email_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        email_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     * 学校的 email
+     * </pre>
+     *
+     * <code>string email = 1;</code>
+     * @return The bytes for email.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getEmailBytes() {
+      java.lang.Object ref = email_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        email_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int CLASSCAPACITY_FIELD_NUMBER = 2;
+    private int classCapacity_;
+    /**
+     * <pre>
+     * 学校最大教室容量
+     * </pre>
+     *
+     * <code>int32 classCapacity = 2;</code>
+     * @return The classCapacity.
+     */
+    @java.lang.Override
+    public int getClassCapacity() {
+      return classCapacity_;
+    }
+
+    public static final int TEACHERNUM_FIELD_NUMBER = 3;
+    private int teacherNum_;
+    /**
+     * <pre>
+     * 学校老师数量
+     * </pre>
+     *
+     * <code>int32 teacherNum = 3;</code>
+     * @return The teacherNum.
+     */
+    @java.lang.Override
+    public int getTeacherNum() {
+      return teacherNum_;
+    }
+
+    public static final int NAME_FIELD_NUMBER = 4;
+    private volatile java.lang.Object name_;
+    /**
+     * <pre>
+     * 学校名
+     * </pre>
+     *
+     * <code>string name = 4;</code>
+     * @return The name.
+     */
+    @java.lang.Override
+    public java.lang.String getName() {
+      java.lang.Object ref = name_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        name_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     * 学校名
+     * </pre>
+     *
+     * <code>string name = 4;</code>
+     * @return The bytes for name.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getNameBytes() {
+      java.lang.Object ref = name_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        name_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!getEmailBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, email_);
+      }
+      if (classCapacity_ != 0) {
+        output.writeInt32(2, classCapacity_);
+      }
+      if (teacherNum_ != 0) {
+        output.writeInt32(3, teacherNum_);
+      }
+      if (!getNameBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 4, name_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!getEmailBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, email_);
+      }
+      if (classCapacity_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(2, classCapacity_);
+      }
+      if (teacherNum_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(3, teacherNum_);
+      }
+      if (!getNameBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, name_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.iohao.message.BizProto.SchoolPb)) {
+        return super.equals(obj);
+      }
+      com.iohao.message.BizProto.SchoolPb other = (com.iohao.message.BizProto.SchoolPb) obj;
+
+      if (!getEmail()
+          .equals(other.getEmail())) return false;
+      if (getClassCapacity()
+          != other.getClassCapacity()) return false;
+      if (getTeacherNum()
+          != other.getTeacherNum()) return false;
+      if (!getName()
+          .equals(other.getName())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + EMAIL_FIELD_NUMBER;
+      hash = (53 * hash) + getEmail().hashCode();
+      hash = (37 * hash) + CLASSCAPACITY_FIELD_NUMBER;
+      hash = (53 * hash) + getClassCapacity();
+      hash = (37 * hash) + TEACHERNUM_FIELD_NUMBER;
+      hash = (53 * hash) + getTeacherNum();
+      hash = (37 * hash) + NAME_FIELD_NUMBER;
+      hash = (53 * hash) + getName().hashCode();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.iohao.message.BizProto.SchoolPb parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.iohao.message.BizProto.SchoolPb parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.iohao.message.BizProto.SchoolPb parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.iohao.message.BizProto.SchoolPb parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.iohao.message.BizProto.SchoolPb parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.iohao.message.BizProto.SchoolPb parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.iohao.message.BizProto.SchoolPb parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.iohao.message.BizProto.SchoolPb parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.iohao.message.BizProto.SchoolPb parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.iohao.message.BizProto.SchoolPb parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.iohao.message.BizProto.SchoolPb parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.iohao.message.BizProto.SchoolPb parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.iohao.message.BizProto.SchoolPb prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * <pre>
+     * 学校信息
+     * </pre>
+     *
+     * Protobuf type {@code com.iohao.message.SchoolPb}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:com.iohao.message.SchoolPb)
+        com.iohao.message.BizProto.SchoolPbOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.iohao.message.BizProto.internal_static_com_iohao_message_SchoolPb_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.iohao.message.BizProto.internal_static_com_iohao_message_SchoolPb_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.iohao.message.BizProto.SchoolPb.class, com.iohao.message.BizProto.SchoolPb.Builder.class);
+      }
+
+      // Construct using com.iohao.message.BizProto.SchoolPb.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        email_ = "";
+
+        classCapacity_ = 0;
+
+        teacherNum_ = 0;
+
+        name_ = "";
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.iohao.message.BizProto.internal_static_com_iohao_message_SchoolPb_descriptor;
+      }
+
+      @java.lang.Override
+      public com.iohao.message.BizProto.SchoolPb getDefaultInstanceForType() {
+        return com.iohao.message.BizProto.SchoolPb.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.iohao.message.BizProto.SchoolPb build() {
+        com.iohao.message.BizProto.SchoolPb result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.iohao.message.BizProto.SchoolPb buildPartial() {
+        com.iohao.message.BizProto.SchoolPb result = new com.iohao.message.BizProto.SchoolPb(this);
+        result.email_ = email_;
+        result.classCapacity_ = classCapacity_;
+        result.teacherNum_ = teacherNum_;
+        result.name_ = name_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.iohao.message.BizProto.SchoolPb) {
+          return mergeFrom((com.iohao.message.BizProto.SchoolPb)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.iohao.message.BizProto.SchoolPb other) {
+        if (other == com.iohao.message.BizProto.SchoolPb.getDefaultInstance()) return this;
+        if (!other.getEmail().isEmpty()) {
+          email_ = other.email_;
+          onChanged();
+        }
+        if (other.getClassCapacity() != 0) {
+          setClassCapacity(other.getClassCapacity());
+        }
+        if (other.getTeacherNum() != 0) {
+          setTeacherNum(other.getTeacherNum());
+        }
+        if (!other.getName().isEmpty()) {
+          name_ = other.name_;
+          onChanged();
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.iohao.message.BizProto.SchoolPb parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.iohao.message.BizProto.SchoolPb) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private java.lang.Object email_ = "";
+      /**
+       * <pre>
+       * 学校的 email
+       * </pre>
+       *
+       * <code>string email = 1;</code>
+       * @return The email.
+       */
+      public java.lang.String getEmail() {
+        java.lang.Object ref = email_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          email_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <pre>
+       * 学校的 email
+       * </pre>
+       *
+       * <code>string email = 1;</code>
+       * @return The bytes for email.
+       */
+      public com.google.protobuf.ByteString
+          getEmailBytes() {
+        java.lang.Object ref = email_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          email_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       * 学校的 email
+       * </pre>
+       *
+       * <code>string email = 1;</code>
+       * @param value The email to set.
+       * @return This builder for chaining.
+       */
+      public Builder setEmail(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        email_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 学校的 email
+       * </pre>
+       *
+       * <code>string email = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearEmail() {
+        
+        email_ = getDefaultInstance().getEmail();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 学校的 email
+       * </pre>
+       *
+       * <code>string email = 1;</code>
+       * @param value The bytes for email to set.
+       * @return This builder for chaining.
+       */
+      public Builder setEmailBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        email_ = value;
+        onChanged();
+        return this;
+      }
+
+      private int classCapacity_ ;
+      /**
+       * <pre>
+       * 学校最大教室容量
+       * </pre>
+       *
+       * <code>int32 classCapacity = 2;</code>
+       * @return The classCapacity.
+       */
+      @java.lang.Override
+      public int getClassCapacity() {
+        return classCapacity_;
+      }
+      /**
+       * <pre>
+       * 学校最大教室容量
+       * </pre>
+       *
+       * <code>int32 classCapacity = 2;</code>
+       * @param value The classCapacity to set.
+       * @return This builder for chaining.
+       */
+      public Builder setClassCapacity(int value) {
+        
+        classCapacity_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 学校最大教室容量
+       * </pre>
+       *
+       * <code>int32 classCapacity = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearClassCapacity() {
+        
+        classCapacity_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int teacherNum_ ;
+      /**
+       * <pre>
+       * 学校老师数量
+       * </pre>
+       *
+       * <code>int32 teacherNum = 3;</code>
+       * @return The teacherNum.
+       */
+      @java.lang.Override
+      public int getTeacherNum() {
+        return teacherNum_;
+      }
+      /**
+       * <pre>
+       * 学校老师数量
+       * </pre>
+       *
+       * <code>int32 teacherNum = 3;</code>
+       * @param value The teacherNum to set.
+       * @return This builder for chaining.
+       */
+      public Builder setTeacherNum(int value) {
+        
+        teacherNum_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 学校老师数量
+       * </pre>
+       *
+       * <code>int32 teacherNum = 3;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearTeacherNum() {
+        
+        teacherNum_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object name_ = "";
+      /**
+       * <pre>
+       * 学校名
+       * </pre>
+       *
+       * <code>string name = 4;</code>
+       * @return The name.
+       */
+      public java.lang.String getName() {
+        java.lang.Object ref = name_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          name_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <pre>
+       * 学校名
+       * </pre>
+       *
+       * <code>string name = 4;</code>
+       * @return The bytes for name.
+       */
+      public com.google.protobuf.ByteString
+          getNameBytes() {
+        java.lang.Object ref = name_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          name_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       * 学校名
+       * </pre>
+       *
+       * <code>string name = 4;</code>
+       * @param value The name to set.
+       * @return This builder for chaining.
+       */
+      public Builder setName(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        name_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 学校名
+       * </pre>
+       *
+       * <code>string name = 4;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearName() {
+        
+        name_ = getDefaultInstance().getName();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 学校名
+       * </pre>
+       *
+       * <code>string name = 4;</code>
+       * @param value The bytes for name to set.
+       * @return This builder for chaining.
+       */
+      public Builder setNameBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        name_ = value;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:com.iohao.message.SchoolPb)
+    }
+
+    // @@protoc_insertion_point(class_scope:com.iohao.message.SchoolPb)
+    private static final com.iohao.message.BizProto.SchoolPb DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.iohao.message.BizProto.SchoolPb();
+    }
+
+    public static com.iohao.message.BizProto.SchoolPb getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<SchoolPb>
+        PARSER = new com.google.protobuf.AbstractParser<SchoolPb>() {
+      @java.lang.Override
+      public SchoolPb parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new SchoolPb(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<SchoolPb> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<SchoolPb> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.iohao.message.BizProto.SchoolPb getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface SpringBroadcastMessagePbOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:com.iohao.message.SpringBroadcastMessagePb)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <pre>
+     * 具体的广播消息内容
+     * </pre>
+     *
+     * <code>string msg = 1;</code>
+     * @return The msg.
+     */
+    java.lang.String getMsg();
+    /**
+     * <pre>
+     * 具体的广播消息内容
+     * </pre>
+     *
+     * <code>string msg = 1;</code>
+     * @return The bytes for msg.
+     */
+    com.google.protobuf.ByteString
+        getMsgBytes();
+  }
+  /**
+   * <pre>
+   * 广播消息PB
+   * </pre>
+   *
+   * Protobuf type {@code com.iohao.message.SpringBroadcastMessagePb}
+   */
+  public static final class SpringBroadcastMessagePb extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:com.iohao.message.SpringBroadcastMessagePb)
+      SpringBroadcastMessagePbOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use SpringBroadcastMessagePb.newBuilder() to construct.
+    private SpringBroadcastMessagePb(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private SpringBroadcastMessagePb() {
+      msg_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new SpringBroadcastMessagePb();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private SpringBroadcastMessagePb(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              msg_ = s;
+              break;
+            }
+            default: {
+              if (!parseUnknownField(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.iohao.message.BizProto.internal_static_com_iohao_message_SpringBroadcastMessagePb_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.iohao.message.BizProto.internal_static_com_iohao_message_SpringBroadcastMessagePb_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.iohao.message.BizProto.SpringBroadcastMessagePb.class, com.iohao.message.BizProto.SpringBroadcastMessagePb.Builder.class);
+    }
+
+    public static final int MSG_FIELD_NUMBER = 1;
+    private volatile java.lang.Object msg_;
+    /**
+     * <pre>
+     * 具体的广播消息内容
+     * </pre>
+     *
+     * <code>string msg = 1;</code>
+     * @return The msg.
+     */
+    @java.lang.Override
+    public java.lang.String getMsg() {
+      java.lang.Object ref = msg_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        msg_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     * 具体的广播消息内容
+     * </pre>
+     *
+     * <code>string msg = 1;</code>
+     * @return The bytes for msg.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getMsgBytes() {
+      java.lang.Object ref = msg_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        msg_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!getMsgBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, msg_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!getMsgBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, msg_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.iohao.message.BizProto.SpringBroadcastMessagePb)) {
+        return super.equals(obj);
+      }
+      com.iohao.message.BizProto.SpringBroadcastMessagePb other = (com.iohao.message.BizProto.SpringBroadcastMessagePb) obj;
+
+      if (!getMsg()
+          .equals(other.getMsg())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + MSG_FIELD_NUMBER;
+      hash = (53 * hash) + getMsg().hashCode();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.iohao.message.BizProto.SpringBroadcastMessagePb parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.iohao.message.BizProto.SpringBroadcastMessagePb parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.iohao.message.BizProto.SpringBroadcastMessagePb parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.iohao.message.BizProto.SpringBroadcastMessagePb parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.iohao.message.BizProto.SpringBroadcastMessagePb parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.iohao.message.BizProto.SpringBroadcastMessagePb parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.iohao.message.BizProto.SpringBroadcastMessagePb parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.iohao.message.BizProto.SpringBroadcastMessagePb parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.iohao.message.BizProto.SpringBroadcastMessagePb parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.iohao.message.BizProto.SpringBroadcastMessagePb parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.iohao.message.BizProto.SpringBroadcastMessagePb parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.iohao.message.BizProto.SpringBroadcastMessagePb parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.iohao.message.BizProto.SpringBroadcastMessagePb prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * <pre>
+     * 广播消息PB
+     * </pre>
+     *
+     * Protobuf type {@code com.iohao.message.SpringBroadcastMessagePb}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:com.iohao.message.SpringBroadcastMessagePb)
+        com.iohao.message.BizProto.SpringBroadcastMessagePbOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.iohao.message.BizProto.internal_static_com_iohao_message_SpringBroadcastMessagePb_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.iohao.message.BizProto.internal_static_com_iohao_message_SpringBroadcastMessagePb_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.iohao.message.BizProto.SpringBroadcastMessagePb.class, com.iohao.message.BizProto.SpringBroadcastMessagePb.Builder.class);
+      }
+
+      // Construct using com.iohao.message.BizProto.SpringBroadcastMessagePb.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        msg_ = "";
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.iohao.message.BizProto.internal_static_com_iohao_message_SpringBroadcastMessagePb_descriptor;
+      }
+
+      @java.lang.Override
+      public com.iohao.message.BizProto.SpringBroadcastMessagePb getDefaultInstanceForType() {
+        return com.iohao.message.BizProto.SpringBroadcastMessagePb.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.iohao.message.BizProto.SpringBroadcastMessagePb build() {
+        com.iohao.message.BizProto.SpringBroadcastMessagePb result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.iohao.message.BizProto.SpringBroadcastMessagePb buildPartial() {
+        com.iohao.message.BizProto.SpringBroadcastMessagePb result = new com.iohao.message.BizProto.SpringBroadcastMessagePb(this);
+        result.msg_ = msg_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.iohao.message.BizProto.SpringBroadcastMessagePb) {
+          return mergeFrom((com.iohao.message.BizProto.SpringBroadcastMessagePb)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.iohao.message.BizProto.SpringBroadcastMessagePb other) {
+        if (other == com.iohao.message.BizProto.SpringBroadcastMessagePb.getDefaultInstance()) return this;
+        if (!other.getMsg().isEmpty()) {
+          msg_ = other.msg_;
+          onChanged();
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.iohao.message.BizProto.SpringBroadcastMessagePb parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.iohao.message.BizProto.SpringBroadcastMessagePb) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private java.lang.Object msg_ = "";
+      /**
+       * <pre>
+       * 具体的广播消息内容
+       * </pre>
+       *
+       * <code>string msg = 1;</code>
+       * @return The msg.
+       */
+      public java.lang.String getMsg() {
+        java.lang.Object ref = msg_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          msg_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <pre>
+       * 具体的广播消息内容
+       * </pre>
+       *
+       * <code>string msg = 1;</code>
+       * @return The bytes for msg.
+       */
+      public com.google.protobuf.ByteString
+          getMsgBytes() {
+        java.lang.Object ref = msg_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          msg_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       * 具体的广播消息内容
+       * </pre>
+       *
+       * <code>string msg = 1;</code>
+       * @param value The msg to set.
+       * @return This builder for chaining.
+       */
+      public Builder setMsg(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        msg_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 具体的广播消息内容
+       * </pre>
+       *
+       * <code>string msg = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearMsg() {
+        
+        msg_ = getDefaultInstance().getMsg();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 具体的广播消息内容
+       * </pre>
+       *
+       * <code>string msg = 1;</code>
+       * @param value The bytes for msg to set.
+       * @return This builder for chaining.
+       */
+      public Builder setMsgBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        msg_ = value;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:com.iohao.message.SpringBroadcastMessagePb)
+    }
+
+    // @@protoc_insertion_point(class_scope:com.iohao.message.SpringBroadcastMessagePb)
+    private static final com.iohao.message.BizProto.SpringBroadcastMessagePb DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.iohao.message.BizProto.SpringBroadcastMessagePb();
+    }
+
+    public static com.iohao.message.BizProto.SpringBroadcastMessagePb getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<SpringBroadcastMessagePb>
+        PARSER = new com.google.protobuf.AbstractParser<SpringBroadcastMessagePb>() {
+      @java.lang.Override
+      public SpringBroadcastMessagePb parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new SpringBroadcastMessagePb(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<SpringBroadcastMessagePb> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<SpringBroadcastMessagePb> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.iohao.message.BizProto.SpringBroadcastMessagePb getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   public interface UserInfoOrBuilder extends
       // @@protoc_insertion_point(interface_extends:com.iohao.message.UserInfo)
       com.google.protobuf.MessageOrBuilder {
@@ -939,13 +6229,23 @@ public final class BizProto {
 
     /**
      * <pre>
-     * userInfo Long
+     * Long value
      * </pre>
      *
      * <code>int64 time = 4;</code>
      * @return The time.
      */
     long getTime();
+
+    /**
+     * <pre>
+     * long value
+     * </pre>
+     *
+     * <code>int64 time2 = 5;</code>
+     * @return The time2.
+     */
+    long getTime2();
   }
   /**
    * <pre>
@@ -1016,6 +6316,11 @@ public final class BizProto {
             case 32: {
 
               time_ = input.readInt64();
+              break;
+            }
+            case 40: {
+
+              time2_ = input.readInt64();
               break;
             }
             default: {
@@ -1126,7 +6431,7 @@ public final class BizProto {
     private long time_;
     /**
      * <pre>
-     * userInfo Long
+     * Long value
      * </pre>
      *
      * <code>int64 time = 4;</code>
@@ -1135,6 +6440,21 @@ public final class BizProto {
     @java.lang.Override
     public long getTime() {
       return time_;
+    }
+
+    public static final int TIME2_FIELD_NUMBER = 5;
+    private long time2_;
+    /**
+     * <pre>
+     * long value
+     * </pre>
+     *
+     * <code>int64 time2 = 5;</code>
+     * @return The time2.
+     */
+    @java.lang.Override
+    public long getTime2() {
+      return time2_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -1163,6 +6483,9 @@ public final class BizProto {
       if (time_ != 0L) {
         output.writeInt64(4, time_);
       }
+      if (time2_ != 0L) {
+        output.writeInt64(5, time2_);
+      }
       unknownFields.writeTo(output);
     }
 
@@ -1187,6 +6510,10 @@ public final class BizProto {
         size += com.google.protobuf.CodedOutputStream
           .computeInt64Size(4, time_);
       }
+      if (time2_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(5, time2_);
+      }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
@@ -1210,6 +6537,8 @@ public final class BizProto {
           != other.getTempInt()) return false;
       if (getTime()
           != other.getTime()) return false;
+      if (getTime2()
+          != other.getTime2()) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
@@ -1231,6 +6560,9 @@ public final class BizProto {
       hash = (37 * hash) + TIME_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
           getTime());
+      hash = (37 * hash) + TIME2_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getTime2());
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -1376,6 +6708,8 @@ public final class BizProto {
 
         time_ = 0L;
 
+        time2_ = 0L;
+
         return this;
       }
 
@@ -1406,6 +6740,7 @@ public final class BizProto {
         result.name_ = name_;
         result.tempInt_ = tempInt_;
         result.time_ = time_;
+        result.time2_ = time2_;
         onBuilt();
         return result;
       }
@@ -1466,6 +6801,9 @@ public final class BizProto {
         }
         if (other.getTime() != 0L) {
           setTime(other.getTime());
+        }
+        if (other.getTime2() != 0L) {
+          setTime2(other.getTime2());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -1669,7 +7007,7 @@ public final class BizProto {
       private long time_ ;
       /**
        * <pre>
-       * userInfo Long
+       * Long value
        * </pre>
        *
        * <code>int64 time = 4;</code>
@@ -1681,7 +7019,7 @@ public final class BizProto {
       }
       /**
        * <pre>
-       * userInfo Long
+       * Long value
        * </pre>
        *
        * <code>int64 time = 4;</code>
@@ -1696,7 +7034,7 @@ public final class BizProto {
       }
       /**
        * <pre>
-       * userInfo Long
+       * Long value
        * </pre>
        *
        * <code>int64 time = 4;</code>
@@ -1705,6 +7043,49 @@ public final class BizProto {
       public Builder clearTime() {
         
         time_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      private long time2_ ;
+      /**
+       * <pre>
+       * long value
+       * </pre>
+       *
+       * <code>int64 time2 = 5;</code>
+       * @return The time2.
+       */
+      @java.lang.Override
+      public long getTime2() {
+        return time2_;
+      }
+      /**
+       * <pre>
+       * long value
+       * </pre>
+       *
+       * <code>int64 time2 = 5;</code>
+       * @param value The time2 to set.
+       * @return This builder for chaining.
+       */
+      public Builder setTime2(long value) {
+        
+        time2_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * long value
+       * </pre>
+       *
+       * <code>int64 time2 = 5;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearTime2() {
+        
+        time2_ = 0L;
         onChanged();
         return this;
       }
@@ -2457,10 +7838,50 @@ public final class BizProto {
   }
 
   private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_com_iohao_message_Animal_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_com_iohao_message_Animal_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_com_iohao_message_ClassesPb_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_com_iohao_message_ClassesPb_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_com_iohao_message_LogicRequestPb_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_com_iohao_message_LogicRequestPb_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_com_iohao_message_LoginVerify_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_com_iohao_message_LoginVerify_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_com_iohao_message_OtherVerify_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_com_iohao_message_OtherVerify_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_com_iohao_message_RoomNumPb_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_com_iohao_message_RoomNumPb_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_com_iohao_message_SchoolLevelPb_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_com_iohao_message_SchoolLevelPb_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_com_iohao_message_SchoolPb_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_com_iohao_message_SchoolPb_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_com_iohao_message_SpringBroadcastMessagePb_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_com_iohao_message_SpringBroadcastMessagePb_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_com_iohao_message_UserInfo_descriptor;
   private static final 
@@ -2480,32 +7901,90 @@ public final class BizProto {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\017proto/biz.proto\022\021com.iohao.message\"K\n\013" +
-      "LoginVerify\022\013\n\003age\030\001 \001(\005\022\013\n\003jwt\030\002 \001(\t\022\024\n" +
-      "\014loginBizCode\030\003 \001(\005\022\014\n\004time\030\004 \001(\003\"C\n\010Use" +
-      "rInfo\022\n\n\002id\030\001 \001(\003\022\014\n\004name\030\002 \001(\t\022\017\n\007tempI" +
-      "nt\030\003 \001(\005\022\014\n\004time\030\004 \001(\003\"(\n\014TempUserInfo\022\n" +
-      "\n\002id\030\001 \001(\003\022\014\n\004name\030\002 \001(\tB\nB\010BizProtob\006pr" +
-      "oto3"
+      "\n\017proto/biz.proto\022\021com.iohao.message\"G\n\006" +
+      "Animal\022\n\n\002id\030\001 \001(\005\0221\n\nanimalType\030\002 \001(\0162\035" +
+      ".com.iohao.message.AnimalType\"\037\n\tClasses" +
+      "Pb\022\022\n\nstudentNum\030\001 \001(\005\"\036\n\016LogicRequestPb" +
+      "\022\014\n\004name\030\001 \001(\t\"Z\n\013LoginVerify\022\013\n\003age\030\001 \001" +
+      "(\005\022\013\n\003jwt\030\002 \001(\t\022\024\n\014loginBizCode\030\003 \001(\005\022\014\n" +
+      "\004time\030\004 \001(\003\022\r\n\005time2\030\005 \001(\003\"\032\n\013OtherVerif" +
+      "y\022\013\n\003jwt\030\001 \001(\t\"\036\n\tRoomNumPb\022\021\n\troomCount" +
+      "\030\001 \001(\005\"0\n\rSchoolLevelPb\022\r\n\005level\030\001 \001(\005\022\020" +
+      "\n\010vipLevel\030\002 \001(\005\"R\n\010SchoolPb\022\r\n\005email\030\001 " +
+      "\001(\t\022\025\n\rclassCapacity\030\002 \001(\005\022\022\n\nteacherNum" +
+      "\030\003 \001(\005\022\014\n\004name\030\004 \001(\t\"\'\n\030SpringBroadcastM" +
+      "essagePb\022\013\n\003msg\030\001 \001(\t\"R\n\010UserInfo\022\n\n\002id\030" +
+      "\001 \001(\003\022\014\n\004name\030\002 \001(\t\022\017\n\007tempInt\030\003 \001(\005\022\014\n\004" +
+      "time\030\004 \001(\003\022\r\n\005time2\030\005 \001(\003\"(\n\014TempUserInf" +
+      "o\022\n\n\002id\030\001 \001(\003\022\014\n\004name\030\002 \001(\t*\037\n\nAnimalTyp" +
+      "e\022\010\n\004BIRD\020\000\022\007\n\003CAT\020\001B\nB\010BizProtob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
         });
-    internal_static_com_iohao_message_LoginVerify_descriptor =
+    internal_static_com_iohao_message_Animal_descriptor =
       getDescriptor().getMessageTypes().get(0);
+    internal_static_com_iohao_message_Animal_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_com_iohao_message_Animal_descriptor,
+        new java.lang.String[] { "Id", "AnimalType", });
+    internal_static_com_iohao_message_ClassesPb_descriptor =
+      getDescriptor().getMessageTypes().get(1);
+    internal_static_com_iohao_message_ClassesPb_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_com_iohao_message_ClassesPb_descriptor,
+        new java.lang.String[] { "StudentNum", });
+    internal_static_com_iohao_message_LogicRequestPb_descriptor =
+      getDescriptor().getMessageTypes().get(2);
+    internal_static_com_iohao_message_LogicRequestPb_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_com_iohao_message_LogicRequestPb_descriptor,
+        new java.lang.String[] { "Name", });
+    internal_static_com_iohao_message_LoginVerify_descriptor =
+      getDescriptor().getMessageTypes().get(3);
     internal_static_com_iohao_message_LoginVerify_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_com_iohao_message_LoginVerify_descriptor,
-        new java.lang.String[] { "Age", "Jwt", "LoginBizCode", "Time", });
+        new java.lang.String[] { "Age", "Jwt", "LoginBizCode", "Time", "Time2", });
+    internal_static_com_iohao_message_OtherVerify_descriptor =
+      getDescriptor().getMessageTypes().get(4);
+    internal_static_com_iohao_message_OtherVerify_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_com_iohao_message_OtherVerify_descriptor,
+        new java.lang.String[] { "Jwt", });
+    internal_static_com_iohao_message_RoomNumPb_descriptor =
+      getDescriptor().getMessageTypes().get(5);
+    internal_static_com_iohao_message_RoomNumPb_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_com_iohao_message_RoomNumPb_descriptor,
+        new java.lang.String[] { "RoomCount", });
+    internal_static_com_iohao_message_SchoolLevelPb_descriptor =
+      getDescriptor().getMessageTypes().get(6);
+    internal_static_com_iohao_message_SchoolLevelPb_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_com_iohao_message_SchoolLevelPb_descriptor,
+        new java.lang.String[] { "Level", "VipLevel", });
+    internal_static_com_iohao_message_SchoolPb_descriptor =
+      getDescriptor().getMessageTypes().get(7);
+    internal_static_com_iohao_message_SchoolPb_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_com_iohao_message_SchoolPb_descriptor,
+        new java.lang.String[] { "Email", "ClassCapacity", "TeacherNum", "Name", });
+    internal_static_com_iohao_message_SpringBroadcastMessagePb_descriptor =
+      getDescriptor().getMessageTypes().get(8);
+    internal_static_com_iohao_message_SpringBroadcastMessagePb_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_com_iohao_message_SpringBroadcastMessagePb_descriptor,
+        new java.lang.String[] { "Msg", });
     internal_static_com_iohao_message_UserInfo_descriptor =
-      getDescriptor().getMessageTypes().get(1);
+      getDescriptor().getMessageTypes().get(9);
     internal_static_com_iohao_message_UserInfo_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_com_iohao_message_UserInfo_descriptor,
-        new java.lang.String[] { "Id", "Name", "TempInt", "Time", });
+        new java.lang.String[] { "Id", "Name", "TempInt", "Time", "Time2", });
     internal_static_com_iohao_message_TempUserInfo_descriptor =
-      getDescriptor().getMessageTypes().get(2);
+      getDescriptor().getMessageTypes().get(10);
     internal_static_com_iohao_message_TempUserInfo_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_com_iohao_message_TempUserInfo_descriptor,

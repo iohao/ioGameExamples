@@ -61,5 +61,7 @@ public class GameExternal {
          */
         // see HallCmdModule.cmd，HallCmdModule.loginVerify
         accessAuthenticationHook.addIgnoreAuthenticationCmd(3, 1);
+        accessAuthenticationHook.addIgnoreAuthenticationCmd(3, 8);
+        accessAuthenticationHook.addIgnoreAuthenticationCmd(3);
     }
 }

@@ -18,6 +18,7 @@ package com.iohao.game.example.interaction.fight;
 
 import com.iohao.game.action.skeleton.core.BarSkeleton;
 import com.iohao.game.action.skeleton.core.BarSkeletonBuilderParamConfig;
+import com.iohao.game.action.skeleton.core.flow.interal.DebugInOut;
 import com.iohao.game.bolt.broker.client.AbstractBrokerClientStartup;
 import com.iohao.game.bolt.broker.core.client.BrokerAddress;
 import com.iohao.game.bolt.broker.core.client.BrokerClient;
@@ -43,7 +44,7 @@ public class DemoFightLogicServer extends AbstractBrokerClientStartup {
         // 业务框架构建器
         var builder = config.createBuilder();
         // 添加控制台输出插件
-//        builder.addInOut(new DebugInOut());
+        builder.addInOut(new DebugInOut());
         return builder.build();
     }
 
