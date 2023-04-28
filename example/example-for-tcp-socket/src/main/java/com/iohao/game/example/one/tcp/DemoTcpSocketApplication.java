@@ -18,7 +18,7 @@ package com.iohao.game.example.one.tcp;
 
 import com.iohao.game.bolt.broker.client.AbstractBrokerClientStartup;
 import com.iohao.game.example.one.server.DemoLogicServer;
-import com.iohao.game.simple.SimpleHelper;
+import com.iohao.game.external.core.netty.simple.NettySimpleHelper;
 
 import java.util.List;
 
@@ -39,7 +39,7 @@ public class DemoTcpSocketApplication {
         );
 
         // 对外服 tcp socket 方式连接 （对应的测试类是 DemoSocketClient 客户端）
-        SimpleHelper.runTcp(port, logicList);
+        NettySimpleHelper.runTcp(port, logicList);
 
         /*
          * 该示例文档地址

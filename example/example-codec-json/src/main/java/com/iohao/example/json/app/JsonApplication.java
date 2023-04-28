@@ -20,7 +20,7 @@ import com.iohao.example.json.web.WebApplication;
 import com.iohao.game.action.skeleton.core.IoGameGlobalSetting;
 import com.iohao.game.action.skeleton.core.codec.JsonDataCodec;
 import com.iohao.game.bolt.broker.core.common.IoGameGlobalConfig;
-import com.iohao.game.simple.SimpleHelper;
+import com.iohao.game.external.core.netty.simple.NettySimpleHelper;
 
 import java.util.List;
 
@@ -31,7 +31,7 @@ import java.util.List;
 public class JsonApplication {
     public static void main(String[] args) {
         // 设置 json 编解码。如果不设置，默认为 jprotobuf
-        IoGameGlobalSetting.me().setDataCodec(new JsonDataCodec());
+        IoGameGlobalSetting.setDataCodec(new JsonDataCodec());
 
 //        IoGameGlobalConfig.openLog = false;
         IoGameGlobalConfig.externalLog = false;
@@ -43,13 +43,12 @@ public class JsonApplication {
         var demoLogicServer = new JsonLogicServer();
 
         // 启动 对外服、网关服、逻辑服; 并生成游戏业务文档
-        SimpleHelper.run(port, List.of(demoLogicServer));
+        NettySimpleHelper.run(port, List.of(demoLogicServer));
 
         /*
          * 该示例文档地址
          * https://www.yuque.com/iohao/game/uq2zrltrc7to27bt
          */
-
 
         WebApplication.start(8080);
     }

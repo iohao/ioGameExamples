@@ -2,11 +2,11 @@ package com.iohao.game.tank.net;
 
 import com.iohao.game.action.skeleton.core.CmdKit;
 import com.iohao.game.action.skeleton.core.DataCodecKit;
-import com.iohao.game.bolt.broker.client.external.bootstrap.message.ExternalMessage;
 import com.iohao.game.collect.common.GameConfig;
 import com.iohao.game.collect.proto.common.LoginVerify;
 import com.iohao.game.common.kit.RandomKit;
 import com.iohao.game.common.kit.StrKit;
+import com.iohao.game.external.core.message.ExternalMessage;
 import com.iohao.game.tank.net.onmessage.*;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;

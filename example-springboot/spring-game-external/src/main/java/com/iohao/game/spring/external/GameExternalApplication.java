@@ -16,7 +16,7 @@
  */
 package com.iohao.game.spring.external;
 
-import com.iohao.game.bolt.broker.client.external.ExternalServer;
+import com.iohao.game.external.core.ExternalServer;
 
 /**
  * 单独启动类：游戏对外服

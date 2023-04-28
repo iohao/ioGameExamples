@@ -17,13 +17,13 @@
 package com.iohao.game.example.endpoint;
 
 import com.iohao.game.bolt.broker.client.AbstractBrokerClientStartup;
-import com.iohao.game.bolt.broker.client.external.config.ExternalGlobalConfig;
 import com.iohao.game.bolt.broker.core.client.BrokerClient;
 import com.iohao.game.bolt.broker.core.client.BrokerClientBuilder;
 import com.iohao.game.example.endpoint.match.DemoEndPointMatchServer;
 import com.iohao.game.example.endpoint.match.action.DemoCmdForEndPointMatch;
 import com.iohao.game.example.endpoint.room.DemoEndPointRoomServer;
-import com.iohao.game.simple.SimpleHelper;
+import com.iohao.game.external.core.config.ExternalGlobalConfig;
+import com.iohao.game.external.core.netty.simple.NettySimpleHelper;
 
 import java.util.List;
 
@@ -36,7 +36,7 @@ import java.util.List;
 public class DemoEndPointApplication {
     public static void main(String[] args) {
 
-        var accessAuthenticationHook =  ExternalGlobalConfig.accessAuthenticationHook;
+        var accessAuthenticationHook = ExternalGlobalConfig.accessAuthenticationHook;
         // 表示登录才能访问业务方法
         accessAuthenticationHook.setVerifyIdentity(true);
         // 添加不需要登录也能访问的业务方法 (action)
@@ -58,7 +58,7 @@ public class DemoEndPointApplication {
         // 游戏对外服端口
         int port = 10100;
         // 启动 对外服、网关服、逻辑服; 并生成游戏业务文档
-        SimpleHelper.run(port, logicList);
+        NettySimpleHelper.run(port, logicList);
 
         /*
          * 该示例文档地址

@@ -16,8 +16,8 @@
         <!-- https://www.yuque.com/iohao/game/ea6geg#jMDuc -->
         <dependency>
             <groupId>com.iohao.game</groupId>
-            <artifactId>bolt-external</artifactId>
-            <version>${ioGame.version}</version>
+            <artifactId>external-netty</artifactId>
+            <version>${external.version}</version>
         </dependency>
 
         <!-- 这个不是必须的， 这里使用了 springboot 的控制台色彩相关日志 -->

@@ -27,8 +27,8 @@
         <!-- 单体应用启动 -->
         <dependency>
             <groupId>com.iohao.game</groupId>
-            <artifactId>bolt-run-one</artifactId>
-            <version>${ioGame.version}</version>
+            <artifactId>netty-run-one</artifactId>
+            <version>${external.version}</version>
         </dependency>
 
         <dependency>

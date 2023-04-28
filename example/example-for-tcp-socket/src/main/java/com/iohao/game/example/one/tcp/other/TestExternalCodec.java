@@ -18,10 +18,10 @@ package com.iohao.game.example.one.tcp.other;
 
 import cn.hutool.core.util.HexUtil;
 import com.iohao.game.action.skeleton.core.DataCodecKit;
-import com.iohao.game.bolt.broker.client.external.bootstrap.ExternalKit;
-import com.iohao.game.bolt.broker.client.external.bootstrap.handler.codec.ExternalCodecSocket;
-import com.iohao.game.bolt.broker.client.external.bootstrap.message.ExternalMessage;
 import com.iohao.game.example.common.msg.HelloReq;
+import com.iohao.game.external.core.kit.ExternalKit;
+import com.iohao.game.external.core.message.ExternalMessage;
+import com.iohao.game.external.core.netty.handler.codec.ExternalCodecSocket;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.PooledByteBufAllocator;
 import io.netty.buffer.Unpooled;
@@ -92,8 +92,7 @@ public class TestExternalCodec {
         byte[] msgBytes = new byte[length];
         buffer.readBytes(msgBytes);
 
-        String s = HexUtil.encodeHexStr(msgBytes);
-        return s;
+        return HexUtil.encodeHexStr(msgBytes);
     }
 
 }

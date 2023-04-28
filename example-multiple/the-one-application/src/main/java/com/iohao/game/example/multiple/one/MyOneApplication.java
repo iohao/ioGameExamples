@@ -17,12 +17,12 @@
 package com.iohao.game.example.multiple.one;
 
 import com.iohao.game.bolt.broker.client.AbstractBrokerClientStartup;
-import com.iohao.game.bolt.broker.client.external.ExternalServer;
 import com.iohao.game.bolt.broker.server.BrokerServer;
 import com.iohao.game.example.multiple.broker.MyBrokerServer;
 import com.iohao.game.example.multiple.external.MyExternalServer;
 import com.iohao.game.example.multiple.weather.WeatherLogicStartup;
-import com.iohao.game.simple.SimpleRunOne;
+import com.iohao.game.external.core.ExternalServer;
+import com.iohao.game.external.core.netty.simple.NettyRunOne;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -51,7 +51,7 @@ public class MyOneApplication {
         WeatherLogicStartup weatherLogicStartup = new WeatherLogicStartup();
         List<AbstractBrokerClientStartup> logicServerList = List.of(weatherLogicStartup);
 
-        SimpleRunOne simpleRunOne = new SimpleRunOne()
+        NettyRunOne simpleRunOne = new NettyRunOne()
                 .setExternalServer(externalServer)
                 .setBrokerServer(brokerServer)
                 .setLogicServerList(logicServerList);

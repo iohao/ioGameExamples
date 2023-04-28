@@ -16,7 +16,7 @@
  */
 package com.iohao.game.command;
 
-import com.iohao.game.bolt.broker.client.external.bootstrap.message.ExternalMessage;
+import com.iohao.game.external.core.message.ExternalMessage;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.experimental.FieldDefaults;

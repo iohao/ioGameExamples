@@ -16,11 +16,11 @@
  */
 package com.iohao.game.example.spring;
 
-import com.iohao.game.bolt.broker.client.external.bootstrap.message.ExternalMessage;
 import com.iohao.game.command.ClientCommandKit;
 import com.iohao.game.command.WebsocketClientKit;
 import com.iohao.game.example.common.msg.HelloSpringMsg;
 import com.iohao.game.example.spring.action.DemoCmdForSpring;
+import com.iohao.game.external.core.message.ExternalMessage;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -48,7 +48,6 @@ public class DemoWebsocketClientForSpring {
         ExternalMessage externalMessageHere = ClientCommandKit.createExternalMessage(
                 DemoCmdForSpring.cmd,
                 DemoCmdForSpring.here,
-//                1,
                 helloReq
         );
 

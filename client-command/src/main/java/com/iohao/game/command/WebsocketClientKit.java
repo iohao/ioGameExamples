@@ -18,7 +18,7 @@ package com.iohao.game.command;
 
 import com.iohao.game.action.skeleton.core.CmdKit;
 import com.iohao.game.action.skeleton.core.DataCodecKit;
-import com.iohao.game.bolt.broker.client.external.bootstrap.message.ExternalMessage;
+import com.iohao.game.external.core.message.ExternalMessage;
 import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
 import org.java_websocket.client.WebSocketClient;
@@ -65,7 +65,6 @@ public class WebsocketClientKit {
                             throw new RuntimeException(e);
                         }
                     }
-
                 });
             }
 

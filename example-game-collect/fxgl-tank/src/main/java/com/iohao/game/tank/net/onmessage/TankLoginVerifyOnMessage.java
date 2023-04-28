@@ -2,9 +2,9 @@ package com.iohao.game.tank.net.onmessage;
 
 import com.iohao.game.action.skeleton.core.CmdKit;
 import com.iohao.game.action.skeleton.core.DataCodecKit;
-import com.iohao.game.bolt.broker.client.external.bootstrap.message.ExternalMessage;
 import com.iohao.game.collect.proto.common.UserInfo;
 import com.iohao.game.collect.proto.tank.TankEnterRoom;
+import com.iohao.game.external.core.message.ExternalMessage;
 import com.iohao.game.tank.net.TankOnMessage;
 import lombok.extern.slf4j.Slf4j;
 

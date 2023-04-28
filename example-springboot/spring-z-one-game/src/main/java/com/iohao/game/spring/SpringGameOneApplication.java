@@ -18,12 +18,12 @@ package com.iohao.game.spring;
 
 import com.iohao.game.action.skeleton.ext.spring.ActionFactoryBeanForSpring;
 import com.iohao.game.bolt.broker.client.AbstractBrokerClientStartup;
-import com.iohao.game.bolt.broker.client.external.ExternalServer;
-import com.iohao.game.bolt.broker.client.external.config.ExternalGlobalConfig;
 import com.iohao.game.bolt.broker.core.client.BrokerClient;
 import com.iohao.game.bolt.broker.core.client.BrokerClientBuilder;
 import com.iohao.game.bolt.broker.server.BrokerServer;
-import com.iohao.game.simple.SimpleRunOne;
+import com.iohao.game.external.core.ExternalServer;
+import com.iohao.game.external.core.config.ExternalGlobalConfig;
+import com.iohao.game.external.core.netty.simple.NettyRunOne;
 import com.iohao.game.spring.broker.GameBrokerBoot;
 import com.iohao.game.spring.external.GameExternal;
 import com.iohao.game.spring.logic.classes.GameLogicClassesClient;
@@ -104,7 +104,7 @@ public class SpringGameOneApplication {
         BrokerServer brokerServer = new GameBrokerBoot().createBrokerServer();
 
         // 多服单进程的方式部署（类似单体应用）
-        new SimpleRunOne()
+        new NettyRunOne()
                 // broker （游戏网关）
                 .setBrokerServer(brokerServer)
                 // 游戏对外服

@@ -30,11 +30,11 @@
             <version>${ioGame.version}</version>
         </dependency>
 
-<!--        <dependency>-->
-<!--            <groupId>com.iohao.game</groupId>-->
-<!--            <artifactId>bolt-external</artifactId>-->
-<!--            <version>${ioGame.version}</version>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>com.iohao.game</groupId>
+            <artifactId>external-netty</artifactId>
+            <version>${external.version}</version>
+        </dependency>
 
         <dependency>
             <groupId>com.iohao.example</groupId>

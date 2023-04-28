@@ -18,10 +18,10 @@
     </properties>
 
     <dependencies>
-        <!-- 单体应用启动 -->
+
         <dependency>
             <groupId>com.iohao.game</groupId>
-            <artifactId>bolt-run-one</artifactId>
+            <artifactId>bolt-client</artifactId>
             <version>${ioGame.version}</version>
         </dependency>
 

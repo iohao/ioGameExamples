@@ -25,11 +25,10 @@
             <version>${java-websocket.version}</version>
         </dependency>
 
-        <!-- https://www.yuque.com/iohao/game/ea6geg#jMDuc -->
         <dependency>
             <groupId>com.iohao.game</groupId>
-            <artifactId>bolt-external</artifactId>
-            <version>${ioGame.version}</version>
+            <artifactId>netty-run-one</artifactId>
+            <version>${external.version}</version>
         </dependency>
     </dependencies>
 

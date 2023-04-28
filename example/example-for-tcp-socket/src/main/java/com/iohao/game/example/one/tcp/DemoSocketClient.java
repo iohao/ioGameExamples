@@ -17,10 +17,10 @@
 package com.iohao.game.example.one.tcp;
 
 import com.iohao.game.action.skeleton.core.DataCodecKit;
-import com.iohao.game.bolt.broker.client.external.bootstrap.ExternalKit;
-import com.iohao.game.bolt.broker.client.external.bootstrap.handler.codec.ExternalCodecSocket;
-import com.iohao.game.bolt.broker.client.external.bootstrap.message.ExternalMessage;
 import com.iohao.game.example.common.msg.HelloReq;
+import com.iohao.game.external.core.kit.ExternalKit;
+import com.iohao.game.external.core.message.ExternalMessage;
+import com.iohao.game.external.core.netty.handler.codec.ExternalCodecSocket;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;

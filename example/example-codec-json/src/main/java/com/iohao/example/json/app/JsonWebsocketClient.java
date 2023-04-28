@@ -18,11 +18,11 @@ package com.iohao.example.json.app;
 
 import com.iohao.game.action.skeleton.core.IoGameGlobalSetting;
 import com.iohao.game.action.skeleton.core.codec.JsonDataCodec;
-import com.iohao.game.bolt.broker.client.external.bootstrap.message.ExternalMessage;
 import com.iohao.game.command.ClientCommandKit;
 import com.iohao.game.command.WebsocketClientKit;
 import com.iohao.game.example.common.cmd.JsonCmd;
 import com.iohao.game.example.common.msg.HelloReq;
+import com.iohao.game.external.core.message.ExternalMessage;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -38,7 +38,7 @@ import lombok.experimental.FieldDefaults;
 public class JsonWebsocketClient {
     public static void main(String[] args) throws Exception {
         // 使用 json 编解码
-        IoGameGlobalSetting.me().setDataCodec(new JsonDataCodec());
+        IoGameGlobalSetting.setDataCodec(new JsonDataCodec());
 
         // 请求构建
         initClientCommands();

@@ -80,6 +80,7 @@
     <properties>
         <!-- 项目版本 -->
         <ioGame.version>17.1.38</ioGame.version>
+        <external.version>1.0-SNAPSHOT</external.version>
         <!-- jdk 版本 -->
         <java.version>17</java.version>
         <maven.compiler.source>17</maven.compiler.source>

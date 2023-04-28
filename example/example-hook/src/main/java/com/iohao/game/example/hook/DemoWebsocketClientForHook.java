@@ -16,12 +16,12 @@
  */
 package com.iohao.game.example.hook;
 
-import com.iohao.game.bolt.broker.client.external.bootstrap.message.ExternalMessage;
 import com.iohao.game.command.ClientCommandKit;
 import com.iohao.game.command.WebsocketClientKit;
 import com.iohao.game.example.common.msg.login.DemoLoginVerify;
 import com.iohao.game.example.common.msg.login.DemoUserInfo;
 import com.iohao.game.example.hook.action.DemoCmdForHookRoom;
+import com.iohao.game.external.core.message.ExternalMessage;
 import lombok.extern.slf4j.Slf4j;
 
 /**

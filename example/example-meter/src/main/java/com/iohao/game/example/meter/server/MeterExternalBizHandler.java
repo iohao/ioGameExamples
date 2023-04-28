@@ -16,16 +16,19 @@
  */
 package com.iohao.game.example.meter.server;
 
-import com.alipay.remoting.exception.RemotingException;
 import com.iohao.game.action.skeleton.core.exception.ActionErrorEnum;
 import com.iohao.game.action.skeleton.protocol.RequestMessage;
-import com.iohao.game.bolt.broker.client.external.bootstrap.ExternalKit;
-import com.iohao.game.bolt.broker.client.external.bootstrap.message.ExternalMessage;
-import com.iohao.game.bolt.broker.client.external.config.ExternalGlobalConfig;
-import com.iohao.game.bolt.broker.client.external.session.UserChannelId;
-import com.iohao.game.bolt.broker.client.external.session.UserSession;
-import com.iohao.game.bolt.broker.client.external.session.UserSessions;
-import io.netty.channel.Channel;
+import com.iohao.game.bolt.broker.core.aware.BrokerClientAware;
+import com.iohao.game.bolt.broker.core.client.BrokerClient;
+import com.iohao.game.bolt.broker.core.message.BrokerClientModuleMessage;
+import com.iohao.game.external.core.aware.UserSessionsAware;
+import com.iohao.game.external.core.config.ExternalGlobalConfig;
+import com.iohao.game.external.core.kit.ExternalKit;
+import com.iohao.game.external.core.message.ExternalMessage;
+import com.iohao.game.external.core.netty.session.NettyUserSessions;
+import com.iohao.game.external.core.session.UserChannelId;
+import com.iohao.game.external.core.session.UserSession;
+import com.iohao.game.external.core.session.UserSessions;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
@@ -39,21 +42,30 @@ import java.util.concurrent.atomic.LongAdder;
  */
 @Slf4j
 @ChannelHandler.Sharable
-public class MeterExternalBizHandler extends SimpleChannelInboundHandler<ExternalMessage> {
+public class MeterExternalBizHandler extends SimpleChannelInboundHandler<ExternalMessage>
+        implements UserSessionsAware, BrokerClientAware {
     public static final LongAdder userIdAdder = new LongAdder();
+
+    NettyUserSessions userSessions;
+    BrokerClient brokerClient;
+
+    @Override
+    public void setUserSessions(UserSessions<?, ?> userSessions) {
+        this.userSessions = (NettyUserSessions) userSessions;
+    }
 
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, ExternalMessage message) {
 
         // 得到 session
-        UserSession userSession = UserSessions.me().getUserSession(ctx);
+        UserSession userSession = this.userSessions.getUserSession(ctx);
 
         // 如果没登录的，模拟登录
         if (!userSession.isVerifyIdentity()) {
             userIdAdder.increment();
 
             UserChannelId userChannelId = userSession.getUserChannelId();
-            UserSessions.me().settingUserId(userChannelId, userIdAdder.longValue());
+            userSessions.settingUserId(userChannelId, userIdAdder.longValue());
         }
 
         // 是否可以访问业务方法（action），true 表示可以访问该路由对应的业务方法
@@ -64,41 +76,53 @@ public class MeterExternalBizHandler extends SimpleChannelInboundHandler<Externa
             message.setResponseStatus(ActionErrorEnum.verifyIdentity.getCode());
             message.setValidMsg("请先登录，在请求业务方法");
             // 响应结果给用户
-            Channel channel = userSession.getChannel();
-            channel.writeAndFlush(message);
+            userSession.writeAndFlush(message);
             return;
         }
 
         // 将 message 转换成 RequestMessage
-        RequestMessage requestMessage = ExternalKit.convertRequestMessage(message);
+        RequestMessage requestMessage = convertRequestMessage(message);
 
         try {
-            // 由内部逻辑服转发用户请求到游戏网关，在由网关转到具体的业务逻辑服
-            ExternalKit.requestGateway(ctx, requestMessage);
-        } catch (RemotingException e) {
+            // 请求游戏网关，在由网关转到具体的业务逻辑服
+            brokerClient.oneway(requestMessage);
+        } catch (Exception e) {
             log.error(e.getMessage(), e);
         }
+    }
+
+    private RequestMessage convertRequestMessage(ExternalMessage externalMessage) {
+
+        BrokerClientModuleMessage brokerClientModuleMessage = brokerClient.getBrokerClientModuleMessage();
+        int idHash = brokerClientModuleMessage.getIdHash();
+
+        return ExternalKit.convertRequestMessage(externalMessage, idHash);
     }
 
     @Override
     public void channelInactive(ChannelHandlerContext ctx) {
         log.info("channelInactive");
         // 从 session 管理中移除
-        UserSession userSession = UserSessions.me().getUserSession(ctx);
-        UserSessions.me().removeUserSession(userSession);
+        var userSession = this.userSessions.getUserSession(ctx);
+        this.userSessions.removeUserSession(userSession);
     }
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) {
         // 加入到 session 管理
-        UserSessions.me().add(ctx);
+        this.userSessions.add(ctx);
     }
 
     @Override
-    public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
+    public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
         log.info("exceptionCaught");
         // 从 session 管理中移除
-        UserSession userSession = UserSessions.me().getUserSession(ctx);
-        UserSessions.me().removeUserSession(userSession);
+        var userSession = this.userSessions.getUserSession(ctx);
+        this.userSessions.removeUserSession(userSession);
+    }
+
+    @Override
+    public void setBrokerClient(BrokerClient brokerClient) {
+        this.brokerClient = brokerClient;
     }
 }

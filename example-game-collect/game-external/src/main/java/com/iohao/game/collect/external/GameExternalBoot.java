@@ -16,12 +16,13 @@
  */
 package com.iohao.game.collect.external;
 
-import com.iohao.game.bolt.broker.client.external.ExternalServer;
-import com.iohao.game.bolt.broker.client.external.ExternalServerBuilder;
-import com.iohao.game.bolt.broker.client.external.bootstrap.ExternalJoinEnum;
-import com.iohao.game.bolt.broker.client.external.config.ExternalGlobalConfig;
 import com.iohao.game.collect.common.GameConfig;
 import com.iohao.game.collect.common.HallCmd;
+import com.iohao.game.external.core.ExternalServer;
+import com.iohao.game.external.core.config.ExternalGlobalConfig;
+import com.iohao.game.external.core.config.ExternalJoinEnum;
+import com.iohao.game.external.core.netty.NettyExternalServer;
+import com.iohao.game.external.core.netty.NettyExternalServerBuilder;
 
 /**
  * 游戏对外服
@@ -41,12 +42,9 @@ public class GameExternalBoot {
         // 端口
         int port = externalPort;
         // 游戏对外服 - 构建器
-        ExternalServerBuilder builder = ExternalServer.newBuilder(port)
+        NettyExternalServerBuilder builder = NettyExternalServer.newBuilder(port)
                 // websocket 方式连接
-                .externalJoinEnum(ExternalJoinEnum.WEBSOCKET)
-                // 开启心跳
-//                .enableIdle()
-                ;
+                .externalJoinEnum(ExternalJoinEnum.WEBSOCKET);
 
         // 构建游戏对外服
         return builder.build();

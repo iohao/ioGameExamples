@@ -17,8 +17,8 @@
 package com.iohao.game.example.broadcast;
 
 import com.iohao.game.action.skeleton.core.DataCodecKit;
-import com.iohao.game.bolt.broker.client.external.bootstrap.message.ExternalMessage;
 import com.iohao.game.example.common.msg.DemoBroadcastMessage;
+import com.iohao.game.external.core.message.ExternalMessage;
 import lombok.extern.slf4j.Slf4j;
 import org.java_websocket.client.WebSocketClient;
 import org.java_websocket.drafts.Draft_6455;

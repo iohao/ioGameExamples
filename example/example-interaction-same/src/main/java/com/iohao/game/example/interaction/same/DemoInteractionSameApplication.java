@@ -22,7 +22,7 @@ import com.iohao.game.bolt.broker.core.client.BrokerClientBuilder;
 import com.iohao.game.bolt.broker.core.common.IoGameGlobalConfig;
 import com.iohao.game.example.interaction.same.hall.DemoSameHallLogicServer;
 import com.iohao.game.example.interaction.same.room.DemoSameRoomLogicServer;
-import com.iohao.game.simple.SimpleHelper;
+import com.iohao.game.external.core.netty.simple.NettySimpleHelper;
 
 import java.util.List;
 
@@ -53,7 +53,7 @@ public class DemoInteractionSameApplication {
         // 游戏对外服端口
         int port = 10100;
         // 启动 对外服、网关服、逻辑服; 并生成游戏业务文档
-        SimpleHelper.run(port, logicList);
+        NettySimpleHelper.run(port, logicList);
 
         /*
          * 该示例文档地址

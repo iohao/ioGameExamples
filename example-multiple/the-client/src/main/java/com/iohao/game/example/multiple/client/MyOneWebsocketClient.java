@@ -16,7 +16,6 @@
  */
 package com.iohao.game.example.multiple.client;
 
-import com.iohao.game.bolt.broker.client.external.bootstrap.message.ExternalMessage;
 import com.iohao.game.command.ClientCommandKit;
 import com.iohao.game.command.WebsocketClientKit;
 import com.iohao.game.example.multiple.common.cmd.internal.WeatherCmd;
@@ -37,7 +36,7 @@ public class MyOneWebsocketClient {
         TheLogin login = new TheLogin();
         login.jwt = "abc";
 
-        ExternalMessage externalMessage = ClientCommandKit.createExternalMessage(
+        var externalMessage = ClientCommandKit.createExternalMessage(
                 // 路由, 对应服务端逻辑服的业务类路由地址
                 WeatherCmd.cmd,
                 WeatherCmd.login,

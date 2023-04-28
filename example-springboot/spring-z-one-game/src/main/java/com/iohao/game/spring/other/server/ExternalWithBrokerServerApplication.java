@@ -16,16 +16,12 @@
  */
 package com.iohao.game.spring.other.server;
 
-import com.iohao.game.bolt.broker.client.external.ExternalServer;
-import com.iohao.game.bolt.broker.client.external.config.ExternalGlobalConfig;
 import com.iohao.game.bolt.broker.server.BrokerServer;
-import com.iohao.game.simple.SimpleRunOne;
+import com.iohao.game.external.core.ExternalServer;
+import com.iohao.game.external.core.config.ExternalGlobalConfig;
+import com.iohao.game.external.core.netty.simple.NettyRunOne;
 import com.iohao.game.spring.broker.GameBrokerBoot;
 import com.iohao.game.spring.external.GameExternal;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.experimental.FieldDefaults;
 
 /**
  * 游戏对外服和游戏网关的启动
@@ -46,7 +42,7 @@ public class ExternalWithBrokerServerApplication {
         BrokerServer brokerServer = new GameBrokerBoot().createBrokerServer();
 
         // 多服单进程的方式部署（类似单体应用）
-        new SimpleRunOne()
+        new NettyRunOne()
                 // broker （游戏网关）
                 .setBrokerServer(brokerServer)
                 // 游戏对外服

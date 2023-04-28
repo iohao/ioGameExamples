@@ -16,10 +16,10 @@
  */
 package com.iohao.game.example.interaction.same;
 
-import com.iohao.game.bolt.broker.client.external.bootstrap.message.ExternalMessage;
 import com.iohao.game.command.ClientCommandKit;
 import com.iohao.game.command.WebsocketClientKit;
 import com.iohao.game.example.interaction.same.hall.action.DemoCmdForHall;
+import com.iohao.game.external.core.message.ExternalMessage;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -48,6 +48,6 @@ public class DemoWebsocketClientForInteractionSame {
         );
 
         ClientCommandKit.createClientCommand(externalMessageHere);
-        
+
     }
 }

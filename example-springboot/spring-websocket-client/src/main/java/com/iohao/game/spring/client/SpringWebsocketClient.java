@@ -17,9 +17,9 @@
 package com.iohao.game.spring.client;
 
 import com.iohao.game.action.skeleton.protocol.wrapper.IntValue;
-import com.iohao.game.bolt.broker.client.external.bootstrap.message.ExternalMessage;
 import com.iohao.game.command.ClientCommandKit;
 import com.iohao.game.command.WebsocketClientKit;
+import com.iohao.game.external.core.message.ExternalMessage;
 import com.iohao.game.spring.common.cmd.HallCmdModule;
 import com.iohao.game.spring.common.cmd.OtherSchoolCmdModule;
 import com.iohao.game.spring.common.cmd.RoomCmdModule;
@@ -65,7 +65,7 @@ public class SpringWebsocketClient {
 
     private static void attachmentCommands() {
         // 请求 设置元信息
-        ExternalMessage externalMessage = ClientCommandKit.createExternalMessage(
+        var externalMessage = ClientCommandKit.createExternalMessage(
                 HallCmdModule.cmd,
                 HallCmdModule.attachment
         );

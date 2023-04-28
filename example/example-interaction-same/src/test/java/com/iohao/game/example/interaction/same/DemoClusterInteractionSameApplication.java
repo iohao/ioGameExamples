@@ -22,7 +22,7 @@ import com.iohao.game.bolt.broker.core.client.BrokerClientBuilder;
 import com.iohao.game.bolt.broker.core.common.IoGameGlobalConfig;
 import com.iohao.game.example.interaction.same.hall.DemoSameHallLogicServer;
 import com.iohao.game.example.interaction.same.room.DemoSameRoomLogicServer;
-import com.iohao.game.simple.cluster.ClusterSimpleHelper;
+import com.iohao.game.external.core.netty.simple.NettyClusterSimpleHelper;
 
 import java.util.List;
 
@@ -55,7 +55,7 @@ public class DemoClusterInteractionSameApplication {
         );
 
         // 启动 对外服、游戏网关集群、逻辑服; 并生成游戏业务文档
-        ClusterSimpleHelper.run(port, logicList);
+        NettyClusterSimpleHelper.run(port, logicList);
 
         /*
          * 该示例文档地址

@@ -18,8 +18,8 @@ package com.iohao.game.command;
 
 import com.iohao.game.action.skeleton.core.CmdKit;
 import com.iohao.game.action.skeleton.core.DataCodecKit;
-import com.iohao.game.bolt.broker.client.external.bootstrap.ExternalKit;
-import com.iohao.game.bolt.broker.client.external.bootstrap.message.ExternalMessage;
+import com.iohao.game.external.core.kit.ExternalKit;
+import com.iohao.game.external.core.message.ExternalMessage;
 import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
 
@@ -37,6 +37,7 @@ import java.util.Map;
 public class ClientCommandKit {
 
     Map<Integer, ClientCommand> clientCommandMap = new LinkedHashMap<>();
+    public boolean openExternalLog = true;
 
     public List<ClientCommand> listClientCommand() {
         return clientCommandMap
@@ -94,7 +95,9 @@ public class ClientCommandKit {
         int cmd = CmdKit.getCmd(cmdMerge);
         int subCmd = CmdKit.getSubCmd(cmdMerge);
 
-        log.info("收到消息 ExternalMessage ========== \n{} \ncmdMerge [{}-{}] ", externalMessage, cmd, subCmd);
+        if (openExternalLog) {
+            log.info("收到消息 ExternalMessage ========== \n{} \ncmdMerge [{}-{}] ", externalMessage, cmd, subCmd);
+        }
 
         if (externalMessage.getResponseStatus() == 0) {
             printNormal(externalMessage);

@@ -16,14 +16,16 @@
  */
 package com.iohao.game.example.hook.custom;
 
-import com.alipay.remoting.exception.RemotingException;
 import com.iohao.game.action.skeleton.core.CmdKit;
 import com.iohao.game.action.skeleton.protocol.RequestMessage;
-import com.iohao.game.bolt.broker.client.external.bootstrap.ExternalKit;
-import com.iohao.game.bolt.broker.client.external.session.UserSession;
-import com.iohao.game.bolt.broker.client.external.session.UserSessions;
-import com.iohao.game.bolt.broker.client.external.session.hook.UserHook;
+import com.iohao.game.bolt.broker.core.aware.BrokerClientAware;
+import com.iohao.game.bolt.broker.core.client.BrokerClient;
 import com.iohao.game.example.hook.action.DemoCmdForHookRoom;
+import com.iohao.game.external.core.aware.UserSessionsAware;
+import com.iohao.game.external.core.hook.UserHook;
+import com.iohao.game.external.core.kit.ExternalKit;
+import com.iohao.game.external.core.session.UserSession;
+import com.iohao.game.external.core.session.UserSessions;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -31,31 +33,48 @@ import lombok.extern.slf4j.Slf4j;
  * @date 2022-05-28
  */
 @Slf4j
-public class DemoUserHook implements UserHook {
+public class DemoUserHook implements UserHook, UserSessionsAware, BrokerClientAware {
+
+    UserSessions<?, ?> userSessions;
+
+    @Override
+    public void setUserSessions(UserSessions<?, ?> userSessions) {
+        this.userSessions = userSessions;
+    }
+
     @Override
     public void into(UserSession userSession) {
         long userId = userSession.getUserId();
         log.info("demo 玩家上线 userId: {} -- {}", userId, userSession.getUserChannelId());
-        log.info("demo 当前在线玩家数量： {}", UserSessions.me().countOnline());
+        log.info("demo 当前在线玩家数量： {}", this.userSessions.countOnline());
     }
 
     @Override
     public void quit(UserSession userSession) {
         long userId = userSession.getUserId();
         log.info("demo 玩家退出 userId: {} -- {}", userId, userSession.getUserChannelId());
-        log.info("demo 当前在线玩家数量： {}", UserSessions.me().countOnline());
+        log.info("demo 当前在线玩家数量： {}", this.userSessions.countOnline());
 
         // 房间主路由和房间子路由（退出房间）
         int mergeCmd = CmdKit.merge(DemoCmdForHookRoom.cmd, DemoCmdForHookRoom.quitRoom);
         // 创建请求消息，createRequestMessage 有多个重载，可以传入业务参数
-        RequestMessage requestMessage = ExternalKit.createRequestMessage(mergeCmd);
+
+        int idHash = brokerClient.getBrokerClientModuleMessage().getIdHash();
+        RequestMessage requestMessage = ExternalKit.createRequestMessage(mergeCmd, idHash);
+        userSession.employ(requestMessage);
 
         try {
             // 请求游戏网关
-            // 由内部逻辑服转发用户请求到游戏网关，在由网关转到具体的业务逻辑服
-            ExternalKit.requestGateway(userSession, requestMessage);
-        } catch (RemotingException e) {
+            this.brokerClient.oneway(requestMessage);
+        } catch (Exception e) {
             log.error(e.getMessage(), e);
         }
+    }
+
+    BrokerClient brokerClient;
+
+    @Override
+    public void setBrokerClient(BrokerClient brokerClient) {
+        this.brokerClient = brokerClient;
     }
 }

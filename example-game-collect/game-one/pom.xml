@@ -39,12 +39,11 @@
             <version>${project.parent.version}</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter -->
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.boot</groupId>-->
-<!--            <artifactId>spring-boot-starter</artifactId>-->
-<!--            <version>${springboot.version}</version>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>com.iohao.game</groupId>
+            <artifactId>netty-run-one</artifactId>
+            <version>${external.version}</version>
+        </dependency>
 
         <!-- 模拟客户端 https://mvnrepository.com/artifact/org.java-websocket/Java-WebSocket -->
         <dependency>

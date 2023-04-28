@@ -21,7 +21,7 @@ import com.iohao.game.action.skeleton.core.commumication.BroadcastContext;
 import com.iohao.game.bolt.broker.core.client.BrokerClientHelper;
 import com.iohao.game.common.kit.ExecutorKit;
 import com.iohao.game.example.common.msg.DemoBroadcastMessage;
-import com.iohao.game.simple.SimpleHelper;
+import com.iohao.game.external.core.netty.simple.NettySimpleHelper;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -43,7 +43,7 @@ public class DemoBroadcastApplication {
         var demoLogicServer = new DemoBroadcastServer();
 
         // 启动 对外服、网关服、逻辑服; 并生成游戏业务文档
-        SimpleHelper.run(port, List.of(demoLogicServer));
+        NettySimpleHelper.run(port, List.of(demoLogicServer));
 
         // 启动广播 Scheduled，每5秒广播一次消息给客户端
         broadcastScheduled();

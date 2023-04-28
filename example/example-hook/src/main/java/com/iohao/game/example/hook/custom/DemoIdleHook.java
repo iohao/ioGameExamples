@@ -17,12 +17,11 @@
 package com.iohao.game.example.hook.custom;
 
 import com.iohao.game.action.skeleton.core.exception.ActionErrorEnum;
-import com.iohao.game.bolt.broker.client.external.bootstrap.ExternalKit;
-import com.iohao.game.bolt.broker.client.external.bootstrap.heart.IdleHook;
-import com.iohao.game.bolt.broker.client.external.bootstrap.message.ExternalMessage;
-import com.iohao.game.bolt.broker.client.external.bootstrap.message.ExternalMessageCmdCode;
-import com.iohao.game.bolt.broker.client.external.session.UserSession;
-import io.netty.channel.ChannelHandlerContext;
+import com.iohao.game.external.core.hook.IdleHook;
+import com.iohao.game.external.core.kit.ExternalKit;
+import com.iohao.game.external.core.message.ExternalMessage;
+import com.iohao.game.external.core.message.ExternalMessageCmdCode;
+import com.iohao.game.external.core.session.UserSession;
 import io.netty.handler.timeout.IdleState;
 import io.netty.handler.timeout.IdleStateEvent;
 import lombok.extern.slf4j.Slf4j;
@@ -37,9 +36,9 @@ import lombok.extern.slf4j.Slf4j;
  * @date 2022-05-28
  */
 @Slf4j
-public class DemoIdleHook implements IdleHook {
+public class DemoIdleHook implements IdleHook<IdleStateEvent> {
     @Override
-    public boolean callback(ChannelHandlerContext ctx, IdleStateEvent event, UserSession userSession) {
+    public boolean callback(UserSession userSession, IdleStateEvent event) {
         IdleState state = event.state();
 
         if (state == IdleState.READER_IDLE) {
@@ -54,12 +53,6 @@ public class DemoIdleHook implements IdleHook {
         }
 
         // 给（真实）用户发送一条消息
-        extractedExternalMessage(ctx, state);
-
-        return true;
-    }
-
-    private void extractedExternalMessage(ChannelHandlerContext ctx, IdleState state) {
         ExternalMessage externalMessage = ExternalKit.createExternalMessage();
         externalMessage.setCmdCode(ExternalMessageCmdCode.idle);
         // 错误码
@@ -68,6 +61,7 @@ public class DemoIdleHook implements IdleHook {
         externalMessage.setValidMsg(ActionErrorEnum.idleErrorCode.getMsg() + " : " + state.name());
 
         // 通知客户端，触发了心跳事件
-        ctx.writeAndFlush(externalMessage);
+        userSession.writeAndFlush(externalMessage);
+        return true;
     }
 }

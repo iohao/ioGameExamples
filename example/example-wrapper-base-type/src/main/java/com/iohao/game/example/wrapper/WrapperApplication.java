@@ -17,7 +17,7 @@
 package com.iohao.game.example.wrapper;
 
 import com.iohao.game.example.wrapper.server.WrapperLogicServer;
-import com.iohao.game.simple.SimpleHelper;
+import com.iohao.game.external.core.netty.simple.NettySimpleHelper;
 
 import java.util.List;
 
@@ -32,7 +32,9 @@ public class WrapperApplication {
         int port = 10100;
 
         // 启动 对外服、网关服、逻辑服; 并生成游戏业务文档
-        SimpleHelper.run(port, List.of(new WrapperLogicServer()));
+//        SimpleHelper.run(port, List.of(new WrapperLogicServer()));
+
+        NettySimpleHelper.run(port, List.of(new WrapperLogicServer()));
 
         /*
          * 该示例文档地址

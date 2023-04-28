@@ -29,8 +29,8 @@
         <!-- https://www.yuque.com/iohao/game/ea6geg#jMDuc -->
         <dependency>
             <groupId>com.iohao.game</groupId>
-            <artifactId>bolt-external</artifactId>
-            <version>${ioGame.version}</version>
+            <artifactId>external-netty</artifactId>
+            <version>${external.version}</version>
         </dependency>
 
         <dependency>

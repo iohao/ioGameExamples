@@ -16,10 +16,10 @@
  */
 package com.iohao.game.example.one;
 
-import com.iohao.game.bolt.broker.client.external.config.ExternalGlobalConfig;
 import com.iohao.game.example.one.action.DemoCmd;
 import com.iohao.game.example.one.server.DemoLogicServer;
-import com.iohao.game.simple.SimpleHelper;
+import com.iohao.game.external.core.config.ExternalGlobalConfig;
+import com.iohao.game.external.core.netty.simple.NettySimpleHelper;
 
 import java.util.List;
 
@@ -47,7 +47,7 @@ public class DemoApplication {
         var demoLogicServer = new DemoLogicServer();
 
         // 启动 对外服、网关服、逻辑服; 并生成游戏业务文档
-        SimpleHelper.run(port, List.of(demoLogicServer));
+        NettySimpleHelper.run(port, List.of(demoLogicServer));
 
         /*
          * 该示例文档地址

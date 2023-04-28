@@ -20,7 +20,7 @@ import com.iohao.game.bolt.broker.client.AbstractBrokerClientStartup;
 import com.iohao.game.collect.external.GameExternalBoot;
 import com.iohao.game.collect.hall.HallClientStartup;
 import com.iohao.game.collect.tank.TankClientStartup;
-import com.iohao.game.simple.SimpleRunOne;
+import com.iohao.game.external.core.netty.simple.NettyRunOne;
 
 import java.util.List;
 
@@ -42,7 +42,7 @@ public class GameOne {
         );
 
         // 简单启动器 RunOne (谐音:拳皇97中的 round one ready go!)
-        new SimpleRunOne()
+        new NettyRunOne()
                 // 对外服
                 .setExternalServer(new GameExternalBoot().createExternalServer())
                 // 逻辑服列表

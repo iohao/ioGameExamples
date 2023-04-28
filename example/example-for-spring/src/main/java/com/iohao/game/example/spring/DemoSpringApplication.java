@@ -18,7 +18,7 @@ package com.iohao.game.example.spring;
 
 import com.iohao.game.action.skeleton.ext.spring.ActionFactoryBeanForSpring;
 import com.iohao.game.example.spring.server.DemoSpringLogicServer;
-import com.iohao.game.simple.SimpleHelper;
+import com.iohao.game.external.core.netty.simple.NettySimpleHelper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -47,7 +47,7 @@ public class DemoSpringApplication {
         var demoLogicServer = new DemoSpringLogicServer();
 
         // 启动 对外服、网关服、逻辑服; 并生成游戏业务文档
-        SimpleHelper.run(port, List.of(demoLogicServer));
+        NettySimpleHelper.run(port, List.of(demoLogicServer));
 
         /*
          * 该示例文档地址

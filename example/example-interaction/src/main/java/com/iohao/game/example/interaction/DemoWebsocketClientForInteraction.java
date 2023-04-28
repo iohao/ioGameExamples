@@ -17,11 +17,11 @@
 package com.iohao.game.example.interaction;
 
 import com.iohao.game.action.skeleton.core.DataCodecKit;
-import com.iohao.game.bolt.broker.client.external.bootstrap.message.ExternalMessage;
 import com.iohao.game.command.ClientCommandKit;
 import com.iohao.game.command.WebsocketClientKit;
 import com.iohao.game.example.interaction.fight.action.DemoCmdForFight;
 import com.iohao.game.example.interaction.msg.DemoFightMsg;
+import com.iohao.game.external.core.message.ExternalMessage;
 import lombok.extern.slf4j.Slf4j;
 import org.java_websocket.client.WebSocketClient;
 

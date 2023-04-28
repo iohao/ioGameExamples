@@ -1,9 +1,10 @@
 package com.iohao.game.tank.net;
 
 import com.iohao.game.action.skeleton.core.DataCodecKit;
-import com.iohao.game.bolt.broker.client.external.bootstrap.message.ExternalMessage;
-import com.iohao.game.bolt.broker.client.external.bootstrap.message.ExternalMessageCmdCode;
-import com.iohao.game.bolt.broker.client.external.config.ExternalGlobalConfig;
+import com.iohao.game.external.core.config.ExternalGlobalConfig;
+import com.iohao.game.external.core.message.ExternalMessage;
+import com.iohao.game.external.core.message.ExternalMessageCmdCode;
+
 
 /**
  * @author 渔民小镇

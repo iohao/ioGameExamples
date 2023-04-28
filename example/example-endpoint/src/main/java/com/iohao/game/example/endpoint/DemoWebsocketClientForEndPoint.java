@@ -18,13 +18,13 @@ package com.iohao.game.example.endpoint;
 
 import com.iohao.game.action.skeleton.core.CmdKit;
 import com.iohao.game.action.skeleton.core.DataCodecKit;
-import com.iohao.game.bolt.broker.client.external.bootstrap.ExternalKit;
-import com.iohao.game.bolt.broker.client.external.bootstrap.message.ExternalMessage;
 import com.iohao.game.common.kit.ExecutorKit;
 import com.iohao.game.example.common.msg.DemoOperation;
 import com.iohao.game.example.common.msg.login.DemoLoginVerify;
 import com.iohao.game.example.endpoint.match.action.DemoCmdForEndPointMatch;
 import com.iohao.game.example.endpoint.room.action.DemoCmdForEndPointRoom;
+import com.iohao.game.external.core.kit.ExternalKit;
+import com.iohao.game.external.core.message.ExternalMessage;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.java_websocket.client.WebSocketClient;
@@ -138,17 +138,14 @@ public class DemoWebsocketClientForEndPoint {
 
             @Override
             public void onMessage(String message) {
-
             }
 
             @Override
             public void onClose(int code, String reason, boolean remote) {
-
             }
 
             @Override
             public void onError(Exception ex) {
-
             }
         };
 

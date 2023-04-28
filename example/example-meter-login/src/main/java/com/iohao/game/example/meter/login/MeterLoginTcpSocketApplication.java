@@ -16,17 +16,18 @@
  */
 package com.iohao.game.example.meter.login;
 
-import com.iohao.game.bolt.broker.client.external.ExternalServer;
-import com.iohao.game.bolt.broker.client.external.ExternalServerBuilder;
-import com.iohao.game.bolt.broker.client.external.bootstrap.ExternalJoinEnum;
-import com.iohao.game.bolt.broker.client.external.config.ExternalGlobalConfig;
-import com.iohao.game.bolt.broker.client.external.session.UserSessions;
+
 import com.iohao.game.bolt.broker.core.common.IoGameGlobalConfig;
 import com.iohao.game.common.kit.ExecutorKit;
 import com.iohao.game.example.common.cmd.MeterLoginCmd;
 import com.iohao.game.example.meter.login.server.MeterLoginAction;
 import com.iohao.game.example.meter.login.server.MeterLoginLogicServer;
-import com.iohao.game.simple.SimpleRunOne;
+import com.iohao.game.external.core.ExternalServer;
+import com.iohao.game.external.core.config.ExternalGlobalConfig;
+import com.iohao.game.external.core.config.ExternalJoinEnum;
+import com.iohao.game.external.core.netty.NettyExternalServer;
+import com.iohao.game.external.core.netty.NettyExternalServerBuilder;
+import com.iohao.game.external.core.netty.simple.NettyRunOne;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
@@ -44,7 +45,7 @@ public class MeterLoginTcpSocketApplication {
         ExternalServer externalServer = getExternalServer();
 
         // 简单的启动器
-        new SimpleRunOne()
+        new NettyRunOne()
                 // 游戏对外服
                 .setExternalServer(externalServer)
                 // 游戏逻辑服列表
@@ -62,8 +63,8 @@ public class MeterLoginTcpSocketApplication {
                     log.info("MeterLoginAction.longAdder : {}", MeterLoginAction.longAdder);
                     log.info("MeterLoginAction.loginLongAdder : {}", MeterLoginAction.loginLongAdder);
 
-                    long countOnline = UserSessions.me().countOnline();
-                    log.info("countOnline : {}", countOnline);
+//                    long countOnline = UserSessions.me().countOnline();
+//                    log.info("countOnline : {}", countOnline);
                 }, 1, 5, TimeUnit.SECONDS);
     }
 
@@ -73,12 +74,10 @@ public class MeterLoginTcpSocketApplication {
 
         ExternalGlobalConfig.accessAuthenticationHook.setVerifyIdentity(true);
 
-        ExternalGlobalConfig.accessAuthenticationHook.addIgnoreAuthenticationCmd(MeterLoginCmd.cmd,MeterLoginCmd.login);
+        ExternalGlobalConfig.accessAuthenticationHook.addIgnoreAuthenticationCmd(MeterLoginCmd.cmd, MeterLoginCmd.login);
 
-        ExternalServerBuilder externalServerBuilder = ExternalServer.newBuilder(port)
-                .externalJoinEnum(ExternalJoinEnum.TCP)
-                ;
-
+        NettyExternalServerBuilder externalServerBuilder = NettyExternalServer.newBuilder(port);
+        externalServerBuilder.setting().setExternalJoinEnum(ExternalJoinEnum.TCP);
         return externalServerBuilder.build();
     }
 }

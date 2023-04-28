@@ -16,13 +16,15 @@
  */
 package com.iohao.game.example.multiple.external;
 
-import com.iohao.game.bolt.broker.client.external.ExternalServer;
-import com.iohao.game.bolt.broker.client.external.ExternalServerBuilder;
-import com.iohao.game.bolt.broker.client.external.bootstrap.ExternalJoinEnum;
-import com.iohao.game.bolt.broker.client.external.config.ExternalGlobalConfig;
+
 import com.iohao.game.bolt.broker.core.client.BrokerAddress;
 import com.iohao.game.bolt.broker.core.common.IoGameGlobalConfig;
 import com.iohao.game.example.multiple.common.cmd.internal.WeatherCmd;
+import com.iohao.game.external.core.ExternalServer;
+import com.iohao.game.external.core.config.ExternalGlobalConfig;
+import com.iohao.game.external.core.config.ExternalJoinEnum;
+import com.iohao.game.external.core.netty.NettyExternalServer;
+import com.iohao.game.external.core.netty.NettyExternalServerBuilder;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -41,7 +43,7 @@ public class MyExternalServer {
         extractedAccess();
 
         // 游戏对外服 - 构建器
-        ExternalServerBuilder builder = ExternalServer.newBuilder(externalPort)
+        NettyExternalServerBuilder builder = NettyExternalServer.newBuilder(externalPort)
                 // websocket 方式连接；如果不设置，默认也是这个配置
                 .externalJoinEnum(ExternalJoinEnum.WEBSOCKET)
                 // Broker （游戏网关）的连接地址；如果不设置，默认也是这个配置
