@@ -1,9 +1,10 @@
 package com.iohao.game.example.cluster.one;
 
 import com.iohao.game.bolt.broker.client.external.ExternalServer;
-import com.iohao.game.bolt.broker.client.external.bootstrap.ExternalJoinEnum;
-import com.iohao.game.bolt.broker.client.external.config.ExternalGlobalConfig;
-import com.iohao.game.simple.SimpleHelper;
+import com.iohao.game.bolt.broker.client.external.ExternalServerBuilder;
+import com.iohao.game.bolt.broker.core.client.BrokerAddress;
+import com.iohao.game.bolt.broker.core.common.IoGameGlobalConfig;
+import com.iohao.game.common.kit.NetworkKit;
 
 import java.util.concurrent.TimeUnit;
 
@@ -18,9 +19,15 @@ public class DemoClusterExternalTest {
 
         // 游戏对外服端口
         int port = 10100;
+//        ExternalServer externalServer = SimpleHelper.createExternalServer(ExternalJoinEnum.WEBSOCKET, port);
 
-        // 对外服 tcp 方法的连接
-        ExternalServer externalServer = SimpleHelper.createExternalServer(ExternalJoinEnum.WEBSOCKET, port);
+        String localIp = NetworkKit.LOCAL_IP;
+        // 游戏对外服 - 构建器
+        ExternalServerBuilder builder = ExternalServer.newBuilder(port)
+                // Broker （游戏网关）的连接地址
+                .brokerAddress(new BrokerAddress(localIp, IoGameGlobalConfig.brokerPort));
+
+        ExternalServer externalServer = builder.build();
 
         externalServer.startup();
 
