@@ -21,8 +21,8 @@ import com.iohao.game.collect.common.HallCmd;
 import com.iohao.game.external.core.ExternalServer;
 import com.iohao.game.external.core.config.ExternalGlobalConfig;
 import com.iohao.game.external.core.config.ExternalJoinEnum;
-import com.iohao.game.external.core.netty.NettyExternalServer;
-import com.iohao.game.external.core.netty.NettyExternalServerBuilder;
+import com.iohao.game.external.core.netty.DefaultExternalServer;
+import com.iohao.game.external.core.netty.DefaultExternalServerBuilder;
 
 /**
  * 游戏对外服
@@ -37,12 +37,11 @@ public class GameExternalBoot {
         // 表示登录才能访问业务方法
         accessAuthenticationHook.setVerifyIdentity(true);
         // 添加不需要登录也能访问的业务方法 (action)
-        accessAuthenticationHook.addIgnoreAuthenticationCmd(HallCmd.cmd, HallCmd.loginVerify);
+        accessAuthenticationHook.addIgnoreAuthCmd(HallCmd.cmd, HallCmd.loginVerify);
 
         // 端口
-        int port = externalPort;
         // 游戏对外服 - 构建器
-        NettyExternalServerBuilder builder = NettyExternalServer.newBuilder(port)
+        DefaultExternalServerBuilder builder = DefaultExternalServer.newBuilder(externalPort)
                 // websocket 方式连接
                 .externalJoinEnum(ExternalJoinEnum.WEBSOCKET);
 

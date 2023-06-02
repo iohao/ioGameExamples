@@ -21,7 +21,7 @@ import com.iohao.game.example.common.cmd.MeterLoginCmd;
 import com.iohao.game.example.common.msg.HelloReq;
 import com.iohao.game.external.core.kit.ExternalKit;
 import com.iohao.game.external.core.message.ExternalMessage;
-import com.iohao.game.external.core.netty.handler.codec.ExternalCodecSocket;
+import com.iohao.game.external.core.netty.handler.codec.TcpExternalCodec;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
@@ -85,7 +85,7 @@ public class MeterLoginTcpClient {
                                 0));
 
                         // 编解码
-                        pipeline.addLast("codec", new ExternalCodecSocket());
+                        pipeline.addLast("codec", new TcpExternalCodec());
 
                         pipeline.addLast(new DemoSocketHandler());
                     }

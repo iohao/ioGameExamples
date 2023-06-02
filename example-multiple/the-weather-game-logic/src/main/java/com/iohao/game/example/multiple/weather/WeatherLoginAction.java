@@ -29,7 +29,7 @@ import com.iohao.game.example.multiple.common.data.TheUserInfo;
  * @date 2023-04-10
  */
 @ActionController(WeatherCmd.cmd)
-public class LoginAction {
+public class WeatherLoginAction {
     @ActionMethod(WeatherCmd.login)
     public TheUserInfo login(TheLogin login, FlowContext flowContext) {
 

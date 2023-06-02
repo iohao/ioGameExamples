@@ -25,8 +25,8 @@ import com.iohao.game.example.meter.login.server.MeterLoginLogicServer;
 import com.iohao.game.external.core.ExternalServer;
 import com.iohao.game.external.core.config.ExternalGlobalConfig;
 import com.iohao.game.external.core.config.ExternalJoinEnum;
-import com.iohao.game.external.core.netty.NettyExternalServer;
-import com.iohao.game.external.core.netty.NettyExternalServerBuilder;
+import com.iohao.game.external.core.hook.AccessAuthenticationHook;
+import com.iohao.game.external.core.netty.DefaultExternalServer;
 import com.iohao.game.external.core.netty.simple.NettyRunOne;
 import lombok.extern.slf4j.Slf4j;
 
@@ -62,9 +62,6 @@ public class MeterLoginTcpSocketApplication {
                     System.out.println();
                     log.info("MeterLoginAction.longAdder : {}", MeterLoginAction.longAdder);
                     log.info("MeterLoginAction.loginLongAdder : {}", MeterLoginAction.loginLongAdder);
-
-//                    long countOnline = UserSessions.me().countOnline();
-//                    log.info("countOnline : {}", countOnline);
                 }, 1, 5, TimeUnit.SECONDS);
     }
 
@@ -72,12 +69,12 @@ public class MeterLoginTcpSocketApplication {
         // 游戏对外服端口
         int port = 10100;
 
-        ExternalGlobalConfig.accessAuthenticationHook.setVerifyIdentity(true);
+        AccessAuthenticationHook accessAuthenticationHook = ExternalGlobalConfig.accessAuthenticationHook;
+        accessAuthenticationHook.setVerifyIdentity(true);
+        accessAuthenticationHook.addIgnoreAuthCmd(MeterLoginCmd.cmd, MeterLoginCmd.login);
 
-        ExternalGlobalConfig.accessAuthenticationHook.addIgnoreAuthenticationCmd(MeterLoginCmd.cmd, MeterLoginCmd.login);
-
-        NettyExternalServerBuilder externalServerBuilder = NettyExternalServer.newBuilder(port);
-        externalServerBuilder.setting().setExternalJoinEnum(ExternalJoinEnum.TCP);
-        return externalServerBuilder.build();
+        return DefaultExternalServer.newBuilder(port)
+                .externalJoinEnum(ExternalJoinEnum.TCP)
+                .build();
     }
 }

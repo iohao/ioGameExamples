@@ -40,7 +40,7 @@ public class DemoEndPointApplication {
         // 表示登录才能访问业务方法
         accessAuthenticationHook.setVerifyIdentity(true);
         // 添加不需要登录也能访问的业务方法 (action)
-        accessAuthenticationHook.addIgnoreAuthenticationCmd(DemoCmdForEndPointMatch.cmd, DemoCmdForEndPointMatch.loginVerify);
+        accessAuthenticationHook.addIgnoreAuthCmd(DemoCmdForEndPointMatch.cmd, DemoCmdForEndPointMatch.loginVerify);
 
         // 创建 2 个房间逻辑服
         DemoEndPointRoomServer roomServer1 = createRoomServer(1);

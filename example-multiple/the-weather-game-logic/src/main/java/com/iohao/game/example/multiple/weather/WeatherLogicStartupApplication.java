@@ -28,6 +28,5 @@ public class WeatherLogicStartupApplication {
         WeatherLogicStartup weatherLogicStartup = new WeatherLogicStartup();
         // 启动游戏逻辑服
         BrokerClientApplication.start(weatherLogicStartup);
-
     }
 }

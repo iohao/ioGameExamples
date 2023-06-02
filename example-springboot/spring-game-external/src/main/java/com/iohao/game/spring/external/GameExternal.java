@@ -21,8 +21,8 @@ import com.iohao.game.bolt.broker.core.common.IoGameGlobalConfig;
 import com.iohao.game.external.core.ExternalServer;
 import com.iohao.game.external.core.config.ExternalGlobalConfig;
 import com.iohao.game.external.core.config.ExternalJoinEnum;
-import com.iohao.game.external.core.netty.NettyExternalServer;
-import com.iohao.game.external.core.netty.NettyExternalServerBuilder;
+import com.iohao.game.external.core.netty.DefaultExternalServer;
+import com.iohao.game.external.core.netty.DefaultExternalServerBuilder;
 
 /**
  * @author 渔民小镇
@@ -34,7 +34,7 @@ public class GameExternal {
         extractedIgnore();
 
         // 游戏对外服 - 构建器
-        NettyExternalServerBuilder builder = NettyExternalServer.newBuilder(externalPort)
+        DefaultExternalServerBuilder builder = DefaultExternalServer.newBuilder(externalPort)
                 // websocket 方式连接
                 .externalJoinEnum(ExternalJoinEnum.WEBSOCKET)
                 // Broker （游戏网关）的连接地址；如果不设置，默认也是这个配置
@@ -61,8 +61,8 @@ public class GameExternal {
          * 忽略的路由可以添加多个。
          */
         // see HallCmdModule.cmd，HallCmdModule.loginVerify
-        accessAuthenticationHook.addIgnoreAuthenticationCmd(3, 1);
-        accessAuthenticationHook.addIgnoreAuthenticationCmd(3, 8);
-        accessAuthenticationHook.addIgnoreAuthenticationCmd(3);
+        accessAuthenticationHook.addIgnoreAuthCmd(3, 1);
+        accessAuthenticationHook.addIgnoreAuthCmd(3, 8);
+        accessAuthenticationHook.addIgnoreAuthCmd(3);
     }
 }

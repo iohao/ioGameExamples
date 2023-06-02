@@ -21,7 +21,7 @@ import com.iohao.game.action.skeleton.core.DataCodecKit;
 import com.iohao.game.example.common.msg.HelloReq;
 import com.iohao.game.external.core.kit.ExternalKit;
 import com.iohao.game.external.core.message.ExternalMessage;
-import com.iohao.game.external.core.netty.handler.codec.ExternalCodecSocket;
+import com.iohao.game.external.core.netty.handler.codec.TcpExternalCodec;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.PooledByteBufAllocator;
 import io.netty.buffer.Unpooled;
@@ -39,7 +39,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class TestExternalCodec {
     public static void main(String[] args) {
-        EmbeddedChannel embeddedChannel = new EmbeddedChannel(new LoggingHandler(LogLevel.INFO), new ExternalCodecSocket());
+        EmbeddedChannel embeddedChannel = new EmbeddedChannel(new LoggingHandler(LogLevel.INFO), new TcpExternalCodec());
 
         ExternalMessage externalMessage = getExternalMessage();
         // 编码

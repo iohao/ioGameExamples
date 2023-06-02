@@ -24,9 +24,13 @@ import com.iohao.game.example.meter.server.MeterLogicServer;
 import com.iohao.game.external.core.ExternalServer;
 import com.iohao.game.external.core.config.ExternalGlobalConfig;
 import com.iohao.game.external.core.config.ExternalJoinEnum;
-import com.iohao.game.external.core.netty.NettyExternalCoreSetting;
-import com.iohao.game.external.core.netty.NettyExternalServer;
-import com.iohao.game.external.core.netty.NettyExternalServerBuilder;
+import com.iohao.game.external.core.micro.PipelineContext;
+import com.iohao.game.external.core.netty.DefaultExternalCoreSetting;
+import com.iohao.game.external.core.netty.DefaultExternalServer;
+import com.iohao.game.external.core.netty.DefaultExternalServerBuilder;
+import com.iohao.game.external.core.netty.handler.SocketCmdAccessAuthHandler;
+import com.iohao.game.external.core.netty.handler.SocketUserSessionHandler;
+import com.iohao.game.external.core.netty.micro.TcpMicroBootstrapFlow;
 import com.iohao.game.external.core.netty.simple.NettyRunOne;
 import lombok.extern.slf4j.Slf4j;
 
@@ -74,14 +78,27 @@ public class MeterTcpSocketApplication {
         // 需要登录才能访问业务方法
         ExternalGlobalConfig.accessAuthenticationHook.setVerifyIdentity(true);
 
-        NettyExternalServerBuilder externalServerBuilder = NettyExternalServer.newBuilder(port);
-        NettyExternalCoreSetting setting = externalServerBuilder.setting();
+        DefaultExternalServerBuilder builder = DefaultExternalServer
+                .newBuilder(port)
+                .externalJoinEnum(ExternalJoinEnum.TCP);
 
-        setting.setExternalJoinEnum(ExternalJoinEnum.TCP);
+        DefaultExternalCoreSetting setting = builder.setting();
 
-        // 添加 handler
-        setting.setCustomPipelineHook(context -> context.addLast("MyExternalBizHandler", new MeterExternalBizHandler()));
+        // 给服务器做一些业务编排
+        setting.setMicroBootstrapFlow(new TcpMicroBootstrapFlow() {
+            @Override
+            public void pipelineCustom(PipelineContext context) {
 
-        return externalServerBuilder.build();
+                // 管理 UserSession 的 Handler
+                context.addLast("UserSessionHandler", new SocketUserSessionHandler());
+
+                // 路由访问验证 的 Handler
+                context.addLast("CmdAccessAuthHandler", new SocketCmdAccessAuthHandler());
+
+                context.addLast("MyExternalBizHandler", new MeterExternalBizHandler());
+            }
+        });
+
+        return builder.build();
     }
 }

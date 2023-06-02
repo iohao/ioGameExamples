@@ -23,8 +23,8 @@ import com.iohao.game.example.multiple.common.cmd.internal.WeatherCmd;
 import com.iohao.game.external.core.ExternalServer;
 import com.iohao.game.external.core.config.ExternalGlobalConfig;
 import com.iohao.game.external.core.config.ExternalJoinEnum;
-import com.iohao.game.external.core.netty.NettyExternalServer;
-import com.iohao.game.external.core.netty.NettyExternalServerBuilder;
+import com.iohao.game.external.core.netty.DefaultExternalServer;
+import com.iohao.game.external.core.netty.DefaultExternalServerBuilder;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -43,7 +43,7 @@ public class MyExternalServer {
         extractedAccess();
 
         // 游戏对外服 - 构建器
-        NettyExternalServerBuilder builder = NettyExternalServer.newBuilder(externalPort)
+        DefaultExternalServerBuilder builder = DefaultExternalServer.newBuilder(externalPort)
                 // websocket 方式连接；如果不设置，默认也是这个配置
                 .externalJoinEnum(ExternalJoinEnum.WEBSOCKET)
                 // Broker （游戏网关）的连接地址；如果不设置，默认也是这个配置
@@ -58,12 +58,13 @@ public class MyExternalServer {
         // 表示登录才能访问业务方法
         accessAuthenticationHook.setVerifyIdentity(true);
         // 添加不需要登录（身份验证）也能访问的业务方法 (action)
-        accessAuthenticationHook.addIgnoreAuthenticationCmd(WeatherCmd.cmd, WeatherCmd.login);
+        accessAuthenticationHook.addIgnoreAuthCmd(WeatherCmd.cmd, WeatherCmd.login);
     }
 
     public static void main(String[] args) {
         // 游戏对外服端口
-        ExternalServer externalServer = new MyExternalServer().createExternalServer(10100);
+        ExternalServer externalServer = new MyExternalServer()
+                .createExternalServer(10100);
 
         externalServer.startup();
     }

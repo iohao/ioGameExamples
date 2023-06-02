@@ -38,7 +38,7 @@ public class DemoApplication {
         // 表示登录才能访问业务方法
         accessAuthenticationHook.setVerifyIdentity(true);
         // 添加不需要登录也能访问的业务方法 (action)
-        accessAuthenticationHook.addIgnoreAuthenticationCmd(DemoCmd.cmd, DemoCmd.loginVerify);
+        accessAuthenticationHook.addIgnoreAuthCmd(DemoCmd.cmd, DemoCmd.loginVerify);
 
         // 游戏对外服端口
         int port = 10100;

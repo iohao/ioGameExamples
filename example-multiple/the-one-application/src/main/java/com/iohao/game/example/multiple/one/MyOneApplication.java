@@ -45,7 +45,8 @@ public class MyOneApplication {
                 .createExternalServer(externalPort);
 
         // 游戏网关
-        BrokerServer brokerServer = new MyBrokerServer().createBrokerServer();
+        BrokerServer brokerServer = new MyBrokerServer()
+                .createBrokerServer();
 
         // 游戏逻辑服
         WeatherLogicStartup weatherLogicStartup = new WeatherLogicStartup();

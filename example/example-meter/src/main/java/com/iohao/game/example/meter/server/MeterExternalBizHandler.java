@@ -16,16 +16,14 @@
  */
 package com.iohao.game.example.meter.server;
 
-import com.iohao.game.action.skeleton.core.exception.ActionErrorEnum;
 import com.iohao.game.action.skeleton.protocol.RequestMessage;
 import com.iohao.game.bolt.broker.core.aware.BrokerClientAware;
 import com.iohao.game.bolt.broker.core.client.BrokerClient;
 import com.iohao.game.bolt.broker.core.message.BrokerClientModuleMessage;
 import com.iohao.game.external.core.aware.UserSessionsAware;
-import com.iohao.game.external.core.config.ExternalGlobalConfig;
 import com.iohao.game.external.core.kit.ExternalKit;
 import com.iohao.game.external.core.message.ExternalMessage;
-import com.iohao.game.external.core.netty.session.NettyUserSessions;
+import com.iohao.game.external.core.netty.session.SocketUserSessions;
 import com.iohao.game.external.core.session.UserChannelId;
 import com.iohao.game.external.core.session.UserSession;
 import com.iohao.game.external.core.session.UserSessions;
@@ -46,18 +44,11 @@ public class MeterExternalBizHandler extends SimpleChannelInboundHandler<Externa
         implements UserSessionsAware, BrokerClientAware {
     public static final LongAdder userIdAdder = new LongAdder();
 
-    NettyUserSessions userSessions;
+    SocketUserSessions userSessions;
     BrokerClient brokerClient;
 
     @Override
-    public void setUserSessions(UserSessions<?, ?> userSessions) {
-        this.userSessions = (NettyUserSessions) userSessions;
-    }
-
-    @Override
     protected void channelRead0(ChannelHandlerContext ctx, ExternalMessage message) {
-
-        // 得到 session
         UserSession userSession = this.userSessions.getUserSession(ctx);
 
         // 如果没登录的，模拟登录
@@ -66,18 +57,6 @@ public class MeterExternalBizHandler extends SimpleChannelInboundHandler<Externa
 
             UserChannelId userChannelId = userSession.getUserChannelId();
             userSessions.settingUserId(userChannelId, userIdAdder.longValue());
-        }
-
-        // 是否可以访问业务方法（action），true 表示可以访问该路由对应的业务方法
-        boolean pass = ExternalGlobalConfig.accessAuthenticationHook.pass(userSession, message.getCmdMerge());
-
-        // 当访问验证没通过，通知玩家
-        if (!pass) {
-            message.setResponseStatus(ActionErrorEnum.verifyIdentity.getCode());
-            message.setValidMsg("请先登录，在请求业务方法");
-            // 响应结果给用户
-            userSession.writeAndFlush(message);
-            return;
         }
 
         // 将 message 转换成 RequestMessage
@@ -100,29 +79,12 @@ public class MeterExternalBizHandler extends SimpleChannelInboundHandler<Externa
     }
 
     @Override
-    public void channelInactive(ChannelHandlerContext ctx) {
-        log.info("channelInactive");
-        // 从 session 管理中移除
-        var userSession = this.userSessions.getUserSession(ctx);
-        this.userSessions.removeUserSession(userSession);
-    }
-
-    @Override
-    public void channelActive(ChannelHandlerContext ctx) {
-        // 加入到 session 管理
-        this.userSessions.add(ctx);
-    }
-
-    @Override
-    public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
-        log.info("exceptionCaught");
-        // 从 session 管理中移除
-        var userSession = this.userSessions.getUserSession(ctx);
-        this.userSessions.removeUserSession(userSession);
-    }
-
-    @Override
     public void setBrokerClient(BrokerClient brokerClient) {
         this.brokerClient = brokerClient;
+    }
+
+    @Override
+    public void setUserSessions(UserSessions<?, ?> userSessions) {
+        this.userSessions = (SocketUserSessions) userSessions;
     }
 }

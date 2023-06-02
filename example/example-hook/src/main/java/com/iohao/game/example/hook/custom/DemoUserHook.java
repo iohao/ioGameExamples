@@ -35,12 +35,8 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class DemoUserHook implements UserHook, UserSessionsAware, BrokerClientAware {
 
+    BrokerClient brokerClient;
     UserSessions<?, ?> userSessions;
-
-    @Override
-    public void setUserSessions(UserSessions<?, ?> userSessions) {
-        this.userSessions = userSessions;
-    }
 
     @Override
     public void into(UserSession userSession) {
@@ -71,7 +67,10 @@ public class DemoUserHook implements UserHook, UserSessionsAware, BrokerClientAw
         }
     }
 
-    BrokerClient brokerClient;
+    @Override
+    public void setUserSessions(UserSessions<?, ?> userSessions) {
+        this.userSessions = userSessions;
+    }
 
     @Override
     public void setBrokerClient(BrokerClient brokerClient) {
