@@ -19,6 +19,7 @@ package com.iohao.game.example.endpoint;
 import com.iohao.game.bolt.broker.client.AbstractBrokerClientStartup;
 import com.iohao.game.bolt.broker.core.client.BrokerClient;
 import com.iohao.game.bolt.broker.core.client.BrokerClientBuilder;
+import com.iohao.game.example.endpoint.animal.AnimalLogicServer;
 import com.iohao.game.example.endpoint.match.DemoEndPointMatchServer;
 import com.iohao.game.example.endpoint.match.action.DemoCmdForEndPointMatch;
 import com.iohao.game.example.endpoint.room.DemoEndPointRoomServer;
@@ -46,13 +47,20 @@ public class DemoEndPointApplication {
         DemoEndPointRoomServer roomServer1 = createRoomServer(1);
         DemoEndPointRoomServer roomServer2 = createRoomServer(2);
 
+        // 创建 2 个动物逻辑服
+        AnimalLogicServer animalServer1 = createAnimalServer(1);
+        AnimalLogicServer animalServer2 = createAnimalServer(2);
+
         // 逻辑服列表
         List<AbstractBrokerClientStartup> logicList = List.of(
                 // 匹配 - 逻辑服
                 new DemoEndPointMatchServer(),
                 // 2个房间逻辑服
                 roomServer1,
-                roomServer2
+                roomServer2,
+                // 2个动物逻辑服
+                animalServer1,
+                animalServer2
         );
 
         // 游戏对外服端口
@@ -70,7 +78,7 @@ public class DemoEndPointApplication {
         // BrokerClient 构建器，房间逻辑服的信息
         BrokerClientBuilder brokerClientBuilder = BrokerClient.newBuilder()
                 // 逻辑服的唯一 id
-                .id(String.valueOf(id))
+                .id("1-" + id)
                 // 逻辑服名字
                 .appName("demo象棋房间逻辑服-" + id)
                 // 同类型
@@ -81,5 +89,22 @@ public class DemoEndPointApplication {
         // 如果字段赋值了，就不会使用 BrokerClientStartup.createBrokerClientBuilder() 接口的值
         roomLogicServer.setBrokerClientBuilder(brokerClientBuilder);
         return roomLogicServer;
+    }
+
+    private static AnimalLogicServer createAnimalServer(int id) {
+        // BrokerClient 构建器，房间逻辑服的信息
+        BrokerClientBuilder brokerClientBuilder = BrokerClient.newBuilder()
+                // 逻辑服的唯一 id
+                .id("2-" + id)
+                // 逻辑服名字
+                .appName("动物逻辑服-" + id)
+                // 同类型
+                .tag("animal");
+
+        // 创建房间逻辑服
+        var logicServer = new AnimalLogicServer();
+        // 如果字段赋值了，就不会使用 BrokerClientStartup.createBrokerClientBuilder() 接口的值
+        logicServer.setBrokerClientBuilder(brokerClientBuilder);
+        return logicServer;
     }
 }

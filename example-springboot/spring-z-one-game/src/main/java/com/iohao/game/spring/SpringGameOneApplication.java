@@ -90,7 +90,7 @@ public class SpringGameOneApplication {
                  * 方便测试 请求同类型多个逻辑服通信结果
                  * https://www.yuque.com/iohao/game/rf9rb9
                  */
-//                createRoomLogicClient(1),
+                createRoomLogicClient(1),
                 createRoomLogicClient(2)
         );
 

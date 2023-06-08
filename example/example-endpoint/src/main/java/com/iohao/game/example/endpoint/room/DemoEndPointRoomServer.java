@@ -17,34 +17,36 @@
 package com.iohao.game.example.endpoint.room;
 
 import com.iohao.game.action.skeleton.core.BarSkeleton;
-import com.iohao.game.action.skeleton.core.BarSkeletonBuilderParamConfig;
+import com.iohao.game.action.skeleton.core.flow.attr.FlowAttr;
 import com.iohao.game.action.skeleton.core.flow.interal.DebugInOut;
 import com.iohao.game.bolt.broker.client.AbstractBrokerClientStartup;
 import com.iohao.game.bolt.broker.core.client.BrokerAddress;
 import com.iohao.game.bolt.broker.core.client.BrokerClientBuilder;
 import com.iohao.game.bolt.broker.core.common.IoGameGlobalConfig;
+import com.iohao.game.command.BarSkeletonKit;
 import com.iohao.game.common.kit.NetworkKit;
 import com.iohao.game.example.endpoint.room.action.DemoEndPointRoomAction;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * @author 渔民小镇
  * @date 2022-05-28
  */
+@Slf4j
 public class DemoEndPointRoomServer extends AbstractBrokerClientStartup {
     @Override
     public BarSkeleton createBarSkeleton() {
-        // 业务框架构建器 配置
-        var config = new BarSkeletonBuilderParamConfig()
-                // 扫描 action 类所在包
-                .scanActionPackage(DemoEndPointRoomAction.class);
+        DebugInOut debugInOut = new DebugInOut();
+        debugInOut.setPrintConsumer((msg, flowContext) -> {
+            String tag = flowContext.option(FlowAttr.logicServerTag);
+            String logicServerId = flowContext.option(FlowAttr.logicServerId);
+            log.info("{}-{}", tag, logicServerId);
+        });
 
-        // 业务框架构建器
-        var builder = config.createBuilder();
-
-        // 添加控制台输出插件
-        builder.addInOut(new DebugInOut());
-
-        return builder.build();
+        return BarSkeletonKit
+                .newBuilder(DemoEndPointRoomAction.class)
+                .addInOut(debugInOut)
+                .build();
     }
 
     @Override

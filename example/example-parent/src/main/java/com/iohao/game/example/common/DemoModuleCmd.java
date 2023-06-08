@@ -71,4 +71,7 @@ public interface DemoModuleCmd {
     int jsr_javax_18_cmd = 18;
     /** 编解码 - json 相关 */
     int json_cmd = 19;
+
+    /** 逻辑服 示例 cmd 模块20 (动态服务器绑定 - 动物) */
+    int demoModule_20_endpoint_animal_cmd = 20;
 }

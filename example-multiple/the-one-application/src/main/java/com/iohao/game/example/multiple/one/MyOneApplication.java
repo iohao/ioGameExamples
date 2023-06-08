@@ -58,7 +58,5 @@ public class MyOneApplication {
                 .setLogicServerList(logicServerList);
 
         simpleRunOne.startup();
-
-
     }
 }

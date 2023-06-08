@@ -51,7 +51,7 @@ public class DemoHookRoomServer extends AbstractBrokerClientStartup {
     @Override
     public BrokerClientBuilder createBrokerClientBuilder() {
         BrokerClientBuilder builder = BrokerClient.newBuilder();
-        builder.appName("demoHook示例游戏逻辑服");
+        builder.appName("demoHook 示例游戏逻辑服");
         return builder;
     }
 

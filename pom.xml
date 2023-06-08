@@ -72,15 +72,13 @@
         <module>example-multiple/the-common-broker</module>
         <module>example-multiple/the-one-application</module>
         <module>example-multiple/the-client</module>
-
-
+        <module>example/example-old-external</module>
     </modules>
 
     <!--统一管理版本 的一个父 pom-->
     <properties>
         <!-- 项目版本 -->
-        <ioGame.version>17.1.42</ioGame.version>
-        <external.version>1.0-SNAPSHOT</external.version>
+        <ioGame.version>17.1.43</ioGame.version>
         <!-- jdk 版本 -->
         <java.version>17</java.version>
         <maven.compiler.source>17</maven.compiler.source>
@@ -129,8 +127,6 @@
     </properties>
 
     <dependencies>
-
-
         <!-- lombok 简化 java 代码 -->
         <dependency>
             <groupId>org.projectlombok</groupId>

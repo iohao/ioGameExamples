@@ -16,7 +16,6 @@
  */
 package com.iohao.game.example.hook;
 
-import com.iohao.game.bolt.broker.client.AbstractBrokerClientStartup;
 import com.iohao.game.example.hook.action.DemoCmdForHookRoom;
 import com.iohao.game.example.hook.custom.DemoIdleHook;
 import com.iohao.game.example.hook.custom.DemoUserHook;
@@ -43,22 +42,16 @@ public class DemoHookApplication {
         // 添加不需要登录也能访问的业务方法 (action)
         accessAuthenticationHook.addIgnoreAuthCmd(DemoCmdForHookRoom.cmd, DemoCmdForHookRoom.loginVerify);
 
-        // 逻辑服列表
-        List<AbstractBrokerClientStartup> logicList = List.of(
-                // 匹配 - 逻辑服
-                new DemoHookRoomServer()
-        );
-
         // 游戏对外服端口
         int port = 10100;
         ExternalServer externalServer = createExternalServer(port);
 
         // 简单的启动器
         new NettyRunOne()
-                // 对外服
+                // 游戏对外服
                 .setExternalServer(externalServer)
-                // 逻辑服列表
-                .setLogicServerList(logicList)
+                // 游戏逻辑服列表
+                .setLogicServerList(List.of(new DemoHookRoomServer()))
                 // 启动 对外服、网关、逻辑服
                 .startup();
 
@@ -69,21 +62,21 @@ public class DemoHookApplication {
     }
 
     private static ExternalServer createExternalServer(int port) {
-        // 心跳相关设置
-        IdleProcessSetting idleProcessSetting = new IdleProcessSetting()
-                // 设置 自定义心跳钩子事件回调
-                .setIdleHook(new DemoIdleHook());
-
         // 游戏对外服 - 构建器
         DefaultExternalServerBuilder builder = DefaultExternalServer.newBuilder(port);
         // ExternalCore 设置项
         var setting = builder.setting();
 
-        // 心跳相关
-        setting.setIdleProcessSetting(idleProcessSetting);
-
         // 设置 自定义 用户上线、下线的钩子
         setting.setUserHook(new DemoUserHook());
+
+        // 心跳相关
+        IdleProcessSetting idleProcessSetting = new IdleProcessSetting()
+                // 心跳整体时间为 5 秒
+                .setIdleTime(5)
+                // 设置 自定义心跳钩子事件回调
+                .setIdleHook(new DemoIdleHook());
+        setting.setIdleProcessSetting(idleProcessSetting);
 
         // 构建游戏对外服
         return builder.build();

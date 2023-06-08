@@ -41,8 +41,8 @@
 
         <dependency>
             <groupId>com.iohao.game</groupId>
-            <artifactId>netty-run-one</artifactId>
-            <version>${external.version}</version>
+            <artifactId>run-one-netty</artifactId>
+            <version>${ioGame.version}</version>
         </dependency>
 
         <!-- 模拟客户端 https://mvnrepository.com/artifact/org.java-websocket/Java-WebSocket -->

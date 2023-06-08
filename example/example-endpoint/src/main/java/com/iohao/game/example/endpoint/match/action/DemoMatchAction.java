@@ -25,6 +25,7 @@ import com.iohao.game.action.skeleton.core.flow.FlowContext;
 import com.iohao.game.action.skeleton.protocol.collect.ResponseCollectItemMessage;
 import com.iohao.game.action.skeleton.protocol.collect.ResponseCollectMessage;
 import com.iohao.game.action.skeleton.protocol.processor.EndPointLogicServerMessage;
+import com.iohao.game.action.skeleton.protocol.processor.EndPointOperationEnum;
 import com.iohao.game.bolt.broker.client.kit.UserIdSettingKit;
 import com.iohao.game.bolt.broker.core.client.BrokerClientHelper;
 import com.iohao.game.example.common.msg.MatchResponse;
@@ -57,7 +58,7 @@ public class DemoMatchAction {
     public DemoUserInfo loginVerify(DemoLoginVerify loginVerify, FlowContext flowContext) {
         // 登录验证请求
         // 为了方便，这里登录用户的id 写个自身传入 jwt 的 hash
-        int newUserId = loginVerify.jwt.hashCode();
+        int newUserId = Math.abs(loginVerify.jwt.hashCode());
 
         // 登录的关键代码
         // 具体可参考 https://www.yuque.com/iohao/game/tywkqv
@@ -93,7 +94,6 @@ public class DemoMatchAction {
         ResponseCollectItemMessage minItemMessage = getMinItemMessage(responseCollectMessage);
         String logicServerId = minItemMessage.getLogicServerId();
 
-        //
         log.info("当前房间数最少的逻辑服是 userId:{} logicServerId:{}", flowContext.getUserId(), logicServerId);
 
         // 得到当前请求用户
@@ -106,10 +106,16 @@ public class DemoMatchAction {
         EndPointLogicServerMessage endPointLogicServerMessage = new EndPointLogicServerMessage()
                 // 需要绑定的玩家，示例中只取了当前请求匹配的玩家
                 .setUserList(userIdList)
-                // 需要绑定的逻辑服id
-                .setLogicServerId(logicServerId)
-                // true 为绑定，false 为取消绑定
-                .setBinding(true);
+                /*
+                 * 添加需要绑定的逻辑服id，下面绑定了两个；
+                 * 1.给绑定一个房间游戏逻辑服的 id
+                 * 2.绑定 animal 游戏逻辑服就简单点，固定写 id 为 2-1 的；
+                 * （也就是我们启动两台 animal 游戏逻辑服中的一台）
+                 */
+                .addLogicServerId(logicServerId)
+                .addLogicServerId("2-1")
+                // 覆盖绑定游戏逻辑服
+                .setOperation(EndPointOperationEnum.COVER_BINDING);
 
         // 发送消息到网关
         ProcessorContext processorContext = BrokerClientHelper.getProcessorContext();

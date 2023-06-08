@@ -18,8 +18,16 @@ package com.iohao.game.example.endpoint.room.action;
 
 import com.iohao.game.action.skeleton.annotation.ActionController;
 import com.iohao.game.action.skeleton.annotation.ActionMethod;
+import com.iohao.game.action.skeleton.core.CmdInfo;
+import com.iohao.game.action.skeleton.core.commumication.InvokeModuleContext;
+import com.iohao.game.action.skeleton.core.flow.FlowContext;
+import com.iohao.game.action.skeleton.protocol.RequestMessage;
+import com.iohao.game.action.skeleton.protocol.wrapper.StringValue;
+import com.iohao.game.bolt.broker.core.client.BrokerClientHelper;
 import com.iohao.game.example.common.msg.DemoOperation;
 import com.iohao.game.example.common.msg.RoomNumMsg;
+import com.iohao.game.example.endpoint.animal.action.DemoCmdForEndPointAnimal;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.atomic.LongAdder;
@@ -30,6 +38,7 @@ import java.util.concurrent.atomic.LongAdder;
  * @author 渔民小镇
  * @date 2022-05-28
  */
+@Slf4j
 @ActionController(DemoCmdForEndPointRoom.cmd)
 public class DemoEndPointRoomAction {
 
@@ -42,7 +51,6 @@ public class DemoEndPointRoomAction {
      */
     @ActionMethod(DemoCmdForEndPointRoom.countRoom)
     public RoomNumMsg countRoom() {
-
         // 得到 1 ~ 100 的随机数。
         int anInt = ThreadLocalRandom.current().nextInt(1, 100);
 
@@ -61,9 +69,18 @@ public class DemoEndPointRoomAction {
      * @return DemoOperation
      */
     @ActionMethod(DemoCmdForEndPointRoom.operation)
-    public DemoOperation operation(DemoOperation demoOperation) {
-        longAdder.increment();
+    public DemoOperation operation(DemoOperation demoOperation, FlowContext flowContext) {
+        // 跨服访问，逻辑服与逻辑服之间相互通信
+        InvokeModuleContext invokeModuleContext = BrokerClientHelper.getInvokeModuleContext();
+        CmdInfo cmdInfo = CmdInfo.getCmdInfo(
+                DemoCmdForEndPointAnimal.cmd, DemoCmdForEndPointAnimal.randomAnimal
+        );
+        RequestMessage requestMessage = flowContext.getRequest().createRequestMessage(cmdInfo);
+        StringValue stringValue = invokeModuleContext.invokeModuleMessageData(requestMessage, StringValue.class);
+        // 打印跨服访问的结果
+        log.info("stringValue : {}", stringValue);
 
+        longAdder.increment();
         DemoOperation operation = new DemoOperation();
         operation.name = demoOperation.name + ", I'm endPoint here " + longAdder.longValue();
         return operation;

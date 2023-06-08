@@ -113,12 +113,7 @@ public class DemoFightAction {
         demoFightMsg.attack = 1;
 
         // 加一点点描述，以 30 为描述的临界点
-        int criticalPoint = 30;
-        if (demoFightMsg.attack > criticalPoint) {
-            demoFightMsg.description = "英雄攻击得到了 极大的增强";
-        } else {
-            demoFightMsg.description = "英雄攻击得到了 小部分加成";
-        }
+        demoFightMsg.description = "英雄攻击得到了 小部分加成";
 
         return demoFightMsg;
     }
