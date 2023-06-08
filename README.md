@@ -10,7 +10,7 @@
   <br>
   <strong>包体小、启动快、内存占用少、更加的节约、无需配置文件、提供了优雅的路由访问权限控制</strong>
   <br>
-  <strong>让开发者用一套业务代码，无需任何改动，同时支持多种通信协议：WebSocket、TCP</strong>
+  <strong>让开发者使用一套业务代码，无需改动，支持多种通信协议：WebSocket、TCP、UDP</strong>
   <br>
   <strong>让开发者用一套业务代码，能轻松切换和扩展不同的通信协议：Protobuf、JSON</strong>
   <br>
