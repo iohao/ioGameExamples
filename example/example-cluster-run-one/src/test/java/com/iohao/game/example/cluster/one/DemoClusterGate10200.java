@@ -17,7 +17,8 @@
 package com.iohao.game.example.cluster.one;
 
 import com.iohao.game.bolt.broker.server.BrokerServer;
-import com.iohao.game.simple.cluster.ClusterSimpleHelper;
+import com.iohao.game.common.kit.log.IoGameLoggerFactory;
+import com.iohao.game.external.core.netty.simple.NettyClusterSimpleHelper;
 
 import java.util.List;
 
@@ -29,6 +30,7 @@ import java.util.List;
  */
 public class DemoClusterGate10200 {
     public static void main(String[] args) {
+        IoGameLoggerFactory.printConsole();
         /*
          * 种子节点地址
          * <pre>
@@ -68,7 +70,7 @@ public class DemoClusterGate10200 {
         // broker 端口（游戏网关端口）
         int port = gossipPortAndBrokerPort[1];
         // ---- 第1台 broker ----
-        BrokerServer brokerServer = ClusterSimpleHelper.createBrokerServer(seedAddress, gossipListenPort, port);
+        BrokerServer brokerServer = NettyClusterSimpleHelper.createBrokerServer(seedAddress, gossipListenPort, port);
         // 启动游戏网关
         brokerServer.startup();
     }

@@ -18,7 +18,7 @@ package com.iohao.game.example.cluster.one;
 
 import com.iohao.game.bolt.broker.core.common.IoGameGlobalConfig;
 import com.iohao.game.example.cluster.one.server.DemoClusterLogicServer;
-import com.iohao.game.simple.cluster.ClusterSimpleHelper;
+import com.iohao.game.external.core.netty.simple.NettyClusterSimpleHelper;
 
 import java.util.List;
 
@@ -39,7 +39,7 @@ public class DemoClusterApplication {
         var demoLogicServer = new DemoClusterLogicServer();
 
         // 启动 对外服、游戏网关集群、逻辑服; 并生成游戏业务文档
-        ClusterSimpleHelper.run(port, List.of(demoLogicServer));
+        NettyClusterSimpleHelper.run(port, List.of(demoLogicServer));
 
         /*
          * 该示例文档地址

@@ -2,7 +2,7 @@ package com.iohao.game.example.cluster.one;
 
 import com.iohao.game.bolt.broker.client.AbstractBrokerClientStartup;
 import com.iohao.game.example.cluster.one.server.DemoClusterLogicServer;
-import com.iohao.game.simple.cluster.ClusterSimpleRunOne;
+import com.iohao.game.external.core.netty.simple.NettyClusterSimpleRunOne;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -21,7 +21,7 @@ public class DemoClusterLogic {
         List<AbstractBrokerClientStartup> logicList = List.of(demoLogicServer);
 
         // 简单的启动器
-        new ClusterSimpleRunOne()
+        new NettyClusterSimpleRunOne()
                 // 禁用本地集群
                 .disableBrokerServerCluster()
                 // 逻辑服列表
