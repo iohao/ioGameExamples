@@ -19,6 +19,7 @@ package com.iohao.game.spring.logic.hall;
 import com.iohao.game.action.skeleton.core.BarSkeleton;
 import com.iohao.game.action.skeleton.core.BarSkeletonBuilder;
 import com.iohao.game.action.skeleton.core.BarSkeletonBuilderParamConfig;
+import com.iohao.game.action.skeleton.core.flow.MyFlowContext;
 import com.iohao.game.bolt.broker.client.AbstractBrokerClientStartup;
 import com.iohao.game.bolt.broker.core.client.BrokerClient;
 import com.iohao.game.bolt.broker.core.client.BrokerClientBuilder;
@@ -50,6 +51,8 @@ public class GameLogicHallClient extends AbstractBrokerClientStartup {
         BarSkeletonBuilder builder = MyBarSkeletonConfig.createBarSkeletonBuilder(config);
         // 开启 jsr380 验证
         builder.getSetting().setValidator(true);
+
+        builder.setFlowContextFactory(MyFlowContext::new);
 
         return builder.build();
     }

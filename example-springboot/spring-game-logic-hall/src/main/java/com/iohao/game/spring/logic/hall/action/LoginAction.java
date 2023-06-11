@@ -21,6 +21,7 @@ import com.iohao.game.action.skeleton.annotation.ActionController;
 import com.iohao.game.action.skeleton.annotation.ActionMethod;
 import com.iohao.game.action.skeleton.core.exception.MsgException;
 import com.iohao.game.action.skeleton.core.flow.FlowContext;
+import com.iohao.game.action.skeleton.core.flow.MyFlowContext;
 import com.iohao.game.bolt.broker.client.kit.ExternalCommunicationKit;
 import com.iohao.game.bolt.broker.client.kit.UserIdSettingKit;
 import com.iohao.game.spring.common.SpringGameCodeEnum;
@@ -102,6 +103,7 @@ public class LoginAction {
         MyAttachment myAttachment = new MyAttachment();
         myAttachment.userId = flowContext.getUserId();
         myAttachment.nickname = "英雄无敌3";
+        myAttachment.playerId = flowContext.getUserId();
 
         // 设置元信息 ----- 关键代码
         ExternalCommunicationKit.setAttachment(myAttachment, flowContext);
@@ -111,10 +113,13 @@ public class LoginAction {
     }
 
     @ActionMethod(HallCmdModule.attachmentPrint)
-    public MyAttachment printAttachment(FlowContext flowContext) {
+    public MyAttachment printAttachment(MyFlowContext flowContext) {
         // 得到元信息，这个是在上面的方法中设置的元信息对象
         var attachment = flowContext.getAttachment(MyAttachment.class);
         log.info("打印元信息 attachment : {}", attachment);
+
+        long playerId = flowContext.getPlayerId();
+        log.info("playerId : {}", playerId);
 
         // 文档 https://www.yuque.com/iohao/game/sw1y8u
 

@@ -16,6 +16,8 @@
  */
 package com.iohao.game.action.skeleton.core.flow;
 
+import com.iohao.game.spring.common.data.MyAttachment;
+
 /**
  * @author 渔民小镇
  * @date 2022-08-20
@@ -24,5 +26,10 @@ public class MyFlowContext extends FlowContext {
     public String hello() {
         // 在 MyFlowContext 中，扩展的方法
         return "MyFlowContext hello";
+    }
+
+    public long getPlayerId() {
+        MyAttachment attachment = this.getAttachment(MyAttachment.class);
+        return attachment.playerId;
     }
 }
