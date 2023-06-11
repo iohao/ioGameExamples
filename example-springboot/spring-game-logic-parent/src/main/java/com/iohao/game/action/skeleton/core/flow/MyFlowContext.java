@@ -32,4 +32,10 @@ public class MyFlowContext extends FlowContext {
         MyAttachment attachment = this.getAttachment(MyAttachment.class);
         return attachment.playerId;
     }
+
+    public long getUserId() {
+        MyAttachment attachment = this.getAttachment(MyAttachment.class);
+        return attachment.userId;
+    }
+
 }
