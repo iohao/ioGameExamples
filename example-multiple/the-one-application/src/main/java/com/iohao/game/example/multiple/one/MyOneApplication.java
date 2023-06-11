@@ -18,6 +18,7 @@ package com.iohao.game.example.multiple.one;
 
 import com.iohao.game.bolt.broker.client.AbstractBrokerClientStartup;
 import com.iohao.game.bolt.broker.server.BrokerServer;
+import com.iohao.game.common.kit.log.IoGameLoggerFactory;
 import com.iohao.game.example.multiple.broker.MyBrokerServer;
 import com.iohao.game.example.multiple.external.MyExternalServer;
 import com.iohao.game.example.multiple.weather.WeatherLogicStartup;
@@ -39,6 +40,8 @@ import java.util.List;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class MyOneApplication {
     public static void main(String[] args) {
+        IoGameLoggerFactory.printConsole();
+
         int externalPort = 10100;
         // 游戏对外服
         ExternalServer externalServer = new MyExternalServer()
@@ -52,11 +55,10 @@ public class MyOneApplication {
         WeatherLogicStartup weatherLogicStartup = new WeatherLogicStartup();
         List<AbstractBrokerClientStartup> logicServerList = List.of(weatherLogicStartup);
 
-        NettyRunOne simpleRunOne = new NettyRunOne()
+        new NettyRunOne()
                 .setExternalServer(externalServer)
                 .setBrokerServer(brokerServer)
-                .setLogicServerList(logicServerList);
-
-        simpleRunOne.startup();
+                .setLogicServerList(logicServerList)
+                .startup();
     }
 }

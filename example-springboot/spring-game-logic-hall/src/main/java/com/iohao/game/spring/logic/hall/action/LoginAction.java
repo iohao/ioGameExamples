@@ -104,7 +104,7 @@ public class LoginAction {
         myAttachment.nickname = "英雄无敌3";
 
         // 设置元信息 ----- 关键代码
-        ExternalCommunicationKit.setAttachment(myAttachment);
+        ExternalCommunicationKit.setAttachment(myAttachment, flowContext);
         log.info("设置元信息 : {}", myAttachment);
 
         // 文档 https://www.yuque.com/iohao/game/sw1y8u

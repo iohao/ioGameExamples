@@ -16,13 +16,18 @@
  */
 package com.iohao.game.example.multiple.client;
 
+import com.iohao.game.action.skeleton.core.DataCodecKit;
 import com.iohao.game.command.ClientCommandKit;
 import com.iohao.game.command.WebsocketClientKit;
+import com.iohao.game.common.kit.ExecutorKit;
 import com.iohao.game.example.multiple.common.cmd.internal.WeatherCmd;
 import com.iohao.game.example.multiple.common.data.TheLogin;
 import com.iohao.game.example.multiple.common.data.TheUserInfo;
 import com.iohao.game.example.multiple.common.data.Weather;
 import lombok.extern.slf4j.Slf4j;
+import org.java_websocket.client.WebSocketClient;
+
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author 渔民小镇
@@ -59,6 +64,12 @@ public class MyOneWebsocketClient {
         ClientCommandKit.createClientCommand(externalMessage, Weather.class);
 
         // 启动客户端
-        WebsocketClientKit.runClient();
+        WebSocketClient webSocketClient = WebsocketClientKit.runClient();
+
+        var theMessage = externalMessage;
+        ExecutorKit.newSingleScheduled("client").scheduleAtFixedRate(()->{
+            byte[] bytes = DataCodecKit.encode(theMessage);
+            webSocketClient.send(bytes);
+        },1,5, TimeUnit.SECONDS);
     }
 }

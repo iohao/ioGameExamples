@@ -35,7 +35,7 @@ public class WeatherLoginAction {
 
         String jwt = login.jwt;
 
-        long userId = jwt.hashCode();
+        long userId = Math.abs(jwt.hashCode());
 
         boolean b = UserIdSettingKit.settingUserId(flowContext, userId);
         if (!b) {
