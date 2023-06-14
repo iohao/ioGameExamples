@@ -57,6 +57,7 @@ public class DemoUserHook implements UserHook, UserSessionsAware, BrokerClientAw
 
         int idHash = brokerClient.getBrokerClientModuleMessage().getIdHash();
         RequestMessage requestMessage = ExternalKit.createRequestMessage(mergeCmd, idHash);
+        // 给请求消息加上一些 user 自身的数据
         userSession.employ(requestMessage);
 
         try {

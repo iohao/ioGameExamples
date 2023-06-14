@@ -28,14 +28,8 @@ public class MyFlowContext extends FlowContext {
         return "MyFlowContext hello";
     }
 
-    public long getPlayerId() {
+    public String getNickname() {
         MyAttachment attachment = this.getAttachment(MyAttachment.class);
-        return attachment.playerId;
+        return attachment.nickname;
     }
-
-    public long getUserId() {
-        MyAttachment attachment = this.getAttachment(MyAttachment.class);
-        return attachment.userId;
-    }
-
 }
