@@ -27,4 +27,5 @@ public interface IssuesCmdModule {
     int cmd = SpringCmdModule.issuesCmd;
 
     int the143 = 1;
+    int the143Result = 2;
 }

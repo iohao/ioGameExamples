@@ -18,7 +18,12 @@ package com.iohao.game.spring.logic.classes.action;
 
 import com.iohao.game.action.skeleton.annotation.ActionController;
 import com.iohao.game.action.skeleton.annotation.ActionMethod;
+import com.iohao.game.action.skeleton.core.CmdInfo;
+import com.iohao.game.action.skeleton.core.commumication.InvokeModuleContext;
+import com.iohao.game.action.skeleton.protocol.wrapper.StringValue;
+import com.iohao.game.bolt.broker.core.client.BrokerClientHelper;
 import com.iohao.game.spring.common.cmd.ClassesCmdModule;
+import com.iohao.game.spring.common.cmd.IssuesCmdModule;
 import com.iohao.game.spring.common.pb.ClassesPb;
 import com.iohao.game.spring.common.pb.SchoolPb;
 import com.iohao.game.spring.logic.classes.service.ClassesService;
@@ -40,6 +45,16 @@ import java.util.concurrent.ThreadLocalRandom;
 public class ClassesAction {
     @Autowired
     ClassesService classesService;
+    @ActionMethod(ClassesCmdModule.hello143)
+    public void hello143() {
+        classesService.helloSpring();
+        // https://github.com/iohao/ioGame/issues/143
+        // 逻辑服A（非spring管理的action）想跟逻辑服B(spring管理的action)通信
+        CmdInfo cmdInfo = CmdInfo.getCmdInfo(IssuesCmdModule.cmd, IssuesCmdModule.the143Result);
+        InvokeModuleContext invokeModuleContext = BrokerClientHelper.getInvokeModuleContext();
+        StringValue stringValue = invokeModuleContext.invokeModuleMessageData(cmdInfo, StringValue.class);
+        log.info("stringValue : {}", stringValue.value);
+    }
 
     /**
      * 得到班级信息；请求、响应

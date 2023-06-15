@@ -82,9 +82,16 @@ public class SpringWebsocketClient {
     }
 
     private static void issuesCommands() {
-        var externalMessage = ClientCommandKit.createExternalMessage(
+        ExternalMessage externalMessage = ClientCommandKit.createExternalMessage(
                 IssuesCmdModule.cmd,
                 IssuesCmdModule.the143
+        );
+
+//        ClientCommandKit.createClientCommand(externalMessage);
+
+        externalMessage = ClientCommandKit.createExternalMessage(
+                ClassesCmdModule.cmd,
+                ClassesCmdModule.hello143
         );
 
         ClientCommandKit.createClientCommand(externalMessage);

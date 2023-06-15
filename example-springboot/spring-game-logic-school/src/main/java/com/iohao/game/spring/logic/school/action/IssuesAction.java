@@ -47,4 +47,10 @@ public class IssuesAction {
 
         log.info("the143 classesPb : {}", classesPb);
     }
+
+    @ActionMethod(IssuesCmdModule.the143Result)
+    public String the143Result() {
+        // https://github.com/iohao/ioGame/issues/143
+        return "the143Result";
+    }
 }
