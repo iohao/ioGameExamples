@@ -20,10 +20,7 @@ import com.iohao.game.action.skeleton.protocol.wrapper.IntValue;
 import com.iohao.game.command.ClientCommandKit;
 import com.iohao.game.command.WebsocketClientKit;
 import com.iohao.game.external.core.message.ExternalMessage;
-import com.iohao.game.spring.common.cmd.HallCmdModule;
-import com.iohao.game.spring.common.cmd.OtherSchoolCmdModule;
-import com.iohao.game.spring.common.cmd.RoomCmdModule;
-import com.iohao.game.spring.common.cmd.SchoolCmdModule;
+import com.iohao.game.spring.common.cmd.*;
 import com.iohao.game.spring.common.data.MyAttachment;
 import com.iohao.game.spring.common.pb.*;
 import lombok.extern.slf4j.Slf4j;
@@ -46,7 +43,9 @@ public class SpringWebsocketClient {
         initLoginCommand();
 
         // 元信息相关
-        attachmentCommands();
+//        attachmentCommands();
+
+        issuesCommands();
 
         TimeUnit.MILLISECONDS.sleep(1);
 
@@ -81,6 +80,16 @@ public class SpringWebsocketClient {
         ClientCommandKit.createClientCommand(externalMessage, MyAttachment.class);
 
     }
+
+    private static void issuesCommands() {
+        var externalMessage = ClientCommandKit.createExternalMessage(
+                IssuesCmdModule.cmd,
+                IssuesCmdModule.the143
+        );
+
+        ClientCommandKit.createClientCommand(externalMessage);
+    }
+
 
     private static void otherCommand() {
 

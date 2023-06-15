@@ -33,5 +33,6 @@ public interface SpringCmdModule {
     int roomCmd = 4;
     /** 其他测试 */
     int otherSchoolCmd = 5;
+    int issuesCmd = 6;
 
 }
