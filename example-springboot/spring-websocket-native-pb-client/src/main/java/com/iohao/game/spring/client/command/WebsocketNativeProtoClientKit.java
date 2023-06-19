@@ -60,7 +60,9 @@ public class WebsocketNativeProtoClientKit {
 
 //                extractedEnum();
 
-                extractedList();
+//                extractedList();
+
+                issues147();
 
 //                extractedLoginVerify(maxValue);
 //                defaultValuePb();
@@ -255,6 +257,26 @@ public class WebsocketNativeProtoClientKit {
                 this.sendMsg(3, 7, value, consumer);
             }
 
+            private void issues147() {
+                Consumer<byte[]> consumer = bytes -> {
+                    try {
+                        var sceneEnterReq = BizProto.SceneEnterReq.parseFrom(bytes);
+                        log.info("sceneEnterReq : {}", sceneEnterReq);
+                    } catch (InvalidProtocolBufferException e) {
+                        throw new RuntimeException(e);
+                    }
+                };
+
+                ByteString value = BizProto.SceneEnterReq.newBuilder()
+                        .setSceneId(1)
+                        .setPositionX(0)
+                        .setPositionY(1.21f)
+                        .build()
+                        .toByteString();
+
+                this.sendMsg(6, 3, value, consumer);
+
+            }
 
             private void extractedLoginVerify(long maxValue) {
                 Consumer<byte[]> consumer = bytes -> {

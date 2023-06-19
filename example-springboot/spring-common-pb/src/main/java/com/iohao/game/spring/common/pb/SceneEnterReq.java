@@ -17,16 +17,23 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-package com.iohao.game.spring.common.cmd;
+package com.iohao.game.spring.common.pb;
+
+import com.baidu.bjf.remoting.protobuf.annotation.ProtobufClass;
+import lombok.AccessLevel;
+import lombok.ToString;
+import lombok.experimental.FieldDefaults;
 
 /**
  * @author 渔民小镇
- * @date 2023-06-15
+ * @date 2023-06-19
  */
-public interface IssuesCmdModule {
-    int cmd = SpringCmdModule.issuesCmd;
-
-    int the143 = 1;
-    int the143Result = 2;
-    int the147 = 3;
+@ToString
+@ProtobufClass
+@FieldDefaults(level = AccessLevel.PUBLIC)
+public class SceneEnterReq {
+    /** id */
+    int sceneId;
+    float positionX;
+    float positionY;
 }

@@ -7837,6 +7837,638 @@ public final class BizProto {
 
   }
 
+  public interface SceneEnterReqOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:com.iohao.message.SceneEnterReq)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>int32 sceneId = 1;</code>
+     * @return The sceneId.
+     */
+    int getSceneId();
+
+    /**
+     * <code>float positionX = 2;</code>
+     * @return The positionX.
+     */
+    float getPositionX();
+
+    /**
+     * <code>float positionY = 3;</code>
+     * @return The positionY.
+     */
+    float getPositionY();
+  }
+  /**
+   * Protobuf type {@code com.iohao.message.SceneEnterReq}
+   */
+  public static final class SceneEnterReq extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:com.iohao.message.SceneEnterReq)
+      SceneEnterReqOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use SceneEnterReq.newBuilder() to construct.
+    private SceneEnterReq(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private SceneEnterReq() {
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new SceneEnterReq();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private SceneEnterReq(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 8: {
+
+              sceneId_ = input.readInt32();
+              break;
+            }
+            case 21: {
+
+              positionX_ = input.readFloat();
+              break;
+            }
+            case 29: {
+
+              positionY_ = input.readFloat();
+              break;
+            }
+            default: {
+              if (!parseUnknownField(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.iohao.message.BizProto.internal_static_com_iohao_message_SceneEnterReq_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.iohao.message.BizProto.internal_static_com_iohao_message_SceneEnterReq_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.iohao.message.BizProto.SceneEnterReq.class, com.iohao.message.BizProto.SceneEnterReq.Builder.class);
+    }
+
+    public static final int SCENEID_FIELD_NUMBER = 1;
+    private int sceneId_;
+    /**
+     * <code>int32 sceneId = 1;</code>
+     * @return The sceneId.
+     */
+    @java.lang.Override
+    public int getSceneId() {
+      return sceneId_;
+    }
+
+    public static final int POSITIONX_FIELD_NUMBER = 2;
+    private float positionX_;
+    /**
+     * <code>float positionX = 2;</code>
+     * @return The positionX.
+     */
+    @java.lang.Override
+    public float getPositionX() {
+      return positionX_;
+    }
+
+    public static final int POSITIONY_FIELD_NUMBER = 3;
+    private float positionY_;
+    /**
+     * <code>float positionY = 3;</code>
+     * @return The positionY.
+     */
+    @java.lang.Override
+    public float getPositionY() {
+      return positionY_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (sceneId_ != 0) {
+        output.writeInt32(1, sceneId_);
+      }
+      if (positionX_ != 0F) {
+        output.writeFloat(2, positionX_);
+      }
+      if (positionY_ != 0F) {
+        output.writeFloat(3, positionY_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (sceneId_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, sceneId_);
+      }
+      if (positionX_ != 0F) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeFloatSize(2, positionX_);
+      }
+      if (positionY_ != 0F) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeFloatSize(3, positionY_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.iohao.message.BizProto.SceneEnterReq)) {
+        return super.equals(obj);
+      }
+      com.iohao.message.BizProto.SceneEnterReq other = (com.iohao.message.BizProto.SceneEnterReq) obj;
+
+      if (getSceneId()
+          != other.getSceneId()) return false;
+      if (java.lang.Float.floatToIntBits(getPositionX())
+          != java.lang.Float.floatToIntBits(
+              other.getPositionX())) return false;
+      if (java.lang.Float.floatToIntBits(getPositionY())
+          != java.lang.Float.floatToIntBits(
+              other.getPositionY())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + SCENEID_FIELD_NUMBER;
+      hash = (53 * hash) + getSceneId();
+      hash = (37 * hash) + POSITIONX_FIELD_NUMBER;
+      hash = (53 * hash) + java.lang.Float.floatToIntBits(
+          getPositionX());
+      hash = (37 * hash) + POSITIONY_FIELD_NUMBER;
+      hash = (53 * hash) + java.lang.Float.floatToIntBits(
+          getPositionY());
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.iohao.message.BizProto.SceneEnterReq parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.iohao.message.BizProto.SceneEnterReq parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.iohao.message.BizProto.SceneEnterReq parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.iohao.message.BizProto.SceneEnterReq parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.iohao.message.BizProto.SceneEnterReq parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.iohao.message.BizProto.SceneEnterReq parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.iohao.message.BizProto.SceneEnterReq parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.iohao.message.BizProto.SceneEnterReq parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.iohao.message.BizProto.SceneEnterReq parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.iohao.message.BizProto.SceneEnterReq parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.iohao.message.BizProto.SceneEnterReq parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.iohao.message.BizProto.SceneEnterReq parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.iohao.message.BizProto.SceneEnterReq prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code com.iohao.message.SceneEnterReq}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:com.iohao.message.SceneEnterReq)
+        com.iohao.message.BizProto.SceneEnterReqOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.iohao.message.BizProto.internal_static_com_iohao_message_SceneEnterReq_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.iohao.message.BizProto.internal_static_com_iohao_message_SceneEnterReq_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.iohao.message.BizProto.SceneEnterReq.class, com.iohao.message.BizProto.SceneEnterReq.Builder.class);
+      }
+
+      // Construct using com.iohao.message.BizProto.SceneEnterReq.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        sceneId_ = 0;
+
+        positionX_ = 0F;
+
+        positionY_ = 0F;
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.iohao.message.BizProto.internal_static_com_iohao_message_SceneEnterReq_descriptor;
+      }
+
+      @java.lang.Override
+      public com.iohao.message.BizProto.SceneEnterReq getDefaultInstanceForType() {
+        return com.iohao.message.BizProto.SceneEnterReq.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.iohao.message.BizProto.SceneEnterReq build() {
+        com.iohao.message.BizProto.SceneEnterReq result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.iohao.message.BizProto.SceneEnterReq buildPartial() {
+        com.iohao.message.BizProto.SceneEnterReq result = new com.iohao.message.BizProto.SceneEnterReq(this);
+        result.sceneId_ = sceneId_;
+        result.positionX_ = positionX_;
+        result.positionY_ = positionY_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.iohao.message.BizProto.SceneEnterReq) {
+          return mergeFrom((com.iohao.message.BizProto.SceneEnterReq)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.iohao.message.BizProto.SceneEnterReq other) {
+        if (other == com.iohao.message.BizProto.SceneEnterReq.getDefaultInstance()) return this;
+        if (other.getSceneId() != 0) {
+          setSceneId(other.getSceneId());
+        }
+        if (other.getPositionX() != 0F) {
+          setPositionX(other.getPositionX());
+        }
+        if (other.getPositionY() != 0F) {
+          setPositionY(other.getPositionY());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.iohao.message.BizProto.SceneEnterReq parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.iohao.message.BizProto.SceneEnterReq) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private int sceneId_ ;
+      /**
+       * <code>int32 sceneId = 1;</code>
+       * @return The sceneId.
+       */
+      @java.lang.Override
+      public int getSceneId() {
+        return sceneId_;
+      }
+      /**
+       * <code>int32 sceneId = 1;</code>
+       * @param value The sceneId to set.
+       * @return This builder for chaining.
+       */
+      public Builder setSceneId(int value) {
+        
+        sceneId_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 sceneId = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearSceneId() {
+        
+        sceneId_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private float positionX_ ;
+      /**
+       * <code>float positionX = 2;</code>
+       * @return The positionX.
+       */
+      @java.lang.Override
+      public float getPositionX() {
+        return positionX_;
+      }
+      /**
+       * <code>float positionX = 2;</code>
+       * @param value The positionX to set.
+       * @return This builder for chaining.
+       */
+      public Builder setPositionX(float value) {
+        
+        positionX_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>float positionX = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearPositionX() {
+        
+        positionX_ = 0F;
+        onChanged();
+        return this;
+      }
+
+      private float positionY_ ;
+      /**
+       * <code>float positionY = 3;</code>
+       * @return The positionY.
+       */
+      @java.lang.Override
+      public float getPositionY() {
+        return positionY_;
+      }
+      /**
+       * <code>float positionY = 3;</code>
+       * @param value The positionY to set.
+       * @return This builder for chaining.
+       */
+      public Builder setPositionY(float value) {
+        
+        positionY_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>float positionY = 3;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearPositionY() {
+        
+        positionY_ = 0F;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:com.iohao.message.SceneEnterReq)
+    }
+
+    // @@protoc_insertion_point(class_scope:com.iohao.message.SceneEnterReq)
+    private static final com.iohao.message.BizProto.SceneEnterReq DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.iohao.message.BizProto.SceneEnterReq();
+    }
+
+    public static com.iohao.message.BizProto.SceneEnterReq getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<SceneEnterReq>
+        PARSER = new com.google.protobuf.AbstractParser<SceneEnterReq>() {
+      @java.lang.Override
+      public SceneEnterReq parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new SceneEnterReq(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<SceneEnterReq> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<SceneEnterReq> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.iohao.message.BizProto.SceneEnterReq getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_com_iohao_message_Animal_descriptor;
   private static final 
@@ -7892,6 +8524,11 @@ public final class BizProto {
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_com_iohao_message_TempUserInfo_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_com_iohao_message_SceneEnterReq_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_com_iohao_message_SceneEnterReq_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -7916,8 +8553,10 @@ public final class BizProto {
       "essagePb\022\013\n\003msg\030\001 \001(\t\"R\n\010UserInfo\022\n\n\002id\030" +
       "\001 \001(\003\022\014\n\004name\030\002 \001(\t\022\017\n\007tempInt\030\003 \001(\005\022\014\n\004" +
       "time\030\004 \001(\003\022\r\n\005time2\030\005 \001(\003\"(\n\014TempUserInf" +
-      "o\022\n\n\002id\030\001 \001(\003\022\014\n\004name\030\002 \001(\t*\037\n\nAnimalTyp" +
-      "e\022\010\n\004BIRD\020\000\022\007\n\003CAT\020\001B\nB\010BizProtob\006proto3"
+      "o\022\n\n\002id\030\001 \001(\003\022\014\n\004name\030\002 \001(\t\"F\n\rSceneEnte" +
+      "rReq\022\017\n\007sceneId\030\001 \001(\005\022\021\n\tpositionX\030\002 \001(\002" +
+      "\022\021\n\tpositionY\030\003 \001(\002*\037\n\nAnimalType\022\010\n\004BIR" +
+      "D\020\000\022\007\n\003CAT\020\001B\nB\010BizProtob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -7989,6 +8628,12 @@ public final class BizProto {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_com_iohao_message_TempUserInfo_descriptor,
         new java.lang.String[] { "Id", "Name", });
+    internal_static_com_iohao_message_SceneEnterReq_descriptor =
+      getDescriptor().getMessageTypes().get(11);
+    internal_static_com_iohao_message_SceneEnterReq_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_com_iohao_message_SceneEnterReq_descriptor,
+        new java.lang.String[] { "SceneId", "PositionX", "PositionY", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

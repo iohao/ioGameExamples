@@ -27,6 +27,7 @@ import com.iohao.game.bolt.broker.core.client.BrokerClientHelper;
 import com.iohao.game.spring.common.cmd.ClassesCmdModule;
 import com.iohao.game.spring.common.cmd.IssuesCmdModule;
 import com.iohao.game.spring.common.pb.ClassesPb;
+import com.iohao.game.spring.common.pb.SceneEnterReq;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -52,5 +53,12 @@ public class IssuesAction {
     public String the143Result() {
         // https://github.com/iohao/ioGame/issues/143
         return "the143Result";
+    }
+
+    @ActionMethod(IssuesCmdModule.the147)
+    public SceneEnterReq the147(SceneEnterReq sceneEnterReq) {
+        log.info("sceneEnterReq : \n{}", sceneEnterReq);
+
+        return sceneEnterReq;
     }
 }

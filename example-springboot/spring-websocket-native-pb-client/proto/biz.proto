@@ -100,3 +100,9 @@ message TempUserInfo {
   // 用户名
   string name = 2;
 }
+
+message SceneEnterReq {
+  int32 sceneId = 1;
+  float positionX = 2;
+  float positionY = 3;
+}
