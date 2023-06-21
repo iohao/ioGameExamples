@@ -16,13 +16,19 @@
  */
 package com.iohao.game.example.hook;
 
+import com.iohao.game.action.skeleton.core.DataCodecKit;
 import com.iohao.game.command.ClientCommandKit;
 import com.iohao.game.command.WebsocketClientKit;
+import com.iohao.game.common.kit.ExecutorKit;
 import com.iohao.game.example.common.msg.login.DemoLoginVerify;
 import com.iohao.game.example.common.msg.login.DemoUserInfo;
 import com.iohao.game.example.hook.action.DemoCmdForHookRoom;
 import com.iohao.game.external.core.message.ExternalMessage;
+import com.iohao.game.external.core.message.ExternalMessageCmdCode;
 import lombok.extern.slf4j.Slf4j;
+import org.java_websocket.client.WebSocketClient;
+
+import java.util.concurrent.TimeUnit;
 
 /**
  * 模拟游戏客户端
@@ -38,7 +44,14 @@ public class DemoWebsocketClientForHook {
         initLoginCommand();
 
         // 启动客户端
-        WebsocketClientKit.runClient();
+        WebSocketClient webSocketClient = WebsocketClientKit.runClient();
+
+        ExecutorKit.newSingleScheduled("idle").scheduleAtFixedRate(() -> {
+            ExternalMessage externalMessage = new ExternalMessage();
+            externalMessage.setCmdCode(ExternalMessageCmdCode.idle);
+            log.info("idle : ");
+            webSocketClient.send(DataCodecKit.encode(externalMessage));
+        }, 1, 3, TimeUnit.SECONDS);
     }
 
     private static void initLoginCommand() {
@@ -54,5 +67,8 @@ public class DemoWebsocketClientForHook {
         );
 
         ClientCommandKit.createClientCommand(externalMessageLogin, DemoUserInfo.class, 1500);
+
+
+
     }
 }

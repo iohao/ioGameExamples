@@ -20,6 +20,7 @@ import com.iohao.game.action.skeleton.core.CmdKit;
 import com.iohao.game.action.skeleton.core.DataCodecKit;
 import com.iohao.game.external.core.kit.ExternalKit;
 import com.iohao.game.external.core.message.ExternalMessage;
+import com.iohao.game.external.core.message.ExternalMessageCmdCode;
 import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
 
@@ -38,6 +39,7 @@ public class ClientCommandKit {
 
     Map<Integer, ClientCommand> clientCommandMap = new LinkedHashMap<>();
     public boolean openExternalLog = true;
+    public boolean openIdleLog = true;
 
     public List<ClientCommand> listClientCommand() {
         return clientCommandMap
@@ -94,6 +96,13 @@ public class ClientCommandKit {
         int cmdMerge = externalMessage.getCmdMerge();
         int cmd = CmdKit.getCmd(cmdMerge);
         int subCmd = CmdKit.getSubCmd(cmdMerge);
+
+        if (openIdleLog) {
+            if (externalMessage.getCmdCode() == ExternalMessageCmdCode.idle) {
+                log.info("接收服务器心跳消息响应");
+                return;
+            }
+        }
 
         if (openExternalLog) {
             log.info("收到消息 ExternalMessage ========== \n{} \ncmdMerge [{}-{}] ", externalMessage, cmd, subCmd);
