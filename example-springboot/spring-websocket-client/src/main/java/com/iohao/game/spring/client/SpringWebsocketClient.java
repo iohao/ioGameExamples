@@ -43,9 +43,9 @@ public class SpringWebsocketClient {
         initLoginCommand();
 
         // 元信息相关
-//        attachmentCommands();
+        attachmentCommands();
 
-        issuesCommands();
+//        issuesCommands();
 
         TimeUnit.MILLISECONDS.sleep(1);
 

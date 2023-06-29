@@ -71,10 +71,6 @@ import java.util.List;
 public class SpringGameOneApplication {
 
     public static void main(String[] args) {
-
-        // 启动 spring boot
-        SpringApplication.run(SpringGameOneApplication.class, args);
-
         // 游戏逻辑服列表
         List<AbstractBrokerClientStartup> logicList = List.of(
                 // 学校逻辑服
@@ -93,6 +89,10 @@ public class SpringGameOneApplication {
                 createRoomLogicClient(1),
                 createRoomLogicClient(2)
         );
+
+        // 启动 spring boot
+        SpringApplication.run(SpringGameOneApplication.class, args);
+
 
         // 对外开放的端口
         int externalPort = 10100;

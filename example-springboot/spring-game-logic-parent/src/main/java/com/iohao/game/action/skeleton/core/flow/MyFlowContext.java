@@ -18,11 +18,37 @@ package com.iohao.game.action.skeleton.core.flow;
 
 import com.iohao.game.spring.common.data.MyAttachment;
 
+import java.util.Objects;
+
 /**
  * @author 渔民小镇
  * @date 2022-08-20
  */
 public class MyFlowContext extends FlowContext {
+    public MyAttachment attachment;
+
+    public String getServerId() {
+        initAttachment();
+        if (attachment == null) {
+            return null;
+        }
+        return attachment.serverId;
+    }
+
+    public String getPlayerId() {
+        initAttachment();
+        if (attachment == null) {
+            return null;
+        }
+        return attachment.playerId;
+    }
+
+    private void initAttachment() {
+        if (Objects.isNull(attachment)) {
+            this.attachment = this.getAttachment(MyAttachment.class);
+        }
+    }
+
     public String hello() {
         // 在 MyFlowContext 中，扩展的方法
         return "MyFlowContext hello";

@@ -87,4 +87,18 @@ public class MeterExternalBizHandler extends SimpleChannelInboundHandler<Externa
     public void setUserSessions(UserSessions<?, ?> userSessions) {
         this.userSessions = (SocketUserSessions) userSessions;
     }
+
+
+    public MeterExternalBizHandler() {
+
+    }
+
+    public static MeterExternalBizHandler me() {
+    	return Holder.ME;
+    }
+
+    /** 通过 JVM 的类加载机制, 保证只加载一次 (singleton) */
+    private static class Holder {
+        static final MeterExternalBizHandler ME = new MeterExternalBizHandler();
+    }
 }

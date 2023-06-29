@@ -36,5 +36,7 @@ public class MyAttachment implements Attachment {
     @Getter
     long userId;
     String nickname;
-    long playerId;
+
+    String serverId;
+    String playerId;
 }
