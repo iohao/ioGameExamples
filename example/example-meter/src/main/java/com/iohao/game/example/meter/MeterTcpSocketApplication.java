@@ -28,6 +28,7 @@ import com.iohao.game.external.core.micro.PipelineContext;
 import com.iohao.game.external.core.netty.DefaultExternalCoreSetting;
 import com.iohao.game.external.core.netty.DefaultExternalServer;
 import com.iohao.game.external.core.netty.DefaultExternalServerBuilder;
+import com.iohao.game.external.core.netty.SettingOption;
 import com.iohao.game.external.core.netty.handler.SocketUserSessionHandler;
 import com.iohao.game.external.core.netty.micro.TcpMicroBootstrapFlow;
 import com.iohao.game.external.core.netty.simple.NettyRunOne;
@@ -89,7 +90,8 @@ public class MeterTcpSocketApplication {
             public void pipelineCustom(PipelineContext context) {
 
                 // 管理 UserSession 的 Handler
-                context.addLast("UserSessionHandler", SocketUserSessionHandler.me());
+                SocketUserSessionHandler socketUserSessionHandler = setting.option(SettingOption.socketUserSessionHandler);
+                context.addLast("UserSessionHandler", socketUserSessionHandler);
 
                 context.addLast("MyExternalBizHandler", MeterExternalBizHandler.me());
             }

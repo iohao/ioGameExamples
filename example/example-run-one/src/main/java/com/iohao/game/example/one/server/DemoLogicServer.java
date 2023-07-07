@@ -20,6 +20,7 @@ import com.iohao.game.action.skeleton.core.BarSkeleton;
 import com.iohao.game.action.skeleton.core.BarSkeletonBuilderParamConfig;
 import com.iohao.game.action.skeleton.core.flow.interal.DebugInOut;
 import com.iohao.game.bolt.broker.client.AbstractBrokerClientStartup;
+import com.iohao.game.bolt.broker.client.BrokerClientApplication;
 import com.iohao.game.bolt.broker.core.client.BrokerAddress;
 import com.iohao.game.bolt.broker.core.client.BrokerClient;
 import com.iohao.game.bolt.broker.core.client.BrokerClientBuilder;
@@ -55,9 +56,15 @@ public class DemoLogicServer extends AbstractBrokerClientStartup {
 
     @Override
     public BrokerClientBuilder createBrokerClientBuilder() {
-        BrokerClientBuilder builder = BrokerClient.newBuilder();
-        builder.appName("demo游戏逻辑服");
-        return builder;
+        String id = "2-1";
+
+        return BrokerClient.newBuilder()
+                // 逻辑服的唯一 id
+                .id(id)
+                // 逻辑服名字
+                .appName("demo游戏逻辑服-" + id)
+                // 同类型标签
+                .tag("demoLogic");
     }
 
     @Override
@@ -67,5 +74,24 @@ public class DemoLogicServer extends AbstractBrokerClientStartup {
         // broker （游戏网关）默认端口
         int brokerPort = IoGameGlobalConfig.brokerPort;
         return new BrokerAddress(localIp, brokerPort);
+    }
+
+    public static void main(String[] args) {
+        String id = "2-2";
+
+        // BrokerClient 构建器，房间逻辑服的信息
+        BrokerClientBuilder brokerClientBuilder = BrokerClient.newBuilder()
+                // 逻辑服的唯一 id
+                .id(id)
+                // 逻辑服名字
+                .appName("demo游戏逻辑服-" + id)
+                // 同类型标签
+                .tag("demoLogic");
+
+        DemoLogicServer demoLogicServer = new DemoLogicServer();
+        // 如果字段赋值了，就不会使用 BrokerClientStartup.createBrokerClientBuilder() 接口的值
+        demoLogicServer.setBrokerClientBuilder(brokerClientBuilder);
+
+        BrokerClientApplication.start(demoLogicServer);
     }
 }
