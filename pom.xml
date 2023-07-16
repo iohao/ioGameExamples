@@ -73,6 +73,11 @@
         <module>example-multiple/the-one-application</module>
         <module>example-multiple/the-client</module>
         <module>example/example-old-external</module>
+        <module>component/chat-core</module>
+        <module>component/chat-provide</module>
+        <module>component/login-core</module>
+        <module>component/login-provide</module>
+        <module>component/z-client</module>
     </modules>
 
     <!--统一管理版本 的一个父 pom-->
@@ -127,6 +132,27 @@
     </properties>
 
     <dependencies>
+
+        <!-- 单体应用启动 -->
+        <dependency>
+            <groupId>com.iohao.game</groupId>
+            <artifactId>run-one-netty</artifactId>
+            <version>${ioGame.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.iohao.game</groupId>
+            <artifactId>light-client</artifactId>
+            <version>${ioGame.version}</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.github.javafaker/javafaker -->
+        <dependency>
+            <groupId>com.github.javafaker</groupId>
+            <artifactId>javafaker</artifactId>
+            <version>1.0.2</version>
+        </dependency>
+
         <!-- lombok 简化 java 代码 -->
         <dependency>
             <groupId>org.projectlombok</groupId>
