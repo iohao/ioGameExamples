@@ -19,10 +19,7 @@
  */
 package com.iohao.game.example.hook;
 
-import com.iohao.game.action.skeleton.core.DataCodecKit;
-import com.iohao.game.common.kit.ExecutorKit;
 import com.iohao.game.common.kit.InternalKit;
-import com.iohao.game.example.common.msg.HelloSpringMsg;
 import com.iohao.game.example.common.msg.login.DemoLoginVerify;
 import com.iohao.game.example.common.msg.login.DemoUserInfo;
 import com.iohao.game.example.hook.action.DemoCmdForHookRoom;
@@ -30,16 +27,9 @@ import com.iohao.game.external.client.AbstractInputCommandRegion;
 import com.iohao.game.external.client.InputCommandRegion;
 import com.iohao.game.external.client.join.ClientRunOne;
 import com.iohao.game.external.client.kit.ClientUserConfigs;
-import com.iohao.game.external.core.message.ExternalMessage;
-import com.iohao.game.external.core.message.ExternalMessageCmdCode;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 /**
  * @author 渔民小镇
@@ -58,7 +48,7 @@ public class DemoHookClient {
         // 启动模拟客户端
         new ClientRunOne()
                 .setInputCommandRegions(inputCommandRegions)
-                // 开启心跳
+                // 开启心跳，每 3 秒向服务器发送一次心跳消息
                 .idle(3)
                 .startup();
     }

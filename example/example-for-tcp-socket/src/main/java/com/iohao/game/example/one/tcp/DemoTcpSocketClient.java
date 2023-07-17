@@ -21,17 +21,12 @@ package com.iohao.game.example.one.tcp;
 
 import com.iohao.game.common.kit.InternalKit;
 import com.iohao.game.example.common.msg.HelloReq;
-import com.iohao.game.example.common.msg.HelloSpringMsg;
 import com.iohao.game.example.one.action.DemoCmd;
 import com.iohao.game.external.client.AbstractInputCommandRegion;
 import com.iohao.game.external.client.InputCommandRegion;
 import com.iohao.game.external.client.join.ClientRunOne;
 import com.iohao.game.external.client.kit.ClientUserConfigs;
 import com.iohao.game.external.core.config.ExternalJoinEnum;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;

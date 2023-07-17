@@ -20,18 +20,12 @@
 package com.iohao.game.example.interaction;
 
 import com.iohao.game.common.kit.InternalKit;
-import com.iohao.game.example.common.msg.login.DemoLoginVerify;
-import com.iohao.game.example.common.msg.login.DemoUserInfo;
 import com.iohao.game.example.interaction.fight.action.DemoCmdForFight;
 import com.iohao.game.example.interaction.msg.DemoFightMsg;
 import com.iohao.game.external.client.AbstractInputCommandRegion;
 import com.iohao.game.external.client.InputCommandRegion;
 import com.iohao.game.external.client.join.ClientRunOne;
 import com.iohao.game.external.client.kit.ClientUserConfigs;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;

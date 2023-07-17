@@ -22,14 +22,8 @@ package com.iohao.game.example.broadcast;
 import com.iohao.game.example.common.msg.DemoBroadcastMessage;
 import com.iohao.game.external.client.AbstractInputCommandRegion;
 import com.iohao.game.external.client.InputCommandRegion;
-import com.iohao.game.external.client.command.CommandResult;
-import com.iohao.game.external.client.command.InputCallback;
 import com.iohao.game.external.client.join.ClientRunOne;
 import com.iohao.game.external.client.kit.ClientUserConfigs;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
