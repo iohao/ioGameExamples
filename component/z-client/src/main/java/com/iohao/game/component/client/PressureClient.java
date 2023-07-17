@@ -41,6 +41,8 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.LongAdder;
 
 /**
+ * 压测演示
+ *
  * @author 渔民小镇
  * @date 2023-07-16
  */
@@ -75,7 +77,7 @@ public class PressureClient {
 
             ClientUserInputCommands clientUserInputCommands = clientUser.getClientUserInputCommands();
             RequestCommand requestCommand = clientUserInputCommands.ofRequestCommand(cmdInfo);
-            requestCommand.requestInput();
+            requestCommand.request();
         });
 
         // 模拟请求数据

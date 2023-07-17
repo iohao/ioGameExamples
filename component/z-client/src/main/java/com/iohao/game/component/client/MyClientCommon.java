@@ -25,8 +25,10 @@ import com.iohao.game.component.chat.client.ChatInputCommandRegion;
 import com.iohao.game.component.login.client.LoginInputCommandRegion;
 import com.iohao.game.component.login.cmd.LoginCmd;
 import com.iohao.game.external.client.InputCommandRegion;
+import com.iohao.game.external.client.command.RequestCommand;
 import com.iohao.game.external.client.join.ClientRunOne;
 import com.iohao.game.external.client.user.ClientUser;
+import com.iohao.game.external.client.user.ClientUserInputCommands;
 import com.iohao.game.external.client.user.DefaultClientUser;
 import lombok.extern.slf4j.Slf4j;
 
@@ -46,7 +48,12 @@ public class MyClientCommon {
         // 一秒后，自动触发登录请求
         InternalKit.newTimeoutSeconds(timeout -> {
             CmdInfo cmdInfo = LoginCmd.getCmdInfo(LoginCmd.login);
-            clientUser.getClientUserInputCommands().request(cmdInfo);
+
+            ClientUserInputCommands clientUserInputCommands = clientUser.getClientUserInputCommands();
+            // 创建一个请求命令
+            RequestCommand requestCommand = clientUserInputCommands.ofRequestCommand(cmdInfo);
+            // 执行请求
+            requestCommand.request();
         });
 
         // 模拟请求数据
