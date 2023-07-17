@@ -42,7 +42,6 @@
         <module>example-game-collect/game-one</module>
         <!-- java 坦克游戏 fxgl -->
         <module>example-game-collect/fxgl-tank</module>
-        <module>client-command</module>
 
         <!-- springboot 集成示例 -->
         <module>example-springboot/spring-game-logic-school</module>

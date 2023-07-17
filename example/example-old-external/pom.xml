@@ -25,11 +25,6 @@
             <version>${ioGame.version}</version>
         </dependency>
 
-        <dependency>
-            <groupId>com.iohao.example</groupId>
-            <artifactId>client-command</artifactId>
-            <version>${project.parent.version}</version>
-        </dependency>
     </dependencies>
 
 </project>

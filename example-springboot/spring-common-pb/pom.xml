@@ -19,13 +19,6 @@
 
 
     <dependencies>
-
-        <dependency>
-            <groupId>com.iohao.example</groupId>
-            <artifactId>client-command</artifactId>
-            <version>${project.parent.version}</version>
-        </dependency>
-
         <!-- https://www.yuque.com/iohao/game/ea6geg#jMDuc -->
         <dependency>
             <groupId>com.iohao.game</groupId>

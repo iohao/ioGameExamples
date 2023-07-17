@@ -17,10 +17,11 @@
 package com.iohao.game.example.endpoint.match;
 
 import com.iohao.game.action.skeleton.core.BarSkeleton;
+import com.iohao.game.action.skeleton.core.BarSkeletonBuilder;
+import com.iohao.game.action.skeleton.kit.LogicServerCreateKit;
 import com.iohao.game.bolt.broker.client.AbstractBrokerClientStartup;
 import com.iohao.game.bolt.broker.core.client.BrokerClient;
 import com.iohao.game.bolt.broker.core.client.BrokerClientBuilder;
-import com.iohao.game.command.BarSkeletonKit;
 import com.iohao.game.example.endpoint.match.action.DemoMatchAction;
 
 /**
@@ -30,9 +31,8 @@ import com.iohao.game.example.endpoint.match.action.DemoMatchAction;
 public class DemoEndPointMatchServer extends AbstractBrokerClientStartup {
     @Override
     public BarSkeleton createBarSkeleton() {
-        return BarSkeletonKit
-                .newBuilder(DemoMatchAction.class)
-                .build();
+        BarSkeletonBuilder builder = LogicServerCreateKit.createBuilder(DemoMatchAction.class);
+        return builder.build();
     }
 
     @Override

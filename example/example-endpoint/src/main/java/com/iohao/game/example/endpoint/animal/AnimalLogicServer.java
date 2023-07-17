@@ -20,11 +20,12 @@
 package com.iohao.game.example.endpoint.animal;
 
 import com.iohao.game.action.skeleton.core.BarSkeleton;
+import com.iohao.game.action.skeleton.core.BarSkeletonBuilder;
+import com.iohao.game.action.skeleton.core.BarSkeletonBuilderParamConfig;
 import com.iohao.game.action.skeleton.core.flow.attr.FlowAttr;
 import com.iohao.game.action.skeleton.core.flow.interal.DebugInOut;
 import com.iohao.game.bolt.broker.client.AbstractBrokerClientStartup;
 import com.iohao.game.bolt.broker.core.client.BrokerClientBuilder;
-import com.iohao.game.command.BarSkeletonKit;
 import com.iohao.game.example.endpoint.animal.action.AnimalAction;
 import lombok.extern.slf4j.Slf4j;
 
@@ -36,8 +37,15 @@ import lombok.extern.slf4j.Slf4j;
 public class AnimalLogicServer extends AbstractBrokerClientStartup {
     @Override
     public BarSkeleton createBarSkeleton() {
+        // 业务框架构建器 配置
+        var config = new BarSkeletonBuilderParamConfig()
+                // 扫描 action 类所在包
+                .scanActionPackage(AnimalAction.class);
+
+        BarSkeletonBuilder builder = config.createBuilder();
 
         DebugInOut debugInOut = new DebugInOut();
+        builder.addInOut(debugInOut);
         debugInOut.setPrintConsumer((msg, flowContext) -> {
             String tag = flowContext.option(FlowAttr.logicServerTag);
             String logicServerId = flowContext.option(FlowAttr.logicServerId);
@@ -47,10 +55,7 @@ public class AnimalLogicServer extends AbstractBrokerClientStartup {
             log.info("{}-{}", tag, logicServerId);
         });
 
-        return BarSkeletonKit
-                .newBuilder(AnimalAction.class)
-                .addInOut(debugInOut)
-                .build();
+        return builder.build();
     }
 
     @Override

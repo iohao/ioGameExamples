@@ -22,14 +22,7 @@
         <dependency>
             <groupId>com.iohao.example</groupId>
             <artifactId>the-common-data</artifactId>
-            <version>3.0.0.io</version>
+            <version>${project.parent.version}</version>
         </dependency>
-
-        <dependency>
-            <groupId>com.iohao.example</groupId>
-            <artifactId>client-command</artifactId>
-            <version>3.0.0.io</version>
-        </dependency>
-
     </dependencies>
 </project>
