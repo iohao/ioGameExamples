@@ -24,13 +24,6 @@
             <version>${project.parent.version}</version>
         </dependency>
 
-        <!-- 单体应用启动 -->
-        <dependency>
-            <groupId>com.iohao.game</groupId>
-            <artifactId>run-one-netty</artifactId>
-            <version>${ioGame.version}</version>
-        </dependency>
-
         <dependency>
             <groupId>com.iohao.game</groupId>
             <artifactId>light-jprotobuf</artifactId>

@@ -32,7 +32,6 @@ public class JsrJakartaAction {
 
     @ActionMethod(JsrJakartaCmd.jsrJakarta)
     public JsrJakartaPb jsrJakarta(JsrJakartaPb jsrJakartaPb) {
-        log.info("jsrJakartaPb : {}", jsrJakartaPb);
         return jsrJakartaPb;
     }
 }

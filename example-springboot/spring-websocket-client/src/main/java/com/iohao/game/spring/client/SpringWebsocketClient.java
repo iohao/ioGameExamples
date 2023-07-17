@@ -91,7 +91,7 @@ public class SpringWebsocketClient {
 
         externalMessage = ClientCommandKit.createExternalMessage(
                 ClassesCmdModule.cmd,
-                ClassesCmdModule.hello143
+                ClassesCmdModule.issu143
         );
 
         ClientCommandKit.createClientCommand(externalMessage);

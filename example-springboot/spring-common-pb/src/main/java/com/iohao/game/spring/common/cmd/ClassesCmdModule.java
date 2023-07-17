@@ -27,5 +27,5 @@ public interface ClassesCmdModule {
     int getClasses = 0;
     int classesHereVoid = 1;
     int jsr380 = 2;
-    int hello143 = 3;
+    int issu143 = 3;
 }

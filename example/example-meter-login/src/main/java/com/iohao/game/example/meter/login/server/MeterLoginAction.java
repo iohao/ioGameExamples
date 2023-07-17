@@ -41,7 +41,7 @@ public class MeterLoginAction {
 
         // 一直测试登录，即使登录过了也再次登录
         String name = helloReq.name;
-        int userId = name.hashCode();
+        int userId = Math.abs(name.hashCode());
 
         boolean b = UserIdSettingKit.settingUserId(flowContext, userId);
         if (b) {

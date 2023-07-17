@@ -36,9 +36,6 @@ import java.util.List;
  * @author 渔民小镇
  * @date 2023-06-05
  */
-@Getter
-@Setter
-@FieldDefaults(level = AccessLevel.PRIVATE)
 public class OldApplication {
     public static void main(String[] args) {
 

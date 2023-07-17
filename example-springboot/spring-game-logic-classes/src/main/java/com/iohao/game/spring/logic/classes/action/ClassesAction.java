@@ -45,8 +45,9 @@ import java.util.concurrent.ThreadLocalRandom;
 public class ClassesAction {
     @Autowired
     ClassesService classesService;
-    @ActionMethod(ClassesCmdModule.hello143)
-    public void hello143() {
+
+    @ActionMethod(ClassesCmdModule.issu143)
+    public StringValue issu143() {
         classesService.helloSpring();
         // https://github.com/iohao/ioGame/issues/143
         // 逻辑服A（非spring管理的action）想跟逻辑服B(spring管理的action)通信
@@ -54,6 +55,7 @@ public class ClassesAction {
         InvokeModuleContext invokeModuleContext = BrokerClientHelper.getInvokeModuleContext();
         StringValue stringValue = invokeModuleContext.invokeModuleMessageData(cmdInfo, StringValue.class);
         log.info("stringValue : {}", stringValue.value);
+        return stringValue;
     }
 
     /**

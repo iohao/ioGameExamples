@@ -337,7 +337,6 @@ public class WebsocketNativeProtoClientKit {
         return builder.build();
     }
 
-
     Map<Integer, Consumer<byte[]>> consumerCallbackMap = new HashMap<>();
 
     void onMessageCallback(int cmd, int subCmd, Consumer<byte[]> consumerCallback) {

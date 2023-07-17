@@ -30,5 +30,6 @@ public interface DemoCmdForEndPointRoom {
 
     /** 示例 统计房间数量 方法 */
     int countRoom = 0;
+    /** 房间内的操作 */
     int operation = 1;
 }
