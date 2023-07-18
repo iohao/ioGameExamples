@@ -69,12 +69,14 @@ public class PressureClient {
     static void start(long userId) {
         // 客户端的用户（玩家）
         ClientUser clientUser = new DefaultClientUser();
-        clientUser.setJwt(String.valueOf(userId));
+        String jwt = String.valueOf(userId);
+        clientUser.setJwt(jwt);
 
         // 一秒后，自动触发登录请求
         InternalKit.newTimeoutSeconds(timeout -> {
             CmdInfo cmdInfo = LoginCmd.getCmdInfo(LoginCmd.login);
 
+            // 通过 cmdInfo 查找请求命令对象，并执行
             ClientUserInputCommands clientUserInputCommands = clientUser.getClientUserInputCommands();
             RequestCommand requestCommand = clientUserInputCommands.ofRequestCommand(cmdInfo);
             requestCommand.request();
