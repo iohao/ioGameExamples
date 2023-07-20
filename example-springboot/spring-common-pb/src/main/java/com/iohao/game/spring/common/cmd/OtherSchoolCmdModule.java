@@ -16,6 +16,8 @@
  */
 package com.iohao.game.spring.common.cmd;
 
+import com.iohao.game.action.skeleton.core.CmdInfo;
+
 /**
  * @author 渔民小镇
  * @date 2022-08-26
@@ -33,4 +35,8 @@ public interface OtherSchoolCmdModule {
     int longValueWithBroadcast = 6;
 
     int longValueWithBroadcastData = 7;
+
+    static CmdInfo getCmdInfo(int subCmd) {
+        return CmdInfo.getCmdInfo(cmd, subCmd);
+    }
 }

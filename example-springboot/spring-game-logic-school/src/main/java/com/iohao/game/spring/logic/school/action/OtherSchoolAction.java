@@ -26,6 +26,7 @@ import com.iohao.game.spring.common.cmd.OtherSchoolCmdModule;
 import com.iohao.game.spring.common.pb.OtherVerify;
 import com.iohao.game.spring.common.pb.SchoolPb;
 import com.iohao.game.spring.common.pb.UserInfo;
+import com.iohao.game.spring.logic.school.annotation.IgnoreDebugInout;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
@@ -56,6 +57,7 @@ public class OtherSchoolAction {
      * @return level
      */
     @ActionMethod(OtherSchoolCmdModule.longValueWrapper)
+    @IgnoreDebugInout
     public long longValueWrapper(long levelLong) {
         log.info("levelLong 碎片协议 {}", levelLong);
         return levelLong + 2;

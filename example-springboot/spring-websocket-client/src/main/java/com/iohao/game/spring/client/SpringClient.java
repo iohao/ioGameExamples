@@ -20,6 +20,7 @@
 package com.iohao.game.spring.client;
 
 import com.iohao.game.action.skeleton.protocol.wrapper.IntValue;
+import com.iohao.game.action.skeleton.protocol.wrapper.LongValue;
 import com.iohao.game.action.skeleton.protocol.wrapper.StringValue;
 import com.iohao.game.common.kit.InternalKit;
 import com.iohao.game.external.client.AbstractInputCommandRegion;
@@ -30,8 +31,6 @@ import com.iohao.game.external.client.kit.ScannerKit;
 import com.iohao.game.spring.common.cmd.*;
 import com.iohao.game.spring.common.data.MyAttachment;
 import com.iohao.game.spring.common.pb.*;
-import io.netty.util.Timeout;
-import io.netty.util.TimerTask;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
@@ -80,7 +79,7 @@ public class SpringClient {
                 // 执行请求
                 ofRequestCommand(HallCmdModule.loginVerify).request();
 
-            },100, TimeUnit.MILLISECONDS);
+            }, 100, TimeUnit.MILLISECONDS);
         }
 
         private void initCommandLogin() {
@@ -256,11 +255,16 @@ public class SpringClient {
                 log.info("value : {}", value);
             }).setDescription("longValueWithBroadcast");
 
-
             listenBroadcast(SchoolPb.class, result -> {
                 SchoolPb value = result.getValue();
                 log.info("value : {}", value);
             }, OtherSchoolCmdModule.longValueWithBroadcastData, "longValueWithBroadcastData");
+
+            ofCommand(OtherSchoolCmdModule.longValueWrapper).callback(LongValue.class, result -> {
+                LongValue value = result.getValue();
+                log.info("value : {}", value);
+            }).setDescription("IgnoreDebugInout longValueWrapper").setRequestData(LongValue.of(1));
+
         }
     }
 }
