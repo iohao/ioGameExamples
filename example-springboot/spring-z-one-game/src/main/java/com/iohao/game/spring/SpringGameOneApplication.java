@@ -73,12 +73,12 @@ public class SpringGameOneApplication {
     public static void main(String[] args) {
         // 游戏逻辑服列表
         List<AbstractBrokerClientStartup> logicList = List.of(
-                // 学校逻辑服
-                new GameLogicSchoolClient(),
-                // 班级逻辑服
-                new GameLogicClassesClient(),
                 // 大厅逻辑服 - 有登录
-                new GameLogicHallClient(),
+                new GameLogicHallClient()
+                // 学校逻辑服
+//                , new GameLogicSchoolClient()
+                // 班级逻辑服
+//                , new GameLogicClassesClient()
                 /*
                  * 启动多个同类型的游戏逻辑服
                  *
@@ -86,8 +86,8 @@ public class SpringGameOneApplication {
                  * 方便测试 请求同类型多个逻辑服通信结果
                  * https://www.yuque.com/iohao/game/rf9rb9
                  */
-                createRoomLogicClient(1),
-                createRoomLogicClient(2)
+//                , createRoomLogicClient(1)
+//                , createRoomLogicClient(2)
         );
 
         // 启动 spring boot

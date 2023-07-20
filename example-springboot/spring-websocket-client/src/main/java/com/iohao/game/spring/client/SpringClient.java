@@ -30,10 +30,13 @@ import com.iohao.game.external.client.kit.ScannerKit;
 import com.iohao.game.spring.common.cmd.*;
 import com.iohao.game.spring.common.data.MyAttachment;
 import com.iohao.game.spring.common.pb.*;
+import io.netty.util.Timeout;
+import io.netty.util.TimerTask;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author 渔民小镇
@@ -70,8 +73,14 @@ public class SpringClient {
             // 一秒后，执行模拟请求;
             InternalKit.newTimeoutSeconds(task -> {
                 // 执行请求
-                ofRequestCommand(HallCmdModule.loginVerify).request();
+//                ofRequestCommand(HallCmdModule.loginVerify).request();
             });
+
+            InternalKit.newTimeout(timeout -> {
+                // 执行请求
+                ofRequestCommand(HallCmdModule.loginVerify).request();
+
+            },100, TimeUnit.MILLISECONDS);
         }
 
         private void initCommandLogin() {

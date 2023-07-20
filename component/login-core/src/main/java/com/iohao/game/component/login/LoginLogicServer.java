@@ -25,7 +25,7 @@ import com.iohao.game.bolt.broker.client.AbstractBrokerClientStartup;
 import com.iohao.game.bolt.broker.core.client.BrokerClient;
 import com.iohao.game.bolt.broker.core.client.BrokerClientBuilder;
 import com.iohao.game.action.skeleton.kit.LogicServerCreateKit;
-import com.iohao.game.component.login.action.LoginAction;
+import com.iohao.game.component.login.action.TheLoginAction;
 
 /**
  * @author 渔民小镇
@@ -35,7 +35,7 @@ public class LoginLogicServer extends AbstractBrokerClientStartup {
     @Override
     public BarSkeleton createBarSkeleton() {
         // 业务框架构建器
-        BarSkeletonBuilder builder = LogicServerCreateKit.createBuilder(LoginAction.class);
+        BarSkeletonBuilder builder = LogicServerCreateKit.createBuilder(TheLoginAction.class);
 
         return builder.build();
     }

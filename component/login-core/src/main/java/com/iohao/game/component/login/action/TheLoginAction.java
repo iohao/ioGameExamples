@@ -38,7 +38,7 @@ import java.util.Locale;
  */
 @Slf4j
 @ActionController(LoginCmd.cmd)
-public class LoginAction {
+public class TheLoginAction {
     // cn name
     static final Name name = new Faker(Locale.CHINA).name();
 
