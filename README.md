@@ -10,7 +10,7 @@
   <br>
   <strong>包体小、启动快、内存占用少、更加的节约、无需配置文件、提供了优雅的路由访问权限控制</strong>
   <br>
-  <strong>让开发者使用一套业务代码，无需改动，支持多种通信协议：WebSocket、TCP、UDP</strong>
+  <strong>让开发者使用一套业务代码，无需改动，支持多种连接方式：WebSocket、TCP、UDP</strong>
   <br>
   <strong>让开发者用一套业务代码，能轻松切换和扩展不同的通信协议：Protobuf、JSON</strong>
   <br>
@@ -18,7 +18,7 @@
   <br>
   <strong>代码即联调文档、JSR380验证、断言 + 异常机制 = 更少的维护成本</strong>
   <br>
-  <strong>在业务开发中，提供了业务逻辑的执行信息、代码定位与跳转等</strong>
+  <strong>框架具备智能的同进程亲和性；开发中，业务代码可定位与跳转</strong>
   <br>
   <strong>架构部署灵活性与多样性：既可相互独立，又可相互融合</strong>
   <br>
@@ -36,28 +36,26 @@
   <br>
   <strong>零学习成本</strong>
 </p>
-
-
 <p align="center">
-	<a href="https://www.yuque.com/iohao/game">https://www.yuque.com/iohao/game</a>
+	<a href="http://game.iohao.com">http://game.iohao.com</a>
 </p>
 <p align="center">
 	<a target="_blank" href="https://www.oracle.com/java/technologies/downloads/#java17">
 		<img src="https://img.shields.io/badge/JDK-17-green.svg" alt="JDK 17" />
 	</a>
 	<br>
-	<a target="_blank" href="https://license.coscl.org.cn/Apache2/">
-		<img src="https://img.shields.io/:license-Apache2-blue.svg" alt="Apache 2" />
+	<a target="_blank" href="https://www.gnu.org/licenses/agpl-3.0.txt">
+		<img src="https://img.shields.io/:license-AGPL3.0-blue.svg" alt="AGPL3.0" />
 	</a>
 	<br />
-	<a target="_blank" href='https://gitee.com/iohao/iogame'>
-		<img src='https://gitee.com/iohao/iogame/badge/star.svg' alt='gitee star'/>
+	<a target="_blank" href='https://gitee.com/iohao/ioGame'>
+		<img src='https://gitee.com/iohao/ioGame/badge/star.svg' alt='gitee star'/>
 	</a>
-	<a target="_blank" href='https://github.com/iohao/iogame'>
-		<img src="https://img.shields.io/github/stars/iohao/iogame.svg?logo=github" alt="github star"/>
+	<a target="_blank" href='https://github.com/iohao/ioGame'>
+		<img src="https://img.shields.io/github/stars/iohao/ioGame.svg?logo=github" alt="github star"/>
 	</a>
   <br />
-  <a href="https://www.murphysec.com/dr/O8oMcWWWVoU9hV4M9z" alt="OSCS Status"><img src="https://www.oscs1024.com/platform/badge/iohao/iogame.git.svg?size=small"/></a>
+  <a href="https://www.murphysec.com/dr/O8oMcWWWVoU9hV4M9z" alt="OSCS Status"><img src="https://www.oscs1024.com/platform/badge/iohao/ioGame.git.svg?size=small"/></a>
 </p>
 <hr />
 
