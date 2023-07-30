@@ -86,19 +86,20 @@ public class SpringGameOneApplication {
                  * 方便测试 请求同类型多个逻辑服通信结果
                  * https://www.yuque.com/iohao/game/rf9rb9
                  */
-//                , createRoomLogicClient(1)
-//                , createRoomLogicClient(2)
+                , createRoomLogicClient(1)
+                , createRoomLogicClient(2)
         );
 
         // 启动 spring boot
         SpringApplication.run(SpringGameOneApplication.class, args);
 
-
         // 对外开放的端口
         int externalPort = 10100;
         // 游戏对外服
-        ExternalServer externalServer = new GameExternal().createExternalServer(externalPort);
-        ExternalGlobalConfig.accessAuthenticationHook.setVerifyIdentity(false);
+        ExternalServer externalServer = new GameExternal()
+                .createExternalServer(externalPort);
+
+        ExternalGlobalConfig.accessAuthenticationHook.setVerifyIdentity(true);
 
         // broker （游戏网关）
         BrokerServer brokerServer = new GameBrokerBoot().createBrokerServer();
