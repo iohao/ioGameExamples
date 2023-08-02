@@ -56,8 +56,10 @@ public class SpringClient {
                 , new InternalOtherSchoolRegion()
         );
 
+        // 使用 tcp 连接服务器
         ExternalJoinEnum joinEnum = ExternalJoinEnum.TCP;
-//        joinEnum = ExternalJoinEnum.WEBSOCKET;
+        // 使用 webSocket 连接服务器
+        joinEnum = ExternalJoinEnum.WEBSOCKET;
 
         // 启动模拟客户端
         new ClientRunOne()
