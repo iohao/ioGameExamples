@@ -23,7 +23,7 @@ import com.iohao.game.bolt.broker.core.client.BrokerClient;
 import com.iohao.game.bolt.broker.core.client.BrokerClientBuilder;
 import com.iohao.game.bolt.broker.server.BrokerServer;
 import com.iohao.game.external.core.ExternalServer;
-import com.iohao.game.external.core.config.ExternalGlobalConfig;
+import com.iohao.game.external.core.config.ExternalJoinEnum;
 import com.iohao.game.external.core.netty.simple.NettyRunOne;
 import com.iohao.game.spring.broker.GameBrokerBoot;
 import com.iohao.game.spring.external.GameExternal;
@@ -96,10 +96,13 @@ public class SpringGameOneApplication {
         // 对外开放的端口
         int externalPort = 10100;
         // 游戏对外服
-        ExternalServer externalServer = new GameExternal()
+        ExternalServer externalServerWebSocket = new GameExternal()
                 .createExternalServer(externalPort);
 
-        ExternalGlobalConfig.accessAuthenticationHook.setVerifyIdentity(true);
+        // externalPort + 1
+        int tcpPort = ExternalJoinEnum.TCP.cocPort(externalPort);
+        ExternalServer externalServerTcp = new GameExternal()
+                .createExternalServer(tcpPort, ExternalJoinEnum.TCP);
 
         // broker （游戏网关）
         BrokerServer brokerServer = new GameBrokerBoot().createBrokerServer();
@@ -109,7 +112,7 @@ public class SpringGameOneApplication {
                 // broker （游戏网关）
                 .setBrokerServer(brokerServer)
                 // 游戏对外服
-                .setExternalServer(externalServer)
+                .setExternalServerList(List.of(externalServerWebSocket, externalServerTcp))
                 // 游戏逻辑服列表
                 .setLogicServerList(logicList)
                 // 启动 游戏对外服、游戏网关、游戏逻辑服

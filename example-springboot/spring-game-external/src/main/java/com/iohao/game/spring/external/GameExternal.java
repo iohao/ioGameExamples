@@ -31,13 +31,17 @@ import com.iohao.game.external.core.netty.DefaultExternalServerBuilder;
  */
 public class GameExternal {
     public ExternalServer createExternalServer(int externalPort) {
+        return createExternalServer(externalPort, ExternalJoinEnum.WEBSOCKET);
+    }
+
+    public ExternalServer createExternalServer(int externalPort, ExternalJoinEnum joinEnum) {
 
         extractedIgnore();
 
         // 游戏对外服 - 构建器
         DefaultExternalServerBuilder builder = DefaultExternalServer.newBuilder(externalPort)
                 // websocket 方式连接
-                .externalJoinEnum(ExternalJoinEnum.WEBSOCKET)
+                .externalJoinEnum(joinEnum)
                 // Broker （游戏网关）的连接地址；如果不设置，默认也是这个配置
                 .brokerAddress(new BrokerAddress("127.0.0.1", IoGameGlobalConfig.brokerPort));
 

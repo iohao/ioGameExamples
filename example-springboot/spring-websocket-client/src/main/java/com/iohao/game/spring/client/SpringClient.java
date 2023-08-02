@@ -27,6 +27,8 @@ import com.iohao.game.external.client.InputCommandRegion;
 import com.iohao.game.external.client.join.ClientRunOne;
 import com.iohao.game.external.client.kit.ClientUserConfigs;
 import com.iohao.game.external.client.kit.ScannerKit;
+import com.iohao.game.external.core.config.ExternalGlobalConfig;
+import com.iohao.game.external.core.config.ExternalJoinEnum;
 import com.iohao.game.spring.common.cmd.*;
 import com.iohao.game.spring.common.data.MyAttachment;
 import com.iohao.game.spring.common.pb.*;
@@ -54,8 +56,15 @@ public class SpringClient {
                 , new InternalOtherSchoolRegion()
         );
 
+        // 使用 tcp 连接服务器
+        ExternalJoinEnum joinEnum = ExternalJoinEnum.TCP;
+        // 使用 webSocket 连接服务器
+        joinEnum = ExternalJoinEnum.WEBSOCKET;
+
         // 启动模拟客户端
         new ClientRunOne()
+                .setJoinEnum(joinEnum)
+                .setConnectPort(joinEnum.cocPort(ExternalGlobalConfig.externalPort))
                 .setInputCommandRegions(inputCommandRegions)
                 .startup();
     }
