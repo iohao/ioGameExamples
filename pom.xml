@@ -82,7 +82,7 @@
     <!--统一管理版本 的一个父 pom-->
     <properties>
         <!-- 项目版本 -->
-        <ioGame.version>17.1.49</ioGame.version>
+        <ioGame.version>17.1.50</ioGame.version>
         <!-- jdk 版本 -->
         <java.version>17</java.version>
         <maven.compiler.source>17</maven.compiler.source>
