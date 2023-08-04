@@ -75,4 +75,6 @@ public interface DemoModuleCmd {
 
     /** 逻辑服 示例 cmd 模块20 (动态服务器绑定 - 动物) */
     int demoModule_20_endpoint_animal_cmd = 20;
+    /** webSocket token 相关 */
+    int wsVerifyModule_21_cmd = 21;
 }

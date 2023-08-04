@@ -77,6 +77,7 @@
         <module>component/login-core</module>
         <module>component/login-provide</module>
         <module>component/z-client</module>
+        <module>example/example-ws-token</module>
     </modules>
 
     <!--统一管理版本 的一个父 pom-->
