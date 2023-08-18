@@ -240,11 +240,18 @@ public class SpringClient {
         @Override
         public void initInputCommand() {
             inputCommandCreate.cmd = RoomCmdModule.cmd;
+            inputCommandCreate.cmdName = "房间";
 
             ofCommand(RoomCmdModule.helloRoom).callback(OtherVerify.class, result -> {
                 OtherVerify value = result.getValue();
                 log.info("value : {}", value);
             }).setDescription("helloRoom");
+
+            ofCommand(RoomCmdModule.countRoom).callback(RoomNumPb.class, result -> {
+                RoomNumPb value = result.getValue();
+                log.info("value : {}", value);
+            }).setDescription("countRoom");
+
         }
     }
 
