@@ -57,6 +57,8 @@ function onMessage(evt) {
     let bizDataJson = binaryData(bizData);
     externalMessage.data = bizDataJson;
 
+    console.log(bizDataJson);
+
     let json = JSON.stringify(externalMessage);
 
     writeToScreen('<span style="color:blue">服务端回应&nbsp;' + formatDate(new Date()) + '</span><br/><span>' + json + '</span>');
@@ -80,7 +82,7 @@ function createExternalMessage(data) {
 
     var message = {
         cmdCode: 1,
-        cmdMerge: 1245185,
+        cmdMerge: merge(19, 3),
         data: data
     }
 
@@ -95,6 +97,10 @@ function createExternalMessage(data) {
     json = JSON.stringify(message);
 
     return textEncoder.encode(json);
+}
+
+function merge(cmd, subCmd) {
+    return (cmd << 16) + subCmd;
 }
 
 function writeToScreen(message) {

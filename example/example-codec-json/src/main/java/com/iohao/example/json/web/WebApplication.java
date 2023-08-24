@@ -17,6 +17,8 @@
  */
 package com.iohao.example.json.web;
 
+import io.netty.handler.codec.http.websocketx.BinaryWebSocketFrame;
+import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
 import lombok.extern.slf4j.Slf4j;
 import org.noear.solon.Solon;
 
@@ -40,5 +42,9 @@ public class WebApplication {
             });
 
         });
+    }
+
+    public static void main(String[] args) {
+        start(8080);
     }
 }

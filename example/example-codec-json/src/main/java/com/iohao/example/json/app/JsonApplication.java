@@ -35,7 +35,7 @@ public class JsonApplication {
         IoGameGlobalSetting.setDataCodec(new JsonDataCodec());
 
 //        IoGameGlobalConfig.openLog = false;
-        IoGameGlobalConfig.externalLog = false;
+//        IoGameGlobalConfig.externalLog = false;
 
         // 游戏对外服端口
         int port = 10100;

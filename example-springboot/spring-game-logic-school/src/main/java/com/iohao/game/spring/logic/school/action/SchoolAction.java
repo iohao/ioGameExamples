@@ -40,6 +40,10 @@ import com.iohao.game.spring.logic.school.service.SchoolService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,11 +56,22 @@ import java.util.List;
  */
 @Slf4j
 @Component
+@RestController
 @ActionController(SchoolCmdModule.cmd)
 public class SchoolAction {
 
     @Autowired
     SchoolService schoolService;
+
+    @GetMapping("/here2")
+    @ActionMethod(SchoolCmdModule.here2)
+    public LogicRequestPb here2(LogicRequestPb logicRequestPb) {
+        schoolService.helloSpring();
+        LogicRequestPb newLogicRequestPb = new LogicRequestPb();
+        newLogicRequestPb.name = logicRequestPb.name + ", I'm here ";
+
+        return newLogicRequestPb;
+    }
 
     /**
      * 请求、响应

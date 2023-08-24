@@ -53,4 +53,5 @@ public interface SchoolCmdModule {
 
     /** 分组校验 */
     int group = 11;
+    int here2 = 12;
 }
