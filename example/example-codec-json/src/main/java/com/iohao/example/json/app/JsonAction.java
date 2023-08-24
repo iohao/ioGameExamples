@@ -19,6 +19,7 @@ package com.iohao.example.json.app;
 
 import com.iohao.game.action.skeleton.annotation.ActionController;
 import com.iohao.game.action.skeleton.annotation.ActionMethod;
+import com.iohao.game.action.skeleton.protocol.wrapper.StringValue;
 import com.iohao.game.example.common.cmd.JsonCmd;
 import com.iohao.game.example.common.msg.HelloReq;
 
@@ -43,7 +44,7 @@ public class JsonAction {
     }
 
     @ActionMethod(JsonCmd.helloString)
-    public String helloString(HelloReq helloReq) {
-        return helloReq.name + "，hello String";
+    public String helloString(StringValue name) {
+        return name.value + "，hello String";
     }
 }

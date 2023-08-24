@@ -70,7 +70,8 @@ function onError(evt) {
 
 function SendMessage() {
     var data = {
-        name: "英雄无敌-3"
+        // name: "英雄无敌-3"
+        value : "英雄无敌"
     }
 
     var externalMessageBytes = createExternalMessage(data);
