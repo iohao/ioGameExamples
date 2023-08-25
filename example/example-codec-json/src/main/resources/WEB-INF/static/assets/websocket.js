@@ -70,8 +70,8 @@ function onError(evt) {
 
 function SendMessage() {
     var data = {
-        // name: "英雄无敌-3"
-        value : "英雄无敌"
+        name: "英雄无敌-3"
+        // value : "英雄无敌"
     }
 
     var externalMessageBytes = createExternalMessage(data);
@@ -83,7 +83,7 @@ function createExternalMessage(data) {
 
     var message = {
         cmdCode: 1,
-        cmdMerge: merge(19, 3),
+        cmdMerge: merge(19, 1),
         data: data
     }
 
