@@ -1,0 +1,69 @@
+spring:
+  application:
+    name: Game_Server
+  jackson:
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
+    default-property-inclusion: non_null
+  profiles:
+    active: dev
+server:
+  port: 6868
+
+# MyBatis配置
+mybatis-plus:
+  # 搜索指定包别名
+  typeAliasesPackage: com.seiryuu.**.domain
+  # 配置mapper的扫描，找到所有的mapper.xml映射文件
+  mapperLocations: classpath*:mapper/**/*Mapper.xml
+  # 加载全局的配置文件
+  configLocation: classpath:mybatis/mybatis-config.xml
+  # 针对 typeAliasesPackage，如果配置了该属性，则仅仅会扫描路径下以该类作为父类的域对象
+  #typeAliasesSuperType: Class<?>
+  # 如果配置了该属性，SqlSessionFactoryBean 会把该包下面的类注册为对应的 TypeHandler
+  #typeHandlersPackage: null
+  # 如果配置了该属性，会将路径下的枚举类进行注入，让实体类字段能够简单快捷的使用枚举属性
+  #typeEnumsPackage: null
+  # 启动时是否检查 MyBatis XML 文件的存在，默认不检查
+  checkConfigLocation: false
+  # 通过该属性可指定 MyBatis 的执行器，MyBatis 的执行器总共有三种：
+  # SIMPLE：该执行器类型不做特殊的事情，为每个语句的执行创建一个新的预处理语句（PreparedStatement）
+  # REUSE：该执行器类型会复用预处理语句（PreparedStatement）
+  # BATCH：该执行器类型会批量执行所有的更新语句
+  executorType: SIMPLE
+  global-config:
+    # 是否打印 Logo banner
+    banner: false
+    # 是否初始化 SqlRunner
+    enableSqlRunner: false
+    dbConfig:
+      # 主键类型
+      # AUTO 数据库ID自增
+      # NONE 空
+      # INPUT 用户输入ID
+      # ASSIGN_ID 全局唯一ID
+      # ASSIGN_UUID 全局唯一ID UUID
+      idType: AUTO
+      # 表名前缀
+      tablePrefix: null
+      # 字段 format,例: %s,(对主键无效)
+      columnFormat: null
+      # 表名是否使用驼峰转下划线命名,只对表名生效
+      tableUnderline: true
+      # 大写命名,对表名和字段名均生效
+      capitalMode: false
+      # 全局的entity的逻辑删除字段属性名
+      logicDeleteField: del_status
+      # 逻辑已删除值
+      logicDeleteValue: 2
+      # 逻辑未删除值
+      logicNotDeleteValue: 0
+      # 字段验证策略之 insert,在 insert 的时候的字段验证策略
+      # IGNORED 忽略判断
+      # NOT_NULL 非NULL判断
+      # NOT_EMPTY 非空判断(只对字符串类型字段,其他类型字段依然为非NULL判断)
+      # DEFAULT 默认的,一般只用于注解里
+      # NEVER 不加入 SQL
+      insertStrategy: NOT_EMPTY
+      # 字段验证策略之 update,在 update 的时候的字段验证策略
+      updateStrategy: NOT_NULL

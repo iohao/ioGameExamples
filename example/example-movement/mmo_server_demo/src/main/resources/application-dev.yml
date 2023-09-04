@@ -1,0 +1,18 @@
+appconfig:
+  # 令牌密钥
+  secret: R0=bO3#t+4xl9#NJrXW5_ix#-v3PrT5D
+  # 令牌有效期
+  expireTime: 60
+
+# 日志配置
+logging:
+  level:
+    com.seiryuu: debug
+    org.springframework: warn
+
+# 日志文件
+log:
+  # 日志存放路径
+  path: D:\temp\devLogs\${spring.application.name}
+  # 日志存放天数
+  storageDays: 1
