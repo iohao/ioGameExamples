@@ -27,6 +27,7 @@ import com.iohao.game.spring.common.cmd.ClassesCmdModule;
 import com.iohao.game.spring.common.cmd.IssuesCmdModule;
 import com.iohao.game.spring.common.pb.ClassesPb;
 import com.iohao.game.spring.common.pb.SceneEnterReq;
+import com.iohao.game.spring.common.pb.Vector3;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -59,5 +60,12 @@ public class IssuesAction {
         log.info("sceneEnterReq : \n{}", sceneEnterReq);
 
         return sceneEnterReq;
+    }
+
+    @ActionMethod(IssuesCmdModule.the186)
+    public Vector3 the186(Vector3 vector3) {
+        log.info("vector3 : \n{}", vector3);
+
+        return vector3;
     }
 }

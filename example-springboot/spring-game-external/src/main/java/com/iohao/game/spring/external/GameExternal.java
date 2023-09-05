@@ -69,5 +69,6 @@ public class GameExternal {
         accessAuthenticationHook.addIgnoreAuthCmd(3, 1);
         accessAuthenticationHook.addIgnoreAuthCmd(3, 8);
         accessAuthenticationHook.addIgnoreAuthCmd(3);
+        accessAuthenticationHook.addIgnoreAuthCmd(6);
     }
 }

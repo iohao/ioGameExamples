@@ -20,6 +20,7 @@ package com.iohao.game.spring.logic.core;
 import com.iohao.game.action.skeleton.core.BarSkeleton;
 import com.iohao.game.action.skeleton.core.BarSkeletonBuilder;
 import com.iohao.game.action.skeleton.core.BarSkeletonBuilderParamConfig;
+import com.iohao.game.action.skeleton.core.IoGameGlobalSetting;
 import com.iohao.game.action.skeleton.core.flow.MyFlowContext;
 import com.iohao.game.action.skeleton.core.flow.interal.DebugInOut;
 import com.iohao.game.spring.common.SendDoc;
@@ -32,6 +33,9 @@ import lombok.experimental.UtilityClass;
  */
 @UtilityClass
 public class MyBarSkeletonConfig {
+
+    static MyDefaultMethodParser defaultMethodParser = new MyDefaultMethodParser();
+
     /**
      * 在实践项目中，可以提供这样一个通用的业务框架配置
      *
@@ -55,6 +59,10 @@ public class MyBarSkeletonConfig {
      * @return BarSkeletonBuilder
      */
     public BarSkeletonBuilder createBarSkeletonBuilder(BarSkeletonBuilderParamConfig config) {
+        // issues186，为了方便观察，全部写这里了
+//        MethodParsers.me().setMethodParser(defaultMethodParser);
+        IoGameGlobalSetting.setDataCodec(new MyProtoDataCodec());
+
         // 业务框架构建器
         return config.createBuilder()
                 // 添加控制台输出插件

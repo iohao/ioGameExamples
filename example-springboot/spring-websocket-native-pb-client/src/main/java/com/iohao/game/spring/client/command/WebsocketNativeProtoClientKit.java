@@ -20,6 +20,7 @@ package com.iohao.game.spring.client.command;
 import com.google.protobuf.ByteString;
 import com.google.protobuf.InvalidProtocolBufferException;
 import com.iohao.game.action.skeleton.core.CmdKit;
+import com.iohao.game.common.kit.ProtoKit;
 import com.iohao.message.BizProto;
 import com.iohao.message.Proto;
 import lombok.SneakyThrows;
@@ -49,6 +50,7 @@ public class WebsocketNativeProtoClientKit {
         WebsocketNativeProtoClientKit.runClient();
     }
 
+
     public void runClient() throws Exception {
         // 连接游戏服务器的地址
         String wsUrl = "ws://127.0.0.1:10100/websocket";
@@ -63,7 +65,8 @@ public class WebsocketNativeProtoClientKit {
 
 //                extractedList();
 
-                issues147();
+//                issues147();
+                issues186();
 
 //                extractedLoginVerify(maxValue);
 //                defaultValuePb();
@@ -276,7 +279,26 @@ public class WebsocketNativeProtoClientKit {
                         .toByteString();
 
                 this.sendMsg(6, 3, value, consumer);
+            }
 
+            private void issues186() {
+                Consumer<byte[]> consumer = bytes -> {
+                    try {
+                        var vector3 = BizProto.Vector3.parseFrom(bytes);
+                        log.info("issues186 : {}", vector3);
+                    } catch (InvalidProtocolBufferException e) {
+                        throw new RuntimeException(e);
+                    }
+                };
+
+                ByteString value = BizProto.Vector3.newBuilder()
+                        .setX(0)
+                        .setY(0)
+                        .setZ(0)
+                        .build()
+                        .toByteString();
+
+                this.sendMsg(6, 4, value, consumer);
             }
 
             private void extractedLoginVerify(long maxValue) {
@@ -303,7 +325,8 @@ public class WebsocketNativeProtoClientKit {
 
             private void sendMsg(int cmd, int subCmd, ByteString value) {
                 Proto.ExternalMessage externalMessage = createExternalMessage(cmd, subCmd, value);
-                this.send(externalMessage.toByteArray());
+                byte[] byteArray = externalMessage.toByteArray();
+                this.send(byteArray);
             }
 
             private void sendMsg(int cmd, int subCmd, com.google.protobuf.GeneratedMessageV3 messageV3) {

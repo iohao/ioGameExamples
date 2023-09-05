@@ -16,17 +16,34 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-package com.iohao.game.spring.common.cmd;
+package com.iohao.game.spring.logic.core;
+
+import com.iohao.game.action.skeleton.core.codec.DataCodec;
+import com.iohao.game.common.kit.ProtoKit;
+
+import java.util.Objects;
 
 /**
  * @author 渔民小镇
- * @date 2023-06-15
+ * @date 2023-09-05
  */
-public interface IssuesCmdModule {
-    int cmd = SpringCmdModule.issuesCmd;
+@SuppressWarnings("unchecked")
+public class MyProtoDataCodec implements DataCodec {
+    //    byte[] EMPTY_BYTES = CommonConst.EMPTY_BYTES;
+    byte[] EMPTY_BYTES = new byte[0];
 
-    int the143 = 1;
-    int the143Result = 2;
-    int the147 = 3;
-    int the186 = 4;
+    @Override
+    public byte[] encode(Object data) {
+        return ProtoKit.toBytes(data);
+    }
+
+    @Override
+    public <T> T decode(byte[] data, Class<?> dataClass) {
+
+        if (Objects.isNull(data)) {
+            data = EMPTY_BYTES;
+        }
+
+        return (T) ProtoKit.parseProtoByte(data, dataClass);
+    }
 }

@@ -16,17 +16,22 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-package com.iohao.game.spring.common.cmd;
+package com.iohao.game.spring.common.pb;
+
+import com.baidu.bjf.remoting.protobuf.annotation.ProtobufClass;
+import lombok.AccessLevel;
+import lombok.ToString;
+import lombok.experimental.FieldDefaults;
 
 /**
  * @author 渔民小镇
- * @date 2023-06-15
+ * @date 2023-09-04
  */
-public interface IssuesCmdModule {
-    int cmd = SpringCmdModule.issuesCmd;
-
-    int the143 = 1;
-    int the143Result = 2;
-    int the147 = 3;
-    int the186 = 4;
+@ToString
+@ProtobufClass
+@FieldDefaults(level = AccessLevel.PUBLIC)
+public class Vector3 {
+    int x;
+    int y;
+    int z;
 }

@@ -17,11 +17,15 @@
  */
 package com.iohao.game.spring.other.server;
 
+import com.baidu.bjf.remoting.protobuf.Codec;
+import com.baidu.bjf.remoting.protobuf.ProtobufProxy;
 import com.iohao.game.bolt.broker.server.BrokerServer;
+import com.iohao.game.common.kit.ProtoKit;
 import com.iohao.game.external.core.ExternalServer;
 import com.iohao.game.external.core.config.ExternalGlobalConfig;
 import com.iohao.game.external.core.netty.simple.NettyRunOne;
 import com.iohao.game.spring.broker.GameBrokerBoot;
+import com.iohao.game.spring.common.pb.Vector3;
 import com.iohao.game.spring.external.GameExternal;
 
 /**
@@ -33,6 +37,24 @@ import com.iohao.game.spring.external.GameExternal;
 public class ExternalWithBrokerServerApplication {
     public static void main(String[] args) {
 
+        Vector3 vector3 = ProtoKit.parseProtoByte(null, Vector3.class);
+
+        Codec<Vector3> codec = ProtobufProxy.create(Vector3.class);
+
+        byte[] data = new byte[]{};
+
+        try {
+            Vector3 v = codec.decode(data);
+            System.out.println("--- " + v);
+        } catch (Throwable e) {
+            e.printStackTrace();
+        }
+
+        System.out.println(vector3);
+        if (true) {
+
+            return;
+        }
 
         // 对外开放的端口
         int externalPort = 10100;
