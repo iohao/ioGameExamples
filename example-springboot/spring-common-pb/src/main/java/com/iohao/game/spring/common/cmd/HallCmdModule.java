@@ -38,4 +38,5 @@ public interface HallCmdModule {
 
     int testEnum = 8;
     int testList = 9;
+    int acceptList = 10;
 }

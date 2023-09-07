@@ -18,9 +18,7 @@
  */
 package com.iohao.game.spring.client;
 
-import com.iohao.game.action.skeleton.protocol.wrapper.IntValue;
-import com.iohao.game.action.skeleton.protocol.wrapper.LongValue;
-import com.iohao.game.action.skeleton.protocol.wrapper.StringValue;
+import com.iohao.game.action.skeleton.protocol.wrapper.*;
 import com.iohao.game.common.kit.InternalKit;
 import com.iohao.game.external.client.AbstractInputCommandRegion;
 import com.iohao.game.external.client.InputCommandRegion;
@@ -77,12 +75,34 @@ public class SpringClient {
             initCommandLogin();
             initCommandAttachment();
 
+            extractedList();
+
             // 延迟执行模拟请求;
             InternalKit.newTimeout(timeout -> {
                 // 执行请求
                 ofRequestCommand(HallCmdModule.loginVerify).request();
 
             }, 100, TimeUnit.MILLISECONDS);
+        }
+
+        private void extractedList() {
+            ofCommand(HallCmdModule.acceptList).callback(ByteValueList.class, result -> {
+                List<Animal> list = result.toList(Animal.class);
+                log.info("接收与请求 List<Animal> 示例 : {}", list);
+            }).setInputRequestData(() -> {
+                // 请求参数
+                Animal animal_1 = new Animal();
+                animal_1.id = 1;
+                animal_1.animalType = AnimalType.BIRD;
+
+                Animal animal_2 = new Animal();
+                animal_2.id = 2;
+                animal_2.animalType = AnimalType.CAT;
+
+                List<Animal> animalList = List.of(animal_1, animal_2);
+
+                return WrapperKit.ofListByteValue(animalList);
+            }).setDescription("接收与请求 List<Animal> 示例");
         }
 
         private void initCommandLogin() {

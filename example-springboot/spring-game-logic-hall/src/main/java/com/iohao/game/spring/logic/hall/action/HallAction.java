@@ -56,6 +56,16 @@ public class HallAction {
 
         return newAnimal;
     }
+
+    @ActionMethod(HallCmdModule.acceptList)
+    public List<Animal> acceptList(List<Animal> animals) {
+        // 接收 list，返回 list 示例
+        for (Animal animal : animals) {
+            animal.id = animal.id + 10;
+        }
+
+        return animals;
+    }
 }
 
 
