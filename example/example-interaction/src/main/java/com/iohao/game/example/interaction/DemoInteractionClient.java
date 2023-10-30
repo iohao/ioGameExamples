@@ -54,21 +54,21 @@ public class DemoInteractionClient {
         public void initInputCommand() {
             inputCommandCreate.cmd = DemoCmdForFight.cmd;
 
-            ofCommand(DemoCmdForFight.fight).callback(DemoFightMsg.class, result -> {
-                DemoFightMsg value = result.getValue();
+            ofCommand(DemoCmdForFight.fight).setTitle("fight").callback(result -> {
+                DemoFightMsg value = result.getValue(DemoFightMsg.class);
                 log.info("value : {}", value);
-            }).setDescription("fight");
+            });
 
-            ofCommand(DemoCmdForFight.async).callback(DemoFightMsg.class, result -> {
-                DemoFightMsg value = result.getValue();
+            ofCommand(DemoCmdForFight.async).setTitle("async").callback(result -> {
+                DemoFightMsg value = result.getValue(DemoFightMsg.class);
                 log.info("value : {}", value);
-            }).setDescription("async");
+            });
 
             // 一秒后，执行模拟请求;
             InternalKit.newTimeoutSeconds(task -> {
                 // 执行请求
-                ofRequestCommand(DemoCmdForFight.fight).request();
-                ofRequestCommand(DemoCmdForFight.async).request();
+                ofRequestCommand(DemoCmdForFight.fight).execute();
+                ofRequestCommand(DemoCmdForFight.async).execute();
             });
         }
     }

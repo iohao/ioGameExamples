@@ -56,19 +56,20 @@ public class MeterLoginTcpSocketClient {
         public void initInputCommand() {
             inputCommandCreate.cmd = MeterLoginCmd.cmd;
 
-            HelloReq helloReq = new HelloReq();
-            helloReq.name = "abc12";
-
-            ofCommand(MeterLoginCmd.login).callback(HelloReq.class, result -> {
-                HelloReq value = result.getValue();
+            ofCommand(MeterLoginCmd.login).setTitle("login").setRequestData(() -> {
+                HelloReq helloReq = new HelloReq();
+                helloReq.name = "abc12";
+                return helloReq;
+            }).callback(result -> {
+                HelloReq value = result.getValue(HelloReq.class);
                 log.info("value : {}", value);
-            }).setDescription("login").setRequestData(helloReq);
+            });
 
             // 一秒后，执行模拟请求;
             InternalKit.newTimeoutSeconds(task -> {
                 // 执行请求
                 for (int i = 0; i < 20; i++) {
-                    ofRequestCommand(MeterLoginCmd.login).request();
+                    ofRequestCommand(MeterLoginCmd.login).execute();
                 }
             });
         }

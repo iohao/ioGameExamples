@@ -53,12 +53,12 @@ public class DemoInteractionSameClient {
         public void initInputCommand() {
             inputCommandCreate.cmd = DemoCmdForHall.cmd;
 
-            ofCommand(DemoCmdForHall.count).setDescription("count");
+            ofCommand(DemoCmdForHall.count).setTitle("count");
 
             // 一秒后，执行模拟请求;
             InternalKit.newTimeoutSeconds(task -> {
                 // 执行请求
-                ofRequestCommand(DemoCmdForHall.count).request();
+                ofRequestCommand(DemoCmdForHall.count).execute();
             });
         }
     }

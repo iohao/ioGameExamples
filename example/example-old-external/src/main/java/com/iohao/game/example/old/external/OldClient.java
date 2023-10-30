@@ -53,15 +53,15 @@ public class OldClient {
         public void initInputCommand() {
             inputCommandCreate.cmd = 1;
 
-            ofCommand(1).callback(OldHello.class, result -> {
-                OldHello value = result.getValue();
+            ofCommand(1).setTitle("hello").callback(result -> {
+                OldHello value = result.getValue(OldHello.class);
                 log.info("value : {}", value);
-            }).setDescription("hello");
+            });
 
             // 一秒后，执行模拟请求;
             InternalKit.newTimeoutSeconds(task -> {
                 // 执行请求
-                ofRequestCommand(1).request();
+                ofRequestCommand(1).execute();
             });
         }
     }

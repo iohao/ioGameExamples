@@ -55,19 +55,21 @@ public class DemoClusterClient {
             // 模拟请求的主路由
             inputCommandCreate.cmd = DemoClusterCmd.cmd;
 
-            HelloReq helloReq = new HelloReq();
-            helloReq.name = "塔姆";
 
             // 配置一些模拟请求
-            ofCommand(DemoClusterCmd.here).callback(HelloReq.class, result -> {
-                HelloReq value = result.getValue();
+            ofCommand(DemoClusterCmd.here).setTitle("here").setRequestData(() -> {
+                HelloReq helloReq = new HelloReq();
+                helloReq.name = "塔姆";
+                return helloReq;
+            }).callback(result -> {
+                HelloReq value = result.getValue(HelloReq.class);
                 log.info("value : {}", value);
-            }).setDescription("here").setRequestData(helloReq);
+            });
 
             // 一秒后，执行模拟请求;
             InternalKit.newTimeoutSeconds(task -> {
                 // 执行 here 请求
-                ofRequestCommand(DemoClusterCmd.here).request();
+                ofRequestCommand(DemoClusterCmd.here).execute();
             });
         }
     }

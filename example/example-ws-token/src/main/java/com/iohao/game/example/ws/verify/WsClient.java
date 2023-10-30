@@ -51,8 +51,8 @@ public class WsClient {
         public void initInputCommand() {
             this.inputCommandCreate.cmd = WsVerifyCmd.cmd;
 
-            listenBroadcast(HelloReq.class, result -> {
-                Object value = result.getValue();
+            ofListen(result -> {
+                Object value = result.getValue(HelloReq.class);
                 log.info("listen value : {}", value);
             }, WsVerifyCmd.login, "监听登录消息");
         }

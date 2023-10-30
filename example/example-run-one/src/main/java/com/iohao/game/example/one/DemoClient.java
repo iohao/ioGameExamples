@@ -57,36 +57,41 @@ public class DemoClient {
             inputCommandCreate.cmd = DemoCmd.cmd;
 
             // 登录请求
-            DemoLoginVerify loginVerify = new DemoLoginVerify();
-            loginVerify.jwt = "abc";
-
-            ofCommand(DemoCmd.loginVerify).callback(DemoUserInfo.class, result -> {
-                DemoUserInfo value = result.getValue();
+            ofCommand(DemoCmd.loginVerify).setTitle("登录").setRequestData(() -> {
+                DemoLoginVerify loginVerify = new DemoLoginVerify();
+                loginVerify.jwt = "abc";
+                return loginVerify;
+            }).callback(result -> {
+                DemoUserInfo value = result.getValue(DemoUserInfo.class);
                 log.info("value : {}", value);
-
                 // 登录成功后，发起请求
-                ofRequestCommand(DemoCmd.here).request();
-                ofRequestCommand(DemoCmd.jackson).request();
-
-            }).setDescription("登录").setRequestData(loginVerify);
+                ofRequestCommand(DemoCmd.here).execute();
+                ofRequestCommand(DemoCmd.jackson).execute();
+            });
 
             // here
-            HelloReq helloReq = new HelloReq();
-            helloReq.name = "塔姆";
-            ofCommand(DemoCmd.here).callback(HelloReq.class, result -> {
-                HelloReq value = result.getValue();
+            ofCommand(DemoCmd.here).setTitle("here").setRequestData(() -> {
+                HelloReq helloReq = new HelloReq();
+                helloReq.name = "塔姆";
+                return helloReq;
+            }).callback(result -> {
+                HelloReq value = result.getValue(HelloReq.class);
                 log.info("value : {}", value);
-            }).setDescription("here").setRequestData(helloReq);
+            });
 
-            ofCommand(DemoCmd.jackson).callback(HelloReq.class, result -> {
-                HelloReq value = result.getValue();
+            ofCommand(DemoCmd.jackson).setTitle("jackson").setRequestData(() -> {
+                HelloReq helloReq = new HelloReq();
+                helloReq.name = "塔姆";
+                return helloReq;
+            }).callback(result -> {
+                HelloReq value = result.getValue(HelloReq.class);
                 log.info("value : {}", value);
-            }).setDescription("jackson").setRequestData(helloReq);
+            });
 
             // 一秒后，执行模拟请求;
             InternalKit.newTimeoutSeconds(task -> {
                 // 执行请求
-                ofRequestCommand(DemoCmd.loginVerify).request();
+                ofRequestCommand(DemoCmd.loginVerify).execute();
             });
         }
     }

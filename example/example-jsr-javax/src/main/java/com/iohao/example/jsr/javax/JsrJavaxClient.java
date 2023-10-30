@@ -54,18 +54,19 @@ public class JsrJavaxClient {
         public void initInputCommand() {
             inputCommandCreate.cmd = JsrJavaxCmd.cmd;
 
-            JsrJavaxPb jsrJakartaPb = new JsrJavaxPb();
-            jsrJakartaPb.email = "shenjkjavax.com";
-
-            ofCommand(JsrJavaxCmd.jsrJavax).callback(JsrJavaxPb.class, result -> {
-                JsrJavaxPb value = result.getValue();
+            ofCommand(JsrJavaxCmd.jsrJavax).setTitle("jsrJavax").setRequestData(() -> {
+                JsrJavaxPb jsrJakartaPb = new JsrJavaxPb();
+                jsrJakartaPb.email = "shenjkjavax.com";
+                return jsrJakartaPb;
+            }).callback(result -> {
+                JsrJavaxPb value = result.getValue(JsrJavaxPb.class);
                 log.info("value : {}", value);
-            }).setDescription("jsrJavax").setRequestData(jsrJakartaPb);
+            });
 
             // 一秒后，执行模拟请求;
             InternalKit.newTimeoutSeconds(task -> {
                 // 执行请求
-                ofRequestCommand(JsrJavaxCmd.jsrJavax).request();
+                ofRequestCommand(JsrJavaxCmd.jsrJavax).execute();
             });
         }
     }

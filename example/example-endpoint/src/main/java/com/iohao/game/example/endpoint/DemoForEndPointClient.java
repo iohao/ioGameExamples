@@ -64,18 +64,20 @@ public class DemoForEndPointClient {
         public void initInputCommand() {
             inputCommandCreate.cmd = DemoCmdForEndPointRoom.cmd;
 
-            DemoOperation demoOperation = new DemoOperation();
-            demoOperation.name = "卡莉斯塔";
             // 配置一些模拟请求
-            ofCommand(DemoCmdForEndPointRoom.operation).callback(DemoOperation.class, result -> {
-                DemoOperation value = result.getValue();
+            ofCommand(DemoCmdForEndPointRoom.operation).setTitle("房间内的操作").setRequestData(() -> {
+                DemoOperation demoOperation = new DemoOperation();
+                demoOperation.name = "卡莉斯塔";
+                return demoOperation;
+            }).callback(result -> {
+                DemoOperation value = result.getValue(DemoOperation.class);
                 log.info("房间内的操作 : {}", value);
-            }).setDescription("房间内的操作").setRequestData(demoOperation);
+            });
 
             // Scheduled 5 seconds 发送消息 -- 房间请求相关的
             ExecutorKit.newSingleScheduled("websocketClient").scheduleAtFixedRate(() -> {
                 // 请求房间逻辑服的 operation 方法
-                ofRequestCommand(DemoCmdForEndPointRoom.operation).request();
+                ofRequestCommand(DemoCmdForEndPointRoom.operation).execute();
             }, 5, 5, TimeUnit.SECONDS);
         }
     }
@@ -86,30 +88,29 @@ public class DemoForEndPointClient {
             // 模拟请求的主路由
             inputCommandCreate.cmd = DemoCmdForEndPointMatch.cmd;
 
-            // jwt 写个固定的
-            DemoLoginVerify loginVerify = new DemoLoginVerify();
-            loginVerify.jwt = "abc";
-
             // 配置一些模拟请求
-            ofCommand(DemoCmdForEndPointMatch.loginVerify).callback(DemoUserInfo.class, result -> {
-                DemoUserInfo value = result.getValue();
+            ofCommand(DemoCmdForEndPointMatch.loginVerify).setTitle("登录验证").setRequestData(() -> {
+                // jwt 写个固定的
+                DemoLoginVerify loginVerify = new DemoLoginVerify();
+                loginVerify.jwt = "abc";
+                return loginVerify;
+            }).callback(result -> {
+                DemoUserInfo value = result.getValue(DemoUserInfo.class);
                 log.info("登录成功 : {}", value);
 
                 // 登录成功后，执行匹配请求
-                ofRequestCommand(DemoCmdForEndPointMatch.matching).request();
+                ofRequestCommand(DemoCmdForEndPointMatch.matching).execute();
+            });
 
-            }).setDescription("登录验证").setRequestData(loginVerify);
-
-            ofCommand(DemoCmdForEndPointMatch.matching).callback(MatchResponse.class, result -> {
-                MatchResponse value = result.getValue();
+            ofCommand(DemoCmdForEndPointMatch.matching).setTitle("匹配").callback(result -> {
+                MatchResponse value = result.getValue(MatchResponse.class);
                 log.info("匹配成功 : {}", value);
-            }).setDescription("匹配")
-            ;
+            });
 
             // 一秒后，执行模拟请求;
             InternalKit.newTimeoutSeconds(task -> {
                 // 登录
-                ofRequestCommand(DemoCmdForEndPointMatch.loginVerify).request();
+                ofRequestCommand(DemoCmdForEndPointMatch.loginVerify).execute();
             });
         }
     }

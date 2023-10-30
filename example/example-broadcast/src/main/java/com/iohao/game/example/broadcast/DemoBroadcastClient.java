@@ -54,8 +54,8 @@ public class DemoBroadcastClient {
             inputCommandCreate.cmd = DemoBroadcastCmd.cmd;
 
             // 广播监听
-            listenBroadcast(DemoBroadcastMessage.class, result -> {
-                DemoBroadcastMessage value = result.getValue();
+            ofListen(result -> {
+                DemoBroadcastMessage value = result.getValue(DemoBroadcastMessage.class);
                 log.info("broadcastMessage ========== \n{}", value);
             }, DemoBroadcastCmd.broadcastMsg, "helloBroadcast1");
         }

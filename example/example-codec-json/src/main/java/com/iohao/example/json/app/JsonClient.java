@@ -60,25 +60,27 @@ public class JsonClient {
             // 模拟请求的主路由
             inputCommandCreate.cmd = JsonCmd.cmd;
 
-            HelloReq helloReq = new HelloReq();
-            helloReq.name = "塔姆";
 
             // 配置一些模拟请求
-            ofCommand(JsonCmd.hello).callback(HelloReq.class, result -> {
-                HelloReq value = result.getValue();
+            ofCommand(JsonCmd.hello).setTitle("hello").setRequestData(() -> {
+                HelloReq helloReq = new HelloReq();
+                helloReq.name = "塔姆";
+                return helloReq;
+            }).callback(result -> {
+                HelloReq value = result.getValue(HelloReq.class);
                 log.info("value : {}", value);
-            }).setDescription("hello").setRequestData(helloReq);
+            });
 
             JsonMsg jsonMsg = new JsonMsg();
-            ofCommand(JsonCmd.jsonMsg).callback(JsonMsg.class, result -> {
-                JsonMsg value = result.getValue();
+            ofCommand(JsonCmd.jsonMsg).setTitle("jsonMsg").setRequestData(() -> jsonMsg).callback(result -> {
+                JsonMsg value = result.getValue(JsonMsg.class);
                 log.info("value : {}", value);
-            }).setDescription("jsonMsg").setRequestData(jsonMsg);
+            });
 
             // 一秒后，执行模拟请求;
             InternalKit.newTimeoutSeconds(task -> {
-                ofRequestCommand(JsonCmd.hello).request();
-                ofRequestCommand(JsonCmd.jsonMsg).request();
+                ofRequestCommand(JsonCmd.hello).execute();
+                ofRequestCommand(JsonCmd.jsonMsg).execute();
             });
         }
     }

@@ -54,18 +54,19 @@ public class JsrJakartaClient {
         public void initInputCommand() {
             inputCommandCreate.cmd = JsrJakartaCmd.cmd;
 
-            JsrJakartaPb jsrJakartaPb = new JsrJakartaPb();
-            jsrJakartaPb.email = "shenjk@jakarta.com";
-
-            ofCommand(JsrJakartaCmd.jsrJakarta).callback(JsrJakartaPb.class, result -> {
-                JsrJakartaPb value = result.getValue();
+            ofCommand(JsrJakartaCmd.jsrJakarta).setTitle("jsrJakarta").setRequestData(() -> {
+                JsrJakartaPb jsrJakartaPb = new JsrJakartaPb();
+                jsrJakartaPb.email = "shenjk@jakarta.com";
+                return jsrJakartaPb;
+            }).callback(result -> {
+                JsrJakartaPb value = result.getValue(JsrJakartaPb.class);
                 log.info("value : {}", value);
-            }).setDescription("jsrJakarta").setRequestData(jsrJakartaPb);
+            });
 
             // 一秒后，执行模拟请求;
             InternalKit.newTimeoutSeconds(task -> {
                 // 执行请求
-                ofRequestCommand(JsrJakartaCmd.jsrJakarta).request();
+                ofRequestCommand(JsrJakartaCmd.jsrJakarta).execute();
             });
         }
     }

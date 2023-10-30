@@ -54,18 +54,19 @@ public class DemoForSpringClient {
         public void initInputCommand() {
             inputCommandCreate.cmd = DemoCmdForSpring.cmd;
 
-            HelloSpringMsg helloReq = new HelloSpringMsg();
-            helloReq.setName("塔姆");
-
-            ofCommand(DemoCmdForSpring.here).callback(HelloSpringMsg.class, result -> {
-                HelloSpringMsg value = result.getValue();
+            ofCommand(DemoCmdForSpring.here).setTitle("here").setRequestData(() -> {
+                HelloSpringMsg helloReq = new HelloSpringMsg();
+                helloReq.setName("塔姆");
+                return helloReq;
+            }).callback(result -> {
+                HelloSpringMsg value = result.getValue(HelloSpringMsg.class);
                 log.info("value : {}", value);
-            }).setDescription("here").setRequestData(helloReq);
+            });
 
             // 一秒后，执行模拟请求;
             InternalKit.newTimeoutSeconds(task -> {
                 // 执行 here 请求
-                ofRequestCommand(DemoCmdForSpring.here).request();
+                ofRequestCommand(DemoCmdForSpring.here).execute();
             });
         }
     }

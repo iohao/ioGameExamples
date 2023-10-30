@@ -69,140 +69,167 @@ public class WrapperClient {
         }
 
         private void executeStringCommand() {
-            ofRequestCommand(WrapperCmd.string2string).request();
-            ofRequestCommand(WrapperCmd.stringValue2stringValue).request();
-            ofRequestCommand(WrapperCmd.stringList2stringList).request();
-            ofRequestCommand(WrapperCmd.stringValueList2stringValueList).request();
+            ofRequestCommand(WrapperCmd.string2string).execute();
+            ofRequestCommand(WrapperCmd.stringValue2stringValue).execute();
+            ofRequestCommand(WrapperCmd.stringList2stringList).execute();
+            ofRequestCommand(WrapperCmd.stringValueList2stringValueList).execute();
         }
 
         private void initStringCommand() {
-            StringValue stringValue = new StringValue();
-            stringValue.value = "100";
 
-            ofCommand(WrapperCmd.string2string).callback(StringValue.class, result -> {
-                StringValue value = result.getValue();
+
+            ofCommand(WrapperCmd.string2string).callback(result -> {
+                String value = result.getString();
                 log.info("value : {}", value);
-            }).setDescription("string2string").setRequestData(stringValue);
+            }).setTitle("string2string").setRequestData(() -> {
+                StringValue stringValue = new StringValue();
+                stringValue.value = "100";
+                return stringValue;
+            });
 
-            ofCommand(WrapperCmd.stringValue2stringValue).callback(StringValue.class, result -> {
-                StringValue value = result.getValue();
+            ofCommand(WrapperCmd.stringValue2stringValue).callback(result -> {
+                String value = result.getString();
                 log.info("value : {}", value);
-            }).setDescription("stringValue2stringValue").setRequestData(stringValue);
+            }).setTitle("stringValue2stringValue").setRequestData(() -> {
+                StringValue stringValue = new StringValue();
+                stringValue.value = "100";
+                return stringValue;
+            });
 
+            ofCommand(WrapperCmd.stringList2stringList).callback(result -> {
+                        List<String> value = result.listString();
+                        log.info("value : {}", value);
+                    })
+                    .setTitle("stringList2stringList")
+                    .setRequestData(() -> StringValueList.of(List.of(1100L + "", 2200L + "")));
 
-            StringValueList stringValueList = StringValueList.of(List.of(1100L + "", 2200L + ""));
-            ofCommand(WrapperCmd.stringList2stringList).callback(StringValueList.class, result -> {
-                List<String> value = result.toList(String.class);
-                log.info("value : {}", value);
-            }).setDescription("stringList2stringList").setRequestData(stringValueList);
-
-            ofCommand(WrapperCmd.stringValueList2stringValueList).callback(StringValueList.class, result -> {
-                List<String> value = result.toList(String.class);
-                log.info("value : {}", value);
-            }).setDescription("stringValueList2stringValueList").setRequestData(stringValueList);
+            ofCommand(WrapperCmd.stringValueList2stringValueList).callback(result -> {
+                        List<String> value = result.listString();
+                        log.info("value : {}", value);
+                    })
+                    .setTitle("stringValueList2stringValueList")
+                    .setRequestData(() -> StringValueList.of(List.of(1100L + "", 2200L + "")));
         }
 
         private void executeLongCommand() {
-            ofRequestCommand(WrapperCmd.long2long).request();
-            ofRequestCommand(WrapperCmd.longValue2longValue).request();
-            ofRequestCommand(WrapperCmd.longList2longList).request();
-            ofRequestCommand(WrapperCmd.longValueList2longValueList).request();
+            ofRequestCommand(WrapperCmd.long2long).execute();
+            ofRequestCommand(WrapperCmd.longValue2longValue).execute();
+            ofRequestCommand(WrapperCmd.longList2longList).execute();
+            ofRequestCommand(WrapperCmd.longValueList2longValueList).execute();
         }
 
         private void initLongCommand() {
-            LongValue longValue = new LongValue();
-            longValue.value = 100;
+            ofCommand(WrapperCmd.long2long).callback(result -> {
+                        var value = result.getLong();
+                        log.info("value : {}", value);
+                    })
+                    .setTitle("long2long")
+                    .setRequestData(() -> LongValue.of(100));
 
-            ofCommand(WrapperCmd.long2long).callback(LongValue.class, result -> {
-                LongValue value = result.getValue();
-                log.info("value : {}", value);
-            }).setDescription("long2long").setRequestData(longValue);
-
-            ofCommand(WrapperCmd.longValue2longValue).callback(LongValue.class, result -> {
-                LongValue value = result.getValue();
-                log.info("value : {}", value);
-            }).setDescription("longValue2longValue").setRequestData(longValue);
+            ofCommand(WrapperCmd.longValue2longValue).callback(result -> {
+                        var value = result.getLong();
+                        log.info("value : {}", value);
+                    })
+                    .setTitle("longValue2longValue")
+                    .setRequestData(() -> LongValue.of(100));
 
 
-            LongValueList longValueList = LongValueList.of(List.of(1100L, 2200L));
-            ofCommand(WrapperCmd.longList2longList).callback(LongValueList.class, result -> {
-                List<Long> value = result.toList(Long.class);
-                log.info("value : {}", value);
-            }).setDescription("longList2longList").setRequestData(longValueList);
+            ofCommand(WrapperCmd.longList2longList).callback(result -> {
+                        List<Long> value = result.listLong();
+                        log.info("value : {}", value);
+                    })
+                    .setTitle("longList2longList")
+                    .setRequestData(() -> LongValueList.of(List.of(1100L, 2200L)));
 
-            ofCommand(WrapperCmd.longValueList2longValueList).callback(LongValueList.class, result -> {
-                List<Long> value = result.toList(Long.class);
-                log.info("value : {}", value);
-            }).setDescription("longValueList2longValueList").setRequestData(longValueList);
+            ofCommand(WrapperCmd.longValueList2longValueList).callback(result -> {
+                        List<Long> value = result.listLong();
+                        log.info("value : {}", value);
+                    })
+                    .setTitle("longValueList2longValueList")
+                    .setRequestData(() -> LongValueList.of(List.of(1100L, 2200L)));
         }
 
         private void executeIntCommand() {
-            ofRequestCommand(WrapperCmd.int2int).request();
-            ofRequestCommand(WrapperCmd.intValue2intValue).request();
-            ofRequestCommand(WrapperCmd.intList2intList).request();
-            ofRequestCommand(WrapperCmd.intValueList2intValueList).request();
+            ofRequestCommand(WrapperCmd.int2int).execute();
+            ofRequestCommand(WrapperCmd.intValue2intValue).execute();
+            ofRequestCommand(WrapperCmd.intList2intList).execute();
+            ofRequestCommand(WrapperCmd.intValueList2intValueList).execute();
         }
 
         private void initIntCommand() {
-            IntValue intValue = new IntValue();
-            intValue.value = 100;
 
-            ofCommand(WrapperCmd.int2int).callback(IntValue.class, result -> {
-                IntValue value = result.getValue();
+
+            ofCommand(WrapperCmd.int2int).callback(result -> {
+                var value = result.getInt();
                 log.info("value : {}", value);
-            }).setDescription("int2int").setRequestData(intValue);
+            }).setTitle("int2int").setRequestData(() -> {
+                IntValue intValue = new IntValue();
+                intValue.value = 100;
+                return intValue;
+            });
 
-            ofCommand(WrapperCmd.intValue2intValue).callback(IntValue.class, result -> {
-                IntValue value = result.getValue();
+            ofCommand(WrapperCmd.intValue2intValue).callback(result -> {
+                var value = result.getInt();
                 log.info("value : {}", value);
-            }).setDescription("intValue2intValue").setRequestData(intValue);
+            }).setTitle("intValue2intValue").setRequestData(() -> {
+                IntValue intValue = new IntValue();
+                intValue.value = 100;
+                return intValue;
+            });
 
+            ofCommand(WrapperCmd.intList2intList).callback(result -> {
+                        List<Integer> value = result.listInt();
+                        log.info("value : {}", value);
+                    })
+                    .setTitle("intList2intList")
+                    .setRequestData(() -> IntValueList.of(List.of(100, 200)));
 
-            IntValueList intValueList = IntValueList.of(List.of(100, 200));
-            ofCommand(WrapperCmd.intList2intList).callback(LongValueList.class, result -> {
-                List<Integer> value = result.toList(Integer.class);
-                log.info("value : {}", value);
-            }).setDescription("intList2intList").setRequestData(intValueList);
-
-            ofCommand(WrapperCmd.intValueList2intValueList).callback(LongValueList.class, result -> {
-                List<Integer> value = result.toList(Integer.class);
-                log.info("value : {}", value);
-            }).setDescription("intValueList2intValueList").setRequestData(intValueList);
+            ofCommand(WrapperCmd.intValueList2intValueList).callback(result -> {
+                        List<Integer> value = result.listInt();
+                        log.info("value : {}", value);
+                    })
+                    .setTitle("intValueList2intValueList")
+                    .setRequestData(() -> IntValueList.of(List.of(100, 200)));
         }
 
         private void executeBooleanCommand() {
-            ofRequestCommand(WrapperCmd.bool2bool).request();
-            ofRequestCommand(WrapperCmd.boolValue2boolValue).request();
-            ofRequestCommand(WrapperCmd.boolList2boolList).request();
-            ofRequestCommand(WrapperCmd.boolValueList2boolValueList).request();
+            ofRequestCommand(WrapperCmd.bool2bool).execute();
+            ofRequestCommand(WrapperCmd.boolValue2boolValue).execute();
+            ofRequestCommand(WrapperCmd.boolList2boolList).execute();
+            ofRequestCommand(WrapperCmd.boolValueList2boolValueList).execute();
         }
 
         private void initBooleanCommand() {
-            BoolValue boolValue = new BoolValue();
-            boolValue.value = false;
 
-            ofCommand(WrapperCmd.bool2bool).callback(BoolValue.class, result -> {
-                BoolValue value = result.getValue();
-                log.info("value : {}", value);
-            }).setDescription("bool2bool").setRequestData(boolValue);
+            ofCommand(WrapperCmd.bool2bool).callback(result -> {
+                        var value = result.getBoolean();
+                        log.info("value : {}", value);
+                    })
+                    .setTitle("bool2bool")
+                    .setRequestData(() -> BoolValue.of(false));
 
-            ofCommand(WrapperCmd.boolValue2boolValue).callback(BoolValue.class, result -> {
-                BoolValue value = result.getValue();
-                log.info("value : {}", value);
-            }).setDescription("boolValue2boolValue").setRequestData(boolValue);
+            ofCommand(WrapperCmd.boolValue2boolValue).callback(result -> {
+                        var value = result.getBoolean();
+
+                        log.info("value : {}", value);
+                    })
+                    .setTitle("boolValue2boolValue")
+                    .setRequestData(() -> BoolValue.of(false));
 
 
-            BoolValueList boolValueList = BoolValueList.of(List.of(false, true));
-            ofCommand(WrapperCmd.boolList2boolList).callback(BoolValueList.class, result -> {
-                List<Boolean> value = result.toList(Boolean.class);
-                log.info("value : {}", value);
-            }).setDescription("boolList2boolList").setRequestData(boolValueList);
+            ofCommand(WrapperCmd.boolList2boolList).callback(result -> {
+                        List<Boolean> value = result.listBoolean();
+                        log.info("value : {}", value);
+                    })
+                    .setTitle("boolList2boolList")
+                    .setRequestData(() -> BoolValueList.of(List.of(false, true)));
 
-            ofCommand(WrapperCmd.boolValueList2boolValueList).callback(BoolValueList.class, result -> {
-                List<Boolean> value = result.toList(Boolean.class);
-                log.info("value : {}", value);
-            }).setDescription("boolValueList2boolValueList").setRequestData(boolValueList);
+            ofCommand(WrapperCmd.boolValueList2boolValueList).callback(result -> {
+                        List<Boolean> value = result.listBoolean();
+                        log.info("value : {}", value);
+                    })
+                    .setTitle("boolValueList2boolValueList")
+                    .setRequestData(() -> BoolValueList.of(List.of(false, true)));
         }
-
     }
 }

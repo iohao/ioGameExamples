@@ -58,18 +58,21 @@ public class DemoHookClient {
             inputCommandCreate.cmd = DemoCmdForHookRoom.cmd;
 
             // 登录请求
-            DemoLoginVerify loginVerify = new DemoLoginVerify();
-            loginVerify.jwt = "abc";
-
-            ofCommand(DemoCmdForHookRoom.loginVerify).callback(DemoUserInfo.class, result -> {
-                DemoUserInfo value = result.getValue();
+            ofCommand(DemoCmdForHookRoom.loginVerify).setTitle("登录验证").setRequestData(() -> {
+                DemoLoginVerify loginVerify = new DemoLoginVerify();
+                loginVerify.jwt = "abc";
+                return loginVerify;
+            }).callback(result -> {
+                DemoUserInfo value = result.getValue(DemoUserInfo.class);
                 log.info("value : {}", value);
-            }).setDescription("登录验证").setRequestData(loginVerify);
+                this.clientUser.setUserId(value.id);
+                this.clientUser.callbackInputCommandRegion();
+            });
 
             // 一秒后，执行模拟请求;
             InternalKit.newTimeoutSeconds(task -> {
                 // 执行请求
-                ofRequestCommand(DemoCmdForHookRoom.loginVerify).request();
+                ofRequestCommand(DemoCmdForHookRoom.loginVerify).execute();
             });
         }
     }

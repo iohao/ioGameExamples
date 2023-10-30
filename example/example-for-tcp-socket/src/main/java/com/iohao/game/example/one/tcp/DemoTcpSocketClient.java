@@ -57,18 +57,19 @@ public class DemoTcpSocketClient {
         public void initInputCommand() {
             inputCommandCreate.cmd = DemoCmd.cmd;
 
-            HelloReq helloReq = new HelloReq();
-            helloReq.name = "abc12";
-
-            ofCommand(DemoCmd.here).callback(HelloReq.class, result -> {
-                HelloReq value = result.getValue();
+            ofCommand(DemoCmd.here).setTitle("here").setRequestData(() -> {
+                HelloReq helloReq = new HelloReq();
+                helloReq.name = "abc12";
+                return helloReq;
+            }).callback(result -> {
+                HelloReq value = result.getValue(HelloReq.class);
                 log.info("value : {}", value);
-            }).setDescription("here").setRequestData(helloReq);
+            });
 
             // 一秒后，执行模拟请求;
             InternalKit.newTimeoutSeconds(task -> {
                 // 执行 here 请求
-                ofRequestCommand(DemoCmd.here).request();
+                ofRequestCommand(DemoCmd.here).execute();
             });
         }
     }
