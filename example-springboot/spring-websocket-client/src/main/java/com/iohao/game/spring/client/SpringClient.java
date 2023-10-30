@@ -80,16 +80,16 @@ public class SpringClient {
             // 延迟执行模拟请求;
             InternalKit.newTimeout(timeout -> {
                 // 执行请求
-                ofRequestCommand(HallCmdModule.loginVerify).request();
+                ofRequestCommand(HallCmdModule.loginVerify).execute();
 
             }, 100, TimeUnit.MILLISECONDS);
         }
 
         private void extractedList() {
-            ofCommand(HallCmdModule.acceptList).callback(ByteValueList.class, result -> {
-                List<Animal> list = result.toList(Animal.class);
+            ofCommand(HallCmdModule.acceptList).callback(result -> {
+                List<Animal> list = result.listValue(Animal.class);
                 log.info("接收与请求 List<Animal> 示例 : {}", list);
-            }).setInputRequestData(() -> {
+            }).setRequestData(() -> {
                 // 请求参数
                 Animal animal_1 = new Animal();
                 animal_1.id = 1;
@@ -102,7 +102,7 @@ public class SpringClient {
                 List<Animal> animalList = List.of(animal_1, animal_2);
 
                 return WrapperKit.ofListByteValue(animalList);
-            }).setDescription("接收与请求 List<Animal> 示例");
+            }).setTitle("接收与请求 List<Animal> 示例");
         }
 
         private void initCommandLogin() {
@@ -121,26 +121,26 @@ public class SpringClient {
             int loginBizCode = 1;
 
             // 登录请求
-            LoginVerify loginVerify = new LoginVerify();
-            loginVerify.age = 273676;
-            loginVerify.jwt = "luoyi";
-            loginVerify.loginBizCode = loginBizCode;
-
-            ofCommand(HallCmdModule.loginVerify).callback(UserInfo.class, result -> {
-                UserInfo value = result.getValue();
+            ofCommand(HallCmdModule.loginVerify).setTitle("登录").setRequestData(() -> {
+                LoginVerify loginVerify = new LoginVerify();
+                loginVerify.age = 273676;
+                loginVerify.jwt = "luoyi";
+                loginVerify.loginBizCode = loginBizCode;
+                return loginVerify;
+            }).callback(result -> {
+                UserInfo value = result.getValue(UserInfo.class);
                 log.info("登录成功 : {}", value);
-            }).setDescription("登录").setRequestData(loginVerify);
+            });
         }
 
         private void initCommandAttachment() {
-            ofCommand(HallCmdModule.attachment).setDescription("设置元信息");
+            ofCommand(HallCmdModule.attachment).setTitle("设置元信息");
 
-            ofCommand(HallCmdModule.attachmentPrint).callback(MyAttachment.class, result -> {
-                MyAttachment value = result.getValue();
+            ofCommand(HallCmdModule.attachmentPrint).callback(result -> {
+                MyAttachment value = result.getValue(MyAttachment.class);
                 log.info("value : {}", value);
-            }).setDescription("打印元信息");
+            }).setTitle("打印元信息");
         }
-
     }
 
     static class InternalClassesRegion extends AbstractInputCommandRegion {
@@ -148,11 +148,10 @@ public class SpringClient {
         public void initInputCommand() {
             inputCommandCreate.cmd = ClassesCmdModule.cmd;
 
-            ofCommand(ClassesCmdModule.issu143).callback(StringValue.class, result -> {
-                StringValue value = result.getValue();
+            ofCommand(ClassesCmdModule.issu143).callback(result -> {
+                var value = result.getString();
                 log.info("value : {}", value);
-            }).setDescription("issu143");
-
+            }).setTitle("issu143");
         }
     }
 
@@ -168,22 +167,29 @@ public class SpringClient {
         }
 
         private void initCommand() {
-            LogicRequestPb logicRequestPb = new LogicRequestPb();
-            logicRequestPb.name = "塔姆";
 
-            ofCommand(SchoolCmdModule.here).callback(LogicRequestPb.class, result -> {
-                LogicRequestPb value = result.getValue();
+
+            ofCommand(SchoolCmdModule.here).callback(result -> {
+                LogicRequestPb value = result.getValue(LogicRequestPb.class);
                 log.info("value : {}", value);
-            }).setDescription("here").setRequestData(logicRequestPb);
+            }).setTitle("here").setRequestData(() -> {
+                LogicRequestPb logicRequestPb = new LogicRequestPb();
+                logicRequestPb.name = "塔姆";
+                return logicRequestPb;
+            });
 
             ofCommand(SchoolCmdModule.hereVoid)
-                    .setDescription("hereVoid")
-                    .setRequestData(logicRequestPb);
+                    .setTitle("hereVoid")
+                    .setRequestData(() -> {
+                        LogicRequestPb logicRequestPb = new LogicRequestPb();
+                        logicRequestPb.name = "塔姆";
+                        return logicRequestPb;
+                    });
 
 
             ofCommand(SchoolCmdModule.jsr380)
-                    .setDescription("jsr380 更新学校信息")
-                    .setInputRequestData(() -> {
+                    .setTitle("jsr380 更新学校信息")
+                    .setRequestData(() -> {
                         ScannerKit.log(() -> log.info("请输入老师数量，少于 60 个将触发 jsr380 "));
 
                         // 更新学校信息，jsr380
@@ -196,8 +202,8 @@ public class SpringClient {
                     });
 
             ofCommand(SchoolCmdModule.group)
-                    .setDescription("分组校验")
-                    .setInputRequestData(() -> {
+                    .setTitle("分组校验")
+                    .setRequestData(() -> {
                         ScannerKit.log(() -> log.info("name=null 在加入分组校验时 该用例会返回校验失败: name不能为null"));
 
                         // 更新学校信息，jsr380
@@ -215,8 +221,8 @@ public class SpringClient {
                     });
 
             ofCommand(SchoolCmdModule.assertWithException)
-                    .setDescription("断言 + 异常机制 = 清晰简洁的代码")
-                    .setInputRequestData(() -> {
+                    .setTitle("断言 + 异常机制 = 清晰简洁的代码")
+                    .setRequestData(() -> {
                         ScannerKit.log(() -> log.info("请输入 level，小于 10 将触发异常"));
 
                         // 断言 + 异常机制 = 清晰简洁的代码
@@ -225,32 +231,35 @@ public class SpringClient {
                         schoolLevelPb.vipLevel = 10;
 
                         return schoolLevelPb;
-                    });
+                    })
+            ;
 
-            ofCommand(SchoolCmdModule.broadcast).setDescription("触发广播");
+            ofCommand(SchoolCmdModule.broadcast).setTitle("触发广播");
 
-            ofCommand(SchoolCmdModule.intValueWrapper).callback(IntValue.class, result -> {
-                IntValue value = result.getValue();
-                log.info("value : {}", value);
-            }).setDescription("业务参数自动装箱、拆箱基础类型").setRequestData(IntValue.of(10));
+            ofCommand(SchoolCmdModule.intValueWrapper).callback(result -> {
+                        int value = result.getInt();
+                        log.info("value : {}", value);
+                    })
+                    .setTitle("业务参数自动装箱、拆箱基础类型")
+                    .setRequestData(() -> IntValue.of(10));
         }
 
         private void initCommandCommunication() {
             ofCommand(SchoolCmdModule.communication31)
-                    .setDescription("3.1 单个逻辑服与单个逻辑服通信请求 - 有返回值（可跨进程）");
+                    .setTitle("3.1 单个逻辑服与单个逻辑服通信请求 - 有返回值（可跨进程）");
 
             ofCommand(SchoolCmdModule.communication32)
-                    .setDescription("3.2 单个逻辑服与单个逻辑服通信请求 - 无返回值（可跨进程）");
+                    .setTitle("3.2 单个逻辑服与单个逻辑服通信请求 - 无返回值（可跨进程）");
 
             ofCommand(SchoolCmdModule.communication33)
-                    .setDescription("3.3 单个逻辑服与同类型多个逻辑服通信请求（可跨进程） - 统计房间");
+                    .setTitle("3.3 单个逻辑服与同类型多个逻辑服通信请求（可跨进程） - 统计房间");
 
 
         }
 
         private void listen() {
-            listenBroadcast(SpringBroadcastMessagePb.class, result -> {
-                SpringBroadcastMessagePb value = result.getValue();
+            ofListen(result -> {
+                SpringBroadcastMessagePb value = result.getValue(SpringBroadcastMessagePb.class);
                 log.info("value : {}", value);
             }, SchoolCmdModule.broadcastData, "广播业务数据");
         }
@@ -262,15 +271,15 @@ public class SpringClient {
             inputCommandCreate.cmd = RoomCmdModule.cmd;
             inputCommandCreate.cmdName = "房间";
 
-            ofCommand(RoomCmdModule.helloRoom).callback(OtherVerify.class, result -> {
-                OtherVerify value = result.getValue();
+            ofCommand(RoomCmdModule.helloRoom).callback(result -> {
+                OtherVerify value = result.getValue(OtherVerify.class);
                 log.info("value : {}", value);
-            }).setDescription("helloRoom");
+            }).setTitle("helloRoom");
 
-            ofCommand(RoomCmdModule.countRoom).callback(RoomNumPb.class, result -> {
-                RoomNumPb value = result.getValue();
+            ofCommand(RoomCmdModule.countRoom).callback(result -> {
+                RoomNumPb value = result.getValue(RoomNumPb.class);
                 log.info("value : {}", value);
-            }).setDescription("countRoom");
+            }).setTitle("countRoom");
 
         }
     }
@@ -280,21 +289,22 @@ public class SpringClient {
         public void initInputCommand() {
             inputCommandCreate.cmd = OtherSchoolCmdModule.cmd;
 
-            ofCommand(OtherSchoolCmdModule.longValueWithBroadcast).callback(UserInfo.class, result -> {
-                UserInfo value = result.getValue();
+            ofCommand(OtherSchoolCmdModule.longValueWithBroadcast).callback(result -> {
+                UserInfo value = result.getValue(UserInfo.class);
                 log.info("value : {}", value);
-            }).setDescription("longValueWithBroadcast");
+            }).setTitle("longValueWithBroadcast");
 
-            listenBroadcast(SchoolPb.class, result -> {
-                SchoolPb value = result.getValue();
+            ofListen(result -> {
+                SchoolPb value = result.getValue(SchoolPb.class);
                 log.info("value : {}", value);
             }, OtherSchoolCmdModule.longValueWithBroadcastData, "longValueWithBroadcastData");
 
-            ofCommand(OtherSchoolCmdModule.longValueWrapper).callback(LongValue.class, result -> {
-                LongValue value = result.getValue();
-                log.info("value : {}", value);
-            }).setDescription("IgnoreDebugInout longValueWrapper").setRequestData(LongValue.of(1));
-
+            ofCommand(OtherSchoolCmdModule.longValueWrapper).callback(result -> {
+                        long value = result.getLong();
+                        log.info("value : {}", value);
+                    })
+                    .setTitle("IgnoreDebugInout longValueWrapper")
+                    .setRequestData(() -> LongValue.of(1));
         }
     }
 }

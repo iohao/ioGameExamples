@@ -58,32 +58,34 @@ public class MyOneClient {
         public void initInputCommand() {
             inputCommandCreate.cmd = WeatherCmd.cmd;
 
-            TheLogin login = new TheLogin();
-            login.jwt = "abc";
-
-            ofCommand(WeatherCmd.login).callback(TheUserInfo.class, result -> {
-                TheUserInfo value = result.getValue();
+            ofCommand(WeatherCmd.login).setTitle("login").setRequestData(() -> {
+                TheLogin login = new TheLogin();
+                login.jwt = "abc";
+                return login;
+            }).callback(result -> {
+                TheUserInfo value = result.getValue(TheUserInfo.class);
                 log.info("value : {}", value);
+                ofRequestCommand(WeatherCmd.hello).execute();
+            });
 
-                ofRequestCommand(WeatherCmd.hello).request();
-
-            }).setDescription("login").setRequestData(login);
-
-            Weather weather = new Weather();
-            weather.name = "阿德拉";
-            ofCommand(WeatherCmd.hello).callback(Weather.class, result -> {
-                Weather value = result.getValue();
+            ofCommand(WeatherCmd.hello).setTitle("hello").setRequestData(() -> {
+                Weather weather = new Weather();
+                weather.name = "阿德拉";
+                return weather;
+            }).callback(result -> {
+                Weather value = result.getValue(Weather.class);
                 log.info("value : {}", value);
-            }).setDescription("hello").setRequestData(weather);
+            });
 
             // 一秒后，执行模拟请求;
             InternalKit.newTimeoutSeconds(task -> {
                 // 执行请求
-                ofRequestCommand(WeatherCmd.login).request();
+                ofRequestCommand(WeatherCmd.login).execute();
             });
 
             ExecutorKit.newSingleScheduled("client").scheduleAtFixedRate(() -> {
-                ofRequestCommand(WeatherCmd.hello).request();
+                // execute
+                ofRequestCommand(WeatherCmd.hello).execute();
             }, 2, 5, TimeUnit.SECONDS);
         }
     }

@@ -20,7 +20,6 @@ package com.iohao.game.spring.client.command;
 import com.google.protobuf.ByteString;
 import com.google.protobuf.InvalidProtocolBufferException;
 import com.iohao.game.action.skeleton.core.CmdKit;
-import com.iohao.game.common.kit.ProtoKit;
 import com.iohao.message.BizProto;
 import com.iohao.message.Proto;
 import lombok.SneakyThrows;
