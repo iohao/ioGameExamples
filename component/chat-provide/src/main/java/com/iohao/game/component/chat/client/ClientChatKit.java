@@ -33,7 +33,6 @@ import java.util.stream.Collectors;
  */
 @UtilityClass
 class ClientChatKit {
-
     String toString(ChatMessage chatMessage) {
         String collect = chatMessage.items
                 .stream()

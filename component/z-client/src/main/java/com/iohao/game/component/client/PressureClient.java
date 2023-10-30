@@ -78,7 +78,7 @@ public class PressureClient {
             // 通过 cmdInfo 查找请求命令对象，并执行
             ClientUserInputCommands clientUserInputCommands = clientUser.getClientUserInputCommands();
             RequestCommand requestCommand = clientUserInputCommands.ofRequestCommand(cmdInfo);
-            requestCommand.request();
+            requestCommand.execute();
         });
 
         // 模拟请求数据
@@ -104,7 +104,7 @@ public class PressureClient {
         public void initInputCommand() {
             // 设置模块主路由
             this.inputCommandCreate.cmd = LoginCmd.cmd;
-            ofCommand(LoginCmd.inc).setDescription("inc");
+            ofCommand(LoginCmd.inc).setTitle("inc");
 
             // 需要压测的业务代码。将任务添加到队列中，当玩家全部登录完成后会执行任务
             ClientUsers.execute(this::ppp);
@@ -122,7 +122,7 @@ public class PressureClient {
 
                     // 请求 N 次 inc action
                     for (int i = 0; i < 100; i++) {
-                        ofRequestCommand(LoginCmd.inc).request();
+                        ofRequestCommand(LoginCmd.inc).execute();
                     }
 
                     // 2234，再来一次；一秒后又触发一次。

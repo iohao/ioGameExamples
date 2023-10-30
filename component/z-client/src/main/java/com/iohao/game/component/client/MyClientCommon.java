@@ -52,7 +52,7 @@ public class MyClientCommon {
             // 创建一个请求命令
             RequestCommand requestCommand = clientUserInputCommands.ofRequestCommand(cmdInfo);
             // 执行请求
-            requestCommand.request();
+            requestCommand.execute();
         });
 
         // 模拟请求数据

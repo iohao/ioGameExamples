@@ -23,7 +23,6 @@ import com.iohao.game.component.login.cmd.LoginCmd;
 import com.iohao.game.component.login.proto.LoginVerify;
 import com.iohao.game.component.login.proto.UserInfo;
 import com.iohao.game.external.client.AbstractInputCommandRegion;
-import com.iohao.game.external.client.command.InputRequestData;
 import com.iohao.game.external.client.kit.AssertKit;
 import lombok.extern.slf4j.Slf4j;
 
@@ -41,20 +40,20 @@ public class LoginInputCommandRegion extends AbstractInputCommandRegion {
         String jwt = clientUser.getJwt();
         AssertKit.assertTrueThrow(StrKit.isEmpty(jwt), "必须设置登录用的 jwt");
 
-        // 动态请求参数
-        InputRequestData inputRequestData = () -> {
-            // 请求参数
-            LoginVerify loginVerify = new LoginVerify();
-            loginVerify.jwt = clientUser.getJwt();
-            return loginVerify;
-        };
-
-        // 创建登录命令
-        ofCommand(LoginCmd.login).callback(UserInfo.class, result -> {
-            UserInfo userInfo = result.getValue();
-            log.info("登录成功 : {}", userInfo);
-            clientUser.setUserId(userInfo.id);
-            clientUser.setNickname(userInfo.name);
-        }).setDescription("登录").setInputRequestData(inputRequestData);
+        ofCommand(LoginCmd.login)
+                .setTitle("登录")
+                // 请求参数
+                .setRequestData(() -> {
+                    LoginVerify loginVerify = new LoginVerify();
+                    loginVerify.jwt = clientUser.getJwt();
+                    return loginVerify;
+                })
+                .callback(result -> {
+                    UserInfo userInfo = result.getValue(UserInfo.class);
+                    log.info("登录成功 : {}", userInfo);
+                    clientUser.setUserId(userInfo.id);
+                    clientUser.setNickname(userInfo.name);
+                    clientUser.callbackInputCommandRegion();
+                });
     }
 }
