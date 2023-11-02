@@ -13,14 +13,15 @@ import com.almasb.fxgl.texture.AnimatedTexture;
 import com.almasb.fxgl.texture.AnimationChannel;
 import com.almasb.fxgl.texture.Texture;
 import com.almasb.fxgl.time.LocalTimer;
+import com.iohao.game.action.skeleton.core.CmdKit;
+import com.iohao.game.client.command.RequestCommand;
 import com.iohao.game.collect.proto.tank.TankBullet;
 import com.iohao.game.collect.proto.tank.TankLocation;
 import com.iohao.game.tank.Config;
-import com.iohao.game.tank.net.onmessage.TankShootOnMessage;
-import com.iohao.game.tank.net.onmessage.TankTestShootOnMessage;
-import com.iohao.game.tank.net.onmessage.TankTestShootOrderOnMessage;
+import com.iohao.game.tank.net.cmd.TankCmd;
 import javafx.geometry.Point2D;
 import javafx.util.Duration;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
 
@@ -31,6 +32,7 @@ import static com.iohao.game.tank.GameType.ENEMY;
  * @author 渔民小镇
  * @date 2022-03-06
  */
+@Slf4j
 public class PlayerViewComponent extends Component {
     /**
      * 为了防止出现斜向上,斜向下等角度的移动,
@@ -148,12 +150,17 @@ public class PlayerViewComponent extends Component {
     }
 
     public void shootBefore() {
-        // 发射子弹 to server
-        TankLocation tankLocation = new TankLocation();
-        TankBullet tankBullet = new TankBullet();
-        tankBullet.tankLocation = tankLocation;
 
-        TankShootOnMessage.me().request(tankBullet);
+        int merge = CmdKit.merge(TankCmd.cmd, TankCmd.shooting);
+        RequestCommand.of(merge).setTitle("shooting").setRequestData(() -> {
+            TankLocation tankLocation = new TankLocation();
+            TankBullet tankBullet = new TankBullet();
+            tankBullet.tankLocation = tankLocation;
+            return tankBullet;
+        }).setCallback(result -> {
+            TankBullet tankBullet = result.getValue(TankBullet.class);
+            log.info("tankBullet : {}", tankBullet);
+        }).execute();
     }
 
     public void shoot() {
@@ -181,12 +188,16 @@ public class PlayerViewComponent extends Component {
             shootBefore();
         }
 
-        TankLocation tankLocation = new TankLocation();
-        TankBullet tankBullet = new TankBullet();
-        tankBullet.tankLocation = tankLocation;
-        tankBullet.amount = 100;
-
-        TankShootOnMessage.me().request(tankBullet);
+        int merge = CmdKit.merge(TankCmd.cmd, TankCmd.shooting);
+        RequestCommand.of(merge).setTitle("shooting").setRequestData(() -> {
+            TankBullet tankBullet = new TankBullet();
+            tankBullet.tankLocation = new TankLocation();
+            tankBullet.amount = 100;
+            return tankBullet;
+        }).setCallback(result -> {
+            TankBullet tankBullet = result.getValue(TankBullet.class);
+            log.info("tankBullet : {}", tankBullet);
+        }).execute();
 
         spawn("bullet", new SpawnData(getEntity().getCenter().getX() - 4, getEntity().getCenter().getY() - 4.5)
                 .put("direction", angleToVector())
@@ -202,7 +213,12 @@ public class PlayerViewComponent extends Component {
 
         for (int i = 0; i < amount; i++) {
             // 发射子弹 to server
-            TankTestShootOrderOnMessage.me().request(null);
+//            TankTestShootOrderOnMessage.me().request(null);
+
+            int merge = CmdKit.merge(TankCmd.cmd, TankCmd.testShootingOrder);
+            RequestCommand.of(merge)
+                    .setTitle("testShootingOrder")
+                    .execute();
         }
 
         spawn("bullet", new SpawnData(getEntity().getCenter().getX() - 4, getEntity().getCenter().getY() - 4.5)
@@ -219,7 +235,11 @@ public class PlayerViewComponent extends Component {
 
         for (int i = 0; i < amount; i++) {
             // 发射子弹 to server
-            TankTestShootOnMessage.me().request(null);
+//            TankTestShootOnMessage.me().request(null);
+            int merge = CmdKit.merge(TankCmd.cmd, TankCmd.testShooting);
+            RequestCommand.of(merge)
+                    .setTitle("testShooting")
+                    .execute();
         }
 
         spawn("bullet", new SpawnData(getEntity().getCenter().getX() - 4, getEntity().getCenter().getY() - 4.5)

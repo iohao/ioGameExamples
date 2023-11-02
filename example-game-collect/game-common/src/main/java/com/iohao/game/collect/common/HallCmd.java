@@ -20,9 +20,9 @@ package com.iohao.game.collect.common;
  * @author 渔民小镇
  * @date 2022-02-02
  */
-public interface HallCmd extends ActionModuleCmd.Info {
+public interface HallCmd {
     /** 模块A - 主 cmd */
-    int cmd = ActionModuleCmd.hallModuleCmd;
+    int cmd = 1;
 
     /** 登录验证 */
     int loginVerify = 1;

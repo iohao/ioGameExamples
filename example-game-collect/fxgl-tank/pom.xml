@@ -21,50 +21,19 @@
         <dependency>
             <groupId>com.github.almasb</groupId>
             <artifactId>fxgl</artifactId>
+            <version>17.3</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.iohao.game.client</groupId>
+            <artifactId>net</artifactId>
             <version>17.1</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.iohao.game</groupId>
-            <artifactId>common-kit</artifactId>
-            <version>${ioGame.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.iohao.game</groupId>
-            <artifactId>external-netty</artifactId>
-            <version>${ioGame.version}</version>
         </dependency>
 
         <dependency>
             <groupId>com.iohao.example</groupId>
             <artifactId>game-common-proto</artifactId>
             <version>${project.parent.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.iohao.example</groupId>
-            <artifactId>game-common</artifactId>
-            <version>${project.parent.version}</version>
-        </dependency>
-
-<!--        <dependency>-->
-<!--            <groupId>com.iohao.example</groupId>-->
-<!--            <artifactId>game-logic-hall</artifactId>-->
-<!--            <version>${project.parent.version}</version>-->
-<!--        </dependency>-->
-
-<!--        <dependency>-->
-<!--            <groupId>com.iohao.example</groupId>-->
-<!--            <artifactId>game-logic-tank</artifactId>-->
-<!--            <version>${project.parent.version}</version>-->
-<!--        </dependency>-->
-
-        <!-- 模拟客户端 https://mvnrepository.com/artifact/org.java-websocket/Java-WebSocket -->
-        <dependency>
-            <groupId>org.java-websocket</groupId>
-            <artifactId>Java-WebSocket</artifactId>
-            <version>1.5.2</version>
         </dependency>
 
         <!-- 这个不是必须的， 这里使用了 springboot 的控制台色彩相关日志 -->

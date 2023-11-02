@@ -14,18 +14,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License..
  */
-package com.iohao.game.tank.net.onmessage;
-
-import com.iohao.game.collect.common.ActionModuleCmd;
+package com.iohao.game.tank.net.cmd;
 
 /**
+ * 游戏 - 坦克模块
+ *
  * @author 渔民小镇
- * @date 2022-02-02
+ * @date 2022-01-14
  */
-public interface HallCmd extends ActionModuleCmd.Info {
-    /** 模块A - 主 cmd */
-    int cmd = ActionModuleCmd.hallModuleCmd;
+public interface TankCmd {
+    /** 模块 - 主 cmd : 2 */
+    int cmd = 2;
 
-    /** 登录验证 */
-    int loginVerify = 1;
+    /** 进入房间 */
+    int enterRoom = 2;
+    /** 坦克射击(发射子弹) */
+    int shooting = 6;
+    int testShooting = 7;
+    int testShootingOrder = 8;
 }

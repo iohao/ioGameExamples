@@ -16,17 +16,15 @@
  */
 package com.iohao.game.collect.tank;
 
-import com.iohao.game.collect.common.ActionModuleCmd;
-
 /**
  * 游戏 - 坦克模块
  *
  * @author 渔民小镇
  * @date 2022-01-14
  */
-public interface TankCmd extends ActionModuleCmd.Info {
+public interface TankCmd {
     /** 模块 - 主 cmd : 2 */
-    int cmd = ActionModuleCmd.tankModuleCmd;
+    int cmd = 2;
 
     /** 创建房间 */
     int createRoom = 1;

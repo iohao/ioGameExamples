@@ -15,9 +15,18 @@ import com.almasb.fxgl.input.Input;
 import com.almasb.fxgl.input.UserAction;
 import com.almasb.fxgl.physics.CollisionHandler;
 import com.almasb.fxgl.time.TimerAction;
+import com.iohao.game.action.skeleton.core.CmdKit;
+import com.iohao.game.client.command.ListenCommand;
+import com.iohao.game.client.command.RequestCommand;
+import com.iohao.game.collect.proto.common.LoginVerify;
+import com.iohao.game.collect.proto.common.UserInfo;
+import com.iohao.game.collect.proto.tank.TankBullet;
+import com.iohao.game.collect.proto.tank.TankEnterRoom;
+import com.iohao.game.common.kit.RandomKit;
 import com.iohao.game.tank.component.PlayerViewComponent;
-import com.iohao.game.tank.net.FxlgTankConfig;
-import com.iohao.game.tank.net.TankWebsocketClient;
+import com.iohao.game.tank.net.TankNet;
+import com.iohao.game.tank.net.cmd.HallCmd;
+import com.iohao.game.tank.net.cmd.TankCmd;
 import com.iohao.game.tank.ui.GameLoadingScene;
 import com.iohao.game.tank.ui.GameMenu;
 import javafx.animation.KeyFrame;
@@ -35,7 +44,6 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.io.Serializable;
 import java.security.SecureRandom;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -61,15 +69,50 @@ public class TankApp extends GameApplication {
 
     public static void main(String[] args) {
         // TODO: 2022/3/6 注意，这个游戏示例需要先启动 GameOne.java (游戏服务器)
-        if (args != null && args.length > 0) {
-            FxlgTankConfig.externalPort += 1;
-            log.info("args: {} - {}", args.length, Arrays.toString(args));
-        }
 
-        log.info("externalPort:{}", FxlgTankConfig.externalPort);
+        //  关闭日志
+//        ClientUserConfigs.closeLog();
+
+        TankNet.me().startup(() -> {
+
+            // 登录
+            int merge = CmdKit.merge(HallCmd.cmd, HallCmd.loginVerify);
+            RequestCommand.of(merge).setTitle("登录").setRequestData(() -> {
+                LoginVerify loginVerify = new LoginVerify();
+                loginVerify.jwt = "jwt-" + RandomKit.randomInt(10000);
+                return loginVerify;
+            }).setCallback(result -> {
+                UserInfo userInfo = result.getValue(UserInfo.class);
+                log.info("userInfo : {}", userInfo);
+
+                // 加入房间
+                enterRoom();
+            }).execute();
+
+            // 广播监听
+            int listenShoot = CmdKit.merge(TankCmd.cmd, TankCmd.shooting);
+            ListenCommand.of(listenShoot).setTitle("广播-shooting").setCallback(result -> {
+                TankBullet tankBullet = result.getValue(TankBullet.class);
+                log.info("tankBullet : {}", tankBullet);
+            }).listen();
+        });
+
         // 启动游戏
         launch(args);
     }
+
+    private static void enterRoom() {
+        int enterRoomCmd = CmdKit.merge(TankCmd.cmd, TankCmd.enterRoom);
+        RequestCommand.of(enterRoomCmd).setTitle("加入房间").setRequestData(() -> {
+            TankEnterRoom tankEnterRoom = new TankEnterRoom();
+            tankEnterRoom.team = 1;
+            return tankEnterRoom;
+        }).setCallback(result -> {
+            TankEnterRoom room = result.getValue(TankEnterRoom.class);
+            log.info("room : {}", room);
+        }).execute();
+    }
+
 
     @Override
     protected void onUpdate(double tpf) {
@@ -103,11 +146,11 @@ public class TankApp extends GameApplication {
         //开发模式.这样可以输出较多的日志异常追踪
         settings.setApplicationMode(ApplicationMode.DEVELOPER);
 
-        try {
-            TankWebsocketClient.me().start();
-        } catch (Exception e) {
-            log.error(e.getMessage(), e);
-        }
+//        try {
+//            TankWebsocketClient.me().start();
+//        } catch (Exception e) {
+//            log.error(e.getMessage(), e);
+//        }
     }
 
     @Override
