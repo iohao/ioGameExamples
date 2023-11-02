@@ -40,20 +40,19 @@ public class LoginInputCommandRegion extends AbstractInputCommandRegion {
         String jwt = clientUser.getJwt();
         AssertKit.assertTrueThrow(StrKit.isEmpty(jwt), "必须设置登录用的 jwt");
 
-        ofCommand(LoginCmd.login)
-                .setTitle("登录")
-                // 请求参数
-                .setRequestData(() -> {
-                    LoginVerify loginVerify = new LoginVerify();
-                    loginVerify.jwt = clientUser.getJwt();
-                    return loginVerify;
-                })
-                .callback(result -> {
-                    UserInfo userInfo = result.getValue(UserInfo.class);
-                    log.info("登录成功 : {}", userInfo);
-                    clientUser.setUserId(userInfo.id);
-                    clientUser.setNickname(userInfo.name);
-                    clientUser.callbackInputCommandRegion();
-                });
+        // 创建登录命令、设置命令标题、设置请求参数、设置回调
+        ofCommand(LoginCmd.login).setTitle("登录").setRequestData(() -> {
+            // 请求参数
+            LoginVerify loginVerify = new LoginVerify();
+            loginVerify.jwt = clientUser.getJwt();
+            return loginVerify;
+        }).callback(result -> {
+            // 回调
+            UserInfo userInfo = result.getValue(UserInfo.class);
+            log.info("登录成功 : {}", userInfo);
+            clientUser.setUserId(userInfo.id);
+            clientUser.setNickname(userInfo.name);
+            clientUser.callbackInputCommandRegion();
+        });
     }
 }

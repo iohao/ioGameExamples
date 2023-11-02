@@ -53,47 +53,40 @@ public class ChatInputCommandRegion extends AbstractInputCommandRegion {
 
     private void initRequest() {
         // 创建一个模拟命令 - 【125-1】玩家与玩家的私聊
-        ofCommand(ChatCmd.c_2_c)
-                .setTitle("玩家与玩家的私聊")
-                // 动态请求内容 - 私聊，聊天内容
-                .setRequestData(() -> {
-                    // 当开启关闭控制台输入配置时，会使用 【2】 作为默认值；（这个稍后解释）
-                    ScannerKit.log(() -> log.info("请输入接收者的 userId"));
-                    long receiverId = ScannerKit.nextLong(2);
+        ofCommand(ChatCmd.c_2_c).setTitle("玩家与玩家的私聊").setRequestData(() -> {
+            // 当开启关闭控制台输入配置时，会使用 【2】 作为默认值；（这个稍后解释）
+            ScannerKit.log(() -> log.info("请输入接收者的 userId"));
+            long receiverId = ScannerKit.nextLong(2);
 
-                    // 当开启关闭控制台输入配置时，会使用 【你好，老哥】 作为默认值；（这个稍后解释）
-                    ScannerKit.log(() -> log.info("请输入聊天内容 String"));
-                    String bodyString = ScannerKit.nextLine("你好，老哥");
+            // 当开启关闭控制台输入配置时，会使用 【你好，老哥】 作为默认值；（这个稍后解释）
+            ScannerKit.log(() -> log.info("请输入聊天内容 String"));
+            String bodyString = ScannerKit.nextLine("你好，老哥");
 
-                    // 创建一个发送聊天对象
-                    ChatSendMessage chatSendMessage = ClientChatKit.ofChatMessage(receiverId, bodyString);
-                    chatSendMessage.senderNickname = clientUser.getNickname();
+            // 创建一个发送聊天对象
+            ChatSendMessage chatSendMessage = ClientChatKit.ofChatMessage(receiverId, bodyString);
+            chatSendMessage.senderNickname = clientUser.getNickname();
 
-                    return chatSendMessage;
-                });
+            return chatSendMessage;
+        });
 
         // 创建一个模拟命令 - 【125-2】未读消息的发送者列表
-        ofCommand(ChatCmd.listUnreadUserId)
-                .setTitle("未读消息的发送者列表")
-                .callback(result -> {
-                    List<Long> values = result.listLong();
-                    log.info("未读消息的发送者列表 : {}", values);
-                });
+        ofCommand(ChatCmd.listUnreadUserId).setTitle("未读消息的发送者列表").callback(result -> {
+            List<Long> values = result.listLong();
+            log.info("未读消息的发送者列表 : {}", values);
+        });
 
         // 创建一个模拟命令 - 【125-3】读取某个玩家的私有消息
-        ofCommandUserId(ChatCmd.readPrivateMessage)
-                .setTitle("读取某个玩家的私有消息~~~")
-                .callback(result -> {
-                    List<ChatMessage> list = result.listValue(ChatMessage.class);
-                    if (CollKit.isEmpty(list)) {
-                        return;
-                    }
+        ofCommandUserId(ChatCmd.readPrivateMessage).setTitle("读取某个玩家的私有消息~~~").callback(result -> {
+            List<ChatMessage> list = result.listValue(ChatMessage.class);
+            if (CollKit.isEmpty(list)) {
+                return;
+            }
 
-                    log.info("玩家【{}】读取私聊消息数量 : {}", userId, list.size());
-                    System.out.println("------------------------------");
-                    list.stream().map(ClientChatKit::toString).forEach(System.out::println);
-                    System.out.println("------------------------------");
-                });
+            log.info("玩家【{}】读取私聊消息数量 : {}", userId, list.size());
+            System.out.println("------------------------------");
+            list.stream().map(ClientChatKit::toString).forEach(System.out::println);
+            System.out.println("------------------------------");
+        });
     }
 
     private void initListen() {
