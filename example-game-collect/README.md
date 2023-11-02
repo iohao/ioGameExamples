@@ -24,3 +24,9 @@ example-game-collect
 > 这几个都是可以单独启动的，启动顺序网关、逻辑服、对外服，但是开发阶段每次分别启动这几个太麻烦了。建议一键启动 game-one
 > 
 > game-one  【启动类 GameOne.java】
+
+
+
+### 网络部分
+
+在网络请求部分，使用了 [ioGameClient sdk (yuque.com)](https://www.yuque.com/iohao/game/ot4o45f8u9566wu0) 来简化与 ioGame 通信的网络交互部分。
