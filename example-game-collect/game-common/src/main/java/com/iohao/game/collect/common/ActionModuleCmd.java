@@ -41,7 +41,7 @@ public interface ActionModuleCmd {
          * @return CmdInfo
          */
         default CmdInfo cmdInfo(int subCmd) {
-            return CmdInfoFlyweightFactory.me().getCmdInfo(cmd(), subCmd);
+            return CmdInfoFlyweightFactory.of(cmd(), subCmd);
         }
     }
 

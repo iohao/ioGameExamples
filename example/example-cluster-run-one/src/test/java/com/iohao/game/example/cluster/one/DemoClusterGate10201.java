@@ -18,7 +18,6 @@
 package com.iohao.game.example.cluster.one;
 
 import com.iohao.game.bolt.broker.server.BrokerServer;
-import com.iohao.game.common.kit.log.IoGameLoggerFactory;
 import com.iohao.game.external.core.netty.simple.NettyClusterSimpleHelper;
 
 import java.util.List;
@@ -31,7 +30,6 @@ import java.util.List;
  */
 public class DemoClusterGate10201 {
     public static void main(String[] args) {
-        IoGameLoggerFactory.printConsole();
 
         /*
          * 种子节点地址

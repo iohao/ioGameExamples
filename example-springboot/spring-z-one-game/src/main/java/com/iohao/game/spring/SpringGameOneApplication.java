@@ -27,6 +27,7 @@ import com.iohao.game.external.core.config.ExternalJoinEnum;
 import com.iohao.game.external.core.netty.simple.NettyRunOne;
 import com.iohao.game.spring.broker.GameBrokerBoot;
 import com.iohao.game.spring.external.GameExternal;
+import com.iohao.game.spring.logic.classes.GameLogicClassesClient;
 import com.iohao.game.spring.logic.hall.GameLogicHallClient;
 import com.iohao.game.spring.logic.interaction.same.room.SameRoomLogicClient;
 import com.iohao.game.spring.logic.school.GameLogicSchoolClient;
@@ -78,7 +79,7 @@ public class SpringGameOneApplication {
                 // 学校逻辑服
                 , new GameLogicSchoolClient()
                 // 班级逻辑服
-//                , new GameLogicClassesClient()
+                , new GameLogicClassesClient()
                 /*
                  * 启动多个同类型的游戏逻辑服
                  *
