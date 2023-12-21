@@ -101,7 +101,7 @@ public class TankAction {
 //        // 默认的广播上下文
 //        BroadcastContext broadcastContext = BrokerClientHelper.getBroadcastContext();
 //
-//        CmdInfo cmdInfo = CmdInfo.getCmdInfo(TankCmd.cmd, TankCmd.testShooting);
+//        CmdInfo cmdInfo = CmdInfo.of(TankCmd.cmd, TankCmd.testShooting);
 //
 //        long userId = flowContext.getUserId();
 //        for (int i = 0; i < 10; i++) {
@@ -124,7 +124,7 @@ public class TankAction {
 //        // 严格顺序的 广播上下文
 //        BroadcastOrderContext broadcastContext = BrokerClientHelper.getBroadcastOrderContext();
 //
-//        CmdInfo cmdInfo = CmdInfo.getCmdInfo(TankCmd.cmd, TankCmd.testShootingOrder);
+//        CmdInfo cmdInfo = CmdInfo.of(TankCmd.cmd, TankCmd.testShootingOrder);
 //
 //        long userId = flowContext.getUserId();
 //        for (int i = 0; i < 10; i++) {

@@ -19,12 +19,13 @@ package com.iohao.game.example.interaction.same.room;
 
 import com.iohao.game.action.skeleton.core.BarSkeleton;
 import com.iohao.game.action.skeleton.core.BarSkeletonBuilderParamConfig;
-import com.iohao.game.action.skeleton.core.flow.interal.DebugInOut;
+import com.iohao.game.action.skeleton.core.flow.interal.TraceIdInOut;
 import com.iohao.game.bolt.broker.client.AbstractBrokerClientStartup;
 import com.iohao.game.bolt.broker.core.client.BrokerAddress;
 import com.iohao.game.bolt.broker.core.client.BrokerClientBuilder;
 import com.iohao.game.bolt.broker.core.common.IoGameGlobalConfig;
 import com.iohao.game.common.kit.NetworkKit;
+import com.iohao.game.example.interaction.same.InteractionSameKit;
 import com.iohao.game.example.interaction.same.room.action.DemoRoomAction;
 
 /**
@@ -42,7 +43,10 @@ public class DemoSameRoomLogicServer extends AbstractBrokerClientStartup {
         // 业务框架构建器
         var builder = config.createBuilder();
         // 添加控制台输出插件
-        builder.addInOut(new DebugInOut());
+//        builder.addInOut(new DebugInOut());
+        builder.addInOut(new TraceIdInOut());
+        InteractionSameKit.inOut(builder, "roomLogic");
+
         return builder.build();
     }
 

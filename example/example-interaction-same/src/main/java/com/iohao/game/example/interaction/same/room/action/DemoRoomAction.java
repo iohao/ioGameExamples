@@ -20,9 +20,11 @@ package com.iohao.game.example.interaction.same.room.action;
 import com.iohao.game.action.skeleton.annotation.ActionController;
 import com.iohao.game.action.skeleton.annotation.ActionMethod;
 import com.iohao.game.example.common.msg.RoomNumMsg;
+import com.iohao.game.example.interaction.same.InteractionSameKit;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.concurrent.ThreadLocalRandom;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.LongAdder;
 
 /**
  * 房间相关
@@ -30,24 +32,28 @@ import java.util.concurrent.TimeUnit;
  * @author 渔民小镇
  * @date 2022-05-22
  */
+@Slf4j
 @ActionController(DemoCmdForRoom.cmd)
 public class DemoRoomAction {
+    LongAdder roomNumCounter = new LongAdder();
+
     @ActionMethod(DemoCmdForRoom.countRoom)
     public RoomNumMsg countRoom() {
-
         // 得到 1 ~ 100 的随机数。
         int anInt = ThreadLocalRandom.current().nextInt(1, 100);
-
         // 当前房间数量
         RoomNumMsg roomNumMsg = new RoomNumMsg();
         // 随机数来表示房间的数量
-        roomNumMsg.roomCount = anInt;
+        roomNumMsg.roomCount = InteractionSameKit.roomCount++;
 
-        try {
-            TimeUnit.SECONDS.sleep(2);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        log.info("[room逻辑服] 处理请求 : {}", roomNumMsg.roomCount);
+
+//        try {
+//            int i = RandomKit.randomInt(2000);
+//            TimeUnit.MILLISECONDS.sleep(i);
+//        } catch (InterruptedException e) {
+//            log.error(e.getMessage(), e);
+//        }
 
         return roomNumMsg;
     }

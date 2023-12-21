@@ -73,7 +73,7 @@ public class DemoEndPointRoomAction {
     public DemoOperation operation(DemoOperation demoOperation, FlowContext flowContext) {
         // 跨服访问，逻辑服与逻辑服之间相互通信
         InvokeModuleContext invokeModuleContext = BrokerClientHelper.getInvokeModuleContext();
-        CmdInfo cmdInfo = CmdInfo.getCmdInfo(
+        CmdInfo cmdInfo = CmdInfo.of(
                 DemoCmdForEndPointAnimal.cmd, DemoCmdForEndPointAnimal.randomAnimal
         );
         RequestMessage requestMessage = flowContext.getRequest().createRequestMessage(cmdInfo);

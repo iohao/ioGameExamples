@@ -32,7 +32,9 @@ import java.util.List;
  * @date 2022-05-22
  */
 public class DemoInteractionSameApplication {
+
     public static void main(String[] args) {
+        IoGameGlobalConfig.openTraceId = true;
 
         IoGameGlobalConfig.timeoutMillis = 15 * 1000;
 
@@ -46,8 +48,8 @@ public class DemoInteractionSameApplication {
                 // 大厅 - 逻辑服
                 new DemoSameHallLogicServer(),
                 // 3个房间逻辑服
-                roomServer1,
-                roomServer2,
+//                roomServer1,
+//                roomServer2,
                 roomServer3
         );
 

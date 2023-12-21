@@ -12,11 +12,6 @@
 
     <artifactId>game-common-proto</artifactId>
 
-    <properties>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
-    </properties>
-
     <dependencies>
 
         <!-- https://mvnrepository.com/artifact/ch.qos.logback/logback-classic -->

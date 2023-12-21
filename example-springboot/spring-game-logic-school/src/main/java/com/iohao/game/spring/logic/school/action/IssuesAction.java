@@ -42,7 +42,7 @@ public class IssuesAction {
     public void the143() {
         // https://github.com/iohao/ioGame/issues/143
         // 逻辑服A（非spring管理的action）想跟逻辑服B(spring管理的action)通信
-        CmdInfo cmdInfo = CmdInfo.getCmdInfo(ClassesCmdModule.cmd, ClassesCmdModule.getClasses);
+        CmdInfo cmdInfo = CmdInfo.of(ClassesCmdModule.cmd, ClassesCmdModule.getClasses);
         InvokeModuleContext invokeModuleContext = BrokerClientHelper.getInvokeModuleContext();
         ClassesPb classesPb = invokeModuleContext.invokeModuleMessageData(cmdInfo, ClassesPb.class);
 

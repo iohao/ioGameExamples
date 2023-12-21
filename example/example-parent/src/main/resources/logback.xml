@@ -12,7 +12,7 @@
     <property name="log.max.size" value="100MB"/> <!-- 日志文件大小,超过这个大小将被压缩 -->
 
     <!-- 彩色日志 -->
-    <property name="log.pattern" value="%cyan(%d{HH:mm:ss.SSS}) %green([%thread]) %highlight(%-5level) %cyan(%-40.40logger{50}.%method) %cyan(\\(%file:%line\\)) - %msg%n" />
+    <property name="log.pattern" value="%cyan(%d{HH:mm:ss.SSS}) %green([%thread]) %highlight(%-5level) [%X{ioGameTraceId}] %cyan(%-40.40logger{50}.%method) %cyan(\\(%file:%line\\)) - %msg%n" />
 
     <!--控制台输出 -->
     <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">

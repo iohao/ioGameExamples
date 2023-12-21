@@ -18,7 +18,7 @@
  */
 package com.iohao.game.example.interaction.same;
 
-import com.iohao.game.common.kit.InternalKit;
+import com.iohao.game.common.kit.concurrent.TaskKit;
 import com.iohao.game.example.interaction.same.hall.action.DemoCmdForHall;
 import com.iohao.game.external.client.AbstractInputCommandRegion;
 import com.iohao.game.external.client.InputCommandRegion;
@@ -27,6 +27,7 @@ import com.iohao.game.external.client.kit.ClientUserConfigs;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author 渔民小镇
@@ -55,11 +56,14 @@ public class DemoInteractionSameClient {
 
             ofCommand(DemoCmdForHall.count).setTitle("count");
 
-            // 一秒后，执行模拟请求;
-            InternalKit.newTimeoutSeconds(task -> {
-                // 执行请求
-                ofRequestCommand(DemoCmdForHall.count).execute();
-            });
+            int count = 10000;
+            count = 1;
+            for (int i = 0; i < count; i++) {
+                TaskKit.runOnce(() -> {
+                    // 一秒后，执行模拟请求;
+                    ofRequestCommand(DemoCmdForHall.count).execute();
+                }, 10, TimeUnit.MILLISECONDS);
+            }
         }
     }
 }

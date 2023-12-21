@@ -12,15 +12,6 @@
 
     <artifactId>example-codec-json</artifactId>
 
-    <properties>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-
-        <solon.version>1.10.10</solon.version>
-
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>com.iohao.example</groupId>
@@ -31,7 +22,7 @@
         <dependency>
             <groupId>org.noear</groupId>
             <artifactId>solon-web</artifactId>
-            <version>${solon.version}</version>
+            <version>1.10.10</version>
         </dependency>
 
 <!--        <dependency>-->

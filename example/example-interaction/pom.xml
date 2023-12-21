@@ -12,10 +12,6 @@
 
     <artifactId>example-interaction</artifactId>
 
-    <properties>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
-    </properties>
     <dependencies>
         <!-- 示例代码 parent -->
         <dependency>

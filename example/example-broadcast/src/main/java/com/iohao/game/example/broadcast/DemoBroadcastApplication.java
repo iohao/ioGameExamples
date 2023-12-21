@@ -65,7 +65,7 @@ public class DemoBroadcastApplication {
             broadcastMessage.msg = "broadcast hello ，" + counter.longValue();
 
             // 广播消息的路由
-            CmdInfo cmdInfo = CmdInfo.getCmdInfo(DemoBroadcastCmd.cmd, DemoBroadcastCmd.broadcastMsg);
+            CmdInfo cmdInfo = CmdInfo.of(DemoBroadcastCmd.cmd, DemoBroadcastCmd.broadcastMsg);
 
             // 广播上下文
             BroadcastContext broadcastContext = BrokerClientHelper.getBroadcastContext();

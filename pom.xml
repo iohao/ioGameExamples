@@ -58,10 +58,6 @@
         <module>example-springboot/spring-websocket-native-pb-client</module>
         <module>example-springboot/spring-game-logic-parent</module>
 
-
-        <module>example/example-meter</module>
-        <module>example/example-meter-login</module>
-
         <module>example/example-jsr-jakarta</module>
         <module>example/example-jsr-javax</module>
         <module>example/example-codec-json</module>
@@ -83,20 +79,20 @@
     <!--统一管理版本 的一个父 pom-->
     <properties>
         <!-- 项目版本 -->
-        <ioGame.version>17.1.60</ioGame.version>
+        <ioGame.version>21.0.snapshot</ioGame.version>
         <!-- jdk 版本 -->
-        <java.version>17</java.version>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
+        <java.version>21</java.version>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <encoding>UTF-8</encoding>
 
-        <!-- lombok 消除冗长的 Java 代码 https://www.oschina.net/p/lombok https://mvnrepository.com/artifact/org.projectlombok/lombok -->
-        <lombok.version>1.18.24</lombok.version>
+        <!-- lombok 消除冗长的 Java 代码 https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+        <lombok.version>1.18.30</lombok.version>
 
-        <!-- redis internal : https://www.oschina.net/p/redisson https://mvnrepository.com/artifact/org.redisson/redisson -->
+        <!-- redis internal : https://mvnrepository.com/artifact/org.redisson/redisson -->
         <redisson.version>3.17.3</redisson.version>
 
         <!-- JSR380 bean 验证框架 https://mvnrepository.com/artifact/org.hibernate.validator/hibernate-validator -->
@@ -132,7 +128,6 @@
     </properties>
 
     <dependencies>
-
         <!-- 单体应用启动 -->
         <dependency>
             <groupId>com.iohao.game</groupId>
@@ -202,6 +197,18 @@
             <version>${junit.version}</version>
             <scope>compile</scope>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.apache.skywalking/apm-toolkit-opentracing -->
+        <dependency>
+            <groupId>org.apache.skywalking</groupId>
+            <artifactId>apm-toolkit-opentracing</artifactId>
+            <version>9.1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.skywalking</groupId>
+            <artifactId>apm-toolkit-trace</artifactId>
+            <version>9.1.0</version>
+        </dependency>
     </dependencies>
 
     <!--dependencyManagement 标签用于控制子模块的依赖版本等信息，该标签只用来控制版本，不能将依赖引入 -->
@@ -245,6 +252,7 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.1</version>
+<!--                <version>3.11.0</version>-->
                 <configuration>
                     <compilerVersion>${java.version}</compilerVersion>
                     <source>${java.version}</source>

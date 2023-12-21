@@ -69,7 +69,7 @@ public class DemoWeatherAction {
 
     @ActionMethod(DemoCmdForWeather.createRoom)
     public void createRoom(MatchMsg matchMsg) {
-        CmdInfo createRoomCmd = CmdInfo.getCmdInfo(DemoCmdForWeather.cmd, DemoCmdForWeather.createRoom);
+        CmdInfo createRoomCmd = CmdInfo.of(DemoCmdForWeather.cmd, DemoCmdForWeather.createRoom);
 
         BroadcastContext broadcastContext = BrokerClientHelper.getBroadcastContext();
         // 全服广播：路由、业务数据

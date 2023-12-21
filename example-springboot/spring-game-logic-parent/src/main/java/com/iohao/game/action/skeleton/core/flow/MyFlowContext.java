@@ -41,6 +41,7 @@ public class MyFlowContext extends FlowContext {
         if (attachment == null) {
             return null;
         }
+
         return attachment.playerId;
     }
 

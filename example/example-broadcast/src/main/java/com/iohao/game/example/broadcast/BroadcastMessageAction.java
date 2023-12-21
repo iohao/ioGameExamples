@@ -36,7 +36,7 @@ public class BroadcastMessageAction {
         message.msg = "helloBroadcast --- 1";
 
         // 广播消息的路由
-        CmdInfo cmdInfo = CmdInfo.getCmdInfo(DemoBroadcastCmd.cmd, DemoBroadcastCmd.broadcastMsg);
+        CmdInfo cmdInfo = CmdInfo.of(DemoBroadcastCmd.cmd, DemoBroadcastCmd.broadcastMsg);
 
         // 广播上下文
         BroadcastContext broadcastContext = BrokerClientHelper.getBroadcastContext();

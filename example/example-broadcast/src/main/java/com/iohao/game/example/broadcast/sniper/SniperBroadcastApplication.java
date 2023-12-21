@@ -86,7 +86,7 @@ public class SniperBroadcastApplication {
             broadcastMessage.msg = "broadcast hello，" + counter.longValue();
 
             // 广播消息的路由
-            CmdInfo cmdInfo = CmdInfo.getCmdInfo(DemoBroadcastCmd.cmd, DemoBroadcastCmd.broadcastMsg);
+            CmdInfo cmdInfo = CmdInfo.of(DemoBroadcastCmd.cmd, DemoBroadcastCmd.broadcastMsg);
             ResponseMessage responseMessage = BarMessageKit.createResponseMessage(cmdInfo, broadcastMessage);
             // 指定游戏对外服广播
             HeadMetadata headMetadata = responseMessage.getHeadMetadata();
@@ -111,7 +111,7 @@ public class SniperBroadcastApplication {
         var bizData = WrapperKit.of(1);
 
         // 广播上下文
-        CmdInfo cmdInfo = CmdInfo.getCmdInfo(DemoBroadcastCmd.cmd, DemoBroadcastCmd.broadcastMsg);
+        CmdInfo cmdInfo = CmdInfo.of(DemoBroadcastCmd.cmd, DemoBroadcastCmd.broadcastMsg);
         BroadcastContext broadcastContext = BrokerClientHelper.getBroadcastContext();
         broadcastContext.broadcast(cmdInfo, bizData);
 

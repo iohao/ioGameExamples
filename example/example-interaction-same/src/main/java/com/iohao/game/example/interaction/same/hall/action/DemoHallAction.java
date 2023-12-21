@@ -22,13 +22,19 @@ import com.iohao.game.action.skeleton.annotation.ActionMethod;
 import com.iohao.game.action.skeleton.core.CmdInfo;
 import com.iohao.game.action.skeleton.core.DataCodecKit;
 import com.iohao.game.action.skeleton.core.commumication.InvokeModuleContext;
+import com.iohao.game.action.skeleton.core.flow.FlowContext;
 import com.iohao.game.action.skeleton.protocol.ResponseMessage;
 import com.iohao.game.action.skeleton.protocol.collect.ResponseCollectItemMessage;
 import com.iohao.game.action.skeleton.protocol.collect.ResponseCollectMessage;
 import com.iohao.game.bolt.broker.core.client.BrokerClientHelper;
 import com.iohao.game.example.common.msg.RoomNumMsg;
+import com.iohao.game.example.interaction.same.InteractionSameKit;
 import com.iohao.game.example.interaction.same.room.action.DemoCmdForRoom;
+import io.opentracing.ActiveSpan;
+import io.opentracing.Tracer;
+import io.opentracing.tag.Tags;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.skywalking.apm.toolkit.opentracing.SkywalkingTracer;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -41,23 +47,80 @@ import java.util.concurrent.TimeUnit;
 @ActionController(DemoCmdForHall.cmd)
 public class DemoHallAction {
     @ActionMethod(DemoCmdForHall.count)
-    public void count() {
+    public void count(FlowContext flowContext) {
         // 模块通讯上下文
         InvokeModuleContext invokeModuleContext = BrokerClientHelper.getInvokeModuleContext();
         // 路由：这个路由是将要访问逻辑服的路由（表示你将要去的地方）
-        CmdInfo cmdInfo = CmdInfo.getCmdInfo(DemoCmdForRoom.cmd, DemoCmdForRoom.countRoom);
+        CmdInfo cmdInfo = CmdInfo.of(DemoCmdForRoom.cmd, DemoCmdForRoom.countRoom);
+
+        //        extractedSync(invokeModuleContext, cmdInfo);
+
+        int loop = 24;
+        loop = 1;
+        for (int i = 0; i < loop; i++) {
+//            extractedVirtualCallback(flowContext, cmdInfo);
+
+            extractedOneSync(flowContext, cmdInfo);
+        }
+    }
+
+    private static void extractedOneSync(FlowContext flowContext, CmdInfo cmdInfo) {
+
+//        extractedTracer();
+        log.info("开始请求 : {}", cmdInfo);
+        flowContext.invokeModuleMessageAsync(cmdInfo, responseMessage -> {
+            // inc counter
+            InteractionSameKit.count.increment();
+            RoomNumMsg roomNumMsg = responseMessage.getData(RoomNumMsg.class);
+            log.info("异步回调 : {}", roomNumMsg.roomCount);
+        });
+    }
+
+    private static void extractedTracer() {
+        Tracer tracer = new SkywalkingTracer();
+
+        try (ActiveSpan activeSpan = tracer.buildSpan("start")
+                .withTag(Tags.SPAN_KIND.getKey(), Tags.SPAN_KIND_SERVER)
+                .startActive()) {
+
+            activeSpan.setTag("ioGameVersion", "ioGame21");
+            activeSpan.deactivate();
+        }
+    }
+
+    private void extractedVirtualCallback(FlowContext flowContext, CmdInfo cmdInfo) {
+        // 回调写法 -- 完全无阻塞
+
         // 根据路由信息来请求其他【同类型】的多个子服务器（其他逻辑服）数据
-        ResponseCollectMessage responseCollectMessage = invokeModuleContext.invokeModuleCollectMessage(cmdInfo);
+        flowContext.invokeModuleCollectMessageAsync(cmdInfo, responseCollectMessage -> {
+            // 回调写法
+//            log.info("responseCollectMessage : {}", responseCollectMessage);
+            // 每个逻辑服返回的数据集合
+//            print(responseCollectMessage);
 
-        // 每个逻辑服返回的数据集合
+            InteractionSameKit.count.increment();
+        });
+    }
+
+    private static void print(ResponseCollectMessage responseCollectMessage) {
+        System.out.println();
+
         List<ResponseCollectItemMessage> messageList = responseCollectMessage.getMessageList();
-
         for (ResponseCollectItemMessage responseCollectItemMessage : messageList) {
             ResponseMessage responseMessage = responseCollectItemMessage.getResponseMessage();
             // 得到房间逻辑服返回的业务数据
             RoomNumMsg decode = DataCodecKit.decode(responseMessage.getData(), RoomNumMsg.class);
             log.info("responseCollectItemMessage : {} ", decode);
         }
+    }
+
+    private void extractedSync(InvokeModuleContext invokeModuleContext, CmdInfo cmdInfo) {
+        // 同步写法
+
+        // 根据路由信息来请求其他【同类型】的多个子服务器（其他逻辑服）数据
+        ResponseCollectMessage responseCollectMessage = invokeModuleContext.invokeModuleCollectMessage(cmdInfo);
+        // 每个逻辑服返回的数据集合
+        print(responseCollectMessage);
     }
 
     @ActionMethod(DemoCmdForHall.testCount)

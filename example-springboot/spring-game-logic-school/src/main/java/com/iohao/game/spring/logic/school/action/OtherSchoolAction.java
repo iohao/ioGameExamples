@@ -94,7 +94,7 @@ public class OtherSchoolAction {
         SchoolPb schoolPb = new SchoolPb();
         schoolPb.email = "hello";
 
-        CmdInfo cmdInfo = CmdInfo.getCmdInfo(OtherSchoolCmdModule.cmd, OtherSchoolCmdModule.longValueWithBroadcastData);
+        CmdInfo cmdInfo = CmdInfo.of(OtherSchoolCmdModule.cmd, OtherSchoolCmdModule.longValueWithBroadcastData);
 
         BroadcastContext broadcastContext = BrokerClientHelper.getBroadcastContext();
         broadcastContext.broadcast(cmdInfo, schoolPb);

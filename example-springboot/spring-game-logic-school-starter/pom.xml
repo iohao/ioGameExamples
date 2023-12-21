@@ -12,11 +12,6 @@
 
     <artifactId>spring-game-logic-school-starter</artifactId>
 
-    <properties>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>com.iohao.example</groupId>

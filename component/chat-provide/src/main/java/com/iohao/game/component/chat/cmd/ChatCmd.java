@@ -39,6 +39,6 @@ public interface ChatCmd {
     int notifyPrivate = 11;
 
     static CmdInfo getCmdInfo(int subCmd) {
-        return CmdInfo.getCmdInfo(cmd, subCmd);
+        return CmdInfo.of(cmd, subCmd);
     }
 }

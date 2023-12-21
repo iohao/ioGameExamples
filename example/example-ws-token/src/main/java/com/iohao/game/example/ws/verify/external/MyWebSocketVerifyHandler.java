@@ -18,15 +18,15 @@
  */
 package com.iohao.game.example.ws.verify.external;
 
+import com.iohao.game.action.skeleton.core.CmdInfo;
 import com.iohao.game.action.skeleton.core.DataCodecKit;
+import com.iohao.game.action.skeleton.protocol.HeadMetadata;
 import com.iohao.game.action.skeleton.protocol.RequestMessage;
 import com.iohao.game.bolt.broker.core.aware.BrokerClientAware;
 import com.iohao.game.bolt.broker.core.client.BrokerClient;
 import com.iohao.game.example.common.msg.DemoAttachment;
 import com.iohao.game.example.ws.verify.action.WsVerifyCmd;
-import com.iohao.game.external.core.kit.ExternalKit;
-import com.iohao.game.external.core.message.ExternalMessage;
-import com.iohao.game.external.core.message.ExternalMessageCmdCode;
+import com.iohao.game.external.core.message.ExternalCodecKit;
 import com.iohao.game.external.core.netty.handler.ws.WebSocketVerifyHandler;
 import com.iohao.game.external.core.netty.session.SocketUserSession;
 import com.iohao.game.external.core.session.UserSessionOption;
@@ -82,12 +82,13 @@ public class MyWebSocketVerifyHandler extends WebSocketVerifyHandler
     }
 
     private RequestMessage createRequestMessage() {
-        ExternalMessage externalMessage = new ExternalMessage();
-        externalMessage.setCmdMerge(WsVerifyCmd.cmd, WsVerifyCmd.login);
-        externalMessage.setCmdCode(ExternalMessageCmdCode.biz);
+        RequestMessage request = ExternalCodecKit.createRequest();
+        HeadMetadata headMetadata = request.getHeadMetadata();
+        CmdInfo cmdInfo = CmdInfo.of(WsVerifyCmd.cmd, WsVerifyCmd.login);
+        headMetadata.setCmdInfo(cmdInfo);
 
-        int idHash = brokerClient.getBrokerClientModuleMessage().getIdHash();
+        ExternalCodecKit.employ(request, brokerClient);
 
-        return ExternalKit.convertRequestMessage(externalMessage, idHash);
+        return request;
     }
 }
