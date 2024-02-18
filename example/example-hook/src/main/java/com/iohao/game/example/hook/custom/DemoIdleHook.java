@@ -17,15 +17,20 @@
  */
 package com.iohao.game.example.hook.custom;
 
+import com.iohao.game.action.skeleton.core.DataCodecKit;
 import com.iohao.game.action.skeleton.core.exception.ActionErrorEnum;
-import com.iohao.game.external.core.kit.ExternalKit;
-import com.iohao.game.external.core.message.ExternalMessage;
-import com.iohao.game.external.core.message.ExternalMessageCmdCode;
+import com.iohao.game.action.skeleton.protocol.BarMessage;
+import com.iohao.game.action.skeleton.protocol.wrapper.LongValue;
+import com.iohao.game.common.kit.TimeKit;
+import com.iohao.game.common.kit.concurrent.TaskKit;
+import com.iohao.game.external.core.message.ExternalCodecKit;
 import com.iohao.game.external.core.netty.hook.SocketIdleHook;
 import com.iohao.game.external.core.session.UserSession;
 import io.netty.handler.timeout.IdleState;
 import io.netty.handler.timeout.IdleStateEvent;
 import lombok.extern.slf4j.Slf4j;
+
+import java.util.concurrent.TimeUnit;
 
 /**
  * 自定义 心跳钩子事件回调 示例
@@ -38,10 +43,34 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 public class DemoIdleHook implements SocketIdleHook {
+    /** 当前时间戳 */
+    volatile byte[] timeBytes;
+
+    public DemoIdleHook() {
+        updateTime();
+        // 每秒更新当前时间
+        TaskKit.runInterval(this::updateTime, 1, TimeUnit.SECONDS);
+    }
+
+    private void updateTime() {
+        LongValue data = LongValue.of(TimeKit.currentTimeMillis());
+        /*
+         * 提前序列化好时间数据
+         * 1. 可以避免重复序列化
+         * 2. 减少对象的创建（不需要每次处理心跳时创建对象）
+         */
+        timeBytes = DataCodecKit.encode(data);
+    }
+
+    @Override
+    public void pongBefore(BarMessage idleMessage) {
+        // 把当前时间戳给到心跳接收端
+        idleMessage.setData(timeBytes);
+    }
+
     @Override
     public boolean callback(UserSession userSession, IdleStateEvent event) {
         IdleState state = event.state();
-
         if (state == IdleState.READER_IDLE) {
             /* 读超时 */
             log.debug("READER_IDLE 读超时 DemoIdleHook");
@@ -53,16 +82,14 @@ public class DemoIdleHook implements SocketIdleHook {
             log.debug("ALL_IDLE 总超时 DemoIdleHook");
         }
 
-        // 给（真实）用户发送一条消息
-        ExternalMessage externalMessage = ExternalKit.createExternalMessage();
-        externalMessage.setCmdCode(ExternalMessageCmdCode.idle);
-        // 错误码
-        externalMessage.setResponseStatus(ActionErrorEnum.idleErrorCode.getCode());
+        BarMessage message = ExternalCodecKit.createErrorIdleMessage(ActionErrorEnum.idleErrorCode);
         // 错误消息
-        externalMessage.setValidMsg(ActionErrorEnum.idleErrorCode.getMsg() + " : " + state.name());
+        message.setValidatorMsg(ActionErrorEnum.idleErrorCode.getMsg() + " : " + state.name());
 
         // 通知客户端，触发了心跳事件
-        userSession.writeAndFlush(externalMessage);
+        userSession.writeAndFlush(message);
+
+        // 返回 true 表示通知框架将当前的用户（玩家）连接关闭
         return true;
     }
 }

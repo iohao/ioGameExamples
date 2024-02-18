@@ -22,7 +22,7 @@ import com.iohao.game.action.skeleton.core.BarSkeleton;
 import com.iohao.game.action.skeleton.core.BarSkeletonBuilder;
 import com.iohao.game.action.skeleton.core.BarSkeletonBuilderParamConfig;
 import com.iohao.game.action.skeleton.core.flow.attr.FlowAttr;
-import com.iohao.game.action.skeleton.core.flow.interal.DebugInOut;
+import com.iohao.game.action.skeleton.core.flow.internal.DebugInOut;
 import com.iohao.game.bolt.broker.client.AbstractBrokerClientStartup;
 import com.iohao.game.bolt.broker.core.client.BrokerClientBuilder;
 import com.iohao.game.example.endpoint.animal.action.AnimalAction;
@@ -49,7 +49,7 @@ public class AnimalLogicServer extends AbstractBrokerClientStartup {
             String tag = flowContext.option(FlowAttr.logicServerTag);
             String logicServerId = flowContext.option(FlowAttr.logicServerId);
             System.out.println();
-            int[] bindingLogicServerIds = flowContext.getRequest().getHeadMetadata().getBindingLogicServerIds();
+            int[] bindingLogicServerIds = flowContext.getHeadMetadata().getBindingLogicServerIds();
             log.info("绑定的游戏逻辑服id : {}", bindingLogicServerIds);
             log.info("{}-{}", tag, logicServerId);
         });

@@ -77,4 +77,6 @@ public interface DemoModuleCmd {
     int demoModule_20_endpoint_animal_cmd = 20;
     /** webSocket token 相关 */
     int wsVerifyModule_21_cmd = 21;
+    /** 游戏对外服缓存 */
+    int cache_cmd = 22;
 }

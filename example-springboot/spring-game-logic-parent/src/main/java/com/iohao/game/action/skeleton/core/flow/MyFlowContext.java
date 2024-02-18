@@ -26,29 +26,16 @@ import java.util.Objects;
  * @date 2022-08-20
  */
 public class MyFlowContext extends FlowContext {
-    public MyAttachment attachment;
+    MyAttachment attachment;
 
-    public String getServerId() {
-        initAttachment();
-        if (attachment == null) {
-            return null;
-        }
-        return attachment.serverId;
-    }
-
-    public String getPlayerId() {
-        initAttachment();
-        if (attachment == null) {
-            return null;
-        }
-
-        return attachment.playerId;
-    }
-
-    private void initAttachment() {
+    @Override
+    @SuppressWarnings("unchecked")
+    public MyAttachment getAttachment() {
         if (Objects.isNull(attachment)) {
             this.attachment = this.getAttachment(MyAttachment.class);
         }
+
+        return this.attachment;
     }
 
     public String hello() {
@@ -57,7 +44,7 @@ public class MyFlowContext extends FlowContext {
     }
 
     public String getNickname() {
-        MyAttachment attachment = this.getAttachment(MyAttachment.class);
+        MyAttachment attachment = this.getAttachment();
         return attachment.nickname;
     }
 }

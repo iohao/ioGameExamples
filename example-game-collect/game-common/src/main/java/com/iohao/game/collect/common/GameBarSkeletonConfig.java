@@ -18,7 +18,7 @@ package com.iohao.game.collect.common;
 
 import com.iohao.game.action.skeleton.core.BarSkeletonBuilder;
 import com.iohao.game.action.skeleton.core.BarSkeletonBuilderParamConfig;
-import com.iohao.game.action.skeleton.core.flow.interal.DebugInOut;
+import com.iohao.game.action.skeleton.core.flow.internal.DebugInOut;
 import lombok.experimental.UtilityClass;
 
 /**

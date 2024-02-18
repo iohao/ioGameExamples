@@ -49,6 +49,19 @@ public class DemoAction {
         return newHelloReq;
     }
 
+    // 注意，这个方法只是为了演示而写的；
+    // 效果与上面的方法一样，只不过是用广播的方式将数据返回给请求方
+    @ActionMethod(0)
+    public void here(HelloReq helloReq, FlowContext flowContext) {
+        // 业务数据
+        HelloReq newHelloReq = new HelloReq();
+        newHelloReq.name = helloReq.name + ", I'm here ";
+
+        flowContext.broadcastMe(newHelloReq);
+    }
+
+
+
     /**
      * 示例 异常机制演示
      *

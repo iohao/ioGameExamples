@@ -13,14 +13,6 @@
     <artifactId>game-common-proto</artifactId>
 
     <dependencies>
-
-        <!-- https://mvnrepository.com/artifact/ch.qos.logback/logback-classic -->
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-            <version>${logback.version}</version>
-        </dependency>
-
         <dependency>
             <groupId>com.iohao.game</groupId>
             <artifactId>common-core</artifactId>

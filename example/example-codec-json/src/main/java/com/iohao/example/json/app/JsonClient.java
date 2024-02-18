@@ -20,7 +20,7 @@ package com.iohao.example.json.app;
 
 import com.iohao.game.action.skeleton.core.IoGameGlobalSetting;
 import com.iohao.game.action.skeleton.core.codec.JsonDataCodec;
-import com.iohao.game.common.kit.InternalKit;
+import com.iohao.game.common.kit.concurrent.TaskKit;
 import com.iohao.game.example.common.cmd.JsonCmd;
 import com.iohao.game.example.common.msg.HelloReq;
 import com.iohao.game.external.client.AbstractInputCommandRegion;
@@ -78,7 +78,7 @@ public class JsonClient {
             });
 
             // 一秒后，执行模拟请求;
-            InternalKit.newTimeoutSeconds(task -> {
+            TaskKit.runOnceSecond(() -> {
                 ofRequestCommand(JsonCmd.hello).execute();
                 ofRequestCommand(JsonCmd.jsonMsg).execute();
             });

@@ -18,7 +18,7 @@ package com.iohao.game.example.one.server;
 
 import com.iohao.game.action.skeleton.core.BarSkeleton;
 import com.iohao.game.action.skeleton.core.BarSkeletonBuilderParamConfig;
-import com.iohao.game.action.skeleton.core.flow.interal.DebugInOut;
+import com.iohao.game.action.skeleton.core.flow.internal.DebugInOut;
 import com.iohao.game.bolt.broker.client.AbstractBrokerClientStartup;
 import com.iohao.game.bolt.broker.client.BrokerClientApplication;
 import com.iohao.game.bolt.broker.core.client.BrokerAddress;

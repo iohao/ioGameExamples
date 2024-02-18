@@ -60,7 +60,7 @@ public class DemoInteractionSameClient {
             count = 1;
             for (int i = 0; i < count; i++) {
                 TaskKit.runOnce(() -> {
-                    // 一秒后，执行模拟请求;
+                    // 执行模拟请求;
                     ofRequestCommand(DemoCmdForHall.count).execute();
                 }, 10, TimeUnit.MILLISECONDS);
             }

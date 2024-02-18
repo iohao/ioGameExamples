@@ -6,7 +6,7 @@
 <p align="center">
   <strong>无锁异步化、事件驱动的架构设计；轻量级，无需依赖任何第三方中间件或数据库就能支持集群、分布式</strong>
   <br>
-  <strong>通过 ioGame 可以很容易的搭建出一个集群无中心节点、集群自动化、多进程的分步式游戏服务器</strong>
+  <strong>通过 ioGame 可以很容易的搭建出一个集群无中心节点、集群自动化、多进程的分布式游戏服务器</strong>
   <br>
   <strong>包体小、启动快、内存占用少、更加的节约、无需配置文件、提供了优雅的路由访问权限控制</strong>
   <br>
@@ -132,8 +132,8 @@ https://www.yuque.com/iohao/game/ruaqza
 │   ├── example-interaction （逻辑服与逻辑服之间的交互，可跨进程通信）
 │   ├── example-interaction-same 示例目录 逻辑服间的相互通信；请求同类型多个逻辑服的结果集（可跨进程）
 │   ├── example-parent
-│   ├── example-redisson-lock （分步式锁）
-│   ├── example-redisson-lock-spring-boot-starter （分步式锁 for springBootStarter）
+│   ├── example-redisson-lock （分布式锁）
+│   ├── example-redisson-lock-spring-boot-starter （分布式锁 for springBootStarter）
 │   └── example-run-one （快速启动示例）
 ├── example-game-collect （实战示例、坦克）
 │   ├── fxgl-tank （游戏引擎-坦克游戏启动端）

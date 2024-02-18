@@ -18,8 +18,7 @@
  */
 package com.iohao.game.example.multiple.client;
 
-import com.iohao.game.common.kit.ExecutorKit;
-import com.iohao.game.common.kit.InternalKit;
+import com.iohao.game.common.kit.concurrent.TaskKit;
 import com.iohao.game.example.multiple.common.cmd.internal.WeatherCmd;
 import com.iohao.game.example.multiple.common.data.TheLogin;
 import com.iohao.game.example.multiple.common.data.TheUserInfo;
@@ -78,15 +77,15 @@ public class MyOneClient {
             });
 
             // 一秒后，执行模拟请求;
-            InternalKit.newTimeoutSeconds(task -> {
+            TaskKit.runOnceSecond(() -> {
                 // 执行请求
                 ofRequestCommand(WeatherCmd.login).execute();
             });
 
-            ExecutorKit.newSingleScheduled("client").scheduleAtFixedRate(() -> {
+            TaskKit.runInterval(() -> {
                 // execute
                 ofRequestCommand(WeatherCmd.hello).execute();
-            }, 2, 5, TimeUnit.SECONDS);
+            }, 5, TimeUnit.SECONDS);
         }
     }
 

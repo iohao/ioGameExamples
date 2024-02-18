@@ -1,51 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<configuration scan="true">
-
+<configuration debug="false">
+    <!-- 关闭 logback 启动时打印的无效日志 -->
+    <statusListener class="ch.qos.logback.core.status.NopStatusListener"/>
     <!-- 日志级别 -->
     <property name="log.root.level" value="INFO"/>
     <!-- 其他日志级别 -->
     <property name="log.other.level" value="DEBUG"/>
     <!-- 模块名称， 影响日志配置名，日志文件名 -->
     <property name="log.moduleName" value="game"/>
-    <!--日志文件的保存路径,首先查找系统属性-Dlog.dir,如果存在就使用其；否则，在当前目录下创建名为logs目录做日志存放的目录 -->
+    <!--日志文件的保存路径，首先查找系统属性 -Dlog.dir，如果存在就使用其；否则，在当前目录下创建名为logs目录做日志存放的目录 -->
     <property name="log.base" value="${log.dir:-logs}/${log.moduleName}"/>
-    <property name="log.max.size" value="100MB"/> <!-- 日志文件大小,超过这个大小将被压缩 -->
+    <!-- 日志文件大小，超过这个大小将被压缩 -->
+    <property name="log.max.size" value="100MB"/>
+
     <!-- 彩色日志 -->
-    <!-- 彩色日志依赖的渲染类 -->
-    <conversionRule conversionWord="clr" converterClass="org.springframework.boot.logging.logback.ColorConverter"/>
-    <conversionRule conversionWord="wex"
-                    converterClass="org.springframework.boot.logging.logback.WhitespaceThrowableProxyConverter"/>
-    <conversionRule conversionWord="wEx"
-                    converterClass="org.springframework.boot.logging.logback.ExtendedWhitespaceThrowableProxyConverter"/>
-
-    <!-- 彩色日志格式 -->
-    <property name="CONSOLE_LOG_PATTERN"
-              value="${CONSOLE_LOG_PATTERN:-%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID:- }){magenta} %clr([%8.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}} "/>
-
-    <property name="CONSOLE_LOG_PATTERN_X"
-              value="%clr(%d{HH:mm:ss.SSS}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID:- }){magenta} %clr([%8.15t]){faint} %yellow(at %class.%method) \\(%file:%line\\) %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}"/>
-
-    <property name="CONSOLE_LOG_PATTERN_XX"
-              value="%clr(%d{HH:mm:ss.SSS}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr([%8.15t]){faint} %yellow(at %class.%method) \\(%file:%line\\) %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}"/>
-
-    <!-- 时间, 日志级别, 线程名 %clr([%8.15t]) -->
-    <property name="CONSOLE_LOG_PATTERN_XXX"
-              value="%clr(%d{HH:mm:ss.SSS}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr([%8.15t]){faint} %cyan(%clr(%-40.40logger{50}.%method)){cyan}\\(%file:%line\\) %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}"/>
+    <property name="log.pattern"
+              value="%d{HH:mm:ss.SSS} %green([%thread]) [%X{ioGameTraceId}] %highlight(%-5level) %cyan(%logger{5}).%M\(%F:%L\) %m%n"/>
 
     <!--控制台输出 -->
     <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
             <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符-->
-            <!--            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %highlight(%-5level) %cyan(%logger{50}) - %highlight(%msg) %n</pattern>-->
-            <pattern>${CONSOLE_LOG_PATTERN_XXX}</pattern>
+            <pattern>${log.pattern}</pattern>
             <charset>utf8</charset>
         </encoder>
     </appender>
 
     <!-- 用来保存输出所有级别的日志 -->
     <appender name="file.all" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <File>${log.base}/${log.moduleName}.log</File><!-- 设置日志不超过${log.max.size}时的保存路径，注意如果
-            是web项目会保存到Tomcat的bin目录 下 -->
+        <File>${log.base}/${log.moduleName}.log</File>
         <!-- 滚动记录文件，先将日志记录到指定文件，当符合某个条件时，将日志记录到其他文件。 -->
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <FileNamePattern>${log.base}/archive/${log.moduleName}_all_%d{yyyy-MM-dd}.%i.log.zip</FileNamePattern>
@@ -56,7 +39,7 @@
         </rollingPolicy>
         <!-- 日志输出的文件的格式 -->
         <layout class="ch.qos.logback.classic.PatternLayout">
-            <pattern>%date{yyyy-MM-dd HH:mm:ss.SSS} %-5level[%thread]%logger{80}.%method:%L -%msg%n</pattern>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%X{ioGameTraceId}] %-5level [%thread] %logger{56}.%M:%L %m%n</pattern>
         </layout>
     </appender>
 
@@ -71,7 +54,7 @@
             </timeBasedFileNamingAndTriggeringPolicy>
         </rollingPolicy>
         <layout class="ch.qos.logback.classic.PatternLayout">
-            <pattern>%date{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%thread] %logger{56}.%method:%L -%msg%n</pattern>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%X{ioGameTraceId}] %-5level [%thread] %logger{56}.%M:%L %m%n</pattern>
         </layout>
     </appender>
 
@@ -86,9 +69,9 @@
             </timeBasedFileNamingAndTriggeringPolicy>
         </rollingPolicy>
         <layout class="ch.qos.logback.classic.PatternLayout">
-            <pattern>%date{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%thread] %logger{56}.%method:%L - %msg%n</pattern>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%X{ioGameTraceId}] %-5level [%thread] %logger{56}.%M:%L %m%n</pattern>
         </layout>
-        <!-- 下面为配置只输出error级别的日志 -->
+        <!-- 下面为配置只输出 error 级别的日志 -->
         <filter class="ch.qos.logback.classic.filter.LevelFilter">
             <level>ERROR</level>
             <onMatch>ACCEPT</onMatch>
@@ -96,9 +79,9 @@
         </filter>
     </appender>
 
-    <!-- 不丢失日志.默认的,如果队列的80%已满,则会丢弃TRACT、DEBUG、INFO级别的日志 -->
-    <!-- 更改默认的队列的深度,该值会影响性能.默认值为256 -->
-    <!-- 添加附加的appender,最多只能添加一个 -->
+    <!-- 不丢失日志。默认的，如果队列的80%已满，则会丢弃TRACT、DEBUG、INFO级别的日志 -->
+    <!-- 更改默认的队列的深度，该值会影响性能.默认值为256 -->
+    <!-- 添加附加的 appender，最多只能添加一个 -->
     <appender name="file.async" class="ch.qos.logback.classic.AsyncAppender">
         <discardingThreshold>0</discardingThreshold>
         <queueSize>256</queueSize>
@@ -107,6 +90,15 @@
     </appender>
 
     　　<!-- 使用异步来记录其他信息-->
+    <logger name="com.iohao.game" additivity="false">
+        <!-- 即 com.iohao.game 包下级别为 ${log.root.level} 的才会使用file.async来打印 -->
+        <level value="${log.root.level}"/>
+        <appender-ref ref="stdout"/>
+        <appender-ref ref="file.async"/>
+        <appender-ref ref="file.error"/>
+    </logger>
+
+    <!-- 为某个包下的所有类的指定 Appender 这里也可以指定类名称例如：com.aa.bb.ClassName -->
     <appender name="file.async.other" class="ch.qos.logback.classic.AsyncAppender">
         <discardingThreshold>0</discardingThreshold>
         <queueSize>256</queueSize>
@@ -114,17 +106,11 @@
         <appender-ref ref="file.all.other"/>
     </appender>
 
-    <!-- 为某个包下的所有类的指定Appender 这里也可以指定类名称例如：com.aa.bb.ClassName -->
-    <logger name="com.iohao.game" additivity="false">
-        <level value="${log.root.level}"/>
-        <appender-ref ref="stdout"/>
-        <appender-ref ref="file.async"/><!-- 即com.iohao.game包下级别为 ${log.root.level}的才会使用file.async来打印 -->
-        <appender-ref ref="file.error"/>
-    </logger>
-
-    <!-- root将级别为${log.root.level}及大于${log.root.level}的日志信息交给已经配置好的名为“Console”的appender处理，“Console”appender将信息打印到Console,其它同理 -->
+    <!-- root 将级别为 ${log.root.level} 及大于 ${log.root.level} 的日志信息交给已经配置好的名为 “Console” 的 appender 处理，
+    “Console” appender 将信息打印到 Console，其它同理 -->
     <root level="${log.root.level}">
-        <appender-ref ref="stdout"/> <!--  标识这个appender将会添加到这个logger -->
+        <!--  表示这个 appender 将会添加到这个 logger -->
+        <appender-ref ref="stdout"/>
         <appender-ref ref="file.async.other"/>
         <appender-ref ref="file.error"/>
     </root>

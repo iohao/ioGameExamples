@@ -19,7 +19,7 @@
 package com.iohao.game.example.wrapper;
 
 import com.iohao.game.action.skeleton.protocol.wrapper.*;
-import com.iohao.game.common.kit.InternalKit;
+import com.iohao.game.common.kit.concurrent.TaskKit;
 import com.iohao.game.example.wrapper.action.WrapperCmd;
 import com.iohao.game.external.client.AbstractInputCommandRegion;
 import com.iohao.game.external.client.InputCommandRegion;
@@ -59,7 +59,7 @@ public class WrapperClient {
             initBooleanCommand();
 
             // 一秒后，执行模拟请求;
-            InternalKit.newTimeoutSeconds(task -> {
+            TaskKit.runOnceSecond(() -> {
                 // 执行请求
                 executeStringCommand();
                 executeLongCommand();

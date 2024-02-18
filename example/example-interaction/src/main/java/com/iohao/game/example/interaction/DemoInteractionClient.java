@@ -18,7 +18,7 @@
  */
 package com.iohao.game.example.interaction;
 
-import com.iohao.game.common.kit.InternalKit;
+import com.iohao.game.common.kit.concurrent.TaskKit;
 import com.iohao.game.example.interaction.fight.action.DemoCmdForFight;
 import com.iohao.game.example.interaction.msg.DemoFightMsg;
 import com.iohao.game.external.client.AbstractInputCommandRegion;
@@ -65,7 +65,7 @@ public class DemoInteractionClient {
             });
 
             // 一秒后，执行模拟请求;
-            InternalKit.newTimeoutSeconds(task -> {
+            TaskKit.runOnceSecond(() -> {
                 // 执行请求
                 ofRequestCommand(DemoCmdForFight.fight).execute();
                 ofRequestCommand(DemoCmdForFight.async).execute();

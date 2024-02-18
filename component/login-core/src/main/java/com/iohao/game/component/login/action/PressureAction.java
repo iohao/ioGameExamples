@@ -20,12 +20,11 @@ package com.iohao.game.component.login.action;
 
 import com.iohao.game.action.skeleton.annotation.ActionController;
 import com.iohao.game.action.skeleton.annotation.ActionMethod;
-import com.iohao.game.common.kit.InternalKit;
+import com.iohao.game.common.kit.concurrent.TaskKit;
 import com.iohao.game.component.login.cmd.LoginCmd;
-import io.netty.util.Timeout;
-import io.netty.util.TimerTask;
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.LongAdder;
 
 /**
@@ -44,13 +43,9 @@ public class PressureAction {
 
     static {
         // 每秒打印一次
-        InternalKit.newTimeoutSeconds(new TimerTask() {
-            @Override
-            public void run(Timeout timeout) {
-                long value = inc.longValue();
-                log.info("  inc {}", value);
-                InternalKit.newTimeoutSeconds(this);
-            }
-        });
+        TaskKit.runInterval(() -> {
+            long value = inc.longValue();
+            log.info("  inc {}", value);
+        }, 1, TimeUnit.SECONDS);
     }
 }

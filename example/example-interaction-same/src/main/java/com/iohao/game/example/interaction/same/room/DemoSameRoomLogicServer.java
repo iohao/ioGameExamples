@@ -19,7 +19,7 @@ package com.iohao.game.example.interaction.same.room;
 
 import com.iohao.game.action.skeleton.core.BarSkeleton;
 import com.iohao.game.action.skeleton.core.BarSkeletonBuilderParamConfig;
-import com.iohao.game.action.skeleton.core.flow.interal.TraceIdInOut;
+import com.iohao.game.action.skeleton.core.flow.internal.TraceIdInOut;
 import com.iohao.game.bolt.broker.client.AbstractBrokerClientStartup;
 import com.iohao.game.bolt.broker.core.client.BrokerAddress;
 import com.iohao.game.bolt.broker.core.client.BrokerClientBuilder;

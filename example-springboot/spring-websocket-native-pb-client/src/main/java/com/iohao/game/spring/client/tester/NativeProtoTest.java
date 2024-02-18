@@ -21,9 +21,9 @@ import com.google.protobuf.ByteString;
 import com.google.protobuf.InvalidProtocolBufferException;
 import com.iohao.game.action.skeleton.core.CmdKit;
 import com.iohao.game.action.skeleton.core.DataCodecKit;
-import com.iohao.game.action.skeleton.protocol.wrapper.IntValueList;
 import com.iohao.game.action.skeleton.protocol.wrapper.IntValue;
-import com.iohao.game.bolt.broker.client.external.bootstrap.message.ExternalMessage;
+import com.iohao.game.action.skeleton.protocol.wrapper.IntValueList;
+import com.iohao.game.external.core.message.ExternalMessage;
 import com.iohao.game.spring.client.command.WebsocketNativeProtoClientKit;
 import com.iohao.message.BizProto;
 import com.iohao.message.Proto;
@@ -67,9 +67,9 @@ public class NativeProtoTest {
 
         ExternalMessage externalMessage = DataCodecKit.decode(bytes, ExternalMessage.class);
 
-        Assert.assertTrue(externalMessage.getCmdCode() == 1);
-        Assert.assertTrue(externalMessage.getProtocolSwitch() == 0);
-        Assert.assertTrue(externalMessage.getCmdMerge() == CmdKit.merge(3, 1));
+        Assert.assertEquals(1, externalMessage.getCmdCode());
+        Assert.assertEquals(0, externalMessage.getProtocolSwitch());
+        Assert.assertEquals(externalMessage.getCmdMerge(), CmdKit.merge(3, 1));
 
 
         log.info("================ 原生 proto convert2 jprotobuf ================");
@@ -80,9 +80,9 @@ public class NativeProtoTest {
         byte[] loginData = externalMessage.getData();
         LoginVerify loginVerify1 = DataCodecKit.decode(loginData, LoginVerify.class);
         log.info("loginVerify1 : {}", loginVerify1);
-        Assert.assertTrue(loginVerify1.age == 273676);
+        Assert.assertEquals(273676, loginVerify1.age);
         Assert.assertEquals(loginVerify1.jwt, "abcd");
-        Assert.assertTrue(loginVerify1.loginBizCode == 1);
+        Assert.assertEquals(1, loginVerify1.loginBizCode);
 
         System.out.println();
 
@@ -101,14 +101,14 @@ public class NativeProtoTest {
         BizProto.LoginVerify loginVerify2 = BizProto.LoginVerify.parseFrom(theLoginData);
         log.info("loginVerify2 : {}", loginVerify2);
 
-        Assert.assertTrue(loginVerify2.getAge() == loginVerify1.age);
-        Assert.assertTrue(loginVerify2.getLoginBizCode() == loginVerify1.loginBizCode);
+        Assert.assertEquals(loginVerify2.getAge(), loginVerify1.age);
+        Assert.assertEquals(loginVerify2.getLoginBizCode(), loginVerify1.loginBizCode);
         Assert.assertEquals(loginVerify2.getJwt(), loginVerify1.jwt);
 
-        Assert.assertTrue(externalMessageNative2.getCmdCode() == externalMessage.getCmdCode());
-        Assert.assertTrue(externalMessageNative2.getProtocolSwitch() == externalMessage.getProtocolSwitch());
-        Assert.assertTrue(externalMessageNative2.getCmdMerge() == externalMessage.getCmdMerge());
-        Assert.assertTrue(externalMessageNative2.getResponseStatus() == externalMessage.getResponseStatus());
+        Assert.assertEquals(externalMessageNative2.getCmdCode(), externalMessage.getCmdCode());
+        Assert.assertEquals(externalMessageNative2.getProtocolSwitch(), externalMessage.getProtocolSwitch());
+        Assert.assertEquals(externalMessageNative2.getCmdMerge(), externalMessage.getCmdMerge());
+        Assert.assertEquals(externalMessageNative2.getResponseStatus(), externalMessage.getResponseStatus());
         Assert.assertEquals(externalMessageNative2.getResponseStatus(), externalMessage.getResponseStatus());
     }
 
@@ -128,7 +128,7 @@ public class NativeProtoTest {
         IntValue intValue1 = DataCodecKit.decode(data, IntValue.class);
         log.info("intValue1 : {}", intValue1);
 
-        Assert.assertTrue(intValue.getValue() == intValue1.value);
+        Assert.assertEquals(intValue.getValue(), intValue1.value);
 
         System.out.println();
 

@@ -18,7 +18,7 @@
  */
 package com.iohao.game.example.cluster.one;
 
-import com.iohao.game.common.kit.InternalKit;
+import com.iohao.game.common.kit.concurrent.TaskKit;
 import com.iohao.game.example.cluster.one.action.DemoClusterCmd;
 import com.iohao.game.example.common.msg.HelloReq;
 import com.iohao.game.external.client.AbstractInputCommandRegion;
@@ -67,7 +67,7 @@ public class DemoClusterClient {
             });
 
             // 一秒后，执行模拟请求;
-            InternalKit.newTimeoutSeconds(task -> {
+            TaskKit.runOnceSecond(() -> {
                 // 执行 here 请求
                 ofRequestCommand(DemoClusterCmd.here).execute();
             });

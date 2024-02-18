@@ -36,7 +36,7 @@ import java.util.concurrent.TimeUnit;
  */
 public class TankRoomTask {
 
-    RoomService roomService = RoomService.me();
+    static RoomService roomService = new RoomService();
 
     final ScheduledExecutorService scheduled = ExecutorKit.newSingleScheduled("房间内广播");
 
@@ -52,7 +52,6 @@ public class TankRoomTask {
     }
 
     static class TaskRoomStart implements Runnable {
-        RoomService roomService = RoomService.me();
 
         @Override
         public void run() {
@@ -70,9 +69,6 @@ public class TankRoomTask {
             TankMapstruct.ME.convertList(listPlayer);
 
             // 转发当前
-
-
-
         }
     }
 

@@ -51,6 +51,7 @@ public class MyBrokerServer {
     }
 
     public static void main(String[] args) throws InterruptedException {
+
         BrokerServer brokerServer = new MyBrokerServer().createBrokerServer();
         // 启动 游戏网关
         brokerServer.startup();

@@ -13,10 +13,10 @@
     <artifactId>spring-websocket-native-pb-client</artifactId>
 
     <dependencies>
-        <!-- https://www.yuque.com/iohao/game/ea6geg#jMDuc -->
+
         <dependency>
             <groupId>com.iohao.game</groupId>
-            <artifactId>bolt-external</artifactId>
+            <artifactId>external-netty</artifactId>
             <version>${ioGame.version}</version>
         </dependency>
 
@@ -51,18 +51,5 @@
             <version>2.2.8</version>
         </dependency>
 
-
-        <!--        <dependency>-->
-<!--            <groupId>com.iohao.example</groupId>-->
-<!--            <artifactId>spring-common-pb</artifactId>-->
-<!--            <version>${project.parent.version}</version>-->
-<!--        </dependency>-->
-
-        <!-- 这个不是必须的， 这里使用了 springboot 的控制台色彩相关日志 -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter</artifactId>
-            <version>${springboot.version}</version>
-        </dependency>
     </dependencies>
 </project>

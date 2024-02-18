@@ -18,7 +18,7 @@
  */
 package com.iohao.game.component;
 
-import com.iohao.game.action.skeleton.core.flow.interal.DebugInOut;
+import com.iohao.game.action.skeleton.core.flow.internal.DebugInOut;
 import com.iohao.game.action.skeleton.kit.LogicServerCreateKit;
 import com.iohao.game.bolt.broker.client.AbstractBrokerClientStartup;
 import com.iohao.game.component.chat.ChatLogicServer;

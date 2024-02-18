@@ -19,7 +19,7 @@
 package com.iohao.game.example.endpoint;
 
 import com.iohao.game.common.kit.ExecutorKit;
-import com.iohao.game.common.kit.InternalKit;
+import com.iohao.game.common.kit.concurrent.TaskKit;
 import com.iohao.game.example.common.msg.DemoOperation;
 import com.iohao.game.example.common.msg.MatchResponse;
 import com.iohao.game.example.common.msg.login.DemoLoginVerify;
@@ -108,7 +108,7 @@ public class DemoForEndPointClient {
             });
 
             // 一秒后，执行模拟请求;
-            InternalKit.newTimeoutSeconds(task -> {
+            TaskKit.runOnceSecond(() -> {
                 // 登录
                 ofRequestCommand(DemoCmdForEndPointMatch.loginVerify).execute();
             });

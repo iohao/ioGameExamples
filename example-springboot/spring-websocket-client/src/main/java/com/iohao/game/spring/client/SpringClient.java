@@ -19,7 +19,7 @@
 package com.iohao.game.spring.client;
 
 import com.iohao.game.action.skeleton.protocol.wrapper.*;
-import com.iohao.game.common.kit.InternalKit;
+import com.iohao.game.common.kit.concurrent.TaskKit;
 import com.iohao.game.external.client.AbstractInputCommandRegion;
 import com.iohao.game.external.client.InputCommandRegion;
 import com.iohao.game.external.client.join.ClientRunOne;
@@ -78,7 +78,7 @@ public class SpringClient {
             extractedList();
 
             // 延迟执行模拟请求;
-            InternalKit.newTimeout(timeout -> {
+            TaskKit.newTimeout(timeout -> {
                 // 执行请求
                 ofRequestCommand(HallCmdModule.loginVerify).execute();
 

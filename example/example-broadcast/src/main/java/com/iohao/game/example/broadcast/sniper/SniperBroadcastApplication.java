@@ -27,8 +27,8 @@ import com.iohao.game.action.skeleton.protocol.wrapper.IntValueList;
 import com.iohao.game.action.skeleton.protocol.wrapper.WrapperKit;
 import com.iohao.game.bolt.broker.core.client.BrokerClientHelper;
 import com.iohao.game.bolt.broker.core.common.IoGameGlobalConfig;
-import com.iohao.game.common.kit.ExecutorKit;
-import com.iohao.game.common.kit.MurmurHash3;
+import com.iohao.game.common.kit.HashKit;
+import com.iohao.game.common.kit.concurrent.TaskKit;
 import com.iohao.game.example.broadcast.DemoBroadcastCmd;
 import com.iohao.game.example.broadcast.DemoBroadcastServer;
 import com.iohao.game.example.common.msg.DemoBroadcastMessage;
@@ -76,7 +76,7 @@ public class SniperBroadcastApplication {
 
 
     private static void extracted(String externalId) {
-        int sourceClientId = MurmurHash3.hash32(externalId);
+        int sourceClientId = HashKit.hash32(externalId);
         LongAdder counter = new LongAdder();
 
         Runnable runnable = () -> {
@@ -101,9 +101,8 @@ public class SniperBroadcastApplication {
             broadcastContext.broadcast(responseMessage);
         };
 
-        ExecutorKit
-                .newSingleScheduled("广播测试")
-                .scheduleAtFixedRate(runnable, 3, 5, TimeUnit.SECONDS);
+        // 广播测试
+        TaskKit.runInterval(runnable::run, 5, TimeUnit.SECONDS);
     }
 
     private static void test() {

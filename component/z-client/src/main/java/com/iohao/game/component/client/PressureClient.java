@@ -19,7 +19,8 @@
 package com.iohao.game.component.client;
 
 import com.iohao.game.action.skeleton.core.CmdInfo;
-import com.iohao.game.common.kit.InternalKit;
+import com.iohao.game.common.kit.concurrent.IntervalTaskListener;
+import com.iohao.game.common.kit.concurrent.TaskKit;
 import com.iohao.game.component.login.client.LoginInputCommandRegion;
 import com.iohao.game.component.login.cmd.LoginCmd;
 import com.iohao.game.external.client.AbstractInputCommandRegion;
@@ -31,8 +32,6 @@ import com.iohao.game.external.client.user.ClientUser;
 import com.iohao.game.external.client.user.ClientUserInputCommands;
 import com.iohao.game.external.client.user.ClientUsers;
 import com.iohao.game.external.client.user.DefaultClientUser;
-import io.netty.util.Timeout;
-import io.netty.util.TimerTask;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
@@ -59,7 +58,7 @@ public class PressureClient {
             // 模拟玩家的 userId
             long userId = i;
             // 启动模拟客户端
-            InternalKit.execute(() -> start(userId));
+            TaskKit.execute(() -> start(userId));
         }
 
         TimeUnit.SECONDS.sleep(1);
@@ -72,7 +71,7 @@ public class PressureClient {
         clientUser.setJwt(jwt);
 
         // 一秒后，自动触发登录请求
-        InternalKit.newTimeoutSeconds(timeout -> {
+        TaskKit.runOnceSecond(() -> {
             CmdInfo cmdInfo = LoginCmd.getCmdInfo(LoginCmd.login);
 
             // 通过 cmdInfo 查找请求命令对象，并执行
@@ -111,25 +110,22 @@ public class PressureClient {
         }
 
         private void ppp() {
-            InternalKit.newTimeoutSeconds(new TimerTask() {
+            TaskKit.runInterval(new IntervalTaskListener() {
                 @Override
-                public void run(Timeout timeout) {
-                    count.increment();
-                    if (count.longValue() > 10) {
-                        // 执行次数上限
-                        return;
-                    }
-
+                public void onUpdate() {
                     // 请求 N 次 inc action
                     for (int i = 0; i < 100; i++) {
                         ofRequestCommand(LoginCmd.inc).execute();
                     }
-
-                    // 2234，再来一次；一秒后又触发一次。
-                    InternalKit.newTimeoutSeconds(this);
                 }
-            });
 
+                @Override
+                public boolean isActive() {
+                    // 执行次数上限
+                    count.increment();
+                    return count.longValue() < 10;
+                }
+            }, 1, TimeUnit.SECONDS);
         }
     }
 }

@@ -19,7 +19,7 @@
 package com.iohao.game.component.client;
 
 import com.iohao.game.action.skeleton.core.CmdInfo;
-import com.iohao.game.common.kit.InternalKit;
+import com.iohao.game.common.kit.concurrent.TaskKit;
 import com.iohao.game.component.chat.client.ChatInputCommandRegion;
 import com.iohao.game.component.login.client.LoginInputCommandRegion;
 import com.iohao.game.component.login.cmd.LoginCmd;
@@ -45,7 +45,7 @@ public class MyClientCommon {
         clientUser.setJwt(String.valueOf(userId));
 
         // 一秒后，自动触发登录请求
-        InternalKit.newTimeoutSeconds(timeout -> {
+        TaskKit.runOnceSecond(() -> {
             CmdInfo cmdInfo = LoginCmd.getCmdInfo(LoginCmd.login);
 
             ClientUserInputCommands clientUserInputCommands = clientUser.getClientUserInputCommands();

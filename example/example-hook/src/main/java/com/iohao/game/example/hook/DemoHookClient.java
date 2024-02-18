@@ -18,7 +18,7 @@
  */
 package com.iohao.game.example.hook;
 
-import com.iohao.game.common.kit.InternalKit;
+import com.iohao.game.common.kit.concurrent.TaskKit;
 import com.iohao.game.example.common.msg.login.DemoLoginVerify;
 import com.iohao.game.example.common.msg.login.DemoUserInfo;
 import com.iohao.game.example.hook.action.DemoCmdForHookRoom;
@@ -70,7 +70,7 @@ public class DemoHookClient {
             });
 
             // 一秒后，执行模拟请求;
-            InternalKit.newTimeoutSeconds(task -> {
+            TaskKit.runOnceSecond(() -> {
                 // 执行请求
                 ofRequestCommand(DemoCmdForHookRoom.loginVerify).execute();
             });

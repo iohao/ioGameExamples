@@ -30,11 +30,7 @@ import com.iohao.game.bolt.broker.core.client.BrokerClientHelper;
 import com.iohao.game.example.common.msg.RoomNumMsg;
 import com.iohao.game.example.interaction.same.InteractionSameKit;
 import com.iohao.game.example.interaction.same.room.action.DemoCmdForRoom;
-import io.opentracing.ActiveSpan;
-import io.opentracing.Tracer;
-import io.opentracing.tag.Tags;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.skywalking.apm.toolkit.opentracing.SkywalkingTracer;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -66,7 +62,6 @@ public class DemoHallAction {
 
     private static void extractedOneSync(FlowContext flowContext, CmdInfo cmdInfo) {
 
-//        extractedTracer();
         log.info("开始请求 : {}", cmdInfo);
         flowContext.invokeModuleMessageAsync(cmdInfo, responseMessage -> {
             // inc counter
@@ -74,18 +69,6 @@ public class DemoHallAction {
             RoomNumMsg roomNumMsg = responseMessage.getData(RoomNumMsg.class);
             log.info("异步回调 : {}", roomNumMsg.roomCount);
         });
-    }
-
-    private static void extractedTracer() {
-        Tracer tracer = new SkywalkingTracer();
-
-        try (ActiveSpan activeSpan = tracer.buildSpan("start")
-                .withTag(Tags.SPAN_KIND.getKey(), Tags.SPAN_KIND_SERVER)
-                .startActive()) {
-
-            activeSpan.setTag("ioGameVersion", "ioGame21");
-            activeSpan.deactivate();
-        }
     }
 
     private void extractedVirtualCallback(FlowContext flowContext, CmdInfo cmdInfo) {

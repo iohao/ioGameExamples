@@ -22,7 +22,7 @@ import com.iohao.game.action.skeleton.core.BarSkeletonBuilder;
 import com.iohao.game.action.skeleton.core.BarSkeletonBuilderParamConfig;
 import com.iohao.game.action.skeleton.core.IoGameGlobalSetting;
 import com.iohao.game.action.skeleton.core.flow.MyFlowContext;
-import com.iohao.game.action.skeleton.core.flow.interal.DebugInOut;
+import com.iohao.game.action.skeleton.core.flow.internal.DebugInOut;
 import com.iohao.game.spring.common.SendDoc;
 import com.iohao.game.spring.common.SpringGameCodeEnum;
 import lombok.experimental.UtilityClass;

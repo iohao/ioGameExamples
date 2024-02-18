@@ -19,8 +19,8 @@
 package com.iohao.game.example.interaction.same;
 
 import com.iohao.game.action.skeleton.core.BarSkeletonBuilder;
-import com.iohao.game.action.skeleton.core.flow.interal.StatActionInOut;
-import com.iohao.game.action.skeleton.core.flow.interal.ThreadMonitorInOut;
+import com.iohao.game.action.skeleton.core.flow.internal.StatActionInOut;
+import com.iohao.game.action.skeleton.core.flow.internal.ThreadMonitorInOut;
 import com.iohao.game.common.kit.concurrent.TaskKit;
 import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;

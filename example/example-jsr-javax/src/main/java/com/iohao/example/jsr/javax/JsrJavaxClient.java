@@ -19,7 +19,7 @@
 package com.iohao.example.jsr.javax;
 
 import com.iohao.example.jsr.javax.pb.JsrJavaxPb;
-import com.iohao.game.common.kit.InternalKit;
+import com.iohao.game.common.kit.concurrent.TaskKit;
 import com.iohao.game.example.common.cmd.JsrJavaxCmd;
 import com.iohao.game.external.client.AbstractInputCommandRegion;
 import com.iohao.game.external.client.InputCommandRegion;
@@ -64,7 +64,7 @@ public class JsrJavaxClient {
             });
 
             // 一秒后，执行模拟请求;
-            InternalKit.newTimeoutSeconds(task -> {
+            TaskKit.runOnceSecond(() -> {
                 // 执行请求
                 ofRequestCommand(JsrJavaxCmd.jsrJavax).execute();
             });

@@ -68,9 +68,9 @@ public class MyWebSocketVerifyHandler extends WebSocketVerifyHandler
             RequestMessage requestMessage = this.createRequestMessage();
             userSession.employ(requestMessage);
 
+            // 请求游戏网关，在由网关转到具体的业务逻辑服
+            // 触发登录 action
             try {
-                // 请求游戏网关，在由网关转到具体的业务逻辑服
-                // 触发登录 action
                 brokerClient.oneway(requestMessage);
             } catch (Exception e) {
                 log.error(e.getMessage(), e);

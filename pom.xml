@@ -67,19 +67,28 @@
         <module>example-multiple/the-common-broker</module>
         <module>example-multiple/the-one-application</module>
         <module>example-multiple/the-client</module>
-        <module>example/example-old-external</module>
         <module>component/chat-core</module>
         <module>component/chat-provide</module>
         <module>component/login-core</module>
         <module>component/login-provide</module>
         <module>component/z-client</module>
         <module>example/example-ws-token</module>
+        <module>example-multiple-eventbus/the-eventbus-one-application</module>
+        <module>example-multiple-eventbus/the-eventbus-common-data</module>
+        <module>example-multiple-eventbus/the-eventbus-external</module>
+        <module>example-multiple-eventbus/the-eventbus-logic-user</module>
+        <module>example-multiple-eventbus/the-eventbus-logic-email</module>
+        <module>example-multiple-eventbus/the-eventbus-broker</module>
+        <module>example-multiple-eventbus/the-eventbus-client</module>
+        <module>example-flowContext</module>
+        <module>example-multiple-eventbus/the-eventbus-analyse-data</module>
+        <module>example/example-external-cache</module>
     </modules>
 
     <!--统一管理版本 的一个父 pom-->
     <properties>
         <!-- 项目版本 -->
-        <ioGame.version>21.0.snapshot</ioGame.version>
+        <ioGame.version>21.0</ioGame.version>
         <!-- jdk 版本 -->
         <java.version>21</java.version>
         <maven.compiler.source>21</maven.compiler.source>
@@ -106,9 +115,9 @@
         <org.mapstruct.version>1.5.2.Final</org.mapstruct.version>
 
         <!-- temp spring boot https://mvnrepository.com/artifact/org.springframework/spring-core -->
-        <spring.version>5.3.20</spring.version>
+        <spring.version>6.1.2</spring.version>
         <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter -->
-        <springboot.version>2.7.0</springboot.version>
+        <springboot.version>3.2.1</springboot.version>
         <!--  junit https://mvnrepository.com/artifact/junit/junit  -->
         <junit.version>4.13.2</junit.version>
         <!-- 模拟客户端 https://mvnrepository.com/artifact/org.java-websocket/Java-WebSocket -->
@@ -116,18 +125,16 @@
         <!-- 演示用的假数据 https://mvnrepository.com/artifact/com.github.javafaker/javafaker -->
         <javafaker.version>1.0.2</javafaker.version>
 
-        <!-- slf4j https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
-        <slf4j-api.version>1.7.36</slf4j-api.version>
         <!-- slf4j https://mvnrepository.com/artifact/ch.qos.logback/logback-classic -->
-        <logback.version>1.2.11</logback.version>
+        <logback.version>1.4.14</logback.version>
         <!-- https://mvnrepository.com/artifact/cn.hutool/hutool-all -->
         <hutool.version>5.8.5</hutool.version>
         <!-- Hazelcast提供弹性可扩展的分布式内存计算 https://mvnrepository.com/artifact/com.hazelcast/hazelcast -->
         <hazelcast.version>5.1.1</hazelcast.version>
-
     </properties>
 
     <dependencies>
+
         <!-- 单体应用启动 -->
         <dependency>
             <groupId>com.iohao.game</groupId>
@@ -138,6 +145,12 @@
         <dependency>
             <groupId>com.iohao.game</groupId>
             <artifactId>light-client</artifactId>
+            <version>${ioGame.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.iohao.game</groupId>
+            <artifactId>light-jprotobuf</artifactId>
             <version>${ioGame.version}</version>
         </dependency>
 
@@ -177,12 +190,6 @@
             <version>5.8.11</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>${slf4j-api.version}</version>
-        </dependency>
         <!-- https://mvnrepository.com/artifact/ch.qos.logback/logback-classic -->
         <dependency>
             <groupId>ch.qos.logback</groupId>
@@ -197,41 +204,7 @@
             <version>${junit.version}</version>
             <scope>compile</scope>
         </dependency>
-
-        <!-- https://mvnrepository.com/artifact/org.apache.skywalking/apm-toolkit-opentracing -->
-        <dependency>
-            <groupId>org.apache.skywalking</groupId>
-            <artifactId>apm-toolkit-opentracing</artifactId>
-            <version>9.1.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.skywalking</groupId>
-            <artifactId>apm-toolkit-trace</artifactId>
-            <version>9.1.0</version>
-        </dependency>
     </dependencies>
-
-    <!--dependencyManagement 标签用于控制子模块的依赖版本等信息，该标签只用来控制版本，不能将依赖引入 -->
-    <dependencyManagement>
-        <dependencies>
-
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-dependencies</artifactId>
-                <version>${springboot.version}</version>
-                <scope>import</scope>
-                <type>pom</type>
-            </dependency>
-
-            <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
-            <dependency>
-                <groupId>org.slf4j</groupId>
-                <artifactId>slf4j-api</artifactId>
-                <version>${slf4j-api.version}</version>
-            </dependency>
-
-        </dependencies>
-    </dependencyManagement>
 
     <build>
         <plugins>
@@ -252,7 +225,7 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.1</version>
-<!--                <version>3.11.0</version>-->
+                <!--                <version>3.11.0</version>-->
                 <configuration>
                     <compilerVersion>${java.version}</compilerVersion>
                     <source>${java.version}</source>
