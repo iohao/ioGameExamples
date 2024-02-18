@@ -1,5 +1,3 @@
-
-
 <h2 align="center" style="text-align:center;">
   ioGame
 </h2>
@@ -35,13 +33,15 @@
   <strong>无 spring 强依赖</strong>
   <br>
   <strong>零学习成本</strong>
+  <br>
+  <strong>javaSE</strong>
 </p>
 <p align="center">
 	<a href="http://game.iohao.com">http://game.iohao.com</a>
 </p>
 <p align="center">
 	<a target="_blank" href="https://www.oracle.com/java/technologies/downloads/#java17">
-		<img src="https://img.shields.io/badge/JDK-17-green.svg" alt="JDK 17" />
+		<img src="https://img.shields.io/badge/JDK-21-green.svg" alt="JDK 21" />
 	</a>
 	<br>
 	<a target="_blank" href="https://www.gnu.org/licenses/agpl-3.0.txt">
@@ -61,23 +61,13 @@
 
 <br/>
 
-过去、现在、将来都不会有商业版本，所有功能全部开源！
-
-只做真的完全式开源，拒绝虚假开源，售卖商业版，不搞短暂维护！
-
-承诺项目的维护周期是十年起步， 2022-03-01起，至少十年维护期！
-
-提供高质量的使用文档！
-
-如果您觉得还不错，帮忙给个 star 关注!
-
-
-
 ## 综合示例请看
 
 这个仓库用于存放 ioGame 相关的使用示例
 
 https://www.yuque.com/iohao/game/ruaqza
+
+
 
 **示例内容包含**
 
@@ -106,6 +96,8 @@ https://www.yuque.com/iohao/game/ruaqza
 23. 模块的整理与建议（路由相关）
 24. k8s
 25. 元信息
+26. [游戏对外服缓存](https://www.yuque.com/iohao/game/khg23pvbh59a7spm)
+27. [分布式事件总线](https://www.yuque.com/iohao/game/gmxz33)
 
 
 
