@@ -27,6 +27,8 @@ import com.iohao.game.action.skeleton.protocol.collect.ResponseCollectItemMessag
 import com.iohao.game.action.skeleton.protocol.collect.ResponseCollectMessage;
 import com.iohao.game.action.skeleton.protocol.external.ResponseCollectExternalMessage;
 import com.iohao.game.bolt.broker.core.client.BrokerClientHelper;
+import com.iohao.game.common.kit.concurrent.executor.ExecutorRegion;
+import com.iohao.game.common.kit.concurrent.executor.ThreadExecutorRegion;
 import com.iohao.game.core.common.client.Attachment;
 import com.iohao.game.example.common.msg.RoomNumMsg;
 import lombok.Data;
@@ -39,6 +41,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Executor;
 
 /**
  * 使用示例，关于 FlowContext 通信能力，提供同步、异步、异步回调 ...等，相关示例
@@ -443,6 +446,24 @@ public class FlowContextExample {
             flowContext.updateAttachment();
             // 其他业务逻辑
             // ... ...
+        });
+    }
+
+    void testExecutorRegion() {
+        // 得到执行器管理域
+        ExecutorRegion executorRegion = flowContext.getExecutorRegion();
+
+        // 得到用户线程执行器
+        Executor executor = flowContext.getExecutor();
+
+        // 得到用户虚拟线程执行器
+        Executor virtualExecutor = flowContext.getVirtualExecutor();
+
+        long userId = flowContext.getUserId();
+        var simpleThread = executorRegion.getSimpleThreadExecutor(userId);
+
+        simpleThread.execute(() -> {
+            // wq
         });
     }
 }

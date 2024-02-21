@@ -220,7 +220,7 @@ public class SchoolAction {
             log.info("异步回调 - 3.1 简化版本的请求 - 单个逻辑服与单个逻辑服通信请求 - 有返回值- classesPb : {}", classesPb);
         });
 
-        // ------------ 同步调用 ------------
+        // ------------ 同步调用 - 阻塞------------
         ResponseMessage responseMessage = flowContext.invokeModuleMessage(cmdInfo);
         // 表示没有错误
         if (responseMessage.getResponseStatus() == 0) {
@@ -279,7 +279,7 @@ public class SchoolAction {
             log.info("messageList : {}", messageList);
         });
 
-        // ------------ 同步调用 ------------
+        // ------------ 同步调用 - 阻塞------------
         ResponseCollectMessage responseCollectMessage = flowContext.invokeModuleCollectMessage(cmdInfo);
         // 每个逻辑服返回的数据集合
         List<ResponseCollectItemMessage> messageList = responseCollectMessage.getMessageList();

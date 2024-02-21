@@ -48,6 +48,8 @@ public class EventbusOneClient {
         // 启动模拟客户端
         new ClientRunOne()
                 .setInputCommandRegions(inputCommandRegions)
+                // 连接 ip，默认不填也是这个值
+                .setConnectAddress("127.0.0.1")
                 .startup();
     }
 
