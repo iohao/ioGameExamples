@@ -44,66 +44,22 @@ import java.util.concurrent.TimeUnit;
 public class DemoHallAction {
     @ActionMethod(DemoCmdForHall.count)
     public void count(FlowContext flowContext) {
-        // 模块通讯上下文
-        InvokeModuleContext invokeModuleContext = BrokerClientHelper.getInvokeModuleContext();
         // 路由：这个路由是将要访问逻辑服的路由（表示你将要去的地方）
         CmdInfo cmdInfo = CmdInfo.of(DemoCmdForRoom.cmd, DemoCmdForRoom.countRoom);
 
-        //        extractedSync(invokeModuleContext, cmdInfo);
-
-        int loop = 24;
-        loop = 1;
-        for (int i = 0; i < loop; i++) {
-//            extractedVirtualCallback(flowContext, cmdInfo);
-
-            extractedOneSync(flowContext, cmdInfo);
-        }
-    }
-
-    private static void extractedOneSync(FlowContext flowContext, CmdInfo cmdInfo) {
-
-        log.info("开始请求 : {}", cmdInfo);
-        flowContext.invokeModuleMessageAsync(cmdInfo, responseMessage -> {
-            // inc counter
-            InteractionSameKit.count.increment();
-            RoomNumMsg roomNumMsg = responseMessage.getData(RoomNumMsg.class);
-            log.info("异步回调 : {}", roomNumMsg.roomCount);
-        });
-    }
-
-    private void extractedVirtualCallback(FlowContext flowContext, CmdInfo cmdInfo) {
-        // 回调写法 -- 完全无阻塞
-
+        // 异步回调 - 无阻塞
         // 根据路由信息来请求其他【同类型】的多个子服务器（其他逻辑服）数据
         flowContext.invokeModuleCollectMessageAsync(cmdInfo, responseCollectMessage -> {
-            // 回调写法
-//            log.info("responseCollectMessage : {}", responseCollectMessage);
             // 每个逻辑服返回的数据集合
-//            print(responseCollectMessage);
+            List<ResponseCollectItemMessage> messageList = responseCollectMessage.getMessageList();
 
-            InteractionSameKit.count.increment();
+            for (ResponseCollectItemMessage responseCollectItemMessage : messageList) {
+                ResponseMessage responseMessage = responseCollectItemMessage.getResponseMessage();
+                // 得到房间逻辑服返回的业务数据
+                RoomNumMsg decode = DataCodecKit.decode(responseMessage.getData(), RoomNumMsg.class);
+                log.info("responseCollectItemMessage : {} ", decode);
+            }
         });
-    }
-
-    private static void print(ResponseCollectMessage responseCollectMessage) {
-        System.out.println();
-
-        List<ResponseCollectItemMessage> messageList = responseCollectMessage.getMessageList();
-        for (ResponseCollectItemMessage responseCollectItemMessage : messageList) {
-            ResponseMessage responseMessage = responseCollectItemMessage.getResponseMessage();
-            // 得到房间逻辑服返回的业务数据
-            RoomNumMsg decode = DataCodecKit.decode(responseMessage.getData(), RoomNumMsg.class);
-            log.info("responseCollectItemMessage : {} ", decode);
-        }
-    }
-
-    private void extractedSync(InvokeModuleContext invokeModuleContext, CmdInfo cmdInfo) {
-        // 同步写法
-
-        // 根据路由信息来请求其他【同类型】的多个子服务器（其他逻辑服）数据
-        ResponseCollectMessage responseCollectMessage = invokeModuleContext.invokeModuleCollectMessage(cmdInfo);
-        // 每个逻辑服返回的数据集合
-        print(responseCollectMessage);
     }
 
     @ActionMethod(DemoCmdForHall.testCount)

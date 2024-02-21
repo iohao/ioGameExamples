@@ -21,8 +21,7 @@ package com.iohao.game.spring.logic.school.action;
 import com.iohao.game.action.skeleton.annotation.ActionController;
 import com.iohao.game.action.skeleton.annotation.ActionMethod;
 import com.iohao.game.action.skeleton.core.CmdInfo;
-import com.iohao.game.action.skeleton.core.commumication.InvokeModuleContext;
-import com.iohao.game.bolt.broker.core.client.BrokerClientHelper;
+import com.iohao.game.action.skeleton.core.flow.FlowContext;
 import com.iohao.game.spring.common.cmd.ClassesCmdModule;
 import com.iohao.game.spring.common.cmd.IssuesCmdModule;
 import com.iohao.game.spring.common.pb.ClassesPb;
@@ -39,12 +38,11 @@ import lombok.extern.slf4j.Slf4j;
 public class IssuesAction {
 
     @ActionMethod(IssuesCmdModule.the143)
-    public void the143() {
+    public void the143(FlowContext flowContext) {
         // https://github.com/iohao/ioGame/issues/143
         // 逻辑服A（非spring管理的action）想跟逻辑服B(spring管理的action)通信
         CmdInfo cmdInfo = CmdInfo.of(ClassesCmdModule.cmd, ClassesCmdModule.getClasses);
-        InvokeModuleContext invokeModuleContext = BrokerClientHelper.getInvokeModuleContext();
-        ClassesPb classesPb = invokeModuleContext.invokeModuleMessageData(cmdInfo, ClassesPb.class);
+        ClassesPb classesPb = flowContext.invokeModuleMessage(cmdInfo).getData(ClassesPb.class);
 
         log.info("the143 classesPb : {}", classesPb);
     }

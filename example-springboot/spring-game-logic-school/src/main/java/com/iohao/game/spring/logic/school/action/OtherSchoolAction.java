@@ -21,6 +21,7 @@ import com.iohao.game.action.skeleton.annotation.ActionController;
 import com.iohao.game.action.skeleton.annotation.ActionMethod;
 import com.iohao.game.action.skeleton.core.CmdInfo;
 import com.iohao.game.action.skeleton.core.commumication.BroadcastContext;
+import com.iohao.game.action.skeleton.core.flow.FlowContext;
 import com.iohao.game.action.skeleton.protocol.wrapper.LongValue;
 import com.iohao.game.bolt.broker.core.client.BrokerClientHelper;
 import com.iohao.game.spring.common.cmd.OtherSchoolCmdModule;
@@ -89,15 +90,13 @@ public class OtherSchoolAction {
     }
 
     @ActionMethod(OtherSchoolCmdModule.longValueWithBroadcast)
-    public UserInfo longValueWithBroadcast() {
+    public UserInfo longValueWithBroadcast(FlowContext flowContext) {
 
         SchoolPb schoolPb = new SchoolPb();
         schoolPb.email = "hello";
 
         CmdInfo cmdInfo = CmdInfo.of(OtherSchoolCmdModule.cmd, OtherSchoolCmdModule.longValueWithBroadcastData);
-
-        BroadcastContext broadcastContext = BrokerClientHelper.getBroadcastContext();
-        broadcastContext.broadcast(cmdInfo, schoolPb);
+        flowContext.broadcast(cmdInfo, schoolPb);
 
         UserInfo userInfo = new UserInfo();
         userInfo.id = 800;

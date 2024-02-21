@@ -17,6 +17,7 @@
  */
 package com.iohao.game.spring;
 
+import com.iohao.game.action.skeleton.core.doc.BarSkeletonDoc;
 import com.iohao.game.action.skeleton.ext.spring.ActionFactoryBeanForSpring;
 import com.iohao.game.bolt.broker.client.AbstractBrokerClientStartup;
 import com.iohao.game.bolt.broker.core.client.BrokerClient;
@@ -120,6 +121,9 @@ public class SpringGameOneApplication {
                 .startup();
 
         // spring 集成 https://www.yuque.com/iohao/game/evkgnz
+
+        // 生成对接文档
+        // BarSkeletonDoc.me().buildDoc();
 
         // 启动模拟客户端服务器 - action调试工具
 //        ClientSimulation.start();

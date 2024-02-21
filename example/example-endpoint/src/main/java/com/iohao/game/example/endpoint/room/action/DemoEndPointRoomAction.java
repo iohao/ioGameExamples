@@ -23,6 +23,7 @@ import com.iohao.game.action.skeleton.core.CmdInfo;
 import com.iohao.game.action.skeleton.core.commumication.InvokeModuleContext;
 import com.iohao.game.action.skeleton.core.flow.FlowContext;
 import com.iohao.game.action.skeleton.protocol.RequestMessage;
+import com.iohao.game.action.skeleton.protocol.ResponseMessage;
 import com.iohao.game.action.skeleton.protocol.wrapper.StringValue;
 import com.iohao.game.bolt.broker.core.client.BrokerClientHelper;
 import com.iohao.game.example.common.msg.DemoOperation;
@@ -71,19 +72,21 @@ public class DemoEndPointRoomAction {
      */
     @ActionMethod(DemoCmdForEndPointRoom.operation)
     public DemoOperation operation(DemoOperation demoOperation, FlowContext flowContext) {
-        // 跨服访问，逻辑服与逻辑服之间相互通信
-        InvokeModuleContext invokeModuleContext = BrokerClientHelper.getInvokeModuleContext();
         CmdInfo cmdInfo = CmdInfo.of(
                 DemoCmdForEndPointAnimal.cmd, DemoCmdForEndPointAnimal.randomAnimal
         );
-        RequestMessage requestMessage = flowContext.getRequest().createRequestMessage(cmdInfo);
-        StringValue stringValue = invokeModuleContext.invokeModuleMessageData(requestMessage, StringValue.class);
-        // 打印跨服访问的结果
-        log.info("stringValue : {}", stringValue);
+
+        // 跨服访问，逻辑服与逻辑服之间相互通信
+        ResponseMessage responseMessage = flowContext.invokeModuleMessage(cmdInfo);
+        StringValue stringValue = responseMessage.getData(StringValue.class);
 
         longAdder.increment();
         DemoOperation operation = new DemoOperation();
-        operation.name = demoOperation.name + ", I'm endPoint here " + longAdder.longValue();
+        operation.name = String.format("%s , %s-%s",
+                demoOperation.name,
+                stringValue,
+                longAdder.longValue());
+
         return operation;
     }
 }

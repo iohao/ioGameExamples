@@ -48,13 +48,6 @@ public class DemoRoomAction {
 
         log.info("[room逻辑服] 处理请求 : {}", roomNumMsg.roomCount);
 
-//        try {
-//            int i = RandomKit.randomInt(2000);
-//            TimeUnit.MILLISECONDS.sleep(i);
-//        } catch (InterruptedException e) {
-//            log.error(e.getMessage(), e);
-//        }
-
         return roomNumMsg;
     }
 }

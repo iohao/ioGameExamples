@@ -21,6 +21,7 @@ import com.iohao.game.action.skeleton.core.CmdInfo;
 import com.iohao.game.action.skeleton.core.commumication.BroadcastContext;
 import com.iohao.game.bolt.broker.core.client.BrokerClientHelper;
 import com.iohao.game.common.kit.ExecutorKit;
+import com.iohao.game.common.kit.concurrent.TaskKit;
 import com.iohao.game.example.common.msg.DemoBroadcastMessage;
 import com.iohao.game.external.core.netty.simple.NettySimpleHelper;
 
@@ -66,16 +67,12 @@ public class DemoBroadcastApplication {
 
             // 广播消息的路由
             CmdInfo cmdInfo = CmdInfo.of(DemoBroadcastCmd.cmd, DemoBroadcastCmd.broadcastMsg);
-
             // 广播上下文
             BroadcastContext broadcastContext = BrokerClientHelper.getBroadcastContext();
-
             // 广播
             broadcastContext.broadcast(cmdInfo, broadcastMessage);
         };
 
-        ExecutorKit
-                .newSingleScheduled("广播测试")
-                .scheduleAtFixedRate(runnable, 3, 5, TimeUnit.SECONDS);
+        TaskKit.runInterval(runnable::run, 5, TimeUnit.SECONDS);
     }
 }

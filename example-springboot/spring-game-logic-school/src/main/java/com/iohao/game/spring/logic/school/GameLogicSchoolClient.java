@@ -54,30 +54,10 @@ public class GameLogicSchoolClient extends AbstractBrokerClientStartup {
                 .scanActionPackage(SchoolAction.class);
 
         // 业务框架构建器
-        BarSkeletonBuilder builder = config.createBuilder()
-                // 设置一个自定义的 flow 上下文生产工厂
-                .setFlowContextFactory(MyFlowContext::new);
+        BarSkeletonBuilder builder = MyBarSkeletonConfig.createBarSkeletonBuilder(config);
 
         // 开启 jsr380 验证
         builder.getSetting().setValidator(true);
-
-        // 添加控制台输出插件
-        DebugInOut debugInOut = new DebugInOut();
-
-        // 使用自定义注解的方式忽略 debug 打印
-        debugInOut.setPrintConsumer((message, flowContext) -> {
-            Method actionMethod = flowContext.getActionCommand().getActionMethod();
-            // 从 action 中拿出自定义注解 IgnoreDebugInout
-            var annotation = actionMethod.getAnnotation(IgnoreDebugInout.class);
-            if (Objects.nonNull(annotation)) {
-                // 表示不需要打印
-                return;
-            }
-
-            System.out.println(message);
-        });
-
-        builder.addInOut(debugInOut);
 
         return builder.build();
     }

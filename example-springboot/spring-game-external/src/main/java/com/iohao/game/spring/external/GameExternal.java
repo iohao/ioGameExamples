@@ -36,9 +36,13 @@ public class GameExternal {
 
     public ExternalServer createExternalServer(int externalPort, ExternalJoinEnum joinEnum) {
 
+        // true 表示开启 traceId 特性；https://www.yuque.com/iohao/game/zurusq
+        IoGameGlobalConfig.openTraceId = true;
+
+        // 路由访问权限控制；https://www.yuque.com/iohao/game/nap5y8p5fevhv99y
         extractedIgnore();
 
-        // 游戏对外服 - 构建器
+        // 游戏对外服 - 构建器；https://www.yuque.com/iohao/game/ea6geg
         DefaultExternalServerBuilder builder = DefaultExternalServer.newBuilder(externalPort)
                 // websocket 方式连接
                 .externalJoinEnum(joinEnum)

@@ -18,7 +18,7 @@
 package com.iohao.game.example.interaction;
 
 import com.iohao.game.bolt.broker.client.AbstractBrokerClientStartup;
-import com.iohao.game.common.kit.ExecutorKit;
+import com.iohao.game.common.kit.concurrent.TaskKit;
 import com.iohao.game.example.interaction.fight.DemoFightLogicServer;
 import com.iohao.game.example.interaction.weather.DemoWeatherLogicServer;
 import com.iohao.game.example.interaction.weather.action.DemoWeatherAction;
@@ -55,9 +55,9 @@ public class DemoInteractionApplication {
          * 该示例文档地址
          * https://www.yuque.com/iohao/game/anguu6
          */
-
-        ExecutorKit.newSingleScheduled("abc").scheduleAtFixedRate(() -> {
+        TaskKit.runInterval(() -> {
+            // print
             log.info("count: {}", DemoWeatherAction.longAdder.longValue());
-        }, 1, 5, TimeUnit.SECONDS);
+        }, 5, TimeUnit.SECONDS);
     }
 }

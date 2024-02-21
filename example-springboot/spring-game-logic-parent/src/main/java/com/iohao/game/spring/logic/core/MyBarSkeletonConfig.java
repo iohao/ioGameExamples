@@ -23,6 +23,7 @@ import com.iohao.game.action.skeleton.core.BarSkeletonBuilderParamConfig;
 import com.iohao.game.action.skeleton.core.IoGameGlobalSetting;
 import com.iohao.game.action.skeleton.core.flow.MyFlowContext;
 import com.iohao.game.action.skeleton.core.flow.internal.DebugInOut;
+import com.iohao.game.action.skeleton.core.flow.internal.TraceIdInOut;
 import com.iohao.game.spring.common.SendDoc;
 import com.iohao.game.spring.common.SpringGameCodeEnum;
 import lombok.experimental.UtilityClass;
@@ -67,6 +68,8 @@ public class MyBarSkeletonConfig {
         return config.createBuilder()
                 // 添加控制台输出插件
                 .addInOut(new DebugInOut())
+                // 添加全链路调用日志跟踪插件
+                .addInOut(new TraceIdInOut())
                 // 设置一个自定义的 flow 上下文生产工厂
                 .setFlowContextFactory(MyFlowContext::new)
                 ;

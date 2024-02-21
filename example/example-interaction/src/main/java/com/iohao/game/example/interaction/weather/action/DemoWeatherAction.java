@@ -17,19 +17,15 @@
  */
 package com.iohao.game.example.interaction.weather.action;
 
-import com.iohao.game.action.skeleton.core.CmdInfo;
-import com.iohao.game.action.skeleton.core.commumication.BroadcastContext;
-import com.iohao.game.action.skeleton.core.flow.FlowContext;
-import com.iohao.game.action.skeleton.protocol.RequestMessage;
-import com.iohao.game.bolt.broker.core.client.BrokerClientHelper;
-import com.iohao.game.example.interaction.msg.DemoWeatherMsg;
 import com.iohao.game.action.skeleton.annotation.ActionController;
 import com.iohao.game.action.skeleton.annotation.ActionMethod;
+import com.iohao.game.action.skeleton.core.CmdInfo;
+import com.iohao.game.action.skeleton.core.flow.FlowContext;
+import com.iohao.game.example.interaction.msg.DemoWeatherMsg;
 import com.iohao.game.example.interaction.msg.MatchMsg;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.Calendar;
-import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.LongAdder;
 
 /**
@@ -42,6 +38,7 @@ import java.util.concurrent.atomic.LongAdder;
 @ActionController(DemoCmdForWeather.cmd)
 public class DemoWeatherAction {
     public static LongAdder longAdder = new LongAdder();
+
     /**
      * 今天天气情况
      *
@@ -49,30 +46,19 @@ public class DemoWeatherAction {
      */
     @ActionMethod(DemoCmdForWeather.todayWeather)
     public DemoWeatherMsg todayWeather(FlowContext flowContext) {
-//        RequestMessage request = flowContext.getRequest();
-//        log.info("request : {}", request.getClass());
-        longAdder.increment();
-//        try {
-//            TimeUnit.SECONDS.sleep(2);
-//        } catch (InterruptedException e) {
-//            throw new RuntimeException(e);
-//        }
-
-        // 当前时间分钟
-        int minute = Calendar.getInstance().get(Calendar.SECOND);
+        // 当前时间
+        int value = Calendar.getInstance().get(Calendar.SECOND);
 
         DemoWeatherMsg demoWeatherMsg = new DemoWeatherMsg();
         // 根据当前时间来增加战斗力
-        demoWeatherMsg.attack = minute;
+        demoWeatherMsg.attack = value;
         return demoWeatherMsg;
     }
 
     @ActionMethod(DemoCmdForWeather.createRoom)
-    public void createRoom(MatchMsg matchMsg) {
+    public void createRoom(MatchMsg matchMsg, FlowContext flowContext) {
         CmdInfo createRoomCmd = CmdInfo.of(DemoCmdForWeather.cmd, DemoCmdForWeather.createRoom);
-
-        BroadcastContext broadcastContext = BrokerClientHelper.getBroadcastContext();
         // 全服广播：路由、业务数据
-        broadcastContext.broadcast(createRoomCmd, matchMsg);
+        flowContext.broadcast(createRoomCmd, matchMsg);
     }
 }

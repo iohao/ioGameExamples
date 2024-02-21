@@ -22,10 +22,12 @@ import com.iohao.game.action.skeleton.annotation.ActionMethod;
 import com.iohao.game.action.skeleton.annotation.ValidatedGroup;
 import com.iohao.game.action.skeleton.core.CmdInfo;
 import com.iohao.game.action.skeleton.core.DataCodecKit;
-import com.iohao.game.action.skeleton.core.commumication.BroadcastContext;
-import com.iohao.game.action.skeleton.core.commumication.InvokeModuleContext;
+import com.iohao.game.action.skeleton.core.commumication.BrokerClientContext;
+import com.iohao.game.action.skeleton.core.commumication.CommunicationAggregationContext;
 import com.iohao.game.action.skeleton.core.exception.MsgException;
+import com.iohao.game.action.skeleton.core.flow.FlowContext;
 import com.iohao.game.action.skeleton.core.flow.MyFlowContext;
+import com.iohao.game.action.skeleton.core.flow.attr.FlowAttr;
 import com.iohao.game.action.skeleton.protocol.ResponseMessage;
 import com.iohao.game.action.skeleton.protocol.collect.ResponseCollectItemMessage;
 import com.iohao.game.action.skeleton.protocol.collect.ResponseCollectMessage;
@@ -40,13 +42,11 @@ import com.iohao.game.spring.logic.school.service.SchoolService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * 学校相关 action
@@ -56,7 +56,6 @@ import java.util.List;
  */
 @Slf4j
 @Component
-@RestController
 @ActionController(SchoolCmdModule.cmd)
 public class SchoolAction {
 
@@ -80,7 +79,7 @@ public class SchoolAction {
      * @return LogicRequestPb
      */
     @ActionMethod(SchoolCmdModule.here)
-    public LogicRequestPb here(LogicRequestPb logicRequestPb, MyFlowContext myFlowContext) {
+    public LogicRequestPb here(LogicRequestPb logicRequestPb, MyFlowContext flowContext) {
 
         schoolService.helloSpring();
 
@@ -88,8 +87,8 @@ public class SchoolAction {
 
         log.info("请求、响应 : {}", logicRequestPb);
 
-        log.info("my flowContext : {}", myFlowContext.getClass());
-        myFlowContext.hello();
+        log.info("my flowContext : {}", flowContext.getClass());
+        flowContext.hello();
 
         LogicRequestPb newLogicRequestPb = new LogicRequestPb();
         newLogicRequestPb.name = logicRequestPb.name + ", I'm here ";
@@ -144,7 +143,7 @@ public class SchoolAction {
          * 相关文档 https://www.yuque.com/iohao/game/ghng6g
          */
 
-        log.info("支持分组校验", schoolPb);
+        log.info("支持分组校验 {}", schoolPb);
     }
 
     /**
@@ -170,15 +169,13 @@ public class SchoolAction {
      * 2. 推送 触发广播
      */
     @ActionMethod(SchoolCmdModule.broadcast)
-    public void broadcast() {
+    public void broadcast(FlowContext flowContext) {
         /*
          * 相关文档
          * https://www.yuque.com/iohao/game/nelwuz#vqvGQ
          * https://www.yuque.com/iohao/game/qv4qfo
          */
 
-        // 广播上下文
-        BroadcastContext broadcastContext = BrokerClientHelper.getBroadcastContext();
         // 业务数据
         SpringBroadcastMessagePb broadcastMessage = new SpringBroadcastMessagePb();
 
@@ -192,18 +189,18 @@ public class SchoolAction {
         userIdList.add(1L);
         userIdList.add(2L);
 
-        broadcastContext.broadcast(cmdInfo, broadcastMessage, userIdList);
+        flowContext.broadcast(cmdInfo, broadcastMessage, userIdList);
 
         // 全服广播
         broadcastMessage.msg = "广播业务数据 - 2";
-        broadcastContext.broadcast(cmdInfo, broadcastMessage);
+        flowContext.broadcast(cmdInfo, broadcastMessage);
     }
 
     /**
      * 3.1 单个逻辑服与单个逻辑服通信请求 - 有返回值（可跨进程）
      */
     @ActionMethod(SchoolCmdModule.communication31)
-    public void communication31() {
+    public void communication31(FlowContext flowContext) {
         log.info("communication31 - 3.1 单个逻辑服与单个逻辑服通信请求 - 有返回值（可跨进程）");
 
         /*
@@ -213,40 +210,30 @@ public class SchoolAction {
          * 这里演示的是无参的业务请求，invokeModuleMessage 方法是有业务参数重载的
          */
 
-        // 通信路由
         CmdInfo cmdInfo = CmdInfo.of(ClassesCmdModule.cmd, ClassesCmdModule.getClasses);
-        // 内部模块通讯上下文，内部模块指的是游戏逻辑服
-        InvokeModuleContext invokeModuleContext = BrokerClientHelper.getInvokeModuleContext();
 
-        /*
-         * 第一种使用方式
-         */
-        ResponseMessage responseMessage = invokeModuleContext.invokeModuleMessage(cmdInfo);
+        // 下述两个方法等价，分别演示了同步、异步回调
+
+        // ------------ 异步回调 - 无阻塞 ------------
+        flowContext.invokeModuleMessageAsync(cmdInfo, responseMessage -> {
+            ClassesPb classesPb = responseMessage.getData(ClassesPb.class);
+            log.info("异步回调 - 3.1 简化版本的请求 - 单个逻辑服与单个逻辑服通信请求 - 有返回值- classesPb : {}", classesPb);
+        });
+
+        // ------------ 同步调用 ------------
+        ResponseMessage responseMessage = flowContext.invokeModuleMessage(cmdInfo);
         // 表示没有错误
         if (responseMessage.getResponseStatus() == 0) {
-            // 将字节解析成对象
-            byte[] dataContent = responseMessage.getData();
-            ClassesPb classesPb = DataCodecKit.decode(dataContent, ClassesPb.class);
-            log.info("3.1 单个逻辑服与单个逻辑服通信请求 - 有返回值 classesPb : {}", classesPb);
+            ClassesPb classesPb = responseMessage.getData(ClassesPb.class);
+            log.info("同步调用 - 3.1 单个逻辑服与单个逻辑服通信请求 - 有返回值 classesPb : {}", classesPb);
         }
-
-        // ------------------ 分割线 ------------------
-
-        /*
-         * 第二种使用方式
-         * 当然，如果有对业务方法有自信确定不会有错误的，可以大胆的使用简化版本的请求
-         * 这个请求得到的结果与上面是等价的
-         */
-        ClassesPb classesPb = invokeModuleContext.invokeModuleMessageData(cmdInfo, ClassesPb.class);
-        log.info("3.1 简化版本的请求 - 单个逻辑服与单个逻辑服通信请求 - 有返回值- classesPb : {}", classesPb);
-
     }
 
     /**
      * 3.2 单个逻辑服与单个逻辑服通信请求 - 无返回值（可跨进程）
      */
     @ActionMethod(SchoolCmdModule.communication32)
-    public void communication32() {
+    public void communication32(FlowContext flowContext) {
         log.info("communication32 - 3.2 单个逻辑服与单个逻辑服通信请求 - 无返回值（可跨进程）");
         /*
          * 3.2 单个逻辑服与单个逻辑服通信请求 - 无返回值（可跨进程）
@@ -257,21 +244,18 @@ public class SchoolAction {
 
         // 通信路由
         CmdInfo cmdInfo = CmdInfo.of(ClassesCmdModule.cmd, ClassesCmdModule.classesHereVoid);
-        // 内部模块通讯上下文，内部模块指的是游戏逻辑服
-        InvokeModuleContext invokeModuleContext = BrokerClientHelper.getInvokeModuleContext();
 
         // 业务参数
         ClassesPb classesPb = new ClassesPb();
         classesPb.studentNum = 999;
-
-        invokeModuleContext.invokeModuleVoidMessage(cmdInfo, classesPb);
+        flowContext.invokeModuleVoidMessage(cmdInfo, classesPb);
     }
 
     /**
      * 3.3 单个逻辑服与同类型多个逻辑服通信请求（可跨进程）
      */
     @ActionMethod(SchoolCmdModule.communication33)
-    public void communication33() {
+    public void communication33(FlowContext flowContext) {
         log.info("communication33 - 3.3 单个逻辑服与同类型多个逻辑服通信请求（可跨进程） - 统计房间");
 
         /*
@@ -284,9 +268,19 @@ public class SchoolAction {
 
         // 路由：这个路由是将要访问逻辑服的路由（表示你将要去的地方）
         CmdInfo cmdInfo = CmdInfo.of(RoomCmdModule.cmd, RoomCmdModule.countRoom);
-        InvokeModuleContext invokeModuleContext = BrokerClientHelper.getInvokeModuleContext();
+
+        // 下述两个方法等价，分别演示了同步、异步回调
+
+        // ------------ 异步回调 - 无阻塞 ------------
         // 根据路由信息来请求其他【同类型】的多个子服务器（其他逻辑服）数据
-        ResponseCollectMessage responseCollectMessage = invokeModuleContext.invokeModuleCollectMessage(cmdInfo);
+        flowContext.invokeModuleCollectMessageAsync(cmdInfo, responseCollectMessage -> {
+            // 每个逻辑服返回的数据集合
+            List<ResponseCollectItemMessage> messageList = responseCollectMessage.getMessageList();
+            log.info("messageList : {}", messageList);
+        });
+
+        // ------------ 同步调用 ------------
+        ResponseCollectMessage responseCollectMessage = flowContext.invokeModuleCollectMessage(cmdInfo);
         // 每个逻辑服返回的数据集合
         List<ResponseCollectItemMessage> messageList = responseCollectMessage.getMessageList();
 
@@ -296,7 +290,6 @@ public class SchoolAction {
             RoomNumPb decode = DataCodecKit.decode(responseMessage.getData(), RoomNumPb.class);
             log.info("3.3 responseCollectItemMessage : {} ", decode);
         }
-
     }
 
     /**

@@ -20,15 +20,13 @@ package com.iohao.game.example.interaction.fight.action;
 import com.iohao.game.action.skeleton.annotation.ActionController;
 import com.iohao.game.action.skeleton.annotation.ActionMethod;
 import com.iohao.game.action.skeleton.core.CmdInfo;
-import com.iohao.game.action.skeleton.core.commumication.InvokeModuleContext;
-import com.iohao.game.bolt.broker.core.client.BrokerClientHelper;
+import com.iohao.game.action.skeleton.core.flow.FlowContext;
+import com.iohao.game.action.skeleton.protocol.ResponseMessage;
 import com.iohao.game.example.interaction.msg.DemoFightMsg;
 import com.iohao.game.example.interaction.msg.DemoWeatherMsg;
 import com.iohao.game.example.interaction.msg.MatchMsg;
 import com.iohao.game.example.interaction.weather.action.DemoCmdForWeather;
 import lombok.extern.slf4j.Slf4j;
-
-import java.util.concurrent.CompletableFuture;
 
 /**
  * 战斗 action
@@ -46,7 +44,7 @@ public class DemoFightAction {
      * @return current demoFightReq
      */
     @ActionMethod(DemoCmdForFight.fight)
-    public DemoFightMsg fight() {
+    public DemoFightMsg fight(FlowContext flowContext) {
         /*
          * 单个逻辑服与单个逻辑服通信请求 - 有返回值（可跨进程）
          * https://www.yuque.com/iohao/game/nelwuz#L9TAJ
@@ -54,10 +52,9 @@ public class DemoFightAction {
 
         // 路由：这个路由是将要访问逻辑服的路由（表示你将要去的地方）
         CmdInfo todayWeatherCmd = CmdInfo.of(DemoCmdForWeather.cmd, DemoCmdForWeather.todayWeather);
-        // 游戏逻辑服通讯上下文
-        InvokeModuleContext invokeModuleContext = BrokerClientHelper.getInvokeModuleContext();
         // 根据路由信息来请求其他子服务器（其他逻辑服）的数据
-        DemoWeatherMsg demoWeatherMsg = invokeModuleContext.invokeModuleMessageData(todayWeatherCmd, DemoWeatherMsg.class);
+        ResponseMessage responseMessage = flowContext.invokeModuleMessage(todayWeatherCmd);
+        DemoWeatherMsg demoWeatherMsg = responseMessage.getData(DemoWeatherMsg.class);
 
         DemoFightMsg demoFightMsg = new DemoFightMsg();
         // 把天气预报逻辑服的数据 增强给自己
@@ -75,7 +72,7 @@ public class DemoFightAction {
     }
 
     @ActionMethod(DemoCmdForFight.testMatch)
-    public void testMatch() {
+    public void testMatch(FlowContext flowContext) {
         /*
          * 单个逻辑服与单个逻辑服通信请求 - 无返回值（可跨进程）
          * https://www.yuque.com/iohao/game/nelwuz#gtdrv
@@ -89,22 +86,17 @@ public class DemoFightAction {
         matchMsg.description = "hello invokeModuleVoidMessage";
 
         CmdInfo createRoomCmd = CmdInfo.of(DemoCmdForWeather.cmd, DemoCmdForWeather.createRoom);
-        InvokeModuleContext invokeModuleContext = BrokerClientHelper.getInvokeModuleContext();
+
         // 路由、业务数据
-        invokeModuleContext.invokeModuleVoidMessage(createRoomCmd, matchMsg);
+        flowContext.invokeModuleVoidMessage(createRoomCmd, matchMsg);
     }
 
     @ActionMethod(DemoCmdForFight.async)
-    public DemoFightMsg async() {
-
-        CompletableFuture.supplyAsync(() -> {
-            // 路由：这个路由是将要访问逻辑服的路由（表示你将要去的地方）
-            CmdInfo todayWeatherCmd = CmdInfo.of(DemoCmdForWeather.cmd, DemoCmdForWeather.todayWeather);
-            // 游戏逻辑服通讯上下文
-            InvokeModuleContext invokeModuleContext = BrokerClientHelper.getInvokeModuleContext();
-            // 根据路由信息来请求其他子服务器（其他逻辑服）的数据
-            return invokeModuleContext.invokeModuleMessageData(todayWeatherCmd, DemoWeatherMsg.class);
-        }).thenAccept(demoWeatherMsg -> {
+    public DemoFightMsg async(FlowContext flowContext) {
+        // 路由：这个路由是将要访问逻辑服的路由（表示你将要去的地方）
+        CmdInfo todayWeatherCmd = CmdInfo.of(DemoCmdForWeather.cmd, DemoCmdForWeather.todayWeather);
+        flowContext.invokeModuleMessageAsync(todayWeatherCmd, responseMessage -> {
+            DemoWeatherMsg demoWeatherMsg = responseMessage.getData(DemoWeatherMsg.class);
             // 回调写法
             log.info("demoWeatherMsg : {}", demoWeatherMsg);
         });
@@ -112,7 +104,6 @@ public class DemoFightAction {
         DemoFightMsg demoFightMsg = new DemoFightMsg();
         // 把天气预报逻辑服的数据 增强给自己
         demoFightMsg.attack = 1;
-
         // 加一点点描述，以 30 为描述的临界点
         demoFightMsg.description = "英雄攻击得到了 小部分加成";
 
