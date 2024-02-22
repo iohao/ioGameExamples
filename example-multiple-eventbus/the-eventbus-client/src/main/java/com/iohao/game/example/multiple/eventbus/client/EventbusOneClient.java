@@ -85,12 +85,12 @@ public class EventbusOneClient {
                 log.info("value : {}", value);
             });
 
-            ofCommand(UserCmd.fireEventAny).setTitle("fireEventAny 向其中一个 email 逻辑服发布事件（启动两个 email 实例）").callback(result -> {
+            ofCommand(UserCmd.fireAnyMail).setTitle("fireAnyMail 向其中一个 email 逻辑服发布事件（启动两个 email 实例）").callback(result -> {
                 var value = result.getString();
                 log.info("value : {}", value);
             });
 
-            ofCommand(UserCmd.fireSyncMail).setTitle("fireSyncMail 两个 email 逻辑服发布事件（启动两个 email 实例）").callback(result -> {
+            ofCommand(UserCmd.fireSyncMail).setTitle("fireSyncMail 向两个 email 逻辑服发布事件（启动两个 email 实例）").callback(result -> {
                 var value = result.getString();
                 log.info("value : {}", value);
             });

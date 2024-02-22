@@ -102,8 +102,8 @@ public class UserAction {
      * @param flowContext flowContext
      * @return s
      */
-    @ActionMethod(UserCmd.fireEventAny)
-    public String fireEventAny(FlowContext flowContext) {
+    @ActionMethod(UserCmd.fireAnyMail)
+    public String fireAnyMail(FlowContext flowContext) {
         long userId = flowContext.getUserId();
 
         log.info("fireEventAny");
@@ -119,7 +119,7 @@ public class UserAction {
     public String fireSyncMail(FlowContext flowContext) {
         long userId = flowContext.getUserId();
 
-        log.info("fireEventAny");
+        log.info("fireSyncMail");
 
         var eventMessage = new EmailAnyMessage(userId);
 

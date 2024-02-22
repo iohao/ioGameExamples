@@ -27,6 +27,6 @@ public interface UserCmd {
     int login = 0;
     int fireEvent = 1;
     int fireEventEmpty = 2;
-    int fireEventAny = 3;
+    int fireAnyMail = 3;
     int fireSyncMail = 4;
 }
