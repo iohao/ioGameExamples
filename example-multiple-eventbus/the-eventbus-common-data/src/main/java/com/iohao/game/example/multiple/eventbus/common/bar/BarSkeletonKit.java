@@ -21,6 +21,7 @@ package com.iohao.game.example.multiple.eventbus.common.bar;
 import com.iohao.game.action.skeleton.core.BarSkeleton;
 import com.iohao.game.action.skeleton.core.BarSkeletonBuilder;
 import com.iohao.game.action.skeleton.core.InOutManager;
+import com.iohao.game.action.skeleton.core.flow.internal.DebugInOut;
 import com.iohao.game.action.skeleton.core.flow.internal.StatActionInOut;
 import com.iohao.game.action.skeleton.core.flow.internal.TraceIdInOut;
 import com.iohao.game.action.skeleton.eventbus.EventBus;
@@ -46,6 +47,7 @@ public class BarSkeletonKit {
 
         builder
 //                .addInOut(statActionInOut)
+                .addInOut(new DebugInOut())
                 .addInOut(traceIdInOut);
     }
 
