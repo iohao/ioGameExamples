@@ -115,6 +115,19 @@ public class UserAction {
         return "fireEventAny";
     }
 
+    @ActionMethod(UserCmd.fireSyncMail)
+    public String fireSyncMail(FlowContext flowContext) {
+        long userId = flowContext.getUserId();
+
+        log.info("fireEventAny");
+
+        var eventMessage = new EmailAnyMessage(userId);
+
+        flowContext.fireSync(eventMessage);
+
+        return "fireSyncMail";
+    }
+
     private static void extracted(FlowContext flowContext, UserLoginEventMessage userLoginEventMessage) throws InterruptedException {
         System.out.println();
         log.info("fireMeSync--------------");

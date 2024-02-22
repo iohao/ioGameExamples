@@ -58,6 +58,12 @@ public class EventbusOneClient {
         public void initInputCommand() {
             inputCommandCreate.cmd = UserCmd.cmd;
 
+            // 一秒后，执行模拟请求;
+            TaskKit.runOnceMillis(() -> {
+                // 执行请求
+                ofRequestCommand(UserCmd.login).execute();
+            }, 1);
+
             ofCommand(UserCmd.login).setTitle("login").setRequestData(() -> {
                 var login = new TheBusLogin();
                 login.jwt = "abc";
@@ -84,12 +90,10 @@ public class EventbusOneClient {
                 log.info("value : {}", value);
             });
 
-            // 一秒后，执行模拟请求;
-            TaskKit.runOnceMillis(() -> {
-                // 执行请求
-                ofRequestCommand(UserCmd.login).execute();
-            }, 1);
-
+            ofCommand(UserCmd.fireSyncMail).setTitle("fireSyncMail 两个 email 逻辑服发布事件（启动两个 email 实例）").callback(result -> {
+                var value = result.getString();
+                log.info("value : {}", value);
+            });
         }
     }
 
