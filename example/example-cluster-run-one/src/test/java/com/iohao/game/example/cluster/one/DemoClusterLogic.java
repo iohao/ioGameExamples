@@ -16,6 +16,8 @@ import java.util.concurrent.TimeUnit;
 public class DemoClusterLogic {
     public static void main(String[] args) throws InterruptedException {
 
+        DemoClusterConfig.defaultConfig();
+
         // 逻辑服
         var demoLogicServer = new DemoClusterLogicServer();
         List<AbstractBrokerClientStartup> logicList = List.of(demoLogicServer);

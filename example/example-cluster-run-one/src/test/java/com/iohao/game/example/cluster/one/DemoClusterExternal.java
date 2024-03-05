@@ -15,8 +15,9 @@ import java.util.concurrent.TimeUnit;
  * @author 渔民小镇
  * @date 2022-05-16
  */
-public class DemoClusterExternalTest {
+public class DemoClusterExternal {
     public static void main(String[] args) throws InterruptedException {
+        DemoClusterConfig.defaultConfig();
 
         // 游戏对外服端口
         String localIp = NetworkKit.LOCAL_IP;

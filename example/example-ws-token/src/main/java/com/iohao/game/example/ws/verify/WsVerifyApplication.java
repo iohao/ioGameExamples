@@ -45,7 +45,6 @@ public class WsVerifyApplication {
                 .startup();
     }
 
-
     static ExternalServer createExternalServer() {
         int port = 10100;
         DefaultExternalServerBuilder builder = DefaultExternalServer.newBuilder(port);
