@@ -2,12 +2,19 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <!--    <parent>-->
+    <!--        <artifactId>iogame-example</artifactId>-->
+    <!--        <groupId>com.iohao.example</groupId>-->
+    <!--        <version>3.0.0.io</version>-->
+    <!--        <relativePath>../../pom.xml</relativePath>-->
+    <!--    </parent>-->
     <parent>
-        <artifactId>iogame-example</artifactId>
         <groupId>com.iohao.example</groupId>
+        <artifactId>spring-common-parent</artifactId>
         <version>3.0.0.io</version>
-        <relativePath>../../pom.xml</relativePath>
+        <relativePath>../spring-common-parent/pom.xml</relativePath>
     </parent>
+
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>spring-game-logic-hall</artifactId>
