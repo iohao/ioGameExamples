@@ -41,6 +41,8 @@
         <hutool.version>5.8.5</hutool.version>
         <!-- Hazelcast提供弹性可扩展的分布式内存计算 https://mvnrepository.com/artifact/com.hazelcast/hazelcast -->
         <hazelcast.version>5.1.1</hazelcast.version>
+        <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter -->
+        <springboot.version>3.2.3</springboot.version>
     </properties>
 
     <dependencies>

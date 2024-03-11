@@ -29,6 +29,7 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
+            <version>${springboot.version}</version>
         </dependency>
 
         <!-- 演示用的假数据 https://mvnrepository.com/artifact/com.github.javafaker/javafaker -->

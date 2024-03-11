@@ -16,6 +16,7 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+            <version>${springboot.version}</version>
         </dependency>
 
         <dependency>
@@ -30,7 +31,6 @@
             <artifactId>hibernate-validator</artifactId>
             <version>${hibernate-validator.version}</version>
         </dependency>
-
 
         <!-- https://mvnrepository.com/artifact/org.glassfish/jakarta.el -->
         <!-- EL实现。在Java SE环境中，您必须将实现作为依赖项添加到POM文件中-->

@@ -18,18 +18,14 @@
  */
 package com.iohao.game.example.ws.verify;
 
-import com.iohao.game.action.skeleton.protocol.BarMessage;
 import com.iohao.game.example.ws.verify.external.MyWebSocketVerifyHandler;
 import com.iohao.game.example.ws.verify.server.WsVerifyLogicServer;
 import com.iohao.game.external.core.ExternalServer;
-import com.iohao.game.external.core.micro.PipelineContext;
 import com.iohao.game.external.core.netty.DefaultExternalServer;
 import com.iohao.game.external.core.netty.DefaultExternalServerBuilder;
 import com.iohao.game.external.core.netty.handler.ws.WebSocketVerifyHandler;
 import com.iohao.game.external.core.netty.micro.WebSocketMicroBootstrapFlow;
 import com.iohao.game.external.core.netty.simple.NettyRunOne;
-import io.netty.handler.codec.MessageToMessageCodec;
-import io.netty.handler.codec.http.websocketx.BinaryWebSocketFrame;
 
 import java.util.List;
 
@@ -58,29 +54,6 @@ public class WsVerifyApplication {
             @Override
             protected WebSocketVerifyHandler createVerifyHandler() {
                 return new MyWebSocketVerifyHandler();
-            }
-        });
-
-        builder.setting().setMicroBootstrapFlow(new WebSocketMicroBootstrapFlow() {
-            @Override
-            public void pipelineCodec(PipelineContext context) {
-                // 添加 http 相关 handler
-                this.httpHandler(context);
-
-                // 建立连接前的验证 handler
-                this.verifyHandler(context);
-
-                // 添加 websocket 相关 handler
-                this.websocketHandler(context);
-
-                // websocket 编解码
-                var externalCodec = this.createExternalCodec();
-                context.addLast("codec", externalCodec);
-            }
-
-            @Override
-            protected MessageToMessageCodec<BinaryWebSocketFrame, BarMessage> createExternalCodec() {
-                return super.createExternalCodec();
             }
         });
 
