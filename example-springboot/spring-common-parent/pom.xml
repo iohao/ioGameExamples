@@ -6,6 +6,8 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
+        <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter -->
+<!--        <version>3.2.3</version>-->
         <version>3.1.2</version>
         <!-- lookup parent from repository -->
         <relativePath/>
@@ -58,8 +60,6 @@
         <hutool.version>5.8.5</hutool.version>
         <!-- 模拟客户端 https://mvnrepository.com/artifact/org.java-websocket/Java-WebSocket -->
         <java-websocket.version>1.5.3</java-websocket.version>
-        <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter -->
-        <springboot.version>3.2.3</springboot.version>
     </properties>
 
     <dependencies>
