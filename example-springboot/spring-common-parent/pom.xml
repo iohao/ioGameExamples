@@ -34,7 +34,8 @@
         <!-- redis internal : https://mvnrepository.com/artifact/org.redisson/redisson -->
         <redisson.version>3.17.3</redisson.version>
         <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter -->
-        <springboot.version>3.2.3</springboot.version>
+        <springboot.version>3.1.2</springboot.version>
+<!--        <springboot.version>3.2.3</springboot.version>-->
 
         <!-- JSR380 bean 验证框架 https://mvnrepository.com/artifact/org.hibernate.validator/hibernate-validator -->
         <hibernate-validator.version>7.0.4.Final</hibernate-validator.version>
