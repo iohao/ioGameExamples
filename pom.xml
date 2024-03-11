@@ -80,7 +80,6 @@
         <module>example-multiple-eventbus/the-eventbus-logic-email</module>
         <module>example-multiple-eventbus/the-eventbus-broker</module>
         <module>example-multiple-eventbus/the-eventbus-client</module>
-        <module>example-flowContext</module>
         <module>example-multiple-eventbus/the-eventbus-analyse-data</module>
         <module>example/example-external-cache</module>
         <module>example-springboot/spring-common-parent</module>
@@ -89,7 +88,7 @@
     <!--统一管理版本 的一个父 pom-->
     <properties>
         <!-- 项目版本 -->
-        <ioGame.version>21.2</ioGame.version>
+        <ioGame.version>21.3</ioGame.version>
         <!-- jdk 版本 -->
         <java.version>21</java.version>
         <maven.compiler.source>21</maven.compiler.source>
