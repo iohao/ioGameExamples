@@ -18,9 +18,14 @@
  */
 package com.iohao.game.example.ws.verify;
 
+import com.iohao.game.bolt.broker.core.client.BrokerClient;
+import com.iohao.game.bolt.broker.core.client.BrokerClientBuilder;
+import com.iohao.game.bolt.broker.core.common.processor.listener.BrokerClientListener;
+import com.iohao.game.bolt.broker.core.message.BrokerClientModuleMessage;
 import com.iohao.game.example.ws.verify.external.MyWebSocketVerifyHandler;
 import com.iohao.game.example.ws.verify.server.WsVerifyLogicServer;
 import com.iohao.game.external.core.ExternalServer;
+import com.iohao.game.external.core.broker.client.ExternalBrokerClientStartup;
 import com.iohao.game.external.core.netty.DefaultExternalServer;
 import com.iohao.game.external.core.netty.DefaultExternalServerBuilder;
 import com.iohao.game.external.core.netty.handler.ws.WebSocketVerifyHandler;
@@ -49,6 +54,8 @@ public class WsVerifyApplication {
         int port = 10100;
         DefaultExternalServerBuilder builder = DefaultExternalServer.newBuilder(port);
 
+//        extractedBrokerClientListener(builder, port);
+
         // 设置 MicroBootstrapFlow 类，并重写 createVerifyHandler 方法
         builder.setting().setMicroBootstrapFlow(new WebSocketMicroBootstrapFlow() {
             @Override
@@ -58,5 +65,30 @@ public class WsVerifyApplication {
         });
 
         return builder.build();
+    }
+
+    private static void extractedBrokerClientListener(DefaultExternalServerBuilder builder, int port) {
+        /*
+         * 自定义游戏对外服 ExternalBrokerClientStartup 部分
+         * https://www.yuque.com/iohao/game/wotnhl#x7n94
+         */
+        builder.externalBrokerClientStartup(new ExternalBrokerClientStartup() {
+            @Override
+            public BrokerClientBuilder createBrokerClientBuilder() {
+                // 使用原有游戏对外服的一些配置
+                BrokerClientBuilder brokerClientBuilder = super.createBrokerClientBuilder();
+
+                // 添加 BrokerClient 监听
+                brokerClientBuilder.addListener(new BrokerClientListener() {
+                    @Override
+                    public void registerBefore(BrokerClientModuleMessage moduleMessage, BrokerClient client) {
+                        // 设置一些自定义属性
+                        moduleMessage.addHeader("externalPort", port);
+                    }
+                });
+
+                return brokerClientBuilder;
+            }
+        });
     }
 }
