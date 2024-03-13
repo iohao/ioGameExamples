@@ -83,6 +83,11 @@
         <module>example-multiple-eventbus/the-eventbus-analyse-data</module>
         <module>example/example-external-cache</module>
         <module>example-springboot/spring-common-parent</module>
+        <module>example-exchange/exchange-game-logic</module>
+        <module>example-exchange/exchange-web-gm</module>
+        <module>example-exchange/exchange-common</module>
+        <module>example-exchange/exchange-client</module>
+
     </modules>
 
     <!--统一管理版本 的一个父 pom-->
@@ -117,7 +122,7 @@
         <!-- temp spring boot https://mvnrepository.com/artifact/org.springframework/spring-core -->
         <spring.version>6.1.2</spring.version>
         <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter -->
-        <springboot.version>3.2.3</springboot.version>
+        <springboot.version>3.1.2</springboot.version>
         <!--  junit https://mvnrepository.com/artifact/junit/junit  -->
         <junit.version>4.13.2</junit.version>
         <!-- 模拟客户端 https://mvnrepository.com/artifact/org.java-websocket/Java-WebSocket -->
