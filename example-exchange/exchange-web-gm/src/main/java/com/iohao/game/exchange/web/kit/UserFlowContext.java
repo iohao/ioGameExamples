@@ -49,9 +49,7 @@ public class UserFlowContext extends FlowContext {
 
         // 设置需要模拟的玩家
         this.headMetadata = new HeadMetadata()
-                .setUserId(userId)
-                // 请求命令类型: 0 心跳，1 业务; see ExternalMessageCmdCode
-                .setCmdCode(1);
+                .setUserId(userId);
     }
 
     public static UserFlowContext of(long userId, BarSkeleton barSkeleton) {
