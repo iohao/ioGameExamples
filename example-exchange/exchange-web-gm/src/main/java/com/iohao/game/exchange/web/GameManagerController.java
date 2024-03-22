@@ -127,6 +127,6 @@ public class GameManagerController {
 
         StringValue data = responseMessage.getData(StringValue.class);
         log.info("web recharge result : {}", data.value);
-        return "充值成功！async" + money;
+        return "充值成功！rechargeAsync" + money;
     }
 }
