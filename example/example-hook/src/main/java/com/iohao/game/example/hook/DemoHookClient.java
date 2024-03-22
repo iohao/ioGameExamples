@@ -74,6 +74,12 @@ public class DemoHookClient {
                 // 执行请求
                 ofRequestCommand(DemoCmdForHookRoom.loginVerify).execute();
             });
+
+            // hello
+            ofCommand(DemoCmdForHookRoom.hello).setTitle("hello").callback(result -> {
+                var value = result.getLong();
+                log.info("hello : {}", value);
+            });
         }
     }
 }

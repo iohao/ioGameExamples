@@ -33,5 +33,6 @@ public interface DemoCmdForHookRoom {
     int quitRoom = 0;
     /** 登录验证 */
     int loginVerify = 1;
+    int hello = 2;
 
 }

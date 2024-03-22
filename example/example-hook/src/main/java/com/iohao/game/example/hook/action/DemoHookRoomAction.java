@@ -33,6 +33,11 @@ import lombok.extern.slf4j.Slf4j;
 @ActionController(DemoCmdForHookRoom.cmd)
 public class DemoHookRoomAction {
 
+    @ActionMethod(DemoCmdForHookRoom.hello)
+    public long hello(FlowContext flowContext) {
+        return flowContext.getUserId();
+    }
+
     @ActionMethod(DemoCmdForHookRoom.quitRoom)
     public void quit(FlowContext flowContext) {
         long userId = flowContext.getUserId();
