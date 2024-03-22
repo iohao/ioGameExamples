@@ -56,11 +56,11 @@ public class GameManagerController {
         String msg = "GM web msg " + id;
 
         // 路由、请求参数
-        var noticeCmd = CmdInfo.of(ExchangeCmd.cmd, ExchangeCmd.notice);
+        var noticeCmd = ExchangeCmd.of(ExchangeCmd.notice);
         // 使用协议碎片特性 https://www.yuque.com/iohao/game/ieimzn
         StringValue data = WrapperKit.of(msg);
 
-        // 模拟玩家请求
+        // 模拟请求
         RequestMessage requestMessage = BarMessageKit.createRequestMessage(noticeCmd, data);
         // 设置需要模拟的玩家
         requestMessage.getHeadMetadata().setUserId(userId);
@@ -81,7 +81,7 @@ public class GameManagerController {
         long money = RandomKit.random(1, 1000);
 
         // 路由、请求参数
-        var rechargeCmd = CmdInfo.of(ExchangeCmd.cmd, ExchangeCmd.recharge);
+        var rechargeCmd = ExchangeCmd.of(ExchangeCmd.recharge);
         // 使用协议碎片特性 https://www.yuque.com/iohao/game/ieimzn
         LongValue moneyData = WrapperKit.of(money);
 
@@ -101,19 +101,17 @@ public class GameManagerController {
 
     @GetMapping("/rechargeSync")
     public String rechargeSync() {
-        // 注意，这里演示的是异步回调
-
         log.info("rechargeAsync");
 
         // 模拟数据，充值金额
         long money = RandomKit.random(1, 1000);
 
         // 路由、请求参数
-        var rechargeCmd = CmdInfo.of(ExchangeCmd.cmd, ExchangeCmd.recharge);
+        var rechargeCmd = ExchangeCmd.of(ExchangeCmd.recharge);
         // 使用协议碎片特性 https://www.yuque.com/iohao/game/ieimzn
         LongValue moneyData = WrapperKit.of(money);
 
-        // 模拟玩家请求
+        // 模拟请求
         RequestMessage requestMessage = BarMessageKit.createRequestMessage(rechargeCmd, moneyData);
         // 设置需要模拟的玩家
         requestMessage.getHeadMetadata().setUserId(userId);
@@ -121,7 +119,7 @@ public class GameManagerController {
         // 向逻辑服发送请求
         BrokerClient brokerClient = MyKit.brokerClient;
         InvokeModuleContext invokeModuleContext = brokerClient.getInvokeModuleContext();
-        ResponseMessage responseMessage = invokeModuleContext.invokeModuleMessage(rechargeCmd, moneyData);
+        ResponseMessage responseMessage = invokeModuleContext.invokeModuleMessage(requestMessage);
 
         if (responseMessage.hasError()) {
             return "充值失败";

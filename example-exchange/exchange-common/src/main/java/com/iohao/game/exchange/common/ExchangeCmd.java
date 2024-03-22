@@ -18,6 +18,8 @@
  */
 package com.iohao.game.exchange.common;
 
+import com.iohao.game.action.skeleton.core.CmdInfo;
+
 /**
  * @author 渔民小镇
  * @date 2024-03-13
@@ -28,4 +30,8 @@ public interface ExchangeCmd {
     int loginVerify = 1;
     int recharge = 2;
     int notice = 3;
+
+    static CmdInfo of(int subCmd) {
+        return CmdInfo.of(cmd, subCmd);
+    }
 }
