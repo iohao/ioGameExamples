@@ -20,6 +20,7 @@ package com.iohao.example.jsr.jakarta.action;
 import com.iohao.example.jsr.jakarta.pb.JsrJakartaPb;
 import com.iohao.game.action.skeleton.annotation.ActionController;
 import com.iohao.game.action.skeleton.annotation.ActionMethod;
+import com.iohao.game.action.skeleton.core.exception.MsgException;
 import com.iohao.game.example.common.cmd.JsrJakartaCmd;
 import lombok.extern.slf4j.Slf4j;
 
@@ -30,9 +31,21 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @ActionController(JsrJakartaCmd.cmd)
 public class JsrJakartaAction {
+    int count;
 
     @ActionMethod(JsrJakartaCmd.jsrJakarta)
     public JsrJakartaPb jsrJakarta(JsrJakartaPb jsrJakartaPb) {
         return jsrJakartaPb;
+    }
+
+    @ActionMethod(JsrJakartaCmd.hello)
+    public String hello(String name) {
+        count++;
+
+        if (count % 2 == 0) {
+            throw new MsgException(100, "name error " + count);
+        }
+
+        return "count:%s %s".formatted(count, name);
     }
 }

@@ -19,6 +19,7 @@
 package com.iohao.example.jsr.jakarta;
 
 import com.iohao.example.jsr.jakarta.pb.JsrJakartaPb;
+import com.iohao.game.action.skeleton.protocol.wrapper.WrapperKit;
 import com.iohao.game.common.kit.concurrent.TaskKit;
 import com.iohao.game.example.common.cmd.JsrJakartaCmd;
 import com.iohao.game.external.client.AbstractInputCommandRegion;
@@ -60,6 +61,14 @@ public class JsrJakartaClient {
                 return jsrJakartaPb;
             }).callback(result -> {
                 JsrJakartaPb value = result.getValue(JsrJakartaPb.class);
+                log.info("value : {}", value);
+            });
+
+            ofCommand(JsrJakartaCmd.hello).setTitle("hello").setRequestData(() -> {
+                // request param StringValue
+                return WrapperKit.of("渔民小镇");
+            }).callback(result -> {
+                String value = result.getString();
                 log.info("value : {}", value);
             });
 

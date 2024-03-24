@@ -27,4 +27,6 @@ public interface JsrJakartaCmd {
     int cmd = DemoModuleCmd.jsr_jakarta_17_cmd;
 
     int jsrJakarta = 1;
+    int hello = 2;
+
 }

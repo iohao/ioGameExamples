@@ -17,6 +17,7 @@
  */
 package com.iohao.example.jsr.jakarta.server;
 
+import com.iohao.example.jsr.jakarta.DebugActionAfter;
 import com.iohao.example.jsr.jakarta.action.JsrJakartaAction;
 import com.iohao.game.action.skeleton.core.BarSkeleton;
 import com.iohao.game.action.skeleton.core.BarSkeletonBuilderParamConfig;
@@ -46,11 +47,12 @@ public class JsrJakartaLogicServer extends AbstractBrokerClientStartup {
 
         // 业务框架构建器
         var builder = config.createBuilder();
+        builder.getSetting().setValidator(true);
 
         // 添加控制台输出插件
         builder.addInOut(new DebugInOut());
-
-        builder.getSetting().setValidator(true);
+        // 重写业务框架 ActionAfter
+        builder.setActionAfter(new DebugActionAfter());
 
         return builder.build();
     }
