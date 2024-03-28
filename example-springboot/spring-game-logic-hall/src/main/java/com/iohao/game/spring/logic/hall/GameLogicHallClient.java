@@ -1,6 +1,6 @@
 /*
  * # iohao.com . 渔民小镇
- * Copyright (C) 2021 - 2023 double joker （262610965@qq.com） . All Rights Reserved.
+ * Copyright (C) 2021 - present double joker （262610965@qq.com） . All Rights Reserved.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
