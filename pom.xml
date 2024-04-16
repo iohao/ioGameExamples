@@ -43,21 +43,6 @@
         <!-- java 坦克游戏 fxgl -->
         <module>example-game-collect/fxgl-tank</module>
 
-        <!-- springboot 集成示例 -->
-        <module>example-springboot/spring-game-logic-school</module>
-        <module>example-springboot/spring-game-external</module>
-        <module>example-springboot/spring-game-broker</module>
-        <module>example-springboot/spring-websocket-client</module>
-        <module>example-springboot/spring-common-pb</module>
-        <module>example-springboot/spring-z-one-game</module>
-        <module>example-springboot/spring-game-logic-classes</module>
-        <module>example-springboot/spring-game-logic-school-starter</module>
-        <module>example-springboot/spring-game-logic-classes-starter</module>
-        <module>example-springboot/spring-game-logic-hall</module>
-        <module>example-springboot/spring-game-logic-room-interaction-same</module>
-        <module>example-springboot/spring-websocket-native-pb-client</module>
-        <module>example-springboot/spring-game-logic-parent</module>
-
         <module>example/example-jsr-jakarta</module>
         <module>example/example-jsr-javax</module>
         <module>example/example-codec-json</module>
@@ -82,7 +67,6 @@
         <module>example-multiple-eventbus/the-eventbus-client</module>
         <module>example-multiple-eventbus/the-eventbus-analyse-data</module>
         <module>example/example-external-cache</module>
-        <module>example-springboot/spring-common-parent</module>
         <module>example-exchange/exchange-game-logic</module>
         <module>example-exchange/exchange-web-gm</module>
         <module>example-exchange/exchange-common</module>
