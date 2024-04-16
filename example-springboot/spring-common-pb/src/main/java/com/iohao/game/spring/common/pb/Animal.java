@@ -17,6 +17,7 @@
  */
 package com.iohao.game.spring.common.pb;
 
+import com.baidu.bjf.remoting.protobuf.annotation.Ignore;
 import com.baidu.bjf.remoting.protobuf.annotation.ProtobufClass;
 import com.iohao.game.spring.common.SpringGameProtoFile;
 import com.iohao.game.widget.light.protobuf.ProtoFileMerge;
@@ -39,4 +40,6 @@ public class Animal {
     int id;
     /** 动物类型 - 枚举测试 */
     AnimalType animalType;
+    @Ignore
+    String age;
 }

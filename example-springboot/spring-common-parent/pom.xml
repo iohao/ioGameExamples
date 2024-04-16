@@ -28,7 +28,7 @@
         <encoding>UTF-8</encoding>
 
         <!-- 项目版本 -->
-        <ioGame.version>21.4</ioGame.version>
+        <ioGame.version>21.5</ioGame.version>
         <!-- lombok 消除冗长的 Java 代码 https://mvnrepository.com/artifact/org.projectlombok/lombok -->
         <lombok.version>1.18.30</lombok.version>
         <!-- redis internal : https://mvnrepository.com/artifact/org.redisson/redisson -->

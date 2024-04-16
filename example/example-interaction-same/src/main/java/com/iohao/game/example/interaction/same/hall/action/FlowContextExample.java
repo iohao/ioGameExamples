@@ -28,7 +28,6 @@ import com.iohao.game.action.skeleton.protocol.collect.ResponseCollectMessage;
 import com.iohao.game.action.skeleton.protocol.external.ResponseCollectExternalMessage;
 import com.iohao.game.bolt.broker.core.client.BrokerClientHelper;
 import com.iohao.game.common.kit.concurrent.executor.ExecutorRegion;
-import com.iohao.game.common.kit.concurrent.executor.ThreadExecutorRegion;
 import com.iohao.game.core.common.client.Attachment;
 import com.iohao.game.example.common.msg.RoomNumMsg;
 import lombok.Data;

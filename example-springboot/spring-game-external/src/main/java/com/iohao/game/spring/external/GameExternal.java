@@ -44,7 +44,7 @@ public class GameExternal {
 
         // 游戏对外服 - 构建器；https://www.yuque.com/iohao/game/ea6geg
         DefaultExternalServerBuilder builder = DefaultExternalServer.newBuilder(externalPort)
-                // websocket 方式连接
+                // 连接方式；如果不设置，默认是 webSocket
                 .externalJoinEnum(joinEnum)
                 // Broker （游戏网关）的连接地址；如果不设置，默认也是这个配置
                 .brokerAddress(new BrokerAddress("127.0.0.1", IoGameGlobalConfig.brokerPort));
