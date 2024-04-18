@@ -18,16 +18,20 @@
  */
 package com.iohao.game.exchange.logic;
 
+import com.github.javafaker.Faker;
+import com.github.javafaker.Name;
 import com.iohao.game.action.skeleton.annotation.ActionController;
 import com.iohao.game.action.skeleton.annotation.ActionMethod;
-import com.iohao.game.action.skeleton.core.exception.MsgException;
 import com.iohao.game.action.skeleton.core.flow.FlowContext;
 import com.iohao.game.action.skeleton.protocol.wrapper.StringValue;
 import com.iohao.game.action.skeleton.protocol.wrapper.WrapperKit;
 import com.iohao.game.bolt.broker.client.kit.ExternalCommunicationKit;
 import com.iohao.game.bolt.broker.client.kit.UserIdSettingKit;
+import com.iohao.game.exchange.common.ExchangeAttachment;
 import com.iohao.game.exchange.common.ExchangeCmd;
 import lombok.extern.slf4j.Slf4j;
+
+import java.util.Locale;
 
 /**
  * @author 渔民小镇
@@ -36,6 +40,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @ActionController(ExchangeCmd.cmd)
 public class ExchangeAction {
+    static final Name name = new Faker(Locale.CHINA).name();
 
     @ActionMethod(ExchangeCmd.loginVerify)
     public long loginVerify(String jwt, FlowContext flowContext) {
@@ -48,6 +53,12 @@ public class ExchangeAction {
 
         // channel 中设置用户的真实 userId；
         UserIdSettingKit.settingUserId(flowContext, userId);
+
+        // 设置元信息
+        ExchangeAttachment attachment = new ExchangeAttachment();
+        attachment.userId = userId;
+        attachment.nickname = name.fullName();
+        flowContext.updateAttachment(attachment);
 
         return userId;
     }
@@ -70,5 +81,8 @@ public class ExchangeAction {
         // 广播消息给玩家
         // 使用协议碎片特性 https://www.yuque.com/iohao/game/ieimzn
         flowContext.broadcastMe(StringValue.of(msg));
+
+        ExchangeAttachment attachment = flowContext.getAttachment(ExchangeAttachment.class);
+        log.info("attachment : {}", attachment);
     }
 }

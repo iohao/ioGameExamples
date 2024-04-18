@@ -19,7 +19,6 @@
 package com.iohao.game.exchange.web;
 
 import com.iohao.game.action.skeleton.core.BarMessageKit;
-import com.iohao.game.action.skeleton.core.CmdInfo;
 import com.iohao.game.action.skeleton.core.commumication.InvokeModuleContext;
 import com.iohao.game.action.skeleton.protocol.RequestMessage;
 import com.iohao.game.action.skeleton.protocol.ResponseMessage;
@@ -44,9 +43,9 @@ import java.util.concurrent.atomic.AtomicLong;
 @RestController
 @RequestMapping("gm")
 public class GameManagerController {
-    static AtomicLong msgId = new AtomicLong();
+    static final AtomicLong msgId = new AtomicLong();
     /** 为了方便测试，这里指定一个 userId 来模拟玩家 */
-    final long userId = 1;
+    static final long userId = 1;
 
     @GetMapping("/notice")
     public String notice() {
