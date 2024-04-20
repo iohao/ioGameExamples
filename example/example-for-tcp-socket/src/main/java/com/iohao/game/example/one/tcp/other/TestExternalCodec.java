@@ -17,13 +17,13 @@
  */
 package com.iohao.game.example.one.tcp.other;
 
-import cn.hutool.core.util.HexUtil;
 import com.iohao.game.action.skeleton.core.DataCodecKit;
 import com.iohao.game.example.common.msg.HelloReq;
 import com.iohao.game.external.core.kit.ExternalKit;
 import com.iohao.game.external.core.message.ExternalMessage;
 import com.iohao.game.external.core.netty.handler.codec.TcpExternalCodec;
 import io.netty.buffer.ByteBuf;
+import io.netty.buffer.ByteBufUtil;
 import io.netty.buffer.PooledByteBufAllocator;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.embedded.EmbeddedChannel;
@@ -80,6 +80,7 @@ public class TestExternalCodec {
     private static String toHex(ExternalMessage externalMessage) {
         // 下面是将游戏对外服协议转为十六进制
         byte[] bytes = DataCodecKit.encode(externalMessage);
+        log.info("bytes : {}", bytes);
 
         ByteBuf buffer = new PooledByteBufAllocator(true).buffer();
         // 消息长度
@@ -93,7 +94,11 @@ public class TestExternalCodec {
         byte[] msgBytes = new byte[length];
         buffer.readBytes(msgBytes);
 
-        return HexUtil.encodeHexStr(msgBytes);
+        /*
+         * [8, 1, 16, 0, 24, -127, -128, 60, 32, 0, 50, 6, 10, 4, 97, 98, 99, 49, 56, 0]
+         * 00000014080110001881803c200032060a04616263313800
+         */
+        return ByteBufUtil.hexDump(msgBytes);
     }
 
 }

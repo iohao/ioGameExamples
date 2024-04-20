@@ -116,8 +116,6 @@
 
         <!-- slf4j https://mvnrepository.com/artifact/ch.qos.logback/logback-classic -->
         <logback.version>1.4.14</logback.version>
-        <!-- https://mvnrepository.com/artifact/cn.hutool/hutool-all -->
-        <hutool.version>5.8.5</hutool.version>
         <!-- Hazelcast提供弹性可扩展的分布式内存计算 https://mvnrepository.com/artifact/com.hazelcast/hazelcast -->
         <hazelcast.version>5.1.1</hazelcast.version>
     </properties>
@@ -170,13 +168,6 @@
             <groupId>com.alibaba.fastjson2</groupId>
             <artifactId>fastjson2</artifactId>
             <version>2.0.23</version>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/cn.hutool/hutool-all -->
-        <dependency>
-            <groupId>cn.hutool</groupId>
-            <artifactId>hutool-all</artifactId>
-            <version>5.8.11</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/ch.qos.logback/logback-classic -->

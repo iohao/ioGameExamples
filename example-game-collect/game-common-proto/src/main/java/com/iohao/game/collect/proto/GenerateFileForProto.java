@@ -16,8 +16,7 @@
  */
 package com.iohao.game.collect.proto;
 
-import cn.hutool.core.util.ArrayUtil;
-import cn.hutool.system.SystemUtil;
+import com.iohao.game.common.kit.ArrayKit;
 import com.iohao.game.widget.light.protobuf.ProtoGenerateFile;
 
 import java.io.File;
@@ -32,9 +31,10 @@ public class GenerateFileForProto {
 
         // 需要扫描的包名
         String protoPackagePath = GenerateFileForProto.class.getPackageName();
+        String currentDir = System.getProperty("user.dir");
 
         String[] protoSourcePathArray = new String[]{
-                SystemUtil.getUserInfo().getCurrentDir()
+                currentDir
                 , "example-game-collect"
                 , "game-common-proto"
                 , "src"
@@ -44,10 +44,10 @@ public class GenerateFileForProto {
         };
 
         // 源码目录
-        String protoSourcePath = ArrayUtil.join(protoSourcePathArray, File.separator);
+        String protoSourcePath = ArrayKit.join(protoSourcePathArray, File.separator);
 
         String[] generateFolderArray = new String[]{
-                SystemUtil.getUserInfo().getCurrentDir()
+                currentDir
                 , "example-game-collect"
                 , "game-common-proto"
                 , "target"
@@ -55,7 +55,7 @@ public class GenerateFileForProto {
         };
 
         // 生成 .proto 文件存放的目录
-        String generateFolder = ArrayUtil.join(generateFolderArray, File.separator);
+        String generateFolder = ArrayKit.join(generateFolderArray, File.separator);
 
         ProtoGenerateFile protoGenerateFile = ProtoGenerateFile.builder()
                 // 源码目录

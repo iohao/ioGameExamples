@@ -13,7 +13,6 @@
     <properties>
         <redisson.version>3.17.1</redisson.version>
         <lombok.version>1.18.24</lombok.version>
-        <hutool.version>5.8.1</hutool.version>
     </properties>
 
     <artifactId>example-redisson-lock</artifactId>
@@ -46,18 +45,6 @@
             <artifactId>lombok</artifactId>
             <version>${lombok.version}</version>
             <optional>true</optional>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/cn.hutool/hutool-all -->
-        <dependency>
-            <groupId>cn.hutool</groupId>
-            <artifactId>hutool-core</artifactId>
-            <version>${hutool.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>cn.hutool</groupId>
-            <artifactId>hutool-extra</artifactId>
-            <version>${hutool.version}</version>
         </dependency>
 
         <dependency>
