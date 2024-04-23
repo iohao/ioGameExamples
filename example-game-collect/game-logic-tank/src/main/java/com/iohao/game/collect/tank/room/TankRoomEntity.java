@@ -61,10 +61,4 @@ public class TankRoomEntity extends AbstractRoom {
     public TankRoomEntity() {
         this.maxFrameId = 60 * FrameKit.MINUTE;
     }
-
-    @Override
-    @SuppressWarnings("unchecked")
-    protected <T extends AbstractFlowContextSend> T createSend(FlowContext flowContext) {
-        return (T) new TankSend(flowContext);
-    }
 }

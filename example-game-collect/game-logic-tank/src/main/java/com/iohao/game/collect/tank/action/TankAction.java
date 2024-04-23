@@ -86,7 +86,9 @@ public class TankAction {
         TankRoomEntity room = roomService.getRoomByUserId(userId);
 
         // 广播业务数据给房间内的所有玩家
-        room.broadcast(flowContext, tankBullet);
+        room.ofRangeBroadcast(flowContext)
+                .setResponseMessage(flowContext.getCmdInfo(), tankBullet)
+                .execute();
     }
 
     /**
@@ -153,7 +155,9 @@ public class TankAction {
         player.setTankLocation(tankLocation);
 
         //  广播坦克移动
-        room.broadcast(flowContext, tankLocation);
+        room.ofRangeBroadcast(flowContext)
+                .setResponseMessage(flowContext.getCmdInfo(), tankLocation)
+                .execute();
     }
 
     /**

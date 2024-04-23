@@ -18,8 +18,6 @@
  */
 package com.iohao.game.exchange.logic;
 
-import com.github.javafaker.Faker;
-import com.github.javafaker.Name;
 import com.iohao.game.action.skeleton.annotation.ActionController;
 import com.iohao.game.action.skeleton.annotation.ActionMethod;
 import com.iohao.game.action.skeleton.core.flow.FlowContext;
@@ -30,6 +28,8 @@ import com.iohao.game.bolt.broker.client.kit.UserIdSettingKit;
 import com.iohao.game.exchange.common.ExchangeAttachment;
 import com.iohao.game.exchange.common.ExchangeCmd;
 import lombok.extern.slf4j.Slf4j;
+import net.datafaker.Faker;
+import net.datafaker.providers.base.Name;
 
 import java.util.Locale;
 
@@ -40,7 +40,8 @@ import java.util.Locale;
 @Slf4j
 @ActionController(ExchangeCmd.cmd)
 public class ExchangeAction {
-    static final Name name = new Faker(Locale.CHINA).name();
+    static final Faker faker = new Faker(Locale.CHINA);
+    static final Name name = faker.name();
 
     @ActionMethod(ExchangeCmd.loginVerify)
     public long loginVerify(String jwt, FlowContext flowContext) {
