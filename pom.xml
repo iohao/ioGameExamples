@@ -71,13 +71,12 @@
         <module>example-exchange/exchange-web-gm</module>
         <module>example-exchange/exchange-common</module>
         <module>example-exchange/exchange-client</module>
-
     </modules>
 
     <!--统一管理版本 的一个父 pom-->
     <properties>
         <!-- 项目版本 -->
-        <ioGame.version>21.5</ioGame.version>
+        <ioGame.version>21.6</ioGame.version>
         <!-- jdk 版本 -->
         <java.version>21</java.version>
         <maven.compiler.source>21</maven.compiler.source>
@@ -141,11 +140,18 @@
             <version>${ioGame.version}</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/com.github.javafaker/javafaker -->
+<!--        &lt;!&ndash; https://mvnrepository.com/artifact/com.github.javafaker/javafaker &ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>com.github.javafaker</groupId>-->
+<!--            <artifactId>javafaker</artifactId>-->
+<!--            <version>1.0.2</version>-->
+<!--        </dependency>-->
+
+        <!-- https://mvnrepository.com/artifact/net.datafaker/datafaker -->
         <dependency>
-            <groupId>com.github.javafaker</groupId>
-            <artifactId>javafaker</artifactId>
-            <version>1.0.2</version>
+            <groupId>net.datafaker</groupId>
+            <artifactId>datafaker</artifactId>
+            <version>2.1.0</version>
         </dependency>
 
         <!-- lombok 简化 java 代码 -->

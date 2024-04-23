@@ -18,8 +18,6 @@
  */
 package com.iohao.game.component.login.action;
 
-import com.github.javafaker.Faker;
-import com.github.javafaker.Name;
 import com.iohao.game.action.skeleton.annotation.ActionController;
 import com.iohao.game.action.skeleton.annotation.ActionMethod;
 import com.iohao.game.action.skeleton.core.flow.FlowContext;
@@ -28,6 +26,7 @@ import com.iohao.game.component.login.cmd.LoginCmd;
 import com.iohao.game.component.login.proto.LoginVerify;
 import com.iohao.game.component.login.proto.UserInfo;
 import lombok.extern.slf4j.Slf4j;
+import net.datafaker.Faker;
 
 import java.util.Locale;
 
@@ -39,7 +38,7 @@ import java.util.Locale;
 @ActionController(LoginCmd.cmd)
 public class TheLoginAction {
     // cn name
-    static final Name name = new Faker(Locale.CHINA).name();
+    Faker faker = new Faker(Locale.CHINA);
 
     /**
      * 登录验证
@@ -55,7 +54,7 @@ public class TheLoginAction {
 
         UserInfo userInfo = new UserInfo();
         userInfo.id = userId;
-        userInfo.name = name.lastName() + name.firstName();
+        userInfo.name = faker.name().fullName();
 
         // channel 中设置用户的真实 userId；
         boolean success = UserIdSettingKit.settingUserId(flowContext, userId);
