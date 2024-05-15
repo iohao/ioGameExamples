@@ -19,8 +19,12 @@
 package com.iohao.game.component.client;
 
 import com.iohao.game.action.skeleton.core.CmdInfo;
+import com.iohao.game.action.skeleton.protocol.wrapper.LongValue;
+import com.iohao.game.common.kit.ExecutorKit;
 import com.iohao.game.common.kit.concurrent.IntervalTaskListener;
 import com.iohao.game.common.kit.concurrent.TaskKit;
+import com.iohao.game.common.kit.concurrent.executor.ExecutorRegionKit;
+import com.iohao.game.common.kit.concurrent.executor.ThreadExecutor;
 import com.iohao.game.component.login.client.LoginInputCommandRegion;
 import com.iohao.game.component.login.cmd.LoginCmd;
 import com.iohao.game.external.client.AbstractInputCommandRegion;
@@ -35,8 +39,10 @@ import com.iohao.game.external.client.user.DefaultClientUser;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
+import java.util.concurrent.ExecutorService;
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.LongAdder;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * 压测演示
@@ -44,7 +50,13 @@ import java.util.concurrent.atomic.LongAdder;
  * @author 渔民小镇
  * @date 2023-07-16
  */
+@Slf4j
 public class PressureClient {
+    static int pressureUserSize;
+    static int pressureSecondsRequest;
+    static int pressureRound;
+    static AtomicBoolean printFlag = new AtomicBoolean(true);
+
     public static void main(String[] args) throws InterruptedException {
         // 压测，关闭控制台输入
         ClientUserConfigs.closeScanner = true;
@@ -52,16 +64,39 @@ public class PressureClient {
         ClientUserConfigs.closeLog();
 
         // 需要模拟压测的玩家数量
-        int userSize = 8;
+        pressureUserSize = 80;
+        // 每个玩家每秒的请求次数
+        pressureSecondsRequest = 10;
+        // 共测 N 轮
+        pressureRound = 10;
+
+        ExecutorService executor = ExecutorKit.newFixedThreadPool(200, "loginUser");
         // 设置期望测试的玩家数量
-        for (int i = 1; i <= userSize; i++) {
+        for (int i = 1; i <= pressureUserSize; i++) {
             // 模拟玩家的 userId
             long userId = i;
             // 启动模拟客户端
-            TaskKit.execute(() -> start(userId));
+            executor.execute(() -> start(userId));
         }
 
         TimeUnit.SECONDS.sleep(1);
+    }
+
+    static void pressureLog() {
+        String pressureFormat = """
+                请求总次数【%,d】
+                模拟压测【%s】个玩家 - 每个玩家每秒请求【%,d】次
+                每秒请求总次数【%,d】
+                共测【%,d】轮
+                """.formatted(
+                (pressureUserSize * pressureSecondsRequest * pressureRound),
+                pressureUserSize,
+                pressureSecondsRequest,
+                (pressureUserSize * pressureSecondsRequest),
+                pressureRound
+        );
+
+        log.info("\n{}", pressureFormat);
     }
 
     static void start(long userId) {
@@ -97,7 +132,7 @@ public class PressureClient {
 
     @Slf4j
     static class PressureInputCommandRegion extends AbstractInputCommandRegion {
-        LongAdder count = new LongAdder();
+        AtomicInteger count = new AtomicInteger();
 
         @Override
         public void initInputCommand() {
@@ -105,16 +140,25 @@ public class PressureClient {
             this.inputCommandCreate.cmd = LoginCmd.cmd;
             ofCommand(LoginCmd.inc).setTitle("inc");
 
+            ofCommand(LoginCmd.inc2).setRequestData(() -> LongValue.of(1)).setTitle("inc2").callback(result -> {
+            });
+
             // 需要压测的业务代码。将任务添加到队列中，当玩家全部登录完成后会执行任务
             ClientUsers.execute(this::ppp);
+//            ClientUsers.execute(this::ppp2);
+            if (printFlag.get()) {
+                printFlag.set(false);
+                ClientUsers.execute(PressureClient::pressureLog);
+            }
         }
 
         private void ppp() {
             TaskKit.runInterval(new IntervalTaskListener() {
                 @Override
                 public void onUpdate() {
+
                     // 请求 N 次 inc action
-                    for (int i = 0; i < 100; i++) {
+                    for (int i = 0; i < pressureSecondsRequest; i++) {
                         ofRequestCommand(LoginCmd.inc).execute();
                     }
                 }
@@ -122,8 +166,25 @@ public class PressureClient {
                 @Override
                 public boolean isActive() {
                     // 执行次数上限
-                    count.increment();
-                    return count.longValue() < 10;
+                    return count.incrementAndGet() <= pressureRound;
+                }
+            }, 1, TimeUnit.SECONDS);
+        }
+
+        private void ppp2() {
+            TaskKit.runInterval(new IntervalTaskListener() {
+                @Override
+                public void onUpdate() {
+                    // 请求 N 次 inc action
+                    for (int i = 0; i < pressureSecondsRequest; i++) {
+                        ofRequestCommand(LoginCmd.inc2).execute();
+                    }
+                }
+
+                @Override
+                public boolean isActive() {
+                    // 执行次数上限
+                    return count.incrementAndGet() <= pressureRound;
                 }
             }, 1, TimeUnit.SECONDS);
         }

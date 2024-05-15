@@ -21,8 +21,10 @@ package com.iohao.game.component;
 import com.iohao.game.action.skeleton.core.flow.internal.DebugInOut;
 import com.iohao.game.action.skeleton.kit.LogicServerCreateKit;
 import com.iohao.game.bolt.broker.client.AbstractBrokerClientStartup;
+import com.iohao.game.bolt.broker.core.common.IoGameGlobalConfig;
 import com.iohao.game.component.chat.ChatLogicServer;
 import com.iohao.game.component.login.LoginLogicServer;
+import com.iohao.game.core.common.NetCommonKit;
 import com.iohao.game.external.core.ExternalServer;
 import com.iohao.game.external.core.config.ExternalGlobalConfig;
 import com.iohao.game.external.core.netty.DefaultExternalServer;
@@ -38,6 +40,7 @@ import java.util.List;
 @Slf4j
 public class ComponentApplication {
     public static void main(String[] args) {
+        userProcessorExecutorStrategy();
         LogicServerCreateKit.removeInOut(DebugInOut.class);
 
         ChatLogicServer chatLogicServer = new ChatLogicServer();
@@ -62,5 +65,9 @@ public class ComponentApplication {
                 .setLogicServerList(logicServers)
                 // 启动游戏服务器
                 .startup();
+    }
+
+    private static void userProcessorExecutorStrategy() {
+        IoGameGlobalConfig.userProcessorExecutorStrategy = userProcessorExecutorAware -> NetCommonKit.getVirtualExecutor();
     }
 }

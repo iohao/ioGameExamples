@@ -28,6 +28,7 @@ public interface LoginCmd {
     int cmd = 126;
     int login = 0;
     int inc = 100;
+    int inc2 = 101;
 
     static CmdInfo getCmdInfo(int subCmd) {
         return CmdInfo.of(cmd, subCmd);

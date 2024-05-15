@@ -20,21 +20,49 @@ package com.iohao.game.component.login;
 
 import com.iohao.game.action.skeleton.core.BarSkeleton;
 import com.iohao.game.action.skeleton.core.BarSkeletonBuilder;
+import com.iohao.game.action.skeleton.core.flow.internal.StatActionInOut;
+import com.iohao.game.action.skeleton.core.flow.internal.ThreadMonitorInOut;
+import com.iohao.game.action.skeleton.core.runner.Runner;
 import com.iohao.game.bolt.broker.client.AbstractBrokerClientStartup;
 import com.iohao.game.bolt.broker.core.client.BrokerClient;
 import com.iohao.game.bolt.broker.core.client.BrokerClientBuilder;
 import com.iohao.game.action.skeleton.kit.LogicServerCreateKit;
+import com.iohao.game.common.kit.concurrent.TaskKit;
+import com.iohao.game.component.login.action.PressureAction;
 import com.iohao.game.component.login.action.TheLoginAction;
+import lombok.extern.slf4j.Slf4j;
+
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.LongAdder;
 
 /**
  * @author 渔民小镇
  * @date 2023-07-16
  */
+@Slf4j
 public class LoginLogicServer extends AbstractBrokerClientStartup {
     @Override
     public BarSkeleton createBarSkeleton() {
         // 业务框架构建器
         BarSkeletonBuilder builder = LogicServerCreateKit.createBuilder(TheLoginAction.class);
+        // 业务线程监控插件，将插件添加到业务框架中
+        var threadMonitorInOut = new ThreadMonitorInOut();
+//        builder.addInOut(threadMonitorInOut);
+
+        // action 调用统计插件，将插件添加到业务框架中
+        var statActionInOut = new StatActionInOut();
+        builder.addInOut(statActionInOut);
+
+        builder.addRunner(skeleton -> TaskKit.runInterval(() -> {
+            long value = PressureAction.inc.longValue();
+            log.info("inc {}", value);
+
+            var region = statActionInOut.getRegion();
+            log.info("\n{}", region);
+            System.out.println();
+
+        }, 1, TimeUnit.SECONDS));
+
 
         return builder.build();
     }

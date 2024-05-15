@@ -34,18 +34,24 @@ import java.util.concurrent.atomic.LongAdder;
 @Slf4j
 @ActionController(LoginCmd.cmd)
 public class PressureAction {
-    static final LongAdder inc = new LongAdder();
+    public static final LongAdder inc = new LongAdder();
 
     @ActionMethod(LoginCmd.inc)
     public void inc() {
         inc.increment();
     }
 
-    static {
-        // 每秒打印一次
-        TaskKit.runInterval(() -> {
-            long value = inc.longValue();
-            log.info("  inc {}", value);
-        }, 1, TimeUnit.SECONDS);
+    @ActionMethod(LoginCmd.inc2)
+    public long inc2(long id) {
+        inc.increment();
+        return id + 1;
     }
+
+//    static {
+//        // 每秒打印一次
+//        TaskKit.runInterval(() -> {
+//            long value = inc.longValue();
+//            log.info("  inc {}", value);
+//        }, 1, TimeUnit.SECONDS);
+//    }
 }
