@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>iogame-example</artifactId>
+        <groupId>com.iohao.example</groupId>
+        <version>3.0.0.io</version>
+        <relativePath>../../pom.xml</relativePath>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>fxgl-tank</artifactId>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.github.almasb</groupId>
+            <artifactId>fxgl</artifactId>
+            <version>21.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.iohao.game.sdk</groupId>
+            <artifactId>java-sdk</artifactId>
+            <version>${ioGameSDK.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.iohao.example</groupId>
+            <artifactId>game-common-proto</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+
+        <!-- 这个不是必须的， 这里使用了 springboot 的控制台色彩相关日志 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+            <version>${springboot.version}</version>
+        </dependency>
+
+    </dependencies>
+</project>

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.iohao.demo</groupId>
+    <artifactId>fxglNetGameSimple</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <modules>
+        <module>game-fxgl</module>
+        <module>game-server</module>
+        <module>common</module>
+    </modules>
+
+    <properties>
+        <source.version>21</source.version>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+       
+        <!-- slf4j https://mvnrepository.com/artifact/ch.qos.logback/logback-classic -->
+        <logback.version>1.4.14</logback.version>
+
+        <lombok.version>1.18.30</lombok.version>
+        <ioGame.version>21.8</ioGame.version>
+        <ioGameSDK.version>21.2</ioGameSDK.version>
+
+        <!-- https://mvnrepository.com/artifact/com.github.almasb/fxgl -->
+        <fxgl.version>21.1</fxgl.version>
+        <javafx.version>21.0.1</javafx.version>
+
+        <!-- Java 实体映射工具 https://mvnrepository.com/artifact/org.mapstruct/mapstruct https://mapstruct.org/documentation/reference-guide/ -->
+        <org.mapstruct.version>1.5.5.Final</org.mapstruct.version>
+        <!-- plugins -->
+        <maven.compiler.version>3.8.1</maven.compiler.version>
+        <maven.shade.version>3.0.0</maven.shade.version>
+
+        <!-- https://mvnrepository.com/artifact/net.datafaker/datafaker -->
+        <datafaker.version>2.1.0</datafaker.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.iohao.game</groupId>
+            <artifactId>common-micro-kit</artifactId>
+            <version>${ioGame.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/ch.qos.logback/logback-classic -->
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${logback.version}</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.mapstruct/mapstruct -->
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct</artifactId>
+            <version>${org.mapstruct.version}</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/net.datafaker/datafaker -->
+        <dependency>
+            <groupId>net.datafaker</groupId>
+            <artifactId>datafaker</artifactId>
+            <version>${datafaker.version}</version>
+        </dependency>
+        
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <!--                <version>3.11.0</version>-->
+                <version>3.8.1</version>
+                <configuration>
+                    <release>${source.version}</release>
+                    <compilerVersion>${java.version}</compilerVersion>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <!-- maven 3.6.2及之后加上编译参数，可以让我们在运行期获取方法参数名称。 -->
+                    <parameters>true</parameters>
+                    <skip>true</skip>
+                    <!-- JDK9+ with module-info.java -->
+                    <annotationProcessorPaths>
+                        <!-- 实体映射工具 -->
+                        <path>
+                            <groupId>org.mapstruct</groupId>
+                            <artifactId>mapstruct-processor</artifactId>
+                            <version>${org.mapstruct.version}</version>
+                        </path>
+
+                        <!-- lombok 消除冗长的 Java 代码 -->
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <version>${lombok.version}</version>
+                        </path>
+                        <!-- additional annotation processor required as of Lombok 1.18.16 -->
+                        <!-- mapStruct 支持 lombok -->
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok-mapstruct-binding</artifactId>
+                            <version>0.2.0</version>
+                        </path>
+                    </annotationProcessorPaths>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

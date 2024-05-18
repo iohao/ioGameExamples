@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <packaging>pom</packaging>
+
+    <groupId>com.iohao.example</groupId>
+    <artifactId>iogame-example</artifactId>
+    <version>3.0.0.io</version>
+    <name>ioGame-example</name>
+    <description>ioGame网络游戏服务器框架 - 示例</description>
+
+    <modules>
+        <!-- 示例 -->
+        <module>example/example-parent</module>
+        <module>example/example-run-one</module>
+        <module>example/example-for-spring</module>
+        <module>example/example-interaction</module>
+        <module>example/example-interaction-same</module>
+        <module>example/example-endpoint</module>
+        <module>example/example-for-tcp-socket</module>
+
+        <!--        <module>example/example-redisson-lock-spring-boot-starter</module>-->
+        <!--        <module>example/example-redisson-lock</module>-->
+
+        <module>example/example-cluster-run-one</module>
+        <module>example/example-broadcast</module>
+        <module>example/example-hook</module>
+        <module>example/example-wrapper-base-type</module>
+
+        <!-- 实践案例 - 通用部分  -->
+        <module>example-game-collect/game-common-proto</module>
+        <module>example-game-collect/game-common</module>
+        <!-- 对外服 -->
+        <module>example-game-collect/game-external</module>
+        <!-- 逻辑服 - 大厅 -->
+        <module>example-game-collect/game-logic-hall</module>
+        <!-- 逻辑服 - 坦克 -->
+        <module>example-game-collect/game-logic-tank</module>
+        <!-- 启动 对外服、网关、逻辑服 -->
+        <module>example-game-collect/game-one</module>
+        <!-- java 坦克游戏 fxgl -->
+        <module>example-game-collect/fxgl-tank</module>
+
+        <module>example/example-jsr-jakarta</module>
+        <module>example/example-jsr-javax</module>
+        <module>example/example-codec-json</module>
+        <module>example-multiple/the-weather-game-logic</module>
+        <module>example-multiple/the-common-data</module>
+        <module>example-multiple/the-common-external</module>
+        <module>example-multiple/the-common-broker</module>
+        <module>example-multiple/the-one-application</module>
+        <module>example-multiple/the-client</module>
+        <module>component/chat-core</module>
+        <module>component/chat-provide</module>
+        <module>component/login-core</module>
+        <module>component/login-provide</module>
+        <module>component/z-client</module>
+        <module>example/example-ws-token</module>
+        <module>example-multiple-eventbus/the-eventbus-one-application</module>
+        <module>example-multiple-eventbus/the-eventbus-common-data</module>
+        <module>example-multiple-eventbus/the-eventbus-external</module>
+        <module>example-multiple-eventbus/the-eventbus-logic-user</module>
+        <module>example-multiple-eventbus/the-eventbus-logic-email</module>
+        <module>example-multiple-eventbus/the-eventbus-broker</module>
+        <module>example-multiple-eventbus/the-eventbus-client</module>
+        <module>example-multiple-eventbus/the-eventbus-analyse-data</module>
+        <module>example/example-external-cache</module>
+        <module>example-exchange/exchange-game-logic</module>
+        <module>example-exchange/exchange-web-gm</module>
+        <module>example-exchange/exchange-common</module>
+        <module>example-exchange/exchange-client</module>
+    </modules>
+
+    <!--统一管理版本 的一个父 pom-->
+    <properties>
+        <!-- 项目版本 -->
+        <ioGame.version>21.8</ioGame.version>
+        <ioGameSDK.version>21.2</ioGameSDK.version>
+        <!-- jdk 版本 -->
+        <java.version>21</java.version>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
+
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <encoding>UTF-8</encoding>
+
+        <!-- lombok 消除冗长的 Java 代码 https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+        <lombok.version>1.18.30</lombok.version>
+
+        <!-- redis internal : https://mvnrepository.com/artifact/org.redisson/redisson -->
+        <redisson.version>3.17.3</redisson.version>
+
+        <!-- JSR380 bean 验证框架 https://mvnrepository.com/artifact/org.hibernate.validator/hibernate-validator -->
+        <hibernate-validator.version>7.0.4.Final</hibernate-validator.version>
+        <!-- JSR380 https://mvnrepository.com/artifact/jakarta.validation/jakarta.validation-api -->
+        <jakarta.validation-api.version>3.0.2</jakarta.validation-api.version>
+        <!-- JSR380 https://mvnrepository.com/artifact/org.glassfish/jakarta.el -->
+        <jakarta.el.version>4.0.2</jakarta.el.version>
+
+        <!-- Java 实体映射工具 https://mvnrepository.com/artifact/org.mapstruct/mapstruct https://mapstruct.org/documentation/reference-guide/ -->
+        <org.mapstruct.version>1.5.2.Final</org.mapstruct.version>
+
+        <!-- temp spring boot https://mvnrepository.com/artifact/org.springframework/spring-core -->
+        <spring.version>6.1.2</spring.version>
+        <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter -->
+        <springboot.version>3.1.2</springboot.version>
+        <!--  junit https://mvnrepository.com/artifact/junit/junit  -->
+        <junit.version>4.13.2</junit.version>
+        <!-- 模拟客户端 https://mvnrepository.com/artifact/org.java-websocket/Java-WebSocket -->
+        <java-websocket.version>1.5.3</java-websocket.version>
+        <!-- 演示用的假数据 https://mvnrepository.com/artifact/com.github.javafaker/javafaker -->
+        <javafaker.version>1.0.2</javafaker.version>
+
+        <!-- slf4j https://mvnrepository.com/artifact/ch.qos.logback/logback-classic -->
+        <logback.version>1.4.14</logback.version>
+        <!-- Hazelcast提供弹性可扩展的分布式内存计算 https://mvnrepository.com/artifact/com.hazelcast/hazelcast -->
+        <hazelcast.version>5.1.1</hazelcast.version>
+    </properties>
+
+    <dependencies>
+
+        <!-- 单体应用启动 -->
+        <dependency>
+            <groupId>com.iohao.game</groupId>
+            <artifactId>run-one-netty</artifactId>
+            <version>${ioGame.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.iohao.game</groupId>
+            <artifactId>light-client</artifactId>
+            <version>${ioGame.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.iohao.game</groupId>
+            <artifactId>light-jprotobuf</artifactId>
+            <version>${ioGame.version}</version>
+        </dependency>
+
+<!--        &lt;!&ndash; https://mvnrepository.com/artifact/com.github.javafaker/javafaker &ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>com.github.javafaker</groupId>-->
+<!--            <artifactId>javafaker</artifactId>-->
+<!--            <version>1.0.2</version>-->
+<!--        </dependency>-->
+
+        <!-- https://mvnrepository.com/artifact/net.datafaker/datafaker -->
+        <dependency>
+            <groupId>net.datafaker</groupId>
+            <artifactId>datafaker</artifactId>
+            <version>2.1.0</version>
+        </dependency>
+
+        <!-- lombok 简化 java 代码 -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+            <optional>true</optional>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.mapstruct/mapstruct -->
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct</artifactId>
+            <version>${org.mapstruct.version}</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.alibaba.fastjson2/fastjson2 -->
+        <dependency>
+            <groupId>com.alibaba.fastjson2</groupId>
+            <artifactId>fastjson2</artifactId>
+            <version>2.0.23</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/ch.qos.logback/logback-classic -->
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${logback.version}</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/junit/junit -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-clean-plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-clean-plugin</artifactId>
+                <version>3.1.0</version>
+            </plugin>
+
+            <!--
+            编译插件
+            mvn compile
+            To compile your test sources, you'll do:
+            mvn test-compile
+            -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <!--                <version>3.11.0</version>-->
+                <configuration>
+                    <compilerVersion>${java.version}</compilerVersion>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <!-- maven 3.6.2及之后加上编译参数，可以让我们在运行期获取方法参数名称。 -->
+                    <parameters>true</parameters>
+                    <skip>true</skip>
+                    <!-- JDK9+ with module-info.java -->
+                    <annotationProcessorPaths>
+                        <!-- 实体映射工具 -->
+                        <path>
+                            <groupId>org.mapstruct</groupId>
+                            <artifactId>mapstruct-processor</artifactId>
+                            <version>${org.mapstruct.version}</version>
+                        </path>
+
+                        <!-- lombok 消除冗长的 Java 代码 -->
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <version>${lombok.version}</version>
+                        </path>
+                        <!-- additional annotation processor required as of Lombok 1.18.16 -->
+                        <!-- mapStruct 支持 lombok -->
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok-mapstruct-binding</artifactId>
+                            <version>0.2.0</version>
+                        </path>
+                    </annotationProcessorPaths>
+                </configuration>
+            </plugin>
+
+            <!-- 打包时跳过单元测试 https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-surefire-plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.0.0-M5</version>
+                <configuration>
+                    <skipTests>true</skipTests>
+                </configuration>
+            </plugin>
+
+            <!-- 打包源码 https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-source-plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>3.2.1</version>
+                <configuration>
+                    <attach>true</attach>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+        </plugins>
+    </build>
+
+</project>
