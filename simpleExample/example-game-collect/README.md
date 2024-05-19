@@ -1,7 +1,3 @@
-游戏集合
-
-这里是实战示例
-
 示例目录说明
 ```text
 example-game-collect
@@ -29,4 +25,4 @@ example-game-collect
 
 ### 网络部分
 
-在网络请求部分，使用了 [ioGameClient sdk (yuque.com)](https://www.yuque.com/iohao/game/ot4o45f8u9566wu0) 来简化与 ioGame 通信的网络交互部分。
+在网络请求部分，使用了 [ioGame sdk (yuque.com)](https://www.yuque.com/iohao/game/ot4o45f8u9566wu0) 来简化与 ioGame 通信的网络交互部分。
