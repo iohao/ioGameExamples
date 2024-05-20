@@ -16,6 +16,8 @@
  */
 package com.iohao.game.collect.tank;
 
+import com.iohao.game.action.skeleton.core.CmdInfo;
+
 /**
  * 游戏 - 坦克模块
  *
@@ -39,6 +41,7 @@ public interface TankCmd {
     int testShooting = 7;
     int testShootingOrder = 8;
 
-    int testUserInfo = 11;
-    int testBroadcasts = 12;
+    static CmdInfo of(int subCmd) {
+        return CmdInfo.of(cmd, subCmd);
+    }
 }

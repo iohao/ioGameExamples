@@ -19,18 +19,22 @@ package com.iohao.game.collect.tank;
 import com.iohao.game.action.skeleton.core.BarSkeleton;
 import com.iohao.game.action.skeleton.core.BarSkeletonBuilder;
 import com.iohao.game.action.skeleton.core.BarSkeletonBuilderParamConfig;
+import com.iohao.game.action.skeleton.core.doc.BroadcastDoc;
 import com.iohao.game.bolt.broker.client.BrokerClientApplication;
 import com.iohao.game.bolt.broker.core.client.BrokerAddress;
 import com.iohao.game.bolt.broker.core.common.IoGameGlobalConfig;
 import com.iohao.game.collect.common.GameBarSkeletonConfig;
 import com.iohao.game.collect.common.GameCodeEnum;
+import com.iohao.game.collect.proto.tank.TankBullet;
+import com.iohao.game.collect.proto.tank.TankLocation;
 import com.iohao.game.collect.tank.action.TankAction;
 import com.iohao.game.collect.tank.config.TankKit;
-import com.iohao.game.collect.tank.send.TankSend;
 import com.iohao.game.bolt.broker.client.AbstractBrokerClientStartup;
 import com.iohao.game.bolt.broker.core.client.BrokerClient;
 import com.iohao.game.bolt.broker.core.client.BrokerClientBuilder;
 import com.iohao.game.common.kit.NetworkKit;
+
+import java.util.Arrays;
 
 /**
  * 坦克游戏逻辑服
@@ -51,16 +55,28 @@ public class TankClientStartup extends AbstractBrokerClientStartup {
         BarSkeletonBuilderParamConfig config = new BarSkeletonBuilderParamConfig()
                 // 扫描 action 类所在包
                 .scanActionPackage(TankAction.class)
-                // 推送消息-用于文档的生成
-                .scanActionSendPackage(TankSend.class)
-                // 错误码-用于文档的生成
-                .addErrorCode(GameCodeEnum.values())
                 // 开启广播日志
                 .setBroadcastLog(true);
 
         BarSkeletonBuilder builder = GameBarSkeletonConfig.createBuilder(config);
 
+        extractedDoc(builder);
+
         return builder.build();
+    }
+
+    private static void extractedDoc(BarSkeletonBuilder builder) {
+        // 错误码 - 用于文档的生成
+        Arrays.stream(GameCodeEnum.values()).forEach(builder::addMsgExceptionInfo);
+
+        // 游戏对接文档的生成 https://www.yuque.com/iohao/game/irth38
+        builder.addBroadcastDoc(BroadcastDoc.newBuilder(TankCmd.of(TankCmd.shooting))
+                        .setDataClass(TankBullet.class)
+                        .setDescription("坦克射击(发射子弹)"))
+                .addBroadcastDoc(BroadcastDoc.newBuilder(TankCmd.of(TankCmd.tankMove))
+                        .setDataClass(TankLocation.class)
+                        .setDescription("坦克移动"))
+        ;
     }
 
     @Override
@@ -83,4 +99,6 @@ public class TankClientStartup extends AbstractBrokerClientStartup {
     public void startupSuccess(BrokerClient brokerClient) {
         TankKit.brokerClient = brokerClient;
     }
+
+
 }
