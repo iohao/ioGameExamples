@@ -25,6 +25,7 @@
 
         <lombok.version>1.18.30</lombok.version>
         <ioGame.version>21.8</ioGame.version>
+        <!-- https://mvnrepository.com/artifact/com.iohao.game.sdk/java-sdk -->
         <ioGameSDK.version>21.2</ioGameSDK.version>
 
         <!-- https://mvnrepository.com/artifact/com.github.almasb/fxgl -->
