@@ -26,6 +26,7 @@ import com.iohao.game.bolt.broker.core.client.BrokerClient;
 import com.iohao.game.bolt.broker.core.client.BrokerClientBuilder;
 import com.iohao.game.bolt.broker.core.common.IoGameGlobalConfig;
 import com.iohao.game.common.kit.NetworkKit;
+import com.iohao.game.example.broadcast.action.BroadcastMessageAction;
 
 /**
  * demo 广播示例游戏逻辑服

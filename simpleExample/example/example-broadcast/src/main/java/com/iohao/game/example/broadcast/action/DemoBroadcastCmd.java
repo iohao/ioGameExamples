@@ -15,7 +15,7 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-package com.iohao.game.example.broadcast;
+package com.iohao.game.example.broadcast.action;
 
 import com.iohao.game.example.common.DemoModuleCmd;
 
@@ -31,4 +31,6 @@ public interface DemoBroadcastCmd {
     int broadcastMsg = 0;
 
     int helloBroadcast1 = 1;
+
+    int testRangeBroadcast = 2;
 }

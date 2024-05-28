@@ -18,6 +18,8 @@
  */
 package com.iohao.game.example.broadcast;
 
+import com.iohao.game.common.kit.concurrent.TaskKit;
+import com.iohao.game.example.broadcast.action.DemoBroadcastCmd;
 import com.iohao.game.example.common.msg.DemoBroadcastMessage;
 import com.iohao.game.external.client.AbstractInputCommandRegion;
 import com.iohao.game.external.client.InputCommandRegion;
@@ -53,11 +55,22 @@ public class DemoBroadcastClient {
             // 模拟请求的主路由
             inputCommandCreate.cmd = DemoBroadcastCmd.cmd;
 
+            ofCommand(DemoBroadcastCmd.testRangeBroadcast).setTitle("testRangeBroadcast");
+
+            TaskKit.runOnceSecond(() -> {
+                ofRequestCommand(DemoBroadcastCmd.testRangeBroadcast).execute();
+            });
+
             // 广播监听
             ofListen(result -> {
                 DemoBroadcastMessage value = result.getValue(DemoBroadcastMessage.class);
-                log.info("broadcastMessage ========== \n{}", value);
+//                log.info("broadcastMessage ========== \n{}", value);
             }, DemoBroadcastCmd.broadcastMsg, "helloBroadcast1");
+
+            ofListen(result -> {
+                log.info("{}", result);
+            }, DemoBroadcastCmd.testRangeBroadcast, "testRangeBroadcast");
+
         }
     }
 }

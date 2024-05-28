@@ -29,7 +29,7 @@ import com.iohao.game.bolt.broker.core.client.BrokerClientHelper;
 import com.iohao.game.bolt.broker.core.common.IoGameGlobalConfig;
 import com.iohao.game.common.kit.HashKit;
 import com.iohao.game.common.kit.concurrent.TaskKit;
-import com.iohao.game.example.broadcast.DemoBroadcastCmd;
+import com.iohao.game.example.broadcast.action.DemoBroadcastCmd;
 import com.iohao.game.example.broadcast.DemoBroadcastServer;
 import com.iohao.game.example.common.msg.DemoBroadcastMessage;
 import com.iohao.game.external.core.ExternalServer;

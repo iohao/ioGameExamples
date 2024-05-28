@@ -20,6 +20,7 @@ package com.iohao.game.example.multiple.eventbus.user;
 
 import com.iohao.game.action.skeleton.core.BarSkeleton;
 import com.iohao.game.action.skeleton.core.BarSkeletonBuilderParamConfig;
+import com.iohao.game.action.skeleton.core.flow.FlowContext;
 import com.iohao.game.action.skeleton.eventbus.AbstractEventBusRunner;
 import com.iohao.game.action.skeleton.eventbus.EventBus;
 import com.iohao.game.bolt.broker.client.AbstractBrokerClientStartup;
@@ -75,7 +76,7 @@ public class UserLogicStartup extends AbstractBrokerClientStartup {
                 moduleMessage.addHeader("name", "i'm user logic");
             }
         });
-
+        
         return builder;
     }
 }
