@@ -6,7 +6,7 @@
     <packaging>pom</packaging>
 
     <groupId>com.iohao.example</groupId>
-    <artifactId>iogame-example</artifactId>
+    <artifactId>simpleExample</artifactId>
     <version>3.0.0.io</version>
     <name>ioGame-example</name>
     <description>ioGame网络游戏服务器框架 - 示例</description>
