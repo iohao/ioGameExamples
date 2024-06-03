@@ -21,9 +21,11 @@ import com.iohao.game.action.skeleton.annotation.ActionController;
 import com.iohao.game.action.skeleton.annotation.ActionMethod;
 import com.iohao.game.action.skeleton.core.CmdInfo;
 import com.iohao.game.action.skeleton.core.flow.FlowContext;
+import com.iohao.game.action.skeleton.core.flow.MyFlowContext;
 import com.iohao.game.action.skeleton.protocol.wrapper.StringValue;
 import com.iohao.game.spring.common.cmd.ClassesCmdModule;
 import com.iohao.game.spring.common.cmd.IssuesCmdModule;
+import com.iohao.game.spring.common.data.MyAttachment;
 import com.iohao.game.spring.common.pb.ClassesPb;
 import com.iohao.game.spring.common.pb.SchoolPb;
 import com.iohao.game.spring.logic.classes.service.ClassesService;
@@ -103,5 +105,11 @@ public class ClassesAction {
          */
 
         log.info("jsr380Class : {}", schoolPb);
+    }
+
+    @ActionMethod(ClassesCmdModule.printAttachment)
+    public void printAttachment(MyFlowContext flowContext) {
+        MyAttachment attachment = flowContext.getAttachment();
+        log.info("attachment : \n{}", attachment);
     }
 }

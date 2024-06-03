@@ -161,6 +161,7 @@ public class FlowContextExample {
         // 路由
         ResponseCollectMessage response = flowContext.invokeModuleCollectMessage(cmdInfo);
 
+        // 打印其他游戏逻辑服所响应的数据
         for (ResponseCollectItemMessage message : response.getMessageList()) {
             RoomNumMsg roomNumMsg = message.getData(RoomNumMsg.class);
             log.info("同步调用 : {}", roomNumMsg.roomCount);

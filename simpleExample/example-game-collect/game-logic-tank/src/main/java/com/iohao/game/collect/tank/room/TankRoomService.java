@@ -52,8 +52,6 @@ public class TankRoomService implements RoomService, GameFlowService {
         TankRoomEntity room = new TankRoomEntity();
         room.setRoomId(roomId);
 
-        room.setAggregationContext(createContext.getAggregationContext());
-
         return room;
     }
 

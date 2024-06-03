@@ -20,12 +20,14 @@ package com.iohao.game.spring.logic.hall.action;
 import com.github.javafaker.Faker;
 import com.iohao.game.action.skeleton.annotation.ActionController;
 import com.iohao.game.action.skeleton.annotation.ActionMethod;
+import com.iohao.game.action.skeleton.core.CmdInfo;
 import com.iohao.game.action.skeleton.core.exception.MsgException;
 import com.iohao.game.action.skeleton.core.flow.FlowContext;
 import com.iohao.game.action.skeleton.core.flow.MyFlowContext;
 import com.iohao.game.bolt.broker.client.kit.ExternalCommunicationKit;
 import com.iohao.game.bolt.broker.client.kit.UserIdSettingKit;
 import com.iohao.game.spring.common.SpringGameCodeEnum;
+import com.iohao.game.spring.common.cmd.ClassesCmdModule;
 import com.iohao.game.spring.common.cmd.HallCmdModule;
 import com.iohao.game.spring.common.data.MyAttachment;
 import com.iohao.game.spring.common.pb.LoginVerify;
@@ -33,6 +35,7 @@ import com.iohao.game.spring.common.pb.UserInfo;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.Locale;
+import java.util.concurrent.atomic.AtomicLong;
 
 /**
  * 登录相关的
@@ -98,11 +101,12 @@ public class LoginAction {
         return userInfo;
     }
 
+    AtomicLong counter = new AtomicLong();
+
     @ActionMethod(HallCmdModule.attachment)
     public void attachment(FlowContext flowContext) {
         // 创建自定义的元附加信息对象
         MyAttachment myAttachment = new MyAttachment();
-        myAttachment.userId = flowContext.getUserId();
         myAttachment.nickname = "英雄无敌3";
 
         // 设置元信息 ----- 关键代码
@@ -121,6 +125,19 @@ public class LoginAction {
         // 文档 https://www.yuque.com/iohao/game/sw1y8u
 
         return attachment;
+    }
+
+    @ActionMethod(HallCmdModule.issue301)
+    public void testAttachmentUpdateAndRequest(FlowContext flowContext) {
+        // https://github.com/iohao/ioGame/issues/301
+
+        MyAttachment myAttachment = new MyAttachment();
+        myAttachment.nickname = "英雄无敌-" + counter.incrementAndGet();
+
+        flowContext.updateAttachment(myAttachment);
+
+        CmdInfo cmdInfo = ClassesCmdModule.of(ClassesCmdModule.printAttachment);
+        flowContext.invokeModuleVoidMessage(cmdInfo);
     }
 
     private UserInfo getUserInfoByJwt(String jwt) {

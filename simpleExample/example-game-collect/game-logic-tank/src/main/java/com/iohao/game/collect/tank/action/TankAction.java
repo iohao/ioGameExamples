@@ -27,7 +27,6 @@ import com.iohao.game.collect.tank.mapstruct.TankMapstruct;
 import com.iohao.game.collect.tank.room.TankPlayerEntity;
 import com.iohao.game.collect.tank.room.TankRoomEntity;
 import com.iohao.game.collect.tank.room.TankRoomService;
-import com.iohao.game.widget.light.room.Player;
 import com.iohao.game.widget.light.room.flow.GameFlowContext;
 import com.iohao.game.widget.light.room.flow.RoomCreateContext;
 import lombok.extern.slf4j.Slf4j;

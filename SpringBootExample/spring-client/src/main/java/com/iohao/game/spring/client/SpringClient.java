@@ -18,9 +18,7 @@
  */
 package com.iohao.game.spring.client;
 
-import com.baidu.bjf.remoting.protobuf.ProtobufProxy;
 import com.iohao.game.action.skeleton.protocol.wrapper.*;
-import com.iohao.game.common.kit.ProtoKit;
 import com.iohao.game.common.kit.concurrent.TaskKit;
 import com.iohao.game.external.client.AbstractInputCommandRegion;
 import com.iohao.game.external.client.InputCommandRegion;
@@ -36,7 +34,6 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.concurrent.TimeUnit;
 
 /**
  * @author 渔民小镇
@@ -80,11 +77,10 @@ public class SpringClient {
             extractedList();
 
             // 延迟执行模拟请求;
-            TaskKit.newTimeout(timeout -> {
+            TaskKit.runOnceMillis(() -> {
                 // 执行请求
                 ofRequestCommand(HallCmdModule.loginVerify).execute();
-
-            }, 100, TimeUnit.MILLISECONDS);
+            }, 100);
         }
 
         private void extractedList() {
@@ -140,8 +136,10 @@ public class SpringClient {
 
             ofCommand(HallCmdModule.attachmentPrint).setTitle("打印元信息").callback(result -> {
                 MyAttachment value = result.getValue(MyAttachment.class);
-                log.info("value : {}", value);
+                log.info("{}", value);
             });
+
+            ofCommand(HallCmdModule.issue301).setTitle("https://github.com/iohao/ioGame/issues/301");
         }
     }
 
@@ -152,7 +150,7 @@ public class SpringClient {
 
             ofCommand(ClassesCmdModule.issu143).setTitle("issu143").callback(result -> {
                 var value = result.getString();
-                log.info("value : {}", value);
+                log.info("{}", value);
             });
         }
     }
@@ -177,7 +175,7 @@ public class SpringClient {
                 return logicRequestPb;
             }).callback(result -> {
                 LogicRequestPb value = result.getValue(LogicRequestPb.class);
-                log.info("value : {}", value);
+                log.info("{}", value);
             });
 
             ofCommand(SchoolCmdModule.hereVoid).setTitle("hereVoid").setRequestData(() -> {
@@ -235,7 +233,7 @@ public class SpringClient {
                     .setRequestData(() -> IntValue.of(10))
                     .callback(result -> {
                         int value = result.getInt();
-                        log.info("value : {}", value);
+                        log.info("{}", value);
                     });
         }
 
@@ -253,7 +251,7 @@ public class SpringClient {
         private void listen() {
             ofListen(result -> {
                 SpringBroadcastMessagePb value = result.getValue(SpringBroadcastMessagePb.class);
-                log.info("value : {}", value);
+                log.info("{}", value);
             }, SchoolCmdModule.broadcastData, "广播业务数据");
         }
     }
@@ -266,12 +264,12 @@ public class SpringClient {
 
             ofCommand(RoomCmdModule.helloRoom).setTitle("helloRoom").callback(result -> {
                 OtherVerify value = result.getValue(OtherVerify.class);
-                log.info("value : {}", value);
+                log.info("{}", value);
             });
 
             ofCommand(RoomCmdModule.countRoom).setTitle("countRoom").callback(result -> {
                 RoomNumPb value = result.getValue(RoomNumPb.class);
-                log.info("value : {}", value);
+                log.info("{}", value);
             });
         }
     }
@@ -283,12 +281,12 @@ public class SpringClient {
 
             ofCommand(OtherSchoolCmdModule.longValueWithBroadcast).setTitle("longValueWithBroadcast").callback(result -> {
                 UserInfo value = result.getValue(UserInfo.class);
-                log.info("value : {}", value);
+                log.info("{}", value);
             });
 
             ofListen(result -> {
                 SchoolPb value = result.getValue(SchoolPb.class);
-                log.info("value : {}", value);
+                log.info("{}", value);
             }, OtherSchoolCmdModule.longValueWithBroadcastData, "longValueWithBroadcastData");
 
             ofCommand(OtherSchoolCmdModule.longValueWrapper)
@@ -296,7 +294,7 @@ public class SpringClient {
                     .setRequestData(() -> LongValue.of(1))
                     .callback(result -> {
                         long value = result.getLong();
-                        log.info("value : {}", value);
+                        log.info("{}", value);
                     })
             ;
         }

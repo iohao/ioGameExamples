@@ -18,9 +18,8 @@
 package com.iohao.game.spring.common.data;
 
 import com.baidu.bjf.remoting.protobuf.annotation.ProtobufClass;
-import com.iohao.game.core.common.client.Attachment;
+import com.iohao.game.action.skeleton.core.flow.UserAttachment;
 import lombok.AccessLevel;
-import lombok.Getter;
 import lombok.ToString;
 import lombok.experimental.FieldDefaults;
 
@@ -33,11 +32,6 @@ import lombok.experimental.FieldDefaults;
 @ToString
 @ProtobufClass
 @FieldDefaults(level = AccessLevel.PUBLIC)
-public class MyAttachment implements Attachment {
-    @Getter
-    long userId;
+public class MyAttachment implements UserAttachment {
     String nickname;
-
-    String serverId;
-    String playerId;
 }

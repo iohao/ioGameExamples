@@ -30,4 +30,9 @@ public class GameBrokerBoot {
         BrokerServerBuilder brokerServerBuilder = BrokerServer.newBuilder();
         return brokerServerBuilder.build();
     }
+
+    public static void main(String[] args) {
+        new GameBrokerBoot().createBrokerServer().startup();
+
+    }
 }

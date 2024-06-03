@@ -39,4 +39,7 @@ public interface HallCmdModule {
     int testEnum = 8;
     int testList = 9;
     int acceptList = 10;
+
+    /** 元信息更新后跨服请求 */
+    int issue301 = 11;
 }

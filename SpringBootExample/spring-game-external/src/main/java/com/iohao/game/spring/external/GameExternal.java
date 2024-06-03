@@ -35,6 +35,15 @@ import io.netty.handler.logging.LoggingHandler;
  * @date 2022-07-09
  */
 public class GameExternal {
+    public static void main(String[] args) {
+        // 对外开放的端口
+        int externalPort = 10100;
+        // 游戏对外服
+        ExternalServer externalServerWebSocket = new GameExternal()
+                .createExternalServer(externalPort);
+        externalServerWebSocket.startup();
+    }
+
     public ExternalServer createExternalServer(int externalPort) {
         return createExternalServer(externalPort, ExternalJoinEnum.WEBSOCKET);
     }
@@ -58,7 +67,7 @@ public class GameExternal {
         builder.setting().setMicroBootstrapFlow(new WebSocketMicroBootstrapFlow() {
             @Override
             public void pipelineFlow(PipelineContext pipelineContext) {
-                pipelineContext.addLast("logging", new LoggingHandler(LogLevel.INFO));
+//                pipelineContext.addLast("logging", new LoggingHandler(LogLevel.INFO));
 
                 super.pipelineFlow(pipelineContext);
             }

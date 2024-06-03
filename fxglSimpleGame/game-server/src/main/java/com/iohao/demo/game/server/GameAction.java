@@ -97,7 +97,6 @@ public class GameAction {
             // 有玩家退出房间，给房间内的其他玩家广播
             room.ofRangeBroadcast()
                     .setResponseMessage(CmdInfo.of(MyCmd.cmd, MyCmd.quitRoom), player.playerInfo)
-                    .disableEmptyUserCheck()
                     .execute();
         });
     }
@@ -119,7 +118,6 @@ public class GameAction {
             CmdInfo cmdInfo = CmdInfo.of(MyCmd.cmd, MyCmd.move);
             room.ofRangeBroadcast()
                     .setResponseMessage(cmdInfo, playerMove)
-                    .disableEmptyUserCheck()
                     .execute();
         });
     }
