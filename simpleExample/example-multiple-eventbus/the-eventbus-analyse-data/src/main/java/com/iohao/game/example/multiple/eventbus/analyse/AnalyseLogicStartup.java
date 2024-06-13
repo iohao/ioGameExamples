@@ -21,8 +21,7 @@ package com.iohao.game.example.multiple.eventbus.analyse;
 import com.iohao.game.action.skeleton.core.BarSkeleton;
 import com.iohao.game.action.skeleton.core.BarSkeletonBuilderParamConfig;
 import com.iohao.game.action.skeleton.core.flow.internal.TraceIdInOut;
-import com.iohao.game.action.skeleton.eventbus.AbstractEventBusRunner;
-import com.iohao.game.action.skeleton.eventbus.EventBus;
+import com.iohao.game.action.skeleton.eventbus.EventBusRunner;
 import com.iohao.game.bolt.broker.client.AbstractBrokerClientStartup;
 import com.iohao.game.bolt.broker.client.BrokerClientApplication;
 import com.iohao.game.bolt.broker.core.client.BrokerClient;
@@ -55,12 +54,9 @@ public class AnalyseLogicStartup extends AbstractBrokerClientStartup {
         builder.addInOut(traceIdInOut);
 
         // Analyse 逻辑服添加 EventBusRunner，用于处理 EventBus 相关业务
-        builder.addRunner(new AbstractEventBusRunner() {
-            @Override
-            public void registerEventBus(EventBus eventBus, BarSkeleton skeleton) {
-                // 数据分析逻辑服的订阅者
-                eventBus.register(new AnalyseEventBusSubscriber());
-            }
+        builder.addRunner((EventBusRunner) (eventBus, skeleton) -> {
+            // 数据分析逻辑服的订阅者
+            eventBus.register(new AnalyseEventBusSubscriber());
         });
 
         return builder.build();

@@ -20,8 +20,7 @@ package com.iohao.game.example.multiple.eventbus.email;
 
 import com.iohao.game.action.skeleton.core.BarSkeleton;
 import com.iohao.game.action.skeleton.core.BarSkeletonBuilderParamConfig;
-import com.iohao.game.action.skeleton.eventbus.AbstractEventBusRunner;
-import com.iohao.game.action.skeleton.eventbus.EventBus;
+import com.iohao.game.action.skeleton.eventbus.EventBusRunner;
 import com.iohao.game.bolt.broker.client.AbstractBrokerClientStartup;
 import com.iohao.game.bolt.broker.core.client.BrokerClient;
 import com.iohao.game.bolt.broker.core.client.BrokerClientBuilder;
@@ -69,17 +68,14 @@ public class EmailLogicStartup extends AbstractBrokerClientStartup {
         BarSkeletonKit.inOut(builder);
 
         // email 逻辑服添加 EventBusRunner，用于处理 EventBus 相关业务
-        builder.addRunner(new AbstractEventBusRunner() {
-            @Override
-            public void registerEventBus(EventBus eventBus, BarSkeleton skeleton) {
-                // email 逻辑服的订阅者
-                eventBus.register(new EmailEventBusSubscriber());
-                eventBus.register(new EmailOrderEventBusSubscriber());
-                eventBus.register(new EmailAnyEventBusSubscriber());
+        builder.addRunner((EventBusRunner) (eventBus, skeleton) -> {
+            // email 逻辑服的订阅者
+            eventBus.register(new EmailEventBusSubscriber());
+            eventBus.register(new EmailOrderEventBusSubscriber());
+            eventBus.register(new EmailAnyEventBusSubscriber());
 
-                // 收集 action 统计相关
-                BarSkeletonKit.eventStatActionInOut(skeleton, eventBus, appId, appName);
-            }
+            // 收集 action 统计相关
+            BarSkeletonKit.eventStatActionInOut(skeleton, eventBus, appId, appName);
         });
 
         return builder.build();

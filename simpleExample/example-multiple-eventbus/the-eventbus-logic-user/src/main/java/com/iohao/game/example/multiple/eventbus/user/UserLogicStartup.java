@@ -20,9 +20,7 @@ package com.iohao.game.example.multiple.eventbus.user;
 
 import com.iohao.game.action.skeleton.core.BarSkeleton;
 import com.iohao.game.action.skeleton.core.BarSkeletonBuilderParamConfig;
-import com.iohao.game.action.skeleton.core.flow.FlowContext;
-import com.iohao.game.action.skeleton.eventbus.AbstractEventBusRunner;
-import com.iohao.game.action.skeleton.eventbus.EventBus;
+import com.iohao.game.action.skeleton.eventbus.EventBusRunner;
 import com.iohao.game.bolt.broker.client.AbstractBrokerClientStartup;
 import com.iohao.game.bolt.broker.client.BrokerClientApplication;
 import com.iohao.game.bolt.broker.core.client.BrokerClient;
@@ -54,12 +52,9 @@ public class UserLogicStartup extends AbstractBrokerClientStartup {
 
         BarSkeletonKit.inOut(builder);
 
-        builder.addRunner(new AbstractEventBusRunner() {
-            @Override
-            public void registerEventBus(EventBus eventBus, BarSkeleton skeleton) {
-                // user 逻辑服的订阅者
-                eventBus.register(new UserEventBusSubscriber());
-            }
+        builder.addRunner((EventBusRunner) (eventBus, skeleton) -> {
+            // user 逻辑服的订阅者
+            eventBus.register(new UserEventBusSubscriber());
         });
 
         return builder.build();
@@ -76,7 +71,7 @@ public class UserLogicStartup extends AbstractBrokerClientStartup {
                 moduleMessage.addHeader("name", "i'm user logic");
             }
         });
-        
+
         return builder;
     }
 }
