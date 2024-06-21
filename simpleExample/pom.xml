@@ -76,7 +76,7 @@
     <!--统一管理版本 的一个父 pom-->
     <properties>
         <!-- 项目版本 -->
-        <ioGame.version>21.9</ioGame.version>
+        <ioGame.version>21.10</ioGame.version>
         <!-- https://mvnrepository.com/artifact/com.iohao.game.sdk/java-sdk -->
         <ioGameSDK.version>21.2</ioGameSDK.version>
         <!-- jdk 版本 -->

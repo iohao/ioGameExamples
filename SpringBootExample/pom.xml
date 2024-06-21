@@ -36,7 +36,7 @@
         <java.version>21</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <!-- 将xxx 替换成最新的 ioGame 版本 -->
-        <ioGame.version>21.9</ioGame.version>
+        <ioGame.version>21.10</ioGame.version>
 
         <lombok.version>1.18.30</lombok.version>
         <!-- Java 实体映射工具 https://mvnrepository.com/artifact/org.mapstruct/mapstruct https://mapstruct.org/documentation/reference-guide/ -->
