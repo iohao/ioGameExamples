@@ -37,7 +37,7 @@ public interface OtherSchoolCmdModule {
 
     int longValueWithBroadcastData = 7;
 
-    static CmdInfo getCmdInfo(int subCmd) {
+    static CmdInfo of(int subCmd) {
         return CmdInfo.of(cmd, subCmd);
     }
 }

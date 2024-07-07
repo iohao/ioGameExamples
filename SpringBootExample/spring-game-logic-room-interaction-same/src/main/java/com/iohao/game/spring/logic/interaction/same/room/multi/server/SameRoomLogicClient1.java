@@ -18,12 +18,8 @@
 package com.iohao.game.spring.logic.interaction.same.room.multi.server;
 
 import com.iohao.game.bolt.broker.client.BrokerClientApplication;
-import com.iohao.game.spring.logic.interaction.same.room.SameRoomLogicClient;
+import com.iohao.game.spring.logic.interaction.same.room.SameRoomLogic;
 import com.iohao.game.spring.logic.interaction.same.room.SameRoomLogicClientApplication;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.experimental.FieldDefaults;
 
 /**
  * @author 渔民小镇
@@ -32,7 +28,7 @@ import lombok.experimental.FieldDefaults;
 public class SameRoomLogicClient1 {
     public static void main(String[] args) {
         Thread.currentThread().setName("abccc java");
-        SameRoomLogicClient roomLogicClient = SameRoomLogicClientApplication.createRoomLogicClient(1);
+        SameRoomLogic roomLogicClient = SameRoomLogicClientApplication.createRoomLogicClient(1);
 
         BrokerClientApplication.start(roomLogicClient);
     }

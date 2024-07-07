@@ -27,14 +27,14 @@ import com.iohao.game.bolt.broker.core.client.BrokerClientBuilder;
  */
 public class SameRoomLogicClientApplication {
     public static void main(String[] args) {
-        SameRoomLogicClient roomLogicClient1 = createRoomLogicClient(1);
-        SameRoomLogicClient roomLogicClient2 = createRoomLogicClient(2);
+        SameRoomLogic roomLogicClient1 = createRoomLogicClient(1);
+        SameRoomLogic roomLogicClient2 = createRoomLogicClient(2);
 
         BrokerClientApplication.start(roomLogicClient1);
         BrokerClientApplication.start(roomLogicClient2);
     }
 
-    public static SameRoomLogicClient createRoomLogicClient(int id) {
+    public static SameRoomLogic createRoomLogicClient(int id) {
         // BrokerClient 构建器，房间逻辑服的信息
         BrokerClientBuilder brokerClientBuilder = BrokerClient.newBuilder()
                 // 逻辑服的唯一 id
@@ -45,9 +45,9 @@ public class SameRoomLogicClientApplication {
                 .tag("roomLogic");
 
         // 创建房间的游戏逻辑服
-        SameRoomLogicClient sameRoomLogicClient = new SameRoomLogicClient();
+        SameRoomLogic sameRoomLogic = new SameRoomLogic();
         // 如果字段赋值了，就不会使用 BrokerClientStartup.createBrokerClientBuilder() 接口的值
-        sameRoomLogicClient.setBrokerClientBuilder(brokerClientBuilder);
-        return sameRoomLogicClient;
+        sameRoomLogic.setBrokerClientBuilder(brokerClientBuilder);
+        return sameRoomLogic;
     }
 }

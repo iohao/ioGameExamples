@@ -16,7 +16,6 @@
  */
 package com.iohao.game.collect.one;
 
-import com.iohao.game.action.skeleton.core.doc.BarSkeletonDoc;
 import com.iohao.game.bolt.broker.client.AbstractBrokerClientStartup;
 import com.iohao.game.collect.external.GameExternalBoot;
 import com.iohao.game.collect.hall.HallClientStartup;
@@ -34,13 +33,7 @@ import java.util.List;
 public class GameOne {
     public static void main(String[] args) {
 
-        // 逻辑服列表
-        List<AbstractBrokerClientStartup> logicServer = List.of(
-                // 大厅
-                new HallClientStartup(),
-                // 坦克游戏
-                new TankClientStartup()
-        );
+        List<AbstractBrokerClientStartup> logicServer = listLogic();
 
         // 简单启动器 RunOne (谐音:拳皇97中的 round one ready go!)
         new NettyRunOne()
@@ -52,9 +45,16 @@ public class GameOne {
                 .startup();
 
         // see : TankApp.java  （坦克游戏客户端启动类）
+    }
 
-        // 生成对接文档
-        BarSkeletonDoc.me().buildDoc();
+    static List<AbstractBrokerClientStartup> listLogic() {
+        // 逻辑服列表
+        return List.of(
+                // 大厅
+                new HallClientStartup(),
+                // 坦克游戏
+                new TankClientStartup()
+        );
     }
 
 }

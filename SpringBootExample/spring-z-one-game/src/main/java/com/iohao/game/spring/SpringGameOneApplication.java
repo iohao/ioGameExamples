@@ -24,14 +24,13 @@ import com.iohao.game.bolt.broker.core.client.BrokerClient;
 import com.iohao.game.bolt.broker.core.client.BrokerClientBuilder;
 import com.iohao.game.bolt.broker.server.BrokerServer;
 import com.iohao.game.external.core.ExternalServer;
-import com.iohao.game.external.core.config.ExternalJoinEnum;
 import com.iohao.game.external.core.netty.simple.NettyRunOne;
 import com.iohao.game.spring.broker.GameBrokerBoot;
 import com.iohao.game.spring.external.GameExternal;
-import com.iohao.game.spring.logic.classes.GameLogicClassesClient;
-import com.iohao.game.spring.logic.hall.GameLogicHallClient;
-import com.iohao.game.spring.logic.interaction.same.room.SameRoomLogicClient;
-import com.iohao.game.spring.logic.school.GameLogicSchoolClient;
+import com.iohao.game.spring.logic.classes.GameLogicClassesLogic;
+import com.iohao.game.spring.logic.hall.GameLogicHallLogic;
+import com.iohao.game.spring.logic.interaction.same.room.SameRoomLogic;
+import com.iohao.game.spring.logic.school.GameLogicSchoolLogic;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -74,23 +73,7 @@ public class SpringGameOneApplication {
 
     public static void main(String[] args) {
         // 游戏逻辑服列表
-        List<AbstractBrokerClientStartup> logicList = List.of(
-                // 大厅逻辑服 - 有登录
-                new GameLogicHallClient()
-                // 学校逻辑服
-                , new GameLogicSchoolClient()
-                // 班级逻辑服
-                , new GameLogicClassesClient()
-                /*
-                 * 启动多个同类型的游戏逻辑服
-                 *
-                 * 启动 2 个房间的游戏逻辑服
-                 * 方便测试 请求同类型多个逻辑服通信结果
-                 * https://www.yuque.com/iohao/game/rf9rb9
-                 */
-                , createRoomLogicClient(1)
-                , createRoomLogicClient(2)
-        );
+        List<AbstractBrokerClientStartup> logicList = listLogic();
 
         // 启动 spring boot
         SpringApplication.run(SpringGameOneApplication.class, args);
@@ -122,9 +105,26 @@ public class SpringGameOneApplication {
                 .startup();
 
         // spring 集成 https://www.yuque.com/iohao/game/evkgnz
+    }
 
-        // 生成对接文档
-         BarSkeletonDoc.me().buildDoc();
+    static List<AbstractBrokerClientStartup> listLogic() {
+        return List.of(
+                // 大厅逻辑服 - 有登录
+                new GameLogicHallLogic()
+                // 学校逻辑服
+                , new GameLogicSchoolLogic()
+                // 班级逻辑服
+                , new GameLogicClassesLogic()
+                /*
+                 * 启动多个同类型的游戏逻辑服
+                 *
+                 * 启动 2 个房间的游戏逻辑服
+                 * 方便测试 请求同类型多个逻辑服通信结果
+                 * https://www.yuque.com/iohao/game/rf9rb9
+                 */
+                , createRoomLogicClient(1)
+                , createRoomLogicClient(2)
+        );
     }
 
     @Bean
@@ -133,7 +133,7 @@ public class SpringGameOneApplication {
         return ActionFactoryBeanForSpring.me();
     }
 
-    private static SameRoomLogicClient createRoomLogicClient(int id) {
+    private static SameRoomLogic createRoomLogicClient(int id) {
         // BrokerClient 构建器，房间逻辑服的信息
         BrokerClientBuilder brokerClientBuilder = BrokerClient.newBuilder()
                 // 逻辑服的唯一 id
@@ -144,9 +144,9 @@ public class SpringGameOneApplication {
                 .tag("roomLogic");
 
         // 创建房间的逻辑服
-        SameRoomLogicClient sameRoomLogicClient = new SameRoomLogicClient();
+        SameRoomLogic sameRoomLogic = new SameRoomLogic();
         // 如果字段赋值了，就不会使用 BrokerClientStartup.createBrokerClientBuilder() 接口的值
-        sameRoomLogicClient.setBrokerClientBuilder(brokerClientBuilder);
-        return sameRoomLogicClient;
+        sameRoomLogic.setBrokerClientBuilder(brokerClientBuilder);
+        return sameRoomLogic;
     }
 }

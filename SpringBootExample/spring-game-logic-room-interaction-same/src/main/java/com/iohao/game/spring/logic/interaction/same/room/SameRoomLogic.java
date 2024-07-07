@@ -31,7 +31,7 @@ import com.iohao.game.spring.logic.interaction.same.room.action.RoomAction;
  * @author 渔民小镇
  * @date 2022-07-30
  */
-public class SameRoomLogicClient extends AbstractBrokerClientStartup {
+public class SameRoomLogic extends AbstractBrokerClientStartup {
     @Override
     public BarSkeleton createBarSkeleton() {
         // 业务框架构建器 配置

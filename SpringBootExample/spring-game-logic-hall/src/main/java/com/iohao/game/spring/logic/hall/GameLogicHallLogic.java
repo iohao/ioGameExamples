@@ -15,49 +15,45 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-package com.iohao.game.spring.logic.school;
+package com.iohao.game.spring.logic.hall;
 
 import com.iohao.game.action.skeleton.core.BarSkeleton;
 import com.iohao.game.action.skeleton.core.BarSkeletonBuilder;
 import com.iohao.game.action.skeleton.core.BarSkeletonBuilderParamConfig;
 import com.iohao.game.action.skeleton.core.flow.MyFlowContext;
-import com.iohao.game.action.skeleton.core.flow.internal.DebugInOut;
 import com.iohao.game.bolt.broker.client.AbstractBrokerClientStartup;
 import com.iohao.game.bolt.broker.core.client.BrokerClient;
 import com.iohao.game.bolt.broker.core.client.BrokerClientBuilder;
 import com.iohao.game.spring.logic.core.MyBarSkeletonConfig;
-import com.iohao.game.spring.logic.school.action.SchoolAction;
-import com.iohao.game.spring.logic.school.annotation.IgnoreDebugInout;
+import com.iohao.game.spring.logic.hall.action.LoginAction;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
-import java.lang.reflect.Method;
-import java.util.Objects;
-
 /**
- * 学校游戏逻辑服
+ * 大厅游戏逻辑服
  *
  * @author 渔民小镇
- * @date 2022-07-09
+ * @date 2022-07-27
  */
 @Getter
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class GameLogicSchoolClient extends AbstractBrokerClientStartup {
+public class GameLogicHallLogic extends AbstractBrokerClientStartup {
     @Override
     public BarSkeleton createBarSkeleton() {
         // 业务框架构建器 配置
         BarSkeletonBuilderParamConfig config = MyBarSkeletonConfig.createBarSkeletonBuilderParamConfig()
                 // 扫描 action 类所在包
-                .scanActionPackage(SchoolAction.class);
+                .scanActionPackage(LoginAction.class);
 
         // 业务框架构建器
         BarSkeletonBuilder builder = MyBarSkeletonConfig.createBarSkeletonBuilder(config);
-
         // 开启 jsr380 验证
         builder.getSetting().setValidator(true);
+
+        builder.setFlowContextFactory(MyFlowContext::new);
 
         return builder.build();
     }
@@ -65,7 +61,7 @@ public class GameLogicSchoolClient extends AbstractBrokerClientStartup {
     @Override
     public BrokerClientBuilder createBrokerClientBuilder() {
         BrokerClientBuilder builder = BrokerClient.newBuilder();
-        builder.appName("spring school 学校游戏逻辑服");
+        builder.appName("spring hall 大厅逻辑服");
         return builder;
     }
 }

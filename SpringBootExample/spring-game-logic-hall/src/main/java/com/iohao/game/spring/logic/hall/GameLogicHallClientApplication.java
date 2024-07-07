@@ -27,7 +27,7 @@ import com.iohao.game.bolt.broker.client.BrokerClientApplication;
  */
 public class GameLogicHallClientApplication {
     public static void main(String[] args) {
-        GameLogicHallClient gameLogicHallClient = new GameLogicHallClient();
-        BrokerClientApplication.start(gameLogicHallClient);
+        GameLogicHallLogic gameLogicHallLogic = new GameLogicHallLogic();
+        BrokerClientApplication.start(gameLogicHallLogic);
     }
 }

@@ -37,7 +37,7 @@ public class GameLogicSchoolApplication {
         SpringApplication.run(GameLogicSchoolApplication.class, args);
 
         // 启动学校逻辑服
-        GameLogicSchoolClient gameLogicClient = new GameLogicSchoolClient();
+        GameLogicSchoolLogic gameLogicClient = new GameLogicSchoolLogic();
         BrokerClientApplication.start(gameLogicClient);
     }
 

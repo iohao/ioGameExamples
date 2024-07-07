@@ -18,7 +18,6 @@
  */
 package com.iohao.game.example.external.cache;
 
-import com.iohao.game.action.skeleton.core.doc.BarSkeletonDoc;
 import com.iohao.game.bolt.broker.core.client.BrokerAddress;
 import com.iohao.game.bolt.broker.core.common.IoGameGlobalConfig;
 import com.iohao.game.example.common.cmd.CacheCmd;
@@ -65,8 +64,6 @@ public class CacheApplication {
                 .setLogicServerList(List.of(new CacheLogicServer()))
                 .startup();
 
-        // 生成对接文档
-        BarSkeletonDoc.me().buildDoc();
     }
 
     List<ExternalServer> listExternalServer() {

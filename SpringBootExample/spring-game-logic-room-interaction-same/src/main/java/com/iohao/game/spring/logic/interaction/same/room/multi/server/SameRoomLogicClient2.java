@@ -18,7 +18,7 @@
 package com.iohao.game.spring.logic.interaction.same.room.multi.server;
 
 import com.iohao.game.bolt.broker.client.BrokerClientApplication;
-import com.iohao.game.spring.logic.interaction.same.room.SameRoomLogicClient;
+import com.iohao.game.spring.logic.interaction.same.room.SameRoomLogic;
 import com.iohao.game.spring.logic.interaction.same.room.SameRoomLogicClientApplication;
 
 /**
@@ -27,7 +27,7 @@ import com.iohao.game.spring.logic.interaction.same.room.SameRoomLogicClientAppl
  */
 public class SameRoomLogicClient2 {
     public static void main(String[] args) {
-        SameRoomLogicClient roomLogicClient = SameRoomLogicClientApplication.createRoomLogicClient(2);
+        SameRoomLogic roomLogicClient = SameRoomLogicClientApplication.createRoomLogicClient(2);
 
         BrokerClientApplication.start(roomLogicClient);
     }

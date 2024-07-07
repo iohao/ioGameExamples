@@ -20,7 +20,6 @@ import com.baidu.bjf.remoting.protobuf.annotation.ProtobufClass;
 import com.iohao.game.collect.proto.GameProtoFile;
 import com.iohao.game.widget.light.protobuf.ProtoFileMerge;
 import lombok.AccessLevel;
-import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.FieldDefaults;
 
@@ -35,7 +34,7 @@ import java.util.Map;
 @ToString
 @ProtobufClass
 @FieldDefaults(level = AccessLevel.PUBLIC)
-@ProtoFileMerge(fileName = GameProtoFile.TANK_FILE_NAME, filePackage = GameProtoFile.TANK_FILE_PACKAGE)
+@ProtoFileMerge(fileName = GameProtoFile.COMMON_FILE_NAME, filePackage = GameProtoFile.COMMON_FILE_PACKAGE)
 public class TankPlayer {
     /** 玩家id */
     long id;

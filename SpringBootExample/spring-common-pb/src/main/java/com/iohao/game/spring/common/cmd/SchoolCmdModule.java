@@ -17,6 +17,8 @@
  */
 package com.iohao.game.spring.common.cmd;
 
+import com.iohao.game.action.skeleton.core.CmdInfo;
+
 /**
  * 学校模块
  *
@@ -54,4 +56,8 @@ public interface SchoolCmdModule {
     /** 分组校验 */
     int group = 11;
     int here2 = 12;
+
+    static CmdInfo of(int subCmd) {
+        return CmdInfo.of(cmd, subCmd);
+    }
 }

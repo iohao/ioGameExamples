@@ -22,8 +22,5 @@ package com.iohao.game.collect.proto;
  */
 public interface GameProtoFile {
     String COMMON_FILE_NAME = "common.proto";
-    String COMMON_FILE_PACKAGE = "pb.common";
-
-    String TANK_FILE_NAME = "tank.proto";
-    String TANK_FILE_PACKAGE = "pb.tank";
+    String COMMON_FILE_PACKAGE = "proto";
 }
