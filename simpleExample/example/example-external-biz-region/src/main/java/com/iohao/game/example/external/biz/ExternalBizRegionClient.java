@@ -22,6 +22,7 @@ import com.iohao.game.common.kit.concurrent.TaskKit;
 import com.iohao.game.example.common.cmd.ExternalBizRegionCmd;
 import com.iohao.game.external.client.AbstractInputCommandRegion;
 import com.iohao.game.external.client.join.ClientRunOne;
+import com.iohao.game.external.client.kit.ClientUserConfigs;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
@@ -33,6 +34,8 @@ import java.util.List;
 @Slf4j
 public class ExternalBizRegionClient {
     public static void main(String[] args) {
+        ClientUserConfigs.closeLog();
+
         new ClientRunOne()
                 // 请求消息编排
                 .setInputCommandRegions(List.of(new ExternalBizRegionInputCommandRegion()))
@@ -56,12 +59,19 @@ public class ExternalBizRegionClient {
                 log.info("登录成功：{}", value);
 
                 ofRequestCommand(ExternalBizRegionCmd.listOnlineUser).execute();
+                ofRequestCommand(ExternalBizRegionCmd.listOnlineUserAll).execute();
             });
 
             // ---------------- listOnlineUser ----------------
             ofCommand(ExternalBizRegionCmd.listOnlineUser).setTitle("listOnlineUser").callback(result -> {
                 var value = result.listLong();
                 log.info("userId list: {}", value);
+            });
+
+            // ---------------- listOnlineUserAll ----------------
+            ofCommand(ExternalBizRegionCmd.listOnlineUserAll).setTitle("listOnlineUserAll").callback(result -> {
+                var value = result.listLong();
+                log.info("userId list all: {}", value);
             });
         }
     }

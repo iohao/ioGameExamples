@@ -29,4 +29,5 @@ public interface ExternalBizRegionCmd {
 
     int loginVerify = 1;
     int listOnlineUser = 2;
+    int listOnlineUserAll = 3;
 }
