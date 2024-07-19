@@ -18,10 +18,7 @@
  */
 package com.iohao.game.example.external.biz.common;
 
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.experimental.FieldDefaults;
+import lombok.Data;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -31,9 +28,7 @@ import java.util.List;
  * @author 渔民小镇
  * @date 2024-07-19
  */
-@Getter
-@Setter
-@FieldDefaults(level = AccessLevel.PRIVATE)
+@Data
 public class OnlineUser implements Serializable {
     List<Long> userIds = new ArrayList<>();
 }

@@ -21,10 +21,6 @@ package com.iohao.game.example.external.biz.common;
 import com.iohao.game.action.skeleton.core.exception.MsgException;
 import com.iohao.game.external.core.broker.client.ext.ExternalBizRegion;
 import com.iohao.game.external.core.broker.client.ext.ExternalBizRegionContext;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.experimental.FieldDefaults;
 
 import java.io.Serializable;
 
@@ -32,9 +28,6 @@ import java.io.Serializable;
  * @author 渔民小镇
  * @date 2024-07-19
  */
-@Getter
-@Setter
-@FieldDefaults(level = AccessLevel.PRIVATE)
 public class OnlineUserExternalBizRegion implements ExternalBizRegion {
     @Override
     public int getBizCode() {
