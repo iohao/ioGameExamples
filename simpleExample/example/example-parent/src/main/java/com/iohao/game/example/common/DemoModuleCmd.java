@@ -79,4 +79,6 @@ public interface DemoModuleCmd {
     int wsVerifyModule_21_cmd = 21;
     /** 游戏对外服缓存 */
     int cache_cmd = 22;
+    /** 获取游戏对外服的数据与扩展 */
+    int external_biz_region_cmd = 23;
 }

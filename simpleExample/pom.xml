@@ -71,6 +71,7 @@
         <module>example-exchange/exchange-web-gm</module>
         <module>example-exchange/exchange-common</module>
         <module>example-exchange/exchange-client</module>
+        <module>example/example-external-biz-region</module>
     </modules>
 
     <!--统一管理版本 的一个父 pom-->

@@ -25,10 +25,6 @@ import com.iohao.game.external.core.message.ExternalMessage;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.MessageToMessageCodec;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.experimental.FieldDefaults;
 
 import java.util.List;
 
@@ -37,9 +33,6 @@ import java.util.List;
  * @author 渔民小镇
  * @date 2024-03-28
  */
-@Getter
-@Setter
-@FieldDefaults(level = AccessLevel.PRIVATE)
 public class MyTcpExternalCodec extends MessageToMessageCodec<ByteBuf, BarMessage> {
     @Override
     protected void encode(ChannelHandlerContext ctx, BarMessage message, List<Object> out) {
@@ -72,7 +65,6 @@ public class MyTcpExternalCodec extends MessageToMessageCodec<ByteBuf, BarMessag
         msg.readBytes(msgBytes);
 
         ExternalMessage externalMessage = DataCodecKit.decode(msgBytes, ExternalMessage.class);
-
         BarMessage message = ExternalCodecKit.convertRequestMessage(externalMessage);
 
         //【游戏对外服】接收【游戏客户端】的消息
