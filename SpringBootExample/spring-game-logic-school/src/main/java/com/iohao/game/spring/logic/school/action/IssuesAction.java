@@ -25,6 +25,7 @@ import com.iohao.game.action.skeleton.core.flow.FlowContext;
 import com.iohao.game.spring.common.cmd.ClassesCmdModule;
 import com.iohao.game.spring.common.cmd.IssuesCmdModule;
 import com.iohao.game.spring.common.pb.ClassesPb;
+import com.iohao.game.spring.common.pb.Issue338RoomInfo;
 import com.iohao.game.spring.common.pb.SceneEnterReq;
 import com.iohao.game.spring.common.pb.Vector3;
 import lombok.extern.slf4j.Slf4j;
@@ -63,7 +64,18 @@ public class IssuesAction {
     @ActionMethod(IssuesCmdModule.the186)
     public Vector3 the186(Vector3 vector3) {
         log.info("vector3 : \n{}", vector3);
-
         return vector3;
+    }
+
+    @ActionMethod(IssuesCmdModule.the338)
+    public long the338() {
+        return 33;
+    }
+
+    @ActionMethod(IssuesCmdModule.the338_1)
+    public Issue338RoomInfo the338_1() {
+        var roomInfo = new Issue338RoomInfo();
+        roomInfo.roomId = 33;
+        return roomInfo;
     }
 }

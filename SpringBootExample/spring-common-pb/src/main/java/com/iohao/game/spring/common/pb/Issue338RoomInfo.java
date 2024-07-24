@@ -16,21 +16,24 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-package com.iohao.game.spring.common.cmd;
+package com.iohao.game.spring.common.pb;
+
+import com.baidu.bjf.remoting.protobuf.annotation.ProtobufClass;
+import com.iohao.game.spring.common.SpringGameProtoFile;
+import com.iohao.game.widget.light.protobuf.ProtoFileMerge;
+import lombok.AccessLevel;
+import lombok.ToString;
+import lombok.experimental.FieldDefaults;
 
 /**
- * <a href="https://github.com/iohao/ioGame/issues">ioGame issues</a>
- *
  * @author 渔民小镇
- * @date 2023-06-15
+ * @date 2024-07-24
  */
-public interface IssuesCmdModule {
-    int cmd = SpringCmdModule.issuesCmd;
-
-    int the143 = 1;
-    int the143Result = 2;
-    int the147 = 3;
-    int the186 = 4;
-    int the338 = 5;
-    int the338_1 = 6;
+@ToString
+@ProtobufClass
+@FieldDefaults(level = AccessLevel.PUBLIC)
+@ProtoFileMerge(fileName = SpringGameProtoFile.COMMON_FILE_NAME, filePackage = SpringGameProtoFile.COMMON_FILE_PACKAGE)
+public class Issue338RoomInfo {
+    /** roomId */
+    long roomId;
 }

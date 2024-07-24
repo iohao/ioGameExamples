@@ -31,23 +31,36 @@
             <artifactId>Java-WebSocket</artifactId>
             <version>${java-websocket.version}</version>
         </dependency>
-
+        <!-- https://mvnrepository.com/artifact/junit/junit -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>provided</scope>
+        </dependency>
         <!--
         jprotobuf是针对Java程序开发一套简易类库，目的是简化java语言对protobuf类库的使用
         https://github.com/jhunters/jprotobuf/
         https://mvnrepository.com/artifact/com.baidu/jprotobuf
         -->
-        <dependency>
-            <groupId>com.baidu</groupId>
-            <artifactId>jprotobuf</artifactId>
-            <version>2.4.15</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.baidu</groupId>-->
+<!--            <artifactId>jprotobuf</artifactId>-->
+<!--            <version>2.4.23</version>-->
+<!--        </dependency>-->
 
-        <!-- https://mvnrepository.com/artifact/com.baidu/jprotobuf-precompile-plugin -->
+<!--        &lt;!&ndash; https://mvnrepository.com/artifact/com.baidu/jprotobuf-precompile-plugin &ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>com.baidu</groupId>-->
+<!--            <artifactId>jprotobuf-precompile-plugin</artifactId>-->
+<!--            <version>2.2.12</version>-->
+<!--        </dependency>-->
+
+        <!-- https://mvnrepository.com/artifact/com.google.protobuf/protobuf-java -->
         <dependency>
-            <groupId>com.baidu</groupId>
-            <artifactId>jprotobuf-precompile-plugin</artifactId>
-            <version>2.2.8</version>
+            <groupId>com.google.protobuf</groupId>
+            <artifactId>protobuf-java</artifactId>
+            <version>4.27.2</version>
         </dependency>
 
     </dependencies>

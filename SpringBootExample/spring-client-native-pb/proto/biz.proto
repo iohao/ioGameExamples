@@ -112,3 +112,8 @@ message Vector3 {
   int32 y = 2;
   int32 z = 3;
 }
+
+message Issue338RoomInfo {
+  // roomId
+  int64 roomId = 1;
+}

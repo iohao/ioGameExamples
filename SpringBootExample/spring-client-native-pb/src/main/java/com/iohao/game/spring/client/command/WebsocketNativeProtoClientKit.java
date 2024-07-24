@@ -29,6 +29,7 @@ import org.java_websocket.client.WebSocketClient;
 import org.java_websocket.drafts.Draft_6455;
 import org.java_websocket.handshake.ServerHandshake;
 
+import javax.swing.plaf.basic.ComboPopup;
 import java.net.URI;
 import java.nio.ByteBuffer;
 import java.util.HashMap;
@@ -43,6 +44,7 @@ import java.util.function.Consumer;
 @Slf4j
 @UtilityClass
 public class WebsocketNativeProtoClientKit {
+    public static final int issuesCmd = 6;
 
     public static void main(String[] args) throws Exception {
 
@@ -65,7 +67,8 @@ public class WebsocketNativeProtoClientKit {
 //                extractedList();
 
 //                issues147();
-                issues186();
+//                issues186();
+                issues338();
 
 //                extractedLoginVerify(maxValue);
 //                defaultValuePb();
@@ -300,6 +303,30 @@ public class WebsocketNativeProtoClientKit {
                 this.sendMsg(6, 4, value, consumer);
             }
 
+            private void issues338() {
+                Consumer<byte[]> consumer = bytes -> {
+                    try {
+                        var longValue = Proto.LongValue.parseFrom(bytes);
+                        log.info("issues338 : {}", longValue);
+                    } catch (InvalidProtocolBufferException e) {
+                        throw new RuntimeException(e);
+                    }
+                };
+
+                this.sendMsg(issuesCmd, 5, consumer);
+
+                Consumer<byte[]> consumer_1 = bytes -> {
+                    try {
+                        var roomInfo = BizProto.Issue338RoomInfo.parseFrom(bytes);
+                        log.info("issues338_roomInfo : {}", roomInfo);
+                    } catch (InvalidProtocolBufferException e) {
+                        throw new RuntimeException(e);
+                    }
+                };
+
+                this.sendMsg(issuesCmd, 6, consumer_1);
+            }
+
             private void extractedLoginVerify(long maxValue) {
                 Consumer<byte[]> consumer = bytes -> {
                     try {
@@ -337,6 +364,10 @@ public class WebsocketNativeProtoClientKit {
                 this.sendMsg(cmd, subCmd, value);
             }
 
+            private void sendMsg(int cmd, int subCmd, Consumer<byte[]> consumerCallback) {
+                onMessageCallback(cmd, subCmd, consumerCallback);
+                this.sendMsg(cmd, subCmd, (ByteString) null);
+            }
         };
 
         // 开始连接服务器

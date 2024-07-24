@@ -21,7 +21,6 @@ package com.iohao.game.example.external.biz;
 import com.iohao.game.action.skeleton.annotation.ActionController;
 import com.iohao.game.action.skeleton.annotation.ActionMethod;
 import com.iohao.game.action.skeleton.core.flow.FlowContext;
-import com.iohao.game.action.skeleton.protocol.external.RequestCollectExternalMessage;
 import com.iohao.game.action.skeleton.protocol.external.ResponseCollectExternalItemMessage;
 import com.iohao.game.action.skeleton.protocol.external.ResponseCollectExternalMessage;
 import com.iohao.game.bolt.broker.client.kit.UserIdSettingKit;
@@ -53,7 +52,7 @@ public class ExternalBizRegionAction {
     @ActionMethod(ExternalBizRegionCmd.listOnlineUser)
     public List<Long> listOnlineUser(FlowContext flowContext) {
         // 访问玩家所在的【游戏对外服】
-        ResponseCollectExternalMessage collectExternalMessage = flowContext
+        var collectExternalMessage = flowContext
                 .invokeExternalModuleCollectMessage(MyExternalBizCode.onlineUser);
 
         return listUserId(collectExternalMessage);
@@ -63,10 +62,10 @@ public class ExternalBizRegionAction {
     public List<Long> listOnlineUserAll(FlowContext flowContext) {
 
         // 访问多个【游戏对外服】
-        var request = new RequestCollectExternalMessage()
-                .setBizCode(MyExternalBizCode.onlineUser);
+        var request = flowContext
+                .createRequestCollectExternalMessage(MyExternalBizCode.onlineUser);
 
-        ResponseCollectExternalMessage collectExternalMessage = flowContext
+        var collectExternalMessage = flowContext
                 .invokeExternalModuleCollectMessage(request);
 
         return listUserId(collectExternalMessage);
