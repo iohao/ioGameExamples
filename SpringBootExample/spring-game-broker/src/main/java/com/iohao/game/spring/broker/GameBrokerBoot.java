@@ -33,6 +33,5 @@ public class GameBrokerBoot {
 
     public static void main(String[] args) {
         new GameBrokerBoot().createBrokerServer().startup();
-
     }
 }

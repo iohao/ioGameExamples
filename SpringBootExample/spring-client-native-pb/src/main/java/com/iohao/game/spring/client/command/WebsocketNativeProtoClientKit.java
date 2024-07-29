@@ -51,7 +51,6 @@ public class WebsocketNativeProtoClientKit {
         WebsocketNativeProtoClientKit.runClient();
     }
 
-
     public void runClient() throws Exception {
         // 连接游戏服务器的地址
         String wsUrl = "ws://127.0.0.1:10100/websocket";

@@ -10,5 +10,26 @@
     </parent>
 
     <artifactId>spring-game-broker</artifactId>
-
+<!--    <build>-->
+<!--        <plugins>-->
+<!--            &lt;!&ndash;-->
+<!--            broker 打 jar 包-->
+<!--            &ndash;&gt;-->
+<!--            <plugin>-->
+<!--                <groupId>org.springframework.boot</groupId>-->
+<!--                <artifactId>spring-boot-maven-plugin</artifactId>-->
+<!--                <configuration>-->
+<!--                    <mainClass>com.iohao.game.spring.broker.GameBrokerApplication</mainClass>-->
+<!--                    <layout>JAR</layout>-->
+<!--                </configuration>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <goals>-->
+<!--                            <goal>repackage</goal>-->
+<!--                        </goals>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--            </plugin>-->
+<!--        </plugins>-->
+<!--    </build>-->
 </project>

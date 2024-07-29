@@ -10,4 +10,27 @@
     </parent>
 
     <artifactId>spring-game-external</artifactId>
+
+<!--    <build>-->
+<!--        <plugins>-->
+<!--            &lt;!&ndash;-->
+<!--            external 打 jar 包-->
+<!--            &ndash;&gt;-->
+<!--            <plugin>-->
+<!--                <groupId>org.springframework.boot</groupId>-->
+<!--                <artifactId>spring-boot-maven-plugin</artifactId>-->
+<!--                <configuration>-->
+<!--                    <mainClass>com.iohao.game.spring.external.GameExternalApplication</mainClass>-->
+<!--                    <layout>JAR</layout>-->
+<!--                </configuration>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <goals>-->
+<!--                            <goal>repackage</goal>-->
+<!--                        </goals>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--            </plugin>-->
+<!--        </plugins>-->
+<!--    </build>-->
 </project>

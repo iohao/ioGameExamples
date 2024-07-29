@@ -38,9 +38,12 @@ public class GameExternal {
     public static void main(String[] args) {
         // 对外开放的端口
         int externalPort = 10100;
-        // 游戏对外服
+
+        // 构建游戏对外服
         ExternalServer externalServerWebSocket = new GameExternal()
                 .createExternalServer(externalPort);
+
+        // 启动游戏对外服
         externalServerWebSocket.startup();
     }
 

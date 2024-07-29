@@ -17,8 +17,6 @@
  */
 package com.iohao.game.spring.broker;
 
-import com.iohao.game.bolt.broker.server.BrokerServer;
-
 /**
  * 单独启动类：游戏网关
  *
@@ -27,11 +25,7 @@ import com.iohao.game.bolt.broker.server.BrokerServer;
  */
 public class GameBrokerApplication {
     public static void main(String[] args) {
-
-        // broker （游戏网关）
-        BrokerServer brokerServer = new GameBrokerBoot().createBrokerServer();
-
         // 启动游戏网关
-        brokerServer.startup();
+        GameBrokerBoot.main(args);
     }
 }

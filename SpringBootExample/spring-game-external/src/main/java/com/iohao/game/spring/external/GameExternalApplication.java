@@ -17,8 +17,6 @@
  */
 package com.iohao.game.spring.external;
 
-import com.iohao.game.external.core.ExternalServer;
-
 /**
  * 单独启动类：游戏对外服
  *
@@ -27,14 +25,7 @@ import com.iohao.game.external.core.ExternalServer;
  */
 public class GameExternalApplication {
     public static void main(String[] args) {
-
-        // 对外开放的端口
-        int externalPort = 10100;
-
-        // 构建游戏对外服
-        ExternalServer externalServer = new GameExternal().createExternalServer(externalPort);
-
         // 启动游戏对外服
-        externalServer.startup();
+        GameExternal.main(args);
     }
 }
