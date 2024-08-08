@@ -40,7 +40,7 @@ public class TestGenerate {
         IoGameDocumentHelper.generateDocument();
 
         // .proto 文件生成
-        generateProtoFile();
+//        generateProtoFile();
     }
 
     private static void generateProtoFile() {
