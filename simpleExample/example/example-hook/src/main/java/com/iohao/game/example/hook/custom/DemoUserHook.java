@@ -17,15 +17,13 @@
  */
 package com.iohao.game.example.hook.custom;
 
-import com.iohao.game.action.skeleton.core.CmdKit;
-import com.iohao.game.action.skeleton.protocol.HeadMetadata;
+import com.iohao.game.action.skeleton.core.CmdInfo;
 import com.iohao.game.action.skeleton.protocol.RequestMessage;
 import com.iohao.game.bolt.broker.core.aware.BrokerClientAware;
 import com.iohao.game.bolt.broker.core.client.BrokerClient;
 import com.iohao.game.example.hook.action.DemoCmdForHookRoom;
 import com.iohao.game.external.core.aware.UserSessionsAware;
 import com.iohao.game.external.core.hook.UserHook;
-import com.iohao.game.external.core.message.ExternalCodecKit;
 import com.iohao.game.external.core.session.UserSession;
 import com.iohao.game.external.core.session.UserSessions;
 import lombok.extern.slf4j.Slf4j;
@@ -44,27 +42,19 @@ public class DemoUserHook implements UserHook, UserSessionsAware, BrokerClientAw
     public void into(UserSession userSession) {
         long userId = userSession.getUserId();
         log.info("demo 玩家上线 userId: {} -- {}", userId, userSession.getUserChannelId());
-        log.info("demo 当前在线玩家数量： {}", this.userSessions.countOnline());
+        log.info("into 当前在线玩家数量： {}", this.userSessions.countOnline());
     }
 
     @Override
     public void quit(UserSession userSession) {
         long userId = userSession.getUserId();
         log.info("demo 玩家退出 userId: {} -- {}", userId, userSession.getUserChannelId());
-        log.info("demo 当前在线玩家数量： {}", this.userSessions.countOnline());
-
-        // 房间主路由和房间子路由（退出房间）
-        int mergeCmd = CmdKit.merge(DemoCmdForHookRoom.cmd, DemoCmdForHookRoom.quitRoom);
-
-        RequestMessage request = ExternalCodecKit.createRequest();
-        HeadMetadata headMetadata = request.getHeadMetadata();
-        headMetadata.setCmdMerge(mergeCmd);
-
-        ExternalCodecKit.employ(request, brokerClient);
-        // 给请求消息加上一些 user 自身的数据
-        userSession.employ(request);
+        log.info("quit 当前在线玩家数量： {}", this.userSessions.countOnline());
 
         try {
+            // 房间主路由和房间子路由（退出房间）
+            var cmdInfo = CmdInfo.of(DemoCmdForHookRoom.cmd, DemoCmdForHookRoom.quitRoom);
+            RequestMessage request = userSession.ofRequestMessage(cmdInfo);
             // 请求游戏网关
             this.brokerClient.oneway(request);
         } catch (Exception e) {
