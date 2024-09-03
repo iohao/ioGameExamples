@@ -19,7 +19,7 @@
 package com.iohao.game.component.chat.proto;
 
 import com.baidu.bjf.remoting.protobuf.annotation.ProtobufClass;
-import com.iohao.game.common.kit.TimeKit;
+import com.iohao.game.common.kit.time.CacheTimeKit;
 import com.iohao.game.component.chat.cmd.ChatFileMerge;
 import com.iohao.game.widget.light.protobuf.ProtoFileMerge;
 import lombok.AccessLevel;
@@ -50,7 +50,7 @@ public class ChatSendMessage {
         ChatMessage chatMessage = new ChatMessage();
         chatMessage.items = this.items;
         chatMessage.senderNickname = this.senderNickname;
-        chatMessage.sendTime = TimeKit.currentTimeMillis();
+        chatMessage.sendTime = CacheTimeKit.currentTimeMillis();
         chatMessage.receiverId = this.receiverId;
         return chatMessage;
     }

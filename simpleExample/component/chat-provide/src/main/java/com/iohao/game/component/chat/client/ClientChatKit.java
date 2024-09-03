@@ -18,7 +18,7 @@
  */
 package com.iohao.game.component.chat.client;
 
-import com.iohao.game.common.kit.TimeKit;
+import com.iohao.game.common.kit.time.FormatTimeKit;
 import com.iohao.game.component.chat.proto.ChatMessage;
 import com.iohao.game.component.chat.proto.ChatMessageItem;
 import com.iohao.game.component.chat.proto.ChatSendMessage;
@@ -39,7 +39,7 @@ class ClientChatKit {
                 .map(item -> item.bodyString)
                 .collect(Collectors.joining(""));
 
-        String time = TimeKit.formatter(chatMessage.sendTime);
+        String time = FormatTimeKit.format(chatMessage.sendTime);
         String format = """
                 发送者[%s - %s] {%s} 聊天内容
                 [%s]

@@ -38,9 +38,8 @@ public class TestGenerate {
         IoGameDocumentHelper.addErrorCodeClass(SpringGameCodeEnum.class);
         // 生成文档
         IoGameDocumentHelper.generateDocument();
-
         // .proto 文件生成
-//        generateProtoFile();
+        generateProtoFile();
     }
 
     private static void generateProtoFile() {

@@ -21,8 +21,8 @@ import com.iohao.game.action.skeleton.core.DataCodecKit;
 import com.iohao.game.action.skeleton.core.exception.ActionErrorEnum;
 import com.iohao.game.action.skeleton.protocol.BarMessage;
 import com.iohao.game.action.skeleton.protocol.wrapper.LongValue;
-import com.iohao.game.common.kit.TimeKit;
 import com.iohao.game.common.kit.concurrent.TaskKit;
+import com.iohao.game.common.kit.time.CacheTimeKit;
 import com.iohao.game.external.core.message.ExternalCodecKit;
 import com.iohao.game.external.core.netty.hook.SocketIdleHook;
 import com.iohao.game.external.core.session.UserSession;
@@ -53,7 +53,7 @@ public class DemoIdleHook implements SocketIdleHook {
     }
 
     private void updateTime() {
-        LongValue data = LongValue.of(TimeKit.currentTimeMillis());
+        LongValue data = LongValue.of(CacheTimeKit.currentTimeMillis());
         /*
          * 提前序列化好时间数据
          * 1. 可以避免重复序列化

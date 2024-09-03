@@ -20,13 +20,11 @@ package com.iohao.game.example.ws.verify.external;
 
 import com.iohao.game.action.skeleton.core.CmdInfo;
 import com.iohao.game.action.skeleton.core.DataCodecKit;
-import com.iohao.game.action.skeleton.protocol.HeadMetadata;
 import com.iohao.game.action.skeleton.protocol.RequestMessage;
 import com.iohao.game.bolt.broker.core.aware.BrokerClientAware;
 import com.iohao.game.bolt.broker.core.client.BrokerClient;
 import com.iohao.game.example.common.msg.DemoAttachment;
 import com.iohao.game.example.ws.verify.action.WsVerifyCmd;
-import com.iohao.game.external.core.message.ExternalCodecKit;
 import com.iohao.game.external.core.netty.handler.ws.WebSocketVerifyHandler;
 import com.iohao.game.external.core.netty.session.SocketUserSession;
 import com.iohao.game.external.core.session.UserSessionOption;
@@ -64,13 +62,11 @@ public class MyWebSocketVerifyHandler extends WebSocketVerifyHandler
             byte[] encode = DataCodecKit.encode(attachment);
             userSession.option(UserSessionOption.attachment, encode);
 
-            // 创建一个登录请求
-            RequestMessage requestMessage = this.createRequestMessage();
-            userSession.employ(requestMessage);
-
-            // 请求游戏网关，在由网关转到具体的业务逻辑服
-            // 触发登录 action
             try {
+                // 创建一个登录请求
+                CmdInfo cmdInfo = CmdInfo.of(WsVerifyCmd.cmd, WsVerifyCmd.login);
+                RequestMessage requestMessage = userSession.ofRequestMessage(cmdInfo);
+                // 请求游戏网关，在由网关转到具体的业务逻辑服
                 brokerClient.oneway(requestMessage);
             } catch (Exception e) {
                 log.error(e.getMessage(), e);
@@ -79,16 +75,5 @@ public class MyWebSocketVerifyHandler extends WebSocketVerifyHandler
 
         // 返回 true 表示验证通过，返回 false 框架会关闭连接。
         return verifyResult;
-    }
-
-    private RequestMessage createRequestMessage() {
-        RequestMessage request = ExternalCodecKit.createRequest();
-        HeadMetadata headMetadata = request.getHeadMetadata();
-        CmdInfo cmdInfo = CmdInfo.of(WsVerifyCmd.cmd, WsVerifyCmd.login);
-        headMetadata.setCmdInfo(cmdInfo);
-
-        ExternalCodecKit.employ(request, brokerClient);
-
-        return request;
     }
 }
