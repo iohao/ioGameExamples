@@ -15,7 +15,7 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-package com.iohao.game.example.spring.service;
+package com.iohao.game.example.spring.action;
 
 import com.iohao.game.example.common.msg.HelloSpringMsg;
 import org.springframework.stereotype.Component;

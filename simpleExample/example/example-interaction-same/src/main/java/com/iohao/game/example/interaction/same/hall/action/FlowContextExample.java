@@ -28,6 +28,7 @@ import com.iohao.game.action.skeleton.protocol.collect.ResponseCollectMessage;
 import com.iohao.game.action.skeleton.protocol.external.ResponseCollectExternalMessage;
 import com.iohao.game.bolt.broker.core.client.BrokerClientHelper;
 import com.iohao.game.common.kit.concurrent.executor.ExecutorRegion;
+import com.iohao.game.common.kit.concurrent.executor.ThreadExecutor;
 import com.iohao.game.core.common.client.Attachment;
 import com.iohao.game.example.common.msg.RoomNumMsg;
 import lombok.Data;
@@ -465,5 +466,25 @@ public class FlowContextExample {
         simpleThread.execute(() -> {
             // wq
         });
+    }
+
+    void threadExecutor(FlowContext flowContext) {
+        // 获取 - 用户（玩家）所关联的用户线程执行器信息及虚拟线程执行器信息
+
+        // 用户虚拟线程执行器信息
+        ThreadExecutor virtualThreadExecutor = flowContext.getVirtualThreadExecutor();
+        // 用户线程执行器信息
+        ThreadExecutor threadExecutor = flowContext.getThreadExecutor();
+
+        threadExecutor.execute(() -> {
+            log.info("execute");
+        });
+
+        threadExecutor.executeTry(() -> {
+            log.info("executeTry");
+        });
+
+        // get Executor
+        Executor executor = threadExecutor.executor();
     }
 }

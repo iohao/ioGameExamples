@@ -18,7 +18,6 @@
 package com.iohao.game.example.spring;
 
 import com.iohao.game.action.skeleton.ext.spring.ActionFactoryBeanForSpring;
-import com.iohao.game.example.spring.server.DemoSpringLogicServer;
 import com.iohao.game.external.core.netty.simple.NettySimpleHelper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -38,6 +37,7 @@ import java.util.List;
 @SpringBootApplication
 public class DemoSpringApplication {
     public static void main(String[] args) {
+        
         // 启动 spring boot
         SpringApplication.run(DemoSpringApplication.class, args);
 

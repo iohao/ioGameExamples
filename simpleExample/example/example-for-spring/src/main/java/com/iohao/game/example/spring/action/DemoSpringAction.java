@@ -17,11 +17,10 @@
  */
 package com.iohao.game.example.spring.action;
 
-import com.iohao.game.example.common.msg.HelloSpringMsg;
-import com.iohao.game.example.spring.service.DemoSpringService;
 import com.iohao.game.action.skeleton.annotation.ActionController;
 import com.iohao.game.action.skeleton.annotation.ActionMethod;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.iohao.game.example.common.msg.HelloSpringMsg;
+import jakarta.annotation.Resource;
 import org.springframework.stereotype.Component;
 
 /**
@@ -34,7 +33,7 @@ import org.springframework.stereotype.Component;
 @ActionController(DemoCmdForSpring.cmd)
 public class DemoSpringAction {
     /** spring 管理的类： service 业务类 */
-    @Autowired
+    @Resource
     DemoSpringService demoSpringService;
 
     /**
