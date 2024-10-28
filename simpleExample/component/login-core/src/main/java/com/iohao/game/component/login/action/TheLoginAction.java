@@ -63,8 +63,6 @@ public class TheLoginAction {
             log.error("登录失败");
         }
 
-        UserIdSettingKit.settingUserId(flowContext, userId);
-
         return userInfo;
     }
 }
