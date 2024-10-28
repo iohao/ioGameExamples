@@ -29,8 +29,8 @@ import com.iohao.game.spring.common.data.MyAttachment;
 import com.iohao.game.spring.common.pb.ClassesPb;
 import com.iohao.game.spring.common.pb.SchoolPb;
 import com.iohao.game.spring.logic.classes.service.ClassesService;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.concurrent.ThreadLocalRandom;
@@ -43,10 +43,10 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 @Slf4j
 @Component
+@AllArgsConstructor
 @ActionController(ClassesCmdModule.cmd)
 public class ClassesAction {
-    @Autowired
-    ClassesService classesService;
+    final ClassesService classesService;
 
     @ActionMethod(ClassesCmdModule.issu143)
     public StringValue issu143(FlowContext flowContext) {

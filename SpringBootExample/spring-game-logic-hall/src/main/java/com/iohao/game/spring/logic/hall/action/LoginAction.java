@@ -25,7 +25,6 @@ import com.iohao.game.action.skeleton.core.exception.MsgException;
 import com.iohao.game.action.skeleton.core.flow.FlowContext;
 import com.iohao.game.action.skeleton.core.flow.MyFlowContext;
 import com.iohao.game.bolt.broker.client.kit.ExternalCommunicationKit;
-import com.iohao.game.bolt.broker.client.kit.UserIdSettingKit;
 import com.iohao.game.spring.common.SpringGameCodeEnum;
 import com.iohao.game.spring.common.cmd.ClassesCmdModule;
 import com.iohao.game.spring.common.cmd.HallCmdModule;
@@ -53,7 +52,7 @@ import java.util.concurrent.atomic.AtomicLong;
 @ActionController(HallCmdModule.cmd)
 public class LoginAction {
     /** 测试神器，假数据 */
-    static Faker faker = new Faker(Locale.CHINA);
+    Faker faker = new Faker(Locale.CHINA);
 
     /**
      * 登录业务
@@ -93,8 +92,7 @@ public class LoginAction {
         }
 
         // channel 中设置用户的真实 userId；
-        boolean success = UserIdSettingKit.settingUserId(flowContext, userId);
-
+        boolean success = flowContext.setUserId(userId);
         // 失败抛异常码 （断言 + 异常机制）
         SpringGameCodeEnum.loginError.assertTrue(success);
 

@@ -22,13 +22,8 @@ import com.iohao.game.bolt.broker.core.common.IoGameGlobalConfig;
 import com.iohao.game.external.core.ExternalServer;
 import com.iohao.game.external.core.config.ExternalGlobalConfig;
 import com.iohao.game.external.core.config.ExternalJoinEnum;
-import com.iohao.game.external.core.micro.PipelineContext;
 import com.iohao.game.external.core.netty.DefaultExternalServer;
 import com.iohao.game.external.core.netty.DefaultExternalServerBuilder;
-import com.iohao.game.external.core.netty.micro.WebSocketMicroBootstrapFlow;
-import io.netty.bootstrap.ServerBootstrap;
-import io.netty.handler.logging.LogLevel;
-import io.netty.handler.logging.LoggingHandler;
 
 /**
  * @author 渔民小镇
@@ -66,15 +61,16 @@ public class GameExternal {
                 // Broker （游戏网关）的连接地址；如果不设置，默认也是这个配置
                 .brokerAddress(new BrokerAddress("127.0.0.1", IoGameGlobalConfig.brokerPort));
 
+        // ExternalCore 设置项
+        var setting = builder.setting();
 
-        builder.setting().setMicroBootstrapFlow(new WebSocketMicroBootstrapFlow() {
-            @Override
-            public void pipelineFlow(PipelineContext pipelineContext) {
-//                pipelineContext.addLast("logging", new LoggingHandler(LogLevel.INFO));
-
-                super.pipelineFlow(pipelineContext);
-            }
-        });
+//        setting.setMicroBootstrapFlow(new WebSocketMicroBootstrapFlow() {
+//            @Override
+//            public void pipelineFlow(PipelineContext pipelineContext) {
+////                pipelineContext.addLast("logging", new LoggingHandler(LogLevel.INFO));
+//                super.pipelineFlow(pipelineContext);
+//            }
+//        });
 
         // 构建游戏对外服
         return builder.build();

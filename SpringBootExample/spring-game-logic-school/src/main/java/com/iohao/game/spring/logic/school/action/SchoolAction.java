@@ -22,16 +22,12 @@ import com.iohao.game.action.skeleton.annotation.ActionMethod;
 import com.iohao.game.action.skeleton.annotation.ValidatedGroup;
 import com.iohao.game.action.skeleton.core.CmdInfo;
 import com.iohao.game.action.skeleton.core.DataCodecKit;
-import com.iohao.game.action.skeleton.core.commumication.BrokerClientContext;
-import com.iohao.game.action.skeleton.core.commumication.CommunicationAggregationContext;
 import com.iohao.game.action.skeleton.core.exception.MsgException;
 import com.iohao.game.action.skeleton.core.flow.FlowContext;
 import com.iohao.game.action.skeleton.core.flow.MyFlowContext;
-import com.iohao.game.action.skeleton.core.flow.attr.FlowAttr;
 import com.iohao.game.action.skeleton.protocol.ResponseMessage;
 import com.iohao.game.action.skeleton.protocol.collect.ResponseCollectItemMessage;
 import com.iohao.game.action.skeleton.protocol.collect.ResponseCollectMessage;
-import com.iohao.game.bolt.broker.core.client.BrokerClientHelper;
 import com.iohao.game.spring.common.SpringGameCodeEnum;
 import com.iohao.game.spring.common.Update;
 import com.iohao.game.spring.common.cmd.ClassesCmdModule;
@@ -39,14 +35,12 @@ import com.iohao.game.spring.common.cmd.RoomCmdModule;
 import com.iohao.game.spring.common.cmd.SchoolCmdModule;
 import com.iohao.game.spring.common.pb.*;
 import com.iohao.game.spring.logic.school.service.SchoolService;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 /**
  * 学校相关 action
@@ -56,13 +50,12 @@ import java.util.Objects;
  */
 @Slf4j
 @Component
+@AllArgsConstructor
 @ActionController(SchoolCmdModule.cmd)
 public class SchoolAction {
 
-    @Autowired
-    SchoolService schoolService;
+    final SchoolService schoolService;
 
-    @GetMapping("/here2")
     @ActionMethod(SchoolCmdModule.here2)
     public LogicRequestPb here2(LogicRequestPb logicRequestPb) {
         schoolService.helloSpring();

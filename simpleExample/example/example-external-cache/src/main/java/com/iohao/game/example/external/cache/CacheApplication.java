@@ -25,7 +25,7 @@ import com.iohao.game.external.core.ExternalServer;
 import com.iohao.game.external.core.config.ExternalGlobalConfig;
 import com.iohao.game.external.core.config.ExternalJoinEnum;
 import com.iohao.game.external.core.hook.cache.CmdCacheOption;
-import com.iohao.game.external.core.hook.cache.internal.DefaultExternalCmdCache;
+import com.iohao.game.external.core.hook.cache.ExternalCmdCache;
 import com.iohao.game.external.core.netty.DefaultExternalServer;
 import com.iohao.game.external.core.netty.DefaultExternalServerBuilder;
 import com.iohao.game.external.core.netty.simple.NettyRunOne;
@@ -89,8 +89,8 @@ public class CacheApplication {
     }
 
     private static void extractedExternalCache() {
-        // 框架内置的缓存实现类
-        DefaultExternalCmdCache externalCmdCache = new DefaultExternalCmdCache();
+        // 创建框架内置的缓存实现类
+        var externalCmdCache = ExternalCmdCache.of();
         // 添加全局配置中
         ExternalGlobalConfig.externalCmdCache = externalCmdCache;
 

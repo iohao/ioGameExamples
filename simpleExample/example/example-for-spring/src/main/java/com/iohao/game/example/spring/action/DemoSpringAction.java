@@ -20,7 +20,7 @@ package com.iohao.game.example.spring.action;
 import com.iohao.game.action.skeleton.annotation.ActionController;
 import com.iohao.game.action.skeleton.annotation.ActionMethod;
 import com.iohao.game.example.common.msg.HelloSpringMsg;
-import jakarta.annotation.Resource;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
 /**
@@ -30,11 +30,11 @@ import org.springframework.stereotype.Component;
  * @date 2022-03-22
  */
 @Component
+@AllArgsConstructor
 @ActionController(DemoCmdForSpring.cmd)
 public class DemoSpringAction {
     /** spring 管理的类： service 业务类 */
-    @Resource
-    DemoSpringService demoSpringService;
+    final DemoSpringService demoSpringService;
 
     /**
      * spring 示例方法

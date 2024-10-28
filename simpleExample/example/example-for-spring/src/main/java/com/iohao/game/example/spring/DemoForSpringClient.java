@@ -63,6 +63,11 @@ public class DemoForSpringClient {
                 log.info("value : {}", value);
             });
 
+            ofCommand(DemoCmdForSpring.hello).setTitle("hello").callback(result -> {
+                var value = result.getString();
+                log.info(" {}", value);
+            });
+
             // 一秒后，执行模拟请求;
             TaskKit.runOnceSecond(() -> {
                 // 执行 here 请求

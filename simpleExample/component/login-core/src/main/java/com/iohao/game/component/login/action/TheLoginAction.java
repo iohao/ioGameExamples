@@ -57,11 +57,13 @@ public class TheLoginAction {
         userInfo.name = faker.name().fullName();
 
         // channel 中设置用户的真实 userId；
-        boolean success = UserIdSettingKit.settingUserId(flowContext, userId);
+        boolean success = flowContext.setUserId(userId);
 
         if (!success) {
             log.error("登录失败");
         }
+
+        UserIdSettingKit.settingUserId(flowContext, userId);
 
         return userInfo;
     }
