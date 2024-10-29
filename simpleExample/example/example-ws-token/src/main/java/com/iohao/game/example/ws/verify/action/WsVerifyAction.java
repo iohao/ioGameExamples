@@ -21,7 +21,6 @@ package com.iohao.game.example.ws.verify.action;
 import com.iohao.game.action.skeleton.annotation.ActionController;
 import com.iohao.game.action.skeleton.annotation.ActionMethod;
 import com.iohao.game.action.skeleton.core.flow.FlowContext;
-import com.iohao.game.bolt.broker.client.kit.UserIdSettingKit;
 import com.iohao.game.example.common.msg.DemoAttachment;
 import com.iohao.game.example.common.msg.HelloReq;
 import lombok.extern.slf4j.Slf4j;
@@ -41,7 +40,7 @@ public class WsVerifyAction {
 
         // 设置 userId
         long userId = attachment.userId;
-        boolean success = UserIdSettingKit.settingUserId(flowContext, userId);
+        boolean success = flowContext.setUserId(userId);
 
         if (success) {
             log.info("登录成功");

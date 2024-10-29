@@ -26,7 +26,6 @@ import com.iohao.game.action.skeleton.protocol.collect.ResponseCollectItemMessag
 import com.iohao.game.action.skeleton.protocol.collect.ResponseCollectMessage;
 import com.iohao.game.action.skeleton.protocol.processor.EndPointLogicServerMessage;
 import com.iohao.game.action.skeleton.protocol.processor.EndPointOperationEnum;
-import com.iohao.game.bolt.broker.client.kit.UserIdSettingKit;
 import com.iohao.game.bolt.broker.core.client.BrokerClientHelper;
 import com.iohao.game.example.common.msg.MatchResponse;
 import com.iohao.game.example.common.msg.RoomNumMsg;
@@ -62,7 +61,7 @@ public class DemoMatchAction {
 
         // 登录的关键代码
         // 具体可参考 https://www.yuque.com/iohao/game/tywkqv
-        boolean success = UserIdSettingKit.settingUserId(flowContext, newUserId);
+        boolean success = flowContext.setUserId(newUserId);
 
         if (!success) {
             log.error("登录错误");

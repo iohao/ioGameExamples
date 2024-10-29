@@ -21,7 +21,6 @@ package com.iohao.game.example.external.cache;
 import com.iohao.game.action.skeleton.annotation.ActionController;
 import com.iohao.game.action.skeleton.annotation.ActionMethod;
 import com.iohao.game.action.skeleton.core.flow.FlowContext;
-import com.iohao.game.bolt.broker.client.kit.UserIdSettingKit;
 import com.iohao.game.example.common.cmd.CacheCmd;
 import com.iohao.game.example.common.msg.HelloReq;
 import com.iohao.game.example.common.msg.login.DemoLoginVerify;
@@ -55,7 +54,7 @@ public class CacheAction {
         userInfo.name = loginVerify.jwt;
 
         // channel 中设置用户的真实 userId；
-        boolean success = UserIdSettingKit.settingUserId(flowContext, userId);
+        boolean success = flowContext.setUserId(userId);
 
         log.info("登录 : {}", success);
 

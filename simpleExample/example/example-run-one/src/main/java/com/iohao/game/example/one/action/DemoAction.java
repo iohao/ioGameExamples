@@ -16,15 +16,14 @@
  */
 package com.iohao.game.example.one.action;
 
-import com.iohao.game.action.skeleton.core.flow.FlowContext;
-import com.iohao.game.bolt.broker.client.kit.UserIdSettingKit;
-import com.iohao.game.example.common.msg.login.DemoLoginVerify;
-import com.iohao.game.example.common.msg.login.DemoUserInfo;
-import com.iohao.game.example.one.code.DemoCodeEnum;
-import com.iohao.game.example.common.msg.HelloReq;
 import com.iohao.game.action.skeleton.annotation.ActionController;
 import com.iohao.game.action.skeleton.annotation.ActionMethod;
 import com.iohao.game.action.skeleton.core.exception.MsgException;
+import com.iohao.game.action.skeleton.core.flow.FlowContext;
+import com.iohao.game.example.common.msg.HelloReq;
+import com.iohao.game.example.common.msg.login.DemoLoginVerify;
+import com.iohao.game.example.common.msg.login.DemoUserInfo;
+import com.iohao.game.example.one.code.DemoCodeEnum;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -61,7 +60,6 @@ public class DemoAction {
     }
 
 
-
     /**
      * 示例 异常机制演示
      *
@@ -96,7 +94,7 @@ public class DemoAction {
 
         // 登录的关键代码
         // 具体可参考 https://www.yuque.com/iohao/game/tywkqv
-        boolean success = UserIdSettingKit.settingUserId(flowContext, newUserId);
+        boolean success = flowContext.setUserId(newUserId);
 
         if (!success) {
             log.error("登录错误");

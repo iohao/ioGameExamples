@@ -27,13 +27,16 @@ import com.iohao.game.action.skeleton.core.CmdInfo;
 import com.iohao.game.action.skeleton.core.exception.ActionErrorEnum;
 import com.iohao.game.action.skeleton.core.flow.FlowContext;
 import com.iohao.game.action.skeleton.protocol.wrapper.ByteValueList;
-import com.iohao.game.bolt.broker.client.kit.UserIdSettingKit;
 import com.iohao.game.bolt.broker.core.client.BrokerClientHelper;
-import com.iohao.game.widget.light.room.*;
+import com.iohao.game.widget.light.room.Room;
+import com.iohao.game.widget.light.room.RoomService;
+import com.iohao.game.widget.light.room.SimplePlayer;
+import com.iohao.game.widget.light.room.SimpleRoom;
 import lombok.extern.slf4j.Slf4j;
 import net.datafaker.Faker;
 
-import java.util.*;
+import java.util.List;
+import java.util.Locale;
 
 /**
  * @author 渔民小镇
@@ -48,7 +51,7 @@ public class GameAction {
 
     @ActionMethod(MyCmd.login)
     public PlayerInfo login(long userId, FlowContext flowContext) {
-        UserIdSettingKit.settingUserId(flowContext, userId);
+        flowContext.setUserId(userId);
 
         PlayerInfo playerInfo = new PlayerInfo();
         playerInfo.userId = userId;

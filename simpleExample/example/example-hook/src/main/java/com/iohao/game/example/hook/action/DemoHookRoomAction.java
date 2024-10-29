@@ -20,7 +20,6 @@ package com.iohao.game.example.hook.action;
 import com.iohao.game.action.skeleton.annotation.ActionController;
 import com.iohao.game.action.skeleton.annotation.ActionMethod;
 import com.iohao.game.action.skeleton.core.flow.FlowContext;
-import com.iohao.game.bolt.broker.client.kit.UserIdSettingKit;
 import com.iohao.game.example.common.msg.login.DemoLoginVerify;
 import com.iohao.game.example.common.msg.login.DemoUserInfo;
 import lombok.extern.slf4j.Slf4j;
@@ -52,7 +51,7 @@ public class DemoHookRoomAction {
 
         // 登录的关键代码
         // 具体可参考 https://www.yuque.com/iohao/game/tywkqv
-        boolean success = UserIdSettingKit.settingUserId(flowContext, newUserId);
+        boolean success = flowContext.setUserId(newUserId);
 
         if (!success) {
             log.error("登录错误");

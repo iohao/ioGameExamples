@@ -21,7 +21,6 @@ package com.iohao.game.example.multiple.eventbus.user;
 import com.iohao.game.action.skeleton.annotation.ActionController;
 import com.iohao.game.action.skeleton.annotation.ActionMethod;
 import com.iohao.game.action.skeleton.core.flow.FlowContext;
-import com.iohao.game.bolt.broker.client.kit.UserIdSettingKit;
 import com.iohao.game.example.multiple.eventbus.common.TheBusLogin;
 import com.iohao.game.example.multiple.eventbus.common.UserCmd;
 import com.iohao.game.example.multiple.eventbus.common.event.EmailAnyMessage;
@@ -42,7 +41,7 @@ public class UserAction {
     public TheBusLogin login(TheBusLogin login, FlowContext flowContext) {
         int userId = Math.abs(login.jwt.hashCode());
 
-        UserIdSettingKit.settingUserId(flowContext, userId);
+        flowContext.setUserId(userId);
 
         return login;
     }

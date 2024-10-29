@@ -23,7 +23,6 @@ import com.iohao.game.action.skeleton.annotation.ActionMethod;
 import com.iohao.game.action.skeleton.core.flow.FlowContext;
 import com.iohao.game.action.skeleton.protocol.external.ResponseCollectExternalItemMessage;
 import com.iohao.game.action.skeleton.protocol.external.ResponseCollectExternalMessage;
-import com.iohao.game.bolt.broker.client.kit.UserIdSettingKit;
 import com.iohao.game.example.common.cmd.ExternalBizRegionCmd;
 import com.iohao.game.example.external.biz.common.MyExternalBizCode;
 import com.iohao.game.example.external.biz.common.OnlineUser;
@@ -46,7 +45,7 @@ public class ExternalBizRegionAction {
     public boolean loginVerify(FlowContext flowContext) {
         long userId = userIdInc.incrementAndGet();
         // 登录成功
-        return UserIdSettingKit.settingUserId(flowContext, userId);
+        return flowContext.setUserId(userId);
     }
 
     @ActionMethod(ExternalBizRegionCmd.listOnlineUser)

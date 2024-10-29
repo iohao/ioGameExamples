@@ -24,7 +24,6 @@ import com.iohao.game.action.skeleton.core.flow.FlowContext;
 import com.iohao.game.action.skeleton.protocol.wrapper.StringValue;
 import com.iohao.game.action.skeleton.protocol.wrapper.WrapperKit;
 import com.iohao.game.bolt.broker.client.kit.ExternalCommunicationKit;
-import com.iohao.game.bolt.broker.client.kit.UserIdSettingKit;
 import com.iohao.game.exchange.common.ExchangeAttachment;
 import com.iohao.game.exchange.common.ExchangeCmd;
 import lombok.extern.slf4j.Slf4j;
@@ -53,7 +52,7 @@ public class ExchangeAction {
         ExternalCommunicationKit.forcedOffline(userId);
 
         // channel 中设置用户的真实 userId；
-        UserIdSettingKit.settingUserId(flowContext, userId);
+        flowContext.setUserId(userId);
 
         // 设置元信息
         ExchangeAttachment attachment = new ExchangeAttachment();
