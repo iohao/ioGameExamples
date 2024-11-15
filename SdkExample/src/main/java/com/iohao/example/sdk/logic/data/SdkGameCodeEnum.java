@@ -1,6 +1,7 @@
 /*
+ * ioGame
+ * Copyright (C) 2021 - present  渔民小镇 （262610965@qq.com、luoyizhu@gmail.com） . All Rights Reserved.
  * # iohao.com . 渔民小镇
- * Copyright (C) 2021 - present double joker （262610965@qq.com） . All Rights Reserved.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -15,7 +16,7 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-package com.iohao.game.example.one.code;
+package com.iohao.example.sdk.logic.data;
 
 import com.iohao.game.action.skeleton.core.exception.MsgExceptionInfo;
 import lombok.AccessLevel;
@@ -24,19 +25,19 @@ import lombok.experimental.FieldDefaults;
 
 /**
  * @author 渔民小镇
- * @date 2022-03-22
+ * @date 2024-11-01
  */
 @Getter
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public enum DemoCodeEnum implements MsgExceptionInfo {
-    /** jsr330 */
-    jackson_error(100, "异常机制测试，name 必须是 jackson !");
-    /** 消息码 */
+public enum SdkGameCodeEnum implements MsgExceptionInfo {
+    /** login error */
+    loginError(1, "login error"),
+    testError(2, "test error");
+
     final int code;
-    /** 消息模板 */
     final String msg;
 
-    DemoCodeEnum(int code, String msg) {
+    SdkGameCodeEnum(int code, String msg) {
         this.code = code;
         this.msg = msg;
     }

@@ -1,6 +1,7 @@
 /*
+ * ioGame
+ * Copyright (C) 2021 - present  渔民小镇 （262610965@qq.com、luoyizhu@gmail.com） . All Rights Reserved.
  * # iohao.com . 渔民小镇
- * Copyright (C) 2021 - present double joker （262610965@qq.com） . All Rights Reserved.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -15,25 +16,13 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-package com.iohao.example.jsr.jakarta;
-
-import com.iohao.example.jsr.jakarta.server.JsrJakartaLogicServer;
-import com.iohao.game.external.core.netty.simple.NettySimpleHelper;
-import lombok.extern.slf4j.Slf4j;
-
-import java.util.List;
+package com.iohao.example.sdk.logic.data;
 
 /**
  * @author 渔民小镇
- * @date 2022-10-26
+ * @date 2024-11-01
  */
-@Slf4j
-public class JsrJakartaApplication {
-    public static void main(String[] args) {
-        // 游戏对外服端口
-        int port = 10100;
-
-        // 启动 对外服、网关服、逻辑服; 
-        NettySimpleHelper.run(port, List.of(new JsrJakartaLogicServer()));
-    }
+public interface SdkProtoFile {
+    String COMMON_FILE_NAME = "common.proto";
+    String COMMON_FILE_PACKAGE = "pb.common";
 }

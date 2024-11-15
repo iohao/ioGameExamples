@@ -1,6 +1,7 @@
 /*
+ * ioGame
+ * Copyright (C) 2021 - present  渔民小镇 （262610965@qq.com、luoyizhu@gmail.com） . All Rights Reserved.
  * # iohao.com . 渔民小镇
- * Copyright (C) 2021 - present double joker （262610965@qq.com） . All Rights Reserved.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -15,22 +16,25 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-package com.iohao.game.example.one.action;
+package com.iohao.example.sdk.logic.data;
 
-import com.iohao.game.example.common.DemoModuleCmd;
+import com.baidu.bjf.remoting.protobuf.annotation.ProtobufClass;
+import com.iohao.game.widget.light.protobuf.ProtoFileMerge;
+import lombok.AccessLevel;
+import lombok.ToString;
+import lombok.experimental.FieldDefaults;
 
 /**
+ * LoginVerify
+ *
  * @author 渔民小镇
- * @date 2022-03-23
+ * @date 2024-11-01
  */
-public interface DemoCmd {
-    /** 模块 - 主 cmd : 1 */
-    int cmd = DemoModuleCmd.demoModule_1_cmd;
-
-    /** 示例 here 方法 */
-    int here = 0;
-    /** 示例 异常机制演示 */
-    int jackson = 1;
-    /** 示例 登录 */
-    int loginVerify = 2;
+@ToString
+@ProtobufClass
+@FieldDefaults(level = AccessLevel.PUBLIC)
+@ProtoFileMerge(fileName = SdkProtoFile.COMMON_FILE_NAME, filePackage = SdkProtoFile.COMMON_FILE_PACKAGE)
+public final class LoginVerifyMessage {
+    /** jwt */
+    String jwt;
 }

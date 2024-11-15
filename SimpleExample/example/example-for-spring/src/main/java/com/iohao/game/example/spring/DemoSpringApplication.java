@@ -28,7 +28,7 @@ import java.util.List;
 /**
  * spring application 启动类
  * <pre>
- *     启动 对外服、网关服、逻辑服; 并生成游戏业务文档
+ *     启动 对外服、网关服、逻辑服; 
  * </pre>
  *
  * @author 渔民小镇
@@ -47,7 +47,7 @@ public class DemoSpringApplication {
         // spring 逻辑服
         var demoLogicServer = new DemoSpringLogicServer();
 
-        // 启动 对外服、网关服、逻辑服; 并生成游戏业务文档
+        // 启动 对外服、网关服、逻辑服; 
         NettySimpleHelper.run(port, List.of(demoLogicServer));
 
         /*

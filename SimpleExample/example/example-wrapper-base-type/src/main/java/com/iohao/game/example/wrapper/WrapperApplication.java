@@ -32,7 +32,7 @@ public class WrapperApplication {
         // 游戏对外服端口
         int port = 10100;
 
-        // 启动 对外服、网关服、逻辑服; 并生成游戏业务文档
+        // 启动 对外服、网关服、逻辑服; 
 //        SimpleHelper.run(port, List.of(new WrapperLogicServer()));
 
         NettySimpleHelper.run(port, List.of(new WrapperLogicServer()));

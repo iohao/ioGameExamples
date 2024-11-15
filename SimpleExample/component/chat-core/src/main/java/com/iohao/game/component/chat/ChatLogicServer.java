@@ -20,15 +20,11 @@ package com.iohao.game.component.chat;
 
 import com.iohao.game.action.skeleton.core.BarSkeleton;
 import com.iohao.game.action.skeleton.core.BarSkeletonBuilder;
-import com.iohao.game.action.skeleton.core.CmdInfo;
-import com.iohao.game.action.skeleton.core.doc.ActionSendDoc;
+import com.iohao.game.action.skeleton.kit.LogicServerCreateKit;
 import com.iohao.game.bolt.broker.client.AbstractBrokerClientStartup;
 import com.iohao.game.bolt.broker.core.client.BrokerClient;
 import com.iohao.game.bolt.broker.core.client.BrokerClientBuilder;
 import com.iohao.game.component.chat.action.ChatAction;
-import com.iohao.game.component.chat.cmd.ChatCmd;
-import com.iohao.game.component.chat.proto.ChatNotifyMessage;
-import com.iohao.game.action.skeleton.kit.LogicServerCreateKit;
 
 /**
  * 聊天逻辑服
@@ -42,17 +38,7 @@ public class ChatLogicServer extends AbstractBrokerClientStartup {
         // 业务框架构建器
         BarSkeletonBuilder builder = LogicServerCreateKit.createBuilder(ChatAction.class);
 
-        sendDoc(builder);
-
         return builder.build();
-    }
-
-    private static void sendDoc(BarSkeletonBuilder builder) {
-        CmdInfo cmdInfo;
-
-        // 推送、广播文档
-        cmdInfo = ChatCmd.of(ChatCmd.notifyPrivate);
-        builder.addActionSendDoc(new ActionSendDoc(cmdInfo, ChatNotifyMessage.class, "私聊消息通知"));
     }
 
     @Override

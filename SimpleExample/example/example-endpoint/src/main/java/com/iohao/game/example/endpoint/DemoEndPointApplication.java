@@ -66,7 +66,7 @@ public class DemoEndPointApplication {
 
         // 游戏对外服端口
         int port = 10100;
-        // 启动 对外服、网关服、逻辑服; 并生成游戏业务文档
+        // 启动 对外服、网关服、逻辑服; 
         NettySimpleHelper.run(port, logicList);
 
         /*

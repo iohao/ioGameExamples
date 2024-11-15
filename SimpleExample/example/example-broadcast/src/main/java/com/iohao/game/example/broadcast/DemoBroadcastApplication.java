@@ -44,7 +44,7 @@ public class DemoBroadcastApplication {
         // 逻辑服
         var demoLogicServer = new DemoBroadcastServer();
 
-        // 启动 对外服、网关服、逻辑服; 并生成游戏业务文档
+        // 启动 对外服、网关服、逻辑服;
         NettySimpleHelper.run(port, List.of(demoLogicServer));
 
         // 启动广播 Scheduled，每5秒广播一次消息给客户端

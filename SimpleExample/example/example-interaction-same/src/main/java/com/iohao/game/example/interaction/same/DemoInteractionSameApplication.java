@@ -48,14 +48,14 @@ public class DemoInteractionSameApplication {
                 // 大厅 - 逻辑服
                 new DemoSameHallLogicServer(),
                 // 3个房间逻辑服
-//                roomServer1,
-//                roomServer2,
+                roomServer1,
+                roomServer2,
                 roomServer3
         );
 
         // 游戏对外服端口
         int port = 10100;
-        // 启动 对外服、网关服、逻辑服; 并生成游戏业务文档
+        // 启动 对外服、网关服、逻辑服; 
         NettySimpleHelper.run(port, logicList);
 
         /*

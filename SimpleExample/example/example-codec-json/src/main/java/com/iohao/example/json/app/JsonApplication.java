@@ -43,7 +43,7 @@ public class JsonApplication {
         // 逻辑服
         var demoLogicServer = new JsonLogicServer();
 
-        // 启动 对外服、网关服、逻辑服; 并生成游戏业务文档
+        // 启动 对外服、网关服、逻辑服; 
         NettySimpleHelper.run(port, List.of(demoLogicServer));
 
         /*

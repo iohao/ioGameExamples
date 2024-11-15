@@ -33,12 +33,6 @@
 
         <dependency>
             <groupId>com.iohao.game</groupId>
-            <artifactId>light-timer-task</artifactId>
-            <version>${ioGame.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.iohao.game</groupId>
             <artifactId>light-domain-event</artifactId>
             <version>${ioGame.version}</version>
         </dependency>

@@ -55,7 +55,7 @@ public class DemoClusterInteractionSameApplication {
                 roomServer3
         );
 
-        // 启动 对外服、游戏网关集群、逻辑服; 并生成游戏业务文档
+        // 启动 对外服、游戏网关集群、逻辑服; 
         NettyClusterSimpleHelper.run(port, logicList);
 
         /*

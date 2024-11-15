@@ -30,6 +30,7 @@ import com.iohao.game.spring.common.pb.ClassesPb;
 import com.iohao.game.spring.common.pb.SchoolPb;
 import com.iohao.game.spring.logic.classes.service.ClassesService;
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
@@ -43,10 +44,11 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 @Slf4j
 @Component
+@NoArgsConstructor
 @AllArgsConstructor
 @ActionController(ClassesCmdModule.cmd)
 public class ClassesAction {
-    final ClassesService classesService;
+    ClassesService classesService;
 
     @ActionMethod(ClassesCmdModule.issu143)
     public StringValue issu143(FlowContext flowContext) {
