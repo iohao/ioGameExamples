@@ -22,13 +22,11 @@ ioGame Sdk Server Example.
 
 
 
-
-
 ## Start up
 
-> See SdkApplication.java ## SDK Server
+> Run SdkApplication.java
 
-![](./doc/SdkApplication.png)
+![](./doc/server.png)
 
 
 

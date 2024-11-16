@@ -31,9 +31,9 @@
 
 ## 启动服务器
 
-启动 SdkApplication 后，客户端就能与服务器进行交互测试了。
+> 运行 SdkApplication.java 启动游戏服务器
 
-![](./doc/SdkApplication.png)
+![](./doc/server.png)
 
 
 
