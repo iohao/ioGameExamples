@@ -203,13 +203,13 @@ ioGame 会为每个 action 生成两种编码风格的方法，分别是
 
 > hello action
 
-![](./doc/C#Hello1.png)
+![](./doc/CsHello1.png)
 
 
 
 > loginVerify action
 
-![](./doc/C#LoginVerify1.png)
+![](./doc/CsLoginVerify1.png)
 
 
 
@@ -221,11 +221,11 @@ ioGame 会为每个 action 生成两种编码风格的方法，分别是
 
 > hello action
 
-![](./doc/C#Hello2.png)
+![](./doc/CsHello2.png)
 
 > loginVerify action
 
-![](./doc/C#LoginVerify2.png)
+![](./doc/CsLoginVerify2.png)
 
 
 

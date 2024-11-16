@@ -108,13 +108,13 @@ ioGame generates two coding styles for each action:
 
 > hello action
 
-![](./doc/C#Hello1.png)
+![](./doc/CsHello1.png)
 
 
 
 > loginVerify action
 
-![](./doc/C#LoginVerify1.png)
+![](./doc/CsLoginVerify1.png)
 
 
 
@@ -122,11 +122,11 @@ ioGame generates two coding styles for each action:
 
 > hello action
 
-![](./doc/C#Hello2.png)
+![](./doc/CsHello2.png)
 
 > loginVerify action
 
-![](./doc/C#LoginVerify2.png)
+![](./doc/CsLoginVerify2.png)
 
 
 
