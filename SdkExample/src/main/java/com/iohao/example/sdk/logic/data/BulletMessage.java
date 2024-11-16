@@ -33,7 +33,7 @@ import lombok.experimental.FieldDefaults;
 @ToString
 @ProtobufClass
 @FieldDefaults(level = AccessLevel.PUBLIC)
-@ProtoFileMerge(fileName = SdkProtoFile.COMMON_FILE_NAME, filePackage = SdkProtoFile.COMMON_FILE_PACKAGE)
+@ProtoFileMerge(fileName = SdkProtoFile.fileName, filePackage = SdkProtoFile.filePackage)
 public final class BulletMessage {
     /** id */
     int bulletId;

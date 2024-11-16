@@ -23,6 +23,6 @@ package com.iohao.example.sdk.logic.data;
  * @date 2024-11-01
  */
 public interface SdkProtoFile {
-    String COMMON_FILE_NAME = "common.proto";
-    String COMMON_FILE_PACKAGE = "pb.common";
+    String fileName = "common.proto";
+    String filePackage = "pb.common";
 }

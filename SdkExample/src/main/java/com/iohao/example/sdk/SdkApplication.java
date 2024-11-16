@@ -50,13 +50,9 @@ public final class SdkApplication {
     public static void main(String[] args) {
         // i18n: CHINA or US
         Locale.setDefault(Locale.CHINA);
-
-        var externalPort = ExternalGlobalConfig.externalPort;
-        var externalServer = createExternalServer(externalPort);
-
         new NettyRunOne()
                 // GameExternalServer. 游戏对外服
-                .setExternalServer(externalServer)
+                .setExternalServer(createExternalServer())
                 // GameLogicServerList. 游戏逻辑服列表
                 .setLogicServerList(listLogic())
                 .startup();
@@ -68,7 +64,8 @@ public final class SdkApplication {
         );
     }
 
-    private static ExternalServer createExternalServer(int externalPort) {
+    private static ExternalServer createExternalServer() {
+        int externalPort = ExternalGlobalConfig.externalPort;
         extractedAccess();
 
         // Build GameExternalServer https://www.yuque.com/iohao/game/ea6geg
