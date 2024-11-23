@@ -20,7 +20,7 @@ package com.iohao.game.example.one.tcp;
 
 import com.iohao.game.common.kit.concurrent.TaskKit;
 import com.iohao.game.example.common.msg.HelloReq;
-import com.iohao.game.example.one.action.DemoCmd;
+import com.iohao.game.example.one.tcp.other.DemoCmd;
 import com.iohao.game.external.client.AbstractInputCommandRegion;
 import com.iohao.game.external.client.InputCommandRegion;
 import com.iohao.game.external.client.join.ClientRunOne;

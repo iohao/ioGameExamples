@@ -17,11 +17,11 @@
  */
 package com.iohao.example.json.app;
 
-import com.iohao.example.json.web.WebApplication;
 import com.iohao.game.action.skeleton.core.IoGameGlobalSetting;
 import com.iohao.game.action.skeleton.core.codec.JsonDataCodec;
-import com.iohao.game.bolt.broker.core.common.IoGameGlobalConfig;
 import com.iohao.game.external.core.netty.simple.NettySimpleHelper;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.util.List;
 
@@ -29,13 +29,16 @@ import java.util.List;
  * @author 渔民小镇
  * @date 2022-11-24
  */
+@SpringBootApplication
 public class JsonApplication {
     public static void main(String[] args) {
+        /*
+         * run JsonClient.java or http://localhost:8080/index.html
+         */
+        SpringApplication.run(JsonApplication.class, args);
+
         // 设置 json 编解码。如果不设置，默认为 jprotobuf
         IoGameGlobalSetting.setDataCodec(new JsonDataCodec());
-
-//        IoGameGlobalConfig.openLog = false;
-//        IoGameGlobalConfig.externalLog = false;
 
         // 游戏对外服端口
         int port = 10100;
@@ -50,7 +53,6 @@ public class JsonApplication {
          * 该示例文档地址
          * https://www.yuque.com/iohao/game/uq2zrltrc7to27bt
          */
-
-        WebApplication.start(8080);
     }
+
 }

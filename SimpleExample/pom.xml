@@ -14,15 +14,11 @@
     <modules>
         <!-- 示例 -->
         <module>example/example-parent</module>
-<!--        <module>example/example-run-one</module>-->
         <module>example/example-for-spring</module>
         <module>example/example-interaction</module>
         <module>example/example-interaction-same</module>
         <module>example/example-endpoint</module>
         <module>example/example-for-tcp-socket</module>
-
-        <!--        <module>example/example-redisson-lock-spring-boot-starter</module>-->
-        <!--        <module>example/example-redisson-lock</module>-->
 
         <module>example/example-cluster-run-one</module>
         <module>example/example-broadcast</module>

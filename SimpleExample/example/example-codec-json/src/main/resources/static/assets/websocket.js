@@ -1,19 +1,18 @@
 function formatDate(now) {
-    var year = now.getFullYear();
-    var month = now.getMonth() + 1;
-    var date = now.getDate();
-    var hour = now.getHours();
-    var minute = now.getMinutes();
-    var second = now.getSeconds();
-    return year + "-" + (month = month < 10 ? ("0" + month) : month) + "-" + (date = date < 10 ? ("0" + date) : date) + " " + (hour = hour < 10 ? ("0" + hour) : hour) + ":" + (minute = minute < 10 ? ("0" + minute) : minute) + ":" + (second = second < 10 ? ("0" + second) : second);
+    const year = now.getFullYear();
+    let month = now.getMonth() + 1;
+    let date = now.getDate();
+    let hour = now.getHours();
+    let minute = now.getMinutes();
+    let second = now.getSeconds();
+    return year + "-" + (month < 10 ? ("0" + month) : month) + "-" + (date < 10 ? ("0" + date) : date) + " " + (hour < 10 ? ("0" + hour) : hour) + ":" + (minute < 10 ? ("0" + minute) : minute) + ":" + (second < 10 ? ("0" + second) : second);
 }
 
-var websocket;
+let websocket;
 
-function addsocket() {
-
-    var wsaddr = "ws://127.0.0.1:10100/websocket";
-    StartWebSocket(wsaddr);
+function addSocket() {
+    let wsUri = "ws://127.0.0.1:10100/websocket";
+    StartWebSocket(wsUri);
 }
 
 
@@ -36,14 +35,14 @@ function StartWebSocket(wsUri) {
 }
 
 function onOpen(evt, wsUri) {
-    writeToScreen("<span style='color:red'>连接成功，现在你可以发送信息进行测试了！</span>");
+    writeToScreen("<span style='color:red'>onOpen Success！</span>");
     writeToScreen(wsUri);
 
     SendMessage();
 }
 
 function onClose(evt) {
-    writeToScreen("<span style='color:red'>Websocket连接已断开！</span>");
+    writeToScreen("<span style='color:red'>onClose！</span>");
     websocket.close();
 }
 
@@ -61,37 +60,37 @@ function onMessage(evt) {
 
     let json = JSON.stringify(externalMessage);
 
-    writeToScreen('<span style="color:blue">服务端回应&nbsp;' + formatDate(new Date()) + '</span><br/><span>' + json + '</span>');
+    writeToScreen('<span style="color:blue">ServerResponse&nbsp;' + formatDate(new Date()) + '</span><br/><span>' + json + '</span>');
 }
 
 function onError(evt) {
-    writeToScreen('<span style="color: red;">发生错误:</span> ' + evt.data);
+    writeToScreen('<span style="color: red;">onError:</span> ' + evt.data);
 }
 
 function SendMessage() {
-    var data = {
+    let data = {
         name: "英雄无敌-3"
         // value : "英雄无敌"
     }
 
-    var externalMessageBytes = createExternalMessage(data);
+    let externalMessageBytes = createExternalMessage(data);
 
     websocket.send(externalMessageBytes);
 }
 
 function createExternalMessage(data) {
 
-    var message = {
+    let message = {
         cmdCode: 1,
         cmdMerge: merge(19, 1),
         data: data
     }
 
-    var json = JSON.stringify(message);
-    writeToScreen('<span style="color:green">你发送的信息&nbsp;' + formatDate(new Date()) + '</span><br/>' + json);
+    let json = JSON.stringify(message);
+    writeToScreen('<span style="color:green">YourMessage(你发送的信息)&nbsp;' + formatDate(new Date()) + '</span><br/>' + json);
 
-    var textEncoder = new TextEncoder();
-    var dataArray = textEncoder.encode(JSON.stringify(data));
+    let textEncoder = new TextEncoder();
+    let dataArray = textEncoder.encode(JSON.stringify(data));
 
     message.data = Array.from(dataArray);
 
@@ -105,10 +104,9 @@ function merge(cmd, subCmd) {
 }
 
 function writeToScreen(message) {
-    var div = "<div>" + message + "</div>";
-    var d = $("#output");
-    var d = d[0];
-    var doScroll = d.scrollTop == d.scrollHeight - d.clientHeight;
+    let div = "<div>" + message + "</div>";
+    let d = $("#output")[0];
+    let doScroll = d.scrollTop == d.scrollHeight - d.clientHeight;
     $("#output").append(div);
     if (doScroll) {
         d.scrollTop = d.scrollHeight - d.clientHeight;

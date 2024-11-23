@@ -11,11 +11,10 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>example-broadcast</artifactId>
-
     <dependencies>
         <dependency>
             <groupId>com.iohao.example</groupId>
-            <artifactId>example-run-one</artifactId>
+            <artifactId>example-parent</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
     </dependencies>

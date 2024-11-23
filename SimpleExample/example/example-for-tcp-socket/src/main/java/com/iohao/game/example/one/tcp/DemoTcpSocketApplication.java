@@ -18,7 +18,7 @@
 package com.iohao.game.example.one.tcp;
 
 import com.iohao.game.bolt.broker.client.AbstractBrokerClientStartup;
-import com.iohao.game.example.one.server.DemoLogicServer;
+import com.iohao.game.example.one.tcp.other.DemoLogicServer;
 import com.iohao.game.external.core.netty.simple.NettySimpleHelper;
 
 import java.util.List;
