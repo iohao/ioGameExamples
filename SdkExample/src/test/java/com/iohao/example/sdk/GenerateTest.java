@@ -22,6 +22,7 @@ import com.iohao.example.sdk.logic.data.SdkGameCodeEnum;
 import com.iohao.game.action.skeleton.core.doc.CsharpDocumentGenerate;
 import com.iohao.game.action.skeleton.core.doc.DocumentAccessAuthentication;
 import com.iohao.game.action.skeleton.core.doc.IoGameDocumentHelper;
+import com.iohao.game.action.skeleton.core.doc.TypeScriptDocumentGenerate;
 import com.iohao.game.bolt.broker.client.BrokerClientStartup;
 import com.iohao.game.external.core.config.ExternalGlobalConfig;
 import com.iohao.game.widget.light.protobuf.kit.GenerateFileKit;
@@ -60,11 +61,12 @@ public final class GenerateTest {
 
         // About generating TypeScript code
 //        generateCodeVue();
+//        generateCodeAngular();
 //        generateCodeHtml();
-//        generateCocosCreator();
+        generateCocosCreator();
 
         // About generating C# code
-        generateCodeCsharpGodot();
+//        generateCodeCsharpGodot();
 //        generateCodeCsharpUnity();
 
         // Added an enumeration error code class to generate error code related information
@@ -118,45 +120,59 @@ public final class GenerateTest {
         IoGameDocumentHelper.addDocumentGenerate(documentGenerate);
     }
 
-//    private static void generateCodeVue() {
-//        var documentGenerate = new TypeScriptDocumentGenerate();
-//
-//        // 设置代码生成所存放的路径，如果不做任何设置，将会生成在 target/code 目录中
-//        // By default, it will be generated in the target/code directory
-//        String path = rootPath + "ioGameSdkTsExampleVue/src/assets/gen/code";
-//        documentGenerate.setPath(path);
-//
-//        // Your .proto path: Set the import path of common_pb in Vue.
-//        documentGenerate.setProtoImportPath("../common_pb");
-//
-//        IoGameDocumentHelper.addDocumentGenerate(documentGenerate);
-//    }
-//
-//    private static void generateCodeHtml() {
-//        var documentGenerate = new TypeScriptDocumentGenerate();
-//
-//        // 设置代码生成所存放的路径，如果不做任何设置，将会生成在 target/code 目录中
-//        // By default, it will be generated in the target/code directory
-//        String path = rootPath + "ioGameSdkTsExampleHtml/src/assets/gen/code";
-//        documentGenerate.setPath(path);
-//
-//        // Your .proto path: Set the import path of common_pb in Vue.
-//        documentGenerate.setProtoImportPath("../common_pb");
-//
-//        IoGameDocumentHelper.addDocumentGenerate(documentGenerate);
-//    }
-//
-//    private static void generateCocosCreator() {
-//        var documentGenerate = new TypeScriptDocumentGenerate();
-//
-//        // 设置代码生成所存放的路径，如果不做任何设置，将会生成在 target/code 目录中
-//        // By default, it will be generated in the target/code directory
-//        String path = rootPath + "ioGameSdkTsExampleCocos/assets/scripts/gen/code";
-//        documentGenerate.setPath(path);
-//
-//        // Your .proto path: Set the import path of common_pb in CocosCreator
-//        documentGenerate.setProtoImportPath("db://assets/scripts/gen/common_pb");
-//
-//        IoGameDocumentHelper.addDocumentGenerate(documentGenerate);
-//    }
+    private static void generateCodeVue() {
+        var documentGenerate = new TypeScriptDocumentGenerate();
+
+        // 设置代码生成所存放的路径，如果不做任何设置，将会生成在 target/code 目录中
+        // By default, it will be generated in the target/code directory
+        String path = rootPath + "ioGameSdkTsExampleVue/src/assets/gen/code";
+        documentGenerate.setPath(path);
+
+        // Your .proto path: Set the import path of common_pb in Vue.
+        documentGenerate.setProtoImportPath("../common_pb");
+
+        IoGameDocumentHelper.addDocumentGenerate(documentGenerate);
+    }
+
+    private static void generateCodeHtml() {
+        var documentGenerate = new TypeScriptDocumentGenerate();
+
+        // 设置代码生成所存放的路径，如果不做任何设置，将会生成在 target/code 目录中
+        // By default, it will be generated in the target/code directory
+        String path = rootPath + "ioGameSdkTsExampleHtml/src/assets/gen/code";
+        documentGenerate.setPath(path);
+
+        // Your .proto path: Set the import path of common_pb in Vue.
+        documentGenerate.setProtoImportPath("../common_pb");
+
+        IoGameDocumentHelper.addDocumentGenerate(documentGenerate);
+    }
+
+    private static void generateCocosCreator() {
+        var documentGenerate = new TypeScriptDocumentGenerate();
+
+        // 设置代码生成所存放的路径，如果不做任何设置，将会生成在 target/code 目录中
+        // By default, it will be generated in the target/code directory
+        String path = rootPath + "ioGameSdkTsExampleCocos/assets/scripts/gen/code";
+        documentGenerate.setPath(path);
+
+        // Your .proto path: Set the import path of common_pb in CocosCreator
+        documentGenerate.setProtoImportPath("db://assets/scripts/gen/common_pb");
+
+        IoGameDocumentHelper.addDocumentGenerate(documentGenerate);
+    }
+
+    private static void generateCodeAngular() {
+        var documentGenerate = new TypeScriptDocumentGenerate();
+
+        // 设置代码生成所存放的路径，如果不做任何设置，将会生成在 target/code 目录中
+        // By default, it will be generated in the target/code directory
+        String path = rootPath + "ioGameSdkTsExampleAngular/src/assets/gen/code";
+        documentGenerate.setPath(path);
+
+        // Your .proto path: Set the import path of common_pb in Vue.
+        documentGenerate.setProtoImportPath("../common_pb");
+
+        IoGameDocumentHelper.addDocumentGenerate(documentGenerate);
+    }
 }

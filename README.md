@@ -9,6 +9,7 @@
 | SpringBootExample | [ioGame 综合示例 (yuque.com)](https://www.yuque.com/iohao/game/ruaqza) |
 | ioGameWeb2Game    | [web 转游戏 - 示例理解篇 (yuque.com)](https://www.yuque.com/iohao/game/gpzmc8vadn4vl70z) |
 | fxglSimpleGame    | [fxgl-ioGame-移动同步 (yuque.com)](https://www.yuque.com/iohao/game/bolt) |
+| SdkExample        | [代码生成(yuque.com)](https://www.yuque.com/iohao/game/irth38)，该项目是与 ioGame SDK（C# Sdk、Ts Sdk） 相关的联调演示，服务器提供了 `action、广播、错误码` 等相关内容用于交互演示。 |
 
 
 
@@ -17,14 +18,3 @@
 [ioGame 网络游戏服务器框架文档 (yuque.com)](https://www.yuque.com/iohao/game)
 
 
-
-| 库        | 当前最新版本                                                 | 描述            |
-| --------- | ------------------------------------------------------------ | --------------- |
-| ioGame    | ![img](https://img.shields.io/maven-central/v/com.iohao.game/ioGame?color=bule&label=ioGame&logo=ioGame) | ioGame          |
-| ioGameSDK | ![img](https://img.shields.io/maven-central/v/com.iohao.game.sdk/java-sdk?color=bule&label=ioGameSDK&logo=ioGameSDK) | ioGame java SDK |
-
-
-
-
-
-其他

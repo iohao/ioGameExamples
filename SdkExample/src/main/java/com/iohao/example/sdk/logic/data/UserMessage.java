@@ -21,6 +21,8 @@ package com.iohao.example.sdk.logic.data;
 import com.baidu.bjf.remoting.protobuf.annotation.ProtobufClass;
 import com.iohao.game.widget.light.protobuf.ProtoFileMerge;
 import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.FieldDefaults;
 
@@ -31,6 +33,8 @@ import lombok.experimental.FieldDefaults;
  * @date 2024-11-01
  */
 @ToString
+@Setter
+@Getter
 @ProtobufClass
 @FieldDefaults(level = AccessLevel.PUBLIC)
 @ProtoFileMerge(fileName = SdkProtoFile.fileName, filePackage = SdkProtoFile.filePackage)

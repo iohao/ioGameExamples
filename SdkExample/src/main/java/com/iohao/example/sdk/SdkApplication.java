@@ -94,6 +94,7 @@ public final class SdkApplication {
         accessAuthenticationHook.setVerifyIdentity(true);
         // Ignore cmd: These ignored routes can be accessed without the need to loginVerify
         accessAuthenticationHook.addIgnoreAuthCmd(SdkCmd.cmd, SdkCmd.loginVerify);
+        accessAuthenticationHook.addIgnoreAuthCmd(SdkCmd.cmd);
 
         /*
          * Notice:

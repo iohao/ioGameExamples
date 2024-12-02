@@ -77,13 +77,16 @@ Ts SDK 除了能用在游戏引擎外，还能用在各种现代的前端框架�
 
 以下这些 demo 已经与本项目调通，前端代码`action、广播、错误码` 等，由 ioGame 生成。前端开发者在通信的交互上本地方法调用一般丝滑，让前端开发者将更多的精力放在真正的业务，而不是编写这些模板式的交互代码上。
 
-| Github                                                       | 语言 | 描述                                                         |
-| ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| [ioGameSdkCsharpExampleGodot](https://github.com/iohao/ioGameSdkCsharpExampleGodot) | C#   | 与 [Godot](https://godotengine.org/) 互通的一个示例。<br />Godot、Protobuf、Netty、ioGame、C#、Csharp、WebSocket |
-| [ioGameSdkCsharpExampleUnity](https://github.com/iohao/ioGameSdkCsharpExampleUnity) | C#   | 与 [Unity](https://unity.com/) 互通的一个示例。<br />Unity、Protobuf、Netty、ioGame、C#、Csharp、WebSocket |
-| [ioGameSdkTsExampleCocos](https://github.com/iohao/ioGameSdkTsExampleCocos) | Ts   | 与 [Cocos Creator](https://www.cocos.com/) 互通的一个示例。<br />CocosCreator、Protobuf、Netty、ioGame、TypeScript、WebSocket |
-| [ioGameSdkTsExampleVue](https://github.com/iohao/ioGameSdkTsExampleVue) | Ts   | 与 [Vue](https://github.com/vuejs/) 互通的一个示例。<br />Vue、Protobuf、Netty、ioGame、TypeScript、webSocket |
-| [ioGameSdkTsExampleHtml](https://github.com/iohao/ioGameSdkTsExampleHtml) | Ts   | 与 [webpack](https://github.com/webpack/webpack) 互通的一个示例。<br />（webpack: html + ts）、Protobuf、Netty、ioGame、TypeScript、WebSocket |
+| Github                                                       | 描述                                                         |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| [ioGameSdkC#ExampleGodot](https://github.com/iohao/ioGameSdkCsharpExampleGodot) | 与 [Godot](https://godotengine.org/) 互通的一个示例。 Godot、Protobuf、Netty、ioGame、C#、Csharp、WebSocket |
+| [ioGameSdkC#ExampleUnity](https://github.com/iohao/ioGameSdkCsharpExampleUnity) | 与 [Unity](https://unity.com/) 互通的一个示例。 Unity、Protobuf、Netty、ioGame、C#、Csharp、WebSocket |
+| [ioGameSdkTsExampleCocos](https://github.com/iohao/ioGameSdkTsExampleCocos) | 与 [Cocos Creator](https://www.cocos.com/) 互通的一个示例。 CocosCreator、Protobuf、Netty、ioGame、TypeScript、WebSocket |
+| [ioGameSdkTsExampleVue](https://github.com/iohao/ioGameSdkTsExampleVue) | 与 [Vue](https://github.com/vuejs/) 互通的一个示例。 Vue、Protobuf、Netty、ioGame、TypeScript、WebSocket |
+| [ioGameSdkTsExampleAngular](https://github.com/iohao/ioGameSdkTsExampleAngular) | 与 [Angular](https://github.com/angular/angular) 互通的一个示例。 Angular、Protobuf、Netty、ioGame、TypeScript、WebSocket |
+| [ioGameSdkTsExampleHtml](https://github.com/iohao/ioGameSdkTsExampleHtml) | 与 [webpack](https://github.com/webpack/webpack) 互通的一个示例。 （webpack: html + ts）、Protobuf、Netty、ioGame、TypeScript、WebSocket |
+
+---
 
 
 

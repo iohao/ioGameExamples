@@ -9,7 +9,7 @@
     <version>1.0-SNAPSHOT</version>
     <properties>
         <!-- 项目版本 -->
-        <ioGame.version>21.20</ioGame.version>
+        <ioGame.version>21.22</ioGame.version>
 
         <!-- jdk 版本 -->
         <java.version>21</java.version>
@@ -78,13 +78,6 @@
             <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
-
-        <!-- generate sdk code -->
-<!--        <dependency>-->
-<!--            <groupId>com.iohao.game</groupId>-->
-<!--            <artifactId>generate-sdk</artifactId>-->
-<!--            <version>1.0-SNAPSHOT</version>-->
-<!--        </dependency>-->
     </dependencies>
 
     <build>
