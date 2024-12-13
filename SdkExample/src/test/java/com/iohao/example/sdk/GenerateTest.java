@@ -84,11 +84,15 @@ public final class GenerateTest {
          * document https://www.yuque.com/iohao/game/vpe2t6
          */
 
+        // setting CamelCase style
+        // 与类属性同名 风格（java 一般是驼峰）。
+        // ProtoGenerateSetting.setFieldNameFunction(FieldNameGenerate::getFieldName);
+
         // By default, it will be generated in the target/proto directory
         // .proto 默认生成的目录为 target/proto
 
         // The package name to be scanned
-        String packagePath = "com.iohao.example.sdk.data";
+        String packagePath = "com.iohao.example.sdk.logic.data";
         GenerateFileKit.generate(packagePath);
     }
 
