@@ -51,7 +51,7 @@ public class GameAction {
 
     @ActionMethod(MyCmd.login)
     public PlayerInfo login(long userId, FlowContext flowContext) {
-        flowContext.setUserId(userId);
+        flowContext.bindingUserId(userId);
 
         PlayerInfo playerInfo = new PlayerInfo();
         playerInfo.userId = userId;

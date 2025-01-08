@@ -52,7 +52,7 @@ public class ExchangeAction {
         ExternalCommunicationKit.forcedOffline(userId);
 
         // channel 中设置用户的真实 userId；
-        flowContext.setUserId(userId);
+        flowContext.bindingUserId(userId);
 
         // 设置元信息
         ExchangeAttachment attachment = new ExchangeAttachment();

@@ -45,7 +45,7 @@ public class ExternalBizRegionAction {
     public boolean loginVerify(FlowContext flowContext) {
         long userId = userIdInc.incrementAndGet();
         // 登录成功
-        return flowContext.setUserId(userId);
+        return flowContext.bindingUserId(userId);
     }
 
     @ActionMethod(ExternalBizRegionCmd.listOnlineUser)

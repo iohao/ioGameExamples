@@ -72,7 +72,7 @@ public class TankLoginAction {
 
         // 登录的关键代码
         // 具体可参考 https://www.yuque.com/iohao/game/tywkqv
-        boolean success = flowContext.setUserId(newUserId);
+        boolean success = flowContext.bindingUserId(newUserId);
 
         if (!success) {
             // TODO: 2022/1/19 抛异常码

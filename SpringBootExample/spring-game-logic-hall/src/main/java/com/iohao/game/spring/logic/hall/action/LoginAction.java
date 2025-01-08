@@ -45,7 +45,7 @@ import java.util.concurrent.atomic.AtomicLong;
  *     注意，这个 Action 没有使用 spring 管理
  *
  *     参考:
- *     https://www.yuque.com/iohao/game/evkgnz#FD7s1
+ *     <a href="https://www.yuque.com/iohao/game/evkgnz#FD7s1">doc</a>
  * </pre>
  */
 @Slf4j
@@ -92,7 +92,7 @@ public class LoginAction {
         }
 
         // 设置 userId，表示登录
-        boolean success = flowContext.setUserId(userId);
+        boolean success = flowContext.bindingUserId(userId);
         // 失败抛异常码 （断言 + 异常机制）
         SpringGameCodeEnum.loginError.assertTrue(success);
 

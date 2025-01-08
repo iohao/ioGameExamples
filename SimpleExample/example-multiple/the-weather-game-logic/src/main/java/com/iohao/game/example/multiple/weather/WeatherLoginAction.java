@@ -20,7 +20,6 @@ package com.iohao.game.example.multiple.weather;
 import com.iohao.game.action.skeleton.annotation.ActionController;
 import com.iohao.game.action.skeleton.annotation.ActionMethod;
 import com.iohao.game.action.skeleton.core.flow.FlowContext;
-import com.iohao.game.bolt.broker.client.kit.UserIdSettingKit;
 import com.iohao.game.example.multiple.common.cmd.internal.WeatherCmd;
 import com.iohao.game.example.multiple.common.data.TheLogin;
 import com.iohao.game.example.multiple.common.data.TheUserInfo;
@@ -38,7 +37,7 @@ public class WeatherLoginAction {
 
         long userId = Math.abs(jwt.hashCode());
 
-        boolean b = flowContext.setUserId(userId);
+        boolean b = flowContext.bindingUserId(userId);
         if (!b) {
             System.err.println("login error");
         }

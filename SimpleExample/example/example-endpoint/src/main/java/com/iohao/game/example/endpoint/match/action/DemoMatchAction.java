@@ -61,7 +61,7 @@ public class DemoMatchAction {
 
         // 登录的关键代码
         // 具体可参考 https://www.yuque.com/iohao/game/tywkqv
-        boolean success = flowContext.setUserId(newUserId);
+        boolean success = flowContext.bindingUserId(newUserId);
 
         if (!success) {
             log.error("登录错误");

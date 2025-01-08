@@ -21,7 +21,6 @@ package com.iohao.game.component.login.action;
 import com.iohao.game.action.skeleton.annotation.ActionController;
 import com.iohao.game.action.skeleton.annotation.ActionMethod;
 import com.iohao.game.action.skeleton.core.flow.FlowContext;
-import com.iohao.game.bolt.broker.client.kit.UserIdSettingKit;
 import com.iohao.game.component.login.cmd.LoginCmd;
 import com.iohao.game.component.login.proto.LoginVerify;
 import com.iohao.game.component.login.proto.UserInfo;
@@ -57,7 +56,7 @@ public class TheLoginAction {
         userInfo.name = faker.name().fullName();
 
         // channel 中设置用户的真实 userId；
-        boolean success = flowContext.setUserId(userId);
+        boolean success = flowContext.bindingUserId(userId);
 
         if (!success) {
             log.error("登录失败");

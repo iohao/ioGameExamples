@@ -60,7 +60,7 @@ public final class SdkAction {
 
         ExternalCommunicationKit.forcedOffline(userMessage.userId);
 
-        var success = flowContext.setUserId(userMessage.userId);
+        var success = flowContext.bindingUserId(userMessage.userId);
         SdkGameCodeEnum.loginError.assertTrue(success);
 
         return userMessage;

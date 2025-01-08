@@ -40,7 +40,7 @@ public class WsVerifyAction {
 
         // 设置 userId
         long userId = attachment.userId;
-        boolean success = flowContext.setUserId(userId);
+        boolean success = flowContext.bindingUserId(userId);
 
         if (success) {
             log.info("登录成功");

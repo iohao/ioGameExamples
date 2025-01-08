@@ -41,7 +41,7 @@ public class UserAction {
     public TheBusLogin login(TheBusLogin login, FlowContext flowContext) {
         int userId = Math.abs(login.jwt.hashCode());
 
-        flowContext.setUserId(userId);
+        flowContext.bindingUserId(userId);
 
         return login;
     }
