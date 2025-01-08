@@ -36,7 +36,7 @@ public class WeatherLoginAction {
         String jwt = login.jwt;
 
         long userId = Math.abs(jwt.hashCode());
-
+        // 绑定 userId，表示登录
         boolean b = flowContext.bindingUserId(userId);
         if (!b) {
             System.err.println("login error");

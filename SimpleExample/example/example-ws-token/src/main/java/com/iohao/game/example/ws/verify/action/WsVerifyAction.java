@@ -38,7 +38,7 @@ public class WsVerifyAction {
         DemoAttachment attachment = flowContext.getAttachment(DemoAttachment.class);
         log.info("attachment : {}", attachment);
 
-        // 设置 userId
+        // 绑定 userId，表示登录
         long userId = attachment.userId;
         boolean success = flowContext.bindingUserId(userId);
 

@@ -91,7 +91,7 @@ public class LoginAction {
             ExternalCommunicationKit.forcedOffline(userId);
         }
 
-        // 设置 userId，表示登录
+        // 绑定 userId，表示登录
         boolean success = flowContext.bindingUserId(userId);
         // 失败抛异常码 （断言 + 异常机制）
         SpringGameCodeEnum.loginError.assertTrue(success);

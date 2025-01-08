@@ -60,6 +60,7 @@ public final class SdkAction {
 
         ExternalCommunicationKit.forcedOffline(userMessage.userId);
 
+        // 绑定 userId，表示登录
         var success = flowContext.bindingUserId(userMessage.userId);
         SdkGameCodeEnum.loginError.assertTrue(success);
 

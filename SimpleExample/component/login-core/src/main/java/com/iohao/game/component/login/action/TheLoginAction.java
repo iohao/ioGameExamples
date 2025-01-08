@@ -55,7 +55,7 @@ public class TheLoginAction {
         userInfo.id = userId;
         userInfo.name = faker.name().fullName();
 
-        // channel 中设置用户的真实 userId；
+        // 绑定 userId，表示登录
         boolean success = flowContext.bindingUserId(userId);
 
         if (!success) {

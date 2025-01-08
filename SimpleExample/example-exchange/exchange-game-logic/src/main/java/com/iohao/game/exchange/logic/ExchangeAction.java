@@ -51,7 +51,7 @@ public class ExchangeAction {
         // （相当于顶号），强制断开之前的客户端连接，并让本次登录成功。
         ExternalCommunicationKit.forcedOffline(userId);
 
-        // channel 中设置用户的真实 userId；
+        // 绑定 userId，表示登录
         flowContext.bindingUserId(userId);
 
         // 设置元信息

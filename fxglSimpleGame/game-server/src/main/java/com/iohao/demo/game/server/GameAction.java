@@ -51,6 +51,7 @@ public class GameAction {
 
     @ActionMethod(MyCmd.login)
     public PlayerInfo login(long userId, FlowContext flowContext) {
+        // 绑定 userId，表示登录
         flowContext.bindingUserId(userId);
 
         PlayerInfo playerInfo = new PlayerInfo();

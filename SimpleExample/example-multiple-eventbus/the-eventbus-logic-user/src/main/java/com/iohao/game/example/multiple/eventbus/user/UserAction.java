@@ -40,7 +40,7 @@ public class UserAction {
     @ActionMethod(UserCmd.login)
     public TheBusLogin login(TheBusLogin login, FlowContext flowContext) {
         int userId = Math.abs(login.jwt.hashCode());
-
+        // 绑定 userId，表示登录
         flowContext.bindingUserId(userId);
 
         return login;

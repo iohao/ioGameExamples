@@ -59,7 +59,7 @@ public class DemoMatchAction {
         // 为了方便，这里登录用户的id 写个自身传入 jwt 的 hash
         int newUserId = Math.abs(loginVerify.jwt.hashCode());
 
-        // 登录的关键代码
+        // 绑定 userId，表示登录
         // 具体可参考 https://www.yuque.com/iohao/game/tywkqv
         boolean success = flowContext.bindingUserId(newUserId);
 

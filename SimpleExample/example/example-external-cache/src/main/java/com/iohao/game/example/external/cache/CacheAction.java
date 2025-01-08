@@ -53,7 +53,7 @@ public class CacheAction {
         userInfo.id = userId;
         userInfo.name = loginVerify.jwt;
 
-        // channel 中设置用户的真实 userId；
+        // 绑定 userId，表示登录
         boolean success = flowContext.bindingUserId(userId);
 
         log.info("登录 : {}", success);
