@@ -9,7 +9,7 @@
     <version>1.0-SNAPSHOT</version>
     <properties>
         <!-- 项目版本 -->
-        <ioGame.version>21.23</ioGame.version>
+        <ioGame.version>21.24</ioGame.version>
 
         <!-- jdk 版本 -->
         <java.version>21</java.version>
@@ -77,6 +77,12 @@
             <artifactId>junit</artifactId>
             <version>${junit.version}</version>
             <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.iohao.game</groupId>
+            <artifactId>light-client</artifactId>
+            <version>${ioGame.version}</version>
         </dependency>
     </dependencies>
 

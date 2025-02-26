@@ -25,7 +25,7 @@ import com.iohao.game.action.skeleton.core.doc.IoGameDocumentHelper;
 import com.iohao.game.action.skeleton.core.doc.TypeScriptDocumentGenerate;
 import com.iohao.game.bolt.broker.client.BrokerClientStartup;
 import com.iohao.game.external.core.config.ExternalGlobalConfig;
-import com.iohao.game.widget.light.protobuf.kit.GenerateFileKit;
+import com.iohao.game.widget.light.protobuf.ProtoGenerateFile;
 
 import java.util.Locale;
 
@@ -88,12 +88,17 @@ public final class GenerateTest {
         // 与类属性同名 风格（java 一般是驼峰）。
         // ProtoGenerateSetting.setFieldNameFunction(FieldNameGenerate::getFieldName);
 
-        // By default, it will be generated in the target/proto directory
-        // .proto 默认生成的目录为 target/proto
+        var protoGenerateFile = new ProtoGenerateFile()
+                // By default, it will be generated in the target/proto directory
+                // .proto 默认生成的目录为 target/proto
+//                .setGenerateFolder("/Users/join/gitme/game/MyGames/proto")
+                // The package name to be scanned
+                // 需要扫描的包名
+                .addProtoPackage("com.iohao.example.sdk.logic.data");
 
-        // The package name to be scanned
-        String packagePath = "com.iohao.example.sdk.logic.data";
-        GenerateFileKit.generate(packagePath);
+        // .proto generate
+        // 生成 .proto 文件
+        protoGenerateFile.generate();
     }
 
     private static void generateCodeCsharpUnity() {
@@ -120,7 +125,6 @@ public final class GenerateTest {
         // Your .proto path: Set the import path of common_pb in C#
         // see target/proto/common.proto package
         // documentGenerate.setProtoImportPath("using Pb.Common;");
-
         IoGameDocumentHelper.addDocumentGenerate(documentGenerate);
     }
 

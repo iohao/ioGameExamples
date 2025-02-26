@@ -1,8 +1,10 @@
 package com.iohao.web2game;
 
+import com.iohao.game.action.skeleton.ext.spring.ActionFactoryBeanForSpring;
 import com.iohao.game.external.core.netty.simple.NettySimpleHelper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 
 import java.util.List;
 
@@ -16,5 +18,11 @@ public class IoGameWeb2GameApplication {
         // 启动游戏服务器
         int port = 10100;
         NettySimpleHelper.run(port, List.of(new HelloLogicServer()));
+    }
+
+    @Bean
+    public ActionFactoryBeanForSpring actionFactoryBean() {
+        // 将业务框架交给 spring 管理
+        return ActionFactoryBeanForSpring.me();
     }
 }

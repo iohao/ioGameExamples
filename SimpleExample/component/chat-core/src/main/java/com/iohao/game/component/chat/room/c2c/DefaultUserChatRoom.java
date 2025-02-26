@@ -81,10 +81,11 @@ public class DefaultUserChatRoom implements UserChatRoom {
 
         // 消息通知，但不给具体的内容；让客户端主动读取
         CmdInfo cmdInfo = ChatCmd.of(ChatCmd.notifyPrivate);
-        BroadcastContext broadcastContext = BrokerClientHelper.getBroadcastContext();
 
         ChatNotifyMessage chatNotifyMessage = new ChatNotifyMessage();
         chatNotifyMessage.senderId = senderId;
+
+        BroadcastContext broadcastContext = BrokerClientHelper.getBroadcastContext();
         broadcastContext.broadcast(cmdInfo, chatNotifyMessage, this.userId);
     }
 
