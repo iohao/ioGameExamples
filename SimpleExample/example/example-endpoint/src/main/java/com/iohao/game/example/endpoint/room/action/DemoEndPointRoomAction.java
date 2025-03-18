@@ -20,18 +20,15 @@ package com.iohao.game.example.endpoint.room.action;
 import com.iohao.game.action.skeleton.annotation.ActionController;
 import com.iohao.game.action.skeleton.annotation.ActionMethod;
 import com.iohao.game.action.skeleton.core.CmdInfo;
-import com.iohao.game.action.skeleton.core.commumication.InvokeModuleContext;
 import com.iohao.game.action.skeleton.core.flow.FlowContext;
-import com.iohao.game.action.skeleton.protocol.RequestMessage;
 import com.iohao.game.action.skeleton.protocol.ResponseMessage;
 import com.iohao.game.action.skeleton.protocol.wrapper.StringValue;
-import com.iohao.game.bolt.broker.core.client.BrokerClientHelper;
+import com.iohao.game.common.kit.RandomKit;
 import com.iohao.game.example.common.msg.DemoOperation;
 import com.iohao.game.example.common.msg.RoomNumMsg;
 import com.iohao.game.example.endpoint.animal.action.DemoCmdForEndPointAnimal;
 import lombok.extern.slf4j.Slf4j;
 
-import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.atomic.LongAdder;
 
 /**
@@ -54,7 +51,7 @@ public class DemoEndPointRoomAction {
     @ActionMethod(DemoCmdForEndPointRoom.countRoom)
     public RoomNumMsg countRoom() {
         // 得到 1 ~ 100 的随机数。
-        int anInt = ThreadLocalRandom.current().nextInt(1, 100);
+        int anInt = RandomKit.random(1, 100);
 
         // 当前房间数量
         RoomNumMsg roomNumMsg = new RoomNumMsg();

@@ -18,7 +18,6 @@
  */
 package com.iohao.game.example.endpoint;
 
-import com.iohao.game.common.kit.ExecutorKit;
 import com.iohao.game.common.kit.concurrent.TaskKit;
 import com.iohao.game.example.common.msg.DemoOperation;
 import com.iohao.game.example.common.msg.MatchResponse;
@@ -33,7 +32,6 @@ import com.iohao.game.external.client.kit.ClientUserConfigs;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 /**
  * @author 渔民小镇
@@ -75,10 +73,10 @@ public class DemoForEndPointClient {
             });
 
             // Scheduled 5 seconds 发送消息 -- 房间请求相关的
-            ExecutorKit.newSingleScheduled("websocketClient").scheduleAtFixedRate(() -> {
-                // 请求房间逻辑服的 operation 方法
-                ofRequestCommand(DemoCmdForEndPointRoom.operation).execute();
-            }, 5, 5, TimeUnit.SECONDS);
+//            ExecutorKit.newSingleScheduled("websocketClient").scheduleAtFixedRate(() -> {
+//                // 请求房间逻辑服的 operation 方法
+//                ofRequestCommand(DemoCmdForEndPointRoom.operation).execute();
+//            }, 5, 5, TimeUnit.SECONDS);
         }
     }
 

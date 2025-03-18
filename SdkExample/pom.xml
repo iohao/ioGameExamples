@@ -40,7 +40,6 @@
             <groupId>com.iohao.game</groupId>
             <artifactId>generate-code</artifactId>
             <version>${ioGame.version}</version>
-            <scope>test</scope>
         </dependency>
 
         <dependency>
