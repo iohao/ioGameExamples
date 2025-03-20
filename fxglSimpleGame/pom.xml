@@ -24,7 +24,7 @@
         <logback.version>1.4.14</logback.version>
 
         <lombok.version>1.18.34</lombok.version>
-        <ioGame.version>21.24</ioGame.version>
+        <ioGame.version>21.25</ioGame.version>
         <!-- https://mvnrepository.com/artifact/com.iohao.game.sdk/java-sdk -->
         <ioGameSDK.version>21.2</ioGameSDK.version>
 
