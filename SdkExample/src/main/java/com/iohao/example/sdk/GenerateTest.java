@@ -19,21 +19,27 @@
 package com.iohao.example.sdk;
 
 import com.iohao.example.sdk.logic.data.SdkGameCodeEnum;
-import com.iohao.game.action.skeleton.core.doc.CsharpDocumentGenerate;
-import com.iohao.game.action.skeleton.core.doc.DocumentAccessAuthentication;
-import com.iohao.game.action.skeleton.core.doc.IoGameDocumentHelper;
-import com.iohao.game.action.skeleton.core.doc.TypeScriptDocumentGenerate;
+import com.iohao.game.action.skeleton.core.doc.*;
 import com.iohao.game.bolt.broker.client.BrokerClientStartup;
+import com.iohao.game.common.kit.concurrent.TaskKit;
 import com.iohao.game.external.core.config.ExternalGlobalConfig;
 import com.iohao.game.widget.light.protobuf.ProtoGenerateFile;
+import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
 
+import java.io.File;
+import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author 渔民小镇
  * @date 2024-11-02
  * @since 21.20
  */
+@Slf4j
 public final class GenerateTest {
     // setting root path
     static String rootPath = "/Users/join/gitme/ioGame-sdk/";
@@ -59,15 +65,18 @@ public final class GenerateTest {
          * cn: 生成 action、广播、错误码
          */
 
-        // About generating TypeScript code
+        // ----- About generating TypeScript code -----
 //        generateCodeVue();
 //        generateCodeAngular();
 //        generateCodeHtml();
-        generateCocosCreator();
-
-        // About generating C# code
+//        generateCocosCreator();
+//
+        // ----- About generating C# code -----
 //        generateCodeCsharpGodot();
 //        generateCodeCsharpUnity();
+
+        // ----- About generating GDScript code -----
+        generateCodeGDScriptGodot();
 
         // Added an enumeration error code class to generate error code related information
         IoGameDocumentHelper.addErrorCodeClass(SdkGameCodeEnum.class);
@@ -75,10 +84,26 @@ public final class GenerateTest {
         IoGameDocumentHelper.generateDocument();
 
         // Generate .proto
-        generateProtoFile();
+        generateProtoFile(List.of(
+//                // ------ TypeScript proto ------
+//                new ProtoFileConfig("ioGameSdkTsExampleCocos", new String[]{"npx", "buf", "generate"})
+//                , new ProtoFileConfig("ioGameSdkTsExampleVue", new String[]{"npx", "buf", "generate"})
+//                , new ProtoFileConfig("ioGameSdkTsExampleAngular", new String[]{"npx", "buf", "generate"})
+//                , new ProtoFileConfig("ioGameSdkTsExampleHtml", new String[]{"npx", "buf", "generate"})
+//                // ------ C# proto ------
+//                , new ProtoFileConfig("ioGameSdkCsharpExampleGodot", new String[]{"./compile-proto.sh"})
+//                , new ProtoFileConfig("ioGameSdkCsharpExampleUnity", new String[]{"./compile-proto.sh"})
+                // ------ GDScript proto ------
+                new ProtoFileConfig("ioGameSdkGDScriptExampleGodot", null)
+
+        ));
     }
 
-    static void generateProtoFile() {
+    record ProtoFileConfig(String projectPath, String[] command) {
+    }
+
+    @SneakyThrows
+    static void generateProtoFile(List<ProtoFileConfig> protoFileConfigs) {
         /*
          * .proto generate
          * document https://www.yuque.com/iohao/game/vpe2t6
@@ -88,17 +113,75 @@ public final class GenerateTest {
         // 与类属性同名 风格（java 一般是驼峰）。
         // ProtoGenerateSetting.setFieldNameFunction(FieldNameGenerate::getFieldName);
 
-        var protoGenerateFile = new ProtoGenerateFile()
-                // By default, it will be generated in the target/proto directory
-                // .proto 默认生成的目录为 target/proto
-//                .setGenerateFolder("/Users/join/gitme/game/MyGames/proto")
-                // The package name to be scanned
-                // 需要扫描的包名
-                .addProtoPackage("com.iohao.example.sdk.logic.data");
+        CountDownLatch countDownLatch = new CountDownLatch(protoFileConfigs.size());
+        for (ProtoFileConfig protoFileConfig : protoFileConfigs) {
+            TaskKit.executeVirtual(() -> {
+                String projectPath = protoFileConfig.projectPath;
+                // path: /YourRootPath/ioGameSdkCsharpExampleGodot/proto
+                String path = "%s%s/proto".formatted(rootPath, projectPath);
 
-        // .proto generate
-        // 生成 .proto 文件
-        protoGenerateFile.generate();
+                var protoGenerateFile = new ProtoGenerateFile()
+                        // By default, it will be generated in the target/proto directory
+                        // .proto 默认生成的目录为 target/proto
+                        .setGenerateFolder(path)
+                        // The package name to be scanned
+                        // 需要扫描的包名
+                        .addProtoPackage("com.iohao.example.sdk.logic.data");
+
+                // .proto generate
+                // 生成 .proto 文件
+                protoGenerateFile.generate();
+
+                countDownLatch.countDown();
+            });
+        }
+
+        countDownLatch.await(3, TimeUnit.SECONDS);
+
+        boolean isMac = System.getProperty("os.name").toLowerCase().contains("mac");
+        if (isMac) {
+            CountDownLatch countDownLatchShell = new CountDownLatch(protoFileConfigs.size());
+
+            for (ProtoFileConfig protoFileConfig : protoFileConfigs) {
+                TaskKit.executeVirtual(() -> {
+                    String directoryPath = rootPath + protoFileConfig.projectPath;
+
+                    // 指定要执行的命令
+                    String[] command = protoFileConfig.command;
+                    if (Objects.isNull(command)) {
+                        countDownLatchShell.countDown();
+                        return;
+                    }
+
+                    log.info("shell command: {} , {}", String.join(" ", command), directoryPath);
+                    ProcessBuilder processBuilder = new ProcessBuilder(command);
+                    // 设置执行目录
+                    processBuilder.directory(new File(directoryPath));
+                    processBuilder.inheritIO();
+
+                    try {
+                        Process process = processBuilder.start();
+                        process.waitFor();
+                        countDownLatchShell.countDown();
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+                });
+            }
+
+            countDownLatchShell.await();
+            log.info(".proto compile complete. 编译完成！");
+        }
+    }
+
+    private static void generateCodeGDScriptGodot() {
+        var documentGenerate = new GDScriptDocumentGenerate();
+        // By default, it will be generated in the target/code directory
+        // cn: 设置代码生成所存放的路径，如果不做任何设置，将会生成在 target/code 目录中
+        String path = rootPath + "ioGameSdkGDScriptExampleGodot/gen/code";
+        documentGenerate.setPath(path);
+
+        IoGameDocumentHelper.addDocumentGenerate(documentGenerate);
     }
 
     private static void generateCodeCsharpUnity() {
@@ -107,10 +190,6 @@ public final class GenerateTest {
         // By default, it will be generated in the target/code directory
         String path = rootPath + "ioGameSdkCsharpExampleUnity/Assets/Scripts/Gen/Code";
         documentGenerate.setPath(path);
-
-        // Your .proto path: Set the import path of common_pb in C#
-        // see target/proto/common.proto package
-        // documentGenerate.setProtoImportPath("using Pb.Common;");
 
         IoGameDocumentHelper.addDocumentGenerate(documentGenerate);
     }
@@ -122,9 +201,6 @@ public final class GenerateTest {
         String path = rootPath + "ioGameSdkCsharpExampleGodot/script/gen/code";
         documentGenerate.setPath(path);
 
-        // Your .proto path: Set the import path of common_pb in C#
-        // see target/proto/common.proto package
-        // documentGenerate.setProtoImportPath("using Pb.Common;");
         IoGameDocumentHelper.addDocumentGenerate(documentGenerate);
     }
 
@@ -135,9 +211,6 @@ public final class GenerateTest {
         // By default, it will be generated in the target/code directory
         String path = rootPath + "ioGameSdkTsExampleVue/src/assets/gen/code";
         documentGenerate.setPath(path);
-
-        // Your .proto path: Set the import path of common_pb in Vue.
-        documentGenerate.setProtoImportPath("../common_pb");
 
         IoGameDocumentHelper.addDocumentGenerate(documentGenerate);
     }
@@ -150,9 +223,6 @@ public final class GenerateTest {
         String path = rootPath + "ioGameSdkTsExampleHtml/src/assets/gen/code";
         documentGenerate.setPath(path);
 
-        // Your .proto path: Set the import path of common_pb in Vue.
-        documentGenerate.setProtoImportPath("../common_pb");
-
         IoGameDocumentHelper.addDocumentGenerate(documentGenerate);
     }
 
@@ -164,9 +234,6 @@ public final class GenerateTest {
         String path = rootPath + "ioGameSdkTsExampleCocos/assets/scripts/gen/code";
         documentGenerate.setPath(path);
 
-        // Your .proto path: Set the import path of common_pb in CocosCreator
-        documentGenerate.setProtoImportPath("db://assets/scripts/gen/common_pb");
-
         IoGameDocumentHelper.addDocumentGenerate(documentGenerate);
     }
 
@@ -177,9 +244,6 @@ public final class GenerateTest {
         // By default, it will be generated in the target/code directory
         String path = rootPath + "ioGameSdkTsExampleAngular/src/assets/gen/code";
         documentGenerate.setPath(path);
-
-        // Your .proto path: Set the import path of common_pb in Vue.
-        documentGenerate.setProtoImportPath("../common_pb");
 
         IoGameDocumentHelper.addDocumentGenerate(documentGenerate);
     }

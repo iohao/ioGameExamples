@@ -18,14 +18,19 @@
  */
 package com.iohao.example.sdk.logic.data;
 
-/**
- * @author 渔民小镇
- * @date 2024-11-01
- */
-public interface SdkProtoFile {
-    String fileName = "common.proto";
-    String filePackage = "common";
+import com.baidu.bjf.remoting.protobuf.annotation.ProtobufClass;
+import com.iohao.game.widget.light.protobuf.ProtoFileMerge;
 
-    String fileName2 = "common2.proto";
-    String filePackage2 = "common2";
+/**
+ * CarEnum
+ * @author 渔民小镇
+ * @date 2025-03-22
+ * @since 21.26
+ */
+@ProtobufClass
+@ProtoFileMerge(fileName = SdkProtoFile.fileName, filePackage = SdkProtoFile.filePackage)
+public enum CarEnum {
+    dog,
+    bird,
+    catCar
 }

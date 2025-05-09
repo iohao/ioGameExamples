@@ -20,6 +20,8 @@ package com.iohao.example.sdk.logic.action;
 
 import com.iohao.game.action.skeleton.core.CmdInfo;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 /**
  * @author 渔民小镇
  * @date 2024-11-01
@@ -42,26 +44,31 @@ public interface SdkCmd {
     int listString = 15;
     int listValue = 16;
 
-    int testError = 20;
-
-    int broadcastInt = 32;
-    int broadcastLong = 33;
-    int broadcastBool = 34;
-    int broadcastString = 35;
-    int broadcastValue = 36;
-
-    int broadcastListInt = 42;
-    int broadcastListLong = 43;
-    int broadcastListBool = 44;
-    int broadcastListString = 45;
-    int broadcastListValue = 46;
-
-    int internalAddMoney = 50;
-
     /* ---------- other action test ---------- */
-    int noParam = 60;
-    int noReturn = 61;
+    int testError = 20;
+    int noParam = 21;
+    int noReturn = 22;
+    int bulletMessage = 23;
 
+    int internalAddMoney = 30;
+
+    /* ---------- 广播起始 ---------- */
+    AtomicInteger inc = new AtomicInteger(32);
+
+    CmdInfo broadcastInt = CmdInfo.of(cmd, inc.getAndIncrement());
+    CmdInfo broadcastLong = CmdInfo.of(cmd, inc.getAndIncrement());
+    CmdInfo broadcastBool = CmdInfo.of(cmd, inc.getAndIncrement());
+    CmdInfo broadcastString = CmdInfo.of(cmd, inc.getAndIncrement());
+    CmdInfo broadcastValue = CmdInfo.of(cmd, inc.getAndIncrement());
+
+    CmdInfo broadcastListIntValue = CmdInfo.of(cmd, inc.getAndIncrement());
+    CmdInfo broadcastListLong = CmdInfo.of(cmd, inc.getAndIncrement());
+    CmdInfo broadcastListBool = CmdInfo.of(cmd, inc.getAndIncrement());
+    CmdInfo broadcastListString = CmdInfo.of(cmd, inc.getAndIncrement());
+    CmdInfo broadcastListValue = CmdInfo.of(cmd, inc.getAndIncrement());
+
+    CmdInfo broadcastBulletMessage = CmdInfo.of(cmd, inc.getAndIncrement());
+    CmdInfo broadcastEmpty = CmdInfo.of(cmd, inc.getAndIncrement());
 
     static CmdInfo of(int subCmd) {
         return CmdInfo.of(cmd, subCmd);

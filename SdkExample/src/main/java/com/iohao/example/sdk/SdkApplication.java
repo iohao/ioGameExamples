@@ -21,19 +21,24 @@ package com.iohao.example.sdk;
 import com.iohao.example.sdk.logic.SdkLogicServer;
 import com.iohao.example.sdk.logic.action.SdkCmd;
 import com.iohao.game.action.skeleton.core.DataCodecKit;
+import com.iohao.game.action.skeleton.i18n.Bundle;
+import com.iohao.game.action.skeleton.i18n.MessageKey;
 import com.iohao.game.action.skeleton.protocol.BarMessage;
 import com.iohao.game.action.skeleton.protocol.wrapper.LongValue;
 import com.iohao.game.bolt.broker.client.AbstractBrokerClientStartup;
 import com.iohao.game.common.kit.concurrent.TaskKit;
 import com.iohao.game.common.kit.time.CacheTimeKit;
 import com.iohao.game.external.core.ExternalServer;
+import com.iohao.game.external.core.aware.UserSessionsAware;
 import com.iohao.game.external.core.config.ExternalGlobalConfig;
+import com.iohao.game.external.core.hook.UserHook;
 import com.iohao.game.external.core.hook.internal.IdleProcessSetting;
 import com.iohao.game.external.core.netty.DefaultExternalServer;
 import com.iohao.game.external.core.netty.hook.DefaultSocketIdleHook;
 import com.iohao.game.external.core.netty.hook.SocketIdleHook;
 import com.iohao.game.external.core.netty.simple.NettyRunOne;
 import com.iohao.game.external.core.session.UserSession;
+import com.iohao.game.external.core.session.UserSessions;
 import io.netty.handler.timeout.IdleStateEvent;
 import lombok.extern.slf4j.Slf4j;
 
@@ -79,9 +84,11 @@ public final class SdkApplication {
          * cn: 创建 IdleProcessSetting，用于心跳相关的设置
          */
         var idleProcessSetting = new IdleProcessSetting()
-                .setIdleTime(15)
+                .setIdleTime(10)
                 .setIdleHook(new MySocketIdleHook());
         setting.setIdleProcessSetting(idleProcessSetting);
+
+        setting.setUserHook(new MyUserHook());
 
         return builder.build();
     }
@@ -137,4 +144,34 @@ public final class SdkApplication {
             log.info("response Idle");
         }
     }
+
+    private static class MyUserHook implements UserHook, UserSessionsAware {
+        UserSessions<?, ?> userSessions;
+
+        @Override
+        public void setUserSessions(UserSessions<?, ?> userSessions) {
+            this.userSessions = userSessions;
+        }
+
+        @Override
+        public void into(UserSession userSession) {
+            long userId = userSession.getUserId();
+            log.info("{}:{}  userId:{}, into"
+                    , Bundle.getMessage(MessageKey.userHookInto)
+                    , userSessions.countOnline()
+                    , userId);
+        }
+
+        @Override
+        public void quit(UserSession userSession) {
+
+            long userId = userSession.getUserId();
+            log.info("{}:{}  userId:{}, quit"
+                    , Bundle.getMessage(MessageKey.userHookQuit)
+                    , userSessions.countOnline()
+                    , userId);
+        }
+
+    }
+
 }

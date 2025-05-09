@@ -56,8 +56,10 @@ public final class SdkAction {
      */
     @ActionMethod(SdkCmd.loginVerify)
     public UserMessage loginVerify(LoginVerifyMessage verifyMessage, FlowContext flowContext) {
-        UserMessage userMessage = ofUserMessage(verifyMessage);
+        log.info("login ----- {}", verifyMessage);
 
+        UserMessage userMessage = ofUserMessage(verifyMessage);
+        
         ExternalCommunicationKit.forcedOffline(userMessage.userId);
 
         // 绑定 userId，表示登录
@@ -222,23 +224,27 @@ public final class SdkAction {
     public void triggerBroadcast(FlowContext flowContext) {
         BulletMessage bulletMessage = new BulletMessage();
         bulletMessage.bulletId = counter.getAndIncrement();
-        flowContext.broadcastMe(SdkCmd.of(SdkCmd.triggerBroadcast), bulletMessage);
+        flowContext.broadcastMe(SdkCmd.broadcastBulletMessage, bulletMessage);
+
+        // emptyValue
+        var emptyResponseMessage = flowContext.createResponseMessage(SdkCmd.broadcastEmpty);
+        flowContext.broadcastMe(emptyResponseMessage);
 
         // single value
-        flowContext.broadcastMe(SdkCmd.of(SdkCmd.broadcastInt), IntValue.of(counter.getAndIncrement()));
-        flowContext.broadcastMe(SdkCmd.of(SdkCmd.broadcastLong), LongValue.of(counter.getAndIncrement()));
-        flowContext.broadcastMe(SdkCmd.of(SdkCmd.broadcastBool), BoolValue.of(RandomKit.randomBoolean()));
-        flowContext.broadcastMe(SdkCmd.of(SdkCmd.broadcastString), StringValue.of(counter.getAndIncrement() + ""));
-        flowContext.broadcastMe(SdkCmd.of(SdkCmd.broadcastValue), ofUserMessage(counter.getAndIncrement()));
+        flowContext.broadcastMe(SdkCmd.broadcastInt, IntValue.of(counter.getAndIncrement()));
+        flowContext.broadcastMe(SdkCmd.broadcastLong, LongValue.of(counter.getAndIncrement()));
+        flowContext.broadcastMe(SdkCmd.broadcastBool, BoolValue.of(RandomKit.randomBoolean()));
+        flowContext.broadcastMe(SdkCmd.broadcastString, StringValue.of(counter.getAndIncrement() + ""));
+        flowContext.broadcastMe(SdkCmd.broadcastValue, ofUserMessage(counter.getAndIncrement()));
 
         // list value
-        flowContext.broadcastMe(SdkCmd.of(SdkCmd.broadcastListInt), IntValueList.of(List.of(counter.getAndIncrement())));
-        flowContext.broadcastMe(SdkCmd.of(SdkCmd.broadcastListLong), LongValueList.of(List.of(counter.longValue())));
-        flowContext.broadcastMe(SdkCmd.of(SdkCmd.broadcastListBool), BoolValueList.of(List.of(RandomKit.randomBoolean())));
-        flowContext.broadcastMe(SdkCmd.of(SdkCmd.broadcastListString), StringValueList.of(List.of(counter.getAndIncrement() + "")));
+        flowContext.broadcastMe(SdkCmd.broadcastListIntValue, IntValueList.of(List.of(counter.getAndIncrement())));
+        flowContext.broadcastMe(SdkCmd.broadcastListLong, LongValueList.of(List.of(counter.longValue())));
+        flowContext.broadcastMe(SdkCmd.broadcastListBool, BoolValueList.of(List.of(RandomKit.randomBoolean())));
+        flowContext.broadcastMe(SdkCmd.broadcastListString, StringValueList.of(List.of(counter.getAndIncrement() + "")));
 
         var userList = IntStream.range(1, 3).mapToObj(this::ofUserMessage).toList();
-        flowContext.broadcastMe(SdkCmd.of(SdkCmd.broadcastListValue), ByteValueList.ofList(userList));
+        flowContext.broadcastMe(SdkCmd.broadcastListValue, ByteValueList.ofList(userList));
     }
 
     /**
@@ -265,5 +271,11 @@ public final class SdkAction {
     @ActionMethod(SdkCmd.internalAddMoney)
     public int internalAddMoney(int money) {
         return RandomKit.randomInt(money);
+    }
+
+    @ActionMethod(SdkCmd.bulletMessage)
+    public BulletMessage bulletMessage(BulletMessage message) {
+        message.bulletId = counter.getAndIncrement();
+        return message;
     }
 }

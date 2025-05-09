@@ -37,4 +37,6 @@ import lombok.experimental.FieldDefaults;
 public final class BulletMessage {
     /** id */
     int bulletId;
+    /** bullet name */
+    String name;
 }
