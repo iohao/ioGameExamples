@@ -19,6 +19,7 @@ package com.iohao.game.example.interaction.part;
 
 import com.iohao.game.bolt.broker.core.client.BrokerAddress;
 import com.iohao.game.bolt.broker.core.common.IoGameGlobalConfig;
+import com.iohao.game.external.core.config.ExternalGlobalConfig;
 import com.iohao.game.external.core.netty.DefaultExternalServer;
 import com.iohao.game.external.core.netty.DefaultExternalServerBuilder;
 import lombok.AccessLevel;
@@ -36,7 +37,7 @@ import lombok.experimental.FieldDefaults;
 public class DemoInteractionExternalClient {
     public static void main(String[] args) {
         // 游戏对外服 - 构建器
-        DefaultExternalServerBuilder builder = DefaultExternalServer.newBuilder(10100)
+        DefaultExternalServerBuilder builder = DefaultExternalServer.newBuilder(ExternalGlobalConfig.externalPort)
                 // Broker （游戏网关）的连接地址
                 .brokerAddress(new BrokerAddress("127.0.0.1", IoGameGlobalConfig.brokerPort));
 

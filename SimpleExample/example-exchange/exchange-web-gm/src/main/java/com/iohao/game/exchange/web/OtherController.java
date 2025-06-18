@@ -52,7 +52,7 @@ public class OtherController {
     @GetMapping("/notice")
     public String notice() {
         log.info("other notice");
-        // 使用协议碎片特性 https://www.yuque.com/iohao/game/ieimzn
+        // 使用协议碎片特性 https://iohao.github.io/game/docs/manual/protocol_fragment
         StringValue data = StringValue.of("other GM web msg " + msgId.incrementAndGet());
         // 模拟请求 : 路由 - 业务数据
         RequestMessage requestMessage = BarMessageKit.createRequestMessage(ExchangeCmd.of(ExchangeCmd.notice), data);

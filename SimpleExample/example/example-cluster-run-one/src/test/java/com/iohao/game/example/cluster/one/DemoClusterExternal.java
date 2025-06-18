@@ -4,6 +4,7 @@ import com.iohao.game.bolt.broker.core.client.BrokerAddress;
 import com.iohao.game.bolt.broker.core.common.IoGameGlobalConfig;
 import com.iohao.game.common.kit.NetworkKit;
 import com.iohao.game.external.core.ExternalServer;
+import com.iohao.game.external.core.config.ExternalGlobalConfig;
 import com.iohao.game.external.core.config.ExternalJoinEnum;
 import com.iohao.game.external.core.netty.DefaultExternalServer;
 
@@ -22,7 +23,7 @@ public class DemoClusterExternal {
         // 游戏对外服端口
         String localIp = NetworkKit.LOCAL_IP;
 
-        int externalCorePort = 10100;
+        int externalCorePort = ExternalGlobalConfig.externalPort;
         // 创建游戏对外服构建器
         var builder = DefaultExternalServer
                 // 游戏对外服端口；与真实玩家建立连接的端口

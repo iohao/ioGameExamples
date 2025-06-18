@@ -17,7 +17,7 @@
  */
 package com.iohao.game.example.cluster.one.action;
 
-import com.iohao.game.example.common.msg.HelloReq;
+import com.iohao.game.example.common.msg.HelloMessage;
 import com.iohao.game.action.skeleton.annotation.ActionController;
 import com.iohao.game.action.skeleton.annotation.ActionMethod;
 
@@ -30,13 +30,13 @@ public class DemoClusterAction {
     /**
      * 示例 here 方法
      *
-     * @param helloReq helloReq
+     * @param helloMessage helloReq
      * @return HelloReq
      */
     @ActionMethod(DemoClusterCmd.here)
-    public HelloReq here(HelloReq helloReq) {
-        HelloReq newHelloReq = new HelloReq();
-        newHelloReq.name = helloReq.name + ", I'm cluster here ";
-        return newHelloReq;
+    public HelloMessage here(HelloMessage helloMessage) {
+        HelloMessage newHelloMessage = new HelloMessage();
+        newHelloMessage.name = helloMessage.name + ", I'm cluster here ";
+        return newHelloMessage;
     }
 }

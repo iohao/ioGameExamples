@@ -33,35 +33,24 @@ import java.util.List;
  */
 public class ExchangeGameApplication {
     public static void main(String[] args) {
-        // 游戏逻辑服对外开放的端口
-        int externalPort = 10100;
-        // 游戏对外服
+        int externalPort = ExternalGlobalConfig.externalPort;
         ExternalServer externalServer = createExternalServer(externalPort);
 
-        // 多服单进程的方式部署（类似单体应用）
         new NettyRunOne()
-                // 游戏对外服
                 .setExternalServer(externalServer)
-                // 游戏逻辑服列表
                 .setLogicServerList(List.of(new ExchangeGameLogicServer()))
-                // 启动 游戏对外服、游戏网关、游戏逻辑服
                 .startup();
     }
 
     public static ExternalServer createExternalServer(int externalPort) {
-        // 路由访问权限的控制；https://www.yuque.com/iohao/game/nap5y8p5fevhv99y
         var accessAuthenticationHook = ExternalGlobalConfig.accessAuthenticationHook;
-        // 表示登录才能访问业务方法
         accessAuthenticationHook.setVerifyIdentity(true);
         accessAuthenticationHook.addIgnoreAuthCmd(ExchangeCmd.cmd, ExchangeCmd.loginVerify);
 
-        // 拒绝玩家访问权限的控制 https://www.yuque.com/iohao/game/nap5y8p5fevhv99y#f1LhQ
         accessAuthenticationHook.addRejectionCmd(ExchangeCmd.cmd, ExchangeCmd.recharge);
         accessAuthenticationHook.addRejectionCmd(ExchangeCmd.cmd, ExchangeCmd.notice);
 
-        // 游戏对外服 - 构建器；https://www.yuque.com/iohao/game/ea6geg
         DefaultExternalServerBuilder builder = DefaultExternalServer.newBuilder(externalPort);
-        // 构建游戏对外服
         return builder.build();
     }
 }

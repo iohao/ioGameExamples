@@ -19,7 +19,7 @@
 package com.iohao.game.example.spring;
 
 import com.iohao.game.common.kit.concurrent.TaskKit;
-import com.iohao.game.example.common.msg.HelloSpringMsg;
+import com.iohao.game.example.common.msg.HelloSpringMessage;
 import com.iohao.game.example.spring.action.DemoCmdForSpring;
 import com.iohao.game.external.client.AbstractInputCommandRegion;
 import com.iohao.game.external.client.InputCommandRegion;
@@ -55,11 +55,11 @@ public class DemoForSpringClient {
             inputCommandCreate.cmd = DemoCmdForSpring.cmd;
 
             ofCommand(DemoCmdForSpring.here).setTitle("here").setRequestData(() -> {
-                HelloSpringMsg helloReq = new HelloSpringMsg();
-                helloReq.setName("塔姆");
-                return helloReq;
+                HelloSpringMessage message = new HelloSpringMessage();
+                message.setName("塔姆");
+                return message;
             }).callback(result -> {
-                HelloSpringMsg value = result.getValue(HelloSpringMsg.class);
+                HelloSpringMessage value = result.getValue(HelloSpringMessage.class);
                 log.info("value : {}", value);
             });
 

@@ -49,7 +49,7 @@ public class CacheApplication {
 
     public static void main(String[] args) {
 
-        // 游戏对外服的缓存配置，文档 https://www.yuque.com/iohao/game/khg23pvbh59a7spm
+        // 游戏对外服的缓存配置，文档 https://iohao.github.io/game/docs/external/cache
         extractedExternalCache();
 
         int externalCorePort = ExternalGlobalConfig.externalPort;

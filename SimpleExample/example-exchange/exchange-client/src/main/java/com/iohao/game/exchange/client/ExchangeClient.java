@@ -37,7 +37,6 @@ import java.util.concurrent.TimeUnit;
 public class ExchangeClient {
     public static void main(String[] args) {
         ClientUserConfigs.closeLog();
-        // 启动模拟客户端
         new ClientRunOne()
                 .setInputCommandRegions(List.of(new ExchangeInputCommandRegion()))
                 .startup();
@@ -49,12 +48,12 @@ public class ExchangeClient {
         public void initInputCommand() {
             inputCommandCreate.cmd = ExchangeCmd.cmd;
 
-            ofCommand(ExchangeCmd.loginVerify).setTitle("登录").setRequestData(() -> {
+            ofCommand(ExchangeCmd.loginVerify).setTitle("loginVerify").setRequestData(() -> {
                 // jwt
-                return StringValue.of("1");
+                return "1";
             }).callback(result -> {
                 long userId = result.getLong();
-                log.info("value : {}", userId);
+                log.info("{}", userId);
 
                 this.clientUser.setUserId(userId);
                 this.clientUser.callbackInputCommandRegion();
@@ -62,17 +61,15 @@ public class ExchangeClient {
 
             this.ofListen(result -> {
                 long money = result.getLong();
-                log.info("userId : {} ，充值金额 money : {}", this.userId, money);
-            }, ExchangeCmd.recharge, "充值通知");
+                log.info("userId : {} ，recharge : {}", this.userId, money);
+            }, ExchangeCmd.recharge, "recharge");
 
             this.ofListen(result -> {
                 String value = result.getString();
                 log.info("value : {}", value);
-            }, ExchangeCmd.notice, "GM 后台消息");
+            }, ExchangeCmd.notice, "GM notice");
 
-            // 延迟执行模拟请求;
             TaskKit.newTimeout(timeout -> {
-                // 执行请求
                 ofRequestCommand(ExchangeCmd.loginVerify).execute();
             }, 100, TimeUnit.MILLISECONDS);
         }

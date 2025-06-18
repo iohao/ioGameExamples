@@ -18,7 +18,7 @@
 package com.iohao.game.example.one.tcp.other;
 
 import com.iohao.game.action.skeleton.core.DataCodecKit;
-import com.iohao.game.example.common.msg.HelloReq;
+import com.iohao.game.example.common.msg.HelloMessage;
 import com.iohao.game.external.core.kit.ExternalKit;
 import com.iohao.game.external.core.message.ExternalMessage;
 import com.iohao.game.external.core.netty.handler.codec.TcpExternalCodec;
@@ -67,10 +67,10 @@ public class TestExternalCodec {
         int cmd = 15;
         int subCmd = 1;
         // 业务数据
-        HelloReq helloReq = new HelloReq();
-        helloReq.name = "abc1";
+        HelloMessage helloMessage = new HelloMessage();
+        helloMessage.name = "abc1";
 
-        ExternalMessage request = ExternalKit.createExternalMessage(cmd, subCmd, helloReq);
+        ExternalMessage request = ExternalKit.createExternalMessage(cmd, subCmd, helloMessage);
 
         log.info("{}", request);
 

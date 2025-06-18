@@ -18,8 +18,8 @@
  */
 package com.iohao.example.jsr.jakarta;
 
-import com.iohao.example.jsr.jakarta.pb.JsrJakartaPb;
-import com.iohao.game.action.skeleton.protocol.wrapper.WrapperKit;
+import com.iohao.example.jsr.jakarta.action.ValidMessage;
+import com.iohao.game.common.kit.RandomKit;
 import com.iohao.game.common.kit.concurrent.TaskKit;
 import com.iohao.game.example.common.cmd.JsrJakartaCmd;
 import com.iohao.game.external.client.AbstractInputCommandRegion;
@@ -29,6 +29,7 @@ import com.iohao.game.external.client.kit.ClientUserConfigs;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * @author 渔民小镇
@@ -54,19 +55,26 @@ public class JsrJakartaClient {
         @Override
         public void initInputCommand() {
             inputCommandCreate.cmd = JsrJakartaCmd.cmd;
+            AtomicInteger count = new AtomicInteger(0);
 
-            ofCommand(JsrJakartaCmd.jsrJakarta).setTitle("jsrJakarta").setRequestData(() -> {
-                JsrJakartaPb jsrJakartaPb = new JsrJakartaPb();
-                jsrJakartaPb.email = "shenjk@jakarta.com";
-                return jsrJakartaPb;
+            ofCommand(JsrJakartaCmd.verify).setTitle("jsrJakarta").setRequestData(() -> {
+                ValidMessage validMessage = new ValidMessage();
+                if (count.incrementAndGet() % 2 == 0) {
+                    validMessage.email = "shenjk@jakarta.com";
+                    validMessage.age = 18;
+                } else {
+                    validMessage.email = "a";
+                    validMessage.age = RandomKit.randomInt(2);
+                }
+                return validMessage;
             }).callback(result -> {
-                JsrJakartaPb value = result.getValue(JsrJakartaPb.class);
-                log.info("value : {}", value);
+                ValidMessage value = result.getValue(ValidMessage.class);
+                log.info("{}", value);
             });
 
             ofCommand(JsrJakartaCmd.hello).setTitle("hello").setRequestData(() -> {
                 // request param StringValue
-                return WrapperKit.of("渔民小镇");
+                return "渔民小镇";
             }).callback(result -> {
                 String value = result.getString();
                 log.info("value : {}", value);
@@ -75,7 +83,7 @@ public class JsrJakartaClient {
             // 一秒后，执行模拟请求;
             TaskKit.runOnceSecond(() -> {
                 // 执行请求
-                ofRequestCommand(JsrJakartaCmd.jsrJakarta).execute();
+                ofRequestCommand(JsrJakartaCmd.verify).execute();
             });
         }
     }

@@ -23,6 +23,7 @@ import com.iohao.game.bolt.broker.core.client.BrokerClientHelper;
 import com.iohao.game.common.kit.concurrent.TaskKit;
 import com.iohao.game.example.broadcast.action.DemoBroadcastCmd;
 import com.iohao.game.example.common.msg.DemoBroadcastMessage;
+import com.iohao.game.external.core.config.ExternalGlobalConfig;
 import com.iohao.game.external.core.netty.simple.NettySimpleHelper;
 
 import java.util.List;
@@ -39,7 +40,7 @@ public class DemoBroadcastApplication {
     public static void main(String[] args) {
 
         // 游戏对外服端口
-        int port = 10100;
+        int port = ExternalGlobalConfig.externalPort;
 
         // 逻辑服
         var demoLogicServer = new DemoBroadcastServer();
@@ -49,11 +50,6 @@ public class DemoBroadcastApplication {
 
         // 启动广播 Scheduled，每5秒广播一次消息给客户端
         broadcastScheduled();
-
-        /*
-         * 该示例文档地址
-         * https://www.yuque.com/iohao/game/qv4qfo
-         */
     }
 
     private static void broadcastScheduled() {

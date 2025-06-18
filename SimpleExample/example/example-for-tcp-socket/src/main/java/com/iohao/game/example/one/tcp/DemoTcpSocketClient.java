@@ -19,7 +19,7 @@
 package com.iohao.game.example.one.tcp;
 
 import com.iohao.game.common.kit.concurrent.TaskKit;
-import com.iohao.game.example.common.msg.HelloReq;
+import com.iohao.game.example.common.msg.HelloMessage;
 import com.iohao.game.example.one.tcp.other.DemoCmd;
 import com.iohao.game.external.client.AbstractInputCommandRegion;
 import com.iohao.game.external.client.InputCommandRegion;
@@ -58,11 +58,11 @@ public class DemoTcpSocketClient {
             inputCommandCreate.cmd = DemoCmd.cmd;
 
             ofCommand(DemoCmd.here).setTitle("here").setRequestData(() -> {
-                HelloReq helloReq = new HelloReq();
-                helloReq.name = "abc12";
-                return helloReq;
+                HelloMessage helloMessage = new HelloMessage();
+                helloMessage.name = "abc12";
+                return helloMessage;
             }).callback(result -> {
-                HelloReq value = result.getValue(HelloReq.class);
+                HelloMessage value = result.getValue(HelloMessage.class);
                 log.info("value : {}", value);
             });
 

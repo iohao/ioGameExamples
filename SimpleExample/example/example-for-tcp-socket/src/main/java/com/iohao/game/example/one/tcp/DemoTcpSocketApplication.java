@@ -19,6 +19,7 @@ package com.iohao.game.example.one.tcp;
 
 import com.iohao.game.bolt.broker.client.AbstractBrokerClientStartup;
 import com.iohao.game.example.one.tcp.other.DemoLogicServer;
+import com.iohao.game.external.core.config.ExternalGlobalConfig;
 import com.iohao.game.external.core.netty.simple.NettySimpleHelper;
 
 import java.util.List;
@@ -32,7 +33,7 @@ import java.util.List;
 public class DemoTcpSocketApplication {
     public static void main(String[] args) {
         // 游戏对外服端口
-        int port = 10100;
+        int port = ExternalGlobalConfig.externalPort;
 
         // 逻辑服列表
         List<AbstractBrokerClientStartup> logicList = List.of(
@@ -44,7 +45,7 @@ public class DemoTcpSocketApplication {
 
         /*
          * 该示例文档地址
-         * https://www.yuque.com/iohao/game/ywe7uc
+         * https://iohao.github.io/game/docs/external/external_tcp
          */
     }
 }

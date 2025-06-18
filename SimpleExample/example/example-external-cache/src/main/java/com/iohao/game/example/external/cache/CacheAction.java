@@ -22,7 +22,7 @@ import com.iohao.game.action.skeleton.annotation.ActionController;
 import com.iohao.game.action.skeleton.annotation.ActionMethod;
 import com.iohao.game.action.skeleton.core.flow.FlowContext;
 import com.iohao.game.example.common.cmd.CacheCmd;
-import com.iohao.game.example.common.msg.HelloReq;
+import com.iohao.game.example.common.msg.HelloMessage;
 import com.iohao.game.example.common.msg.login.DemoLoginVerify;
 import com.iohao.game.example.common.msg.login.DemoUserInfo;
 import lombok.extern.slf4j.Slf4j;
@@ -62,29 +62,29 @@ public class CacheAction {
     }
 
     @ActionMethod(CacheCmd.cacheHere)
-    public HelloReq cacheHere(int i) {
-        HelloReq newHelloReq = new HelloReq();
-        newHelloReq.name = i + " - cacheHere - " + id.incrementAndGet();
-        return newHelloReq;
+    public HelloMessage cacheHere(int i) {
+        HelloMessage newHelloMessage = new HelloMessage();
+        newHelloMessage.name = i + " - cacheHere - " + id.incrementAndGet();
+        return newHelloMessage;
     }
 
     @ActionMethod(CacheCmd.cacheCustom)
-    public HelloReq cacheCustom(int i) {
-        HelloReq newHelloReq = new HelloReq();
-        newHelloReq.name = i + " - cacheCustom - " + id.incrementAndGet();
-        return newHelloReq;
+    public HelloMessage cacheCustom(int i) {
+        HelloMessage newHelloMessage = new HelloMessage();
+        newHelloMessage.name = i + " - cacheCustom - " + id.incrementAndGet();
+        return newHelloMessage;
     }
 
     @ActionMethod(CacheCmd.cacheList)
-    public List<HelloReq> cacheList(int i) {
+    public List<HelloMessage> cacheList(int i) {
 
-        List<HelloReq> helloList = new ArrayList<>();
+        List<HelloMessage> helloList = new ArrayList<>();
 
         for (int j = 0; j < 2; j++) {
-            HelloReq newHelloReq = new HelloReq();
-            newHelloReq.name = i + " - cacheList - " + id.incrementAndGet();
+            HelloMessage newHelloMessage = new HelloMessage();
+            newHelloMessage.name = i + " - cacheList - " + id.incrementAndGet();
 
-            helloList.add(newHelloReq);
+            helloList.add(newHelloMessage);
         }
 
         return helloList;

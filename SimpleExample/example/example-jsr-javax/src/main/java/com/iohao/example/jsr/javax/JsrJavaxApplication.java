@@ -19,6 +19,7 @@ package com.iohao.example.jsr.javax;
 
 import com.iohao.example.jsr.javax.server.JsrJavaxLogicServer;
 import com.iohao.game.common.validation.annotation.EnableValidation;
+import com.iohao.game.external.core.config.ExternalGlobalConfig;
 import com.iohao.game.external.core.netty.simple.NettySimpleHelper;
 import lombok.extern.slf4j.Slf4j;
 
@@ -33,7 +34,7 @@ import java.util.List;
 public class JsrJavaxApplication {
     public static void main(String[] args) {
         // 游戏对外服端口
-        int port = 10100;
+        int port = ExternalGlobalConfig.externalPort;
 
         // 启动 对外服、网关服、逻辑服; 
         NettySimpleHelper.run(port, List.of(new JsrJavaxLogicServer()));

@@ -18,7 +18,7 @@
  */
 package com.iohao.game.example.ws.verify;
 
-import com.iohao.game.example.common.msg.HelloReq;
+import com.iohao.game.example.common.msg.HelloMessage;
 import com.iohao.game.example.ws.verify.action.WsVerifyCmd;
 import com.iohao.game.external.client.AbstractInputCommandRegion;
 import com.iohao.game.external.client.join.ClientRunOne;
@@ -52,7 +52,7 @@ public class WsClient {
             this.inputCommandCreate.cmd = WsVerifyCmd.cmd;
 
             ofListen(result -> {
-                Object value = result.getValue(HelloReq.class);
+                Object value = result.getValue(HelloMessage.class);
                 log.info("listen value : {}", value);
             }, WsVerifyCmd.login, "监听登录消息");
         }

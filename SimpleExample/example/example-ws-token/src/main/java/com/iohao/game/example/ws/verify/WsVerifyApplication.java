@@ -26,6 +26,7 @@ import com.iohao.game.example.ws.verify.external.MyWebSocketVerifyHandler;
 import com.iohao.game.example.ws.verify.server.WsVerifyLogicServer;
 import com.iohao.game.external.core.ExternalServer;
 import com.iohao.game.external.core.broker.client.ExternalBrokerClientStartup;
+import com.iohao.game.external.core.config.ExternalGlobalConfig;
 import com.iohao.game.external.core.netty.DefaultExternalServer;
 import com.iohao.game.external.core.netty.DefaultExternalServerBuilder;
 import com.iohao.game.external.core.netty.handler.ws.WebSocketVerifyHandler;
@@ -51,7 +52,7 @@ public class WsVerifyApplication {
     }
 
     static ExternalServer createExternalServer() {
-        int port = 10100;
+        int port = ExternalGlobalConfig.externalPort;
         DefaultExternalServerBuilder builder = DefaultExternalServer.newBuilder(port);
 
 //        extractedBrokerClientListener(builder, port);
@@ -70,7 +71,6 @@ public class WsVerifyApplication {
     private static void extractedBrokerClientListener(DefaultExternalServerBuilder builder, int port) {
         /*
          * 自定义游戏对外服 ExternalBrokerClientStartup 部分
-         * https://www.yuque.com/iohao/game/wotnhl#x7n94
          */
         builder.externalBrokerClientStartup(new ExternalBrokerClientStartup() {
             @Override
@@ -78,7 +78,7 @@ public class WsVerifyApplication {
                 // 使用原有游戏对外服的一些配置
                 BrokerClientBuilder brokerClientBuilder = super.createBrokerClientBuilder();
 
-                // 添加 BrokerClient 监听
+                // 添加 BrokerClient 监听 https://iohao.github.io/game/docs/manual_high/broker_client_listener
                 brokerClientBuilder.addListener(new BrokerClientListener() {
                     @Override
                     public void registerBefore(BrokerClientModuleMessage moduleMessage, BrokerClient client) {

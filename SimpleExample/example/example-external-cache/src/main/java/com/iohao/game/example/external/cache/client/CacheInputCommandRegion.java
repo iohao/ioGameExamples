@@ -22,7 +22,7 @@ import com.iohao.game.action.skeleton.protocol.wrapper.IntValue;
 import com.iohao.game.common.kit.RandomKit;
 import com.iohao.game.common.kit.concurrent.TaskKit;
 import com.iohao.game.example.common.cmd.CacheCmd;
-import com.iohao.game.example.common.msg.HelloReq;
+import com.iohao.game.example.common.msg.HelloMessage;
 import com.iohao.game.example.common.msg.login.DemoLoginVerify;
 import com.iohao.game.example.common.msg.login.DemoUserInfo;
 import com.iohao.game.external.client.AbstractInputCommandRegion;
@@ -62,7 +62,7 @@ public class CacheInputCommandRegion extends AbstractInputCommandRegion {
             // 请求参数
             return IntValue.of(1);
         }).callback(result -> {
-            var value = result.getValue(HelloReq.class);
+            var value = result.getValue(HelloMessage.class);
             log.info("\n cacheHere 缓存 1 小时 : {}", value);
         });
 
@@ -71,7 +71,7 @@ public class CacheInputCommandRegion extends AbstractInputCommandRegion {
             // 请求参数
             return IntValue.of(2);
         }).callback(result -> {
-            var value = result.getValue(HelloReq.class);
+            var value = result.getValue(HelloMessage.class);
             log.info("\n cacheCustom 缓存 30 秒后过期 : {}", value);
         });
 
@@ -81,7 +81,7 @@ public class CacheInputCommandRegion extends AbstractInputCommandRegion {
             // 请求参数
             return IntValue.of((id.incrementAndGet() % 2));
         }).callback(result -> {
-            var value = result.listValue(HelloReq.class);
+            var value = result.listValue(HelloMessage.class);
             log.info("\n cacheList 缓存 30 秒后过期 : {}", value);
         });
     }

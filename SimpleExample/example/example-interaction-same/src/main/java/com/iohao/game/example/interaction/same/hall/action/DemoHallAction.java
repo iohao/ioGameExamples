@@ -20,15 +20,9 @@ package com.iohao.game.example.interaction.same.hall.action;
 import com.iohao.game.action.skeleton.annotation.ActionController;
 import com.iohao.game.action.skeleton.annotation.ActionMethod;
 import com.iohao.game.action.skeleton.core.CmdInfo;
-import com.iohao.game.action.skeleton.core.DataCodecKit;
-import com.iohao.game.action.skeleton.core.commumication.InvokeModuleContext;
 import com.iohao.game.action.skeleton.core.flow.FlowContext;
-import com.iohao.game.action.skeleton.protocol.ResponseMessage;
 import com.iohao.game.action.skeleton.protocol.collect.ResponseCollectItemMessage;
-import com.iohao.game.action.skeleton.protocol.collect.ResponseCollectMessage;
-import com.iohao.game.bolt.broker.core.client.BrokerClientHelper;
 import com.iohao.game.example.common.msg.RoomNumMsg;
-import com.iohao.game.example.interaction.same.InteractionSameKit;
 import com.iohao.game.example.interaction.same.room.action.DemoCmdForRoom;
 import lombok.extern.slf4j.Slf4j;
 
@@ -40,9 +34,9 @@ import java.util.concurrent.TimeUnit;
  * @date 2022-05-22
  */
 @Slf4j
-@ActionController(DemoCmdForHall.cmd)
+@ActionController(DemoHallCmd.cmd)
 public class DemoHallAction {
-    @ActionMethod(DemoCmdForHall.count)
+    @ActionMethod(DemoHallCmd.count)
     public void count(FlowContext flowContext) {
         // 路由：这个路由是将要访问逻辑服的路由（表示你将要去的地方）
         CmdInfo cmdInfo = CmdInfo.of(DemoCmdForRoom.cmd, DemoCmdForRoom.countRoom);
@@ -53,16 +47,15 @@ public class DemoHallAction {
             // 每个逻辑服返回的数据集合
             List<ResponseCollectItemMessage> messageList = responseCollectMessage.getMessageList();
 
-            for (ResponseCollectItemMessage responseCollectItemMessage : messageList) {
-                ResponseMessage responseMessage = responseCollectItemMessage.getResponseMessage();
+            for (ResponseCollectItemMessage itemMessage : messageList) {
                 // 得到房间逻辑服返回的业务数据
-                RoomNumMsg decode = DataCodecKit.decode(responseMessage.getData(), RoomNumMsg.class);
-                log.info("responseCollectItemMessage : {} ", decode);
+                RoomNumMsg roomNumMsg = itemMessage.getData(RoomNumMsg.class);
+                log.info("{}", roomNumMsg);
             }
         });
     }
 
-    @ActionMethod(DemoCmdForHall.testCount)
+    @ActionMethod(DemoHallCmd.testCount)
     public int testCount() {
         try {
             TimeUnit.SECONDS.sleep(2);

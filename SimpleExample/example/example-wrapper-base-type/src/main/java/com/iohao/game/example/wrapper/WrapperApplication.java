@@ -18,6 +18,7 @@
 package com.iohao.game.example.wrapper;
 
 import com.iohao.game.example.wrapper.server.WrapperLogicServer;
+import com.iohao.game.external.core.config.ExternalGlobalConfig;
 import com.iohao.game.external.core.netty.simple.NettySimpleHelper;
 
 import java.util.List;
@@ -28,18 +29,8 @@ import java.util.List;
  */
 public class WrapperApplication {
     public static void main(String[] args) {
-
         // 游戏对外服端口
-        int port = 10100;
-
-        // 启动 对外服、网关服、逻辑服; 
-//        SimpleHelper.run(port, List.of(new WrapperLogicServer()));
-
+        int port = ExternalGlobalConfig.externalPort;
         NettySimpleHelper.run(port, List.of(new WrapperLogicServer()));
-
-        /*
-         * 该示例文档地址
-         * https://www.yuque.com/iohao/game/eixd6x
-         */
     }
 }

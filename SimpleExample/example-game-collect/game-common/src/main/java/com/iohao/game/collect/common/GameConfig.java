@@ -16,13 +16,15 @@
  */
 package com.iohao.game.collect.common;
 
+import com.iohao.game.external.core.config.ExternalGlobalConfig;
+
 /**
  * @author 渔民小镇
  * @date 2022-01-12
  */
 public interface GameConfig {
     /** 对外服务器 port */
-    int externalPort = 10100;
+    int externalPort = ExternalGlobalConfig.externalPort;
     /** 对外服务器 ip */
     String externalIp = "127.0.0.1";
     /** http 升级 websocket 协议地址 */

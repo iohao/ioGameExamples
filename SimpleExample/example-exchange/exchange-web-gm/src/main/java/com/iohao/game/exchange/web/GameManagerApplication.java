@@ -34,10 +34,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class GameManagerApplication {
     public static void main(String[] args) {
-        // 启动 spring boot
         SpringApplication.run(GameManagerApplication.class, args);
-
-        // 启动 GM 逻辑服
         BrokerClientApplication.start(new GameManagerLogicServer());
     }
 }

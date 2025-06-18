@@ -29,26 +29,10 @@ import com.iohao.game.widget.light.protobuf.kit.GenerateFileKit;
  */
 public class TestGenerate {
     public static void main(String[] args) {
-        // 加载各逻辑服的业务框架
         SpringGameOneApplication.listLogic().forEach(BrokerClientStartup::createBarSkeleton);
-
-        // ====== 生成对接文档、生成 proto ======
-
-        // 添加枚举错误码 class，用于生成错误码相关信息
         IoGameDocumentHelper.addErrorCodeClass(SpringGameCodeEnum.class);
-        // 生成文档
         IoGameDocumentHelper.generateDocument();
-        // .proto 文件生成
-        generateProtoFile();
-    }
 
-    private static void generateProtoFile() {
-        /*
-         * .proto 文件生成
-         * 相关文档 https://www.yuque.com/iohao/game/vpe2t6
-         */
-
-        // 需要扫描的包名
         String packagePath = "com.iohao.game.spring.common";
         GenerateFileKit.generate(packagePath);
     }

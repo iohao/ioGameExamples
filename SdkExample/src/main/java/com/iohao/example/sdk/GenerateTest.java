@@ -106,7 +106,7 @@ public final class GenerateTest {
     static void generateProtoFile(List<ProtoFileConfig> protoFileConfigs) {
         /*
          * .proto generate
-         * document https://www.yuque.com/iohao/game/vpe2t6
+         * document https://iohao.github.io/game/docs/extension_module/jprotobuf
          */
 
         // setting CamelCase style

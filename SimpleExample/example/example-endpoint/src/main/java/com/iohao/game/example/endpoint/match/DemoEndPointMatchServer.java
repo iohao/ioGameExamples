@@ -39,7 +39,7 @@ public class DemoEndPointMatchServer extends AbstractBrokerClientStartup {
     @Override
     public BrokerClientBuilder createBrokerClientBuilder() {
         BrokerClientBuilder builder = BrokerClient.newBuilder();
-        builder.appName("demo匹配示例游戏逻辑服");
+        builder.appName("MatchLogicServer");
         return builder;
     }
 }

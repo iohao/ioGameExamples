@@ -57,7 +57,7 @@ public class DemoSameHallLogicServer extends AbstractBrokerClientStartup {
     @Override
     public BrokerClientBuilder createBrokerClientBuilder() {
         BrokerClientBuilder builder = BrokerClient.newBuilder();
-        builder.appName("demo大厅逻辑服");
+        builder.appName("DemoSameHallLogicServer");
         return builder;
     }
 

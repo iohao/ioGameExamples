@@ -20,10 +20,8 @@ package com.iohao.game.example.one.tcp.other;
 
 import com.iohao.game.action.skeleton.annotation.ActionController;
 import com.iohao.game.action.skeleton.annotation.ActionMethod;
-import com.iohao.game.example.common.msg.HelloReq;
+import com.iohao.game.example.common.msg.HelloMessage;
 import lombok.extern.slf4j.Slf4j;
-
-import java.util.regex.Pattern;
 
 /**
  * @author 渔民小镇
@@ -36,13 +34,13 @@ public class DemoAction {
     /**
      * 示例 here 方法
      *
-     * @param helloReq helloReq
+     * @param helloMessage helloReq
      * @return HelloReq
      */
     @ActionMethod(DemoCmd.here)
-    public HelloReq here(HelloReq helloReq) {
-        HelloReq newHelloReq = new HelloReq();
-        newHelloReq.name = helloReq.name + ", I'm here ";
-        return newHelloReq;
+    public HelloMessage here(HelloMessage helloMessage) {
+        HelloMessage newHelloMessage = new HelloMessage();
+        newHelloMessage.name = helloMessage.name + ", I'm here ";
+        return newHelloMessage;
     }
 }

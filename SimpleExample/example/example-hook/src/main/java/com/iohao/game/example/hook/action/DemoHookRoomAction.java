@@ -50,7 +50,7 @@ public class DemoHookRoomAction {
         int newUserId = loginVerify.jwt.hashCode();
 
         // 绑定 userId，表示登录
-        // 具体可参考 https://www.yuque.com/iohao/game/tywkqv
+        // see https://iohao.github.io/game/docs/manual/user_login
         boolean success = flowContext.bindingUserId(newUserId);
 
         if (!success) {

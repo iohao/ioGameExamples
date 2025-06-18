@@ -17,7 +17,7 @@
  */
 package com.iohao.game.example.spring.action;
 
-import com.iohao.game.example.common.msg.HelloSpringMsg;
+import com.iohao.game.example.common.msg.HelloSpringMessage;
 import org.springframework.stereotype.Component;
 
 /**
@@ -28,9 +28,9 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class DemoSpringService {
-    public HelloSpringMsg here(HelloSpringMsg helloReq) {
-        HelloSpringMsg newHelloReq = new HelloSpringMsg();
-        newHelloReq.name = helloReq.name + ", I'm spring ";
-        return newHelloReq;
+    public HelloSpringMessage here(HelloSpringMessage message) {
+        HelloSpringMessage springMessage = new HelloSpringMessage();
+        springMessage.name = message.name + ", I'm spring ";
+        return springMessage;
     }
 }

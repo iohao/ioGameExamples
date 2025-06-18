@@ -18,6 +18,7 @@
 package com.iohao.game.example.cluster.one;
 
 import com.iohao.game.example.cluster.one.server.DemoClusterLogicServer;
+import com.iohao.game.external.core.config.ExternalGlobalConfig;
 import com.iohao.game.external.core.netty.simple.NettyClusterSimpleHelper;
 
 import java.util.List;
@@ -32,7 +33,7 @@ public class DemoClusterApplication {
     public static void main(String[] args) {
 
         // 游戏对外服端口
-        int port = 10100;
+        int port = ExternalGlobalConfig.externalPort;
 
         // 逻辑服
         var demoLogicServer = new DemoClusterLogicServer();
@@ -42,7 +43,7 @@ public class DemoClusterApplication {
 
         /*
          * 该示例文档地址
-         * https://www.yuque.com/iohao/game/qmo56c
+         * https://iohao.github.io/game/docs/examples/server/example_broker_cluster
          */
     }
 }

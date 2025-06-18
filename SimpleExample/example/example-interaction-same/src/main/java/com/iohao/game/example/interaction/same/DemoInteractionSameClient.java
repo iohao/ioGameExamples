@@ -19,7 +19,7 @@
 package com.iohao.game.example.interaction.same;
 
 import com.iohao.game.common.kit.concurrent.TaskKit;
-import com.iohao.game.example.interaction.same.hall.action.DemoCmdForHall;
+import com.iohao.game.example.interaction.same.hall.action.DemoHallCmd;
 import com.iohao.game.external.client.AbstractInputCommandRegion;
 import com.iohao.game.external.client.InputCommandRegion;
 import com.iohao.game.external.client.join.ClientRunOne;
@@ -52,16 +52,16 @@ public class DemoInteractionSameClient {
     static class InternalRegion extends AbstractInputCommandRegion {
         @Override
         public void initInputCommand() {
-            inputCommandCreate.cmd = DemoCmdForHall.cmd;
+            inputCommandCreate.cmd = DemoHallCmd.cmd;
 
-            ofCommand(DemoCmdForHall.count).setTitle("count");
+            ofCommand(DemoHallCmd.count).setTitle("count");
 
             int count = 10000;
             count = 1;
             for (int i = 0; i < count; i++) {
                 TaskKit.runOnce(() -> {
                     // 执行模拟请求;
-                    ofRequestCommand(DemoCmdForHall.count).execute();
+                    ofRequestCommand(DemoHallCmd.count).execute();
                 }, 10, TimeUnit.MILLISECONDS);
             }
         }

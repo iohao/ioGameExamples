@@ -4,7 +4,7 @@
 
 ## Introduction
 
-Online document：https://www.yuque.com/iohao/game/irth38
+Online document：https://iohao.github.io/game/docs/examples/code_generate
 
 
 

@@ -22,6 +22,7 @@ import com.iohao.game.common.kit.concurrent.TaskKit;
 import com.iohao.game.example.interaction.fight.DemoFightLogicServer;
 import com.iohao.game.example.interaction.weather.DemoWeatherLogicServer;
 import com.iohao.game.example.interaction.weather.action.DemoWeatherAction;
+import com.iohao.game.external.core.config.ExternalGlobalConfig;
 import com.iohao.game.external.core.netty.simple.NettySimpleHelper;
 import lombok.extern.slf4j.Slf4j;
 
@@ -47,14 +48,10 @@ public class DemoInteractionApplication {
         );
 
         // 游戏对外服端口
-        int port = 10100;
+        int port = ExternalGlobalConfig.externalPort;
         // 启动 对外服、网关服、逻辑服; 
         NettySimpleHelper.run(port, logicList);
 
-        /*
-         * 该示例文档地址
-         * https://www.yuque.com/iohao/game/anguu6
-         */
         TaskKit.runInterval(() -> {
             // print
             log.info("count: {}", DemoWeatherAction.longAdder.longValue());

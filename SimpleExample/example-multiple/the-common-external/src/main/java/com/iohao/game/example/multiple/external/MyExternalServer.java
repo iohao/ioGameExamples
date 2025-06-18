@@ -65,7 +65,7 @@ public class MyExternalServer {
     public static void main(String[] args) {
         // 游戏对外服端口
         ExternalServer externalServer = new MyExternalServer()
-                .createExternalServer(10100);
+                .createExternalServer(ExternalGlobalConfig.externalPort);
 
         externalServer.startup();
     }

@@ -34,15 +34,10 @@ public class ExchangeGameLogicServer extends AbstractBrokerClientStartup {
     @Override
     public BarSkeleton createBarSkeleton() {
         BarSkeletonBuilderParamConfig config = new BarSkeletonBuilderParamConfig()
-                // 扫描 action 类所在包
                 .scanActionPackage(ExchangeAction.class)
-                // 开启广播日志
                 .setBroadcastLog(true);
 
-        // 业务框架构建器
         BarSkeletonBuilder builder = config.createBuilder();
-
-        // 添加控制台输出插件
         builder.addInOut(new DebugInOut());
 
         return builder.build();
@@ -51,7 +46,7 @@ public class ExchangeGameLogicServer extends AbstractBrokerClientStartup {
     @Override
     public BrokerClientBuilder createBrokerClientBuilder() {
         BrokerClientBuilder builder = BrokerClient.newBuilder();
-        builder.appName("ExchangeGame 逻辑服");
+        builder.appName("ExchangeGameLogicServer");
         return builder;
     }
 }

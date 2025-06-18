@@ -47,7 +47,6 @@ public class DemoFightAction {
     public DemoFightMsg fight(FlowContext flowContext) {
         /*
          * 单个逻辑服与单个逻辑服通信请求 - 有返回值（可跨进程）
-         * https://www.yuque.com/iohao/game/nelwuz#L9TAJ
          */
 
         // 路由：这个路由是将要访问逻辑服的路由（表示你将要去的地方）
@@ -75,7 +74,6 @@ public class DemoFightAction {
     public void testMatch(FlowContext flowContext) {
         /*
          * 单个逻辑服与单个逻辑服通信请求 - 无返回值（可跨进程）
-         * https://www.yuque.com/iohao/game/nelwuz#gtdrv
          * 这个示例
          * 1 由玩家发起匹配请求
          * 2 匹配完成后交给房间逻辑服来处理

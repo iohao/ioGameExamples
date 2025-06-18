@@ -22,7 +22,7 @@ import com.iohao.game.action.skeleton.annotation.ActionController;
 import com.iohao.game.action.skeleton.annotation.ActionMethod;
 import com.iohao.game.action.skeleton.core.flow.FlowContext;
 import com.iohao.game.example.common.msg.DemoAttachment;
-import com.iohao.game.example.common.msg.HelloReq;
+import com.iohao.game.example.common.msg.HelloMessage;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -33,7 +33,7 @@ import lombok.extern.slf4j.Slf4j;
 @ActionController(WsVerifyCmd.cmd)
 public class WsVerifyAction {
     @ActionMethod(WsVerifyCmd.login)
-    public HelloReq login(FlowContext flowContext) {
+    public HelloMessage login(FlowContext flowContext) {
         // 打印元信息
         DemoAttachment attachment = flowContext.getAttachment(DemoAttachment.class);
         log.info("attachment : {}", attachment);
@@ -46,8 +46,8 @@ public class WsVerifyAction {
             log.info("登录成功");
         }
 
-        HelloReq newHelloReq = new HelloReq();
-        newHelloReq.name = attachment.name;
-        return newHelloReq;
+        HelloMessage newHelloMessage = new HelloMessage();
+        newHelloMessage.name = attachment.name;
+        return newHelloMessage;
     }
 }

@@ -26,7 +26,7 @@ import com.iohao.game.example.common.DemoModuleCmd;
 public interface JsrJakartaCmd {
     int cmd = DemoModuleCmd.jsr_jakarta_17_cmd;
 
-    int jsrJakarta = 1;
+    int verify = 1;
     int hello = 2;
 
 }

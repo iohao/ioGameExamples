@@ -73,12 +73,12 @@ public final class SdkApplication {
         int externalPort = ExternalGlobalConfig.externalPort;
         extractedAccess();
 
-        // Build GameExternalServer https://www.yuque.com/iohao/game/ea6geg
+        // Build GameExternalServer https://iohao.github.io/game/docs/overall/external_intro
         var builder = DefaultExternalServer.newBuilder(externalPort);
         var setting = builder.setting();
 
         /*
-         * https://www.yuque.com/iohao/game/uueq3i
+         * https://iohao.github.io/game/docs/external/idle
          * About netty heartbeat. See SocketIdleHandler
          *
          * cn: 创建 IdleProcessSetting，用于心跳相关的设置
@@ -94,7 +94,7 @@ public final class SdkApplication {
     }
 
     static void extractedAccess() {
-        // https://www.yuque.com/iohao/game/nap5y8p5fevhv99y
+        // https://iohao.github.io/game/docs/external/access_authentication
 
         var accessAuthenticationHook = ExternalGlobalConfig.accessAuthenticationHook;
         // true: Users must loginVerify before they can access the business methods

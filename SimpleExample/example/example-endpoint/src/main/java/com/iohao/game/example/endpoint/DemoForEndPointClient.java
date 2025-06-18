@@ -18,6 +18,7 @@
  */
 package com.iohao.game.example.endpoint;
 
+import com.iohao.game.common.kit.ExecutorKit;
 import com.iohao.game.common.kit.concurrent.TaskKit;
 import com.iohao.game.example.common.msg.DemoOperation;
 import com.iohao.game.example.common.msg.MatchResponse;
@@ -32,6 +33,7 @@ import com.iohao.game.external.client.kit.ClientUserConfigs;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author 渔民小镇
@@ -63,20 +65,20 @@ public class DemoForEndPointClient {
             inputCommandCreate.cmd = DemoCmdForEndPointRoom.cmd;
 
             // 配置一些模拟请求
-            ofCommand(DemoCmdForEndPointRoom.operation).setTitle("房间内的操作").setRequestData(() -> {
+            ofCommand(DemoCmdForEndPointRoom.operation).setTitle("room operation").setRequestData(() -> {
                 DemoOperation demoOperation = new DemoOperation();
-                demoOperation.name = "卡莉斯塔";
+                demoOperation.name = "Michael Jackson";
                 return demoOperation;
             }).callback(result -> {
                 DemoOperation value = result.getValue(DemoOperation.class);
-                log.info("房间内的操作 : {}", value);
+                log.info("Room Operation : {}", value);
             });
 
             // Scheduled 5 seconds 发送消息 -- 房间请求相关的
-//            ExecutorKit.newSingleScheduled("websocketClient").scheduleAtFixedRate(() -> {
-//                // 请求房间逻辑服的 operation 方法
-//                ofRequestCommand(DemoCmdForEndPointRoom.operation).execute();
-//            }, 5, 5, TimeUnit.SECONDS);
+            ExecutorKit.newSingleScheduled("websocketClient").scheduleAtFixedRate(() -> {
+                // 请求房间逻辑服的 operation 方法
+                ofRequestCommand(DemoCmdForEndPointRoom.operation).execute();
+            }, 5, 5, TimeUnit.SECONDS);
         }
     }
 
@@ -87,22 +89,21 @@ public class DemoForEndPointClient {
             inputCommandCreate.cmd = DemoCmdForEndPointMatch.cmd;
 
             // 配置一些模拟请求
-            ofCommand(DemoCmdForEndPointMatch.loginVerify).setTitle("登录验证").setRequestData(() -> {
-                // jwt 写个固定的
+            ofCommand(DemoCmdForEndPointMatch.loginVerify).setTitle("loginVerify").setRequestData(() -> {
                 DemoLoginVerify loginVerify = new DemoLoginVerify();
                 loginVerify.jwt = "abc";
                 return loginVerify;
             }).callback(result -> {
                 DemoUserInfo value = result.getValue(DemoUserInfo.class);
-                log.info("登录成功 : {}", value);
+                log.info("login success : {}", value);
 
                 // 登录成功后，执行匹配请求
                 ofRequestCommand(DemoCmdForEndPointMatch.matching).execute();
             });
 
-            ofCommand(DemoCmdForEndPointMatch.matching).setTitle("匹配").callback(result -> {
+            ofCommand(DemoCmdForEndPointMatch.matching).setTitle("matching").callback(result -> {
                 MatchResponse value = result.getValue(MatchResponse.class);
-                log.info("匹配成功 : {}", value);
+                log.info("match success : {}", value);
             });
 
             // 一秒后，执行模拟请求;

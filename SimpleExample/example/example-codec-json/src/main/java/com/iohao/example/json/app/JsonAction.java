@@ -20,7 +20,7 @@ package com.iohao.example.json.app;
 import com.iohao.game.action.skeleton.annotation.ActionController;
 import com.iohao.game.action.skeleton.annotation.ActionMethod;
 import com.iohao.game.example.common.cmd.JsonCmd;
-import com.iohao.game.example.common.msg.HelloReq;
+import com.iohao.game.example.common.msg.HelloMessage;
 
 /**
  * @author 渔民小镇
@@ -29,10 +29,10 @@ import com.iohao.game.example.common.msg.HelloReq;
 @ActionController(JsonCmd.cmd)
 public class JsonAction {
     @ActionMethod(JsonCmd.hello)
-    public HelloReq hello(HelloReq helloReq) {
-        HelloReq newHelloReq = new HelloReq();
-        newHelloReq.name = helloReq.name + "，hello json";
-        return newHelloReq;
+    public HelloMessage hello(HelloMessage helloMessage) {
+        HelloMessage newHelloMessage = new HelloMessage();
+        newHelloMessage.name = helloMessage.name + "，hello json";
+        return newHelloMessage;
     }
 
     @ActionMethod(JsonCmd.jsonMsg)

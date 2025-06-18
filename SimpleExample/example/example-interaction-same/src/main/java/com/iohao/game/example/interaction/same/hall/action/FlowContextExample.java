@@ -63,7 +63,6 @@ public class FlowContextExample {
      *     适合不需要接收响应的业务
      *     无阻塞
      *
-     *     <a href="https://www.yuque.com/iohao/game/anguu6">文档</a>
      * </pre>
      */
     void invokeModuleVoidMessage() {
@@ -79,7 +78,6 @@ public class FlowContextExample {
      *     可接收响应
      *     提供同步、异步回调、异步的编码风格
      *
-     *     <a href="https://www.yuque.com/iohao/game/anguu6">文档</a>
      * </pre>
      */
     void invokeModuleMessage() {
@@ -145,7 +143,6 @@ public class FlowContextExample {
      *     可接收多个游戏逻辑服的响应
      *     提供同步、异步回调、异步的编码风格
      *
-     *     <a href="https://www.yuque.com/iohao/game/rf9rb9">文档</a>
      * </pre>
      */
     void invokeModuleCollectMessage() {
@@ -214,7 +211,6 @@ public class FlowContextExample {
      *     只会访问玩家所在的【游戏对外服】（即使启动了多个游戏对外服）。
      *     提供同步、异步回调、异步的编码风格
      *
-     *     <a href="https://www.yuque.com/iohao/game/ivxsw5">文档</a>
      * </pre>
      */
     void invokeExternalModuleCollectMessage() {
@@ -279,7 +275,6 @@ public class FlowContextExample {
      *
      *     提供同步、异步的编码风格
      *
-     *     <a href="https://www.yuque.com/iohao/game/gmxz33">文档</a>
      * </pre>
      */
     void eventBus() {

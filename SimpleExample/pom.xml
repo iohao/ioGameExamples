@@ -68,12 +68,14 @@
         <module>example-exchange/exchange-common</module>
         <module>example-exchange/exchange-client</module>
         <module>example/example-external-biz-region</module>
+        <module>example-room/my-room</module>
+        <module>example-room/my-room-data</module>
     </modules>
 
     <!--统一管理版本 的一个父 pom-->
     <properties>
         <!-- 项目版本 -->
-        <ioGame.version>21.27</ioGame.version>
+        <ioGame.version>21.28</ioGame.version>
         <!-- https://mvnrepository.com/artifact/com.iohao.game.sdk/java-sdk -->
         <ioGameSDK.version>21.2</ioGameSDK.version>
         <!-- jdk 版本 -->

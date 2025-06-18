@@ -44,88 +44,39 @@ import java.util.concurrent.atomic.AtomicLong;
 @RequestMapping("gm")
 public class GameManagerController {
     static final AtomicLong msgId = new AtomicLong();
-    /** 为了方便测试，这里指定一个 userId 来模拟玩家 */
     static final long userId = 1;
 
     @GetMapping("/notice")
     public String notice() {
         log.info("notice");
-        // 模拟数据，GM 后台消息
+
         long id = msgId.incrementAndGet();
-        String msg = "GM web msg " + id;
-
-        // 路由、请求参数
+        String msg = "GM web message " + id;
         var noticeCmd = ExchangeCmd.of(ExchangeCmd.notice);
-        // 使用协议碎片特性 https://www.yuque.com/iohao/game/ieimzn
-        StringValue data = WrapperKit.of(msg);
 
-        // 模拟请求
-        RequestMessage requestMessage = BarMessageKit.createRequestMessage(noticeCmd, data);
-        // 设置需要模拟的玩家
+        RequestMessage requestMessage = BarMessageKit.createRequestMessage(noticeCmd, StringValue.of(msg));
         requestMessage.getHeadMetadata().setUserId(userId);
 
-        // 向逻辑服发送请求
         BrokerClient brokerClient = MyKit.brokerClient;
-        InvokeModuleContext invokeModuleContext = brokerClient.getInvokeModuleContext();
-        invokeModuleContext.invokeModuleVoidMessage(requestMessage);
+        brokerClient.getInvokeModuleContext().invokeModuleVoidMessage(requestMessage);
 
-        return "通知成功！ " + id;
+        return "notice: " + id;
     }
 
     @GetMapping("/recharge")
     public String recharge() {
         log.info("recharge");
 
-        // 模拟数据，充值金额
+        var rechargeCmd = ExchangeCmd.of(ExchangeCmd.recharge);
         long money = RandomKit.random(1, 1000);
 
-        // 路由、请求参数
-        var rechargeCmd = ExchangeCmd.of(ExchangeCmd.recharge);
-        // 使用协议碎片特性 https://www.yuque.com/iohao/game/ieimzn
-        LongValue moneyData = WrapperKit.of(money);
-
-        // 模拟玩家请求
         UserFlowContext userFlowContext = MyKit.ofUserFlowContext(userId);
-        ResponseMessage responseMessage = userFlowContext.invokeModuleMessage(rechargeCmd, moneyData);
-
+        ResponseMessage responseMessage = userFlowContext.invokeModuleMessage(rechargeCmd, LongValue.of(money));
         if (responseMessage.hasError()) {
-            return "充值失败";
+            return "recharge error";
         }
 
-        StringValue data = responseMessage.getData(StringValue.class);
-        log.info("web recharge result : {}", data.value);
-
-        return "充值成功！" + data.value;
-    }
-
-    @GetMapping("/rechargeSync")
-    public String rechargeSync() {
-        log.info("rechargeAsync");
-
-        // 模拟数据，充值金额
-        long money = RandomKit.random(1, 1000);
-
-        // 路由、请求参数
-        var rechargeCmd = ExchangeCmd.of(ExchangeCmd.recharge);
-        // 使用协议碎片特性 https://www.yuque.com/iohao/game/ieimzn
-        LongValue moneyData = WrapperKit.of(money);
-
-        // 模拟请求
-        RequestMessage requestMessage = BarMessageKit.createRequestMessage(rechargeCmd, moneyData);
-        // 设置需要模拟的玩家
-        requestMessage.getHeadMetadata().setUserId(userId);
-
-        // 向逻辑服发送请求
-        BrokerClient brokerClient = MyKit.brokerClient;
-        InvokeModuleContext invokeModuleContext = brokerClient.getInvokeModuleContext();
-        ResponseMessage responseMessage = invokeModuleContext.invokeModuleMessage(requestMessage);
-
-        if (responseMessage.hasError()) {
-            return "充值失败";
-        }
-
-        StringValue data = responseMessage.getData(StringValue.class);
-        log.info("web recharge result : {}", data.value);
-        return "充值成功！rechargeAsync" + money;
+        String data = responseMessage.getString();
+        return "recharge: " + data;
     }
 }

@@ -63,7 +63,7 @@ public class EventbusOneApplication {
 
         /*
          * 该示例文档地址
-         * https://www.yuque.com/iohao/game/gmxz33
+         * https://iohao.github.io/game/docs/communication/event_bus
          */
     }
 }

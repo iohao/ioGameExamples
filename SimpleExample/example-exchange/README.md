@@ -2,7 +2,7 @@
 
 gm 后台管理 与 ioGame 交互示例。
 
-see https://www.yuque.com/iohao/game/uwxeg2uk86mu27mp
+see https://iohao.github.io/game/docs/manual_high/gm
 
 
 当我们将项目启动后，在浏览器输入

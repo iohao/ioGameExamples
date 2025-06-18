@@ -37,7 +37,7 @@ public class AnalyseLogicStartup extends AbstractBrokerClientStartup {
         // 启动游戏逻辑服
         BrokerClientApplication.start(analyseLogicStartup);
 
-        // 文档 - https://www.yuque.com/iohao/game/gmxz33#KLzvW
+        // 文档 - https://iohao.github.io/game/docs/communication/event_bus
         // 阅读小节 - 其他使用案例
     }
 

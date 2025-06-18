@@ -34,6 +34,7 @@ import com.iohao.game.example.broadcast.DemoBroadcastServer;
 import com.iohao.game.example.common.msg.DemoBroadcastMessage;
 import com.iohao.game.external.core.ExternalServer;
 import com.iohao.game.external.core.broker.client.ExternalBrokerClientStartup;
+import com.iohao.game.external.core.config.ExternalGlobalConfig;
 import com.iohao.game.external.core.netty.DefaultExternalServer;
 import com.iohao.game.external.core.netty.simple.NettyRunOne;
 import lombok.extern.slf4j.Slf4j;
@@ -51,7 +52,7 @@ import java.util.concurrent.atomic.LongAdder;
 public class SniperBroadcastApplication {
     public static void main(String[] args) {
 
-        int externalPort = 10100;
+        int externalPort = ExternalGlobalConfig.externalPort;
 
         // 给游戏对外服指定一个 id
         String externalId = "0-1";

@@ -22,10 +22,6 @@ import com.iohao.example.sdk.logic.data.LoginVerifyMessage;
 import com.iohao.example.sdk.logic.data.UserMessage;
 import com.iohao.game.action.skeleton.annotation.ActionController;
 import com.iohao.game.action.skeleton.annotation.ActionMethod;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.experimental.FieldDefaults;
 
 /**
  * My Action; 我的 Action

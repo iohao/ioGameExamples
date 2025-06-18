@@ -46,7 +46,7 @@ public class TestGenerate {
     private static void generateProtoFile() {
         /*
          * .proto 文件生成
-         * 相关文档 https://www.yuque.com/iohao/game/vpe2t6
+         * 相关文档 https://iohao.github.io/game/docs/extension_module/jprotobuf
          */
 
         String packagePath = "com.iohao.game.collect.proto";

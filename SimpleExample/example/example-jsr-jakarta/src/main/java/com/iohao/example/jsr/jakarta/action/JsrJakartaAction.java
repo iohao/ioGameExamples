@@ -17,7 +17,6 @@
  */
 package com.iohao.example.jsr.jakarta.action;
 
-import com.iohao.example.jsr.jakarta.pb.JsrJakartaPb;
 import com.iohao.game.action.skeleton.annotation.ActionController;
 import com.iohao.game.action.skeleton.annotation.ActionMethod;
 import com.iohao.game.action.skeleton.core.exception.MsgException;
@@ -33,9 +32,10 @@ import lombok.extern.slf4j.Slf4j;
 public class JsrJakartaAction {
     int count;
 
-    @ActionMethod(JsrJakartaCmd.jsrJakarta)
-    public JsrJakartaPb jsrJakarta(JsrJakartaPb jsrJakartaPb) {
-        return jsrJakartaPb;
+    @ActionMethod(JsrJakartaCmd.verify)
+    public ValidMessage verify(ValidMessage message) {
+        log.info("jsr380 success:{}", message);
+        return message;
     }
 
     @ActionMethod(JsrJakartaCmd.hello)

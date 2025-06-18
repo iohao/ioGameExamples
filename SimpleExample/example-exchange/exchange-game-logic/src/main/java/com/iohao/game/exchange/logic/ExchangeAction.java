@@ -21,8 +21,8 @@ package com.iohao.game.exchange.logic;
 import com.iohao.game.action.skeleton.annotation.ActionController;
 import com.iohao.game.action.skeleton.annotation.ActionMethod;
 import com.iohao.game.action.skeleton.core.flow.FlowContext;
+import com.iohao.game.action.skeleton.protocol.wrapper.LongValue;
 import com.iohao.game.action.skeleton.protocol.wrapper.StringValue;
-import com.iohao.game.action.skeleton.protocol.wrapper.WrapperKit;
 import com.iohao.game.bolt.broker.client.kit.ExternalCommunicationKit;
 import com.iohao.game.exchange.common.ExchangeAttachment;
 import com.iohao.game.exchange.common.ExchangeCmd;
@@ -45,16 +45,12 @@ public class ExchangeAction {
     @ActionMethod(ExchangeCmd.loginVerify)
     public long loginVerify(String jwt, FlowContext flowContext) {
 
-        // 为了方便测试，这里指定一个 userId
         long userId = 1;
 
-        // （相当于顶号），强制断开之前的客户端连接，并让本次登录成功。
         ExternalCommunicationKit.forcedOffline(userId);
 
-        // 绑定 userId，表示登录
         flowContext.bindingUserId(userId);
 
-        // 设置元信息
         ExchangeAttachment attachment = new ExchangeAttachment();
         attachment.userId = userId;
         attachment.nickname = name.fullName();
@@ -66,23 +62,17 @@ public class ExchangeAction {
     @ActionMethod(ExchangeCmd.recharge)
     public String internalRecharge(long money, FlowContext flowContext) {
         long userId = flowContext.getUserId();
-        log.info("通过 GM 后台，给玩家 [{}] - 充值金额 [{}] ", userId, money);
+        log.info("userId:{}, recharge:{}", userId, money);
+        flowContext.broadcastMe(LongValue.of(money));
 
-        // 广播消息给玩家，通知充值成功
-        // 使用协议碎片特性 https://www.yuque.com/iohao/game/ieimzn
-        flowContext.broadcastMe(WrapperKit.of(money));
-
-        return "玩家 %s ，充值金额 %s，成功！".formatted(userId, money);
+        return "userId:%s, recharge %s".formatted(userId, money);
     }
 
     @ActionMethod(ExchangeCmd.notice)
-    public void internalNotice(String msg, FlowContext flowContext) {
-        log.info("通过 GM 后台发送一条消息给玩家 [{}] - 消息内容 [{}]", flowContext.getUserId(), msg);
-        // 广播消息给玩家
-        // 使用协议碎片特性 https://www.yuque.com/iohao/game/ieimzn
-        flowContext.broadcastMe(StringValue.of(msg));
+    public void internalNotice(String message, FlowContext flowContext) {
+        long userId = flowContext.getUserId();
+        log.info("userId:{}, message:{}", userId, message);
 
-        ExchangeAttachment attachment = flowContext.getAttachment(ExchangeAttachment.class);
-        log.info("attachment : {}", attachment);
+        flowContext.broadcastMe(StringValue.of(message));
     }
 }

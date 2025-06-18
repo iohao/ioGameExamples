@@ -1,6 +1,6 @@
 ## 介绍
 
-代码生成文档：https://www.yuque.com/iohao/game/irth38
+代码生成文档：https://iohao.github.io/game/docs/examples/code_generate
 
 
 
@@ -10,7 +10,7 @@
 
 **该项目主要演示 3 个方面的功能**
 
-1. 与各种前端 SDK 的联调交互：`action、广播、错误码`，并展示了[协议碎片](https://www.yuque.com/iohao/game/ieimzn)及 List 的数据传输支持。
+1. 与各种前端 SDK 的联调交互：`action、广播、错误码`，并展示了[协议碎片](https://iohao.github.io/game/docs/manual/protocol_fragment)及 List 的数据传输支持。
 2. 心跳的处理。
 3. 各 SDK 的对接代码生成： `action、广播、错误码` 交互代码生成。
 
@@ -327,7 +327,7 @@ public final class GenerateTest {
     static void generateProtoFile() {
         /*
          * .proto generate
-         * document https://www.yuque.com/iohao/game/vpe2t6
+         * document https://iohao.github.io/game/docs/extension_module/jprotobuf
          */
 
         // By default, it will be generated in the target/proto directory

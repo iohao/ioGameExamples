@@ -23,9 +23,11 @@ import com.iohao.game.bolt.broker.core.client.BrokerClientBuilder;
 import com.iohao.game.bolt.broker.core.common.IoGameGlobalConfig;
 import com.iohao.game.example.interaction.same.hall.DemoSameHallLogicServer;
 import com.iohao.game.example.interaction.same.room.DemoSameRoomLogicServer;
+import com.iohao.game.external.core.config.ExternalGlobalConfig;
 import com.iohao.game.external.core.netty.simple.NettySimpleHelper;
 
 import java.util.List;
+import java.util.Locale;
 
 /**
  * @author 渔民小镇
@@ -34,6 +36,7 @@ import java.util.List;
 public class DemoInteractionSameApplication {
 
     public static void main(String[] args) {
+        Locale.setDefault(Locale.US);
         IoGameGlobalConfig.openTraceId = true;
 
         IoGameGlobalConfig.timeoutMillis = 15 * 1000;
@@ -54,14 +57,9 @@ public class DemoInteractionSameApplication {
         );
 
         // 游戏对外服端口
-        int port = 10100;
-        // 启动 对外服、网关服、逻辑服; 
+        int port = ExternalGlobalConfig.externalPort;
+        // 启动 对外服、网关服、逻辑服
         NettySimpleHelper.run(port, logicList);
-
-        /*
-         * 该示例文档地址
-         * https://www.yuque.com/iohao/game/rf9rb9
-         */
     }
 
     private static DemoSameRoomLogicServer createRoomServer(int id) {
@@ -70,9 +68,9 @@ public class DemoInteractionSameApplication {
                 // 逻辑服的唯一 id
                 .id(String.valueOf(id))
                 // 逻辑服名字
-                .appName("demo房间逻辑服-" + id)
+                .appName("DemoSameRoomLogicServer-" + id)
                 // 同类型
-                .tag("roomLogic");
+                .tag("DemoSameRoomLogicServer");
 
         // 创建房间逻辑服
         DemoSameRoomLogicServer roomLogicServer = new DemoSameRoomLogicServer();

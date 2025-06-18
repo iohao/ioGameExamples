@@ -19,14 +19,10 @@ package com.iohao.game.example.endpoint.room.action;
 
 import com.iohao.game.action.skeleton.annotation.ActionController;
 import com.iohao.game.action.skeleton.annotation.ActionMethod;
-import com.iohao.game.action.skeleton.core.CmdInfo;
 import com.iohao.game.action.skeleton.core.flow.FlowContext;
-import com.iohao.game.action.skeleton.protocol.ResponseMessage;
-import com.iohao.game.action.skeleton.protocol.wrapper.StringValue;
 import com.iohao.game.common.kit.RandomKit;
 import com.iohao.game.example.common.msg.DemoOperation;
 import com.iohao.game.example.common.msg.RoomNumMsg;
-import com.iohao.game.example.endpoint.animal.action.DemoCmdForEndPointAnimal;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.concurrent.atomic.LongAdder;
@@ -55,9 +51,7 @@ public class DemoEndPointRoomAction {
 
         // 当前房间数量
         RoomNumMsg roomNumMsg = new RoomNumMsg();
-        // 随机数来表示房间的数量
         roomNumMsg.roomCount = anInt;
-
         return roomNumMsg;
     }
 
@@ -69,19 +63,12 @@ public class DemoEndPointRoomAction {
      */
     @ActionMethod(DemoCmdForEndPointRoom.operation)
     public DemoOperation operation(DemoOperation demoOperation, FlowContext flowContext) {
-        CmdInfo cmdInfo = CmdInfo.of(
-                DemoCmdForEndPointAnimal.cmd, DemoCmdForEndPointAnimal.randomAnimal
-        );
-
-        // 跨服访问，逻辑服与逻辑服之间相互通信
-        ResponseMessage responseMessage = flowContext.invokeModuleMessage(cmdInfo);
-        StringValue stringValue = responseMessage.getData(StringValue.class);
 
         longAdder.increment();
+
         DemoOperation operation = new DemoOperation();
-        operation.name = String.format("%s , %s-%s",
+        operation.name = String.format("%s-%s",
                 demoOperation.name,
-                stringValue,
                 longAdder.longValue());
 
         return operation;

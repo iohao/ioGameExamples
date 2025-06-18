@@ -71,7 +71,6 @@ public class TankLoginAction {
         userInfo.name = jwt;
 
         // 绑定 userId，表示登录
-        // 具体可参考 https://www.yuque.com/iohao/game/tywkqv
         boolean success = flowContext.bindingUserId(newUserId);
 
         if (!success) {

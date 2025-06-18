@@ -22,7 +22,7 @@ import com.iohao.game.action.skeleton.core.IoGameGlobalSetting;
 import com.iohao.game.action.skeleton.core.codec.JsonDataCodec;
 import com.iohao.game.common.kit.concurrent.TaskKit;
 import com.iohao.game.example.common.cmd.JsonCmd;
-import com.iohao.game.example.common.msg.HelloReq;
+import com.iohao.game.example.common.msg.HelloMessage;
 import com.iohao.game.external.client.AbstractInputCommandRegion;
 import com.iohao.game.external.client.InputCommandRegion;
 import com.iohao.game.external.client.join.ClientRunOne;
@@ -63,11 +63,11 @@ public class JsonClient {
 
             // 配置一些模拟请求
             ofCommand(JsonCmd.hello).setTitle("hello").setRequestData(() -> {
-                HelloReq helloReq = new HelloReq();
-                helloReq.name = "塔姆";
-                return helloReq;
+                HelloMessage helloMessage = new HelloMessage();
+                helloMessage.name = "塔姆";
+                return helloMessage;
             }).callback(result -> {
-                HelloReq value = result.getValue(HelloReq.class);
+                HelloMessage value = result.getValue(HelloMessage.class);
                 log.info("value : {}", value);
             });
 

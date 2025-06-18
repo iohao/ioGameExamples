@@ -44,7 +44,7 @@ public class DemoHookApplication {
         accessAuthenticationHook.addIgnoreAuthCmd(DemoCmdForHookRoom.cmd, DemoCmdForHookRoom.loginVerify);
 
         // 游戏对外服端口
-        int port = 10100;
+        int port = ExternalGlobalConfig.externalPort;
         ExternalServer externalServer = createExternalServer(port);
 
         // 简单的启动器
@@ -58,7 +58,8 @@ public class DemoHookApplication {
 
         /*
          * 该示例文档地址
-         * https://www.yuque.com/iohao/game/lxqbnb
+         * https://iohao.github.io/game/docs/external/idle
+         * https://iohao.github.io/game/docs/external/user_hook
          */
     }
 

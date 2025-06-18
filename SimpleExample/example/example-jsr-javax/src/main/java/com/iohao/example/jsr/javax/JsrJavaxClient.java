@@ -18,7 +18,7 @@
  */
 package com.iohao.example.jsr.javax;
 
-import com.iohao.example.jsr.javax.pb.JsrJavaxPb;
+import com.iohao.example.jsr.javax.action.ValidMessage;
 import com.iohao.game.common.kit.concurrent.TaskKit;
 import com.iohao.game.example.common.cmd.JsrJavaxCmd;
 import com.iohao.game.external.client.AbstractInputCommandRegion;
@@ -54,19 +54,19 @@ public class JsrJavaxClient {
         public void initInputCommand() {
             inputCommandCreate.cmd = JsrJavaxCmd.cmd;
 
-            ofCommand(JsrJavaxCmd.jsrJavax).setTitle("jsrJavax").setRequestData(() -> {
-                JsrJavaxPb jsrJakartaPb = new JsrJavaxPb();
-                jsrJakartaPb.email = "shenjkjavax.com";
-                return jsrJakartaPb;
+            ofCommand(JsrJavaxCmd.verify).setTitle("jsrJavax").setRequestData(() -> {
+                ValidMessage validMessage = new ValidMessage();
+                validMessage.email = "shenjkjavax.com";
+                return validMessage;
             }).callback(result -> {
-                JsrJavaxPb value = result.getValue(JsrJavaxPb.class);
+                ValidMessage value = result.getValue(ValidMessage.class);
                 log.info("value : {}", value);
             });
 
             // 一秒后，执行模拟请求;
             TaskKit.runOnceSecond(() -> {
                 // 执行请求
-                ofRequestCommand(JsrJavaxCmd.jsrJavax).execute();
+                ofRequestCommand(JsrJavaxCmd.verify).execute();
             });
         }
     }

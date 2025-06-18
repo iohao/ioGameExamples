@@ -55,12 +55,8 @@ public class DemoMatchAction {
      */
     @ActionMethod(DemoCmdForEndPointMatch.loginVerify)
     public DemoUserInfo loginVerify(DemoLoginVerify loginVerify, FlowContext flowContext) {
-        // 登录验证请求
-        // 为了方便，这里登录用户的id 写个自身传入 jwt 的 hash
         int newUserId = Math.abs(loginVerify.jwt.hashCode());
 
-        // 绑定 userId，表示登录
-        // 具体可参考 https://www.yuque.com/iohao/game/tywkqv
         boolean success = flowContext.bindingUserId(newUserId);
 
         if (!success) {
@@ -82,35 +78,23 @@ public class DemoMatchAction {
      */
     @ActionMethod(DemoCmdForEndPointMatch.matching)
     public MatchResponse matching(FlowContext flowContext) {
-        // 路由：这个路由是将要访问逻辑服的路由（表示你将要去的地方）
         CmdInfo cmdInfo = CmdInfo.of(DemoCmdForEndPointRoom.cmd, DemoCmdForEndPointRoom.countRoom);
-        // 根据路由信息来请求其他【同类型】的多个子服务器（其他逻辑服）数据
         ResponseCollectMessage responseCollectMessage = flowContext.invokeModuleCollectMessage(cmdInfo);
 
         // 选出房间数最少的房间逻辑服
         ResponseCollectItemMessage minItemMessage = getMinItemMessage(responseCollectMessage);
         String logicServerId = minItemMessage.getLogicServerId();
 
-        log.info("当前房间数最少的逻辑服是 userId:{} logicServerId:{}", flowContext.getUserId(), logicServerId);
+        log.info("getMinItemMessage userId:{} logicServerId:{}", flowContext.getUserId(), logicServerId);
 
-        // 得到当前请求用户
-        long userId = flowContext.getUserId();
         // 添加需要绑定的用户（玩家）
         List<Long> userIdList = new ArrayList<>();
-        userIdList.add(userId);
+        userIdList.add(flowContext.getUserId());
 
-        // 绑定消息
+        // 动态绑定消息
         EndPointLogicServerMessage endPointLogicServerMessage = new EndPointLogicServerMessage()
-                // 需要绑定的玩家，示例中只取了当前请求匹配的玩家
                 .setUserList(userIdList)
-                /*
-                 * 添加需要绑定的逻辑服id，下面绑定了两个；
-                 * 1.给绑定一个房间游戏逻辑服的 id
-                 * 2.绑定 animal 游戏逻辑服就简单点，固定写 id 为 2-1 的；
-                 * （也就是我们启动两台 animal 游戏逻辑服中的一台）
-                 */
                 .addLogicServerId(logicServerId)
-                .addLogicServerId("2-1")
                 // 覆盖绑定游戏逻辑服
                 .setOperation(EndPointOperationEnum.COVER_BINDING);
 

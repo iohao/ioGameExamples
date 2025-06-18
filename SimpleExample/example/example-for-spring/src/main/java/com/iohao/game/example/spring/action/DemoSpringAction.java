@@ -19,7 +19,7 @@ package com.iohao.game.example.spring.action;
 
 import com.iohao.game.action.skeleton.annotation.ActionController;
 import com.iohao.game.action.skeleton.annotation.ActionMethod;
-import com.iohao.game.example.common.msg.HelloSpringMsg;
+import com.iohao.game.example.common.msg.HelloSpringMessage;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -36,14 +36,8 @@ public class DemoSpringAction {
     /** spring 管理的类： service 业务类 */
     final DemoSpringService demoSpringService;
 
-    /**
-     * spring 示例方法
-     *
-     * @param helloReq helloReq
-     * @return HelloReq
-     */
     @ActionMethod(DemoCmdForSpring.here)
-    public HelloSpringMsg here(HelloSpringMsg helloReq) {
-        return demoSpringService.here(helloReq);
+    public HelloSpringMessage here(HelloSpringMessage message) {
+        return demoSpringService.here(message);
     }
 }

@@ -19,6 +19,7 @@ package com.iohao.example.json.app;
 
 import com.iohao.game.action.skeleton.core.IoGameGlobalSetting;
 import com.iohao.game.action.skeleton.core.codec.JsonDataCodec;
+import com.iohao.game.external.core.config.ExternalGlobalConfig;
 import com.iohao.game.external.core.netty.simple.NettySimpleHelper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -41,7 +42,7 @@ public class JsonApplication {
         IoGameGlobalSetting.setDataCodec(new JsonDataCodec());
 
         // 游戏对外服端口
-        int port = 10100;
+        int port = ExternalGlobalConfig.externalPort;
 
         // 逻辑服
         var demoLogicServer = new JsonLogicServer();
@@ -51,7 +52,7 @@ public class JsonApplication {
 
         /*
          * 该示例文档地址
-         * https://www.yuque.com/iohao/game/uq2zrltrc7to27bt
+         * https://iohao.github.io/game/docs/manual/data_protocol
          */
     }
 

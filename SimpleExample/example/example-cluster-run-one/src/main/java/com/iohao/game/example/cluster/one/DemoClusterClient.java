@@ -20,7 +20,7 @@ package com.iohao.game.example.cluster.one;
 
 import com.iohao.game.common.kit.concurrent.TaskKit;
 import com.iohao.game.example.cluster.one.action.DemoClusterCmd;
-import com.iohao.game.example.common.msg.HelloReq;
+import com.iohao.game.example.common.msg.HelloMessage;
 import com.iohao.game.external.client.AbstractInputCommandRegion;
 import com.iohao.game.external.client.InputCommandRegion;
 import com.iohao.game.external.client.join.ClientRunOne;
@@ -58,11 +58,11 @@ public class DemoClusterClient {
 
             // 配置一些模拟请求
             ofCommand(DemoClusterCmd.here).setTitle("here").setRequestData(() -> {
-                HelloReq helloReq = new HelloReq();
-                helloReq.name = "塔姆";
-                return helloReq;
+                HelloMessage helloMessage = new HelloMessage();
+                helloMessage.name = "Michael Jackson";
+                return helloMessage;
             }).callback(result -> {
-                HelloReq value = result.getValue(HelloReq.class);
+                HelloMessage value = result.getValue(HelloMessage.class);
                 log.info("value : {}", value);
             });
 

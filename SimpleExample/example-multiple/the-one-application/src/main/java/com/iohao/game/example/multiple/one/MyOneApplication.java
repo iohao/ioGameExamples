@@ -23,11 +23,8 @@ import com.iohao.game.example.multiple.broker.MyBrokerServer;
 import com.iohao.game.example.multiple.external.MyExternalServer;
 import com.iohao.game.example.multiple.weather.WeatherLogicStartup;
 import com.iohao.game.external.core.ExternalServer;
+import com.iohao.game.external.core.config.ExternalGlobalConfig;
 import com.iohao.game.external.core.netty.simple.NettyRunOne;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.experimental.FieldDefaults;
 
 import java.util.List;
 
@@ -35,16 +32,12 @@ import java.util.List;
  * @author 渔民小镇
  * @date 2023-03-30
  */
-@Getter
-@Setter
-@FieldDefaults(level = AccessLevel.PRIVATE)
 public class MyOneApplication {
     public static void main(String[] args) {
 
-        int externalPort = 10100;
         // 游戏对外服
         ExternalServer externalServer = new MyExternalServer()
-                .createExternalServer(externalPort);
+                .createExternalServer(ExternalGlobalConfig.externalPort);
 
         // 游戏网关
         BrokerServer brokerServer = new MyBrokerServer()

@@ -90,8 +90,6 @@ public class UserAction {
     }
 
     /**
-     * <a href="https://www.yuque.com/iohao/game/gmxz33#uzdgY">fireAny - 文档</a>
-     * <p>
      * 使用场景:
      * <pre>
      *     假设现在有一个发放奖励的邮件逻辑服，我们启动了两个（或者说多个）邮件逻辑服实例来处理业务。

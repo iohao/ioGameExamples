@@ -17,7 +17,6 @@
  */
 package com.iohao.example.jsr.javax.action;
 
-import com.iohao.example.jsr.javax.pb.JsrJavaxPb;
 import com.iohao.game.action.skeleton.annotation.ActionController;
 import com.iohao.game.action.skeleton.annotation.ActionMethod;
 import com.iohao.game.example.common.cmd.JsrJavaxCmd;
@@ -31,9 +30,9 @@ import lombok.extern.slf4j.Slf4j;
 @ActionController(JsrJavaxCmd.cmd)
 public class JsrJavaxAction {
 
-    @ActionMethod(JsrJavaxCmd.jsrJavax)
-    public JsrJavaxPb jsrJakarta(JsrJavaxPb jsrJavaxPb) {
-        log.info("jsrJavaxPb : {}", jsrJavaxPb);
-        return jsrJavaxPb;
+    @ActionMethod(JsrJavaxCmd.verify)
+    public ValidMessage verify(ValidMessage validMessage) {
+        log.info("success:{}", validMessage);
+        return validMessage;
     }
 }

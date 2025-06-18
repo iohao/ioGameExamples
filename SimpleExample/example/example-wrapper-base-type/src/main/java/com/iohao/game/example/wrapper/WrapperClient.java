@@ -18,6 +18,8 @@
  */
 package com.iohao.game.example.wrapper;
 
+import com.iohao.game.action.skeleton.core.IoGameGlobalSetting;
+import com.iohao.game.action.skeleton.core.codec.JsonDataCodec;
 import com.iohao.game.action.skeleton.protocol.wrapper.*;
 import com.iohao.game.common.kit.concurrent.TaskKit;
 import com.iohao.game.example.wrapper.action.WrapperCmd;
@@ -36,6 +38,7 @@ import java.util.List;
 @Slf4j
 public class WrapperClient {
     public static void main(String[] args) {
+//        IoGameGlobalSetting.setDataCodec(new JsonDataCodec());
         ClientUserConfigs.closeLog();
 
         // 模拟请求数据
