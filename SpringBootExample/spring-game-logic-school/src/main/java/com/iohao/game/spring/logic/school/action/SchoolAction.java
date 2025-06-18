@@ -76,8 +76,6 @@ public class SchoolAction {
 
         schoolService.helloSpring();
 
-        // 相关文档 https://www.yuque.com/iohao/game/nelwuz#UAUE4
-
         log.info("请求、响应 : {}", logicRequestPb);
 
         log.info("my flowContext : {}", flowContext.getClass());
@@ -96,8 +94,6 @@ public class SchoolAction {
      */
     @ActionMethod(SchoolCmdModule.hereVoid)
     public void hereVoid(LogicRequestPb logicRequestPb) {
-        // 相关文档 https://www.yuque.com/iohao/game/nelwuz#qs7yJ
-
         log.info("请求、无响应 : {}", logicRequestPb);
     }
 
@@ -114,7 +110,7 @@ public class SchoolAction {
          * 2. SchoolPb.classCapacity 学校最大教室容量不能超过 100 个
          * 3. SchoolPb.teacherNum 学校老师数量不能少于 60 个
          *
-         * 相关文档 https://www.yuque.com/iohao/game/ghng6g
+         * 相关文档 https://iohao.github.io/game/docs/core/jsr380
          */
 
         log.info("jsr380 : {}", schoolPb);
@@ -133,7 +129,7 @@ public class SchoolAction {
          * 2. SchoolPb.classCapacity 学校最大教室容量不能超过 100 个
          * 3. SchoolPb.teacherNum 学校老师数量不能少于 60 个
          * 4. SchoolPb.name 在使用@Validated(value = Update.class) 注解的对象后会验证非null 否则不验证
-         * 相关文档 https://www.yuque.com/iohao/game/ghng6g
+         * 相关文档 https://iohao.github.io/game/docs/core/jsr380
          */
 
         log.info("支持分组校验 {}", schoolPb);
@@ -155,7 +151,7 @@ public class SchoolAction {
 
         log.info("断言 + 异常机制 = 清晰简洁的代码 : {}", schoolLevelPb);
 
-        // 相关文档 https://www.yuque.com/iohao/game/avlo99
+        // 相关文档 https://iohao.github.io/game/docs/manual/assert_game_code
     }
 
     /**
@@ -165,8 +161,7 @@ public class SchoolAction {
     public void broadcast(FlowContext flowContext) {
         /*
          * 相关文档
-         * https://www.yuque.com/iohao/game/nelwuz#vqvGQ
-         * https://www.yuque.com/iohao/game/qv4qfo
+         * https://iohao.github.io/game/docs/communication/broadcast
          */
 
         // 业务数据
@@ -198,7 +193,7 @@ public class SchoolAction {
 
         /*
          * 3.1 单个逻辑服与单个逻辑服通信请求 - 有返回值（可跨进程）
-         * 相关文档 https://www.yuque.com/iohao/game/nelwuz#L9TAJ
+         * 相关文档 https://iohao.github.io/game/docs/manual/communication_model#request/response
          *
          * 这里演示的是无参的业务请求，invokeModuleMessage 方法是有业务参数重载的
          */
@@ -230,7 +225,7 @@ public class SchoolAction {
         log.info("communication32 - 3.2 单个逻辑服与单个逻辑服通信请求 - 无返回值（可跨进程）");
         /*
          * 3.2 单个逻辑服与单个逻辑服通信请求 - 无返回值（可跨进程）
-         * 相关文档 https://www.yuque.com/iohao/game/nelwuz#gtdrv
+         * 相关文档 https://iohao.github.io/game/docs/manual/communication_model#request/void
          *
          * 这里演示的是有参的业务请求，invokeModuleVoidMessage 方法还有无业务参数重载的
          */
@@ -256,7 +251,7 @@ public class SchoolAction {
          * 房间的游戏逻辑服是启动了多个的。
          *
          * 3.3 单个逻辑服与同类型多个逻辑服通信请求（可跨进程）
-         * 相关文档 https://www.yuque.com/iohao/game/nelwuz#gSdya
+         * 相关文档 https://iohao.github.io/game/docs/manual/communication_model#request/multiple_response
          */
 
         // 路由：这个路由是将要访问逻辑服的路由（表示你将要去的地方）
@@ -295,7 +290,7 @@ public class SchoolAction {
     public int intValueWrapper(int level) {
         log.info("碎片协议 {}", level);
         /*
-         * 相关文档 https://www.yuque.com/iohao/game/ieimzn
+         * 相关文档 https://iohao.github.io/game/docs/manual/protocol_fragment
          */
         return level + 2;
     }

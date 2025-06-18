@@ -40,9 +40,6 @@ import java.util.List;
 
 /**
  * 综合示例一键启动类
- * <p>
- * 文档： <a href="https://www.yuque.com/iohao/game/ruaqza">...</a>
- * <p>
  * 示例涉及如下知识点
  * <pre>
  * JSR380
@@ -104,7 +101,7 @@ public class SpringGameOneApplication {
                 // 启动 游戏对外服、游戏网关、游戏逻辑服
                 .startup();
 
-        // spring 集成 https://www.yuque.com/iohao/game/evkgnz
+        // spring 集成 https://iohao.github.io/game/docs/manual/integration_spring
     }
 
     static List<AbstractBrokerClientStartup> listLogic() {
@@ -120,7 +117,7 @@ public class SpringGameOneApplication {
                  *
                  * 启动 2 个房间的游戏逻辑服
                  * 方便测试 请求同类型多个逻辑服通信结果
-                 * https://www.yuque.com/iohao/game/rf9rb9
+                 * https://iohao.github.io/game/docs/communication/request_multiple_response
                  */
                 , createRoomLogicClient(1)
                 , createRoomLogicClient(2)

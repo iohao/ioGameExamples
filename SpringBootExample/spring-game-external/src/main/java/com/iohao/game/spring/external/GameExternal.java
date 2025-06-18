@@ -48,13 +48,13 @@ public class GameExternal {
 
     public ExternalServer createExternalServer(int externalPort, ExternalJoinEnum joinEnum) {
 
-        // true 表示开启 traceId 特性；https://www.yuque.com/iohao/game/zurusq
+        // true 表示开启 traceId 特性；https://iohao.github.io/game/docs/manual/trace
         IoGameGlobalConfig.openTraceId = true;
 
-        // 路由访问权限控制；https://www.yuque.com/iohao/game/nap5y8p5fevhv99y
+        // 路由访问权限控制；https://iohao.github.io/game/docs/external/access_authentication
         extractedIgnore();
 
-        // 游戏对外服 - 构建器；https://www.yuque.com/iohao/game/ea6geg
+        // 游戏对外服 - 构建器；https://iohao.github.io/game/docs/overall/external_intro
         DefaultExternalServerBuilder builder = DefaultExternalServer.newBuilder(externalPort)
                 // 连接方式；如果不设置，默认是 webSocket
                 .externalJoinEnum(joinEnum)
@@ -79,7 +79,6 @@ public class GameExternal {
     private void extractedIgnore() {
         /*
          * 注意，权限相关验证配置在游戏对外服是正确的，因为是游戏对外服在控制访问验证
-         * see https://www.yuque.com/iohao/game/tywkqv#qEvtB
          */
         var accessAuthenticationHook = ExternalGlobalConfig.accessAuthenticationHook;
         // 表示登录才能访问业务方法

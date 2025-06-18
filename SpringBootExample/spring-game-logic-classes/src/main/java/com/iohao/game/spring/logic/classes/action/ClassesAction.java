@@ -101,7 +101,7 @@ public class ClassesAction {
          * 2. SchoolPb.classCapacity 学校最大教室容量不能超过 100 个
          * 3. SchoolPb.teacherNum 学校老师数量不能少于 60 个
          *
-         * 相关文档 https://www.yuque.com/iohao/game/ghng6g
+         * 相关文档 https://iohao.github.io/game/docs/core/jsr380
          */
 
         log.info("jsr380Class : {}", schoolPb);

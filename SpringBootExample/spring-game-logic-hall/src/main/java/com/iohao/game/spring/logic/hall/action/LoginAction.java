@@ -43,9 +43,6 @@ import java.util.concurrent.atomic.AtomicLong;
  * @date 2022-07-27
  * <pre>
  *     注意，这个 Action 没有使用 spring 管理
- *
- *     参考:
- *     <a href="https://www.yuque.com/iohao/game/evkgnz#FD7s1">doc</a>
  * </pre>
  */
 @Slf4j
@@ -111,7 +108,7 @@ public class LoginAction {
         flowContext.updateAttachment(myAttachment);
         log.info("设置元信息 : {}", myAttachment);
 
-        // 文档 https://www.yuque.com/iohao/game/sw1y8u
+        // 文档 https://iohao.github.io/game/docs/manual/flow_context_attachment
     }
 
     @ActionMethod(HallCmdModule.attachmentPrint)
@@ -120,7 +117,7 @@ public class LoginAction {
         var attachment = flowContext.getAttachment(MyAttachment.class);
         log.info("打印元信息 attachment : {}", attachment);
 
-        // 文档 https://www.yuque.com/iohao/game/sw1y8u
+        // 文档 https://iohao.github.io/game/docs/manual/flow_context_attachment
 
         return attachment;
     }

@@ -1,5 +1,5 @@
 ## 综合示例
-文档 ： https://www.yuque.com/iohao/game/ruaqza
+文档 ： https://iohao.github.io/game/docs/examples/server/example_spring_boot
 
 <br>
 .
@@ -9,20 +9,20 @@
 
 1. 多服多进程的方式部署
 2. 单体应用方式部署
-3. [springboot 集成](https://www.yuque.com/iohao/game/evkgnz)
-4. [JSR380 验证](https://www.yuque.com/iohao/game/ghng6g)
-5. [断言 + 异常机制 = 清晰简洁的代码](https://www.yuque.com/iohao/game/avlo99)
-6. [请求、无响应](https://www.yuque.com/iohao/game/nelwuz#qs7yJ)
-7. [请求、响应](https://www.yuque.com/iohao/game/nelwuz#UAUE4)
-8. [广播指定玩家](https://www.yuque.com/iohao/game/nelwuz#EY6Ln)
-9. [广播全服玩家](https://www.yuque.com/iohao/game/nelwuz#mStIA)
-10. [单个逻辑服与单个逻辑服通信请求 - 有返回值（可跨进程）](https://www.yuque.com/iohao/game/nelwuz#L9TAJ)
-11. [单个逻辑服与单个逻辑服通信请求 - 无返回值（可跨进程）](https://www.yuque.com/iohao/game/nelwuz#gtdrv)
-12. [单个逻辑服与同类型多个逻辑服通信请求（可跨进程）](https://www.yuque.com/iohao/game/nelwuz#gSdya)
-13. [业务参数自动装箱、拆箱基础类型（解决协议碎片问题）](https://www.yuque.com/iohao/game/ieimzn)
-14. [游戏文档生成](https://www.yuque.com/iohao/game/irth38)
-15. [业务协议文件 .proto 的生成](https://www.yuque.com/iohao/game/vpe2t6#R5w5m)
-16. [登录相关：包含重复登录、顶号相关的业务](https://www.yuque.com/iohao/game/tywkqv)
+3. springboot 集成
+4. JSR380 验证
+5. 断言 + 异常机制 = 清晰简洁的代码
+6. 请求、无响应
+7. 请求、响应
+8. 广播指定玩家
+9. 广播全服玩家
+10. 单个逻辑服与单个逻辑服通信请求 - 有返回值（可跨进程）
+11. 单个逻辑服与单个逻辑服通信请求 - 无返回值（可跨进程）
+12. 单个逻辑服与同类型多个逻辑服通信请求（可跨进程）
+13. 业务参数自动装箱、拆箱基础类型（解决协议碎片问题）
+14. 游戏文档生成
+15. 业务协议文件 .proto 的生成
+16. 登录相关：包含重复登录、顶号相关的业务
 17. 启动多个同类型的游戏逻辑服
 18. 将项目打成 jar 包
 19. 启动 jar 包
@@ -32,8 +32,8 @@
 23. 模块的整理与建议（路由相关）
 24. k8s
 25. 元信息
-26. [游戏对外服缓存](https://www.yuque.com/iohao/game/khg23pvbh59a7spm)
-27. [分布式事件总线](https://www.yuque.com/iohao/game/gmxz33)
+26. 游戏对外服缓存
+27. 分布式事件总线
 
 
 
@@ -43,7 +43,7 @@
 
 ## 阅读前的建议
 
-阅读综合示例这部分时，建议先看[简单介绍](https://www.yuque.com/iohao/game/wwvg7z)、[快速从零编写服务器完整示例](https://www.yuque.com/iohao/game/zm6qg2)这两部分；
+阅读综合示例这部分时，建议先看[简单介绍](https://iohao.github.io/game/docs/intro)、[快速从零编写服务器完整示例](https://iohao.github.io/game/docs/quick_zero_demo)这两部分；
 
 
 

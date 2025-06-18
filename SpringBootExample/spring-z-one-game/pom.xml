@@ -98,7 +98,7 @@
         <plugins>
             <!--
             java 打包成 jar
-            https://www.yuque.com/iohao/game/ruaqza#cdvw9
+            https://iohao.github.io/game/docs/examples/server/example_spring_boot
 
             会在 target 目录下生成 spring-z-one-game-1.0-SNAPSHOT.jar
             执行命令启动

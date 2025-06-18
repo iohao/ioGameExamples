@@ -18,7 +18,6 @@
             <version>${project.parent.version}</version>
         </dependency>
 
-        <!-- 游戏逻辑服 https://www.yuque.com/iohao/game/ensevx#jMDuc -->
         <dependency>
             <groupId>com.iohao.game</groupId>
             <artifactId>bolt-client</artifactId>
