@@ -39,7 +39,7 @@ public class DemoInteractionSameApplication {
         Locale.setDefault(Locale.US);
         IoGameGlobalConfig.openTraceId = true;
 
-        IoGameGlobalConfig.timeoutMillis = 15 * 1000;
+//        IoGameGlobalConfig.timeoutMillis = 15 * 1000;
 
         // 创建 3 个房间逻辑服
         DemoSameRoomLogicServer roomServer1 = createRoomServer(1);

@@ -41,4 +41,10 @@ public class JsonAction {
         newJsonMsg.name = jsonMsg.name + "，hello json msg";
         return newJsonMsg;
     }
+
+    @ActionMethod(JsonCmd.testBool)
+    public boolean testBool(boolean value) {
+        return value;
+    }
+
 }

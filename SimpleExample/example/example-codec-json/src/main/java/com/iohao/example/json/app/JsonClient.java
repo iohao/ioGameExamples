@@ -20,6 +20,7 @@ package com.iohao.example.json.app;
 
 import com.iohao.game.action.skeleton.core.IoGameGlobalSetting;
 import com.iohao.game.action.skeleton.core.codec.JsonDataCodec;
+import com.iohao.game.action.skeleton.protocol.wrapper.BoolValue;
 import com.iohao.game.common.kit.concurrent.TaskKit;
 import com.iohao.game.example.common.cmd.JsonCmd;
 import com.iohao.game.example.common.msg.HelloMessage;
@@ -48,6 +49,10 @@ public class JsonClient {
                 new InternalRegion()
         );
 
+//        Boolean va = Boolean.TRUE;
+//
+//        var x = BoolValue.ofTrue();
+
         // 启动模拟客户端
         new ClientRunOne()
                 .setInputCommandRegions(inputCommandRegions)
@@ -68,19 +73,26 @@ public class JsonClient {
                 return helloMessage;
             }).callback(result -> {
                 HelloMessage value = result.getValue(HelloMessage.class);
-                log.info("value : {}", value);
+                log.info("{}", value);
             });
 
             JsonMsg jsonMsg = new JsonMsg();
             ofCommand(JsonCmd.jsonMsg).setTitle("jsonMsg").setRequestData(() -> jsonMsg).callback(result -> {
                 JsonMsg value = result.getValue(JsonMsg.class);
-                log.info("value : {}", value);
+                log.info("{}", value);
+            });
+
+            ofCommand(JsonCmd.testBool).setTitle("testBool").setRequestData(() -> true).callback(result -> {
+                var value = result.getBoolean();
+                log.info("{}", value);
             });
 
             // 一秒后，执行模拟请求;
             TaskKit.runOnceSecond(() -> {
                 ofRequestCommand(JsonCmd.hello).execute();
                 ofRequestCommand(JsonCmd.jsonMsg).execute();
+                ofRequestCommand(JsonCmd.testBool).setRequestData(() -> true).execute();
+                ofRequestCommand(JsonCmd.testBool).setRequestData(() -> false).execute();
             });
         }
     }

@@ -27,4 +27,5 @@ public interface JsonCmd {
     int cmd = DemoModuleCmd.json_cmd;
     int hello = 1;
     int jsonMsg = 2;
+    int testBool = 3;
 }

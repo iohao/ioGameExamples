@@ -24,6 +24,7 @@ import com.iohao.game.action.skeleton.core.flow.FlowContext;
 import com.iohao.game.action.skeleton.protocol.collect.ResponseCollectItemMessage;
 import com.iohao.game.example.common.msg.RoomNumMsg;
 import com.iohao.game.example.interaction.same.room.action.DemoCmdForRoom;
+import com.iohao.game.example.interaction.same.room.action.DemoRoomAction;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
@@ -52,6 +53,9 @@ public class DemoHallAction {
                 RoomNumMsg roomNumMsg = itemMessage.getData(RoomNumMsg.class);
                 log.info("{}", roomNumMsg);
             }
+
+            log.info("end: {}", messageList.size());
+            DemoRoomAction.flag.set(false);
         });
     }
 

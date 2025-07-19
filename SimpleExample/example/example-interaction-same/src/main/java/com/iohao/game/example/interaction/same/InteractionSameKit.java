@@ -40,19 +40,19 @@ public class InteractionSameKit {
     public static int roomCount;
 
     public static void inOut(BarSkeletonBuilder builder, String name) {
-        ThreadMonitorInOut threadMonitorInOut = new ThreadMonitorInOut();
-        builder.addInOut(threadMonitorInOut);
-        var threadMonitorRegion = threadMonitorInOut.getRegion();
-
-        StatActionInOut statActionInOut = new StatActionInOut();
-        builder.addInOut(statActionInOut);
-        var statActionRegion = statActionInOut.getRegion();
-
-        TaskKit.runInterval(() -> {
-            System.out.printf("================[%s]================%n", name);
-            log.info("count:{} - countRoom:{} - roomCount:{}", count, countRoom, roomCount);
-            log.info("threadMonitorRegion : {}", threadMonitorRegion);
-            log.info("statActionRegion : {}", statActionRegion);
-        }, 60, TimeUnit.SECONDS);
+//        ThreadMonitorInOut threadMonitorInOut = new ThreadMonitorInOut();
+//        builder.addInOut(threadMonitorInOut);
+//        var threadMonitorRegion = threadMonitorInOut.getRegion();
+//
+//        StatActionInOut statActionInOut = new StatActionInOut();
+//        builder.addInOut(statActionInOut);
+//        var statActionRegion = statActionInOut.getRegion();
+//
+//        TaskKit.runInterval(() -> {
+//            System.out.printf("================[%s]================%n", name);
+//            log.info("count:{} - countRoom:{} - roomCount:{}", count, countRoom, roomCount);
+//            log.info("threadMonitorRegion : {}", threadMonitorRegion);
+//            log.info("statActionRegion : {}", statActionRegion);
+//        }, 60, TimeUnit.SECONDS);
     }
 }

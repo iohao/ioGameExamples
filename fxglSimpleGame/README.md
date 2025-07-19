@@ -1,8 +1,8 @@
 ## 简介
 
-FXGL + ioGame 网络游戏中的多人移动演示
+https://iohao.github.io/game/docs/examples/client/example_fxgl_move
 
-[文档地址](https://www.yuque.com/iohao/game/bolt)
+FXGL + ioGame 网络游戏中的多人移动演示
 
 <BR>
 

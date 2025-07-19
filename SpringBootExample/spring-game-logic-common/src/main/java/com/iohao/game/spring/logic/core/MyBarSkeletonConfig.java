@@ -46,11 +46,7 @@ public class MyBarSkeletonConfig {
         // 业务框架构建器 配置
         return new BarSkeletonBuilderParamConfig()
                 // 开启广播日志
-                .setBroadcastLog(true)
-                // 异常码文档生成
-                .addErrorCode(SpringGameCodeEnum.values())
-                // 推送(广播)文档生成
-                .scanActionSendPackage(SendDoc.class);
+                .setBroadcastLog(true);
     }
 
     /**

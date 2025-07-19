@@ -8,7 +8,7 @@
     <artifactId>SdkExample</artifactId>
     <version>1.0-SNAPSHOT</version>
     <properties>
-        <ioGame.version>21.28</ioGame.version>
+        <ioGame.version>21.29</ioGame.version>
 
         <java.version>21</java.version>
         <maven.compiler.source>21</maven.compiler.source>

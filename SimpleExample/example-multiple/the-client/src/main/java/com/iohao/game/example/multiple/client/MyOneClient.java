@@ -49,6 +49,7 @@ public class MyOneClient {
         // 启动模拟客户端
         new ClientRunOne()
                 .setInputCommandRegions(inputCommandRegions)
+                .setConnectAddress("")
                 .startup();
     }
 
