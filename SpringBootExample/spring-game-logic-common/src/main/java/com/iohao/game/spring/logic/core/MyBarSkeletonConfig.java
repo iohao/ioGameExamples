@@ -58,7 +58,7 @@ public class MyBarSkeletonConfig {
     public BarSkeletonBuilder createBarSkeletonBuilder(BarSkeletonBuilderParamConfig config) {
         // issues186，为了方便观察，全部写这里了
 //        MethodParsers.me().setMethodParser(defaultMethodParser);
-        IoGameGlobalSetting.setDataCodec(new MyProtoDataCodec());
+//        IoGameGlobalSetting.setDataCodec(new MyProtoDataCodec());
 
         // 业务框架构建器
         return config.createBuilder()

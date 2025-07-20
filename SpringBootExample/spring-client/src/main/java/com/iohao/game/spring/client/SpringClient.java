@@ -18,6 +18,8 @@
  */
 package com.iohao.game.spring.client;
 
+import com.iohao.game.action.skeleton.core.DataCodecKit;
+import com.iohao.game.action.skeleton.core.codec.JsonDataCodec;
 import com.iohao.game.action.skeleton.protocol.wrapper.*;
 import com.iohao.game.common.kit.concurrent.TaskKit;
 import com.iohao.game.external.client.AbstractInputCommandRegion;
@@ -42,6 +44,8 @@ import java.util.Objects;
 @Slf4j
 public class SpringClient {
     public static void main(String[] args) {
+//        DataCodecKit.setDataCodec(new JsonDataCodec());
+
         ClientUserConfigs.closeLog();
 
         // 模拟请求数据
