@@ -17,9 +17,6 @@
  */
 package com.iohao.game.spring;
 
-import com.iohao.game.action.skeleton.core.DataCodecKit;
-import com.iohao.game.action.skeleton.core.codec.JsonDataCodec;
-import com.iohao.game.action.skeleton.core.doc.BarSkeletonDoc;
 import com.iohao.game.action.skeleton.ext.spring.ActionFactoryBeanForSpring;
 import com.iohao.game.bolt.broker.client.AbstractBrokerClientStartup;
 import com.iohao.game.bolt.broker.core.client.BrokerClient;
