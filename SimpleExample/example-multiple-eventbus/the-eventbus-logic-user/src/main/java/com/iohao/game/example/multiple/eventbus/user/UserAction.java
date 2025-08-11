@@ -25,6 +25,7 @@ import com.iohao.game.example.multiple.eventbus.common.TheBusLogin;
 import com.iohao.game.example.multiple.eventbus.common.UserCmd;
 import com.iohao.game.example.multiple.eventbus.common.event.EmailAnyMessage;
 import com.iohao.game.example.multiple.eventbus.common.event.EmptyEventMessage;
+import com.iohao.game.example.multiple.eventbus.common.event.LocalUserMessage;
 import com.iohao.game.example.multiple.eventbus.common.event.UserLoginEventMessage;
 import lombok.extern.slf4j.Slf4j;
 
@@ -67,6 +68,7 @@ public class UserAction {
 
         return "fireEventUser";
     }
+
 
     /**
      * 当发布的事件源没有任何订阅者订阅时，会被 EventBusListener.emptySubscribe 监听。
@@ -142,5 +144,14 @@ public class UserAction {
         System.out.println();
         log.info("fireLocal--------------");
         flowContext.fireLocal(userLoginEventMessage);
+    }
+
+    @ActionMethod(UserCmd.fireLocalUser)
+    public String fireLocalUser(FlowContext flowContext) {
+        long userId = flowContext.getUserId();
+        log.info("fireLocalUser : {} ", userId);
+        var message = new LocalUserMessage(userId);
+        flowContext.fire(message);
+        return "fireLocalUser";
     }
 }

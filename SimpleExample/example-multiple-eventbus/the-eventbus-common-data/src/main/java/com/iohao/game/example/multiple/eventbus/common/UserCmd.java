@@ -29,4 +29,6 @@ public interface UserCmd {
     int fireEventEmpty = 2;
     int fireAnyMail = 3;
     int fireSyncMail = 4;
+
+    int fireLocalUser = 10;
 }

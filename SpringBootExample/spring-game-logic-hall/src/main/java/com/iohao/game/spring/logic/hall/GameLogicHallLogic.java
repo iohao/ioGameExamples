@@ -17,15 +17,21 @@
  */
 package com.iohao.game.spring.logic.hall;
 
+import com.iohao.game.MyKit;
 import com.iohao.game.action.skeleton.core.BarSkeleton;
 import com.iohao.game.action.skeleton.core.BarSkeletonBuilder;
 import com.iohao.game.action.skeleton.core.BarSkeletonBuilderParamConfig;
 import com.iohao.game.action.skeleton.core.flow.MyFlowContext;
+import com.iohao.game.action.skeleton.eventbus.EventBus;
+import com.iohao.game.action.skeleton.eventbus.EventBusRunner;
 import com.iohao.game.bolt.broker.client.AbstractBrokerClientStartup;
 import com.iohao.game.bolt.broker.core.client.BrokerClient;
 import com.iohao.game.bolt.broker.core.client.BrokerClientBuilder;
 import com.iohao.game.spring.logic.core.MyBarSkeletonConfig;
 import com.iohao.game.spring.logic.hall.action.LoginAction;
+import com.iohao.game.spring.logic.hall.event.HelloEventHandler;
+import com.iohao.game.widget.light.domain.event.DomainEventContext;
+import com.iohao.game.widget.light.domain.event.DomainEventContextParam;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -55,7 +61,24 @@ public class GameLogicHallLogic extends AbstractBrokerClientStartup {
 
         builder.setFlowContextFactory(MyFlowContext::new);
 
+        extractedDomainEvent(builder);
+
         return builder.build();
+    }
+
+    private static void extractedDomainEvent(BarSkeletonBuilder builder) {
+        builder.addRunner((EventBusRunner) (eventBus, skeleton) -> {
+            var helloEventHandler = MyKit.applicationContext.getBean(HelloEventHandler.class);
+
+            // 领域事件上下文参数
+            var contextParam = new DomainEventContextParam();
+            // 将类添加到领域事件上下文中
+            contextParam.addEventHandler(helloEventHandler);
+
+            // 启动事件驱动
+            var domainEventContext = new DomainEventContext(contextParam);
+            domainEventContext.startup();
+        });
     }
 
     @Override

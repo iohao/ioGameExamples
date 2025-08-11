@@ -94,6 +94,11 @@ public class EventbusOneClient {
                 var value = result.getString();
                 log.info("value : {}", value);
             });
+
+            ofCommand(UserCmd.fireLocalUser).setTitle("fireLocalUser").callback(result -> {
+                var value = result.getString();
+                log.info("fireLocalUser : {}", value);
+            });
         }
     }
 

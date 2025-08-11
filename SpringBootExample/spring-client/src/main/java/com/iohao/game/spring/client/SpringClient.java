@@ -49,6 +49,7 @@ public class SpringClient {
         // 模拟请求数据
         List<InputCommandRegion> inputCommandRegions = List.of(
                 new InternalHallRegion()
+                , new InternalDomainEventRegion()
                 , new InternalClassesRegion()
                 , new InternalSchoolRegion()
                 , new InternalRoomRegion()
@@ -142,6 +143,18 @@ public class SpringClient {
             });
 
             ofCommand(HallCmdModule.issue301).setTitle("https://github.com/iohao/ioGame/issues/301");
+        }
+    }
+
+    static class InternalDomainEventRegion extends AbstractInputCommandRegion {
+        @Override
+        public void initInputCommand() {
+            inputCommandCreate.cmd = DomainEventCmdModule.cmd;
+
+            ofCommand(DomainEventCmdModule.send).setTitle("DomainEvent send").callback(result -> {
+                var value = result.getString();
+                log.info("{}", value);
+            });
         }
     }
 

@@ -18,6 +18,12 @@
             <version>${project.parent.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.iohao.game</groupId>
+            <artifactId>light-domain-event</artifactId>
+            <version>${ioGame.version}</version>
+        </dependency>
+
         <!-- https://mvnrepository.com/artifact/org.hibernate.validator/hibernate-validator -->
         <dependency>
             <groupId>org.hibernate.validator</groupId>

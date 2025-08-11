@@ -17,6 +17,7 @@
  */
 package com.iohao.game.spring;
 
+import com.iohao.game.MyKit;
 import com.iohao.game.action.skeleton.ext.spring.ActionFactoryBeanForSpring;
 import com.iohao.game.bolt.broker.client.AbstractBrokerClientStartup;
 import com.iohao.game.bolt.broker.core.client.BrokerClient;
@@ -73,7 +74,7 @@ public class SpringGameOneApplication {
         List<AbstractBrokerClientStartup> logicList = listLogic();
 
         // 启动 spring boot
-        SpringApplication.run(SpringGameOneApplication.class, args);
+        MyKit.applicationContext = SpringApplication.run(SpringGameOneApplication.class, args);
 
         // 对外开放的端口
         int externalPort = 10100;

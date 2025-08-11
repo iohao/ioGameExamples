@@ -1,6 +1,7 @@
 /*
+ * ioGame
+ * Copyright (C) 2021 - present  渔民小镇 （262610965@qq.com、luoyizhu@gmail.com） . All Rights Reserved.
  * # iohao.com . 渔民小镇
- * Copyright (C) 2021 - present double joker （262610965@qq.com） . All Rights Reserved.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -15,26 +16,16 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-package com.iohao.game.spring.common.cmd;
+package com.iohao.game;
+
+import lombok.experimental.UtilityClass;
+import org.springframework.context.ApplicationContext;
 
 /**
- * 这里存放所有的模块主 cmd
- *
  * @author 渔民小镇
- * @date 2022-07-09
+ * @date 2025-08-04
  */
-public interface SpringCmdModule {
-    /** 学校模块 */
-    int schoolCmd = 1;
-    /** 班级模块 */
-    int classesCmd = 2;
-    /** 大厅模块 */
-    int hallCmd = 3;
-    /** 房间的模块 */
-    int roomCmd = 4;
-    /** 其他测试 */
-    int otherSchoolCmd = 5;
-    int issuesCmd = 6;
-    int domainEventCmd = 7;
-
+@UtilityClass
+public final class MyKit {
+    public ApplicationContext applicationContext;
 }

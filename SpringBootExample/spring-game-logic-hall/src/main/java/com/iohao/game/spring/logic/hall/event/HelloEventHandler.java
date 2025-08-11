@@ -16,31 +16,28 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-package com.iohao.game.example.multiple.eventbus.user;
+package com.iohao.game.spring.logic.hall.event;
 
-import com.iohao.game.action.skeleton.eventbus.EventSubscribe;
-import com.iohao.game.action.skeleton.eventbus.EventBusSubscriber;
-import com.iohao.game.action.skeleton.eventbus.ExecutorSelector;
-import com.iohao.game.example.multiple.eventbus.common.event.LocalUserMessage;
-import com.iohao.game.example.multiple.eventbus.common.event.UserLoginEventMessage;
+import com.iohao.game.widget.light.domain.event.message.DomainEventHandler;
+import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
 
 /**
- * user 订阅者
- *
  * @author 渔民小镇
- * @date 2023-12-24
+ * @date 2025-08-04
+ * @since 21.30
  */
 @Slf4j
-@EventBusSubscriber
-public class UserEventBusSubscriber {
-    @EventSubscribe
-    public void userLogin(UserLoginEventMessage message) {
-        log.info("event - 玩家[{}]登录，记录登录时间", message.getUserId());
-    }
+@Component
+public final class HelloEventHandler implements DomainEventHandler<HelloEo> {
+    @Resource
+    HelloService helloService;
 
-    @EventSubscribe
-    public void testLocalUser(LocalUserMessage message) {
-        log.info("LocalUserMessage - 玩家[{}]", message.getUserId());
+    @Override
+    public void onEvent(HelloEo event, boolean endOfBatch) {
+        var message = helloService.sayHello();
+
+        log.info("{} {}", event.message(), message);
     }
 }
